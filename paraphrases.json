@@ -1,0 +1,22 @@
+{
+  "_comment": "Frozen paraphrase set for micro-T1. 'structure' tags: 'minimal' = near-identical token structure to seed; 'syntactic' = same clause order, different wording; 'reordered' = clause order, format, or sentence count changed. Tags are reported, not gated on.",
+  "seed": "Fact: The capital of the state containing Dallas is",
+  "paraphrases": [
+    {"prompt": "fact: the capital of the state containing Dallas is", "structure": "minimal"},
+    {"prompt": "FACT: The capital of the state containing Dallas is", "structure": "minimal"},
+    {"prompt": "Fact: The capital of the state which contains Dallas is", "structure": "minimal"},
+    {"prompt": "The capital of the state containing Dallas is", "structure": "minimal"},
+    {"prompt": "Fact: The capital city of the state containing Dallas is", "structure": "minimal"},
+    {"prompt": "The capital of the state where Dallas is located is", "structure": "syntactic"},
+    {"prompt": "The capital city of the state that contains Dallas is", "structure": "syntactic"},
+    {"prompt": "The capital of the state that Dallas is in is", "structure": "syntactic"},
+    {"prompt": "The city of Dallas is in a state whose capital city is", "structure": "syntactic"},
+    {"prompt": "Dallas is located in a state whose capital is", "structure": "syntactic"},
+    {"prompt": "Consider the state containing Dallas. Its capital is", "structure": "reordered"},
+    {"prompt": "Dallas is a city in a southern US state. The capital of that state is", "structure": "reordered"},
+    {"prompt": "Q: What is the capital of the state containing Dallas? A:", "structure": "reordered"},
+    {"prompt": "Dallas sits in a US state, and that state's capital is", "structure": "reordered"},
+    {"prompt": "Take the state Dallas belongs to; the capital of that state is", "structure": "reordered"},
+    {"prompt": "There is a state that contains Dallas. The capital of this state is", "structure": "reordered"}
+  ]
+}
