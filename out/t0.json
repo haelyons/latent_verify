@@ -1,0 +1,170 @@
+{
+  "seed_prompt": "Fact: The capital of the state containing Dallas is",
+  "austin_id": 22605,
+  "austin_base_logit": 26.25,
+  "austin_base_rank": 0,
+  "firing_positions": {
+    "L20/15589": [
+      [
+        9,
+        45.75
+      ],
+      [
+        10,
+        49.25
+      ]
+    ],
+    "L19/7477": [
+      [
+        9,
+        55.25
+      ],
+      [
+        10,
+        26.0
+      ]
+    ],
+    "L16/25": [
+      [
+        9,
+        28.125
+      ]
+    ],
+    "L14/2268": [
+      [
+        9,
+        25.625
+      ]
+    ],
+    "L7/6861": [
+      [
+        7,
+        2.1875
+      ],
+      [
+        9,
+        15.4375
+      ]
+    ],
+    "L4/13154": [
+      [
+        9,
+        15.125
+      ]
+    ]
+  },
+  "by_multiplier": {
+    "0.0": {
+      "singles": {
+        "L20/15589": {
+          "drop": 0.75,
+          "rank_after": 0,
+          "n_interventions": 2,
+          "vacuous": false
+        },
+        "L19/7477": {
+          "drop": -0.25,
+          "rank_after": 0,
+          "n_interventions": 2,
+          "vacuous": false
+        },
+        "L16/25": {
+          "drop": 0.125,
+          "rank_after": 0,
+          "n_interventions": 1,
+          "vacuous": false
+        },
+        "L14/2268": {
+          "drop": 0.125,
+          "rank_after": 0,
+          "n_interventions": 1,
+          "vacuous": false
+        },
+        "L7/6861": {
+          "drop": 0.0,
+          "rank_after": 0,
+          "n_interventions": 2,
+          "vacuous": false
+        },
+        "L4/13154": {
+          "drop": 0.125,
+          "rank_after": 0,
+          "n_interventions": 1,
+          "vacuous": false
+        }
+      },
+      "joint": {
+        "drop": 1.5,
+        "rank_after": 0,
+        "n_interventions": 9,
+        "vacuous": false
+      },
+      "control_drops": [
+        0.0,
+        0.125,
+        0.0,
+        0.125,
+        0.0
+      ],
+      "control_mean": 0.05,
+      "max_single_over_joint": 0.5,
+      "joint_over_control": 30.0
+    },
+    "-2.0": {
+      "singles": {
+        "L20/15589": {
+          "drop": 8.5,
+          "rank_after": 235,
+          "n_interventions": 2,
+          "vacuous": false
+        },
+        "L19/7477": {
+          "drop": -0.375,
+          "rank_after": 0,
+          "n_interventions": 2,
+          "vacuous": false
+        },
+        "L16/25": {
+          "drop": 1.125,
+          "rank_after": 0,
+          "n_interventions": 1,
+          "vacuous": false
+        },
+        "L14/2268": {
+          "drop": 1.75,
+          "rank_after": 0,
+          "n_interventions": 1,
+          "vacuous": false
+        },
+        "L7/6861": {
+          "drop": 0.75,
+          "rank_after": 0,
+          "n_interventions": 2,
+          "vacuous": false
+        },
+        "L4/13154": {
+          "drop": 1.5,
+          "rank_after": 0,
+          "n_interventions": 1,
+          "vacuous": false
+        }
+      },
+      "joint": {
+        "drop": 24.4921875,
+        "rank_after": 87887,
+        "n_interventions": 9,
+        "vacuous": false
+      },
+      "control_drops": [
+        0.25,
+        1.375,
+        2.25,
+        0.0,
+        0.875
+      ],
+      "control_mean": 0.95,
+      "max_single_over_joint": 0.3470494417862839,
+      "joint_over_control": 25.78125
+    }
+  }
+}

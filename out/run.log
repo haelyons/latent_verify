@@ -1,0 +1,11 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.42s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.14s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  1.86s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.14s/it]
+Fetching 26 files:   0%|          | 0/26 [00:00<?, ?it/s]Fetching 26 files: 100%|██████████| 26/26 [00:00<00:00, 11148.22it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[t0][m=0.0] joint drop=1.500 (rank 0->0) | max single=0.750 | ratio=0.50 (ambiguous) | control mean=0.050 | S1=PASS S3=PASS
+[t0][m=-2.0] joint drop=24.492 (rank 0->87887) | max single=8.500 | ratio=0.35 (ambiguous) | control mean=0.950 | S1=PASS S3=PASS
+[t0] written to out/t0.json
+[t1] 15/16 paraphrases preserve behaviour (S4 PASS); seed joint drop=24.492 at m=-2.0
+[t1]     minimal: A=5 B=0 C=0
+[t1]   syntactic: A=5 B=0 C=0
+[t1]   reordered: A=5 B=0 C=0
+[t1] written to out/t1.json

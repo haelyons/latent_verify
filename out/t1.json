@@ -1,0 +1,298 @@
+{
+  "transport_multiplier": -2.0,
+  "seed_joint_drop": 24.4921875,
+  "records": [
+    {
+      "prompt": "fact: the capital of the state containing Dallas is",
+      "structure": "minimal",
+      "austin_rank": 0,
+      "margin": 1.875,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 24.6640625,
+      "drop_normalized": 1.0070175438596491,
+      "rank_after": 116319,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "FACT: The capital of the state containing Dallas is",
+      "structure": "minimal",
+      "austin_rank": 0,
+      "margin": 1.5,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 26.8046875,
+      "drop_normalized": 1.0944178628389154,
+      "rank_after": 133545,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Fact: The capital of the state which contains Dallas is",
+      "structure": "minimal",
+      "austin_rank": 0,
+      "margin": 0.875,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 28.125,
+      "drop_normalized": 1.1483253588516746,
+      "rank_after": 170111,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "The capital of the state containing Dallas is",
+      "structure": "minimal",
+      "austin_rank": 0,
+      "margin": 1.125,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 33.9375,
+      "drop_normalized": 1.385645933014354,
+      "rank_after": 238556,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Fact: The capital city of the state containing Dallas is",
+      "structure": "minimal",
+      "austin_rank": 0,
+      "margin": 1.5,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 24.140625,
+      "drop_normalized": 0.9856459330143541,
+      "rank_after": 83235,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "The capital of the state where Dallas is located is",
+      "structure": "syntactic",
+      "austin_rank": 0,
+      "margin": 1.125,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 30.96875,
+      "drop_normalized": 1.264433811802233,
+      "rank_after": 217442,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "The capital city of the state that contains Dallas is",
+      "structure": "syntactic",
+      "austin_rank": 0,
+      "margin": 0.875,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 33.34375,
+      "drop_normalized": 1.3614035087719298,
+      "rank_after": 230744,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "The capital of the state that Dallas is in is",
+      "structure": "syntactic",
+      "austin_rank": 0,
+      "margin": 0.75,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 26.68359375,
+      "drop_normalized": 1.0894736842105264,
+      "rank_after": 142391,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "The city of Dallas is in a state whose capital city is",
+      "structure": "syntactic",
+      "austin_rank": 0,
+      "margin": 2.75,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 21.203125,
+      "drop_normalized": 0.8657097288676237,
+      "rank_after": 58883,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Dallas is located in a state whose capital is",
+      "structure": "syntactic",
+      "austin_rank": 0,
+      "margin": 2.625,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 17.125,
+      "drop_normalized": 0.6992025518341308,
+      "rank_after": 12894,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Consider the state containing Dallas. Its capital is",
+      "structure": "reordered",
+      "austin_rank": 3,
+      "margin": -1.0,
+      "regime": "filtered"
+    },
+    {
+      "prompt": "Dallas is a city in a southern US state. The capital of that state is",
+      "structure": "reordered",
+      "austin_rank": 0,
+      "margin": 1.125,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 24.1953125,
+      "drop_normalized": 0.9878787878787879,
+      "rank_after": 58520,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Q: What is the capital of the state containing Dallas? A:",
+      "structure": "reordered",
+      "austin_rank": 0,
+      "margin": 1.375,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 25.4453125,
+      "drop_normalized": 1.038915470494418,
+      "rank_after": 179334,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Dallas sits in a US state, and that state's capital is",
+      "structure": "reordered",
+      "austin_rank": 0,
+      "margin": 1.75,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 22.6875,
+      "drop_normalized": 0.9263157894736842,
+      "rank_after": 50727,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "Take the state Dallas belongs to; the capital of that state is",
+      "structure": "reordered",
+      "austin_rank": 0,
+      "margin": 1.5,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 23.5859375,
+      "drop_normalized": 0.9629984051036683,
+      "rank_after": 94459,
+      "regime": "A_transported"
+    },
+    {
+      "prompt": "There is a state that contains Dallas. The capital of this state is",
+      "structure": "reordered",
+      "austin_rank": 0,
+      "margin": 1.5,
+      "n_recruited": 6,
+      "recruited": [
+        "L20/15589",
+        "L19/7477",
+        "L16/25",
+        "L14/2268",
+        "L7/6861",
+        "L4/13154"
+      ],
+      "drop": 18.15625,
+      "drop_normalized": 0.7413078149920255,
+      "rank_after": 26096,
+      "regime": "A_transported"
+    }
+  ]
+}
