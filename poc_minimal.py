@@ -66,19 +66,42 @@ OUT_DIR = Path("./out")
 
 def load_model():  # API (assumption 1)
     from transformers import AutoModelForCausalLM
+    from transformer_lens.weight_processing import ProcessWeights
     from circuit_tracer import ReplacementModel
-    # Memory-constrained-host path; semantics unchanged:
-    # - hf_model= pre-loads the HF weights in bf16 (low_cpu_mem_usage) so
-    #   TransformerLens skips its fp32 re-materialization of the shards,
-    #   which peaks ~25 GB and OOM-kills 16 GB hosts.
-    # - lazy_encoder streams W_enc from the safetensors on each use instead
-    #   of holding it resident; values are identical (same file, same cast).
+
+    # Memory-constrained-host path; every measure below is bit-identical to
+    # the default load for THIS model and flag set:
+    # 1. hf_model= pre-loads the weights in bf16 so TransformerLens does not
+    #    re-materialize the fp32 shards itself.
+    # 2. lazy_encoder streams W_enc from the cached safetensors per use
+    #    (same file, same cast) instead of holding ~2 GB resident.
+    # 3. circuit-tracer loads with fold_ln/center_writing/center_unembed all
+    #    False; fold_value_biases=False is additionally passed because
+    #    gemma-2 has no biases anywhere, making the fold a numerical no-op.
+    #    With all flags False, ProcessWeights.process_weights performs no
+    #    transformation but still round-trips the entire state dict through
+    #    fp32 (~10 GB transient -- OOM on a 16 GB host); the guard skips the
+    #    call when it would be the identity (bf16->fp32->bf16 is exact).
+    _orig = ProcessWeights.process_weights
+
+    def _guarded(state_dict, cfg, fold_ln=True, center_writing_weights=True,
+                 center_unembed=True, fold_value_biases=True,
+                 refactor_factored_attn_matrices=False, adapter=None):
+        if not any((fold_ln, center_writing_weights, center_unembed,
+                    fold_value_biases, refactor_factored_attn_matrices)):
+            return state_dict
+        return _orig(state_dict, cfg, fold_ln, center_writing_weights,
+                     center_unembed, fold_value_biases,
+                     refactor_factored_attn_matrices, adapter)
+
+    ProcessWeights.process_weights = staticmethod(_guarded)
     hf_model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)
+        MODEL_NAME, dtype=torch.bfloat16, low_cpu_mem_usage=True)
     return ReplacementModel.from_pretrained(MODEL_NAME, TRANSCODERS,
                                             dtype=torch.bfloat16,
                                             lazy_encoder=True,
-                                            hf_model=hf_model)
+                                            hf_model=hf_model,
+                                            fold_value_biases=False)
 
 
 def logits_and_acts(model, prompt):  # API (assumption 2)
