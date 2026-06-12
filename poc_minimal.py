@@ -66,8 +66,20 @@ OUT_DIR = Path("./out")
 
 def load_model():  # API (assumption 1)
     from circuit_tracer import ReplacementModel
+    kwargs = {}
+    # GEMMA_LOCAL_DIR: directory holding gemma-2-2b weights/tokenizer for
+    # environments where the gated google/ repo is unreachable (e.g. an
+    # ungated mirror, config-verified). TransformerLens keeps its own
+    # hardcoded gemma-2-2b config, so MODEL_NAME stays the official id.
+    import os
+    local = os.environ.get("GEMMA_LOCAL_DIR")
+    if local:
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        kwargs["hf_model"] = AutoModelForCausalLM.from_pretrained(
+            local, torch_dtype=torch.bfloat16)
+        kwargs["tokenizer"] = AutoTokenizer.from_pretrained(local)
     return ReplacementModel.from_pretrained(MODEL_NAME, TRANSCODERS,
-                                            dtype=torch.bfloat16)
+                                            dtype=torch.bfloat16, **kwargs)
 
 
 def logits_and_acts(model, prompt):  # API (assumption 2)

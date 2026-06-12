@@ -1,4 +1,35 @@
-# Running the attribution-graph PoC on the Lambda GPU (Jupyter)
+# Running the attribution-graph PoC
+
+## Pivot: CPU-only session path (no GPU needed)
+
+The Lambda GPU session became unavailable, so the PoC now also runs entirely
+inside the Claude Code cloud container (4 vCPU / 15 GB): the experiment is
+only ~60 short forward passes through gemma-2-2b, which fit in bf16 on CPU.
+
+```bash
+bash run_poc_cpu.sh        # setup + smoke validation + t0 + t1
+```
+
+Differences from the GPU path, and how each is verified:
+
+- **Base weights** come from the ungated `unsloth/gemma-2-2b` mirror (the
+  `google/` repo is gated and the container has no HF token). Config and
+  tokenizer match the official gemma-2-2b architecture.
+- **Stack validation before any experiment stage**: `smoke_test.py` checks
+  that (1) " Austin" is top-1 on the seed prompt and (2) all six pinned Texas
+  features reproduce the activation magnitudes returned by Neuronpedia's
+  public API for the same prompt (reference values in
+  `out/neuronpedia_seed_reference.txt`, fetched anonymously — the
+  `POST /api/activation/new` endpoint needs no key). A mismatch aborts the
+  run before t0.
+- `load_model()` in `poc_minimal.py` reads `GEMMA_LOCAL_DIR` to inject the
+  local weights via TransformerLens's `hf_model=` path; the official model id
+  is still used for the (hardcoded) architecture config, and nothing else in
+  the library is touched.
+
+The original GPU instructions below remain valid when a GPU session exists.
+
+## Original: Lambda GPU (Jupyter)
 
 SSH from the Claude Code web session is blocked by an HTTPS-only egress proxy
 (only ports 80/443, hostname-allowlisted, TLS-MITM — SSH cannot traverse it).
