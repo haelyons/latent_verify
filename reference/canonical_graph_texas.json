@@ -1,0 +1,135 @@
+{
+  "_provenance": {
+    "source": "https://www.neuronpedia.org/api/graph/gemma-2-2b/gemma-fact-dallas-austin",
+    "graph_json": "https://neuronpedia-attrib.s3.us-east-1.amazonaws.com/user-graphs/cmao6p1xd0000ypedw0qhlhob/gemma-fact-dallas-austin.json",
+    "fetched": "2026-06-12",
+    "scan": "gemma-2-2b",
+    "slug": "gemma-fact-dallas-austin",
+    "prompt": "<bos>Fact: The capital of the state containing Dallas is",
+    "source_set": "gemmascope-transcoder-16k",
+    "note": "ctx_idx 9 = ' Dallas' token; activations are the canonical seed-prompt values. Use to cross-check t0's firing_positions audit record."
+  },
+  "supernodes": {
+    "capital": [
+      "15_4494_4",
+      "6_4662_4",
+      "4_7671_4",
+      "3_13984_4",
+      "1_1000_4"
+    ],
+    "state": [
+      "6_4012_7",
+      "0_13727_7"
+    ],
+    "Texas": [
+      "20_15589_9",
+      "19_7477_9",
+      "16_25_9",
+      "4_13154_9",
+      "14_2268_9",
+      "7_6861_9"
+    ],
+    "preposition followed by place name": [
+      "19_1445_10",
+      "18_6101_10"
+    ],
+    "capital cities / say a capital city": [
+      "21_5943_10",
+      "17_7178_10",
+      "7_691_10",
+      "16_4298_10"
+    ]
+  },
+  "texas_nodes": [
+    {
+      "node_id": "20_15589_9",
+      "layer": 20,
+      "feature_idx": 15589,
+      "ctx_idx": 9,
+      "activation": 45.660675048828125,
+      "influence": 0.3256344497203827
+    },
+    {
+      "node_id": "19_7477_9",
+      "layer": 19,
+      "feature_idx": 7477,
+      "ctx_idx": 9,
+      "activation": 55.77735137939453,
+      "influence": 0.4591306746006012
+    },
+    {
+      "node_id": "16_25_9",
+      "layer": 16,
+      "feature_idx": 25,
+      "ctx_idx": 9,
+      "activation": 28.161062240600586,
+      "influence": 0.31469932198524475
+    },
+    {
+      "node_id": "14_2268_9",
+      "layer": 14,
+      "feature_idx": 2268,
+      "ctx_idx": 9,
+      "activation": 25.69990348815918,
+      "influence": 0.31083938479423523
+    },
+    {
+      "node_id": "7_6861_9",
+      "layer": 7,
+      "feature_idx": 6861,
+      "ctx_idx": 9,
+      "activation": 15.515071868896484,
+      "influence": 0.35385453701019287
+    },
+    {
+      "node_id": "4_13154_9",
+      "layer": 4,
+      "feature_idx": 13154,
+      "ctx_idx": 9,
+      "activation": 15.166460990905762,
+      "influence": 0.34076035022735596
+    }
+  ],
+  "answer_key_nodes": [
+    {
+      "node_id": "21_5943_10",
+      "layer": 21,
+      "feature_idx": 5943,
+      "ctx_idx": 10,
+      "activation": 56.36967086791992,
+      "influence": 0.29728037118911743
+    },
+    {
+      "node_id": "17_7178_10",
+      "layer": 17,
+      "feature_idx": 7178,
+      "ctx_idx": 10,
+      "activation": 27.499147415161133,
+      "influence": 0.43561017513275146
+    },
+    {
+      "node_id": "7_691_10",
+      "layer": 7,
+      "feature_idx": 691,
+      "ctx_idx": 10,
+      "activation": 16.38479995727539,
+      "influence": 0.43904781341552734
+    },
+    {
+      "node_id": "16_4298_10",
+      "layer": 16,
+      "feature_idx": 4298,
+      "ctx_idx": 10,
+      "activation": 19.929710388183594,
+      "influence": 0.4407412111759186
+    },
+    {
+      "node_id": "23_12237_10",
+      "layer": 23,
+      "feature_idx": 12237,
+      "ctx_idx": 10,
+      "activation": 54.44023895263672,
+      "influence": 0.3020104765892029
+    }
+  ]
+}
