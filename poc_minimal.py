@@ -65,13 +65,20 @@ OUT_DIR = Path("./out")
 # --------------------------------------------------------------------------
 
 def load_model():  # API (assumption 1)
+    from transformers import AutoModelForCausalLM
     from circuit_tracer import ReplacementModel
-    # lazy_encoder streams W_enc from the safetensors on each use instead of
-    # holding it resident; values are identical (same file, same bf16 cast).
-    # Needed on hosts where model load peaks near physical RAM.
+    # Memory-constrained-host path; semantics unchanged:
+    # - hf_model= pre-loads the HF weights in bf16 (low_cpu_mem_usage) so
+    #   TransformerLens skips its fp32 re-materialization of the shards,
+    #   which peaks ~25 GB and OOM-kills 16 GB hosts.
+    # - lazy_encoder streams W_enc from the safetensors on each use instead
+    #   of holding it resident; values are identical (same file, same cast).
+    hf_model = AutoModelForCausalLM.from_pretrained(
+        MODEL_NAME, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)
     return ReplacementModel.from_pretrained(MODEL_NAME, TRANSCODERS,
                                             dtype=torch.bfloat16,
-                                            lazy_encoder=True)
+                                            lazy_encoder=True,
+                                            hf_model=hf_model)
 
 
 def logits_and_acts(model, prompt):  # API (assumption 2)
