@@ -66,8 +66,12 @@ OUT_DIR = Path("./out")
 
 def load_model():  # API (assumption 1)
     from circuit_tracer import ReplacementModel
+    # lazy_encoder streams W_enc from the safetensors on each use instead of
+    # holding it resident; values are identical (same file, same bf16 cast).
+    # Needed on hosts where model load peaks near physical RAM.
     return ReplacementModel.from_pretrained(MODEL_NAME, TRANSCODERS,
-                                            dtype=torch.bfloat16)
+                                            dtype=torch.bfloat16,
+                                            lazy_encoder=True)
 
 
 def logits_and_acts(model, prompt):  # API (assumption 2)
