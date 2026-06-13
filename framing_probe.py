@@ -60,7 +60,9 @@ def rank_of(logits, token_id):
 
 def target_readout(model, logits, target_id):
     probs = torch.softmax(logits, dim=-1)
+    logprobs = torch.log_softmax(logits, dim=-1)
     return {"logit": float(logits[target_id]),
+            "logprob": float(logprobs[target_id]),
             "prob": float(probs[target_id]),
             "rank": rank_of(logits, target_id)}
 
@@ -101,12 +103,15 @@ def stage_b0(model, situations, args):
             if tid is not None:
                 tr = target_readout(model, logits, tid)
                 entry["target"] = tr
-                d_logit = tr["logit"] - base_tgt["logit"]
-                entry["target_delta_logit_vs_baseline"] = d_logit
+                # raw logits are NOT comparable across different prompts
+                # (per-context softmax shift); the calibrated cross-framing
+                # signal is the change in log-probability of the answer.
+                d_logp = tr["logprob"] - base_tgt["logprob"]
+                entry["target_delta_logprob_vs_baseline"] = d_logp
                 entry["target_delta_rank_vs_baseline"] = (
                     tr["rank"] - base_tgt["rank"])
                 line += (f" | target p={tr['prob']:.3f} rank={tr['rank']:>4}"
-                         f" dlogit={d_logit:+.3f}")
+                         f" dlogp={d_logp:+.3f}")
             rec["framings"][name] = entry
             print(line)
         out.append(rec)
