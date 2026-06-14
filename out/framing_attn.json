@@ -1,0 +1,21 @@
+{
+  "baseline_canberra_lp": -0.9360969066619873,
+  "framed_canberra_lp": -10.357438087463379,
+  "framing_effect": 9.421341180801392,
+  "sydney_positions": [
+    1
+  ],
+  "control_positions": [
+    5
+  ],
+  "knockout_sydney": {
+    "lp": -0.5874050259590149,
+    "rank": 0,
+    "necessity": 1.0370108537639555
+  },
+  "knockout_control": {
+    "lp": -6.15526819229126,
+    "rank": 12,
+    "necessity": 0.4460267189702472
+  }
+}

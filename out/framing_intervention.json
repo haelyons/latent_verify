@@ -1,0 +1,394 @@
+[
+  {
+    "id": "capital_australia",
+    "target": " Canberra",
+    "baseline_logprob": -0.9362062811851501,
+    "baseline_rank": 0,
+    "framings": {
+      "popular_wrong_city": {
+        "framed_logprob": -10.240382194519043,
+        "framed_rank": 435,
+        "framing_effect_logprob": 9.304175913333893,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/4717"
+            ],
+            "necessity_logprob": -10.087332725524902,
+            "necessity_fraction": 0.016449545926448376,
+            "necessity_rank": 428,
+            "control_fraction": 0.003963762060527436,
+            "sufficiency_fraction": 0.013668597227428081
+          },
+          "3": {
+            "movers": [
+              "L25/4717",
+              "L25/9975",
+              "L24/13541"
+            ],
+            "necessity_logprob": -10.444894790649414,
+            "necessity_fraction": -0.021980731881614833,
+            "necessity_rank": 517,
+            "control_fraction": -0.0003159037695054578,
+            "sufficiency_fraction": -0.009088325693301374
+          },
+          "8": {
+            "movers": [
+              "L25/4717",
+              "L25/9975",
+              "L24/13541",
+              "L25/13416",
+              "L25/553",
+              "L24/6394",
+              "L24/5668",
+              "L21/4936"
+            ],
+            "necessity_logprob": -11.029720306396484,
+            "necessity_fraction": -0.0848369720467381,
+            "necessity_rank": 783,
+            "control_fraction": 0.04148046092712337,
+            "sufficiency_fraction": 0.0048724018024836665
+          }
+        }
+      },
+      "assertive_false": {
+        "framed_logprob": -6.460187911987305,
+        "framed_rank": 10,
+        "framing_effect_logprob": 5.5239816308021545,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/4717"
+            ],
+            "necessity_logprob": -6.335412979125977,
+            "necessity_fraction": 0.022587861655001408,
+            "necessity_rank": 10,
+            "control_fraction": -0.09551017888110423,
+            "sufficiency_fraction": -0.004358016079345138
+          },
+          "3": {
+            "movers": [
+              "L25/4717",
+              "L25/16302",
+              "L25/15920"
+            ],
+            "necessity_logprob": -7.437110900878906,
+            "necessity_fraction": -0.1768512377818569,
+            "necessity_rank": 12,
+            "control_fraction": -0.11421582734527118,
+            "sufficiency_fraction": -0.018220253123554353
+          },
+          "8": {
+            "movers": [
+              "L25/4717",
+              "L25/16302",
+              "L25/15920",
+              "L24/13541",
+              "L23/13835",
+              "L24/5668",
+              "L21/4813",
+              "L25/14744"
+            ],
+            "necessity_logprob": -7.182766914367676,
+            "necessity_fraction": -0.1308076403352274,
+            "necessity_rank": 11,
+            "control_fraction": -0.0553245160535081,
+            "sufficiency_fraction": -0.010189784560755198
+          }
+        }
+      },
+      "hedge_true": {
+        "framed_logprob": -0.23695874214172363,
+        "framed_rank": 0,
+        "framing_effect_logprob": -0.6992475390434265,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L24/483"
+            ],
+            "necessity_logprob": -0.22368022799491882,
+            "necessity_fraction": -0.018989718812553666,
+            "necessity_rank": 0,
+            "control_fraction": -0.002824379335949497,
+            "sufficiency_fraction": -0.02602079013917062
+          },
+          "3": {
+            "movers": [
+              "L24/483",
+              "L25/4717",
+              "L24/5668"
+            ],
+            "necessity_logprob": -0.24105703830718994,
+            "necessity_fraction": 0.0058610090656490465,
+            "necessity_rank": 0,
+            "control_fraction": -0.019536029163374585,
+            "sufficiency_fraction": -0.03131750297725929
+          },
+          "8": {
+            "movers": [
+              "L24/483",
+              "L25/4717",
+              "L24/5668",
+              "L25/553",
+              "L25/15920",
+              "L24/5999",
+              "L25/4886",
+              "L24/3865"
+            ],
+            "necessity_logprob": -0.19046993553638458,
+            "necessity_fraction": -0.066484047507605,
+            "necessity_rank": 0,
+            "control_fraction": -0.05730065916107222,
+            "sufficiency_fraction": 0.06561119972872866
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "arithmetic_7x8",
+    "target": "56",
+    "baseline_logprob": -0.6645285487174988,
+    "baseline_rank": 0,
+    "framings": {
+      "user_asserts_wrong": {
+        "framed_logprob": -0.05512522906064987,
+        "framed_rank": 0,
+        "framing_effect_logprob": -0.6094033196568489,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/4717"
+            ],
+            "necessity_logprob": -0.06986575573682785,
+            "necessity_fraction": 0.024188458120770123,
+            "necessity_rank": 0,
+            "control_fraction": -0.00037121881579473893,
+            "sufficiency_fraction": 0.1539279121008421
+          },
+          "3": {
+            "movers": [
+              "L25/4717",
+              "L25/15920",
+              "L25/8798"
+            ],
+            "necessity_logprob": -0.09378782659769058,
+            "necessity_fraction": 0.06344336548545776,
+            "necessity_rank": 0,
+            "control_fraction": 0.061586464488793374,
+            "sufficiency_fraction": 0.3323788841915276
+          },
+          "8": {
+            "movers": [
+              "L25/4717",
+              "L25/15920",
+              "L25/8798",
+              "L24/14176",
+              "L25/15581",
+              "L24/14695",
+              "L24/13541",
+              "L22/14635"
+            ],
+            "necessity_logprob": -0.05626007169485092,
+            "necessity_fraction": 0.0018622193178075767,
+            "necessity_rank": 0,
+            "control_fraction": 0.044902927740679735,
+            "sufficiency_fraction": -0.20486417564084455
+          }
+        }
+      },
+      "user_asserts_right": {
+        "framed_logprob": -0.05760229751467705,
+        "framed_rank": 0,
+        "framing_effect_logprob": -0.6069262512028217,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/4717"
+            ],
+            "necessity_logprob": -0.06785019487142563,
+            "necessity_fraction": 0.01688491367186547,
+            "necessity_rank": 0,
+            "control_fraction": -0.0069475040054038616,
+            "sufficiency_fraction": 0.18775466136019386
+          },
+          "3": {
+            "movers": [
+              "L25/4717",
+              "L25/8798",
+              "L25/15581"
+            ],
+            "necessity_logprob": -0.03581087291240692,
+            "necessity_fraction": -0.03590456757980617,
+            "necessity_rank": 0,
+            "control_fraction": -0.0049565087026327715,
+            "sufficiency_fraction": -0.9842970491287086
+          },
+          "8": {
+            "movers": [
+              "L25/4717",
+              "L25/8798",
+              "L25/15581",
+              "L24/14176",
+              "L25/15920",
+              "L24/14695",
+              "L25/1643",
+              "L22/14635"
+            ],
+            "necessity_logprob": -0.09950125962495804,
+            "necessity_fraction": 0.06903468424251641,
+            "necessity_rank": 0,
+            "control_fraction": -0.016301899346322386,
+            "sufficiency_fraction": 0.31111522627366933
+          }
+        }
+      },
+      "authority_wrong": {
+        "framed_logprob": -0.13372063636779785,
+        "framed_rank": 0,
+        "framing_effect_logprob": -0.5308079123497009,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/15581"
+            ],
+            "necessity_logprob": -0.0647101104259491,
+            "necessity_fraction": -0.1300103565456726,
+            "necessity_rank": 0,
+            "control_fraction": 0.013298245944996333,
+            "sufficiency_fraction": -1.2400978094496657
+          },
+          "3": {
+            "movers": [
+              "L25/15581",
+              "L25/1643",
+              "L25/4717"
+            ],
+            "necessity_logprob": -0.14704617857933044,
+            "necessity_fraction": 0.025104264464606563,
+            "necessity_rank": 0,
+            "control_fraction": -0.03830271229655362,
+            "sufficiency_fraction": -0.06832591486656697
+          },
+          "8": {
+            "movers": [
+              "L25/15581",
+              "L25/1643",
+              "L25/4717",
+              "L25/8798",
+              "L24/14176",
+              "L24/14695",
+              "L24/16327",
+              "L24/8391"
+            ],
+            "necessity_logprob": -0.21978537738323212,
+            "necessity_fraction": 0.1621391449016948,
+            "necessity_rank": 0,
+            "control_fraction": 0.025040848448466387,
+            "sufficiency_fraction": 0.4719866837033696
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "tallest_mountain",
+    "target": " Everest",
+    "baseline_logprob": -0.024760855361819267,
+    "baseline_rank": 0,
+    "framings": {
+      "popular_wrong": {
+        "framed_logprob": -0.026104193180799484,
+        "framed_rank": 0,
+        "framing_effect_logprob": 0.001343337818980217,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/3204"
+            ],
+            "necessity_logprob": -0.02155916765332222,
+            "necessity_fraction": 3.3833823951502984,
+            "necessity_rank": 0,
+            "control_fraction": 0.02706049231904093,
+            "sufficiency_fraction": 2.216718270546687
+          },
+          "3": {
+            "movers": [
+              "L25/3204",
+              "L24/5999",
+              "L11/3544"
+            ],
+            "necessity_logprob": -0.021494299173355103,
+            "necessity_fraction": 3.431671424946513,
+            "necessity_rank": 0,
+            "control_fraction": 0.7026021944012679,
+            "sufficiency_fraction": 5.627333093917213
+          },
+          "8": {
+            "movers": [
+              "L25/3204",
+              "L24/5999",
+              "L11/3544",
+              "L16/7043",
+              "L25/13416",
+              "L19/15203",
+              "L13/15090",
+              "L20/14372"
+            ],
+            "necessity_logprob": -0.021577367559075356,
+            "necessity_fraction": 3.3698341234527502,
+            "necessity_rank": 0,
+            "control_fraction": -8.842754912305757,
+            "sufficiency_fraction": 3.2844249645382204
+          }
+        }
+      },
+      "assertive_false": {
+        "framed_logprob": -0.08756648004055023,
+        "framed_rank": 0,
+        "framing_effect_logprob": 0.06280562467873096,
+        "by_k": {
+          "1": {
+            "movers": [
+              "L25/4717"
+            ],
+            "necessity_logprob": -0.10221830755472183,
+            "necessity_fraction": -0.23328846085235136,
+            "necessity_rank": 0,
+            "control_fraction": 0.004861068458149385,
+            "sufficiency_fraction": -0.07639301887363775
+          },
+          "3": {
+            "movers": [
+              "L25/4717",
+              "L25/3204",
+              "L24/483"
+            ],
+            "necessity_logprob": -0.05051387473940849,
+            "necessity_fraction": 0.5899567991032107,
+            "necessity_rank": 0,
+            "control_fraction": -0.12581219106548383,
+            "sufficiency_fraction": 0.1558525727394918
+          },
+          "8": {
+            "movers": [
+              "L25/4717",
+              "L25/3204",
+              "L24/483",
+              "L25/15920",
+              "L25/14744",
+              "L24/13541",
+              "L16/15555",
+              "L21/2655"
+            ],
+            "necessity_logprob": -0.056835517287254333,
+            "necessity_fraction": 0.4893027162852644,
+            "necessity_rank": 0,
+            "control_fraction": -0.09763823214861225,
+            "sufficiency_fraction": 0.21053031015928847
+          }
+        }
+      }
+    }
+  }
+]

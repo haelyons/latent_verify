@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Australia:Sydney->Canberra",
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 0,
+    "framed_top1": " Canberra",
+    "effect": -0.1576293706893921,
+    "flipped": false,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "Texas:Houston->Austin",
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 0,
+    "framed_top1": " Austin",
+    "effect": -0.2909582257270813,
+    "flipped": false,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "Canada:Toronto->Ottawa",
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 0,
+    "framed_top1": " Ottawa",
+    "effect": -0.1783425509929657,
+    "flipped": false,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "Turkey:Istanbul->Ankara",
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 1,
+    "framed_rank": 1,
+    "framed_top1": " Istanbul",
+    "effect": -0.09074920415878296,
+    "flipped": true,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "Switzerland:Zurich->Bern",
+    "anchor_pos": [],
+    "baseline_rank": 0,
+    "framed_rank": 0,
+    "framed_top1": " Bern",
+    "effect": 0.2585418224334717,
+    "flipped": false,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "Morocco:Casablanca->Rabat",
+    "anchor_pos": [],
+    "baseline_rank": 0,
+    "framed_rank": 0,
+    "framed_top1": " Rabat",
+    "effect": -0.1857483983039856,
+    "flipped": false,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "AU-para:everyone",
+    "anchor_pos": [
+      5
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 3195,
+    "framed_top1": " dreams",
+    "effect": 13.954796075820923,
+    "flipped": true,
+    "knockout_rank": 1,
+    "necessity": 0.9721118114221748
+  },
+  {
+    "name": "AU-para:confuse",
+    "anchor_pos": [
+      9
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 1,
+    "framed_top1": " Melbourne",
+    "effect": 0.14001202583312988,
+    "flipped": true,
+    "knockout_rank": null,
+    "necessity": null
+  }
+]
