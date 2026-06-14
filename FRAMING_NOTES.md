@@ -195,6 +195,55 @@ trusted on its own. The matched-random control drifts to -0.13/-0.22 at k=24
 signal. Causal role only; no per-feature semantics asserted (L19/14947 is "a
 feature whose restoration reverts the anchor flip", not "the Sydney feature").
 
+## 3.7 The missing half is attention: severing attention to "Sydney" fully reverts the flip
+
+§3.6 left ~half the flip unexplained and named attention-copy as the suspect.
+Direct test (`job_attn.py` / `job_attn_sweep.py`, run against the warm worker):
+at every layer, zero the attention *to* a chosen key token and renormalize, then
+read Canberra. Artifacts: `out/framing_attn.json`, `out/framing_attn_sweep.json`.
+(Cross-check: a plain `model()` forward reproduces the transcoder path exactly —
+framed Canberra lp -10.357 both ways — so this is the same model the rest of the
+experiment measures.)
+
+**Severing attention to "Sydney" reverts the flip completely: necessity +1.04,
+Canberra back to rank 0** (from rank 446). The per-token knockout sweep shows
+this is specific — Sydney is the unique full-revert token:
+
+| token (pos) | necessity | | token (pos) | necessity |
+|---|---|---|---|---|
+| **Sydney (1)** | **+1.04** | | famous (5) | +0.45 |
+| is (2) | +0.26 | | Australia, question (13) | +0.42 |
+| the/most/city/The/of (3,4,6,10,17) | ~0 (-0.01..+0.10) | | Australia, preamble (8) | **-0.49** |
+
+The only other sizeable positives are *part of the Sydney-promoting clause*
+("most **famous** city") or the question's own anchor ("capital of **Australia**");
+genuine function words sit at ~0. Severing the preamble's "Australia" makes the
+flip *worse* (-0.49) — it removes context competing with Sydney. So the earlier
+"famous" control (0.45) wasn't a specificity failure of the method, it was a
+bad control: famous is causally part of the framing.
+
+**The mechanism, end to end.** The three interventions cut one pathway at
+different depths and the numbers line up:
+
+    "Sydney" token --[attention copy]--> prediction-position residual
+                   --[late MLP "say-Sydney" features]--> Sydney >> Canberra logit
+
+- cut at the **source** (attention to Sydney): full revert, ~1.0 (§3.7)
+- cut **downstream**, at the DLA-selected MLP features: ~0.5 (§3.6)
+- cut at the **wrong** downstream features (activation-delta movers): ~0 (§3.5)
+
+The ~0.5 and ~1.0 are not additive — they are the same causal chain measured at
+two points; the MLP features are a *partial readout* of the information attention
+brings in. This is exactly the picture POSITIONING §3 predicts: the load-bearing
+step is in QK-space (attention copy), which the transcoder-MLP attribution can
+only see the downstream shadow of.
+
+**Caveats.** The knockout zeros a key at all layers and all query positions then
+renormalizes — a heavy, somewhat unphysical intervention (a query that attended
+almost only to Sydney gets its row near-zeroed). necessity slightly over 1.0
+(1.04) means removing Sydney leaves Canberra marginally *more* confident than the
+no-preamble baseline. One prompt, one model, greedy single-token readout.
+
 ## 4. Caveats
 
 - Single run, single seed. CPU bf16 is not bitwise deterministic: tail
@@ -211,25 +260,24 @@ feature whose restoration reverts the anchor flip", not "the Sydney feature").
 
 ## 5. Natural next steps
 
-§3.5 (activation-delta -> ~0) and §3.6 (DLA -> ~0.5) together localize ~half
-the flip in readout-position MLP features and leave ~half unexplained. The next
-moves are about closing that gap and stress-testing the mediator.
+§3.5-3.7 now give a complete causal account of the flip *on this prompt*:
+attention copies "Sydney" (the necessary step, ~1.0), late MLP features are the
+partial downstream readout (~0.5). The open questions are about generality.
 
-1. **Account for the missing ~50%: test the attention-copy hypothesis.**
-   Intervene at the "Sydney" token region (ablate / patch the attention
-   contribution into the prediction position) and see if that reverts the
-   remainder. This is the prime suspect for the unmediated half and falls partly
-   in QK-space — a scope finding either way.
-2. **Characterize the mediator L19/14947.** Max-activating contexts, its decoder
-   direction in unembedding space, whether it generalizes to other
-   false-anchor facts (is it "anchored-city" or "this specific pair"?). Causal
-   role is established; semantics are not.
-3. **Transport** — re-run the DLA mediation across the paraphrase family (T1
-   idea): does L19/14947 mediate the flip prompt-family-wide, or per-prompt?
-4. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
-   to actually test numeric sycophancy.
-5. Broaden the situation set across the confidence range to test the
+1. **Transport the mechanism.** Re-run the attention knockout + DLA mediation
+   across the paraphrase family and other fact pairs (Dallas/Houston,
+   Everest/K2 with a *susceptible* low-confidence variant). Is "attention copies
+   the anchored token" the mechanism everywhere, or prompt-specific?
+2. **Characterize L19/14947** — max-activating contexts, whether it is the
+   "say the anchored city" feature across pairs or specific to Canberra/Sydney.
+3. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
+   to test numeric sycophancy now that the harness is warm and cheap.
+4. Broaden the situation set across the confidence range to test the
    confidence-vs-susceptibility relationship quantitatively.
+
+(Done: §3.6 logit-attribution selection and §3.7 attention-copy test — the two
+top items of the previous list. The mechanism question they posed is answered;
+remaining work is generalization.)
 
 (Done: §3.6's logit-attribution selection, which was step 1 of the previous
 list — it worked, hence the new priorities.)

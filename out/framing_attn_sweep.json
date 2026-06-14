@@ -1,0 +1,109 @@
+{
+  "baseline_lp": -0.9360969066619873,
+  "framed_lp": -10.357438087463379,
+  "effect": 9.421341180801392,
+  "rows": [
+    {
+      "pos": 1,
+      "token": "Sydney",
+      "necessity": 1.0370108537639555,
+      "rank": 0
+    },
+    {
+      "pos": 2,
+      "token": " is",
+      "necessity": 0.26176414907097434,
+      "rank": 85
+    },
+    {
+      "pos": 3,
+      "token": " the",
+      "necessity": 0.09283305187328192,
+      "rank": 227
+    },
+    {
+      "pos": 4,
+      "token": " most",
+      "necessity": 0.0690083545717935,
+      "rank": 188
+    },
+    {
+      "pos": 5,
+      "token": " famous",
+      "necessity": 0.4460267189702472,
+      "rank": 12
+    },
+    {
+      "pos": 6,
+      "token": " city",
+      "necessity": 0.08024452089230052,
+      "rank": 302
+    },
+    {
+      "pos": 7,
+      "token": " in",
+      "necessity": -0.09992648794718914,
+      "rank": 737
+    },
+    {
+      "pos": 8,
+      "token": " Australia",
+      "necessity": -0.4859239564642841,
+      "rank": 3275
+    },
+    {
+      "pos": 9,
+      "token": ".",
+      "necessity": 0.09703651705972337,
+      "rank": 165
+    },
+    {
+      "pos": 10,
+      "token": " The",
+      "necessity": 0.024957910054034103,
+      "rank": 394
+    },
+    {
+      "pos": 11,
+      "token": " capital",
+      "necessity": 0.09946763547668538,
+      "rank": 261
+    },
+    {
+      "pos": 12,
+      "token": " of",
+      "necessity": -0.189114026281375,
+      "rank": 1151
+    },
+    {
+      "pos": 13,
+      "token": " Australia",
+      "necessity": 0.415740937543503,
+      "rank": 37
+    },
+    {
+      "pos": 14,
+      "token": " is",
+      "necessity": 0.02478704242327956,
+      "rank": 195
+    },
+    {
+      "pos": 15,
+      "token": " the",
+      "necessity": -0.31740322501012186,
+      "rank": 1697
+    },
+    {
+      "pos": 16,
+      "token": " city",
+      "necessity": -0.011535792023725901,
+      "rank": 358
+    },
+    {
+      "pos": 17,
+      "token": " of",
+      "necessity": 0.01782934893991844,
+      "rank": 434
+    }
+  ]
+}
