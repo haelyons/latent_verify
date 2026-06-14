@@ -551,6 +551,15 @@ still applies, but the anchor now lives in the user turn / a retrieved passage.
 Until P1-P5 are run, treat §§3.x as a mechanism characterized *in completion mode*,
 not as a statement about deployed chat models.
 
+**Outcome (run 2026-06-14, see `CHAT_FORMAT_FINDINGS.md`):** the behavioural
+salience flip does **not** transfer — with a full-sentence question, neither the
+base model (QA generation) nor gemma-2-2b-it gives the wrong city (0/5), and the
+it model rebuts the false premise. The base model still carries a large *latent*
+logit pull (~+6.6 nats) at the fragment readout, but the instruction-tuned model
+shows ~0 pull. P1 not supported, P4 falsified (no arithmetic capitulation), P2
+not cleanly tested (contaminated control). The §3 mechanism is real where
+measured; its behavioural reach to chat usage is narrow.
+
 ## 7. Remaining (from §5, not yet done)
 
 1. Characterize L19/14947 across pairs (DLA mediation on Texas/Canada) — is it
