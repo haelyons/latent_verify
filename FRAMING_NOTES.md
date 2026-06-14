@@ -96,7 +96,53 @@ tracking cannot tell 54 from 56. This situation needs a distractor with a
 
 These are activation deltas: **correlational**. Whether any of these features
 *causes* the framing effect needs the intervention step (clamp the mover, à la
-T0, and watch the answer) — not done here.
+T0, and watch the answer) — done in §3.5.
+
+## 3.5 Intervention: do the movers actually mediate the effect? (No.)
+
+`framing_intervention.py` clamps the top-K movers at the prediction position
+and measures the fraction of the framing's log-prob shift they account for:
+necessity (restore movers to baseline on the framed prompt), a matched-random
+control, and sufficiency (inject framed values onto the baseline prompt).
+Swept K = 1/3/8. Artifact: `out/framing_intervention.json`.
+
+**On the one large, clean effect — `capital_australia / popular_wrong_city`,
+the +9.30-nat Canberra->Sydney flip — restoring the top movers reverts almost
+none of it:**
+
+| K | necessity | control | sufficiency |
+|---|---|---|---|
+| 1 | +0.02 | +0.00 | +0.01 |
+| 3 | -0.02 | -0.00 | -0.01 |
+| 8 | -0.08 | +0.04 | +0.00 |
+
+Necessity is ~0 and indistinguishable from the matched-random control;
+clamping the biggest activation-movers (including L25/4717, which moved -184)
+back to baseline does **not** restore Canberra (rank stays ~435; at K=8 it gets
+slightly *worse*). `assertive_false` is the same story (necessity <= 0 at all
+K). So the b1 movers **co-vary with the framing but do not cause the next-token
+flip** — L25/4717's decoder direction is evidently near-orthogonal to the
+Canberra<->Sydney logit difference. **Biggest activation mover != causal
+driver**, the exact reason this project intervenes rather than reads graphs.
+
+**Most likely locus of the real effect:** attention copying "Sydney" from the
+framing text into the prediction position — a QK-space mechanism that, by
+construction, the transcoder-MLP attribution cannot see or clamp (POSITIONING
+§3, filter 2). Restoring last-position MLP features can't undo an
+attention-mediated copy.
+
+**Degenerate rows.** For `tallest_mountain` the framing effect is ~0.001-0.06
+nats (the model didn't move), so the necessity/sufficiency *fractions* in the
+JSON (+3.38, -8.84, ...) are divide-by-~zero artifacts, not signal. The code
+now reports these as n/a below MIN_EFFECT = 0.5 nats; the committed JSON
+predates that guard, so read every `tallest_mountain` fraction as n/a.
+`arithmetic` effects are small (~0.6 nats) and confounded (54/56), so its
+fractions are also uninformative.
+
+**Net:** the first causal test returns a clean negative — the readout-position
+feature-movers are not the mediators of the framing flip. This is an
+informative null, and it points the next experiment at attention / earlier
+positions rather than at more last-position features.
 
 ## 4. Caveats
 
@@ -114,13 +160,23 @@ T0, and watch the answer) — not done here.
 
 ## 5. Natural next steps
 
-1. **Intervention stage** — clamp the top b1 movers (esp. L25/4717) and measure
-   whether the framing effect is mediated by them; this is the T0 machinery
-   pointed at framing, and the step that converts these correlations into
-   causal claims.
-2. **Fix the arithmetic distractor** (distinct first token) to actually test
-   numeric sycophancy.
-3. **Transport** — re-run each framing across paraphrases (the T1 idea) to see
+The §3.5 null reshapes the priority list: last-position activation-movers are
+not the mediators, so the next moves are about *where* and *how* to attribute,
+not about clamping more of the same.
+
+1. **Select features by logit attribution, not activation delta.** Rank
+   candidates by `delta_activation x (decoder . unembed_direction)` for the
+   Canberra<->Sydney token difference (direct logit attribution), then clamp
+   those. This targets features that actually move the *decision*, not just
+   features that move. The current selection rule is what failed.
+2. **Intervene at the framing-token positions, not just the readout.** Clamp /
+   ablate the residual contribution at the "Sydney" token region, and test the
+   attention-copy hypothesis directly (it's the most likely locus). This may
+   fall partly outside the transcoder-MLP method (QK-space) — a scope finding
+   in itself.
+3. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
+   to actually test numeric sycophancy.
+4. **Transport** — re-run each framing across paraphrases (the T1 idea) to see
    whether a framing effect is prompt-specific or a mechanism.
-4. Broaden the situation set (more facts across the confidence range, to test
-   the confidence-vs-susceptibility relationship quantitatively).
+5. Broaden the situation set across the confidence range to test the
+   confidence-vs-susceptibility relationship quantitatively.

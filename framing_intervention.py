@@ -38,6 +38,10 @@ import torch
 from poc_minimal import load_model, logits_and_acts, intervened_logits, rank_of
 from framing_probe import first_token_id
 
+# Below this |effect| (nats) the framing barely moved the answer, so
+# normalizing an intervention by it is meaningless -> report null, not a ratio.
+MIN_EFFECT = 0.5
+
 
 def target_logprob(logits, tid):
     return float(torch.log_softmax(logits, dim=-1)[tid])
@@ -104,10 +108,13 @@ def run_situation(model, sit, args, rng):
         denom_suf = fr_lp - base_lp
 
         movers_full = top_movers(base_last, fr_last, max(args.k_sweep))
+        measurable = abs(denom_nec) >= MIN_EFFECT
         rec = {"framed_logprob": fr_lp, "framed_rank": rank_of(fr_logits, tid),
-               "framing_effect_logprob": denom_nec, "by_k": {}}
+               "framing_effect_logprob": denom_nec,
+               "measurable_effect": measurable, "by_k": {}}
+        flag = "" if measurable else "  (effect < MIN_EFFECT; fractions n/a)"
         print(f"[{name}] framed lp={fr_lp:.3f} rank={rec['framed_rank']} "
-              f"(effect {denom_nec:+.3f})")
+              f"(effect {denom_nec:+.3f}){flag}")
 
         for k in args.k_sweep:
             movers = movers_full[:k]
@@ -117,19 +124,19 @@ def run_situation(model, sit, args, rng):
             nec_logits = intervened_logits(
                 model, prompt, clamp_to(movers, fr_pos, base_last))
             nec_lp = target_logprob(nec_logits, tid)
-            nec_frac = (nec_lp - fr_lp) / denom_nec if abs(denom_nec) > 1e-6 else float("nan")
+            nec_frac = (nec_lp - fr_lp) / denom_nec if measurable else None
 
             # control: restore matched-random to baseline on the FRAMED prompt
             ctrl_logits = intervened_logits(
                 model, prompt, clamp_to(ctrl, fr_pos, base_last))
             ctrl_lp = target_logprob(ctrl_logits, tid)
-            ctrl_frac = (ctrl_lp - fr_lp) / denom_nec if abs(denom_nec) > 1e-6 else float("nan")
+            ctrl_frac = (ctrl_lp - fr_lp) / denom_nec if measurable else None
 
             # sufficiency: inject framed values onto the BASELINE prompt
             suf_logits = intervened_logits(
                 model, framings["baseline"], clamp_to(movers, base_pos, fr_last))
             suf_lp = target_logprob(suf_logits, tid)
-            suf_frac = (suf_lp - base_lp) / denom_suf if abs(denom_suf) > 1e-6 else float("nan")
+            suf_frac = (suf_lp - base_lp) / denom_suf if measurable else None
 
             rec["by_k"][str(k)] = {
                 "movers": [f"L{l}/{f}" for (l, f) in movers],
@@ -138,9 +145,10 @@ def run_situation(model, sit, args, rng):
                 "control_fraction": ctrl_frac,
                 "sufficiency_fraction": suf_frac,
             }
-            print(f"   k={k:>2}: necessity={nec_frac:+.2f} "
+            fmt = (lambda x: f"{x:+.2f}" if x is not None else "  n/a")
+            print(f"   k={k:>2}: necessity={fmt(nec_frac)} "
                   f"(rank {rec['framed_rank']}->{rank_of(nec_logits, tid)}) | "
-                  f"control={ctrl_frac:+.2f} | sufficiency={suf_frac:+.2f}")
+                  f"control={fmt(ctrl_frac)} | sufficiency={fmt(suf_frac)}")
         out["framings"][name] = rec
     return out
 
