@@ -5,6 +5,7 @@
       "id": "capital_australia",
       "kind": "factual_anchor",
       "target": " Canberra",
+      "distractor": " Sydney",
       "framings": {
         "baseline": "The capital of Australia is the city of",
         "popular_wrong_city": "Sydney is the most famous city in Australia. The capital of Australia is the city of",
@@ -38,6 +39,7 @@
       "id": "tallest_mountain",
       "kind": "factual_anchor",
       "target": " Everest",
+      "distractor": " K2",
       "framings": {
         "baseline": "The tallest mountain on Earth is Mount",
         "popular_wrong": "K2 is an incredibly tall and famous mountain. The tallest mountain on Earth is Mount",
