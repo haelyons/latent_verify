@@ -38,8 +38,11 @@ with torch.no_grad():
         baseline = f"The capital of {region} is the city of"
         tid = first_tok(" " + cap)
         ftoks = model.to_tokens(framed)
-        decoded = [tok.decode([t]) for t in ftoks[0].tolist()]
-        anchor_pos = [i for i, d in enumerate(decoded) if anchor.lower() in d.lower()]
+        seq = ftoks[0].tolist()
+        # anchor positions by token-id match (handles multi-token city names
+        # like Zur+ich, Casa+blanca that substring-on-decoded misses)
+        anchor_ids = set(model.to_tokens(anchor, prepend_bos=False)[0].tolist())
+        anchor_pos = [i for i, t in enumerate(seq) if t in anchor_ids and i > 0]
 
         b_lp, b_rank = readout(model(model.to_tokens(baseline))[0, -1], tid)
         fr_logits = model(ftoks)[0, -1]
@@ -70,7 +73,7 @@ Path("out").mkdir(exist_ok=True)
 Path("out/framing_transport2.json").write_text(json.dumps(results, indent=2))
 flips = [r for r in results if r["flip"] and r["effect"] > 0.5]
 rev = [r for r in flips if r["necessity"] and r["necessity"] > 0.7]
+necs = [round(r['necessity'], 2) for r in flips if r['necessity'] is not None]
 print(f"[t2] {len(flips)} genuine flips; {len(rev)}/{len(flips)} reverted >0.7 "
-      f"by anchor-attention knockout "
-      f"(necessities: {[round(r['necessity'],2) for r in flips]})")
+      f"by anchor-attention knockout (necessities: {necs})")
 print("[t2] written out/framing_transport2.json")
