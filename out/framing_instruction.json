@@ -1,0 +1,162 @@
+[
+  {
+    "pair": "Australia->Canberra",
+    "baseline_lp": -0.9360969066619873,
+    "baseline_rank": 0,
+    "variants": {
+      "none": {
+        "effect": 9.421341180801392,
+        "framed_rank": 446,
+        "necessity": 1.0370108537639555
+      },
+      "pre_ignore": {
+        "effect": -0.14789074659347534,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "pre_facts": {
+        "effect": -0.5993970334529877,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_disregard": {
+        "effect": -0.3416171073913574,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_irrelevant": {
+        "effect": -0.8578467667102814,
+        "framed_rank": 0,
+        "necessity": null
+      }
+    }
+  },
+  {
+    "pair": "Texas->Austin",
+    "baseline_lp": -0.366804301738739,
+    "baseline_rank": 0,
+    "variants": {
+      "none": {
+        "effect": 4.975468933582306,
+        "framed_rank": 8,
+        "necessity": 1.043519407246166
+      },
+      "pre_ignore": {
+        "effect": -0.27923934906721115,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "pre_facts": {
+        "effect": -0.2046242207288742,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_disregard": {
+        "effect": 0.03327476978302002,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_irrelevant": {
+        "effect": -0.32864687219262123,
+        "framed_rank": 0,
+        "necessity": null
+      }
+    }
+  },
+  {
+    "pair": "Canada->Ottawa",
+    "baseline_lp": -0.3012832999229431,
+    "baseline_rank": 0,
+    "variants": {
+      "none": {
+        "effect": 3.5205402970314026,
+        "framed_rank": 2,
+        "necessity": 1.044938052427615
+      },
+      "pre_ignore": {
+        "effect": -0.1661297231912613,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "pre_facts": {
+        "effect": 0.044797033071517944,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_disregard": {
+        "effect": -0.08476795256137848,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_irrelevant": {
+        "effect": -0.23866042494773865,
+        "framed_rank": 0,
+        "necessity": null
+      }
+    }
+  },
+  {
+    "pair": "Switzerland->Bern",
+    "baseline_lp": -0.682949423789978,
+    "baseline_rank": 0,
+    "variants": {
+      "none": {
+        "effect": 5.502970337867737,
+        "framed_rank": 31,
+        "necessity": 1.0162741595347766
+      },
+      "pre_ignore": {
+        "effect": -0.31987062096595764,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "pre_facts": {
+        "effect": 0.16970521211624146,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_disregard": {
+        "effect": -0.38660264015197754,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_irrelevant": {
+        "effect": -0.44815100729465485,
+        "framed_rank": 0,
+        "necessity": null
+      }
+    }
+  },
+  {
+    "pair": "Morocco->Rabat",
+    "baseline_lp": -0.4536087214946747,
+    "baseline_rank": 0,
+    "variants": {
+      "none": {
+        "effect": 2.0195825397968292,
+        "framed_rank": 1,
+        "necessity": 0.9998134756329303
+      },
+      "pre_ignore": {
+        "effect": -0.34419049322605133,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "pre_facts": {
+        "effect": -0.1088637113571167,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_disregard": {
+        "effect": -0.3030174821615219,
+        "framed_rank": 0,
+        "necessity": null
+      },
+      "mid_irrelevant": {
+        "effect": -0.41858014836907387,
+        "framed_rank": 0,
+        "necessity": null
+      }
+    }
+  }
+]

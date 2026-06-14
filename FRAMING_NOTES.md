@@ -393,6 +393,64 @@ lower-confidence product.
 priming on a *base* model, not RLHF assistant agreement (cf. §4). Five products,
 one phrasing pair each.
 
+## 3.12 Mitigations: prominence beats proximity, and an "ignore" instruction defeats the copy
+
+Two follow-ups motivated by the prompt-construction question (`job_position.py`,
+`job_instruction.py`; `out/framing_position.json`, `out/framing_instruction.json`).
+
+**(a) Position / distance.** Sweep neutral filler between the salience distractor
+and the question (Australia shown; Texas consistent in direction, noisier given
+its smaller base effect):
+
+| variant (Australia) | anchor dist | effect | rank | L18.H5->anchor | knockout nec |
+|---|---|---|---|---|---|
+| front, 0 filler | 16 | +9.42 | 0->446 | 0.84 | +1.04 |
+| front, 1 filler | 23 | +4.67 | 0->10 | 0.60 | +1.13 |
+| front, 2 filler | 30 | +4.67 | 0->6 | 0.50 | +1.10 |
+| front, 4 filler | 44 | +4.68 | 0->6 | 0.50 | +1.07 |
+| front, 8 filler | 72 | +3.22 | 0->3 | 0.32 | +1.12 |
+| adjacent-to-answer | n/a | -0.04 | 0->1 | 0.00 | n/a |
+
+- **Distance weakens the flip while the mechanism stays identical.** Australia
+  +9.42 (dist 16) -> +3.22 (dist 72), capital rank 446 -> 3, and the reader head's
+  attention to the anchor decays in lockstep (0.84 -> 0.32). One intervening
+  neutral sentence already roughly halves the effect.
+- **Prominence dominates proximity.** Demoting the distractor from a leading
+  sentence to a subordinate parenthetical *adjacent to the answer slot* ("The
+  capital of Australia, though Sydney is its most famous city, is the city of")
+  **eliminates** the flip (effect ~0, L18.H5->anchor = 0.00) despite being the
+  closest placement. It is the distractor's salience / grammatical role, not its
+  distance, that licenses the copy; distance only modulates an already-salient
+  distractor.
+- Knockout necessity stays ~1.0 at every distance where an effect remains: the
+  attention-copy is the sole driver throughout — distance scales its magnitude via
+  the reader's attention, it does not switch mechanism.
+
+**(b) "Ignore irrelevant context" instruction.** Across all five pairs, every
+instruction phrasing (prefix or inter-sentence) collapses the flip to ~0:
+
+| variant | mean effect |
+|---|---|
+| none | +5.09 |
+| pre_ignore | -0.25 |
+| pre_facts | -0.14 |
+| mid_disregard | -0.22 |
+| mid_irrelevant | -0.46 |
+
+Every pair returns to capital rank 0 under every instruction. This is **not a
+distance artifact**: `pre_ignore` sits *before* the distractor, leaving the
+distractor->question distance unchanged from `none` (~16 tokens), yet still
+neutralizes (+9.42 -> -0.15 on Australia). The effect falls below the 0.5-nat
+floor so anchor-knockout reads n/a (no flip left to revert) — the instruction
+removes the copy's behavioural bite, presumably by cutting the reader's reliance
+on the anchor (attention readout under instruction not measured here).
+
+NB gemma-2-2b is a *base* model, so that a bare instruction works at all is itself
+notable; whether RLHF chat models are more or less susceptible is untested. The
+three mitigations — demote the competing entity, separate it from the question,
+or instruct the model to ignore irrelevant context — all act on the same
+reader-head copy.
+
 ## 4. Caveats
 
 - Single run, single seed. CPU bf16 is not bitwise deterministic: tail
@@ -435,5 +493,7 @@ early-write stage.)
 (Done: §3.10 was step 1 of the previous list — re-localizing the principal heads
 across pairs showed only the late reader L18.H5 generalizes, L0.H2 was
 Australia-specific. §3.11 was step 4 — arithmetic shows graded sycophantic pull
-but no flip on high-confidence products. §3.6's logit-attribution selection
-closed the original step 1.)
+but no flip on high-confidence products. §3.12 — prompt-construction follow-ups:
+distance weakens the copy but grammatical prominence dominates, and an explicit
+"ignore irrelevant context" instruction fully neutralizes the flip on this base
+model. §3.6's logit-attribution selection closed the original step 1.)

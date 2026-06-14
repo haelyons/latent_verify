@@ -1,0 +1,100 @@
+[
+  {
+    "pair": "Australia->Canberra",
+    "baseline_lp": -0.9360969066619873,
+    "baseline_rank": 0,
+    "variants": {
+      "front+0filler": {
+        "effect": 9.421341180801392,
+        "framed_rank": 446,
+        "reader_attn_to_anchor": 0.8359375,
+        "anchor_dist": 16,
+        "necessity": 1.0370108537639555
+      },
+      "front+1filler": {
+        "effect": 4.672446966171265,
+        "framed_rank": 10,
+        "reader_attn_to_anchor": 0.59765625,
+        "anchor_dist": 23,
+        "necessity": 1.1335643821408705
+      },
+      "front+2filler": {
+        "effect": 4.670069456100464,
+        "framed_rank": 6,
+        "reader_attn_to_anchor": 0.50390625,
+        "anchor_dist": 30,
+        "necessity": 1.0965281270263045
+      },
+      "front+4filler": {
+        "effect": 4.680844068527222,
+        "framed_rank": 6,
+        "reader_attn_to_anchor": 0.50390625,
+        "anchor_dist": 44,
+        "necessity": 1.0704640143783264
+      },
+      "front+8filler": {
+        "effect": 3.217262029647827,
+        "framed_rank": 3,
+        "reader_attn_to_anchor": 0.322265625,
+        "anchor_dist": 72,
+        "necessity": 1.1186902126287823
+      },
+      "adjacent_answer": {
+        "effect": -0.03725463151931763,
+        "framed_rank": 1,
+        "reader_attn_to_anchor": 0.0,
+        "anchor_dist": null,
+        "necessity": null
+      }
+    }
+  },
+  {
+    "pair": "Texas->Austin",
+    "baseline_lp": -0.366804301738739,
+    "baseline_rank": 0,
+    "variants": {
+      "front+0filler": {
+        "effect": 4.975468933582306,
+        "framed_rank": 8,
+        "reader_attn_to_anchor": 0.408203125,
+        "anchor_dist": 16,
+        "necessity": 1.043519407246166
+      },
+      "front+1filler": {
+        "effect": 0.1905980110168457,
+        "framed_rank": 0,
+        "reader_attn_to_anchor": 0.0634765625,
+        "anchor_dist": 23,
+        "necessity": null
+      },
+      "front+2filler": {
+        "effect": 1.7802878022193909,
+        "framed_rank": 1,
+        "reader_attn_to_anchor": 0.1533203125,
+        "anchor_dist": 30,
+        "necessity": 1.0320403693912936
+      },
+      "front+4filler": {
+        "effect": 1.577411949634552,
+        "framed_rank": 1,
+        "reader_attn_to_anchor": 0.1591796875,
+        "anchor_dist": 44,
+        "necessity": 1.0371896309259534
+      },
+      "front+8filler": {
+        "effect": 0.47535818815231323,
+        "framed_rank": 0,
+        "reader_attn_to_anchor": 0.07275390625,
+        "anchor_dist": 72,
+        "necessity": null
+      },
+      "adjacent_answer": {
+        "effect": -0.06615227460861206,
+        "framed_rank": 0,
+        "reader_attn_to_anchor": 0.0,
+        "anchor_dist": null,
+        "necessity": null
+      }
+    }
+  }
+]
