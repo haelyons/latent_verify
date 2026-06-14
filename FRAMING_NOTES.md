@@ -244,6 +244,40 @@ almost only to Sydney gets its row near-zeroed). necessity slightly over 1.0
 (1.04) means removing Sydney leaves Canberra marginally *more* confident than the
 no-preamble baseline. One prompt, one model, greedy single-token readout.
 
+## 3.8 Transport: susceptibility is wording-dependent, the mechanism is invariant
+
+Two transport questions (`job_transport.py`, `job_transport2.py`;
+`out/framing_transport*.json`): does the *flip* generalize, and does the
+*mechanism* generalize?
+
+**Susceptibility depends on wording.** A neutral statement of the largest city
+("Sydney is the largest city in Australia. The capital of Australia is...") does
+**not** flip the answer for any of Australia / Texas / Canada / Switzerland /
+Morocco (the model knows largest != capital; effect ~-0.2). Salience framing
+("X is the most **famous** city in...") does flip. So the framing that bites is
+about salience/relevance, not about asserting a fact — a behavioural finding in
+its own right.
+
+**The mechanism is pair-invariant.** Under the salience framing, restricting to
+pairs whose capital is top-1 at baseline, 5/5 genuine flips are **fully reverted
+by knocking out attention to the anchor city** — different countries, different
+tokens, including multi-token anchors:
+
+| pair | anchor -> flip | target rank | knockout necessity |
+|---|---|---|---|
+| Australia | Sydney | 0 -> 446 | +1.04 |
+| Texas | Houston | 0 -> 8 | +1.04 |
+| Canada | Toronto | 0 -> 2 | +1.04 |
+| Switzerland | Zurich (Zur+ich) | 0 -> 31 | +1.02 |
+| Morocco | Casablanca (multi-tok) | 0 -> 1 | +1.00 |
+
+Necessity ~1.0 every time, capital restored to rank 0. (Brazil excluded — the
+model's baseline top-1 for "capital of Brazil" is not Brasilia; New York/Buffalo
+did not flip.) The generalization: **the false-anchor framing works by the model
+attending to the anchored-city token and copying it to the prediction position.**
+This is one mechanism, not a per-prompt coincidence — the same QK-space copy the
+Dallas->Austin attribution method is blind to, now shown across five fact pairs.
+
 ## 4. Caveats
 
 - Single run, single seed. CPU bf16 is not bitwise deterministic: tail
@@ -260,24 +294,26 @@ no-preamble baseline. One prompt, one model, greedy single-token readout.
 
 ## 5. Natural next steps
 
-§3.5-3.7 now give a complete causal account of the flip *on this prompt*:
-attention copies "Sydney" (the necessary step, ~1.0), late MLP features are the
-partial downstream readout (~0.5). The open questions are about generality.
+§3.5-3.8 now give a causal account that holds across fact pairs: salience
+framing flips low-confidence facts (§2), the model does it by attending to and
+copying the anchored city (§3.7, necessity ~1.0), late MLP features are the
+partial downstream readout (§3.6, ~0.5), and this transports 5/5 across pairs
+(§3.8). Remaining work sharpens and widens, it no longer chases the mechanism.
 
-1. **Transport the mechanism.** Re-run the attention knockout + DLA mediation
-   across the paraphrase family and other fact pairs (Dallas/Houston,
-   Everest/K2 with a *susceptible* low-confidence variant). Is "attention copies
-   the anchored token" the mechanism everywhere, or prompt-specific?
-2. **Characterize L19/14947** — max-activating contexts, whether it is the
-   "say the anchored city" feature across pairs or specific to Canberra/Sydney.
-3. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
+1. **Localize the copy in depth/heads.** Which layers / which heads carry the
+   anchor->prediction copy? Knock out per layer-block and per head to find the
+   minimal circuit, rather than the all-layers sledgehammer used here.
+2. **Characterize L19/14947** — is it the "say the anchored city" feature across
+   pairs, or Canberra/Sydney-specific? Run the DLA mediation on Texas/Canada.
+3. **Map the susceptibility boundary.** Sweep framing wordings (largest /
+   famous / asserted-false / hedged) x facts across the confidence range to
+   chart when a prompt flips — §2's confidence-vs-susceptibility relationship,
+   made quantitative.
+4. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
    to test numeric sycophancy now that the harness is warm and cheap.
-4. Broaden the situation set across the confidence range to test the
-   confidence-vs-susceptibility relationship quantitatively.
 
-(Done: §3.6 logit-attribution selection and §3.7 attention-copy test — the two
-top items of the previous list. The mechanism question they posed is answered;
-remaining work is generalization.)
+(Done: §3.6 DLA selection, §3.7 attention-copy test, §3.8 transport — the
+mechanism question is settled for this prompt family.)
 
 (Done: §3.6's logit-attribution selection, which was step 1 of the previous
 list — it worked, hence the new priorities.)

@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Australia:Sydney->Canberra",
+    "baseline_rank": 0,
+    "framed_rank": 446,
+    "framed_top1": " Sydney",
+    "effect": 9.421341180801392,
+    "flip": true,
+    "anchor_found": true,
+    "knockout_rank": 0,
+    "necessity": 1.0370108537639555
+  },
+  {
+    "name": "Texas:Houston->Austin",
+    "baseline_rank": 0,
+    "framed_rank": 8,
+    "framed_top1": " Houston",
+    "effect": 4.975468933582306,
+    "flip": true,
+    "anchor_found": true,
+    "knockout_rank": 0,
+    "necessity": 1.043519407246166
+  },
+  {
+    "name": "Canada:Toronto->Ottawa",
+    "baseline_rank": 0,
+    "framed_rank": 2,
+    "framed_top1": " Toronto",
+    "effect": 3.5205402970314026,
+    "flip": true,
+    "anchor_found": true,
+    "knockout_rank": 0,
+    "necessity": 1.044938052427615
+  },
+  {
+    "name": "Switzerland:Zurich->Bern",
+    "baseline_rank": 0,
+    "framed_rank": 31,
+    "framed_top1": " Zurich",
+    "effect": 5.502970337867737,
+    "flip": true,
+    "anchor_found": true,
+    "knockout_rank": 0,
+    "necessity": 1.0162741595347766
+  },
+  {
+    "name": "Morocco:Casablanca->Rabat",
+    "baseline_rank": 0,
+    "framed_rank": 1,
+    "framed_top1": " Casablanca",
+    "effect": 2.0195825397968292,
+    "flip": true,
+    "anchor_found": true,
+    "knockout_rank": 0,
+    "necessity": 0.9998134756329303
+  },
+  {
+    "name": "Brazil:Rio->Brasilia",
+    "baseline_rank": 1,
+    "framed_rank": 13,
+    "framed_top1": " Rio",
+    "effect": 3.7815566062927246,
+    "flip": false,
+    "anchor_found": true,
+    "knockout_rank": null,
+    "necessity": null
+  },
+  {
+    "name": "New York State:Buffalo->Albany",
+    "baseline_rank": 0,
+    "framed_rank": 0,
+    "framed_top1": " Albany",
+    "effect": -0.09623697400093079,
+    "flip": false,
+    "anchor_found": true,
+    "knockout_rank": null,
+    "necessity": null
+  }
+]
