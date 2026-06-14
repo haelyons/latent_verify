@@ -144,6 +144,57 @@ feature-movers are not the mediators of the framing flip. This is an
 informative null, and it points the next experiment at attention / earlier
 positions rather than at more last-position features.
 
+## 3.6 Re-selecting by direct logit attribution: half the flip *is* MLP-mediated
+
+§3.5 selected features by activation-delta and found ~0 mediation. The fix
+(`framing_dla.py`): rank readout-position features by their *direct
+contribution to the decision*, `delta_act . (W_dec . (W_U[:,Sydney] -
+W_U[:,Canberra]))` — change in activation times decoder alignment with the
+Sydney-minus-Canberra unembedding direction (the LN mean cancels in the token
+difference). Then run the identical necessity/control test on that selection.
+Artifact: `out/framing_dla.json`.
+
+The DLA ranking picks a substantially different set (overlap 7-8 of 24 with the
+activation-delta movers) — and those features **do** mediate. Necessity =
+fraction of the framing's log-prob shift reverted by restoring the top-K DLA
+features to baseline:
+
+| framing (effect) | k=1 | k=3 | k=8 | k=24 | control@24 | Canberra rank |
+|---|---|---|---|---|---|---|
+| popular_wrong_city (+9.42) | +0.20 | +0.37 | +0.44 | **+0.49** | -0.13 | 435 -> 30 |
+| assertive_false (+5.53) | +0.22 | +0.25 | +0.42 | **+0.48** | -0.22 | 10 -> 2 |
+
+Restoring ~24 DLA-selected MLP features reverts **about half** the flip and
+pulls Canberra from rank 435/10 back to 30/2 — versus **~0** for the same-count
+activation-delta selection in §3.5. Same single mid-layer feature **L19/14947**
+is the top mediator for both false-anchor framings (it fires lower under the
+framing; restoring it alone reverts ~20%). Selecting by decoder-vs-decision
+alignment, not by activation magnitude, is what surfaced the actual mediators.
+
+**Two readings:**
+- **The MLP path carries ~half.** A real, specific, reproducible chunk of the
+  framing flip is mediated by readout-position transcoder features — the method
+  *can* see it once you select correctly.
+- **The other ~half is not here.** Necessity plateaus near 0.5; the remainder is
+  most plausibly the attention copy of "Sydney" (QK-space, out of scope) — now a
+  quantified gap (~50%), not a hand-wave.
+
+**Asymmetry — flip vs reinforce.** The truthful-hedge framing (`hedge_true`,
+which *raises* Canberra by 0.70 nats) is **not** MLP-mediated: its top DLA
+feature is L25/4717 (the general answer-commitment feature) and restoring it
+reverts ~0 (-0.02/-0.08/-0.02/-0.06 across K). So pushing the answer to a false
+anchor and reinforcing the true one are not mirror-image mechanisms — the flip
+has a partial MLP locus, the reinforcement (on this prompt) does not.
+
+**Caveats specific to this test.** DLA is a first-order selection heuristic
+(linear, ignores the LN nonlinearity beyond mean-cancellation and downstream
+recomputation) — but the necessity numbers are the *actual* causal measurement
+(full intervened forward pass), so the heuristic is validated by the test, not
+trusted on its own. The matched-random control drifts to -0.13/-0.22 at k=24
+(clamping 24 random features perturbs more), still well clear of the +0.48/+0.49
+signal. Causal role only; no per-feature semantics asserted (L19/14947 is "a
+feature whose restoration reverts the anchor flip", not "the Sydney feature").
+
 ## 4. Caveats
 
 - Single run, single seed. CPU bf16 is not bitwise deterministic: tail
@@ -160,23 +211,25 @@ positions rather than at more last-position features.
 
 ## 5. Natural next steps
 
-The §3.5 null reshapes the priority list: last-position activation-movers are
-not the mediators, so the next moves are about *where* and *how* to attribute,
-not about clamping more of the same.
+§3.5 (activation-delta -> ~0) and §3.6 (DLA -> ~0.5) together localize ~half
+the flip in readout-position MLP features and leave ~half unexplained. The next
+moves are about closing that gap and stress-testing the mediator.
 
-1. **Select features by logit attribution, not activation delta.** Rank
-   candidates by `delta_activation x (decoder . unembed_direction)` for the
-   Canberra<->Sydney token difference (direct logit attribution), then clamp
-   those. This targets features that actually move the *decision*, not just
-   features that move. The current selection rule is what failed.
-2. **Intervene at the framing-token positions, not just the readout.** Clamp /
-   ablate the residual contribution at the "Sydney" token region, and test the
-   attention-copy hypothesis directly (it's the most likely locus). This may
-   fall partly outside the transcoder-MLP method (QK-space) — a scope finding
-   in itself.
-3. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
+1. **Account for the missing ~50%: test the attention-copy hypothesis.**
+   Intervene at the "Sydney" token region (ablate / patch the attention
+   contribution into the prediction position) and see if that reverts the
+   remainder. This is the prime suspect for the unmediated half and falls partly
+   in QK-space — a scope finding either way.
+2. **Characterize the mediator L19/14947.** Max-activating contexts, its decoder
+   direction in unembedding space, whether it generalizes to other
+   false-anchor facts (is it "anchored-city" or "this specific pair"?). Causal
+   role is established; semantics are not.
+3. **Transport** — re-run the DLA mediation across the paraphrase family (T1
+   idea): does L19/14947 mediate the flip prompt-family-wide, or per-prompt?
+4. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
    to actually test numeric sycophancy.
-4. **Transport** — re-run each framing across paraphrases (the T1 idea) to see
-   whether a framing effect is prompt-specific or a mechanism.
 5. Broaden the situation set across the confidence range to test the
    confidence-vs-susceptibility relationship quantitatively.
+
+(Done: §3.6's logit-attribution selection, which was step 1 of the previous
+list — it worked, hence the new priorities.)
