@@ -1,0 +1,1504 @@
+[
+  {
+    "pair": "Australia:Sydney->Canberra",
+    "effect": 9.421341180801392,
+    "flip": true,
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 446,
+    "heads": [
+      {
+        "layer": 0,
+        "head": 0,
+        "necessity": 0.05451831384926939,
+        "rank": 328
+      },
+      {
+        "layer": 0,
+        "head": 1,
+        "necessity": -0.08404247913039915,
+        "rank": 668
+      },
+      {
+        "layer": 0,
+        "head": 2,
+        "necessity": 0.20526405413467147,
+        "rank": 147
+      },
+      {
+        "layer": 0,
+        "head": 3,
+        "necessity": 0.10551440608732131,
+        "rank": 243
+      },
+      {
+        "layer": 0,
+        "head": 4,
+        "necessity": 0.012812541684097383,
+        "rank": 431
+      },
+      {
+        "layer": 0,
+        "head": 5,
+        "necessity": -0.0011102347003055903,
+        "rank": 453
+      },
+      {
+        "layer": 0,
+        "head": 6,
+        "necessity": -0.01526906755089316,
+        "rank": 479
+      },
+      {
+        "layer": 0,
+        "head": 7,
+        "necessity": -0.0007286168283004778,
+        "rank": 450
+      },
+      {
+        "layer": 1,
+        "head": 0,
+        "necessity": 0.07134756077979512,
+        "rank": 284
+      },
+      {
+        "layer": 1,
+        "head": 1,
+        "necessity": 0.027727625760613387,
+        "rank": 377
+      },
+      {
+        "layer": 1,
+        "head": 2,
+        "necessity": 0.014198715461083594,
+        "rank": 430
+      },
+      {
+        "layer": 1,
+        "head": 3,
+        "necessity": -0.00076779086449835,
+        "rank": 449
+      },
+      {
+        "layer": 1,
+        "head": 4,
+        "necessity": 0.012282730558878614,
+        "rank": 435
+      },
+      {
+        "layer": 1,
+        "head": 5,
+        "necessity": 0.024943941017870522,
+        "rank": 389
+      },
+      {
+        "layer": 1,
+        "head": 6,
+        "necessity": 0.04056851041663688,
+        "rank": 343
+      },
+      {
+        "layer": 1,
+        "head": 7,
+        "necessity": 0.02638599093951106,
+        "rank": 380
+      },
+      {
+        "layer": 3,
+        "head": 0,
+        "necessity": 0.061456774601680655,
+        "rank": 302
+      },
+      {
+        "layer": 3,
+        "head": 1,
+        "necessity": -0.07184872525838858,
+        "rank": 634
+      },
+      {
+        "layer": 3,
+        "head": 2,
+        "necessity": -0.00010618491982317326,
+        "rank": 446
+      },
+      {
+        "layer": 3,
+        "head": 3,
+        "necessity": -0.00418038590930163,
+        "rank": 459
+      },
+      {
+        "layer": 3,
+        "head": 4,
+        "necessity": 0.05555576784666472,
+        "rank": 320
+      },
+      {
+        "layer": 3,
+        "head": 5,
+        "necessity": -0.013566565962231623,
+        "rank": 476
+      },
+      {
+        "layer": 3,
+        "head": 6,
+        "necessity": 0.01259045425407637,
+        "rank": 434
+      },
+      {
+        "layer": 3,
+        "head": 7,
+        "necessity": -0.00021398943804212418,
+        "rank": 445
+      },
+      {
+        "layer": 4,
+        "head": 0,
+        "necessity": -0.0009686210655747807,
+        "rank": 451
+      },
+      {
+        "layer": 4,
+        "head": 1,
+        "necessity": 0.026473145578183848,
+        "rank": 385
+      },
+      {
+        "layer": 4,
+        "head": 2,
+        "necessity": -0.0010316841781103736,
+        "rank": 449
+      },
+      {
+        "layer": 4,
+        "head": 3,
+        "necessity": -0.0015573450824399625,
+        "rank": 452
+      },
+      {
+        "layer": 4,
+        "head": 4,
+        "necessity": -0.0006626181936725378,
+        "rank": 449
+      },
+      {
+        "layer": 4,
+        "head": 5,
+        "necessity": 0.07070792063836269,
+        "rank": 294
+      },
+      {
+        "layer": 4,
+        "head": 6,
+        "necessity": 0.0403891398943045,
+        "rank": 345
+      },
+      {
+        "layer": 4,
+        "head": 7,
+        "necessity": 0.011648657786931658,
+        "rank": 437
+      },
+      {
+        "layer": 7,
+        "head": 0,
+        "necessity": 0.0004731251813665508,
+        "rank": 443
+      },
+      {
+        "layer": 7,
+        "head": 1,
+        "necessity": 0.10315120957808221,
+        "rank": 250
+      },
+      {
+        "layer": 7,
+        "head": 2,
+        "necessity": 0.027778238210481438,
+        "rank": 375
+      },
+      {
+        "layer": 7,
+        "head": 3,
+        "necessity": 0.027402086483062076,
+        "rank": 378
+      },
+      {
+        "layer": 7,
+        "head": 4,
+        "necessity": 0.01209394612087078,
+        "rank": 425
+      },
+      {
+        "layer": 7,
+        "head": 5,
+        "necessity": 0.028120479596489206,
+        "rank": 383
+      },
+      {
+        "layer": 7,
+        "head": 6,
+        "necessity": -0.0014297004838727352,
+        "rank": 453
+      },
+      {
+        "layer": 7,
+        "head": 7,
+        "necessity": 0.027581355780494716,
+        "rank": 375
+      },
+      {
+        "layer": 18,
+        "head": 0,
+        "necessity": 0.01312573152388089,
+        "rank": 433
+      },
+      {
+        "layer": 18,
+        "head": 1,
+        "necessity": -2.844419682584527e-05,
+        "rank": 446
+      },
+      {
+        "layer": 18,
+        "head": 2,
+        "necessity": 0.013906377950645725,
+        "rank": 427
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "necessity": -9.484773105272959e-05,
+        "rank": 446
+      },
+      {
+        "layer": 18,
+        "head": 4,
+        "necessity": 0.0005749574305010716,
+        "rank": 444
+      },
+      {
+        "layer": 18,
+        "head": 5,
+        "necessity": 0.19721535868195464,
+        "rank": 189
+      },
+      {
+        "layer": 18,
+        "head": 6,
+        "necessity": -0.0033010452052940928,
+        "rank": 443
+      },
+      {
+        "layer": 18,
+        "head": 7,
+        "necessity": 0.012166119474382623,
+        "rank": 432
+      }
+    ]
+  },
+  {
+    "pair": "Texas:Houston->Austin",
+    "effect": 4.975468933582306,
+    "flip": true,
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 8,
+    "heads": [
+      {
+        "layer": 0,
+        "head": 0,
+        "necessity": -0.025996915921058877,
+        "rank": 9
+      },
+      {
+        "layer": 0,
+        "head": 1,
+        "necessity": -0.10612848469671289,
+        "rank": 11
+      },
+      {
+        "layer": 0,
+        "head": 2,
+        "necessity": -0.025338607230276037,
+        "rank": 9
+      },
+      {
+        "layer": 0,
+        "head": 3,
+        "necessity": 0.20322226003416108,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 4,
+        "necessity": 0.09898752693591506,
+        "rank": 6
+      },
+      {
+        "layer": 0,
+        "head": 5,
+        "necessity": 0.00024112748085742142,
+        "rank": 8
+      },
+      {
+        "layer": 0,
+        "head": 6,
+        "necessity": 0.04867286623533264,
+        "rank": 7
+      },
+      {
+        "layer": 0,
+        "head": 7,
+        "necessity": 0.022600621935913688,
+        "rank": 8
+      },
+      {
+        "layer": 1,
+        "head": 0,
+        "necessity": -0.1571535897596149,
+        "rank": 14
+      },
+      {
+        "layer": 1,
+        "head": 1,
+        "necessity": -0.02259237989960457,
+        "rank": 8
+      },
+      {
+        "layer": 1,
+        "head": 2,
+        "necessity": 0.0004906886732869625,
+        "rank": 8
+      },
+      {
+        "layer": 1,
+        "head": 3,
+        "necessity": 0.04691060386728563,
+        "rank": 8
+      },
+      {
+        "layer": 1,
+        "head": 4,
+        "necessity": -0.02563349962240572,
+        "rank": 9
+      },
+      {
+        "layer": 1,
+        "head": 5,
+        "necessity": 0.0485929376506605,
+        "rank": 7
+      },
+      {
+        "layer": 1,
+        "head": 6,
+        "necessity": -0.02450922836726327,
+        "rank": 9
+      },
+      {
+        "layer": 1,
+        "head": 7,
+        "necessity": 0.0008389626261629043,
+        "rank": 8
+      },
+      {
+        "layer": 3,
+        "head": 0,
+        "necessity": 0.29990877335654426,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 1,
+        "necessity": -0.1349380434270737,
+        "rank": 14
+      },
+      {
+        "layer": 3,
+        "head": 2,
+        "necessity": 0.1999456672507611,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 3,
+        "necessity": -0.15921687812820767,
+        "rank": 15
+      },
+      {
+        "layer": 3,
+        "head": 4,
+        "necessity": 0.2044201345902966,
+        "rank": 3
+      },
+      {
+        "layer": 3,
+        "head": 5,
+        "necessity": -0.024965703006104248,
+        "rank": 9
+      },
+      {
+        "layer": 3,
+        "head": 6,
+        "necessity": 0.07407836813239663,
+        "rank": 6
+      },
+      {
+        "layer": 3,
+        "head": 7,
+        "necessity": -0.2114533708532869,
+        "rank": 21
+      },
+      {
+        "layer": 4,
+        "head": 0,
+        "necessity": 0.07375443693792202,
+        "rank": 6
+      },
+      {
+        "layer": 4,
+        "head": 1,
+        "necessity": 0.021291096539079107,
+        "rank": 8
+      },
+      {
+        "layer": 4,
+        "head": 2,
+        "necessity": 0.00022703934902672154,
+        "rank": 8
+      },
+      {
+        "layer": 4,
+        "head": 3,
+        "necessity": 0.07403840384006055,
+        "rank": 6
+      },
+      {
+        "layer": 4,
+        "head": 4,
+        "necessity": 0.047802468866037284,
+        "rank": 8
+      },
+      {
+        "layer": 4,
+        "head": 5,
+        "necessity": -0.29244757415008465,
+        "rank": 32
+      },
+      {
+        "layer": 4,
+        "head": 6,
+        "necessity": 0.0990389917440313,
+        "rank": 5
+      },
+      {
+        "layer": 4,
+        "head": 7,
+        "necessity": 0.00022579345981720386,
+        "rank": 8
+      },
+      {
+        "layer": 7,
+        "head": 0,
+        "necessity": 0.12699578722929297,
+        "rank": 4
+      },
+      {
+        "layer": 7,
+        "head": 1,
+        "necessity": 0.3216002316012203,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 2,
+        "necessity": -0.002052746229127627,
+        "rank": 9
+      },
+      {
+        "layer": 7,
+        "head": 3,
+        "necessity": -0.211954793341302,
+        "rank": 19
+      },
+      {
+        "layer": 7,
+        "head": 4,
+        "necessity": -0.001662303718391087,
+        "rank": 8
+      },
+      {
+        "layer": 7,
+        "head": 5,
+        "necessity": -0.050295684849545164,
+        "rank": 10
+      },
+      {
+        "layer": 7,
+        "head": 6,
+        "necessity": -0.02527516271822214,
+        "rank": 9
+      },
+      {
+        "layer": 7,
+        "head": 7,
+        "necessity": 0.12662796239959076,
+        "rank": 4
+      },
+      {
+        "layer": 18,
+        "head": 0,
+        "necessity": -0.00010982992570055841,
+        "rank": 8
+      },
+      {
+        "layer": 18,
+        "head": 1,
+        "necessity": 4.8877192065693536e-05,
+        "rank": 8
+      },
+      {
+        "layer": 18,
+        "head": 2,
+        "necessity": 0.0004456449864813234,
+        "rank": 8
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "necessity": 0.0002918255879216408,
+        "rank": 8
+      },
+      {
+        "layer": 18,
+        "head": 4,
+        "necessity": -0.025443166086244022,
+        "rank": 9
+      },
+      {
+        "layer": 18,
+        "head": 5,
+        "necessity": 0.4648097334902818,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 6,
+        "necessity": -3.4501547340489556e-05,
+        "rank": 8
+      },
+      {
+        "layer": 18,
+        "head": 7,
+        "necessity": 0.00036044533207661445,
+        "rank": 8
+      }
+    ]
+  },
+  {
+    "pair": "Canada:Toronto->Ottawa",
+    "effect": 3.5205402970314026,
+    "flip": true,
+    "anchor_pos": [
+      1
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 2,
+    "heads": [
+      {
+        "layer": 0,
+        "head": 0,
+        "necessity": -0.2171676173305399,
+        "rank": 5
+      },
+      {
+        "layer": 0,
+        "head": 1,
+        "necessity": -0.047759492889723865,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 2,
+        "necessity": 0.1467983377258206,
+        "rank": 1
+      },
+      {
+        "layer": 0,
+        "head": 3,
+        "necessity": 0.22652241734574352,
+        "rank": 1
+      },
+      {
+        "layer": 0,
+        "head": 4,
+        "necessity": -0.03468159962779903,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 5,
+        "necessity": 0.10973975814555743,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 6,
+        "necessity": 0.11277736772952922,
+        "rank": 1
+      },
+      {
+        "layer": 0,
+        "head": 7,
+        "necessity": 0.07427793155880404,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 0,
+        "necessity": -0.14528163232066982,
+        "rank": 3
+      },
+      {
+        "layer": 1,
+        "head": 1,
+        "necessity": -0.06240407050790686,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 2,
+        "necessity": 0.03812635481347498,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 3,
+        "necessity": -0.0013062926665455003,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 4,
+        "necessity": 0.03828780443331243,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 5,
+        "necessity": 0.03683895662844569,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 6,
+        "necessity": -0.06218979760641119,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 7,
+        "necessity": 0.03500273809141865,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 0,
+        "necessity": 0.21578554357146165,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 1,
+        "necessity": -0.1925493946358804,
+        "rank": 4
+      },
+      {
+        "layer": 3,
+        "head": 2,
+        "necessity": 0.27761411119791773,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 3,
+        "necessity": 0.23771567072912128,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 4,
+        "necessity": 0.2171215662644789,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 5,
+        "necessity": -0.0013601995026992781,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 6,
+        "necessity": 0.0006626612961868278,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 7,
+        "necessity": -0.06417568210813654,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 0,
+        "necessity": 0.0366560390851651,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 1,
+        "necessity": -0.0368469478428504,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 2,
+        "necessity": -0.0005324993124084851,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 3,
+        "necessity": 0.036274289291950465,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 4,
+        "necessity": 0.03432003103706408,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 5,
+        "necessity": -0.3135611670322111,
+        "rank": 7
+      },
+      {
+        "layer": 4,
+        "head": 6,
+        "necessity": 0.24469701234397132,
+        "rank": 1
+      },
+      {
+        "layer": 4,
+        "head": 7,
+        "necessity": -0.03946183572924445,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 0,
+        "necessity": 0.1742596042503441,
+        "rank": 1
+      },
+      {
+        "layer": 7,
+        "head": 1,
+        "necessity": 0.48012414825632804,
+        "rank": 1
+      },
+      {
+        "layer": 7,
+        "head": 2,
+        "necessity": -0.031954428406803265,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 3,
+        "necessity": -0.13555862694344598,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 4,
+        "necessity": 0.03401826111005248,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 5,
+        "necessity": -0.24659099788004257,
+        "rank": 6
+      },
+      {
+        "layer": 7,
+        "head": 6,
+        "necessity": 0.0001385595311188809,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 7,
+        "necessity": 0.07657303542469791,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 0,
+        "necessity": -0.00023364143810368482,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 1,
+        "necessity": 0.00013104237180597975,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 2,
+        "necessity": 0.035797796202530895,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "necessity": -0.0005565406777785745,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 4,
+        "necessity": -0.0006374686541652131,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 5,
+        "necessity": 0.38801504075223064,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 6,
+        "necessity": -0.0356148786592503,
+        "rank": 2
+      },
+      {
+        "layer": 18,
+        "head": 7,
+        "necessity": -0.03155317463266868,
+        "rank": 2
+      }
+    ]
+  },
+  {
+    "pair": "Switzerland:Zurich->Bern",
+    "effect": 5.502970337867737,
+    "flip": true,
+    "anchor_pos": [
+      1,
+      2
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 31,
+    "heads": [
+      {
+        "layer": 0,
+        "head": 0,
+        "necessity": 0.18802328594780052,
+        "rank": 15
+      },
+      {
+        "layer": 0,
+        "head": 1,
+        "necessity": -0.003813937969806115,
+        "rank": 34
+      },
+      {
+        "layer": 0,
+        "head": 2,
+        "necessity": 0.06756982722315097,
+        "rank": 22
+      },
+      {
+        "layer": 0,
+        "head": 3,
+        "necessity": 0.08328838139015765,
+        "rank": 20
+      },
+      {
+        "layer": 0,
+        "head": 4,
+        "necessity": 0.012680748024885523,
+        "rank": 31
+      },
+      {
+        "layer": 0,
+        "head": 5,
+        "necessity": -0.002778720045796717,
+        "rank": 33
+      },
+      {
+        "layer": 0,
+        "head": 6,
+        "necessity": 0.02033080658679175,
+        "rank": 28
+      },
+      {
+        "layer": 0,
+        "head": 7,
+        "necessity": -0.0013119807974743699,
+        "rank": 31
+      },
+      {
+        "layer": 1,
+        "head": 0,
+        "necessity": 0.11983529142994101,
+        "rank": 20
+      },
+      {
+        "layer": 1,
+        "head": 1,
+        "necessity": 0.04733476984587042,
+        "rank": 25
+      },
+      {
+        "layer": 1,
+        "head": 2,
+        "necessity": 0.04804781984140682,
+        "rank": 25
+      },
+      {
+        "layer": 1,
+        "head": 3,
+        "necessity": 0.02084863217596729,
+        "rank": 29
+      },
+      {
+        "layer": 1,
+        "head": 4,
+        "necessity": -0.027621264045103858,
+        "rank": 38
+      },
+      {
+        "layer": 1,
+        "head": 5,
+        "necessity": 0.7405305385713234,
+        "rank": 1
+      },
+      {
+        "layer": 1,
+        "head": 6,
+        "necessity": -0.027262702751929765,
+        "rank": 39
+      },
+      {
+        "layer": 1,
+        "head": 7,
+        "necessity": 0.001880237192021422,
+        "rank": 30
+      },
+      {
+        "layer": 3,
+        "head": 0,
+        "necessity": 0.20443548031583636,
+        "rank": 15
+      },
+      {
+        "layer": 3,
+        "head": 1,
+        "necessity": -0.0656414987992031,
+        "rank": 54
+      },
+      {
+        "layer": 3,
+        "head": 2,
+        "necessity": 0.02189234188507361,
+        "rank": 27
+      },
+      {
+        "layer": 3,
+        "head": 3,
+        "necessity": -0.0336631691415635,
+        "rank": 43
+      },
+      {
+        "layer": 3,
+        "head": 4,
+        "necessity": 0.062126679626892625,
+        "rank": 24
+      },
+      {
+        "layer": 3,
+        "head": 5,
+        "necessity": 0.07059012988986826,
+        "rank": 25
+      },
+      {
+        "layer": 3,
+        "head": 6,
+        "necessity": -0.001259643672999466,
+        "rank": 31
+      },
+      {
+        "layer": 3,
+        "head": 7,
+        "necessity": 0.021318366533216386,
+        "rank": 28
+      },
+      {
+        "layer": 4,
+        "head": 0,
+        "necessity": -0.0030623283378602272,
+        "rank": 32
+      },
+      {
+        "layer": 4,
+        "head": 1,
+        "necessity": -0.0015939427230394975,
+        "rank": 31
+      },
+      {
+        "layer": 4,
+        "head": 2,
+        "necessity": 0.02158785073374114,
+        "rank": 27
+      },
+      {
+        "layer": 4,
+        "head": 3,
+        "necessity": -0.002848560645675479,
+        "rank": 32
+      },
+      {
+        "layer": 4,
+        "head": 4,
+        "necessity": -0.0022775314233416774,
+        "rank": 34
+      },
+      {
+        "layer": 4,
+        "head": 5,
+        "necessity": 0.09640602309319295,
+        "rank": 21
+      },
+      {
+        "layer": 4,
+        "head": 6,
+        "necessity": 0.12435231454542489,
+        "rank": 19
+      },
+      {
+        "layer": 4,
+        "head": 7,
+        "necessity": 0.025178489415845554,
+        "rank": 26
+      },
+      {
+        "layer": 7,
+        "head": 0,
+        "necessity": -0.001751300699937553,
+        "rank": 32
+      },
+      {
+        "layer": 7,
+        "head": 1,
+        "necessity": 0.10517509096878942,
+        "rank": 21
+      },
+      {
+        "layer": 7,
+        "head": 2,
+        "necessity": -0.002070522498887132,
+        "rank": 32
+      },
+      {
+        "layer": 7,
+        "head": 3,
+        "necessity": -0.060153032798805066,
+        "rank": 48
+      },
+      {
+        "layer": 7,
+        "head": 4,
+        "necessity": 0.1688126151359874,
+        "rank": 19
+      },
+      {
+        "layer": 7,
+        "head": 5,
+        "necessity": 0.10145742211370452,
+        "rank": 20
+      },
+      {
+        "layer": 7,
+        "head": 6,
+        "necessity": -0.0013930860102368036,
+        "rank": 31
+      },
+      {
+        "layer": 7,
+        "head": 7,
+        "necessity": 0.051804828190716225,
+        "rank": 25
+      },
+      {
+        "layer": 18,
+        "head": 0,
+        "necessity": 0.0014633598644572458,
+        "rank": 31
+      },
+      {
+        "layer": 18,
+        "head": 1,
+        "necessity": 0.0017766894043599814,
+        "rank": 30
+      },
+      {
+        "layer": 18,
+        "head": 2,
+        "necessity": 0.0493747912391033,
+        "rank": 25
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "necessity": -7.971879886905886e-05,
+        "rank": 31
+      },
+      {
+        "layer": 18,
+        "head": 4,
+        "necessity": 0.0012819129461618009,
+        "rank": 31
+      },
+      {
+        "layer": 18,
+        "head": 5,
+        "necessity": 0.13148931331591404,
+        "rank": 23
+      },
+      {
+        "layer": 18,
+        "head": 6,
+        "necessity": 0.031351497276097456,
+        "rank": 29
+      },
+      {
+        "layer": 18,
+        "head": 7,
+        "necessity": 0.0008928505473334592,
+        "rank": 30
+      }
+    ]
+  },
+  {
+    "pair": "Morocco:Casablanca->Rabat",
+    "effect": 2.0195825397968292,
+    "flip": true,
+    "anchor_pos": [
+      1,
+      2
+    ],
+    "baseline_rank": 0,
+    "framed_rank": 1,
+    "heads": [
+      {
+        "layer": 0,
+        "head": 0,
+        "necessity": -0.17998208392135606,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 1,
+        "necessity": -0.19507048857652615,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 2,
+        "necessity": -0.23577010547111826,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 3,
+        "necessity": 0.23798100948787773,
+        "rank": 1
+      },
+      {
+        "layer": 0,
+        "head": 4,
+        "necessity": -0.15493186142390547,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 5,
+        "necessity": 0.04082923952436582,
+        "rank": 1
+      },
+      {
+        "layer": 0,
+        "head": 6,
+        "necessity": -0.13491118584710948,
+        "rank": 2
+      },
+      {
+        "layer": 0,
+        "head": 7,
+        "necessity": -0.06716411908665923,
+        "rank": 1
+      },
+      {
+        "layer": 1,
+        "head": 0,
+        "necessity": 0.3771140799408907,
+        "rank": 1
+      },
+      {
+        "layer": 1,
+        "head": 1,
+        "necessity": -0.05287729699630102,
+        "rank": 1
+      },
+      {
+        "layer": 1,
+        "head": 2,
+        "necessity": -0.02177353241366294,
+        "rank": 1
+      },
+      {
+        "layer": 1,
+        "head": 3,
+        "necessity": -0.20938210188022907,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 4,
+        "necessity": -0.1363894504828347,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 5,
+        "necessity": 0.27862301632479264,
+        "rank": 1
+      },
+      {
+        "layer": 1,
+        "head": 6,
+        "necessity": -0.2119549576118211,
+        "rank": 2
+      },
+      {
+        "layer": 1,
+        "head": 7,
+        "necessity": -0.05776895754940037,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 0,
+        "necessity": 0.24283642764813507,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 1,
+        "necessity": -0.17823465754074558,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 2,
+        "necessity": 0.04310424653563084,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 3,
+        "necessity": 0.032560543500131225,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 4,
+        "necessity": 0.018767066555332477,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 5,
+        "necessity": -0.06690546409409623,
+        "rank": 1
+      },
+      {
+        "layer": 3,
+        "head": 6,
+        "necessity": -0.13005919123536167,
+        "rank": 2
+      },
+      {
+        "layer": 3,
+        "head": 7,
+        "necessity": -0.19755598479442735,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 0,
+        "necessity": -0.2098998840789426,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 1,
+        "necessity": -0.049904476356081216,
+        "rank": 1
+      },
+      {
+        "layer": 4,
+        "head": 2,
+        "necessity": -0.13073717189364067,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 3,
+        "necessity": -0.05864869146294647,
+        "rank": 1
+      },
+      {
+        "layer": 4,
+        "head": 4,
+        "necessity": -0.13153863640505567,
+        "rank": 2
+      },
+      {
+        "layer": 4,
+        "head": 5,
+        "necessity": 0.2925605774404828,
+        "rank": 1
+      },
+      {
+        "layer": 4,
+        "head": 6,
+        "necessity": 0.06450520242874205,
+        "rank": 1
+      },
+      {
+        "layer": 4,
+        "head": 7,
+        "necessity": -0.1339523561576541,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 0,
+        "necessity": -0.1340626180303396,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 1,
+        "necessity": 0.014525289952054826,
+        "rank": 1
+      },
+      {
+        "layer": 7,
+        "head": 2,
+        "necessity": 0.04255647877410992,
+        "rank": 1
+      },
+      {
+        "layer": 7,
+        "head": 3,
+        "necessity": -0.5669882711736699,
+        "rank": 4
+      },
+      {
+        "layer": 7,
+        "head": 4,
+        "necessity": -0.1760049830338823,
+        "rank": 2
+      },
+      {
+        "layer": 7,
+        "head": 5,
+        "necessity": 0.012881278347110779,
+        "rank": 1
+      },
+      {
+        "layer": 7,
+        "head": 6,
+        "necessity": -0.0692902607644592,
+        "rank": 1
+      },
+      {
+        "layer": 7,
+        "head": 7,
+        "necessity": 0.005767970918135946,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 0,
+        "necessity": -0.05367262273107827,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 1,
+        "necessity": -0.05946408627519324,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 2,
+        "necessity": 0.00506909480860925,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "necessity": -0.06084377632452406,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 4,
+        "necessity": -0.025821347285867553,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 5,
+        "necessity": 0.19724149054514034,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 6,
+        "necessity": 0.0018134182294661427,
+        "rank": 1
+      },
+      {
+        "layer": 18,
+        "head": 7,
+        "necessity": -0.01505889130595021,
+        "rank": 1
+      }
+    ]
+  }
+]

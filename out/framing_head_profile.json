@@ -1,0 +1,192 @@
+{
+  "sydney_positions": [
+    1
+  ],
+  "framed_tokens": [
+    "<bos>",
+    "Sydney",
+    " is",
+    " the",
+    " most",
+    " famous",
+    " city",
+    " in",
+    " Australia",
+    ".",
+    " The",
+    " capital",
+    " of",
+    " Australia",
+    " is",
+    " the",
+    " city",
+    " of"
+  ],
+  "heads": {
+    "L0.H2": {
+      "general": {
+        "prev_token": 0.10310089111328125,
+        "bos_sink": 0.03634506225585937,
+        "self": 0.1781103515625,
+        "induction": 0.019266287485758465
+      },
+      "framed_pred": {
+        "attn_to_sydney": 0.000408172607421875,
+        "top_keys": [
+          {
+            "pos": 0,
+            "tok": "<bos>",
+            "w": 0.84765625
+          },
+          {
+            "pos": 7,
+            "tok": " in",
+            "w": 0.055908203125
+          },
+          {
+            "pos": 10,
+            "tok": " The",
+            "w": 0.021240234375
+          },
+          {
+            "pos": 4,
+            "tok": " most",
+            "w": 0.01458740234375
+          }
+        ]
+      }
+    },
+    "L18.H5": {
+      "general": {
+        "prev_token": 0.04392814636230469,
+        "bos_sink": 0.5568701171875,
+        "self": 0.11988525390625,
+        "induction": 0.19249979654947916
+      },
+      "framed_pred": {
+        "attn_to_sydney": 0.8359375,
+        "top_keys": [
+          {
+            "pos": 1,
+            "tok": "Sydney",
+            "w": 0.8359375
+          },
+          {
+            "pos": 2,
+            "tok": " is",
+            "w": 0.05029296875
+          },
+          {
+            "pos": 8,
+            "tok": " Australia",
+            "w": 0.04296875
+          },
+          {
+            "pos": 13,
+            "tok": " Australia",
+            "w": 0.0380859375
+          }
+        ]
+      }
+    },
+    "L0.H3": {
+      "general": {
+        "prev_token": 0.09467529296875,
+        "bos_sink": 0.129722900390625,
+        "self": 0.0315948486328125,
+        "induction": 0.023956934611002605
+      },
+      "framed_pred": {
+        "attn_to_sydney": 0.0159912109375,
+        "top_keys": [
+          {
+            "pos": 15,
+            "tok": " the",
+            "w": 0.8359375
+          },
+          {
+            "pos": 13,
+            "tok": " Australia",
+            "w": 0.03564453125
+          },
+          {
+            "pos": 8,
+            "tok": " Australia",
+            "w": 0.0272216796875
+          },
+          {
+            "pos": 16,
+            "tok": " city",
+            "w": 0.0162353515625
+          }
+        ]
+      }
+    },
+    "L7.H1": {
+      "general": {
+        "prev_token": 0.16181884765625,
+        "bos_sink": 0.390185546875,
+        "self": 0.091746826171875,
+        "induction": 0.011844952901204428
+      },
+      "framed_pred": {
+        "attn_to_sydney": 0.047607421875,
+        "top_keys": [
+          {
+            "pos": 11,
+            "tok": " capital",
+            "w": 0.2431640625
+          },
+          {
+            "pos": 14,
+            "tok": " is",
+            "w": 0.2216796875
+          },
+          {
+            "pos": 0,
+            "tok": "<bos>",
+            "w": 0.150390625
+          },
+          {
+            "pos": 12,
+            "tok": " of",
+            "w": 0.130859375
+          }
+        ]
+      }
+    },
+    "L1.H0": {
+      "general": {
+        "prev_token": 0.06157470703125,
+        "bos_sink": 0.6101953125,
+        "self": 0.03202392578125,
+        "induction": 0.015101114908854166
+      },
+      "framed_pred": {
+        "attn_to_sydney": 0.0247802734375,
+        "top_keys": [
+          {
+            "pos": 0,
+            "tok": "<bos>",
+            "w": 0.625
+          },
+          {
+            "pos": 9,
+            "tok": ".",
+            "w": 0.04638671875
+          },
+          {
+            "pos": 5,
+            "tok": " famous",
+            "w": 0.0341796875
+          },
+          {
+            "pos": 11,
+            "tok": " capital",
+            "w": 0.03271484375
+          }
+        ]
+      }
+    }
+  }
+}

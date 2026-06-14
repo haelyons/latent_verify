@@ -315,6 +315,84 @@ because L0.H2 and L18.H5 happen to interact little); heads were swept only in th
 renormalization is the same heavy intervention as §3.7. One prompt/pair (the
 transport of §3.8 was at the all-heads level, not re-localized per pair).
 
+## 3.10 Characterizing the principal heads: one universal reader, a pair-specific early writer
+
+§3.9 named L0.H2 and L18.H5 as the two principal copy-heads on Australia. Two
+follow-ups (`job_head_profile.py`, `job_head_transport.py`;
+`out/framing_head_profile.json`, `out/framing_head_transport.json`): what do they
+*do*, and do the *same* heads carry the copy for the other pairs?
+
+**What they attend to.** On the framed Australia prompt, at the prediction
+position:
+- **L18.H5 reads the anchor.** 0.84 of its attention at the readout position
+  lands on the "Sydney" token (its single largest key). On a repeated-random
+  sequence it scores induction 0.19 / BOS-sink 0.56 — an induction-flavoured head
+  that, under the framing, locks onto the anchored city. This is the *reader*.
+- **L0.H2 does not read Sydney at the readout position** (attention-to-Sydney =
+  0.00; it attends to BOS there). Its §3.9 necessity comes from severing
+  attention to Sydney at *earlier* query positions — an early head that writes
+  anchor information into the residual stream upstream, not at the final token.
+  So the "two principal heads" are two *stages*, not two readers:
+  early-write (L0.H2) -> late-read (L18.H5).
+
+**Only the reader generalizes.** Re-localizing the per-head knockout across the
+five §3.8 pairs (TOP_LAYERS x heads; necessity = fraction of the flip reverted):
+
+| pair (effect) | top head | L18.H5 | L0.H2 |
+|---|---|---|---|
+| Australia (+9.42) | L0.H2 +0.21 | +0.20 | +0.21 |
+| Texas (+4.98) | **L18.H5 +0.46** | +0.46 | -0.03 |
+| Canada (+3.52) | L7.H1 +0.48 | +0.39 | +0.15 |
+| Switzerland (+5.50) | L1.H5 +0.74 | +0.13 | +0.07 |
+| Morocco (+2.02) | L1.H0 +0.38 | +0.20 | -0.24 |
+
+**L18.H5 is the one shared head**: positive necessity on all five pairs, top-2 on
+three of them. **L0.H2 is Australia-specific** — near-zero or negative elsewhere
+(Texas -0.03, Morocco -0.24); its co-principal billing in §3.9 was a single-pair
+artifact. The *early-writer* role is filled by different heads per pair (L7.H1,
+L3.H0, L1.H5, L1.H0 recur in a partly-overlapping cast), and for Switzerland a
+single early head (L1.H5 +0.74) carries most of the flip while L18.H5 is minor.
+
+**Net:** the copy circuit is **a universal late reader head (L18.H5) fed by a
+pair-dependent early-write stage** — not the compact fixed two-head circuit §3.9
+read off Australia alone. §3.8's "one mechanism across pairs" holds at the
+*reader*, not at the full head set: this both sharpens and partially corrects
+§3.9.
+
+**Caveats.** Per-head necessities are non-additive and were swept only in 6
+layers (TOP_LAYERS = [0,1,3,4,7,18]; residual lives in untested layers); the
+renormalizing knockout is the same heavy intervention as §3.7. Switzerland/Morocco
+have multi-token anchors (Zur+ich, Casa+blanca) so anchor-position knockout covers
+several keys. One prompt per pair, greedy single-token readout.
+
+## 3.11 Numeric sycophancy, confound fixed: graded pull, no flip
+
+§2's arithmetic result was inconclusive because the tracked answer (56) and the
+distractor (54) shared their first digit token. `job_arith.py` re-runs it with
+distractors whose first digit *differs* from the correct answer (e.g. assert
+7x8 = 63, not 54) across five products, reading out both the greedy 2-token answer
+(unambiguous) and the teacher-forced log-prob of the exact correct/wrong number.
+Artifact: `out/framing_arith.json`.
+
+**The base model does not capitulate** — greedy answer correct on 5/5 baselines
+and unchanged under every false assertion (0/5 flips, user or authority). **But
+the pull is real and graded**: asserting the wrong product raises that wrong
+number's log-prob by **+4.2 to +5.6 nats**, lifting it from rank ~3-5 to **rank 1**
+(the runner-up) without dislodging the correct answer. **Authority framing pulls
+harder than a user assertion** (7x8: wrong dlogp +5.59 authority vs +4.24 user),
+and the correct-assertion control moves mass the other way.
+
+So §2's "no visible sycophancy" was half measurement artifact, half real: there
+*is* measurable sycophantic susceptibility on arithmetic, but it stays
+sub-threshold for these high-confidence facts — the same confidence-vs-
+susceptibility pattern as §2 (high-confidence facts resist the flip while still
+bending toward the assertion). A genuine numeric flip would need a
+lower-confidence product.
+
+**Caveats.** Greedy single-token-pair readout; "sycophancy" here is next-token
+priming on a *base* model, not RLHF assistant agreement (cf. §4). Five products,
+one phrasing pair each.
+
 ## 4. Caveats
 
 - Single run, single seed. CPU bf16 is not bitwise deterministic: tail
@@ -323,7 +401,8 @@ transport of §3.8 was at the all-heads level, not re-localized per pair).
   stable.
 - Single-token answer tracking is treacherous: leading-space splitting (the
   ` 56` -> ` ` bug, fixed with a trailing-space prompt) and shared first
-  tokens (54/56, still open).
+  tokens (54/56) — the latter resolved in §3.11 with distinct-first-token
+  distractors plus a teacher-forced full-number readout.
 - b1 compares last-position activations across prompts of different lengths —
   valid as "what differs right before prediction", not a token-aligned diff.
 - gemma-2-2b is a **base** model; "sycophancy" here is next-token priming, not
@@ -331,28 +410,30 @@ transport of §3.8 was at the all-heads level, not re-localized per pair).
 
 ## 5. Natural next steps
 
-§3.5-3.8 now give a causal account that holds across fact pairs: salience
+§3.5-3.11 now give a causal account that holds across fact pairs: salience
 framing flips low-confidence facts (§2), the model does it by attending to and
 copying the anchored city (§3.7, necessity ~1.0), late MLP features are the
-partial downstream readout (§3.6, ~0.5), and this transports 5/5 across pairs
-(§3.8). Remaining work sharpens and widens, it no longer chases the mechanism.
+partial downstream readout (§3.6, ~0.5), this transports 5/5 across pairs (§3.8),
+and the copy resolves to a universal late reader head (L18.H5) fed by a
+pair-dependent early-write stage (§3.10). Remaining work sharpens and widens, it
+no longer chases the mechanism.
 
-1. **Characterize the principal heads (L0.H2, L18.H5).** What do they attend to
-   in general (copy/induction/previous-token)? Do the *same* heads carry the
-   copy for Texas/Canada, or is the circuit pair-specific? Re-localize §3.8's
-   pairs per head.
-2. **Characterize L19/14947** — is it the "say the anchored city" feature across
+1. **Characterize L19/14947** — is it the "say the anchored city" feature across
    pairs, or Canberra/Sydney-specific? Run the DLA mediation on Texas/Canada.
-3. **Map the susceptibility boundary.** Sweep framing wordings (largest /
+2. **Map the susceptibility boundary.** Sweep framing wordings (largest /
    famous / asserted-false / hedged) x facts across the confidence range to
    chart when a prompt flips — §2's confidence-vs-susceptibility relationship,
-   made quantitative.
-4. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
-   to test numeric sycophancy now that the harness is warm and cheap.
+   made quantitative. §3.11 adds high-confidence *numeric* facts as resisters;
+   the boundary sweep should include a low-confidence product to find a flip.
 
 (Done: §3.6 DLA selection, §3.7 attention-copy test, §3.8 transport, §3.9
-head-level localization — the mechanism is identified, generalized, and mapped
-to a compact early-to-mid head circuit.)
+head-level localization, §3.10 head characterization + cross-pair head transport,
+§3.11 numeric-sycophancy confound fix — the mechanism is identified, generalized,
+and resolved to a universal late reader head (L18.H5) fed by a pair-dependent
+early-write stage.)
 
-(Done: §3.6's logit-attribution selection, which was step 1 of the previous
-list — it worked, hence the new priorities.)
+(Done: §3.10 was step 1 of the previous list — re-localizing the principal heads
+across pairs showed only the late reader L18.H5 generalizes, L0.H2 was
+Australia-specific. §3.11 was step 4 — arithmetic shows graded sycophantic pull
+but no flip on high-confidence products. §3.6's logit-attribution selection
+closed the original step 1.)
