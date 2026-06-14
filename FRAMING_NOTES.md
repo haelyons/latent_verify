@@ -278,6 +278,43 @@ attending to the anchored-city token and copying it to the prediction position.*
 This is one mechanism, not a per-prompt coincidence — the same QK-space copy the
 Dallas->Austin attribution method is blind to, now shown across five fact pairs.
 
+## 3.9 Localizing the copy circuit: two principal heads, early-weighted
+
+The §3.7 knockout was an all-layers/all-heads sledgehammer (necessity ~1.0).
+Decomposing it (`job_localize_layers.py`, `job_localize_heads.py`,
+`job_localize_joint.py`; `out/framing_localize_*.json`), Australia/Sydney:
+
+**Per layer** (knock out attention to Sydney at one layer): distributed and
+**early-weighted** — L0 +0.37, L7 +0.22, L3 +0.19, L18 +0.19, L1/L4 ~+0.13,
+tail across L8/L11/L12/L22. No single layer dominates; the bias is laid down
+mostly in the first few layers.
+
+**Per head** (top-6 layers, 8 heads each): two heads stand out atop a diffuse
+tail — **L0.H2 (+0.205)** and **L18.H5 (+0.197)** — then L0.H3, L7.H1, L1.H0
+(<=0.1). An early head plus a mid head do the plurality of the copy.
+
+**Joint cumulative** (knock out the top-k heads together):
+
+| heads | necessity | Canberra rank |
+|---|---|---|
+| top-2 (L0.H2, L18.H5) | +0.398 | -> 54 |
+| top-3 | +0.510 | -> 17 |
+| top-5 | +0.702 | -> 3 |
+| top-12 | +0.942 | -> 1 |
+
+So the ~1.0 all-heads effect resolves into a **small circuit of ~12 heads across
+6 layers**, two of them (one in L0, one in L18) carrying ~0.4 between them. Not a
+single induction-style head, not fully diffuse — a compact early-to-mid circuit.
+The early dominance (L0 the biggest single layer) is the notable shape: unlike
+the late name-mover heads of IOI (Wang et al. 2023), the anchored-city bias here
+is established in the *first* layer and read out mid-stack.
+
+**Caveats.** Single-head necessities are not additive (the top-2 sum ~0.40 only
+because L0.H2 and L18.H5 happen to interact little); heads were swept only in the
+6 top layers, so the residual ~0.06 lives in untested layers; per-head
+renormalization is the same heavy intervention as §3.7. One prompt/pair (the
+transport of §3.8 was at the all-heads level, not re-localized per pair).
+
 ## 4. Caveats
 
 - Single run, single seed. CPU bf16 is not bitwise deterministic: tail
@@ -300,9 +337,10 @@ copying the anchored city (§3.7, necessity ~1.0), late MLP features are the
 partial downstream readout (§3.6, ~0.5), and this transports 5/5 across pairs
 (§3.8). Remaining work sharpens and widens, it no longer chases the mechanism.
 
-1. **Localize the copy in depth/heads.** Which layers / which heads carry the
-   anchor->prediction copy? Knock out per layer-block and per head to find the
-   minimal circuit, rather than the all-layers sledgehammer used here.
+1. **Characterize the principal heads (L0.H2, L18.H5).** What do they attend to
+   in general (copy/induction/previous-token)? Do the *same* heads carry the
+   copy for Texas/Canada, or is the circuit pair-specific? Re-localize §3.8's
+   pairs per head.
 2. **Characterize L19/14947** — is it the "say the anchored city" feature across
    pairs, or Canberra/Sydney-specific? Run the DLA mediation on Texas/Canada.
 3. **Map the susceptibility boundary.** Sweep framing wordings (largest /
@@ -312,8 +350,9 @@ partial downstream readout (§3.6, ~0.5), and this transports 5/5 across pairs
 4. **Fix the arithmetic distractor** (distinct first token, e.g. assert "63")
    to test numeric sycophancy now that the harness is warm and cheap.
 
-(Done: §3.6 DLA selection, §3.7 attention-copy test, §3.8 transport — the
-mechanism question is settled for this prompt family.)
+(Done: §3.6 DLA selection, §3.7 attention-copy test, §3.8 transport, §3.9
+head-level localization — the mechanism is identified, generalized, and mapped
+to a compact early-to-mid head circuit.)
 
 (Done: §3.6's logit-attribution selection, which was step 1 of the previous
 list — it worked, hence the new priorities.)
