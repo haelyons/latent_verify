@@ -376,11 +376,14 @@ Artifact: `out/framing_arith.json`.
 
 **The base model does not capitulate** — greedy answer correct on 5/5 baselines
 and unchanged under every false assertion (0/5 flips, user or authority). **But
-the pull is real and graded**: asserting the wrong product raises that wrong
-number's log-prob by **+4.2 to +5.6 nats**, lifting it from rank ~3-5 to **rank 1**
-(the runner-up) without dislodging the correct answer. **Authority framing pulls
-harder than a user assertion** (7x8: wrong dlogp +5.59 authority vs +4.24 user),
-and the correct-assertion control moves mass the other way.
+the pull is real and graded**: asserting the wrong product raises the
+teacher-forced log-prob of the exact wrong number by **+1.7 to +4.2 nats** under a
+user assertion and **+2.8 to +5.6 nats** under an authority assertion —
+**authority > user in 5/5 items** — without ever dislodging the correct answer at
+argmax. The correct-assertion control moves mass the other way. (First-digit token
+rank is uninformative here — the wrong number's leading digit is often already
+rank ~1 — which is why the readout is the teacher-forced full-number log-prob, not
+token rank.)
 
 So §2's "no visible sycophancy" was half measurement artifact, half real: there
 *is* measurable sycophantic susceptibility on arithmetic, but it stays
@@ -497,3 +500,60 @@ but no flip on high-confidence products. §3.12 — prompt-construction follow-u
 distance weakens the copy but grammatical prominence dominates, and an explicit
 "ignore irrelevant context" instruction fully neutralizes the flip on this base
 model. §3.6's logit-attribution selection closed the original step 1.)
+
+## 6. The largest open confound: completion-mode base model vs. how models are used
+
+Everything in §§2-3.12 was measured in one regime, and it is *not* the regime
+people use:
+
+| dimension | what we ran | typical usage |
+|---|---|---|
+| model | gemma-2-2b **base** | instruction-tuned / RLHF chat |
+| input shape | sentence **fragment** ("…is the city of") | full-sentence **question** |
+| scaffolding | raw text, no template | chat template (system/user/assistant turns) |
+| answer slot | the **immediate next token** | a city token several tokens into a full reply |
+
+This bundles four confounds. Completion of a fragment is the strong one: our
+prompts end so that the next token is *forced* toward a city, the anchor sits a
+fixed ~16 tokens away, and we read exactly that next token. In a chat reply the
+model first emits "The capital of X is …" and the answer token appears later —
+further from the anchor and after self-generated tokens. We are not measuring the
+mode that matters; we should not assume it transfers.
+
+The mechanism actually lets us make *directional, falsifiable* predictions about
+the untested regime (derived from §3.7-3.12, independent of the
+`PROMPTING_OBSERVATIONS.md` tips):
+
+- **P1 (transfer).** The salience flip persists for a full-sentence question on
+  gemma-2-2b-**it** with the chat template, and the same reader head L18.H5 carries
+  it. *Falsified if* the flip vanishes (effect ~0) or a different head dominates
+  the anchor-knockout.
+- **P2 (distance corollary).** Because §3.12 shows the copy attenuates with
+  anchor→readout distance, the flip in a chat reply (answer token further from the
+  anchor) is **smaller** than for the matched fragment, holding model fixed.
+  *Falsified if* chat effect ≥ fragment effect.
+- **P3 (instruction ≥).** An RLHF model trained to follow instructions neutralizes
+  the flip under the §3.12 "ignore" instruction **at least as strongly** as the
+  base model did. *Falsified if* it neutralizes less.
+- **P4 (RLHF sycophancy adds a flip).** The arithmetic that did *not* flip in base
+  (§3.11, 0/5) **does** produce a greedy capitulation on some items in the it model
+  under user/authority assertion. *Falsified if* the it model is also 0/n.
+- **P5 (factor isolation).** A 2×2 — model {base, it} × format
+  {fragment-completion, full-question→answer} — separates which confound drives any
+  change. Predicted shape: the *model* factor moves sycophancy (P4) most, the
+  *format* factor moves salience-flip magnitude (P2) most.
+
+Operationalization notes for whoever runs this: gemma-2-2b-it is gated (same HF
+licence family). Readout must become **position-aware** — greedy-decode the full
+reply, parse the entity, and take the entity token's log-prob at its actual
+generated position, not the immediate next token. The anchor-knockout test (§3.7)
+still applies, but the anchor now lives in the user turn / a retrieved passage.
+Until P1-P5 are run, treat §§3.x as a mechanism characterized *in completion mode*,
+not as a statement about deployed chat models.
+
+## 7. Remaining (from §5, not yet done)
+
+1. Characterize L19/14947 across pairs (DLA mediation on Texas/Canada) — is it
+   "say the anchored city" or Canberra/Sydney-specific?
+2. Map the susceptibility boundary (wording × fact across the confidence range),
+   including a low-confidence numeric fact to find an arithmetic flip.
