@@ -1,0 +1,200 @@
+{
+  "distance": [
+    {
+      "pair": "Australia->Canberra",
+      "lengths": {
+        "short": {
+          "neutral": 0.24999994039535522,
+          "salience": -9.75,
+          "effect": 9.999999940395355
+        },
+        "long": {
+          "neutral": 1.625,
+          "salience": -3.875,
+          "effect": 5.5
+        }
+      }
+    },
+    {
+      "pair": "Texas->Austin",
+      "lengths": {
+        "short": {
+          "neutral": 1.875,
+          "salience": -4.75,
+          "effect": 6.625
+        },
+        "long": {
+          "neutral": 2.875,
+          "salience": 0.7500000596046448,
+          "effect": 2.1249999403953552
+        }
+      }
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "lengths": {
+        "short": {
+          "neutral": 2.5,
+          "salience": -3.375,
+          "effect": 5.875
+        },
+        "long": {
+          "neutral": 2.375,
+          "salience": -0.25,
+          "effect": 2.625
+        }
+      }
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "lengths": {
+        "short": {
+          "neutral": 1.375,
+          "salience": -5.5,
+          "effect": 6.875
+        },
+        "long": {
+          "neutral": 3.0,
+          "salience": -2.625,
+          "effect": 5.625
+        }
+      }
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "lengths": {
+        "short": {
+          "neutral": 1.25,
+          "salience": -1.625,
+          "effect": 2.875
+        },
+        "long": {
+          "neutral": 1.9999998807907104,
+          "salience": 0.75,
+          "effect": 1.2499998807907104
+        }
+      }
+    }
+  ],
+  "mechanism": [
+    {
+      "pair": "Australia->Canberra",
+      "contexts": {
+        "bare": {
+          "neutral": 0.24999994039535522,
+          "salience": -9.75,
+          "effect": 9.999999940395355,
+          "anchor_pos": [
+            1
+          ],
+          "necessity": 1.0750000064074994
+        },
+        "qa": {
+          "neutral": 3.375,
+          "salience": 2.875,
+          "effect": 0.5,
+          "anchor_pos": [
+            1
+          ],
+          "necessity": null
+        }
+      }
+    },
+    {
+      "pair": "Texas->Austin",
+      "contexts": {
+        "bare": {
+          "neutral": 1.875,
+          "salience": -4.75,
+          "effect": 6.625,
+          "anchor_pos": [
+            1
+          ],
+          "necessity": 1.169811320754717
+        },
+        "qa": {
+          "neutral": 6.25,
+          "salience": 5.25,
+          "effect": 1.0,
+          "anchor_pos": [
+            1
+          ],
+          "necessity": 0.375
+        }
+      }
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "contexts": {
+        "bare": {
+          "neutral": 2.5,
+          "salience": -3.375,
+          "effect": 5.875,
+          "anchor_pos": [
+            1
+          ],
+          "necessity": 1.1063829787234043
+        },
+        "qa": {
+          "neutral": 5.3125,
+          "salience": 5.25,
+          "effect": 0.0625,
+          "anchor_pos": [
+            1
+          ],
+          "necessity": null
+        }
+      }
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "contexts": {
+        "bare": {
+          "neutral": 1.375,
+          "salience": -5.5,
+          "effect": 6.875,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "necessity": 1.0363636537031693
+        },
+        "qa": {
+          "neutral": 5.5,
+          "salience": 4.375,
+          "effect": 1.125,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "necessity": 1.1111111111111112
+        }
+      }
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "contexts": {
+        "bare": {
+          "neutral": 1.25,
+          "salience": -1.625,
+          "effect": 2.875,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "necessity": 1.1304347826086956
+        },
+        "qa": {
+          "neutral": 3.25,
+          "salience": 3.125,
+          "effect": 0.125,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "necessity": null
+        }
+      }
+    }
+  ]
+}

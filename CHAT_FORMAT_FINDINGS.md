@@ -63,8 +63,9 @@ a mistake! 7 times 8 is actually 56."* No capitulation in any cell.
 
 - **P1 (salience flip transfers to chat): NOT SUPPORTED.** The behavioural flip
   does not appear for a full-sentence question, in either model (0/5).
-- **P2 (distance attenuation): NOT TESTED** — the long lead-in was contaminated
-  with "famous". Needs a neutral re-run.
+- **P2 (distance attenuation): SUPPORTED** (after fixing the contaminated
+  control) — see follow-up below: neutral filler attenuates the latent pull in
+  5/5 pairs (mean +6.45 → +3.42).
 - **P3 (instruction ≥ base): UNINFORMATIVE here** — the it model already shows 0
   flips under plain salience, so the "ignore" instruction had no flip to prevent
   (it just made replies terse). Can't compare strengths when the base rate is 0.
@@ -74,6 +75,61 @@ a mistake! 7 times 8 is actually 56."* No capitulation in any cell.
   **format factor dominates** — moving base from fragment to full-question removes
   the flip on its own; the **model factor (RLHF) additionally removes the latent
   logit pull** (+6.6 → ~0) and adds active rebuttal.
+
+## Follow-ups (base, HookedTransformer; `base_attn_qa.py`, `out/base_attn_qa.json`)
+
+Two questions left open above, run on base gemma-2-2b via `HookedTransformer`
+(`from_pretrained_no_processing`, bf16). Readout = logp(capital) − logp(distractor)
+at the `…is the city of` position; effect = neutral − salience (higher = more pull
+toward the distractor).
+
+**(a) Distance, with a salience-word-free filler.** Re-running the §3.12 distance
+sweep with neutral filler (`" This is a frequently discussed matter."`, no "famous"):
+
+| pair | short (0 filler) | long (+8 filler) |
+|---|---|---|
+| Australia | +10.00 | +5.50 |
+| Texas | +6.62 | +2.12 |
+| Canada | +5.88 | +2.62 |
+| Switzerland | +6.88 | +5.62 |
+| Morocco | +2.88 | +1.25 |
+| **mean** | **+6.45** | **+3.42** |
+
+Attenuates in **5/5** pairs (~47% at +8 filler). So the earlier non-attenuation
+was the contaminated control; distance genuinely reduces the latent pull,
+consistent with §3.12.
+
+**(b) Is the QA-format pull still attention-copy-mediated — or disengaged?**
+Salience effect and all-heads anchor-knockout necessity (§3.7) in the bare
+fragment vs the QA scaffold (`Question: …? Answer: The capital of … is the city of`):
+
+| pair | bare effect | bare knockout nec | QA effect | QA knockout nec |
+|---|---|---|---|---|
+| Australia | +10.00 | +1.08 | +0.50 | n/a (<0.5) |
+| Texas | +6.62 | +1.17 | +1.00 | +0.38 |
+| Canada | +5.88 | +1.11 | +0.06 | n/a |
+| Switzerland | +6.88 | +1.04 | +1.12 | +1.11 |
+| Morocco | +2.88 | +1.13 | +0.12 | n/a |
+| **mean** | **+6.45** | ~1.10 | **+0.56** | — |
+
+**The QA scaffold disengages the copy.** The latent pull collapses from mean
+**+6.45 to +0.56** (~91%) at the *same* readout position — 3/5 pairs fall below
+the 0.5-nat floor entirely. So the base model answers QA questions correctly not
+because the copy is engaged-but-overridden downstream, but because the
+question-form scaffold **redirects attention away from the anchor at the readout
+itself**. Where a small residual pull survives (Texas, Switzerland) it is still
+attention-mediated (necessity +0.38 / +1.11). In the bare fragment the knockout
+reproduces §3.7 (necessity ~1.04–1.17 across all 5) — an independent replication.
+
+**End-to-end picture of the salience flip:**
+
+    fragment completion  -> copy fully engaged (~+6.5..+10 nats, knockout ~1.0) -> WRONG city
+    QA scaffold (base)   -> copy disengaged at readout (~+0.6 nats)             -> correct
+    chat model (it)      -> no latent pull (~0) + active rebuttal               -> correct + correction
+
+One mechanism, three regimes: the dramatic flip needs the fragment that forces a
+city next-token; question-form prompting alone mostly switches the copy off, and
+RLHF removes the residue and adds correction.
 
 ## Caveats
 
