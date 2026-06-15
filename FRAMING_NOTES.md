@@ -747,3 +747,53 @@ greedy-correctness is the cleaner gate (margin lp(C)−lp(W) likely better still
 The asserted W is itself usually also wrong, so a "flip" is the model abandoning its
 own (often wrong) answer for the asserted one. base = next-token priming on a base
 model; it = chat sycophancy (distinct phenomena, cf §3.11/§4).
+
+## 10. GPU session (2026-06-15): scale, and the root mechanism
+
+First runs on a real GPU (Lambda A100; transformer_lens 3.4 / transformers 5.12;
+base controls reproduce the CPU numbers, so the stack is faithful). §8 (RLHF
+disengages the salience reader) and §9 (numeric-flip boundary) are the detailed
+writeups; this section records the two threads the GPU opened. Artifacts:
+`out/numeric_boundary_9b_{base,it}.json`, `out/scale_mechanism_9b_{base,it}.json`,
+`out/numeric_mechanism_gemma_2_2b.json`, `out/numeric_localize_2b.json`.
+
+### 10.1 Scale (gemma-2-9b, same family — isolates scale from architecture)
+
+- **Founded.** Conditioning on products the model computes *correctly*, the
+  assertion flip-rate rises with scale: **2b 0.50 → 9b 0.83** (base, n=20). Holding
+  correctness fixed, the larger base model is more sycophantic to an asserted answer.
+- **Not founded (retracted).** The cross-model Δlp(W) "pull grows monotonically"
+  trend — log-prob magnitudes are not comparable across model sizes. And "9b-it is
+  more robust" is **confounded**: 9b-it is 20/20 correct, so it has no low-confidence
+  item to flip; its low flip count conflates robustness with capability.
+- **Suggestive only (n=5).** The capital-salience flip is ~absent in 9b base (mean
+  effect +0.02 vs 2b +6.55) — possibly a small-model phenomenon. NB the mechanism
+  metric here (max-attn over all heads) differs from §8's specific-L18.H5 readout, so
+  this is not yet a clean attenuation claim.
+
+### 10.2 Root mechanism: sycophancy is an attention-copy, on a token-specific circuit
+
+Is numeric assertion-sycophancy the *same* mechanism as the §3.7/§8 salience copy?
+Test (base 2b): zero attention to the asserted-number (W) span, renormalize (the
+§3.7 knockout), measure how much of the assertion's lp(C)−lp(W) shift reverts.
+
+- **Same mechanism class.** W-span knockout reverts the pull: **median nec_W +1.01,
+  matched neutral-span control +0.05** (n=60 products). Both the salience flip and
+  numeric sycophancy are attention-copies of a referenced prompt token into the
+  answer slot (all-heads necessity ~1, control ~0, for both). The behavioral
+  exact-C revert is 15/45 (33%) — understated, because hard products have no exact-C
+  fallback (knocking out W drops the model back to its own near-miss); the margin
+  metric is the faithful readout.
+- **Different circuit.** Per-head W-knockout (n=28 hard-flip items): the numeric
+  copy is **distributed** — top head L20.H7 only +0.09, top-5 sum +0.31, no single
+  reader — and the §3.10 salience reader **L18.H5 carries ≈0** of it (−0.002, rank
+  151/208). So the two share a *strategy* (copy the salient/asserted token)
+  implemented on *different heads*: a concentrated reader head for salience, a
+  diffuse mid-stack set for the asserted number.
+
+**Net.** "Sycophancy" here is not a single faculty or a single circuit; it is a
+recurring strategy — read a referenced token from the prompt and copy it to the
+output — that different prompt cues (a salient entity, an asserted answer) route
+through different heads. Caveats: single 2B model for the mechanism, one phrasing
+(authority) and one distractor type (W = a·(b+1)), the heavy renormalizing knockout,
+per-head non-additivity; scale numbers are 5 pairs / 20 products.
