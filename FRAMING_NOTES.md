@@ -766,10 +766,13 @@ writeups; this section records the two threads the GPU opened. Artifacts:
   trend — log-prob magnitudes are not comparable across model sizes. And "9b-it is
   more robust" is **confounded**: 9b-it is 20/20 correct, so it has no low-confidence
   item to flip; its low flip count conflates robustness with capability.
-- **Suggestive only (n=5).** The capital-salience flip is ~absent in 9b base (mean
-  effect +0.02 vs 2b +6.55) — possibly a small-model phenomenon. NB the mechanism
-  metric here (max-attn over all heads) differs from §8's specific-L18.H5 readout, so
-  this is not yet a clean attenuation claim.
+- **Founded for base, same-metric (n=5).** Measuring 2b and 9b base by the *identical*
+  max-attn-over-all-heads metric (`out/scale_mechanism_{2b,9b}_base.json`), the
+  capital-salience flip attenuates with scale: effect **2b +6.55 → 9b +0.02**, max
+  attention-to-anchor **0.69 → 0.42**. So the §8 salience copy is largely a
+  small(er)-model phenomenon — this resolves the earlier metric-mismatch caveat for the
+  base comparison. Still n=5 pairs, and the `-it` side of the 2×2 via this metric is
+  not yet run (instance terminated).
 
 ### 10.2 Root mechanism: sycophancy is an attention-copy, on a token-specific circuit
 

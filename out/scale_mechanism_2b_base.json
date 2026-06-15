@@ -1,0 +1,142 @@
+{
+  "summary": {
+    "model": "google/gemma-2-2b",
+    "n_layers": 26,
+    "n_heads": 8,
+    "bare": {
+      "mean_effect": 6.550000059604645,
+      "mean_max_attn_to_anchor": 0.6927734375,
+      "mean_allheads_necessity": 1.10061266907564,
+      "modal_reader_head": [
+        18,
+        6
+      ],
+      "reader_heads_per_pair": [
+        [
+          18,
+          5
+        ],
+        [
+          18,
+          6
+        ],
+        [
+          18,
+          6
+        ],
+        [
+          18,
+          6
+        ],
+        [
+          18,
+          5
+        ]
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "pair": "Australia->Canberra",
+      "anchor": "Sydney",
+      "conditions": {
+        "bare": {
+          "neutral": 0.3750000596046448,
+          "salience": -9.75,
+          "effect": 10.125000059604645,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 1.0617283888114624,
+          "max_attn_to_anchor": 0.8359375,
+          "reader_head": [
+            18,
+            5
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Texas->Austin",
+      "anchor": "Houston",
+      "conditions": {
+        "bare": {
+          "neutral": 1.8750001192092896,
+          "salience": -5.125,
+          "effect": 7.0000001192092896,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 1.142857123394402,
+          "max_attn_to_anchor": 0.61328125,
+          "reader_head": [
+            18,
+            6
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "anchor": "Toronto",
+      "conditions": {
+        "bare": {
+          "neutral": 2.5,
+          "salience": -3.375,
+          "effect": 5.875,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 1.1063829787234043,
+          "max_attn_to_anchor": 0.8046875,
+          "reader_head": [
+            18,
+            6
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "anchor": "Zurich",
+      "conditions": {
+        "bare": {
+          "neutral": 1.375,
+          "salience": -5.5,
+          "effect": 6.875,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "allheads_necessity": 1.018181818181818,
+          "max_attn_to_anchor": 0.7042236328125,
+          "reader_head": [
+            18,
+            6
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "anchor": "Casablanca",
+      "conditions": {
+        "bare": {
+          "neutral": 1.25,
+          "salience": -1.6250001192092896,
+          "effect": 2.8750001192092896,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "allheads_necessity": 1.1739130362671133,
+          "max_attn_to_anchor": 0.5057373046875,
+          "reader_head": [
+            18,
+            5
+          ]
+        }
+      }
+    }
+  ]
+}
