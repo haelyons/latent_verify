@@ -1,0 +1,139 @@
+# Lambda GPU access — how it worked, and the APIs used
+
+How the GPU session for this project was provisioned, in plain terms, so it can
+be reproduced. Date: 2026-06-15. All steps were driven from the local Windows
+workstation (`LAPTOP-ULDACBRE`), **not** the Claude Code web sandbox — the
+sandbox's HTTPS-only egress proxy blocks outbound SSH (see `README_RUN.md`),
+whereas the workstation has normal outbound network, which is what makes
+"instrument from here over SSH" viable at all.
+
+## The shape of it
+
+1. Generate an SSH keypair locally.
+2. Add the **public** key to the Lambda account via the Lambda Cloud API.
+3. Launch a GPU instance via the API, selecting that key by name.
+4. Lambda provisions the box and **injects the public key automatically** — no
+   manual `ssh-copy-id`, no password. Once the instance is `active` you SSH in as
+   `ubuntu@<ip>` with the matching private key.
+5. Poll the API for the instance's IP, connect, run, then terminate.
+
+The key point (and the reason no in-instance setup was needed for access):
+**SSH access is completed by Lambda at provision time from the account's key
+list.** You only have to get the public key onto the account once; every
+instance launched thereafter with that key name is reachable immediately.
+
+## Credentials
+
+- Lambda API key: a `secret_…` bearer token, stored as `LAMBDA_KEY_ONE` in
+  `./.keys` (single line `LAMBDA_KEY_ONE=secret_…`). `.keys` is **gitignored**
+  (added to `.gitignore` this session) so the token can't be committed.
+- SSH keypair: `~/.ssh/lambda_ed25519` (private) + `.pub`, ed25519, **no
+  passphrase** (matches the existing `vastai_ed25519` pattern; enables
+  non-interactive automation). Comment `lambda-latent_verify-helios-2026-06-15`.
+  Treat the private key as sensitive; the rented box is ephemeral.
+
+Load the token without echoing it:
+
+```bash
+LAMBDA_KEY_ONE=$(grep '^LAMBDA_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
+```
+
+## Lambda Cloud API — endpoints leveraged
+
+Base URL `https://cloud.lambda.ai/api/v1/`. Auth on every call:
+`-H "Authorization: Bearer $LAMBDA_KEY_ONE"`.
+
+| Method & path | Purpose | Body / notes |
+|---|---|---|
+| `GET /ssh-keys` | List keys on the account (also the auth smoke-test) | — |
+| `POST /ssh-keys` | **Add** a public key | `{"name": "...", "public_key": "ssh-ed25519 AAAA… comment"}` → returns the key `id`. Names must be unique. |
+| `GET /instance-types` | What's launchable + **where there's capacity** | Each entry has `instance_type` (price_cents_per_hour, gpu_description, specs) and `regions_with_capacity_available` (empty ⇒ no capacity). |
+| `POST /instance-operations/launch` | **Launch** an instance | `{"region_name","instance_type_name","ssh_key_names":["..."],"name"}` → returns `data.instance_ids`. |
+| `GET /instances/<id>` | Poll status / get the **IP** | `data.status` goes `booting` → `active`; `data.ip` populates during boot. |
+| `POST /instance-operations/terminate` | **Tear down** (stops billing) | `{"instance_ids":["..."]}`. Run this when done. |
+
+### Concrete calls used this session
+
+Add the key:
+
+```bash
+PUB=$(cat ~/.ssh/lambda_ed25519.pub)
+curl -sS -X POST https://cloud.lambda.ai/api/v1/ssh-keys \
+  -H "Authorization: Bearer $LAMBDA_KEY_ONE" -H "Content-Type: application/json" \
+  --data "{\"name\":\"latent_verify_helios\",\"public_key\":\"$PUB\"}"
+# -> {"data":{"id":"fd0348a11da147fa9b213e624f1d230a","name":"latent_verify_helios",...}}
+```
+
+Check capacity:
+
+```bash
+curl -sS https://cloud.lambda.ai/api/v1/instance-types \
+  -H "Authorization: Bearer $LAMBDA_KEY_ONE"
+# filter to entries whose regions_with_capacity_available is non-empty
+```
+
+Launch (region fallback across the type's available regions):
+
+```bash
+curl -sS -X POST https://cloud.lambda.ai/api/v1/instance-operations/launch \
+  -H "Authorization: Bearer $LAMBDA_KEY_ONE" -H "Content-Type: application/json" \
+  --data '{"region_name":"us-west-2","instance_type_name":"gpu_1x_a100_sxm4","ssh_key_names":["latent_verify_helios"],"name":"latent_verify"}'
+# -> {"data":{"instance_ids":["702fd675baa1447e8ee58eb774273484"]}}
+```
+
+Poll for the IP (background loop; exits when active):
+
+```bash
+ID=702fd675baa1447e8ee58eb774273484
+for i in $(seq 1 40); do
+  RESP=$(curl -sS https://cloud.lambda.ai/api/v1/instances/$ID \
+           -H "Authorization: Bearer $LAMBDA_KEY_ONE")
+  STATUS=$(echo "$RESP" | python -c 'import sys,json;print(json.load(sys.stdin)["data"].get("status",""))')
+  IP=$(echo "$RESP" | python -c 'import sys,json;print(json.load(sys.stdin)["data"].get("ip") or "")')
+  [ "$STATUS" = active ] && [ -n "$IP" ] && { echo "READY ip=$IP"; break; }
+  sleep 15
+done
+```
+
+## This session's instance
+
+| field | value |
+|---|---|
+| SSH key name (Lambda) | `latent_verify_helios` (id `fd0348a11da147fa9b213e624f1d230a`) |
+| local private key | `~/.ssh/lambda_ed25519` |
+| instance id | `702fd675baa1447e8ee58eb774273484` |
+| type | `gpu_1x_a100_sxm4` — A100 40 GB SXM4, 30 vCPU / 200 GiB |
+| region | `us-west-2` |
+| price | $1.99/hr |
+| IP | `161.153.52.246` |
+| login user | `ubuntu` |
+
+## Connecting
+
+```bash
+ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/lambda_ed25519 ubuntu@161.153.52.246 nvidia-smi
+```
+
+Or via `~/.ssh/config` for a one-word handle:
+
+```
+Host lambda-lv
+    HostName 161.153.52.246
+    User ubuntu
+    IdentityFile ~/.ssh/lambda_ed25519
+    StrictHostKeyChecking accept-new
+```
+
+→ `ssh lambda-lv nvidia-smi`
+
+## Teardown (do this when finished — it's billed per hour)
+
+```bash
+curl -sS -X POST https://cloud.lambda.ai/api/v1/instance-operations/terminate \
+  -H "Authorization: Bearer $LAMBDA_KEY_ONE" -H "Content-Type: application/json" \
+  --data '{"instance_ids":["702fd675baa1447e8ee58eb774273484"]}'
+```
+
+Removing the SSH key from the account (optional) is `DELETE /ssh-keys/<id>`.
+</content>
+</invoke>
