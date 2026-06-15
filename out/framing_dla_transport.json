@@ -1,0 +1,107 @@
+[
+  {
+    "pair": "Australia->Canberra",
+    "effect": 9.421341180801392,
+    "top8_dla": [
+      "L19/14947",
+      "L17/7178",
+      "L19/14542",
+      "L24/3865",
+      "L25/6289",
+      "L20/11174",
+      "L24/7100",
+      "L20/5916"
+    ],
+    "probe_feature": "L19/14947",
+    "probe_dla_rank": 0,
+    "probe_score": 5.138667583465576,
+    "probe_delta_act": -27.75,
+    "probe_individual_necessity": 0.1982560518761415,
+    "top1_feature": "L19/14947",
+    "top1_individual_necessity": 0.1982560518761415
+  },
+  {
+    "pair": "Texas->Austin",
+    "effect": 4.975468933582306,
+    "top8_dla": [
+      "L18/10328",
+      "L23/12237",
+      "L18/1437",
+      "L25/583",
+      "L22/6392",
+      "L18/8959",
+      "L19/6741",
+      "L20/15589"
+    ],
+    "probe_feature": "L19/14947",
+    "probe_dla_rank": 241780,
+    "probe_score": -0.0,
+    "probe_delta_act": 0.0,
+    "probe_individual_necessity": 0.0,
+    "top1_feature": "L18/10328",
+    "top1_individual_necessity": 0.11998392275812748
+  },
+  {
+    "pair": "Canada->Ottawa",
+    "effect": 3.5205402970314026,
+    "top8_dla": [
+      "L19/14947",
+      "L19/14542",
+      "L24/3865",
+      "L24/7100",
+      "L17/7178",
+      "L21/1967",
+      "L24/3772",
+      "L20/5916"
+    ],
+    "probe_feature": "L19/14947",
+    "probe_dla_rank": 0,
+    "probe_score": 6.634006023406982,
+    "probe_delta_act": -24.625,
+    "probe_individual_necessity": 0.2339789653290497,
+    "top1_feature": "L19/14947",
+    "top1_individual_necessity": 0.2339789653290497
+  },
+  {
+    "pair": "Switzerland->Bern",
+    "effect": 5.502970337867737,
+    "top8_dla": [
+      "L23/2901",
+      "L22/7766",
+      "L24/6394",
+      "L19/14542",
+      "L19/1445",
+      "L23/6617",
+      "L18/13586",
+      "L22/11000"
+    ],
+    "probe_feature": "L19/14947",
+    "probe_dla_rank": 241822,
+    "probe_score": -0.0,
+    "probe_delta_act": 0.0,
+    "probe_individual_necessity": 0.0,
+    "top1_feature": "L23/2901",
+    "top1_individual_necessity": 0.0325703283901107
+  },
+  {
+    "pair": "Morocco->Rabat",
+    "effect": 2.0195825397968292,
+    "top8_dla": [
+      "L17/7178",
+      "L15/13929",
+      "L25/15599",
+      "L23/3325",
+      "L25/8474",
+      "L25/14744",
+      "L25/1676",
+      "L17/15322"
+    ],
+    "probe_feature": "L19/14947",
+    "probe_dla_rank": 241793,
+    "probe_score": -0.0,
+    "probe_delta_act": 0.0,
+    "probe_individual_necessity": 0.0,
+    "top1_feature": "L17/7178",
+    "top1_individual_necessity": 0.05904405228909595
+  }
+]
