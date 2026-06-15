@@ -1,0 +1,45 @@
+[load] HookedTransformer google/gemma-2-2b-it on cuda
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+[load] done (n_heads=8, n_layers=26)
+
+=== Australia (cap Canberra, anchor Sydney) ===
+  [bare] effect=-3.94  allheads_nec=+0.13  L18.H5->anchor=0.01  top_head=0.4=+0.06
+  [chat] effect=-1.41  allheads_nec=+0.22  L18.H5->anchor=0.01  top_head=1.6=+0.13
+
+=== Texas (cap Austin, anchor Houston) ===
+  [bare] effect=-4.81  allheads_nec=+0.26  L18.H5->anchor=0.01  top_head=4.5=+0.10
+  [chat] effect=-1.06  allheads_nec=+1.18  L18.H5->anchor=0.01  top_head=0.0=+0.18
+
+=== Canada (cap Ottawa, anchor Toronto) ===
+  [bare] effect=-5.25  allheads_nec=+0.19  L18.H5->anchor=0.01  top_head=4.5=+0.07
+  [chat] effect=-0.69  allheads_nec=+0.45  L18.H5->anchor=0.01  top_head=18.5=+0.23
+
+=== Switzerland (cap Bern, anchor Zurich) ===
+  [bare] effect=-3.81  allheads_nec=+0.48  L18.H5->anchor=0.04  top_head=1.5=+0.54
+  [chat] effect=-0.75  allheads_nec=+1.67  L18.H5->anchor=0.03  top_head=1.5=+0.46
+
+=== Morocco (cap Rabat, anchor Casablanca) ===
+  [bare] effect=-3.94  allheads_nec=+0.59  L18.H5->anchor=0.02  top_head=1.5=+0.38
+  [chat] effect=-0.50  allheads_nec=n/a  L18.H5->anchor=0.01  top_head=n/a
+
+[summary] {
+  "model": "google/gemma-2-2b-it",
+  "chat_available": true,
+  "reader_head": [
+    18,
+    5
+  ],
+  "bare": {
+    "mean_effect": -4.349999928474427,
+    "mean_reader_L18H5_attn": 0.015515899658203125,
+    "mean_allheads_necessity": 0.32798238575657124,
+    "n_necessity_measured": 5
+  },
+  "chat": {
+    "mean_effect": -0.8812500953674316,
+    "mean_reader_L18H5_attn": 0.0129425048828125,
+    "mean_allheads_necessity": 0.8799762991093256,
+    "n_necessity_measured": 4
+  }
+}
+[done] wrote out/chat_mechanism_it.json

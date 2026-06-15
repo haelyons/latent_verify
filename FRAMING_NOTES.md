@@ -638,3 +638,55 @@ Caveats: greedy 3-token readout (single-digit "no flip" rows include some ambigu
 decodes scored "other"); the high/low auto-label keyed on greedy-correct so all
 read "high" — the real gradient is in the correct-answer margin; one phrasing per
 item, fragment regime only.
+
+## 8. What RLHF did to the copy circuit (GPU, 2026-06-15) — the reader head disengages
+
+First result from the GPU instrument (Lambda A100; `job_chat_mechanism.py`,
+artifacts `out/chat_mechanism_{base,it}.json`). Stack is transformer_lens 3.4 /
+transformers 5.12; the **base control reproduces the CPU numbers** (bare mean
+effect +6.55 vs CPU +6.45, anchor-knockout necessity +1.10 vs ~1.10, L18.H5→Sydney
+0.84 matching §3.10), so it is faithful — which also discharges Frontier C in
+passing.
+
+§6 / `CHAT_FORMAT_FINDINGS.md` established the *behaviour*: gemma-2-2b-it shows ~0
+latent pull and rebuts the false premise — the salience flip does not transfer. The
+open question was *mechanistic*: is the §3.7 attention-copy **present but overridden
+downstream**, or **structurally gone**? And does the universal reader head L18.H5
+(§3.10) still lock onto the anchor? Same stack, three conditions: **base/bare**
+(positive control, = §3.7), **it/bare** (isolates the RLHF *weight* change — the
+identical fragment prompt), **it/chat** (realistic regime). Readout at the
+`…is the city of` stem: effect = score(neutral) − score(salience),
+score = logp(capital) − logp(anchor); plus L18.H5's attention to the anchor at the
+readout query, measured **regardless of effect size** — the disambiguator.
+
+| condition | mean effect | L18.H5→anchor | all-heads nec |
+|---|---|---|---|
+| base / bare (control) | **+6.55** | **0.58** (AU 0.84) | +1.10 |
+| it / bare | **−4.35** | **0.016** | +0.33 |
+| it / chat | **−0.88** | **0.013** | +0.88 (n=4, noisy) |
+
+**The reader head disengages — and it is a weight change, not a prompt-format
+change.** L18.H5's attention to the anchor collapses **0.84 → 0.01**, and the
+collapse is already complete in the **bare fragment** (it/bare = 0.01), the
+identical prompt where base reads 0.84. So RLHF did not leave the copy
+intact-but-overridden: it restructured attention at the source. The §3.7 mechanism
+is **structurally absent** in -it, per-pair, all 5.
+
+**The effect sign flips.** In base, salience pulls toward the anchor (+6.55); in
+it, salience weakly pushes toward the *correct* capital (−4.35 bare, −0.88 chat).
+RLHF didn't merely delete the copy — it made "X is the most famous city" weakly
+*protective* of the right answer (plausibly corrective training data).
+
+**Reading against §6 and §3.12.** P1 (salience flip transfers to chat) was
+behaviourally not-supported; this sharpens it to a mechanism: the flip's machinery
+is gone in -it, visible in the **weights** (bare fragment), not merely the chat
+scaffold. Contrast §3.12 / `base_attn_qa.py`, where the *base* copy is **disengaged
+by the QA scaffold** while the weights still carry it (bare knockout ~1.0). So the
+two interventions act at different depths: **question-form prompting routes around
+the copy; RLHF removes it from the weights.**
+
+Caveats: it/chat all-heads necessity is unreliable — effects sit near the 0.5-nat
+floor and are now *negative*, so "necessity" no longer measures a copy (Morocco
+n/a). The robust signals are the L18.H5 attention collapse (0.01 across all 5
+pairs, both formats) and the effect sign-flip. One 2B family, 5 pairs, single
+teacher-forced readout; base control reproduces §3.7/§3.10 to ~1–2%.

@@ -1,0 +1,34 @@
+[load] HookedTransformer google/gemma-2-2b on cuda
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[load] done (n_heads=8, n_layers=26)
+
+=== Australia (cap Canberra, anchor Sydney) ===
+  [bare] effect=+10.13  allheads_nec=+1.06  L18.H5->anchor=0.84  top_head=18.5=+0.20
+
+=== Texas (cap Austin, anchor Houston) ===
+  [bare] effect=+7.00  allheads_nec=+1.14  L18.H5->anchor=0.41  top_head=18.5=+0.37
+
+=== Canada (cap Ottawa, anchor Toronto) ===
+  [bare] effect=+5.88  allheads_nec=+1.11  L18.H5->anchor=0.53  top_head=18.5=+0.28
+
+=== Switzerland (cap Bern, anchor Zurich) ===
+  [bare] effect=+6.88  allheads_nec=+1.02  L18.H5->anchor=0.61  top_head=1.5=+0.56
+
+=== Morocco (cap Rabat, anchor Casablanca) ===
+  [bare] effect=+2.88  allheads_nec=+1.17  L18.H5->anchor=0.51  top_head=1.0=+0.43
+
+[summary] {
+  "model": "google/gemma-2-2b",
+  "chat_available": false,
+  "reader_head": [
+    18,
+    5
+  ],
+  "bare": {
+    "mean_effect": 6.550000059604645,
+    "mean_reader_L18H5_attn": 0.5765869140625,
+    "mean_allheads_necessity": 1.10061266907564,
+    "n_necessity_measured": 5
+  }
+}
+[done] wrote out/chat_mechanism_base.json

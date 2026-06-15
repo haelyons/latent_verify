@@ -1,0 +1,235 @@
+{
+  "summary": {
+    "model": "google/gemma-2-2b",
+    "chat_available": false,
+    "reader_head": [
+      18,
+      5
+    ],
+    "bare": {
+      "mean_effect": 6.550000059604645,
+      "mean_reader_L18H5_attn": 0.5765869140625,
+      "mean_allheads_necessity": 1.10061266907564,
+      "n_necessity_measured": 5
+    }
+  },
+  "pairs": [
+    {
+      "pair": "Australia->Canberra",
+      "anchor": "Sydney",
+      "conditions": {
+        "bare": {
+          "neutral": 0.3750000596046448,
+          "salience": -9.75,
+          "effect": 10.125000059604645,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 1.0617283888114624,
+          "reader_L18H5_attn_to_anchor": 0.8359375,
+          "top_heads": [
+            {
+              "layer": 18,
+              "head": 5,
+              "necessity": 0.19753081593966298
+            },
+            {
+              "layer": 0,
+              "head": 2,
+              "necessity": 0.16049382621568617
+            },
+            {
+              "layer": 7,
+              "head": 1,
+              "necessity": 0.08641975257767717
+            },
+            {
+              "layer": 0,
+              "head": 3,
+              "necessity": 0.074074073638009
+            },
+            {
+              "layer": 1,
+              "head": 0,
+              "necessity": 0.061728394698340835
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Texas->Austin",
+      "anchor": "Houston",
+      "conditions": {
+        "bare": {
+          "neutral": 1.8750001192092896,
+          "salience": -5.125,
+          "effect": 7.0000001192092896,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 1.142857123394402,
+          "reader_L18H5_attn_to_anchor": 0.40625,
+          "top_heads": [
+            {
+              "layer": 18,
+              "head": 5,
+              "necessity": 0.37499999361378816
+            },
+            {
+              "layer": 3,
+              "head": 0,
+              "necessity": 0.19642856808341286
+            },
+            {
+              "layer": 0,
+              "head": 3,
+              "necessity": 0.1607143170371342
+            },
+            {
+              "layer": 7,
+              "head": 1,
+              "necessity": 0.12499999787126272
+            },
+            {
+              "layer": 3,
+              "head": 2,
+              "necessity": 0.10714285531822519
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "anchor": "Toronto",
+      "conditions": {
+        "bare": {
+          "neutral": 2.5,
+          "salience": -3.375,
+          "effect": 5.875,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 1.1063829787234043,
+          "reader_L18H5_attn_to_anchor": 0.52734375,
+          "top_heads": [
+            {
+              "layer": 18,
+              "head": 5,
+              "necessity": 0.27659576497179394
+            },
+            {
+              "layer": 7,
+              "head": 1,
+              "necessity": 0.23404255319148937
+            },
+            {
+              "layer": 3,
+              "head": 0,
+              "necessity": 0.1702127659574468
+            },
+            {
+              "layer": 3,
+              "head": 2,
+              "necessity": 0.14893617021276595
+            },
+            {
+              "layer": 3,
+              "head": 4,
+              "necessity": 0.14893617021276595
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "anchor": "Zurich",
+      "conditions": {
+        "bare": {
+          "neutral": 1.375,
+          "salience": -5.5,
+          "effect": 6.875,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "allheads_necessity": 1.018181818181818,
+          "reader_L18H5_attn_to_anchor": 0.607666015625,
+          "top_heads": [
+            {
+              "layer": 1,
+              "head": 5,
+              "necessity": 0.5636363636363636
+            },
+            {
+              "layer": 18,
+              "head": 5,
+              "necessity": 0.14545454545454545
+            },
+            {
+              "layer": 0,
+              "head": 0,
+              "necessity": 0.12727272727272726
+            },
+            {
+              "layer": 3,
+              "head": 0,
+              "necessity": 0.10909090909090909
+            },
+            {
+              "layer": 7,
+              "head": 4,
+              "necessity": 0.10909090909090909
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "anchor": "Casablanca",
+      "conditions": {
+        "bare": {
+          "neutral": 1.25,
+          "salience": -1.6250001192092896,
+          "effect": 2.8750001192092896,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "allheads_necessity": 1.1739130362671133,
+          "reader_L18H5_attn_to_anchor": 0.5057373046875,
+          "top_heads": [
+            {
+              "layer": 1,
+              "head": 0,
+              "necessity": 0.43478263213188206
+            },
+            {
+              "layer": 4,
+              "head": 5,
+              "necessity": 0.3478261139983254
+            },
+            {
+              "layer": 3,
+              "head": 0,
+              "necessity": 0.30434785493154715
+            },
+            {
+              "layer": 0,
+              "head": 3,
+              "necessity": 0.21739135753004002
+            },
+            {
+              "layer": 1,
+              "head": 5,
+              "necessity": 0.21739133679799053
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

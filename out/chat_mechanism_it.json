@@ -1,0 +1,402 @@
+{
+  "summary": {
+    "model": "google/gemma-2-2b-it",
+    "chat_available": true,
+    "reader_head": [
+      18,
+      5
+    ],
+    "bare": {
+      "mean_effect": -4.349999928474427,
+      "mean_reader_L18H5_attn": 0.015515899658203125,
+      "mean_allheads_necessity": 0.32798238575657124,
+      "n_necessity_measured": 5
+    },
+    "chat": {
+      "mean_effect": -0.8812500953674316,
+      "mean_reader_L18H5_attn": 0.0129425048828125,
+      "mean_allheads_necessity": 0.8799762991093256,
+      "n_necessity_measured": 4
+    }
+  },
+  "pairs": [
+    {
+      "pair": "Australia->Canberra",
+      "anchor": "Sydney",
+      "conditions": {
+        "bare": {
+          "neutral": -0.5625,
+          "salience": 3.375,
+          "effect": -3.9375,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 0.12698412698412698,
+          "reader_L18H5_attn_to_anchor": 0.010498046875,
+          "top_heads": [
+            {
+              "layer": 0,
+              "head": 4,
+              "necessity": 0.06349206349206349
+            },
+            {
+              "layer": 0,
+              "head": 6,
+              "necessity": 0.031746031746031744
+            },
+            {
+              "layer": 0,
+              "head": 7,
+              "necessity": 0.031746031746031744
+            },
+            {
+              "layer": 1,
+              "head": 3,
+              "necessity": 0.031746031746031744
+            },
+            {
+              "layer": 3,
+              "head": 5,
+              "necessity": 0.031746031746031744
+            }
+          ]
+        },
+        "chat": {
+          "neutral": 3.437500476837158,
+          "salience": 4.84375,
+          "effect": -1.4062495231628418,
+          "anchor_pos": [
+            4
+          ],
+          "allheads_necessity": 0.2222226366586089,
+          "reader_L18H5_attn_to_anchor": 0.010009765625,
+          "top_heads": [
+            {
+              "layer": 1,
+              "head": 6,
+              "necessity": 0.13333371762889187
+            },
+            {
+              "layer": 18,
+              "head": 5,
+              "necessity": 0.13333371762889187
+            },
+            {
+              "layer": 7,
+              "head": 2,
+              "necessity": 0.13333337854457553
+            },
+            {
+              "layer": 0,
+              "head": 7,
+              "necessity": 0.08888925811403338
+            },
+            {
+              "layer": 4,
+              "head": 0,
+              "necessity": 0.08888925811403338
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Texas->Austin",
+      "anchor": "Houston",
+      "conditions": {
+        "bare": {
+          "neutral": 1.5625001192092896,
+          "salience": 6.375,
+          "effect": -4.8124998807907104,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 0.2597402661742239,
+          "reader_L18H5_attn_to_anchor": 0.00848388671875,
+          "top_heads": [
+            {
+              "layer": 4,
+              "head": 5,
+              "necessity": 0.10389610646968957
+            },
+            {
+              "layer": 7,
+              "head": 2,
+              "necessity": 0.03896103992613359
+            },
+            {
+              "layer": 1,
+              "head": 1,
+              "necessity": 0.025974026617422392
+            },
+            {
+              "layer": 7,
+              "head": 3,
+              "necessity": 0.012987013308711196
+            },
+            {
+              "layer": 7,
+              "head": 5,
+              "necessity": 0.012987013308711196
+            }
+          ]
+        },
+        "chat": {
+          "neutral": 5.0,
+          "salience": 6.062500476837158,
+          "effect": -1.0625004768371582,
+          "anchor_pos": [
+            4
+          ],
+          "allheads_necessity": 1.1764700602497504,
+          "reader_L18H5_attn_to_anchor": 0.0096435546875,
+          "top_heads": [
+            {
+              "layer": 0,
+              "head": 0,
+              "necessity": 0.17647095782517475
+            },
+            {
+              "layer": 3,
+              "head": 6,
+              "necessity": 0.08823570330644347
+            },
+            {
+              "layer": 4,
+              "head": 5,
+              "necessity": 0.08823525451873128
+            },
+            {
+              "layer": 1,
+              "head": 0,
+              "necessity": 0.05882395180019971
+            },
+            {
+              "layer": 1,
+              "head": 4,
+              "necessity": 0.05882395180019971
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "anchor": "Toronto",
+      "conditions": {
+        "bare": {
+          "neutral": -0.375,
+          "salience": 4.875,
+          "effect": -5.25,
+          "anchor_pos": [
+            1
+          ],
+          "allheads_necessity": 0.1904761450631278,
+          "reader_L18H5_attn_to_anchor": 0.0064697265625,
+          "top_heads": [
+            {
+              "layer": 4,
+              "head": 5,
+              "necessity": 0.07142857142857142
+            },
+            {
+              "layer": 0,
+              "head": 0,
+              "necessity": 0.047619047619047616
+            },
+            {
+              "layer": 3,
+              "head": 1,
+              "necessity": 0.03571428571428571
+            },
+            {
+              "layer": 4,
+              "head": 6,
+              "necessity": 0.03571428571428571
+            },
+            {
+              "layer": 7,
+              "head": 5,
+              "necessity": 0.03571428571428571
+            }
+          ]
+        },
+        "chat": {
+          "neutral": 4.124999523162842,
+          "salience": 4.8125,
+          "effect": -0.6875004768371582,
+          "anchor_pos": [
+            4
+          ],
+          "allheads_necessity": 0.45454583286227634,
+          "reader_L18H5_attn_to_anchor": 0.00732421875,
+          "top_heads": [
+            {
+              "layer": 18,
+              "head": 5,
+              "necessity": 0.22727187605987823
+            },
+            {
+              "layer": 0,
+              "head": 0,
+              "necessity": 0.18181805571257456
+            },
+            {
+              "layer": 1,
+              "head": 0,
+              "necessity": 0.13636423536527087
+            },
+            {
+              "layer": 4,
+              "head": 1,
+              "necessity": 0.13636423536527087
+            },
+            {
+              "layer": 7,
+              "head": 5,
+              "necessity": 0.13636423536527087
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "anchor": "Zurich",
+      "conditions": {
+        "bare": {
+          "neutral": 0.125,
+          "salience": 3.937499761581421,
+          "effect": -3.812499761581421,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "allheads_necessity": 0.4754098032597903,
+          "reader_L18H5_attn_to_anchor": 0.03697967529296875,
+          "top_heads": [
+            {
+              "layer": 1,
+              "head": 5,
+              "necessity": 0.5409835778523165
+            },
+            {
+              "layer": 3,
+              "head": 3,
+              "necessity": 0.13114748664902776
+            },
+            {
+              "layer": 0,
+              "head": 3,
+              "necessity": 0.09836059935276466
+            },
+            {
+              "layer": 4,
+              "head": 5,
+              "necessity": 0.0819671557046331
+            },
+            {
+              "layer": 3,
+              "head": 2,
+              "necessity": 0.06557371205650155
+            }
+          ]
+        },
+        "chat": {
+          "neutral": 3.28125,
+          "salience": 4.03125,
+          "effect": -0.75,
+          "anchor_pos": [
+            4,
+            5
+          ],
+          "allheads_necessity": 1.6666666666666667,
+          "reader_L18H5_attn_to_anchor": 0.027179718017578125,
+          "top_heads": [
+            {
+              "layer": 1,
+              "head": 5,
+              "necessity": 0.4583333333333333
+            },
+            {
+              "layer": 0,
+              "head": 0,
+              "necessity": 0.375
+            },
+            {
+              "layer": 0,
+              "head": 2,
+              "necessity": 0.16666730244954428
+            },
+            {
+              "layer": 1,
+              "head": 1,
+              "necessity": 0.1250006357828776
+            },
+            {
+              "layer": 3,
+              "head": 3,
+              "necessity": 0.1250006357828776
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "anchor": "Casablanca",
+      "conditions": {
+        "bare": {
+          "neutral": -0.5,
+          "salience": 3.4375,
+          "effect": -3.9375,
+          "anchor_pos": [
+            1,
+            2
+          ],
+          "allheads_necessity": 0.5873015873015873,
+          "reader_L18H5_attn_to_anchor": 0.015148162841796875,
+          "top_heads": [
+            {
+              "layer": 1,
+              "head": 5,
+              "necessity": 0.38095238095238093
+            },
+            {
+              "layer": 7,
+              "head": 4,
+              "necessity": 0.07936507936507936
+            },
+            {
+              "layer": 1,
+              "head": 0,
+              "necessity": 0.06349206349206349
+            },
+            {
+              "layer": 3,
+              "head": 3,
+              "necessity": 0.06349206349206349
+            },
+            {
+              "layer": 18,
+              "head": 7,
+              "necessity": 0.047619047619047616
+            }
+          ]
+        },
+        "chat": {
+          "neutral": 1.0625,
+          "salience": 1.5625,
+          "effect": -0.5,
+          "anchor_pos": [
+            4,
+            5
+          ],
+          "allheads_necessity": null,
+          "reader_L18H5_attn_to_anchor": 0.010555267333984375,
+          "top_heads": []
+        }
+      }
+    }
+  ]
+}
