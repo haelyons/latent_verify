@@ -690,3 +690,60 @@ floor and are now *negative*, so "necessity" no longer measures a copy (Morocco
 n/a). The robust signals are the L18.H5 attention collapse (0.01 across all 5
 pairs, both formats) and the effect sign-flip. One 2B family, 5 pairs, single
 teacher-forced readout; base control reproduces §3.7/§3.10 to ~1–2%.
+
+## 9. The low-confidence numeric-flip boundary, and a sycophancy dissociation (GPU, 2026-06-15)
+
+Frontier B (`job_numeric_boundary.py`, artifacts `out/numeric_boundary_{base,it}.json`).
+§7.2 could not find a genuine numeric flip because every in-range product was
+computed correctly — the low-confidence cell was never reached. This pushes the
+ladder into 2-digit × 2-digit products where gemma-2-2b is genuinely uncertain or
+wrong, and charts flip-rate against baseline confidence. Same HookedTransformer
+stack; base (fragment) and it (chat). Confidence = baseline greedy-correct +
+teacher-forced lp(correct); susceptibility = greedy flips to the asserted wrong
+number under a user / authority assertion.
+
+**Base — the boundary is crossed.** Of 20 products gemma-2-2b now gets **6 WRONG**
+at baseline, and capitulation tracks its own competence:
+
+| baseline | n | flips to asserted-wrong (user or authority) |
+|---|---|---|
+| model CORRECT | 14 | 7 (50%) |
+| model WRONG | 6 | **6 (100%)** |
+
+So §2's confidence→susceptibility relationship is now causal **at the argmax**, not
+just at the margin (§7.2): when the model cannot compute the product itself, an
+asserted wrong answer flips it every time; when it can, it resists about half.
+authority > user holds (mean authority Δlp(W) +4.79). Example: 67×43 (baseline
+greedy 2801, wrong) → asserts 2781 → greedy 2781; 56×78 (baseline 4368, correct) →
+asserts 4568 → flips to 4568.
+
+**it — RLHF raises the bar but does not close it.** Same ladder, chat template:
+
+| | base (fragment) | it (chat) |
+|---|---|---|
+| baseline-correct | 14/20 | 15/20 |
+| flip-rate when model CORRECT | 0.50 | **0.13** |
+| flip-rate when model WRONG | 1.00 | **0.80** |
+| mean authority Δlp(W) | +4.79 | **+6.84** |
+
+When -it is confident (it knows the product, lp(C)≈0) it resists almost entirely
+(0.13 vs base 0.50) and corrects the asserter. But when -it is genuinely wrong on a
+hard product its protection largely collapses (0.80 flips), and the *latent pull*
+toward the asserted number is if anything **larger** than base (+6.84 vs +4.79).
+
+**A dissociation with §8.** §8 showed RLHF *removed* the salience-copy mechanism
+(reader-head attention 0.84→0.01, effect sign-flipped) — it generalized "ignore an
+irrelevant salient entity." Here RLHF did **not** remove susceptibility to an
+*asserted wrong answer*: it only holds the argmax when confident in its own
+computation and defers when uncertain (the pull is undiminished, even stronger). So
+RLHF robustness is **selective** — it immunized against salience distraction but
+not against authority-asserted sycophancy under uncertainty. Being distracted by a
+salient entity and deferring to a confidently-stated wrong number were trained out
+unequally: the first structurally, the second only where the model can self-verify.
+
+Caveats: one 2B family, one wrong-value per product, single greedy / teacher-forced
+readout. lp(C) alone is not perfectly monotonic with flipping — baseline
+greedy-correctness is the cleaner gate (margin lp(C)−lp(W) likely better still).
+The asserted W is itself usually also wrong, so a "flip" is the model abandoning its
+own (often wrong) answer for the asserted one. base = next-token priming on a base
+model; it = chat sycophancy (distinct phenomena, cf §3.11/§4).
