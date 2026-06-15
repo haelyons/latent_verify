@@ -14,9 +14,11 @@ from pathlib import Path
 import torch
 from transformer_lens import HookedTransformer
 
-# clean-flipping subset from job_numeric_mechanism (flipped, shift in a clean range)
-AB = [(13, 14), (24, 26), (38, 29), (47, 53), (67, 43), (84, 37),
-      (73, 68), (27, 33), (41, 38), (46, 54)]
+# hard, reliably-flipping products (large clean shift) for a robust localization
+AB = [(13, 14), (17, 18), (24, 26), (23, 47), (31, 29), (38, 29), (47, 53),
+      (67, 43), (84, 37), (56, 78), (73, 68), (18, 17), (27, 33), (34, 29),
+      (41, 38), (52, 48), (63, 57), (72, 68), (29, 31), (46, 54), (58, 62),
+      (77, 83), (39, 44), (64, 71), (43, 39), (59, 61), (74, 76), (79, 83)]
 SALIENCE_READER = (18, 5)
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 

@@ -1,0 +1,47 @@
+[load] google/gemma-2-2b on cuda
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[load] done (L=26 H=8)
+[setup] 28 items, mean shift +10.19
+  swept layer 0
+  swept layer 1
+  swept layer 2
+  swept layer 3
+  swept layer 4
+  swept layer 5
+  swept layer 6
+  swept layer 7
+  swept layer 8
+  swept layer 9
+  swept layer 10
+  swept layer 11
+  swept layer 12
+  swept layer 13
+  swept layer 14
+  swept layer 15
+  swept layer 16
+  swept layer 17
+  swept layer 18
+  swept layer 19
+  swept layer 20
+  swept layer 21
+  swept layer 22
+  swept layer 23
+  swept layer 24
+  swept layer 25
+
+[top-12 heads by mean per-head W-knockout necessity]
+  L20.H7  nec=+0.090
+  L18.H6  nec=+0.084
+  L17.H3  nec=+0.057
+  L5.H0  nec=+0.041
+  L0.H7  nec=+0.035
+  L15.H0  nec=+0.032
+  L23.H7  nec=+0.031
+  L16.H6  nec=+0.025
+  L22.H3  nec=+0.021
+  L21.H6  nec=+0.018
+  L5.H2  nec=+0.018
+  L11.H1  nec=+0.018
+
+[salience reader L18.H5] numeric-W nec=-0.002  (rank 151/208)
+[done] wrote out/numeric_localize_2b.json
