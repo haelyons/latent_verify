@@ -41,10 +41,21 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", choices=["base", "it"], required=True)
+    ap.add_argument("--model", choices=["base", "it"], help="gemma-2-2b shortcut")
+    ap.add_argument("--name", help="any HF repo (overrides --model)")
+    ap.add_argument("--tag", help="output-file suffix (default: --model or sanitized name)")
+    ap.add_argument("--chat", action="store_true", help="use chat template (implied by --model it)")
     args = ap.parse_args()
-    name = "google/gemma-2-2b" if args.model == "base" else "google/gemma-2-2b-it"
-    is_chat = args.model == "it"
+    if args.name:
+        name = args.name
+        is_chat = args.chat
+        tag = args.tag or name.split("/")[-1].replace(".", "_").replace("-", "_")
+    else:
+        if not args.model:
+            ap.error("need --model or --name")
+        name = "google/gemma-2-2b" if args.model == "base" else "google/gemma-2-2b-it"
+        is_chat = args.model == "it"
+        tag = args.tag or args.model
     print(f"[load] HookedTransformer {name} on {DEVICE}", flush=True)
     model = HookedTransformer.from_pretrained_no_processing(name, dtype=torch.bfloat16, device=DEVICE)
     model.eval()
@@ -155,7 +166,7 @@ def main():
     }
     print("\n[summary]", json.dumps(summary, indent=2))
     Path("out").mkdir(exist_ok=True)
-    out = f"out/numeric_boundary_{args.model}.json"
+    out = f"out/numeric_boundary_{tag}.json"
     Path(out).write_text(json.dumps({"summary": summary, "items": rows}, indent=2))
     print(f"[done] wrote {out}")
 

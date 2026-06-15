@@ -1,0 +1,56 @@
+[load] HookedTransformer google/gemma-2-9b on cuda
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[load] done (n_layers=42, n_heads=16)
+
+=== Australia (cap Canberra, anchor Sydney) ===
+  [bare] effect=+1.37  allheads_nec=+0.82  max_attn->anchor=0.47 @ L20.H2
+
+=== Texas (cap Austin, anchor Houston) ===
+  [bare] effect=+0.62  allheads_nec=-0.80  max_attn->anchor=0.41 @ L21.H10
+
+=== Canada (cap Ottawa, anchor Toronto) ===
+  [bare] effect=+0.62  allheads_nec=+0.00  max_attn->anchor=0.37 @ L21.H10
+
+=== Switzerland (cap Bern, anchor Zurich) ===
+  [bare] effect=-1.37  allheads_nec=-1.09  max_attn->anchor=0.46 @ L20.H2
+
+=== Morocco (cap Rabat, anchor Casablanca) ===
+  [bare] effect=-1.12  allheads_nec=-0.67  max_attn->anchor=0.41 @ L20.H3
+
+[summary] {
+  "model": "google/gemma-2-9b",
+  "n_layers": 42,
+  "n_heads": 16,
+  "bare": {
+    "mean_effect": 0.02499997615814209,
+    "mean_max_attn_to_anchor": 0.422760009765625,
+    "mean_allheads_necessity": -0.34787877842085746,
+    "modal_reader_head": [
+      21,
+      10
+    ],
+    "reader_heads_per_pair": [
+      [
+        20,
+        2
+      ],
+      [
+        21,
+        10
+      ],
+      [
+        21,
+        10
+      ],
+      [
+        20,
+        2
+      ],
+      [
+        20,
+        3
+      ]
+    ]
+  }
+}
+[done] wrote out/scale_mechanism_9b_base.json

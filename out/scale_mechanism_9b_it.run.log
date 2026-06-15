@@ -1,0 +1,92 @@
+[load] HookedTransformer google/gemma-2-9b-it on cuda
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[load] done (n_layers=42, n_heads=16)
+
+=== Australia (cap Canberra, anchor Sydney) ===
+  [bare] effect=-1.50  allheads_nec=+1.04  max_attn->anchor=0.32 @ L23.H12
+  [chat] effect=+0.06  allheads_nec=n/a  max_attn->anchor=0.14 @ L25.H15
+
+=== Texas (cap Austin, anchor Houston) ===
+  [bare] effect=-2.69  allheads_nec=+0.63  max_attn->anchor=0.30 @ L23.H12
+  [chat] effect=-0.31  allheads_nec=n/a  max_attn->anchor=0.15 @ L32.H4
+
+=== Canada (cap Ottawa, anchor Toronto) ===
+  [bare] effect=-1.31  allheads_nec=+0.76  max_attn->anchor=0.26 @ L23.H13
+  [chat] effect=-0.50  allheads_nec=n/a  max_attn->anchor=0.18 @ L29.H0
+
+=== Switzerland (cap Bern, anchor Zurich) ===
+  [bare] effect=-3.31  allheads_nec=+0.40  max_attn->anchor=0.39 @ L32.H4
+  [chat] effect=+0.28  allheads_nec=n/a  max_attn->anchor=0.25 @ L24.H10
+
+=== Morocco (cap Rabat, anchor Casablanca) ===
+  [bare] effect=-4.50  allheads_nec=+0.19  max_attn->anchor=0.37 @ L32.H4
+  [chat] effect=-0.44  allheads_nec=n/a  max_attn->anchor=0.25 @ L24.H10
+
+[summary] {
+  "model": "google/gemma-2-9b-it",
+  "n_layers": 42,
+  "n_heads": 16,
+  "bare": {
+    "mean_effect": -2.6624998092651366,
+    "mean_max_attn_to_anchor": 0.32884521484375,
+    "mean_allheads_necessity": 0.6044298578697664,
+    "modal_reader_head": [
+      32,
+      4
+    ],
+    "reader_heads_per_pair": [
+      [
+        23,
+        12
+      ],
+      [
+        23,
+        12
+      ],
+      [
+        23,
+        13
+      ],
+      [
+        32,
+        4
+      ],
+      [
+        32,
+        4
+      ]
+    ]
+  },
+  "chat": {
+    "mean_effect": -0.18125,
+    "mean_max_attn_to_anchor": 0.1938720703125,
+    "mean_allheads_necessity": null,
+    "modal_reader_head": [
+      24,
+      10
+    ],
+    "reader_heads_per_pair": [
+      [
+        25,
+        15
+      ],
+      [
+        32,
+        4
+      ],
+      [
+        29,
+        0
+      ],
+      [
+        24,
+        10
+      ],
+      [
+        24,
+        10
+      ]
+    ]
+  }
+}
+[done] wrote out/scale_mechanism_9b_it.json
