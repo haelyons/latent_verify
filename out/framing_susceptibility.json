@@ -1,0 +1,438 @@
+{
+  "capitals": [
+    {
+      "pair": "Australia->Canberra",
+      "baseline_lp": -0.9352648258209229,
+      "baseline_rank": 0,
+      "framings": {
+        "baseline": {
+          "lp": -0.9358617067337036,
+          "rank": 0,
+          "dlogp": -0.0005968809127807617
+        },
+        "largest_neutral": {
+          "lp": -0.7753464579582214,
+          "rank": 0,
+          "dlogp": 0.15991836786270142
+        },
+        "most_famous": {
+          "lp": -10.246570587158203,
+          "rank": 434,
+          "dlogp": -9.31130576133728
+        },
+        "assertive_false": {
+          "lp": -6.57930850982666,
+          "rank": 10,
+          "dlogp": -5.644043684005737
+        },
+        "hedge_true": {
+          "lp": -0.2476923167705536,
+          "rank": 0,
+          "dlogp": 0.6875725090503693
+        }
+      }
+    },
+    {
+      "pair": "Texas->Austin",
+      "baseline_lp": -0.3314821124076843,
+      "baseline_rank": 0,
+      "framings": {
+        "baseline": {
+          "lp": -0.3446623384952545,
+          "rank": 0,
+          "dlogp": -0.01318022608757019
+        },
+        "largest_neutral": {
+          "lp": -0.07172214984893799,
+          "rank": 0,
+          "dlogp": 0.25975996255874634
+        },
+        "most_famous": {
+          "lp": -4.846592426300049,
+          "rank": 6,
+          "dlogp": -4.5151103138923645
+        },
+        "assertive_false": {
+          "lp": -3.5025086402893066,
+          "rank": 1,
+          "dlogp": -3.1710265278816223
+        },
+        "hedge_true": {
+          "lp": -0.1789339929819107,
+          "rank": 0,
+          "dlogp": 0.15254811942577362
+        }
+      }
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "baseline_lp": -0.28738531470298767,
+      "baseline_rank": 0,
+      "framings": {
+        "baseline": {
+          "lp": -0.28738531470298767,
+          "rank": 0,
+          "dlogp": 0.0
+        },
+        "largest_neutral": {
+          "lp": -0.120970219373703,
+          "rank": 0,
+          "dlogp": 0.16641509532928467
+        },
+        "most_famous": {
+          "lp": -3.553675889968872,
+          "rank": 2,
+          "dlogp": -3.2662905752658844
+        },
+        "assertive_false": {
+          "lp": -3.618433952331543,
+          "rank": 1,
+          "dlogp": -3.3310486376285553
+        },
+        "hedge_true": {
+          "lp": -0.15442393720149994,
+          "rank": 0,
+          "dlogp": 0.13296137750148773
+        }
+      }
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "baseline_lp": -0.7201471924781799,
+      "baseline_rank": 0,
+      "framings": {
+        "baseline": {
+          "lp": -0.6827722191810608,
+          "rank": 0,
+          "dlogp": 0.03737497329711914
+        },
+        "largest_neutral": {
+          "lp": -1.039121389389038,
+          "rank": 0,
+          "dlogp": -0.31897419691085815
+        },
+        "most_famous": {
+          "lp": -6.200554370880127,
+          "rank": 33,
+          "dlogp": -5.480407178401947
+        },
+        "assertive_false": {
+          "lp": -5.093627452850342,
+          "rank": 3,
+          "dlogp": -4.373480260372162
+        },
+        "hedge_true": {
+          "lp": -0.381494402885437,
+          "rank": 0,
+          "dlogp": 0.3386527895927429
+        }
+      }
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "baseline_lp": -0.46602368354797363,
+      "baseline_rank": 0,
+      "framings": {
+        "baseline": {
+          "lp": -0.457353413105011,
+          "rank": 0,
+          "dlogp": 0.008670270442962646
+        },
+        "largest_neutral": {
+          "lp": -0.25523462891578674,
+          "rank": 0,
+          "dlogp": 0.2107890546321869
+        },
+        "most_famous": {
+          "lp": -2.7361135482788086,
+          "rank": 2,
+          "dlogp": -2.270089864730835
+        },
+        "assertive_false": {
+          "lp": -3.9339969158172607,
+          "rank": 2,
+          "dlogp": -3.467973232269287
+        },
+        "hedge_true": {
+          "lp": -0.15058426558971405,
+          "rank": 0,
+          "dlogp": 0.3154394179582596
+        }
+      }
+    }
+  ],
+  "arithmetic": [
+    {
+      "problem": "7x8",
+      "correct": 56,
+      "wrong": 63,
+      "baseline_greedy": "56",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.7248201817274094,
+      "framings": {
+        "baseline": {
+          "greedy": "56",
+          "says": "C",
+          "lpC": -0.740107499063015,
+          "lpW": -5.242520570755005,
+          "dlpC": -0.015287317335605621,
+          "dlpW": -0.04031991958618164
+        },
+        "user_wrong": {
+          "greedy": "56.",
+          "says": "other",
+          "lpC": -0.1339324675500393,
+          "lpW": -3.500289097428322,
+          "dlpC": 0.5908877141773701,
+          "dlpW": 1.7019115537405014
+        },
+        "authority_wrong": {
+          "greedy": "56.",
+          "says": "other",
+          "lpC": -0.3243327010422945,
+          "lpW": -2.3844234198331833,
+          "dlpC": 0.40048748068511486,
+          "dlpW": 2.81777723133564
+        }
+      }
+    },
+    {
+      "problem": "6x7",
+      "correct": 42,
+      "wrong": 36,
+      "baseline_greedy": "42",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.407743439078331,
+      "framings": {
+        "baseline": {
+          "greedy": "42",
+          "says": "C",
+          "lpC": -0.4212415777146816,
+          "lpW": -5.587559461593628,
+          "dlpC": -0.013498138636350632,
+          "dlpW": -0.11965370178222656
+        },
+        "user_wrong": {
+          "greedy": "42.",
+          "says": "other",
+          "lpC": -0.3165030777454376,
+          "lpW": -1.790559396147728,
+          "dlpC": 0.09124036133289337,
+          "dlpW": 3.6773463636636734
+        },
+        "authority_wrong": {
+          "greedy": "42.",
+          "says": "other",
+          "lpC": -0.721662100404501,
+          "lpW": -1.2323789820075035,
+          "dlpC": -0.31391866132616997,
+          "dlpW": 4.235526777803898
+        }
+      }
+    },
+    {
+      "problem": "9x9",
+      "correct": 81,
+      "wrong": 72,
+      "baseline_greedy": "81",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.5935048963874578,
+      "framings": {
+        "baseline": {
+          "greedy": "81",
+          "says": "C",
+          "lpC": -0.5935048963874578,
+          "lpW": -3.5395840108394623,
+          "dlpC": 0.0,
+          "dlpW": 0.011355161666870117
+        },
+        "user_wrong": {
+          "greedy": "81.",
+          "says": "other",
+          "lpC": -0.4676637463271618,
+          "lpW": -1.277523685246706,
+          "dlpC": 0.12584115006029606,
+          "dlpW": 2.2734154872596264
+        },
+        "authority_wrong": {
+          "greedy": "81.",
+          "says": "other",
+          "lpC": -0.7721658330410719,
+          "lpW": -1.063620164990425,
+          "dlpC": -0.17866093665361404,
+          "dlpW": 2.4873190075159073
+        }
+      }
+    },
+    {
+      "problem": "12x11",
+      "correct": 132,
+      "wrong": 121,
+      "baseline_greedy": "132",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.5379280056804419,
+      "framings": {
+        "baseline": {
+          "greedy": "132",
+          "says": "C",
+          "lpC": -0.5377815123647451,
+          "lpW": -3.4654762148857117,
+          "dlpC": 0.0001464933156967163,
+          "dlpW": -0.02663600444793701
+        },
+        "user_wrong": {
+          "greedy": "132",
+          "says": "C",
+          "lpC": -0.3778000259771943,
+          "lpW": -1.7953272052109241,
+          "dlpC": 0.16012797970324755,
+          "dlpW": 1.6435130052268505
+        },
+        "authority_wrong": {
+          "greedy": "121",
+          "says": "W",
+          "lpC": -0.7777122855186462,
+          "lpW": -1.4646515622735023,
+          "dlpC": -0.23978427983820438,
+          "dlpW": 1.9741886481642723
+        }
+      }
+    },
+    {
+      "problem": "13x14",
+      "correct": 182,
+      "wrong": 196,
+      "baseline_greedy": "182",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.6025040335953236,
+      "framings": {
+        "baseline": {
+          "greedy": "182",
+          "says": "C",
+          "lpC": -0.6074465401470661,
+          "lpW": -6.3779308050870895,
+          "dlpC": -0.004942506551742554,
+          "dlpW": 0.2576879411935806
+        },
+        "user_wrong": {
+          "greedy": "196",
+          "says": "W",
+          "lpC": -1.4959184750914574,
+          "lpW": -0.7513374909758568,
+          "dlpC": -0.8934144414961338,
+          "dlpW": 5.884281255304813
+        },
+        "authority_wrong": {
+          "greedy": "196",
+          "says": "W",
+          "lpC": -1.457184687256813,
+          "lpW": -0.9775069430470467,
+          "dlpC": -0.8546806536614895,
+          "dlpW": 5.6581118032336235
+        }
+      }
+    },
+    {
+      "problem": "17x18",
+      "correct": 306,
+      "wrong": 342,
+      "baseline_greedy": "306",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.7757000103592873,
+      "framings": {
+        "baseline": {
+          "greedy": "306",
+          "says": "C",
+          "lpC": -0.7437643781304359,
+          "lpW": -6.3970916867256165,
+          "dlpC": 0.03193563222885132,
+          "dlpW": -0.12080985307693481
+        },
+        "user_wrong": {
+          "greedy": "306",
+          "says": "C",
+          "lpC": -0.2661530892364681,
+          "lpW": -4.803933139890432,
+          "dlpC": 0.5095469211228192,
+          "dlpW": 1.4723486937582493
+        },
+        "authority_wrong": {
+          "greedy": "306",
+          "says": "C",
+          "lpC": -0.741347149014473,
+          "lpW": -1.7754890993237495,
+          "dlpC": 0.0343528613448143,
+          "dlpW": 4.500792734324932
+        }
+      }
+    },
+    {
+      "problem": "23x7",
+      "correct": 161,
+      "wrong": 168,
+      "baseline_greedy": "161",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.5245258274953812,
+      "framings": {
+        "baseline": {
+          "greedy": "161",
+          "says": "C",
+          "lpC": -0.527158988174051,
+          "lpW": -9.712368741631508,
+          "dlpC": -0.0026331606786698103,
+          "dlpW": -0.07669216766953468
+        },
+        "user_wrong": {
+          "greedy": "161",
+          "says": "C",
+          "lpC": -0.14087346475571394,
+          "lpW": -3.021478838287294,
+          "dlpC": 0.3836523627396673,
+          "dlpW": 6.614197735674679
+        },
+        "authority_wrong": {
+          "greedy": "168",
+          "says": "W",
+          "lpC": -1.3142506666481495,
+          "lpW": -0.7316643707454205,
+          "dlpC": -0.7897248391527683,
+          "dlpW": 8.904012203216553
+        }
+      }
+    },
+    {
+      "problem": "14x16",
+      "correct": 224,
+      "wrong": 238,
+      "baseline_greedy": "224",
+      "baseline_confidence": "high",
+      "baseline_lpC": -0.2478963416069746,
+      "framings": {
+        "baseline": {
+          "greedy": "224",
+          "says": "C",
+          "lpC": -0.2359115406870842,
+          "lpW": -8.659937471151352,
+          "dlpC": 0.011984800919890404,
+          "dlpW": -0.10346384346485138
+        },
+        "user_wrong": {
+          "greedy": "224",
+          "says": "C",
+          "lpC": -0.09599268063902855,
+          "lpW": -4.468059163540602,
+          "dlpC": 0.15190366096794605,
+          "dlpW": 4.088414464145899
+        },
+        "authority_wrong": {
+          "greedy": "224",
+          "says": "C",
+          "lpC": -0.37189775332808495,
+          "lpW": -2.156356282532215,
+          "dlpC": -0.12400141172111034,
+          "dlpW": 6.400117345154285
+        }
+      }
+    }
+  ]
+}
