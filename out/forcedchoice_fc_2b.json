@@ -1,0 +1,142 @@
+{
+  "summary": {
+    "model": "google/gemma-2-2b",
+    "n_flipped": 5,
+    "n_pairs": 5,
+    "mean_necessity_allheads": 1.0220793421296188,
+    "mean_necessity_L18H5": 0.04255591482468793,
+    "modal_reader_head": [
+      21,
+      5
+    ],
+    "top_heads": [
+      [
+        18,
+        5
+      ],
+      [
+        18,
+        5
+      ],
+      [
+        18,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        5
+      ]
+    ]
+  },
+  "pairs": [
+    {
+      "pair": "Australia->Canberra",
+      "chosen_distractor": "Sydney",
+      "flipped": true,
+      "score_plain": 2.375,
+      "score_forced": -5.75,
+      "effect": 8.125,
+      "necessity_allheads": 1.0769230769230769,
+      "necessity_L18H5": 0.046153846153846156,
+      "argmax_reverts_to_capital": true,
+      "max_attn_to_options": 0.5810546875,
+      "reader_head": [
+        17,
+        3
+      ],
+      "top_head": [
+        18,
+        5
+      ],
+      "top_head_necessity": 0.046153846153846156
+    },
+    {
+      "pair": "Texas->Austin",
+      "chosen_distractor": "Houston",
+      "flipped": true,
+      "score_plain": 5.0,
+      "score_forced": -2.75,
+      "effect": 7.75,
+      "necessity_allheads": 0.9838709677419355,
+      "necessity_L18H5": 0.06451612903225806,
+      "argmax_reverts_to_capital": true,
+      "max_attn_to_options": 0.486328125,
+      "reader_head": [
+        18,
+        6
+      ],
+      "top_head": [
+        18,
+        5
+      ],
+      "top_head_necessity": 0.06451612903225806
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "chosen_distractor": "Montreal",
+      "flipped": true,
+      "score_plain": 5.0,
+      "score_forced": -5.375,
+      "effect": 10.375,
+      "necessity_allheads": 1.0602409638554218,
+      "necessity_L18H5": 0.04819277108433735,
+      "argmax_reverts_to_capital": true,
+      "max_attn_to_options": 0.58203125,
+      "reader_head": [
+        21,
+        5
+      ],
+      "top_head": [
+        18,
+        5
+      ],
+      "top_head_necessity": 0.04819277108433735
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "chosen_distractor": "Geneva",
+      "flipped": true,
+      "score_plain": 3.25,
+      "score_forced": -7.75,
+      "effect": 11.0,
+      "necessity_allheads": 1.0,
+      "necessity_L18H5": 0.011363636363636364,
+      "argmax_reverts_to_capital": true,
+      "max_attn_to_options": 0.5556640625,
+      "reader_head": [
+        17,
+        3
+      ],
+      "top_head": [
+        4,
+        5
+      ],
+      "top_head_necessity": 0.034090952439741654
+    },
+    {
+      "pair": "Florida->Tallahassee",
+      "chosen_distractor": "Orlando",
+      "flipped": true,
+      "score_plain": 7.125,
+      "score_forced": -4.625,
+      "effect": 11.75,
+      "necessity_allheads": 0.9893617021276596,
+      "necessity_L18H5": 0.0425531914893617,
+      "argmax_reverts_to_capital": true,
+      "max_attn_to_options": 0.5263671875,
+      "reader_head": [
+        21,
+        5
+      ],
+      "top_head": [
+        4,
+        5
+      ],
+      "top_head_necessity": 0.05319148936170213
+    }
+  ]
+}

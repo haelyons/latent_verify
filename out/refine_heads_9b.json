@@ -1,0 +1,55 @@
+{
+  "final_H": [
+    [
+      18,
+      5
+    ]
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "H": [
+        [
+          18,
+          5
+        ]
+      ],
+      "n": 5,
+      "necessity_mean": -0.04,
+      "necessity_cv": 2.23606797749979,
+      "ci": [
+        -0.12000000000000002,
+        0.0
+      ],
+      "counterexamples": [
+        "Australia/famous",
+        "Texas/famous",
+        "Canada/famous",
+        "Switzerland/famous",
+        "Morocco/famous"
+      ],
+      "adopted": null,
+      "action": "stop: no candidate clears bootstrap (boundary charted)"
+    }
+  ],
+  "heldout": {
+    "H": [
+      [
+        18,
+        5
+      ]
+    ],
+    "n": 2,
+    "necessity_mean": -0.021283536903643388,
+    "necessity_cv": 0.5211173212668486,
+    "ci": [
+      -0.02912621359223301,
+      -0.013440860215053764
+    ],
+    "fail": [
+      "Washington/famous",
+      "Illinois/famous"
+    ],
+    "stable": false
+  }
+}

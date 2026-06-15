@@ -1,0 +1,218 @@
+{
+  "final_H": [
+    [
+      18,
+      5
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      7,
+      1
+    ],
+    [
+      0,
+      2
+    ]
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "H": [
+        [
+          18,
+          5
+        ]
+      ],
+      "n": 5,
+      "necessity_mean": 0.24239449135555619,
+      "necessity_cv": 0.36194827165026966,
+      "ci": [
+        0.18607014762668414,
+        0.3079844267158036
+      ],
+      "counterexamples": [
+        "Australia/famous",
+        "Texas/famous",
+        "Canada/famous",
+        "Switzerland/famous",
+        "Morocco/famous"
+      ],
+      "adopted": {
+        "head": [
+          3,
+          0
+        ],
+        "gain_mean": 0.09605422974267638,
+        "gain_ci": [
+          0.05489219488830728,
+          0.14052795601060813
+        ]
+      },
+      "action": null
+    },
+    {
+      "round": 1,
+      "H": [
+        [
+          18,
+          5
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "n": 5,
+      "necessity_mean": 0.3384487210982326,
+      "necessity_cv": 0.3315753357403736,
+      "ci": [
+        0.26805641364058175,
+        0.41244154044243986
+      ],
+      "counterexamples": [
+        "Australia/famous",
+        "Texas/famous",
+        "Canada/famous",
+        "Switzerland/famous",
+        "Morocco/famous"
+      ],
+      "adopted": {
+        "head": [
+          0,
+          3
+        ],
+        "gain_mean": 0.14286187194503644,
+        "gain_ci": [
+          0.0819179977428697,
+          0.20458497446823604
+        ]
+      },
+      "action": null
+    },
+    {
+      "round": 2,
+      "H": [
+        [
+          18,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "n": 5,
+      "necessity_mean": 0.481310593043269,
+      "necessity_cv": 0.4080242002289065,
+      "ci": [
+        0.3568087490549398,
+        0.6146138171157267
+      ],
+      "counterexamples": [
+        "Australia/famous",
+        "Canada/famous",
+        "Switzerland/famous"
+      ],
+      "adopted": {
+        "head": [
+          7,
+          1
+        ],
+        "gain_mean": 0.0802795520981631,
+        "gain_ci": [
+          0.06539468737465148,
+          0.09516441682167472
+        ]
+      },
+      "action": null
+    },
+    {
+      "round": 3,
+      "H": [
+        [
+          18,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          7,
+          1
+        ]
+      ],
+      "n": 5,
+      "necessity_mean": 0.5509068953658118,
+      "necessity_cv": 0.3178739270315274,
+      "ci": [
+        0.44079853263306734,
+        0.6657922527460398
+      ],
+      "counterexamples": [
+        "Australia/famous",
+        "Switzerland/famous"
+      ],
+      "adopted": {
+        "head": [
+          0,
+          2
+        ],
+        "gain_mean": 0.11661054947147945,
+        "gain_ci": [
+          0.0727272727272727,
+          0.1604938262156862
+        ]
+      },
+      "action": null
+    }
+  ],
+  "heldout": {
+    "H": [
+      [
+        18,
+        5
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "n": 2,
+    "necessity_mean": 1.3359789527553148,
+    "necessity_cv": 0.5516833858631351,
+    "ci": [
+      0.8148148148148148,
+      1.8571430906958146
+    ],
+    "fail": [],
+    "stable": false
+  }
+}
