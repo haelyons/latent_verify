@@ -37,8 +37,9 @@ deployment*. The spine fixes that.
 | **ARC2A** | Salience copy: did RLHF **delete** it or just **stop the head looking** (mask/gate)? | Transplant base L18.H5 attention into -it; force-attend the anchor; read capital−anchor margin. + OV-projection diagnostic | GPU (base+it) | `job_arc2a_transplant.py` | `out/arc2a_transplant.json` | ✓ run1 |
 | **ARC2B** | Numeric copy *in -it*: still an attention-copy? through which heads? gated how? | §10.2 W-span knockout + per-head localize, on -it (chat), stratified by -it baseline correctness | GPU (it) | `job_arc2b_numeric_it.py` | `out/arc2b_numeric_it.json` | ✓ run1 |
 | **ARC2C** | Is disengagement **format** (QA scaffold) or **weights** (RLHF)? | 2×2 {base,it}×{fragment,QA}, one readout: effect, all-heads knockout necessity, L18.H5→anchor | GPU (base+it) | `job_arc2c_format_weights.py` | `out/arc2c_format_weights.json` | ✓ run1 |
-| SUPP-RED | Is L18.H5 *the* reader or a redundant pool w/ self-repair? | Ablate L18.H5 → re-measure other heads' anchor-attention + necessity; iterative knockout | CPU/GPU (base) | `job_supp_redundancy.py` | `out/supp_redundancy.json` | planned |
-| SUPP-ATTR | Is framed L18.H5 its normal attribute-extraction job, captured by a distractor? | L18.H5 QK-source + OV-target on clean "capital of X is" vs framed (Ferrando) | CPU/GPU (base) | `job_supp_attr_extract.py` | `out/supp_attr_extract.json` | planned |
+| **ARC2A-2** | Firmer deletion-vs-masking: which transplant rung restores the copy? | Restoration ladder single→pool→attn+value, n=12 (paired) | GPU (base+it) | `job_arc2a2_transplant_pool.py` | `out/arc2a2_transplant_pool.json` | ready (run2) |
+| SUPP-RED | Is L18.H5 *the* reader or a redundant pool w/ self-repair? | Ablate L18.H5 → re-measure other heads' anchor-attention + necessity; iterative knockout | CPU/GPU (base) | `job_supp_redundancy.py` | `out/supp_redundancy.json` | ready (run2) |
+| SUPP-ATTR | Is framed L18.H5 its normal attribute-extraction job, captured by a distractor? | L18.H5 QK-source + OV-target on clean "capital of X is" vs framed (Ferrando) | CPU/GPU (base) | `job_supp_attr_extract.py` | `out/supp_attr_extract.json` | ready (run2) |
 | SUPP-EARLY | Is the early-write attention or MLP enrichment (Geva)? | Zero early-layer MLPs at anchor pos; does L18.H5 still find the anchor / does the flip survive | CPU/GPU (base) | `job_supp_early_write.py` | `out/supp_early_write.json` | planned |
 | SUPP-SUPP | Is there a mirror suppressor head, and does susceptibility track copy:suppressor ratio? | Head-level scan for *negative* necessity; regress flip on copy vs suppressor strength | CPU/GPU (base) | `job_supp_suppressor.py` | `out/supp_suppressor.json` | planned |
 | SUPP-ARCH | Does the concentrate-vs-diffuse *routing* transport off the Gemma family (Franco)? | §3.7 + §10.2 knockouts on Pythia/GPT-2; per-head concentration metric per cue | GPU | `job_supp_crossarch.py` | `out/supp_crossarch.json` | planned |
@@ -151,8 +152,11 @@ pool; "selective robustness" is at the decision level, not the mechanism level.*
 -it median nec_W **+0.95** (control −0.03) — the surviving authority-sycophancy pull
 *is* an attention-copy of the asserted number. Same diffuse structure as base: top
 head still **L20.H7** (0.12), top-1 share ~0.17, **L18.H5 ≈0** (0.003); top heads
-overlap base (L20.H7/L17.H3/L18.H6) — no rerouting. Pull is *larger* than base
-(mean shift ~15–18 vs ~8; cf §9). Strata: even when -it computes the product
+overlap base (L20.H7/L17.H3/L18.H6) — no rerouting. ~~Pull is *larger* than base
+(mean shift ~15–18 vs ~8; cf §9)~~ **[RETRACTED — cross-model nat magnitudes are not
+comparable (§10.1); -it runs a ~2× sharper logit scale (baseline margins 18–24 vs base
+4–10). The within-model ratio nec_W is the comparable signal, and it is intact.]**
+Strata: even when -it computes the product
 **correctly** (n=48), median nec_W is still **0.95** — the copy runs and pulls hard
 regardless of self-verification. So §9's RLHF robustness is an *argmax override on
 top of an intact, running copy*, not removal of the copy. (Caveat: the greedy
@@ -163,10 +167,55 @@ head map — are the reliable signals, per §6's position-aware-readout warning.
 **Through-line.** Two cue-routed copies with opposite RLHF fates: the *salience*
 copy is switched off (by format OR weights, both collapsing reader attention; OV
 primitive intact), while the *numeric-assertion* copy survives intact on its diffuse
-pool. RLHF's effect is cue-specific gating of a shared "copy a referenced token"
-primitive — consistent with §10.2's routing dichotomy, now extended across the
-base↔chat transformation.
+pool. RLHF's effect is cue-specific gating of two *functionally* parallel but
+**mechanistically distinct** "copy a referenced token" behaviours (concentrated L18.H5
+vs the diffuse L20.H7-led pool) — consistent with §10.2's routing dichotomy, now extended
+across the base↔chat transformation. ("Shared *primitive*" earlier overstated the
+unification: the two copies route through different heads, and the salience side is not
+yet shown distinct from L18.H5's documented attribute-extraction job — that is SUPP-ATTR.
+See Run-1 corrections below.)
 
 **Open next (informed by Run 1):** pool-level attention transplant + anchor-value
 patch (finish ARC2A's masking-vs-deletion at the pool level); natural-generation
 (un-spliced) it readout to get a §9-comparable flip-rate; the SUPP-* modules.
+
+---
+
+## Run-1 corrections (post-review, 2026-06-16)
+
+External critical review of Run 1. Two stated claims corrected; **no artifact changed**,
+the Run-1 narrative above is annotated in place.
+
+1. **"Pull is larger in -it" — retracted.** Comparing nat-magnitude `shift` across base
+   and -it repeats the §10.1 error: cross-model log-prob magnitudes are not comparable
+   (-it runs a ~2× sharper logit scale — baseline margins 18–24 vs base 4–10). The
+   within-model ratio `nec_W` (≈0.95, intact) is the comparable signal. The spine
+   sentence's "+6.84 vs +4.79 (§9)" inherits the same caveat — read as *undiminished*,
+   not *larger*.
+2. **"Shared copy primitive" — relabelled.** The salience and numeric copies route
+   through *different* heads (L18.H5 vs the L20.H7-led pool). "Shared primitive" is a
+   functional abstraction, not a mechanistic identity, and risks papering over the
+   routing dichotomy that is the actual novel finding.
+
+Unaddressed by Run 1 (the lit review's central charge): L18.H5 was already named an
+attribute-extraction head (Ferrando 2024). ARC2B's L18.H5≈0 on the numeric copy is in
+fact *consistent with* the deflationary reading (L18.H5 = entity head doing its day job).
+Run 1 cannot separate "novel salience-copy head" from "Ferrando head captured by a
+distractor" — that gate is **SUPP-ATTR**, below.
+
+## Firm-up wave (run 2) — scripts ready, awaiting GPU
+
+Corrective-first, per next_steps (protect the headline before extending it):
+
+1. **SUPP-ATTR** (`job_supp_attr_extract.py`) — *the* novelty gate. L18.H5 OV target-class
+   on clean (attribute) vs framed (distractor). Pre-registered verdicts: DEFLATIONARY
+   (re-ID) / DISTINCT (input-dependent copy) / WRONG-LOCUS.
+2. **SUPP-RED** (`job_supp_redundancy.py`) — backup/self-repair (Hydra). Ablate L18.H5
+   *output* → recruitment in other heads' anchor-attention; super-additive necessity for
+   the top-k anchor-readers. Verdicts: CONCENTRATED / RECRUITED-BACKUPS / PRE-EXISTING-POOL.
+3. **ARC2A-2** (`job_arc2a2_transplant_pool.py`) — ARC2A at n=12 + restoration ladder
+   (single-attn → pool-attn → attn+anchor-value) to localize the RLHF change: QK gate vs
+   upstream value vs OV deletion.
+
+Run via `run_arc2_firmup.sh` (base-only correctives first; does not re-run paid run-1 jobs).
+Still planned beyond this wave: SUPP-EARLY, SUPP-SUPP, SUPP-ARCH.
