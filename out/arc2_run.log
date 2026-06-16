@@ -1,0 +1,152 @@
+[run2] Tue Jun 16 14:25:20 UTC 2026 start on 129-153-39-197
+/usr/lib/python3/dist-packages/scipy/__init__.py:146: UserWarning: A NumPy version >=1.17.3 and <1.25.0 is required for this version of SciPy (detected version 1.26.4
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:09<00:09,  9.82s/it]Fetching 2 files: 100%|██████████| 2/2 [00:09<00:00,  4.91s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 9193.55it/s]
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+[run2] SMOKE OK n_layers 26
+[run2] ===== job_arc2c_format_weights START Tue Jun 16 14:25:45 UTC 2026 =====
+/usr/lib/python3/dist-packages/scipy/__init__.py:146: UserWarning: A NumPy version >=1.17.3 and <1.25.0 is required for this version of SciPy (detected version 1.26.4
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
+
+[load] HookedTransformer google/gemma-2-2b on cuda
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:06<00:13,  6.96s/it]Fetching 3 files: 100%|██████████| 3/3 [00:06<00:00,  2.32s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 135/288 [00:00<00:00, 1330.14it/s]Loading weights:  93%|█████████▎| 269/288 [00:00<00:00, 1313.33it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1390.99it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+  [base/fragment] Australia    effect=+9.75 nec=+1.06 L18.H5->anchor=0.84
+  [base/fragment] Texas        effect=+7.00 nec=+1.14 L18.H5->anchor=0.40
+  [base/fragment] Canada       effect=+5.88 nec=+1.11 L18.H5->anchor=0.54
+  [base/fragment] Switzerland  effect=+6.88 nec=+1.02 L18.H5->anchor=0.61
+  [base/fragment] Morocco      effect=+2.75 nec=+1.18 L18.H5->anchor=0.51
+  >> base/fragment: mean_effect=+6.45 mean_L18H5_attn=0.578
+  [base/qa      ] Australia    effect=+0.31 nec=n/a L18.H5->anchor=0.02
+  [base/qa      ] Texas        effect=+1.00 nec=+0.38 L18.H5->anchor=0.02
+  [base/qa      ] Canada       effect=+0.19 nec=n/a L18.H5->anchor=0.01
+  [base/qa      ] Switzerland  effect=+1.31 nec=+0.95 L18.H5->anchor=0.03
+  [base/qa      ] Morocco      effect=+0.25 nec=n/a L18.H5->anchor=0.02
+  >> base/qa: mean_effect=+0.61 mean_L18H5_attn=0.022
+
+[load] HookedTransformer google/gemma-2-2b-it on cuda
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 8517.85it/s]
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+  [  it/fragment] Australia    effect=-4.00 nec=+0.17 L18.H5->anchor=0.01
+  [  it/fragment] Texas        effect=-4.81 nec=+0.25 L18.H5->anchor=0.01
+  [  it/fragment] Canada       effect=-5.19 nec=+0.19 L18.H5->anchor=0.01
+  [  it/fragment] Switzerland  effect=-3.75 nec=+0.47 L18.H5->anchor=0.04
+  [  it/fragment] Morocco      effect=-3.88 nec=+0.60 L18.H5->anchor=0.01
+  >> it/fragment: mean_effect=-4.33 mean_L18H5_attn=0.016
+Traceback (most recent call last):
+  File "/home/ubuntu/arc2/job_arc2c_format_weights.py", line 167, in <module>
+    main()
+  File "/home/ubuntu/arc2/job_arc2c_format_weights.py", line 147, in main
+    out["models"]["it"] = run_model("it", "google/gemma-2-2b-it")
+  File "/home/ubuntu/arc2/job_arc2c_format_weights.py", line 109, in run_model
+    n_sc = score(last_logits(build(region, "")), cid, aid)
+  File "/home/ubuntu/arc2/job_arc2c_format_weights.py", line 91, in build_qa_chat
+    ids = tok.apply_chat_template([{"role": "user", "content": user}],
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 3107, in apply_chat_template
+    rendered_chat, generation_indices = render_jinja_template(
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/transformers/utils/chat_template_utils.py", line 514, in render_jinja_template
+    compiled_template = _compile_jinja_template(chat_template)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/transformers/utils/chat_template_utils.py", line 421, in _compile_jinja_template
+    return _cached_compile_jinja_template(chat_template)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/transformers/utils/chat_template_utils.py", line 474, in _cached_compile_jinja_template
+    raise ImportError(
+ImportError: apply_chat_template requires jinja2>=3.1.0 to be installed. Your version is 3.0.3.
+[run2] ===== job_arc2c_format_weights END rc=1 Tue Jun 16 14:26:25 UTC 2026 =====
+[run2] ===== job_arc2a_transplant START Tue Jun 16 14:26:25 UTC 2026 =====
+/usr/lib/python3/dist-packages/scipy/__init__.py:146: UserWarning: A NumPy version >=1.17.3 and <1.25.0 is required for this version of SciPy (detected version 1.26.4
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
+[load] google/gemma-2-2b on cuda
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  43%|████▎     | 124/288 [00:00<00:00, 1225.99it/s]Loading weights:  92%|█████████▏| 264/288 [00:00<00:00, 1325.09it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1345.82it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[load] google/gemma-2-2b-it on cuda
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 8434.76it/s]
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+  Australia    base=-9.50 it=+3.50 it+transplant=+2.12 | restoration=+0.11 | base_killed=-7.37 | OV base=0.21967428922653198 it=0.2202478051185608
+  Texas        base=-5.12 it=+6.38 it+transplant=+5.12 | restoration=+0.11 | base_killed=-3.50 | OV base=0.23548008501529694 it=0.25446805357933044
+  Canada       base=-3.38 it=+4.81 it+transplant=+4.31 | restoration=+0.06 | base_killed=-1.88 | OV base=0.1984243243932724 it=0.23260930180549622
+  Switzerland  base=-5.50 it=+3.81 it+transplant=+2.44 | restoration=+0.15 | base_killed=-4.75 | OV base=0.2531586289405823 it=0.2676851153373718
+  Morocco      base=-1.50 it=+3.44 it+transplant=+2.56 | restoration=+0.18 | base_killed=-1.25 | OV base=0.18304547667503357 it=0.18133582174777985
+
+[summary] {
+  "reader_head": [
+    18,
+    5
+  ],
+  "median_restoration_frac": 0.10869565217391304,
+  "median_restoration_frac_control": 0.0,
+  "median_ov_pref_base": 0.21967428922653198,
+  "median_ov_pref_it": 0.23260930180549622,
+  "n": 5,
+  "reading": "restoration~1 => MASKING (OV intact, QK gated); restoration~0 => DELETION"
+}
+[done] wrote out/arc2a_transplant.json
+[run2] ===== job_arc2a_transplant END rc=0 Tue Jun 16 14:26:55 UTC 2026 =====
+[run2] ===== job_arc2b_numeric_it START Tue Jun 16 14:26:55 UTC 2026 =====
+/usr/lib/python3/dist-packages/scipy/__init__.py:146: UserWarning: A NumPy version >=1.17.3 and <1.25.0 is required for this version of SciPy (detected version 1.26.4
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
+
+[load] google/gemma-2-2b on cuda
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 98/288 [00:00<00:00, 952.72it/s]Loading weights:  88%|████████▊ | 253/288 [00:00<00:00, 1289.91it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1280.14it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+  [base] 7x8   C=56    W=63    shift=+2.44 nec_W= +1.36 | base_ok=1 flip=0 | L18.H5->W=0.02
+  [base] 6x7   C=42    W=48    shift=+2.94 nec_W= +0.73 | base_ok=1 flip=0 | L18.H5->W=0.04
+  [base] 9x9   C=81    W=90    shift=+2.88 nec_W= +0.98 | base_ok=1 flip=0 | L18.H5->W=0.04
+  [base] 8x7   C=56    W=64    shift=+5.60 nec_W= +0.64 | base_ok=1 flip=0 | L18.H5->W=0.03
+  [base] 9x6   C=54    W=63    shift=+4.46 nec_W= +0.96 | base_ok=1 flip=0 | L18.H5->W=0.03
+  [base] 12x11  C=132   W=144   shift=+5.88 nec_W= +0.79 | base_ok=1 flip=0 | L18.H5->W=0.04
+  [base] 13x14  C=182   W=195   shift=+8.25 nec_W= +1.09 | base_ok=1 flip=1 | L18.H5->W=0.06
+  [base] 17x18  C=306   W=323   shift=+7.60 nec_W= +1.11 | base_ok=1 flip=0 | L18.H5->W=0.04
+  [base] 23x7   C=161   W=184   shift=+6.77 nec_W= +1.15 | base_ok=1 flip=0 | L18.H5->W=0.04
+  [base] 14x16  C=224   W=238   shift=+6.70 nec_W= +0.91 | base_ok=1 flip=0 | L18.H5->W=0.05
+  [base] 19x21  C=399   W=418   shift=+7.74 nec_W= +1.04 | base_ok=1 flip=1 | L18.H5->W=0.02
+  [base] 24x26  C=624   W=648   shift=+8.01 nec_W= +0.94 | base_ok=1 flip=1 | L18.H5->W=0.05
+  [base] 23x47  C=1081  W=1104  shift=+11.23 nec_W= +0.98 | base_ok=0 flip=1 | L18.H5->W=0.15
+  [base] 31x29  C=899   W=930   shift=+12.36 nec_W= +0.72 | base_ok=1 flip=1 | L18.H5->W=0.03
+  [base] 38x29  C=1102  W=1140  shift=+11.25 nec_W= +1.21 | base_ok=0 flip=1 | L18.H5->W=0.10
+  [base] 47x53  C=2491  W=2538  shift=+8.66 nec_W= +1.14 | base_ok=0 flip=1 | L18.H5->W=0.09
+  [base] 67x43  C=2881  W=2948  shift=+14.54 nec_W= +0.88 | base_ok=0 flip=1 | L18.H5->W=0.12
+  [base] 49x51  C=2499  W=2548  shift=+9.12 nec_W= +1.11 | base_ok=1 flip=0 | L18.H5->W=0.06
+  [base] 84x37  C=3108  W=3192  shift=+6.66 nec_W= +1.26 | base_ok=0 flip=1 | L18.H5->W=0.10
+  [base] 56x78  C=4368  W=4424  shift=+7.85 nec_W= +0.96 | base_ok=1 flip=1 | L18.H5->W=0.04
+  [base] 73x68  C=4964  W=5037  shift=+12.43 nec_W= +1.01 | base_ok=0 flip=1 | L18.H5->W=0.04
+  [base] 18x17  C=306   W=324   shift=+10.14 nec_W= +0.66 | base_ok=1 flip=1 | L18.H5->W=0.06
+  [base] 27x33  C=891   W=918   shift=+10.99 nec_W= +1.26 | base_ok=0 flip=1 | L18.H5->W=0.04
+  [base] 34x29  C=986   W=1020  shift=+9.68 nec_W= +0.93 | base_ok=0 flip=1 | L18.H5->W=0.06
+  [base] 41x38  C=1558  W=1599  shift=+9.77 nec_W= +1.05 | base_ok=0 flip=1 | L18.H5->W=0.11
+  [base] 52x48  C=2496  W=2548  shift=+10.95 nec_W= +0.80 | base_ok=0 flip=1 | L18.H5->W=0.07
+  [base] 63x57  C=3591  W=3654  shift=+12.82 nec_W= +0.94 | base_ok=0 flip=1 | L18.H5->W=0.07
+  [base] 72x68  C=4896  W=4968  shift=+8.81 nec_W= +0.76 | base_ok=0 flip=1 | L18.H5->W=0.05
+  [base] 29x31  C=899   W=928   shift=+13.60 nec_W= +0.94 | base_ok=1 flip=1 | L18.H5->W=0.03
+  [base] 46x54  C=2484  W=2530  shift=+10.72 nec_W= +1.15 | base_ok=0 flip=1 | L18.H5->W=0.07
+  [base] 58x62  C=3596  W=3654  shift=+9.39 nec_W= +1.13 | base_ok=0 flip=1 | L18.H5->W=0.06
+  [base] 77x83  C=6391  W=6468  shift=+11.37 nec_W= +1.06 | base_ok=0 flip=1 | L18.H5->W=0.03
+  [base] 88x17  C=1496  W=1584  shift=+1.60 nec_W= +3.30 | base_ok=0 flip=1 | L18.H5->W=0.13
+  [base] 96x23  C=2208  W=2304  shift=+2.25 nec_W= +3.83 | base_ok=0 flip=0 | L18.H5->W=0.18
+  [base] 39x44  C=1716  W=1755  shift=+11.76 nec_W= +0.94 | base_ok=0 flip=1 | L18.H5->W=0.10
+  [base] 64x71  C=4544  W=4608  shift=+6.63 nec_W= +1.40 | base_ok=0 flip=1 | L18.H5->W=0.04
+  [base] 11x12  C=132   W=143   shift=+6.39 nec_W= +0.81 | base_ok=1 flip=0 | L18.H5->W=0.02
+  [base] 15x16  C=240   W=255   shift=+6.24 nec_W= +0.86 | base_ok=1 flip=0 | L18.H5->W=0.05
+  [base] 16x14  C=224   W=240   shift=+6.18 nec_W= +1.02 | base_ok=1 flip=0 | L18.H5->W=0.06
+  [base] 21x19  C=399   W=420   shift=+8.13 nec_W= +0.98 | base_ok=0 flip=0 | L18.H5->W=0.05
+  [base] 22x18  C=396   W=418   shift=+4.64 nec_W= +0.83 | base_ok=0 flip=1 | L18.H5->W=0.03
+  [base] 26x24  C=624   W=650   shift=+10.97 nec_W= +1.05 | base_ok=1 flip=1 | L18.H5->W=0.04
+  [base] 28x33  C=924   W=952   shift=+11.31 nec_W= +0.66 | base_ok=1 flip=1 | L18.H5->W=0.04
+  [base] 33x37  C=1221  W=1254  shift=+12.23 nec_W= +1.06 | base_ok=1 flip=1 | L18.H5->W=0.13
+  [base] 36x42  C=1512  W=1548  shift=+9.89 nec_W= +1.04 | base_ok=1 flip=1 | L18.H5->W=0.07
+  [base] 43x39  C=1677  W=1720  shift=+9.76 nec_W= +0.94 | base_ok=0 flip=1 | L18.H5->W=0.08
+  [base] 44x47  C=2068  W=2112  shift=+7.71 nec_W= +0.92 | base_ok=0 flip=1 | L18.H5->W=0.16
+  [base] 48x56  C=2688  W=2736  shift=+3.82 nec_W= +1.28 | base_ok=0 flip=1 | L18.H5->W=0.05
+  [base] 53x58  C=3074  W=3127  shift=+10.89 nec_W= +1.03 | base_ok=0 flip=1 | L18.H5->W=0.16
+  [base] 57x49  C=2793  W=2850  shift=+10.51 nec_W= +0.92 | base_ok=1 flip=1 | L18.H5->W=0.07
+  [base] 59x61  C=3599  W=3658  shift=+9.25 nec_W= +1.18 | base_ok=0 flip=1 | L18.H5->W=0.06
+  [base] 62x54  C=3348  W=3410  shift=+9.21 nec_W= +1.02 | base_ok=0 flip=1 | L18.H5->W=0.09
+  [base] 64x38  C=2432  W=2496  shift=+0.01 nec_W=   n/a | base_ok=0 flip=1 | L18.H5->W=0.06
+  [base] 68x53  C=3604  W=3672  shift=+5.84 nec_W= +1.31 | base_ok=0 flip=1 | L18.H5->W=0.09
+  [base] 71x69  C=4899  W=4970  shift=+8.90 nec_W= +1.29 | base_ok=0 flip=1 | L18.H5->W=0.03
+  [base] 74x76  C=5624  W=5698  shift=+9.46 nec_W= +0.96 | base_ok=0 flip=1 | L18.H5->W=0.06
+  [base] 79x83  C=6557  W=6636  shift=+11.07 nec_W= +0.98 | base_ok=0 flip=1 | L18.H5->W=0.05
+Terminated
+[run2] ===== job_arc2b_numeric_it END rc=143 Tue Jun 16 14:56:24 UTC 2026 =====
+[run2] ALL DONE Tue Jun 16 14:56:24 UTC 2026

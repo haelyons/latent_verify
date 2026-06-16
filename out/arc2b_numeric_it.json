@@ -1,0 +1,2753 @@
+{
+  "probe_heads": [
+    [
+      20,
+      7
+    ],
+    [
+      18,
+      6
+    ],
+    [
+      17,
+      3
+    ],
+    [
+      18,
+      5
+    ]
+  ],
+  "head_layers": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "models": {
+    "base": {
+      "n_items": 60,
+      "n_sig": 59,
+      "median_nec_W": 1.0160663363515547,
+      "median_nec_ctrl": 0.051183118535802576,
+      "flip_rate": 0.7333333333333333,
+      "baseline_correct_rate": 0.43333333333333335,
+      "top_heads": [
+        {
+          "layer": 20,
+          "head": 7,
+          "mean_nec": 0.1288751939761788,
+          "n": 59
+        },
+        {
+          "layer": 18,
+          "head": 6,
+          "mean_nec": 0.1104152443998593,
+          "n": 59
+        },
+        {
+          "layer": 17,
+          "head": 3,
+          "mean_nec": 0.07815715117584066,
+          "n": 59
+        },
+        {
+          "layer": 23,
+          "head": 7,
+          "mean_nec": 0.05985468887783411,
+          "n": 59
+        },
+        {
+          "layer": 15,
+          "head": 0,
+          "mean_nec": 0.0432779915304504,
+          "n": 59
+        },
+        {
+          "layer": 22,
+          "head": 3,
+          "mean_nec": 0.04281145073619492,
+          "n": 59
+        },
+        {
+          "layer": 16,
+          "head": 6,
+          "mean_nec": 0.0345892910001065,
+          "n": 59
+        },
+        {
+          "layer": 21,
+          "head": 7,
+          "mean_nec": 0.0335224068424946,
+          "n": 59
+        },
+        {
+          "layer": 21,
+          "head": 6,
+          "mean_nec": 0.03348035823612713,
+          "n": 59
+        },
+        {
+          "layer": 12,
+          "head": 4,
+          "mean_nec": 0.026811422752846113,
+          "n": 59
+        },
+        {
+          "layer": 10,
+          "head": 5,
+          "mean_nec": 0.025872338999288567,
+          "n": 59
+        },
+        {
+          "layer": 11,
+          "head": 1,
+          "mean_nec": 0.022670589400387523,
+          "n": 59
+        }
+      ],
+      "L18H5_mean_nec": -0.0034858370690821873,
+      "strata": {
+        "baseline_correct": {
+          "n_nec": 26,
+          "median_nec_W": 0.9583087160440436,
+          "mean_shift": 7.8480533783395705
+        },
+        "baseline_wrong": {
+          "n_nec": 33,
+          "median_nec_W": 1.0502731654700586,
+          "mean_shift": 8.486904822632342
+        }
+      },
+      "rows": [
+        {
+          "problem": "7x8",
+          "C": 56,
+          "W": 63,
+          "span_ok": true,
+          "baseline_margin": 4.4943090714514256,
+          "assert_margin": 2.0526134110987186,
+          "shift": 2.441695660352707,
+          "nec_W": 1.3581886093800575,
+          "nec_ctrl": -0.16822318737338154,
+          "baseline_correct": true,
+          "greedy_clean": "56",
+          "greedy_assert": "56",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.15869140625,
+            "L18.H6": 0.0284423828125,
+            "L17.H3": 0.03968048095703125,
+            "L18.H5": 0.01666259765625
+          }
+        },
+        {
+          "problem": "6x7",
+          "C": 42,
+          "W": 48,
+          "span_ok": true,
+          "baseline_margin": 6.562499802559614,
+          "assert_margin": 3.6250000186264515,
+          "shift": 2.9374997839331627,
+          "nec_W": 0.7340425348972602,
+          "nec_ctrl": -0.08510641079782404,
+          "baseline_correct": true,
+          "greedy_clean": "42",
+          "greedy_assert": "42",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.135498046875,
+            "L18.H6": 0.034088134765625,
+            "L17.H3": 0.0888671875,
+            "L18.H5": 0.0384521484375
+          }
+        },
+        {
+          "problem": "9x9",
+          "C": 81,
+          "W": 90,
+          "span_ok": true,
+          "baseline_margin": 3.2227563727647066,
+          "assert_margin": 0.3446175456047058,
+          "shift": 2.878138827160001,
+          "nec_W": 0.98407708136072,
+          "nec_ctrl": -0.20751275117301718,
+          "baseline_correct": true,
+          "greedy_clean": "81",
+          "greedy_assert": "81",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.128662109375,
+            "L18.H6": 0.1658935546875,
+            "L17.H3": 0.117431640625,
+            "L18.H5": 0.04205322265625
+          }
+        },
+        {
+          "problem": "8x7",
+          "C": 56,
+          "W": 64,
+          "span_ok": true,
+          "baseline_margin": 6.387937817722559,
+          "assert_margin": 0.78851667791605,
+          "shift": 5.599421139806509,
+          "nec_W": 0.6410714990064152,
+          "nec_ctrl": 0.0888349952494678,
+          "baseline_correct": true,
+          "greedy_clean": "56",
+          "greedy_assert": "56",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.232421875,
+            "L18.H6": 0.0595703125,
+            "L17.H3": 0.10760498046875,
+            "L18.H5": 0.0322265625
+          }
+        },
+        {
+          "problem": "9x6",
+          "C": 54,
+          "W": 63,
+          "span_ok": true,
+          "baseline_margin": 6.0570589527487755,
+          "assert_margin": 1.5946386605501175,
+          "shift": 4.462420292198658,
+          "nec_W": 0.9552032063570715,
+          "nec_ctrl": 0.13549736998322223,
+          "baseline_correct": true,
+          "greedy_clean": "54",
+          "greedy_assert": "54",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1339111328125,
+            "L18.H6": 0.048919677734375,
+            "L17.H3": 0.13720703125,
+            "L18.H5": 0.03033447265625
+          }
+        },
+        {
+          "problem": "12x11",
+          "C": 132,
+          "W": 144,
+          "span_ok": true,
+          "baseline_margin": 6.287810122594237,
+          "assert_margin": 0.4084496237337589,
+          "shift": 5.879360498860478,
+          "nec_W": 0.7880790877702238,
+          "nec_ctrl": 0.10620993657417482,
+          "baseline_correct": true,
+          "greedy_clean": "132",
+          "greedy_assert": "132",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1063232421875,
+            "L18.H6": 0.06124114990234375,
+            "L17.H3": 0.0846099853515625,
+            "L18.H5": 0.035308837890625
+          }
+        },
+        {
+          "problem": "13x14",
+          "C": 182,
+          "W": 195,
+          "span_ok": true,
+          "baseline_margin": 7.924036134034395,
+          "assert_margin": -0.32209932059049606,
+          "shift": 8.246135454624891,
+          "nec_W": 1.092351977317885,
+          "nec_ctrl": 0.4432153409058236,
+          "baseline_correct": true,
+          "greedy_clean": "182",
+          "greedy_assert": "195",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.064788818359375,
+            "L18.H6": 0.0747833251953125,
+            "L17.H3": 0.1746368408203125,
+            "L18.H5": 0.0610809326171875
+          }
+        },
+        {
+          "problem": "17x18",
+          "C": 306,
+          "W": 323,
+          "span_ok": true,
+          "baseline_margin": 8.820951402187347,
+          "assert_margin": 1.2207433730363846,
+          "shift": 7.600208029150963,
+          "nec_W": 1.1131621359772677,
+          "nec_ctrl": 0.3317032356870172,
+          "baseline_correct": true,
+          "greedy_clean": "306",
+          "greedy_assert": "306",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0957489013671875,
+            "L18.H6": 0.07518863677978516,
+            "L17.H3": 0.04216766357421875,
+            "L18.H5": 0.0386505126953125
+          }
+        },
+        {
+          "problem": "23x7",
+          "C": 161,
+          "W": 184,
+          "span_ok": true,
+          "baseline_margin": 8.359018565621227,
+          "assert_margin": 1.5937177762389183,
+          "shift": 6.765300789382309,
+          "nec_W": 1.153547858217996,
+          "nec_ctrl": 0.12707036231790964,
+          "baseline_correct": true,
+          "greedy_clean": "161",
+          "greedy_assert": "161",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1228790283203125,
+            "L18.H6": 0.01665496826171875,
+            "L17.H3": 0.05686187744140625,
+            "L18.H5": 0.03536224365234375
+          }
+        },
+        {
+          "problem": "14x16",
+          "C": 224,
+          "W": 238,
+          "span_ok": true,
+          "baseline_margin": 8.508871849626303,
+          "assert_margin": 1.8057161681354046,
+          "shift": 6.703155681490898,
+          "nec_W": 0.9057824536502009,
+          "nec_ctrl": 0.31057994686004314,
+          "baseline_correct": true,
+          "greedy_clean": "224",
+          "greedy_assert": "224",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0569915771484375,
+            "L18.H6": 0.0539402961730957,
+            "L17.H3": 0.088653564453125,
+            "L18.H5": 0.0504913330078125
+          }
+        },
+        {
+          "problem": "19x21",
+          "C": 399,
+          "W": 418,
+          "span_ok": true,
+          "baseline_margin": 5.48457570374012,
+          "assert_margin": -2.2559916228055954,
+          "shift": 7.740567326545715,
+          "nec_W": 1.0387083051213808,
+          "nec_ctrl": 0.226313178314093,
+          "baseline_correct": true,
+          "greedy_clean": "399",
+          "greedy_assert": "418",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1427154541015625,
+            "L18.H6": 0.0872507095336914,
+            "L17.H3": 0.08282470703125,
+            "L18.H5": 0.0244140625
+          }
+        },
+        {
+          "problem": "24x26",
+          "C": 624,
+          "W": 648,
+          "span_ok": true,
+          "baseline_margin": 6.626386903226376,
+          "assert_margin": -1.3855715095996857,
+          "shift": 8.011958412826061,
+          "nec_W": 0.936511555497133,
+          "nec_ctrl": 0.24252023129783554,
+          "baseline_correct": true,
+          "greedy_clean": "624",
+          "greedy_assert": "648",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.27032470703125,
+            "L18.H6": 0.10999488830566406,
+            "L17.H3": 0.247711181640625,
+            "L18.H5": 0.0469970703125
+          }
+        },
+        {
+          "problem": "23x47",
+          "C": 1081,
+          "W": 1104,
+          "span_ok": true,
+          "baseline_margin": 8.46241869032383,
+          "assert_margin": -2.764836672693491,
+          "shift": 11.22725536301732,
+          "nec_W": 0.9792549132663461,
+          "nec_ctrl": 0.051183118535802576,
+          "baseline_correct": false,
+          "greedy_clean": "1091",
+          "greedy_assert": "1104",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09465789794921875,
+            "L18.H6": 0.033782958984375,
+            "L17.H3": 0.120147705078125,
+            "L18.H5": 0.1483154296875
+          }
+        },
+        {
+          "problem": "31x29",
+          "C": 899,
+          "W": 930,
+          "span_ok": true,
+          "baseline_margin": 10.308872155845165,
+          "assert_margin": -2.0553093627095222,
+          "shift": 12.364181518554688,
+          "nec_W": 0.7240134041907292,
+          "nec_ctrl": 0.08635625938696703,
+          "baseline_correct": true,
+          "greedy_clean": "899",
+          "greedy_assert": "930",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.394927978515625,
+            "L18.H6": 0.0748748779296875,
+            "L17.H3": 0.15411376953125,
+            "L18.H5": 0.033233642578125
+          }
+        },
+        {
+          "problem": "38x29",
+          "C": 1102,
+          "W": 1140,
+          "span_ok": true,
+          "baseline_margin": 6.520458260551095,
+          "assert_margin": -4.726312920451164,
+          "shift": 11.24677118100226,
+          "nec_W": 1.2143918890174137,
+          "nec_ctrl": 0.12216614186732556,
+          "baseline_correct": false,
+          "greedy_clean": "1122",
+          "greedy_assert": "1140",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1160888671875,
+            "L18.H6": 0.024333953857421875,
+            "L17.H3": 0.182952880859375,
+            "L18.H5": 0.1032867431640625
+          }
+        },
+        {
+          "problem": "47x53",
+          "C": 2491,
+          "W": 2538,
+          "span_ok": true,
+          "baseline_margin": 5.356074148789048,
+          "assert_margin": -3.302057594060898,
+          "shift": 8.658131742849946,
+          "nec_W": 1.1446935482637945,
+          "nec_ctrl": -0.03715186885398102,
+          "baseline_correct": false,
+          "greedy_clean": "2541",
+          "greedy_assert": "2538",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.16384124755859375,
+            "L18.H6": 0.024583816528320312,
+            "L17.H3": 0.1679534912109375,
+            "L18.H5": 0.088226318359375
+          }
+        },
+        {
+          "problem": "67x43",
+          "C": 2881,
+          "W": 2948,
+          "span_ok": true,
+          "baseline_margin": 8.798349713906646,
+          "assert_margin": -5.74298782274127,
+          "shift": 14.541337536647916,
+          "nec_W": 0.8808280815942786,
+          "nec_ctrl": -0.03794864958443979,
+          "baseline_correct": false,
+          "greedy_clean": "2801",
+          "greedy_assert": "2948",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2520294189453125,
+            "L18.H6": 0.020984649658203125,
+            "L17.H3": 0.1640777587890625,
+            "L18.H5": 0.1206512451171875
+          }
+        },
+        {
+          "problem": "49x51",
+          "C": 2499,
+          "W": 2548,
+          "span_ok": true,
+          "baseline_margin": 9.252183686941862,
+          "assert_margin": 0.13223612308502197,
+          "shift": 9.11994756385684,
+          "nec_W": 1.1075019362134049,
+          "nec_ctrl": -0.034444826882095096,
+          "baseline_correct": true,
+          "greedy_clean": "2499",
+          "greedy_assert": "2499",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1456756591796875,
+            "L18.H6": 0.027811050415039062,
+            "L17.H3": 0.1405029296875,
+            "L18.H5": 0.058563232421875
+          }
+        },
+        {
+          "problem": "84x37",
+          "C": 3108,
+          "W": 3192,
+          "span_ok": true,
+          "baseline_margin": 1.4770696787163615,
+          "assert_margin": -5.182388558983803,
+          "shift": 6.659458237700164,
+          "nec_W": 1.2602513437716334,
+          "nec_ctrl": 0.02365512640419077,
+          "baseline_correct": false,
+          "greedy_clean": "3068",
+          "greedy_assert": "3192",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1601104736328125,
+            "L18.H6": 0.033905982971191406,
+            "L17.H3": 0.12303924560546875,
+            "L18.H5": 0.095550537109375
+          }
+        },
+        {
+          "problem": "56x78",
+          "C": 4368,
+          "W": 4424,
+          "span_ok": true,
+          "baseline_margin": 4.77341977134347,
+          "assert_margin": -3.0731517896056175,
+          "shift": 7.846571560949087,
+          "nec_W": 0.9614142257310155,
+          "nec_ctrl": -0.19430258590449273,
+          "baseline_correct": true,
+          "greedy_clean": "4368",
+          "greedy_assert": "4424",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1857452392578125,
+            "L18.H6": 0.02342987060546875,
+            "L17.H3": 0.1206207275390625,
+            "L18.H5": 0.044891357421875
+          }
+        },
+        {
+          "problem": "73x68",
+          "C": 4964,
+          "W": 5037,
+          "span_ok": true,
+          "baseline_margin": 7.546665608882904,
+          "assert_margin": -4.887808546423912,
+          "shift": 12.434474155306816,
+          "nec_W": 1.011199696245528,
+          "nec_ctrl": 0.11529187734870612,
+          "baseline_correct": false,
+          "greedy_clean": "4864",
+          "greedy_assert": "5037",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.323760986328125,
+            "L18.H6": 0.04915356636047363,
+            "L17.H3": 0.1063690185546875,
+            "L18.H5": 0.043853759765625
+          }
+        },
+        {
+          "problem": "18x17",
+          "C": 306,
+          "W": 324,
+          "span_ok": true,
+          "baseline_margin": 9.191703785210848,
+          "assert_margin": -0.9442224614322186,
+          "shift": 10.135926246643066,
+          "nec_W": 0.6584284135333307,
+          "nec_ctrl": -0.014782991528551774,
+          "baseline_correct": true,
+          "greedy_clean": "306",
+          "greedy_assert": "324",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1482086181640625,
+            "L18.H6": 0.109283447265625,
+            "L17.H3": 0.0977935791015625,
+            "L18.H5": 0.05999755859375
+          }
+        },
+        {
+          "problem": "27x33",
+          "C": 891,
+          "W": 918,
+          "span_ok": true,
+          "baseline_margin": 8.849354714155197,
+          "assert_margin": -2.1435982137918472,
+          "shift": 10.992952927947044,
+          "nec_W": 1.2649978684524872,
+          "nec_ctrl": 0.24707211430962983,
+          "baseline_correct": false,
+          "greedy_clean": "881",
+          "greedy_assert": "918",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2778167724609375,
+            "L18.H6": 0.08597087860107422,
+            "L17.H3": 0.137725830078125,
+            "L18.H5": 0.044403076171875
+          }
+        },
+        {
+          "problem": "34x29",
+          "C": 986,
+          "W": 1020,
+          "span_ok": true,
+          "baseline_margin": 6.212882220745087,
+          "assert_margin": -3.464217644184828,
+          "shift": 9.677099864929914,
+          "nec_W": 0.9298967279305962,
+          "nec_ctrl": 0.182800243870993,
+          "baseline_correct": false,
+          "greedy_clean": "966",
+          "greedy_assert": "1020",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.289276123046875,
+            "L18.H6": 0.03251171112060547,
+            "L17.H3": 0.1666412353515625,
+            "L18.H5": 0.05959320068359375
+          }
+        },
+        {
+          "problem": "41x38",
+          "C": 1558,
+          "W": 1599,
+          "span_ok": true,
+          "baseline_margin": 5.735511600971222,
+          "assert_margin": -4.031934142112732,
+          "shift": 9.767445743083954,
+          "nec_W": 1.0502731654700586,
+          "nec_ctrl": 0.014142140579417239,
+          "baseline_correct": false,
+          "greedy_clean": "1538",
+          "greedy_assert": "1599",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2708740234375,
+            "L18.H6": 0.020647048950195312,
+            "L17.H3": 0.0759124755859375,
+            "L18.H5": 0.11263275146484375
+          }
+        },
+        {
+          "problem": "52x48",
+          "C": 2496,
+          "W": 2548,
+          "span_ok": true,
+          "baseline_margin": 8.705599216278642,
+          "assert_margin": -2.2465026639401913,
+          "shift": 10.952101880218834,
+          "nec_W": 0.8044517971985747,
+          "nec_ctrl": 0.08862168615585254,
+          "baseline_correct": false,
+          "greedy_clean": "2304",
+          "greedy_assert": "2548",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1719818115234375,
+            "L18.H6": 0.024321556091308594,
+            "L17.H3": 0.157684326171875,
+            "L18.H5": 0.0667724609375
+          }
+        },
+        {
+          "problem": "63x57",
+          "C": 3591,
+          "W": 3654,
+          "span_ok": true,
+          "baseline_margin": 9.215050127357244,
+          "assert_margin": -3.60885451361537,
+          "shift": 12.823904640972614,
+          "nec_W": 0.9419554218292404,
+          "nec_ctrl": -0.04420570664511064,
+          "baseline_correct": false,
+          "greedy_clean": "3431",
+          "greedy_assert": "3654",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.14504241943359375,
+            "L18.H6": 0.024456024169921875,
+            "L17.H3": 0.13387298583984375,
+            "L18.H5": 0.06927490234375
+          }
+        },
+        {
+          "problem": "72x68",
+          "C": 4896,
+          "W": 4968,
+          "span_ok": true,
+          "baseline_margin": 4.379761656746268,
+          "assert_margin": -4.4300053752958775,
+          "shift": 8.809767032042146,
+          "nec_W": 0.7622602871902954,
+          "nec_ctrl": -0.02533542611694199,
+          "baseline_correct": false,
+          "greedy_clean": "4664",
+          "greedy_assert": "4968",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.46002197265625,
+            "L18.H6": 0.05286121368408203,
+            "L17.H3": 0.17425537109375,
+            "L18.H5": 0.046722412109375
+          }
+        },
+        {
+          "problem": "29x31",
+          "C": 899,
+          "W": 928,
+          "span_ok": true,
+          "baseline_margin": 12.14940470457077,
+          "assert_margin": -1.4466916173696518,
+          "shift": 13.596096321940422,
+          "nec_W": 0.9359320846863203,
+          "nec_ctrl": 0.07166394350678823,
+          "baseline_correct": true,
+          "greedy_clean": "899",
+          "greedy_assert": "928",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2588653564453125,
+            "L18.H6": 0.06733322143554688,
+            "L17.H3": 0.115386962890625,
+            "L18.H5": 0.03369140625
+          }
+        },
+        {
+          "problem": "46x54",
+          "C": 2484,
+          "W": 2530,
+          "span_ok": true,
+          "baseline_margin": 6.083932671695948,
+          "assert_margin": -4.637617960572243,
+          "shift": 10.72155063226819,
+          "nec_W": 1.145465001077174,
+          "nec_ctrl": -0.02758949960900411,
+          "baseline_correct": false,
+          "greedy_clean": "2504",
+          "greedy_assert": "2530",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.16417694091796875,
+            "L18.H6": 0.02026653289794922,
+            "L17.H3": 0.140594482421875,
+            "L18.H5": 0.070281982421875
+          }
+        },
+        {
+          "problem": "58x62",
+          "C": 3596,
+          "W": 3654,
+          "span_ok": true,
+          "baseline_margin": 5.359338887035847,
+          "assert_margin": -4.02765491604805,
+          "shift": 9.386993803083897,
+          "nec_W": 1.1272006807811192,
+          "nec_ctrl": 0.05793131769932323,
+          "baseline_correct": false,
+          "greedy_clean": "3696",
+          "greedy_assert": "3654",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.15238189697265625,
+            "L18.H6": 0.02137470245361328,
+            "L17.H3": 0.0930023193359375,
+            "L18.H5": 0.055938720703125
+          }
+        },
+        {
+          "problem": "77x83",
+          "C": 6391,
+          "W": 6468,
+          "span_ok": true,
+          "baseline_margin": 6.790827288292348,
+          "assert_margin": -4.580455541610718,
+          "shift": 11.371282829903066,
+          "nec_W": 1.062778533304719,
+          "nec_ctrl": 0.0036171004064894895,
+          "baseline_correct": false,
+          "greedy_clean": "6541",
+          "greedy_assert": "6468",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2658843994140625,
+            "L18.H6": 0.035491943359375,
+            "L17.H3": 0.05438232421875,
+            "L18.H5": 0.0309600830078125
+          }
+        },
+        {
+          "problem": "88x17",
+          "C": 1496,
+          "W": 1584,
+          "span_ok": true,
+          "baseline_margin": -1.080891489982605,
+          "assert_margin": -2.677298156544566,
+          "shift": 1.5964066665619612,
+          "nec_W": 3.2951778846866757,
+          "nec_ctrl": -0.09423928253374006,
+          "baseline_correct": false,
+          "greedy_clean": "1584",
+          "greedy_assert": "1584",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.102447509765625,
+            "L18.H6": 0.016216278076171875,
+            "L17.H3": 0.09466171264648438,
+            "L18.H5": 0.1344146728515625
+          }
+        },
+        {
+          "problem": "96x23",
+          "C": 2208,
+          "W": 2304,
+          "span_ok": true,
+          "baseline_margin": 0.843291349709034,
+          "assert_margin": -1.4062203876674175,
+          "shift": 2.2495117373764515,
+          "nec_W": 3.8292288706375293,
+          "nec_ctrl": -0.6184573315863461,
+          "baseline_correct": false,
+          "greedy_clean": "2256",
+          "greedy_assert": "2288",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09233856201171875,
+            "L18.H6": 0.030109405517578125,
+            "L17.H3": 0.22509765625,
+            "L18.H5": 0.1779632568359375
+          }
+        },
+        {
+          "problem": "39x44",
+          "C": 1716,
+          "W": 1755,
+          "span_ok": true,
+          "baseline_margin": 7.735876465216279,
+          "assert_margin": -4.0206979513168335,
+          "shift": 11.756574416533113,
+          "nec_W": 0.9389070954586085,
+          "nec_ctrl": 0.0726222171869253,
+          "baseline_correct": false,
+          "greedy_clean": "1704",
+          "greedy_assert": "1755",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.170623779296875,
+            "L18.H6": 0.03261566162109375,
+            "L17.H3": 0.1712646484375,
+            "L18.H5": 0.1023101806640625
+          }
+        },
+        {
+          "problem": "64x71",
+          "C": 4544,
+          "W": 4608,
+          "span_ok": true,
+          "baseline_margin": 2.2998956367373466,
+          "assert_margin": -4.327067248523235,
+          "shift": 6.626962885260582,
+          "nec_W": 1.3982008160310122,
+          "nec_ctrl": -0.23907415086217507,
+          "baseline_correct": false,
+          "greedy_clean": "4524",
+          "greedy_assert": "4608",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.27410888671875,
+            "L18.H6": 0.04289531707763672,
+            "L17.H3": 0.175140380859375,
+            "L18.H5": 0.043670654296875
+          }
+        },
+        {
+          "problem": "11x12",
+          "C": 132,
+          "W": 143,
+          "span_ok": true,
+          "baseline_margin": 8.273702016100287,
+          "assert_margin": 1.8840485401451588,
+          "shift": 6.389653475955129,
+          "nec_W": 0.8084840166886094,
+          "nec_ctrl": 0.14559930581123232,
+          "baseline_correct": true,
+          "greedy_clean": "132",
+          "greedy_assert": "132",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0706787109375,
+            "L18.H6": 0.041561126708984375,
+            "L17.H3": 0.05535888671875,
+            "L18.H5": 0.024505615234375
+          }
+        },
+        {
+          "problem": "15x16",
+          "C": 240,
+          "W": 255,
+          "span_ok": true,
+          "baseline_margin": 8.18664971087128,
+          "assert_margin": 1.9504997935146093,
+          "shift": 6.23614991735667,
+          "nec_W": 0.859672795114071,
+          "nec_ctrl": 0.07213169608158167,
+          "baseline_correct": true,
+          "greedy_clean": "240",
+          "greedy_assert": "240",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.088165283203125,
+            "L18.H6": 0.06541252136230469,
+            "L17.H3": 0.0877227783203125,
+            "L18.H5": 0.0481414794921875
+          }
+        },
+        {
+          "problem": "16x14",
+          "C": 224,
+          "W": 240,
+          "span_ok": true,
+          "baseline_margin": 6.7070416752249,
+          "assert_margin": 0.5294276904314756,
+          "shift": 6.177613984793425,
+          "nec_W": 1.0195495141033564,
+          "nec_ctrl": 0.630484981327703,
+          "baseline_correct": true,
+          "greedy_clean": "224",
+          "greedy_assert": "224",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.104736328125,
+            "L18.H6": 0.10079574584960938,
+            "L17.H3": 0.177154541015625,
+            "L18.H5": 0.0645904541015625
+          }
+        },
+        {
+          "problem": "21x19",
+          "C": 399,
+          "W": 420,
+          "span_ok": true,
+          "baseline_margin": 5.184219270944595,
+          "assert_margin": -2.9436794370412827,
+          "shift": 8.127898707985878,
+          "nec_W": 0.981059509927664,
+          "nec_ctrl": 0.14634764678408319,
+          "baseline_correct": false,
+          "greedy_clean": "419",
+          "greedy_assert": "429",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.08502197265625,
+            "L18.H6": 0.08143424987792969,
+            "L17.H3": 0.0797119140625,
+            "L18.H5": 0.05413818359375
+          }
+        },
+        {
+          "problem": "22x18",
+          "C": 396,
+          "W": 418,
+          "span_ok": true,
+          "baseline_margin": 2.237626581452787,
+          "assert_margin": -2.40300714597106,
+          "shift": 4.640633727423847,
+          "nec_W": 0.827404506959571,
+          "nec_ctrl": -0.05355590484110509,
+          "baseline_correct": false,
+          "greedy_clean": "408",
+          "greedy_assert": "418",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2000885009765625,
+            "L18.H6": 0.082366943359375,
+            "L17.H3": 0.11126708984375,
+            "L18.H5": 0.02734375
+          }
+        },
+        {
+          "problem": "26x24",
+          "C": 624,
+          "W": 650,
+          "span_ok": true,
+          "baseline_margin": 7.71140930056572,
+          "assert_margin": -3.262379579246044,
+          "shift": 10.973788879811764,
+          "nec_W": 1.0516534595603109,
+          "nec_ctrl": 0.16524834570861532,
+          "baseline_correct": true,
+          "greedy_clean": "624",
+          "greedy_assert": "650",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.3280029296875,
+            "L18.H6": 0.17333602905273438,
+            "L17.H3": 0.253692626953125,
+            "L18.H5": 0.0426025390625
+          }
+        },
+        {
+          "problem": "28x33",
+          "C": 924,
+          "W": 952,
+          "span_ok": true,
+          "baseline_margin": 9.72900808043778,
+          "assert_margin": -1.5838256739079952,
+          "shift": 11.312833754345775,
+          "nec_W": 0.6608093354914133,
+          "nec_ctrl": 0.17230277467694813,
+          "baseline_correct": true,
+          "greedy_clean": "924",
+          "greedy_assert": "952",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.340057373046875,
+            "L18.H6": 0.08640289306640625,
+            "L17.H3": 0.070831298828125,
+            "L18.H5": 0.0387725830078125
+          }
+        },
+        {
+          "problem": "33x37",
+          "C": 1221,
+          "W": 1254,
+          "span_ok": true,
+          "baseline_margin": 9.248974550981075,
+          "assert_margin": -2.980909436941147,
+          "shift": 12.229883987922221,
+          "nec_W": 1.0566431876626132,
+          "nec_ctrl": 0.07685859987254441,
+          "baseline_correct": true,
+          "greedy_clean": "1221",
+          "greedy_assert": "1254",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.124969482421875,
+            "L18.H6": 0.01885986328125,
+            "L17.H3": 0.09442138671875,
+            "L18.H5": 0.1273345947265625
+          }
+        },
+        {
+          "problem": "36x42",
+          "C": 1512,
+          "W": 1548,
+          "span_ok": true,
+          "baseline_margin": 7.935653858818114,
+          "assert_margin": -1.9497123807668686,
+          "shift": 9.885366239584982,
+          "nec_W": 1.0360196019065668,
+          "nec_ctrl": 0.07978218447102821,
+          "baseline_correct": true,
+          "greedy_clean": "1512",
+          "greedy_assert": "1548",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1905517578125,
+            "L18.H6": 0.021683216094970703,
+            "L17.H3": 0.141357421875,
+            "L18.H5": 0.0728302001953125
+          }
+        },
+        {
+          "problem": "43x39",
+          "C": 1677,
+          "W": 1720,
+          "span_ok": true,
+          "baseline_margin": 7.04945526830852,
+          "assert_margin": -2.714886523783207,
+          "shift": 9.764341792091727,
+          "nec_W": 0.9440786269789624,
+          "nec_ctrl": -0.06228740288748456,
+          "baseline_correct": false,
+          "greedy_clean": "1657",
+          "greedy_assert": "1720",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.177398681640625,
+            "L18.H6": 0.017912864685058594,
+            "L17.H3": 0.1497650146484375,
+            "L18.H5": 0.08197021484375
+          }
+        },
+        {
+          "problem": "44x47",
+          "C": 2068,
+          "W": 2112,
+          "span_ok": true,
+          "baseline_margin": 3.16932606510818,
+          "assert_margin": -4.544896118342876,
+          "shift": 7.7142221834510565,
+          "nec_W": 0.9158110362810106,
+          "nec_ctrl": 0.33469569490845275,
+          "baseline_correct": false,
+          "greedy_clean": "2048",
+          "greedy_assert": "2112",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.17999267578125,
+            "L18.H6": 0.03742408752441406,
+            "L17.H3": 0.148162841796875,
+            "L18.H5": 0.1640625
+          }
+        },
+        {
+          "problem": "48x56",
+          "C": 2688,
+          "W": 2736,
+          "span_ok": true,
+          "baseline_margin": 0.3860796680673957,
+          "assert_margin": -3.433946312405169,
+          "shift": 3.8200259804725647,
+          "nec_W": 1.281696276990481,
+          "nec_ctrl": -0.12668833786572603,
+          "baseline_correct": false,
+          "greedy_clean": "2784",
+          "greedy_assert": "2736",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.19220733642578125,
+            "L18.H6": 0.025724411010742188,
+            "L17.H3": 0.160400390625,
+            "L18.H5": 0.0493316650390625
+          }
+        },
+        {
+          "problem": "53x58",
+          "C": 3074,
+          "W": 3127,
+          "span_ok": true,
+          "baseline_margin": 6.702254369854927,
+          "assert_margin": -4.187094300985336,
+          "shift": 10.889348670840263,
+          "nec_W": 1.034357101248591,
+          "nec_ctrl": 0.10561691692711539,
+          "baseline_correct": false,
+          "greedy_clean": "2954",
+          "greedy_assert": "3127",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.13409423828125,
+            "L18.H6": 0.025673866271972656,
+            "L17.H3": 0.1185455322265625,
+            "L18.H5": 0.160369873046875
+          }
+        },
+        {
+          "problem": "57x49",
+          "C": 2793,
+          "W": 2850,
+          "span_ok": true,
+          "baseline_margin": 5.468983732163906,
+          "assert_margin": -5.042099744081497,
+          "shift": 10.511083476245403,
+          "nec_W": 0.9207675192038217,
+          "nec_ctrl": 0.27368752495984044,
+          "baseline_correct": true,
+          "greedy_clean": "2793",
+          "greedy_assert": "2850",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2139892578125,
+            "L18.H6": 0.022179603576660156,
+            "L17.H3": 0.1866607666015625,
+            "L18.H5": 0.072998046875
+          }
+        },
+        {
+          "problem": "59x61",
+          "C": 3599,
+          "W": 3658,
+          "span_ok": true,
+          "baseline_margin": 7.185521796345711,
+          "assert_margin": -2.0670241117477417,
+          "shift": 9.252545908093452,
+          "nec_W": 1.1797693703847345,
+          "nec_ctrl": -0.04273799317213742,
+          "baseline_correct": false,
+          "greedy_clean": "3699",
+          "greedy_assert": "3658",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09725570678710938,
+            "L18.H6": 0.026050567626953125,
+            "L17.H3": 0.086334228515625,
+            "L18.H5": 0.0602264404296875
+          }
+        },
+        {
+          "problem": "62x54",
+          "C": 3348,
+          "W": 3410,
+          "span_ok": true,
+          "baseline_margin": 4.972045540809631,
+          "assert_margin": -4.233232781291008,
+          "shift": 9.20527832210064,
+          "nec_W": 1.0160663363515547,
+          "nec_ctrl": -0.13974738084640248,
+          "baseline_correct": false,
+          "greedy_clean": "3240",
+          "greedy_assert": "3410",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.168701171875,
+            "L18.H6": 0.03421592712402344,
+            "L17.H3": 0.146942138671875,
+            "L18.H5": 0.0882568359375
+          }
+        },
+        {
+          "problem": "64x38",
+          "C": 2432,
+          "W": 2496,
+          "span_ok": true,
+          "baseline_margin": -2.3731434252113104,
+          "assert_margin": -2.385184172540903,
+          "shift": 0.012040747329592705,
+          "nec_W": null,
+          "nec_ctrl": null,
+          "baseline_correct": false,
+          "greedy_clean": "64",
+          "greedy_assert": "2496",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.29400634765625,
+            "L18.H6": 0.010828018188476562,
+            "L17.H3": 0.108734130859375,
+            "L18.H5": 0.0626068115234375
+          }
+        },
+        {
+          "problem": "68x53",
+          "C": 3604,
+          "W": 3672,
+          "span_ok": true,
+          "baseline_margin": 1.3006418533623219,
+          "assert_margin": -4.536850407719612,
+          "shift": 5.837492261081934,
+          "nec_W": 1.3102379442143908,
+          "nec_ctrl": -0.05479932714588523,
+          "baseline_correct": false,
+          "greedy_clean": "3",
+          "greedy_assert": "3672",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2083740234375,
+            "L18.H6": 0.035904884338378906,
+            "L17.H3": 0.1551971435546875,
+            "L18.H5": 0.08935546875
+          }
+        },
+        {
+          "problem": "71x69",
+          "C": 4899,
+          "W": 4970,
+          "span_ok": true,
+          "baseline_margin": 3.6320419311523438,
+          "assert_margin": -5.272284157574177,
+          "shift": 8.90432608872652,
+          "nec_W": 1.292556155964585,
+          "nec_ctrl": -0.012342069865366321,
+          "baseline_correct": false,
+          "greedy_clean": "4689",
+          "greedy_assert": "4970",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2777099609375,
+            "L18.H6": 0.04757976531982422,
+            "L17.H3": 0.16680145263671875,
+            "L18.H5": 0.0345458984375
+          }
+        },
+        {
+          "problem": "74x76",
+          "C": 5624,
+          "W": 5698,
+          "span_ok": true,
+          "baseline_margin": 4.460523009300232,
+          "assert_margin": -5.004230320453644,
+          "shift": 9.464753329753876,
+          "nec_W": 0.9624413882617958,
+          "nec_ctrl": 0.02493987724624604,
+          "baseline_correct": false,
+          "greedy_clean": "5520",
+          "greedy_assert": "5698",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.28656005859375,
+            "L18.H6": 0.06085777282714844,
+            "L17.H3": 0.1180419921875,
+            "L18.H5": 0.0582122802734375
+          }
+        },
+        {
+          "problem": "79x83",
+          "C": 6557,
+          "W": 6636,
+          "span_ok": true,
+          "baseline_margin": 5.946848839521408,
+          "assert_margin": -5.122969910502434,
+          "shift": 11.069818750023842,
+          "nec_W": 0.9796028923188616,
+          "nec_ctrl": -0.14220926316278776,
+          "baseline_correct": false,
+          "greedy_clean": "7077",
+          "greedy_assert": "6636",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2876739501953125,
+            "L18.H6": 0.04394960403442383,
+            "L17.H3": 0.0600738525390625,
+            "L18.H5": 0.045318603515625
+          }
+        },
+        {
+          "problem": "82x19",
+          "C": 1558,
+          "W": 1640,
+          "span_ok": true,
+          "baseline_margin": 1.141556665301323,
+          "assert_margin": -0.7549299076199532,
+          "shift": 1.896486572921276,
+          "nec_W": 4.126325850320277,
+          "nec_ctrl": -0.36228042086818646,
+          "baseline_correct": false,
+          "greedy_clean": "1618",
+          "greedy_assert": "1538",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.14447021484375,
+            "L18.H6": 0.020992755889892578,
+            "L17.H3": 0.123779296875,
+            "L18.H5": 0.10774993896484375
+          }
+        },
+        {
+          "problem": "91x33",
+          "C": 3003,
+          "W": 3094,
+          "span_ok": true,
+          "baseline_margin": 5.952989816665649,
+          "assert_margin": -2.051439195871353,
+          "shift": 8.004429012537003,
+          "nec_W": 1.2960419331498028,
+          "nec_ctrl": 0.04138871365821776,
+          "baseline_correct": true,
+          "greedy_clean": "3003",
+          "greedy_assert": "3094",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.125823974609375,
+            "L18.H6": 0.03114032745361328,
+            "L17.H3": 0.0716400146484375,
+            "L18.H5": 0.05389404296875
+          }
+        },
+        {
+          "problem": "98x22",
+          "C": 2156,
+          "W": 2254,
+          "span_ok": true,
+          "baseline_margin": 4.019925065338612,
+          "assert_margin": -2.435642585158348,
+          "shift": 6.45556765049696,
+          "nec_W": 1.565766363045984,
+          "nec_ctrl": -0.4442417040749198,
+          "baseline_correct": false,
+          "greedy_clean": "2196",
+          "greedy_assert": "2254",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.075439453125,
+            "L18.H6": 0.019599318504333496,
+            "L17.H3": 0.10198974609375,
+            "L18.H5": 0.09767913818359375
+          }
+        }
+      ]
+    },
+    "it": {
+      "n_items": 60,
+      "n_sig": 60,
+      "median_nec_W": 0.951037754775224,
+      "median_nec_ctrl": -0.03495815609589601,
+      "flip_rate": 0.5333333333333333,
+      "baseline_correct_rate": 0.8,
+      "top_heads": [
+        {
+          "layer": 20,
+          "head": 7,
+          "mean_nec": 0.11741060991717239,
+          "n": 60
+        },
+        {
+          "layer": 23,
+          "head": 7,
+          "mean_nec": 0.08841796990638276,
+          "n": 60
+        },
+        {
+          "layer": 17,
+          "head": 3,
+          "mean_nec": 0.07540594665273623,
+          "n": 60
+        },
+        {
+          "layer": 22,
+          "head": 3,
+          "mean_nec": 0.0744428308911729,
+          "n": 60
+        },
+        {
+          "layer": 18,
+          "head": 6,
+          "mean_nec": 0.060814684565200304,
+          "n": 60
+        },
+        {
+          "layer": 21,
+          "head": 6,
+          "mean_nec": 0.05648949996559488,
+          "n": 60
+        },
+        {
+          "layer": 15,
+          "head": 0,
+          "mean_nec": 0.05146362502355138,
+          "n": 60
+        },
+        {
+          "layer": 12,
+          "head": 6,
+          "mean_nec": 0.045163234778038706,
+          "n": 60
+        },
+        {
+          "layer": 21,
+          "head": 7,
+          "mean_nec": 0.038129201753548676,
+          "n": 60
+        },
+        {
+          "layer": 11,
+          "head": 2,
+          "mean_nec": 0.0349887525480184,
+          "n": 60
+        },
+        {
+          "layer": 11,
+          "head": 1,
+          "mean_nec": 0.03257537070072735,
+          "n": 60
+        },
+        {
+          "layer": 11,
+          "head": 4,
+          "mean_nec": 0.030390909081976586,
+          "n": 60
+        }
+      ],
+      "L18H5_mean_nec": 0.003131558676542962,
+      "strata": {
+        "baseline_correct": {
+          "n_nec": 48,
+          "median_nec_W": 0.951037754775224,
+          "mean_shift": 15.136152137937914
+        },
+        "baseline_wrong": {
+          "n_nec": 12,
+          "median_nec_W": 0.9526537442579213,
+          "mean_shift": 17.86242160927107
+        }
+      },
+      "rows": [
+        {
+          "problem": "7x8",
+          "C": 56,
+          "W": 63,
+          "span_ok": true,
+          "baseline_margin": 18.237800962809615,
+          "assert_margin": 13.541980100379078,
+          "shift": 4.695820862430537,
+          "nec_W": 0.27809726725261485,
+          "nec_ctrl": -0.05880906510025281,
+          "baseline_correct": true,
+          "greedy_clean": "56",
+          "greedy_assert": "56",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0526123046875,
+            "L18.H6": 0.0071258544921875,
+            "L17.H3": 0.0066547393798828125,
+            "L18.H5": 0.0081787109375
+          }
+        },
+        {
+          "problem": "6x7",
+          "C": 42,
+          "W": 48,
+          "span_ok": true,
+          "baseline_margin": 15.062499880791279,
+          "assert_margin": 12.124999880908945,
+          "shift": 2.937499999882334,
+          "nec_W": 0.9574466867634311,
+          "nec_ctrl": -0.21276595742003504,
+          "baseline_correct": true,
+          "greedy_clean": "42",
+          "greedy_assert": "42",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.06103515625,
+            "L18.H6": 0.0076141357421875,
+            "L17.H3": 0.015247344970703125,
+            "L18.H5": 0.01738739013671875
+          }
+        },
+        {
+          "problem": "9x9",
+          "C": 81,
+          "W": 90,
+          "span_ok": true,
+          "baseline_margin": 22.86583781411298,
+          "assert_margin": 14.687245078386468,
+          "shift": 8.178592735726511,
+          "nec_W": 0.6072522325494233,
+          "nec_ctrl": -0.0767800131589294,
+          "baseline_correct": true,
+          "greedy_clean": "81",
+          "greedy_assert": "81",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.02569580078125,
+            "L18.H6": 0.0245208740234375,
+            "L17.H3": 0.0113525390625,
+            "L18.H5": 0.0111541748046875
+          }
+        },
+        {
+          "problem": "8x7",
+          "C": 56,
+          "W": 64,
+          "span_ok": true,
+          "baseline_margin": 15.873226540831183,
+          "assert_margin": 13.813282618783887,
+          "shift": 2.059943922047296,
+          "nec_W": 0.13155536420802663,
+          "nec_ctrl": -0.2542899752549717,
+          "baseline_correct": true,
+          "greedy_clean": "56",
+          "greedy_assert": "56",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0443115234375,
+            "L18.H6": 0.00647735595703125,
+            "L17.H3": 0.0063724517822265625,
+            "L18.H5": 0.0109405517578125
+          }
+        },
+        {
+          "problem": "9x6",
+          "C": 54,
+          "W": 63,
+          "span_ok": true,
+          "baseline_margin": 18.6522070784913,
+          "assert_margin": 13.396582503285572,
+          "shift": 5.255624575205729,
+          "nec_W": 0.6218545131609701,
+          "nec_ctrl": -0.03500322201039199,
+          "baseline_correct": true,
+          "greedy_clean": "54",
+          "greedy_assert": "54",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.033966064453125,
+            "L18.H6": 0.01053619384765625,
+            "L17.H3": 0.0202178955078125,
+            "L18.H5": 0.00820159912109375
+          }
+        },
+        {
+          "problem": "12x11",
+          "C": 132,
+          "W": 144,
+          "span_ok": true,
+          "baseline_margin": 17.105573536370684,
+          "assert_margin": 13.763082291935461,
+          "shift": 3.342491244435223,
+          "nec_W": 0.37835222567428983,
+          "nec_ctrl": -0.05381112490112879,
+          "baseline_correct": true,
+          "greedy_clean": "132",
+          "greedy_assert": "132",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.03411865234375,
+            "L18.H6": 0.009562492370605469,
+            "L17.H3": 0.007381439208984375,
+            "L18.H5": 0.0074062347412109375
+          }
+        },
+        {
+          "problem": "13x14",
+          "C": 182,
+          "W": 195,
+          "span_ok": true,
+          "baseline_margin": 21.84138453421474,
+          "assert_margin": 16.573815489420667,
+          "shift": 5.267569044794072,
+          "nec_W": 0.8267144436694622,
+          "nec_ctrl": -0.3283226554818118,
+          "baseline_correct": true,
+          "greedy_clean": "182",
+          "greedy_assert": "182",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.020751953125,
+            "L18.H6": 0.010033607482910156,
+            "L17.H3": 0.027248382568359375,
+            "L18.H5": 0.010251998901367188
+          }
+        },
+        {
+          "problem": "17x18",
+          "C": 306,
+          "W": 323,
+          "span_ok": true,
+          "baseline_margin": 22.79303002358847,
+          "assert_margin": 14.626307357759515,
+          "shift": 8.166722665828956,
+          "nec_W": 1.0863972062686287,
+          "nec_ctrl": -0.1143985728710856,
+          "baseline_correct": true,
+          "greedy_clean": "306",
+          "greedy_assert": "306",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0241241455078125,
+            "L18.H6": 0.01280355453491211,
+            "L17.H3": 0.01926422119140625,
+            "L18.H5": 0.017299652099609375
+          }
+        },
+        {
+          "problem": "23x7",
+          "C": 161,
+          "W": 184,
+          "span_ok": true,
+          "baseline_margin": 24.82025945307396,
+          "assert_margin": 18.073023800105148,
+          "shift": 6.747235652968811,
+          "nec_W": 0.7410746640292498,
+          "nec_ctrl": -0.2753431164851595,
+          "baseline_correct": true,
+          "greedy_clean": "161",
+          "greedy_assert": "161",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.027862548828125,
+            "L18.H6": 0.0033922195434570312,
+            "L17.H3": 0.0276336669921875,
+            "L18.H5": 0.009286880493164062
+          }
+        },
+        {
+          "problem": "14x16",
+          "C": 224,
+          "W": 238,
+          "span_ok": true,
+          "baseline_margin": 17.247820854796373,
+          "assert_margin": 16.12984705189774,
+          "shift": 1.1179738028986321,
+          "nec_W": 0.8089376857913558,
+          "nec_ctrl": -0.23373266946143215,
+          "baseline_correct": true,
+          "greedy_clean": "224",
+          "greedy_assert": "224",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.018798828125,
+            "L18.H6": 0.010756254196166992,
+            "L17.H3": 0.030780792236328125,
+            "L18.H5": 0.012699127197265625
+          }
+        },
+        {
+          "problem": "19x21",
+          "C": 399,
+          "W": 418,
+          "span_ok": true,
+          "baseline_margin": 21.261727265360605,
+          "assert_margin": 4.981569803767343,
+          "shift": 16.280157461593262,
+          "nec_W": 1.1502188197859098,
+          "nec_ctrl": -0.12040818768295344,
+          "baseline_correct": true,
+          "greedy_clean": "399",
+          "greedy_assert": "399",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.04149627685546875,
+            "L18.H6": 0.01210165023803711,
+            "L17.H3": 0.034603118896484375,
+            "L18.H5": 0.005687713623046875
+          }
+        },
+        {
+          "problem": "24x26",
+          "C": 624,
+          "W": 648,
+          "span_ok": true,
+          "baseline_margin": 12.580146334219535,
+          "assert_margin": 9.31386365716753,
+          "shift": 3.266282677052004,
+          "nec_W": 0.9982031402594818,
+          "nec_ctrl": -1.397177597804482,
+          "baseline_correct": true,
+          "greedy_clean": "624",
+          "greedy_assert": "624",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.028167724609375,
+            "L18.H6": 0.02204751968383789,
+            "L17.H3": 0.0947265625,
+            "L18.H5": 0.012176513671875
+          }
+        },
+        {
+          "problem": "23x47",
+          "C": 1081,
+          "W": 1104,
+          "span_ok": true,
+          "baseline_margin": 17.98043847340159,
+          "assert_margin": 2.2852841889834963,
+          "shift": 15.695154284418095,
+          "nec_W": 0.968615501744768,
+          "nec_ctrl": 0.013541948455171454,
+          "baseline_correct": true,
+          "greedy_clean": "1081",
+          "greedy_assert": "1081",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.01844024658203125,
+            "L18.H6": 0.008122682571411133,
+            "L17.H3": 0.07855224609375,
+            "L18.H5": 0.0801544189453125
+          }
+        },
+        {
+          "problem": "31x29",
+          "C": 899,
+          "W": 930,
+          "span_ok": true,
+          "baseline_margin": 28.512969957184396,
+          "assert_margin": 4.565445614716737,
+          "shift": 23.94752434246766,
+          "nec_W": 0.8929066468025189,
+          "nec_ctrl": -0.09684096515715625,
+          "baseline_correct": true,
+          "greedy_clean": "899",
+          "greedy_assert": "899",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.05428314208984375,
+            "L18.H6": 0.012595176696777344,
+            "L17.H3": 0.03760528564453125,
+            "L18.H5": 0.007167816162109375
+          }
+        },
+        {
+          "problem": "38x29",
+          "C": 1102,
+          "W": 1140,
+          "span_ok": true,
+          "baseline_margin": 17.936785485304426,
+          "assert_margin": -4.556715254904702,
+          "shift": 22.49350074020913,
+          "nec_W": 0.9749926604658282,
+          "nec_ctrl": -0.0644596373718786,
+          "baseline_correct": true,
+          "greedy_clean": "1102",
+          "greedy_assert": "1142",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.030002593994140625,
+            "L18.H6": 0.006610393524169922,
+            "L17.H3": 0.057769775390625,
+            "L18.H5": 0.059326171875
+          }
+        },
+        {
+          "problem": "47x53",
+          "C": 2491,
+          "W": 2538,
+          "span_ok": true,
+          "baseline_margin": 6.206691149389371,
+          "assert_margin": -6.450916632718872,
+          "shift": 12.657607782108244,
+          "nec_W": 1.0406357688896677,
+          "nec_ctrl": -0.02361948522511054,
+          "baseline_correct": false,
+          "greedy_clean": "2541",
+          "greedy_assert": "2538",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.166748046875,
+            "L18.H6": 0.010576009750366211,
+            "L17.H3": 0.162200927734375,
+            "L18.H5": 0.0246124267578125
+          }
+        },
+        {
+          "problem": "67x43",
+          "C": 2881,
+          "W": 2948,
+          "span_ok": true,
+          "baseline_margin": 2.5120147299021482,
+          "assert_margin": -14.190140776729095,
+          "shift": 16.702155506631243,
+          "nec_W": 1.015474201861276,
+          "nec_ctrl": -0.0018159979190914334,
+          "baseline_correct": false,
+          "greedy_clean": "2961",
+          "greedy_assert": "2948",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1105194091796875,
+            "L18.H6": 0.013200998306274414,
+            "L17.H3": 0.14935302734375,
+            "L18.H5": 0.04608917236328125
+          }
+        },
+        {
+          "problem": "49x51",
+          "C": 2499,
+          "W": 2548,
+          "span_ok": true,
+          "baseline_margin": 18.265915610769298,
+          "assert_margin": 0.37844155658967793,
+          "shift": 17.88747405417962,
+          "nec_W": 1.0220572401667352,
+          "nec_ctrl": -0.0072089199132488865,
+          "baseline_correct": true,
+          "greedy_clean": "2499",
+          "greedy_assert": "2499",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1356658935546875,
+            "L18.H6": 0.009979009628295898,
+            "L17.H3": 0.116180419921875,
+            "L18.H5": 0.009796142578125
+          }
+        },
+        {
+          "problem": "84x37",
+          "C": 3108,
+          "W": 3192,
+          "span_ok": true,
+          "baseline_margin": 6.140360587625764,
+          "assert_margin": -10.448250064189779,
+          "shift": 16.588610651815543,
+          "nec_W": 0.9338485477475704,
+          "nec_ctrl": -0.03777698164612138,
+          "baseline_correct": false,
+          "greedy_clean": "3018",
+          "greedy_assert": "3192",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.04132080078125,
+            "L18.H6": 0.009353399276733398,
+            "L17.H3": 0.09229278564453125,
+            "L18.H5": 0.03801727294921875
+          }
+        },
+        {
+          "problem": "56x78",
+          "C": 4368,
+          "W": 4424,
+          "span_ok": true,
+          "baseline_margin": 10.430606114627153,
+          "assert_margin": -7.255211176387093,
+          "shift": 17.685817291014246,
+          "nec_W": 0.8878654416745905,
+          "nec_ctrl": -0.0003427708809191813,
+          "baseline_correct": false,
+          "greedy_clean": "4448",
+          "greedy_assert": "4424",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.12473297119140625,
+            "L18.H6": 0.011684894561767578,
+            "L17.H3": 0.117767333984375,
+            "L18.H5": 0.02404022216796875
+          }
+        },
+        {
+          "problem": "73x68",
+          "C": 4964,
+          "W": 5037,
+          "span_ok": true,
+          "baseline_margin": 14.450124216731638,
+          "assert_margin": -7.694600646089384,
+          "shift": 22.144724862821022,
+          "nec_W": 0.8607761122129225,
+          "nec_ctrl": -0.005106741861773109,
+          "baseline_correct": false,
+          "greedy_clean": "4974",
+          "greedy_assert": "5037",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1235504150390625,
+            "L18.H6": 0.010711729526519775,
+            "L17.H3": 0.08075714111328125,
+            "L18.H5": 0.01790618896484375
+          }
+        },
+        {
+          "problem": "18x17",
+          "C": 306,
+          "W": 324,
+          "span_ok": true,
+          "baseline_margin": 15.578887045412102,
+          "assert_margin": 8.941408953339305,
+          "shift": 6.637478092072797,
+          "nec_W": 0.8963250457224102,
+          "nec_ctrl": -0.40523264862267094,
+          "baseline_correct": true,
+          "greedy_clean": "306",
+          "greedy_assert": "306",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0338287353515625,
+            "L18.H6": 0.014388084411621094,
+            "L17.H3": 0.03343963623046875,
+            "L18.H5": 0.02520751953125
+          }
+        },
+        {
+          "problem": "27x33",
+          "C": 891,
+          "W": 918,
+          "span_ok": true,
+          "baseline_margin": 24.13402970903735,
+          "assert_margin": -2.955604766124452,
+          "shift": 27.0896344751618,
+          "nec_W": 0.944769737535383,
+          "nec_ctrl": -0.061330014800677124,
+          "baseline_correct": true,
+          "greedy_clean": "891",
+          "greedy_assert": "918",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09267425537109375,
+            "L18.H6": 0.03104400634765625,
+            "L17.H3": 0.07654571533203125,
+            "L18.H5": 0.01145172119140625
+          }
+        },
+        {
+          "problem": "34x29",
+          "C": 986,
+          "W": 1020,
+          "span_ok": true,
+          "baseline_margin": 19.440109993709484,
+          "assert_margin": -0.749804282135301,
+          "shift": 20.189914275844785,
+          "nec_W": 1.154743176964358,
+          "nec_ctrl": -0.0603131653791745,
+          "baseline_correct": true,
+          "greedy_clean": "986",
+          "greedy_assert": "1020",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.07958984375,
+            "L18.H6": 0.009432792663574219,
+            "L17.H3": 0.047088623046875,
+            "L18.H5": 0.031497955322265625
+          }
+        },
+        {
+          "problem": "41x38",
+          "C": 1558,
+          "W": 1599,
+          "span_ok": true,
+          "baseline_margin": 23.063059878812055,
+          "assert_margin": -9.297971340289223,
+          "shift": 32.36103121910128,
+          "nec_W": 0.9420613570662509,
+          "nec_ctrl": 0.007347608082537163,
+          "baseline_correct": true,
+          "greedy_clean": "1558",
+          "greedy_assert": "1599",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0668487548828125,
+            "L18.H6": 0.005692005157470703,
+            "L17.H3": 0.08782196044921875,
+            "L18.H5": 0.021078109741210938
+          }
+        },
+        {
+          "problem": "52x48",
+          "C": 2496,
+          "W": 2548,
+          "span_ok": true,
+          "baseline_margin": 16.81395561791578,
+          "assert_margin": -2.0260494435351575,
+          "shift": 18.84000506145094,
+          "nec_W": 1.021176056779864,
+          "nec_ctrl": -0.041704505370800025,
+          "baseline_correct": true,
+          "greedy_clean": "2496",
+          "greedy_assert": "2544",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.08446884155273438,
+            "L18.H6": 0.007394075393676758,
+            "L17.H3": 0.0878448486328125,
+            "L18.H5": 0.01558685302734375
+          }
+        },
+        {
+          "problem": "63x57",
+          "C": 3591,
+          "W": 3654,
+          "span_ok": true,
+          "baseline_margin": 11.21059378515929,
+          "assert_margin": -7.9295314269838855,
+          "shift": 19.140125212143175,
+          "nec_W": 0.9413320039595033,
+          "nec_ctrl": -0.040430633061212994,
+          "baseline_correct": false,
+          "greedy_clean": "3531",
+          "greedy_assert": "3654",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0719146728515625,
+            "L18.H6": 0.01483297348022461,
+            "L17.H3": 0.12314605712890625,
+            "L18.H5": 0.03011322021484375
+          }
+        },
+        {
+          "problem": "72x68",
+          "C": 4896,
+          "W": 4968,
+          "span_ok": true,
+          "baseline_margin": 8.440970666684734,
+          "assert_margin": -10.93511590246635,
+          "shift": 19.376086569151084,
+          "nec_W": 0.9077455469277672,
+          "nec_ctrl": -0.0029448655303760166,
+          "baseline_correct": true,
+          "greedy_clean": "4896",
+          "greedy_assert": "4968",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.2436065673828125,
+            "L18.H6": 0.012831687927246094,
+            "L17.H3": 0.143890380859375,
+            "L18.H5": 0.017131805419921875
+          }
+        },
+        {
+          "problem": "29x31",
+          "C": 899,
+          "W": 928,
+          "span_ok": true,
+          "baseline_margin": 17.38197512505576,
+          "assert_margin": -4.621816709055565,
+          "shift": 22.003791834111325,
+          "nec_W": 0.9158886652113921,
+          "nec_ctrl": -0.02850525505033843,
+          "baseline_correct": false,
+          "greedy_clean": "909",
+          "greedy_assert": "928",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.065399169921875,
+            "L18.H6": 0.01590251922607422,
+            "L17.H3": 0.0467529296875,
+            "L18.H5": 0.006069183349609375
+          }
+        },
+        {
+          "problem": "46x54",
+          "C": 2484,
+          "W": 2530,
+          "span_ok": true,
+          "baseline_margin": 7.368090377558474,
+          "assert_margin": -8.63140177729656,
+          "shift": 15.999492154855034,
+          "nec_W": 1.0349870712532434,
+          "nec_ctrl": -0.008062738510782803,
+          "baseline_correct": false,
+          "greedy_clean": "2544",
+          "greedy_assert": "2530",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.11415481567382812,
+            "L18.H6": 0.010155081748962402,
+            "L17.H3": 0.108642578125,
+            "L18.H5": 0.02544403076171875
+          }
+        },
+        {
+          "problem": "58x62",
+          "C": 3596,
+          "W": 3654,
+          "span_ok": true,
+          "baseline_margin": 10.198251733905636,
+          "assert_margin": -8.879579518077662,
+          "shift": 19.077831251983298,
+          "nec_W": 1.0343430631359147,
+          "nec_ctrl": 0.00011300463483818349,
+          "baseline_correct": true,
+          "greedy_clean": "3596",
+          "greedy_assert": "3654",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.11991119384765625,
+            "L18.H6": 0.014495491981506348,
+            "L17.H3": 0.12255096435546875,
+            "L18.H5": 0.018932342529296875
+          }
+        },
+        {
+          "problem": "77x83",
+          "C": 6391,
+          "W": 6468,
+          "span_ok": true,
+          "baseline_margin": 7.516307670623064,
+          "assert_margin": -7.892279859632254,
+          "shift": 15.408587530255318,
+          "nec_W": 0.9904901917702356,
+          "nec_ctrl": 0.013286943688165905,
+          "baseline_correct": false,
+          "greedy_clean": "6471",
+          "greedy_assert": "6468",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.08621978759765625,
+            "L18.H6": 0.019046783447265625,
+            "L17.H3": 0.0826873779296875,
+            "L18.H5": 0.01541900634765625
+          }
+        },
+        {
+          "problem": "88x17",
+          "C": 1496,
+          "W": 1584,
+          "span_ok": true,
+          "baseline_margin": 14.519447541075351,
+          "assert_margin": -3.8198061363636953,
+          "shift": 18.339253677439046,
+          "nec_W": 0.9106572311512552,
+          "nec_ctrl": -0.03901961827235138,
+          "baseline_correct": true,
+          "greedy_clean": "1496",
+          "greedy_assert": "1504",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.039188385009765625,
+            "L18.H6": 0.003968596458435059,
+            "L17.H3": 0.07312774658203125,
+            "L18.H5": 0.026819229125976562
+          }
+        },
+        {
+          "problem": "96x23",
+          "C": 2208,
+          "W": 2304,
+          "span_ok": true,
+          "baseline_margin": 15.360937441371789,
+          "assert_margin": 6.49964969429675,
+          "shift": 8.861287747075039,
+          "nec_W": 1.0383206543889827,
+          "nec_ctrl": 0.18343267190968005,
+          "baseline_correct": true,
+          "greedy_clean": "2208",
+          "greedy_assert": "2208",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.022874832153320312,
+            "L18.H6": 0.010882258415222168,
+            "L17.H3": 0.1099395751953125,
+            "L18.H5": 0.0367584228515625
+          }
+        },
+        {
+          "problem": "39x44",
+          "C": 1716,
+          "W": 1755,
+          "span_ok": true,
+          "baseline_margin": 13.939196423918474,
+          "assert_margin": -9.45232678388129,
+          "shift": 23.391523207799764,
+          "nec_W": 1.0375338042010462,
+          "nec_ctrl": 0.005355866663546388,
+          "baseline_correct": true,
+          "greedy_clean": "1716",
+          "greedy_assert": "1755",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.06468963623046875,
+            "L18.H6": 0.008388042449951172,
+            "L17.H3": 0.1005706787109375,
+            "L18.H5": 0.032154083251953125
+          }
+        },
+        {
+          "problem": "64x71",
+          "C": 4544,
+          "W": 4608,
+          "span_ok": true,
+          "baseline_margin": 13.395723696943605,
+          "assert_margin": -9.691215091079357,
+          "shift": 23.086938788022962,
+          "nec_W": 0.9573057720150651,
+          "nec_ctrl": 0.0032675379633725493,
+          "baseline_correct": true,
+          "greedy_clean": "4544",
+          "greedy_assert": "4608",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09075927734375,
+            "L18.H6": 0.013110637664794922,
+            "L17.H3": 0.09810638427734375,
+            "L18.H5": 0.0153350830078125
+          }
+        },
+        {
+          "problem": "11x12",
+          "C": 132,
+          "W": 143,
+          "span_ok": true,
+          "baseline_margin": 21.311933517961506,
+          "assert_margin": 14.017020706490257,
+          "shift": 7.294912811471249,
+          "nec_W": 0.8386808911641271,
+          "nec_ctrl": -0.017745189075412775,
+          "baseline_correct": true,
+          "greedy_clean": "132",
+          "greedy_assert": "132",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.031646728515625,
+            "L18.H6": 0.010479927062988281,
+            "L17.H3": 0.01146697998046875,
+            "L18.H5": 0.005990028381347656
+          }
+        },
+        {
+          "problem": "15x16",
+          "C": 240,
+          "W": 255,
+          "span_ok": true,
+          "baseline_margin": 19.677662968698883,
+          "assert_margin": 11.59213346429624,
+          "shift": 8.085529504402643,
+          "nec_W": 0.8645113043107777,
+          "nec_ctrl": -0.046526078418747424,
+          "baseline_correct": true,
+          "greedy_clean": "240",
+          "greedy_assert": "240",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0291748046875,
+            "L18.H6": 0.015308380126953125,
+            "L17.H3": 0.03452301025390625,
+            "L18.H5": 0.01084136962890625
+          }
+        },
+        {
+          "problem": "16x14",
+          "C": 224,
+          "W": 240,
+          "span_ok": true,
+          "baseline_margin": 14.873239398229089,
+          "assert_margin": 12.384408649069883,
+          "shift": 2.488830749159206,
+          "nec_W": 0.785967365629174,
+          "nec_ctrl": -0.15266313658897884,
+          "baseline_correct": true,
+          "greedy_clean": "224",
+          "greedy_assert": "224",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0283660888671875,
+            "L18.H6": 0.012511253356933594,
+            "L17.H3": 0.02813720703125,
+            "L18.H5": 0.01261138916015625
+          }
+        },
+        {
+          "problem": "21x19",
+          "C": 399,
+          "W": 420,
+          "span_ok": true,
+          "baseline_margin": 34.570031896259025,
+          "assert_margin": 20.783285729830823,
+          "shift": 13.786746166428202,
+          "nec_W": 0.8684296124297123,
+          "nec_ctrl": -0.158206801427274,
+          "baseline_correct": true,
+          "greedy_clean": "399",
+          "greedy_assert": "399",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.03082275390625,
+            "L18.H6": 0.012000560760498047,
+            "L17.H3": 0.02657318115234375,
+            "L18.H5": 0.007076263427734375
+          }
+        },
+        {
+          "problem": "22x18",
+          "C": 396,
+          "W": 418,
+          "span_ok": true,
+          "baseline_margin": 14.040528565789373,
+          "assert_margin": 6.626589184092154,
+          "shift": 7.413939381697219,
+          "nec_W": 0.8362273384474697,
+          "nec_ctrl": -0.4890935987748792,
+          "baseline_correct": true,
+          "greedy_clean": "396",
+          "greedy_assert": "396",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.040557861328125,
+            "L18.H6": 0.012929439544677734,
+            "L17.H3": 0.05645751953125,
+            "L18.H5": 0.006221771240234375
+          }
+        },
+        {
+          "problem": "26x24",
+          "C": 624,
+          "W": 650,
+          "span_ok": true,
+          "baseline_margin": 15.532761124457465,
+          "assert_margin": 13.91732153967314,
+          "shift": 1.6154395847843261,
+          "nec_W": 0.5633307846160657,
+          "nec_ctrl": -0.42459496502523625,
+          "baseline_correct": true,
+          "greedy_clean": "624",
+          "greedy_assert": "624",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.017246246337890625,
+            "L18.H6": 0.014567375183105469,
+            "L17.H3": 0.02960205078125,
+            "L18.H5": 0.012786865234375
+          }
+        },
+        {
+          "problem": "28x33",
+          "C": 924,
+          "W": 952,
+          "span_ok": true,
+          "baseline_margin": 17.47745562340242,
+          "assert_margin": 3.747271609841846,
+          "shift": 13.730184013560574,
+          "nec_W": 0.8821901905636598,
+          "nec_ctrl": -0.12751120315332104,
+          "baseline_correct": true,
+          "greedy_clean": "924",
+          "greedy_assert": "924",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.08914566040039062,
+            "L18.H6": 0.023845672607421875,
+            "L17.H3": 0.05792236328125,
+            "L18.H5": 0.00849151611328125
+          }
+        },
+        {
+          "problem": "33x37",
+          "C": 1221,
+          "W": 1254,
+          "span_ok": true,
+          "baseline_margin": 14.062970323429909,
+          "assert_margin": -9.107116255152505,
+          "shift": 23.170086578582413,
+          "nec_W": 1.0161736814549402,
+          "nec_ctrl": -0.02437465502154381,
+          "baseline_correct": true,
+          "greedy_clean": "1221",
+          "greedy_assert": "1254",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.050914764404296875,
+            "L18.H6": 0.00998687744140625,
+            "L17.H3": 0.075347900390625,
+            "L18.H5": 0.03649139404296875
+          }
+        },
+        {
+          "problem": "36x42",
+          "C": 1512,
+          "W": 1548,
+          "span_ok": true,
+          "baseline_margin": 17.22262944834347,
+          "assert_margin": -1.8197531472105766,
+          "shift": 19.042382595554045,
+          "nec_W": 1.009063014759283,
+          "nec_ctrl": -0.17159819591752395,
+          "baseline_correct": true,
+          "greedy_clean": "1512",
+          "greedy_assert": "1548",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.07678985595703125,
+            "L18.H6": 0.007843017578125,
+            "L17.H3": 0.13680267333984375,
+            "L18.H5": 0.01824951171875
+          }
+        },
+        {
+          "problem": "43x39",
+          "C": 1677,
+          "W": 1720,
+          "span_ok": true,
+          "baseline_margin": 22.247588050115155,
+          "assert_margin": -1.3989904525369639,
+          "shift": 23.64657850265212,
+          "nec_W": 0.9382053844940116,
+          "nec_ctrl": -0.010995336162321368,
+          "baseline_correct": true,
+          "greedy_clean": "1677",
+          "greedy_assert": "1720",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.040802001953125,
+            "L18.H6": 0.005836963653564453,
+            "L17.H3": 0.0642852783203125,
+            "L18.H5": 0.033420562744140625
+          }
+        },
+        {
+          "problem": "44x47",
+          "C": 2068,
+          "W": 2112,
+          "span_ok": true,
+          "baseline_margin": 14.556092482816894,
+          "assert_margin": -3.899038426228799,
+          "shift": 18.455130909045693,
+          "nec_W": 1.0270638921060338,
+          "nec_ctrl": 0.0036736642801257504,
+          "baseline_correct": true,
+          "greedy_clean": "2068",
+          "greedy_assert": "2112",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.07550048828125,
+            "L18.H6": 0.013429641723632812,
+            "L17.H3": 0.1282958984375,
+            "L18.H5": 0.0517425537109375
+          }
+        },
+        {
+          "problem": "48x56",
+          "C": 2688,
+          "W": 2736,
+          "span_ok": true,
+          "baseline_margin": 12.684690179081372,
+          "assert_margin": -10.188092467815295,
+          "shift": 22.872782646896667,
+          "nec_W": 1.0198857655475728,
+          "nec_ctrl": -0.030066435629621843,
+          "baseline_correct": true,
+          "greedy_clean": "2688",
+          "greedy_assert": "2736",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1579132080078125,
+            "L18.H6": 0.013919830322265625,
+            "L17.H3": 0.13421630859375,
+            "L18.H5": 0.0162200927734375
+          }
+        },
+        {
+          "problem": "53x58",
+          "C": 3074,
+          "W": 3127,
+          "span_ok": true,
+          "baseline_margin": 15.806256272480823,
+          "assert_margin": -4.543511248019058,
+          "shift": 20.34976752049988,
+          "nec_W": 0.9639754845563392,
+          "nec_ctrl": 0.00736493573193752,
+          "baseline_correct": false,
+          "greedy_clean": "3014",
+          "greedy_assert": "3127",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.077545166015625,
+            "L18.H6": 0.01399993896484375,
+            "L17.H3": 0.1069183349609375,
+            "L18.H5": 0.053070068359375
+          }
+        },
+        {
+          "problem": "57x49",
+          "C": 2793,
+          "W": 2850,
+          "span_ok": true,
+          "baseline_margin": 8.304912336170673,
+          "assert_margin": -8.898199579911307,
+          "shift": 17.20311191608198,
+          "nec_W": 0.9363773519120859,
+          "nec_ctrl": -0.02158024917536306,
+          "baseline_correct": false,
+          "greedy_clean": "2873",
+          "greedy_assert": "2850",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.13616943359375,
+            "L18.H6": 0.006851673126220703,
+            "L17.H3": 0.1164093017578125,
+            "L18.H5": 0.0220184326171875
+          }
+        },
+        {
+          "problem": "59x61",
+          "C": 3599,
+          "W": 3658,
+          "span_ok": true,
+          "baseline_margin": 16.14072146639228,
+          "assert_margin": -4.862611832097173,
+          "shift": 21.00333329848945,
+          "nec_W": 1.013641194275194,
+          "nec_ctrl": -0.017895677954856148,
+          "baseline_correct": true,
+          "greedy_clean": "3599",
+          "greedy_assert": "3658",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09908676147460938,
+            "L18.H6": 0.014447808265686035,
+            "L17.H3": 0.09381103515625,
+            "L18.H5": 0.014089584350585938
+          }
+        },
+        {
+          "problem": "62x54",
+          "C": 3348,
+          "W": 3410,
+          "span_ok": true,
+          "baseline_margin": 19.938805938931182,
+          "assert_margin": -2.675901358947158,
+          "shift": 22.61470729787834,
+          "nec_W": 0.9423182383776983,
+          "nec_ctrl": -0.011643714498701056,
+          "baseline_correct": true,
+          "greedy_clean": "3348",
+          "greedy_assert": "3410",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.0319976806640625,
+            "L18.H6": 0.010880708694458008,
+            "L17.H3": 0.076995849609375,
+            "L18.H5": 0.03403472900390625
+          }
+        },
+        {
+          "problem": "64x38",
+          "C": 2432,
+          "W": 2496,
+          "span_ok": true,
+          "baseline_margin": 7.7734758120714105,
+          "assert_margin": -12.210259648720239,
+          "shift": 19.98373546079165,
+          "nec_W": 1.0000839366750258,
+          "nec_ctrl": -0.015958270870695516,
+          "baseline_correct": true,
+          "greedy_clean": "2432",
+          "greedy_assert": "2496",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.08642578125,
+            "L18.H6": 0.006590366363525391,
+            "L17.H3": 0.10813140869140625,
+            "L18.H5": 0.02249908447265625
+          }
+        },
+        {
+          "problem": "68x53",
+          "C": 3604,
+          "W": 3672,
+          "span_ok": true,
+          "baseline_margin": 11.193436690955423,
+          "assert_margin": -10.256317094434053,
+          "shift": 21.449753785389476,
+          "nec_W": 0.9885088310833271,
+          "nec_ctrl": -0.03491309018140003,
+          "baseline_correct": true,
+          "greedy_clean": "3604",
+          "greedy_assert": "3672",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.10495758056640625,
+            "L18.H6": 0.018112897872924805,
+            "L17.H3": 0.1473541259765625,
+            "L18.H5": 0.03453826904296875
+          }
+        },
+        {
+          "problem": "71x69",
+          "C": 4899,
+          "W": 4970,
+          "span_ok": true,
+          "baseline_margin": 15.95429893193068,
+          "assert_margin": -8.050186828710139,
+          "shift": 24.00448576064082,
+          "nec_W": 0.9255450232194076,
+          "nec_ctrl": 0.013631305985689854,
+          "baseline_correct": true,
+          "greedy_clean": "4899",
+          "greedy_assert": "4970",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1593017578125,
+            "L18.H6": 0.011122703552246094,
+            "L17.H3": 0.09342193603515625,
+            "L18.H5": 0.010927200317382812
+          }
+        },
+        {
+          "problem": "74x76",
+          "C": 5624,
+          "W": 5698,
+          "span_ok": true,
+          "baseline_margin": 14.72018514823867,
+          "assert_margin": -10.905070226232056,
+          "shift": 25.625255374470726,
+          "nec_W": 0.9750877482828433,
+          "nec_ctrl": -0.014563953916394545,
+          "baseline_correct": true,
+          "greedy_clean": "5624",
+          "greedy_assert": "5698",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.1337432861328125,
+            "L18.H6": 0.019732356071472168,
+            "L17.H3": 0.1045684814453125,
+            "L18.H5": 0.023815155029296875
+          }
+        },
+        {
+          "problem": "79x83",
+          "C": 6557,
+          "W": 6636,
+          "span_ok": true,
+          "baseline_margin": 7.921162880957127,
+          "assert_margin": -10.544104167958722,
+          "shift": 18.465267048915848,
+          "nec_W": 1.0480729977354493,
+          "nec_ctrl": -0.04648141325231571,
+          "baseline_correct": false,
+          "greedy_clean": "6697",
+          "greedy_assert": "6636",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.09055328369140625,
+            "L18.H6": 0.01586008071899414,
+            "L17.H3": 0.05722808837890625,
+            "L18.H5": 0.01615142822265625
+          }
+        },
+        {
+          "problem": "82x19",
+          "C": 1558,
+          "W": 1640,
+          "span_ok": true,
+          "baseline_margin": 28.76419340929351,
+          "assert_margin": 3.8127615004923427,
+          "shift": 24.95143190880117,
+          "nec_W": 0.9661315120465659,
+          "nec_ctrl": -0.04830850849636168,
+          "baseline_correct": true,
+          "greedy_clean": "1558",
+          "greedy_assert": "1558",
+          "flipped": false,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.04328155517578125,
+            "L18.H6": 0.003919124603271484,
+            "L17.H3": 0.052398681640625,
+            "L18.H5": 0.019701004028320312
+          }
+        },
+        {
+          "problem": "91x33",
+          "C": 3003,
+          "W": 3094,
+          "span_ok": true,
+          "baseline_margin": 20.375453626620583,
+          "assert_margin": -3.3277036622166634,
+          "shift": 23.703157288837247,
+          "nec_W": 0.9578091188991225,
+          "nec_ctrl": -0.027686159161427602,
+          "baseline_correct": true,
+          "greedy_clean": "3003",
+          "greedy_assert": "3094",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.06584930419921875,
+            "L18.H6": 0.015542030334472656,
+            "L17.H3": 0.097137451171875,
+            "L18.H5": 0.016460418701171875
+          }
+        },
+        {
+          "problem": "98x22",
+          "C": 2156,
+          "W": 2254,
+          "span_ok": true,
+          "baseline_margin": 15.119719180956963,
+          "assert_margin": -1.8866273892890604,
+          "shift": 17.006346570246023,
+          "nec_W": 1.0271858397855482,
+          "nec_ctrl": -0.007871122956001229,
+          "baseline_correct": true,
+          "greedy_clean": "2156",
+          "greedy_assert": "2254",
+          "flipped": true,
+          "reader_probe_attn_to_W": {
+            "L20.H7": 0.028076171875,
+            "L18.H6": 0.012284517288208008,
+            "L17.H3": 0.106536865234375,
+            "L18.H5": 0.020555496215820312
+          }
+        }
+      ]
+    }
+  }
+}

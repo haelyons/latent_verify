@@ -1,0 +1,289 @@
+{
+  "reader_head": [
+    18,
+    5
+  ],
+  "stem": "The capital of {r} is the city of",
+  "models": {
+    "base": {
+      "fragment": {
+        "rows": [
+          {
+            "pair": "Australia->Canberra",
+            "neutral": 0.25,
+            "salience": -9.5,
+            "effect": 9.75,
+            "allheads_necessity": 1.0641025579892671,
+            "reader_L18H5_attn_to_anchor": 0.8359375,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Texas->Austin",
+            "neutral": 1.8750001192092896,
+            "salience": -5.125,
+            "effect": 7.0000001192092896,
+            "allheads_necessity": 1.142857123394402,
+            "reader_L18H5_attn_to_anchor": 0.3984375,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Canada->Ottawa",
+            "neutral": 2.5,
+            "salience": -3.375,
+            "effect": 5.875,
+            "allheads_necessity": 1.1063829787234043,
+            "reader_L18H5_attn_to_anchor": 0.5390625,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Switzerland->Bern",
+            "neutral": 1.3750001192092896,
+            "salience": -5.5,
+            "effect": 6.8750001192092896,
+            "allheads_necessity": 1.0181818005270211,
+            "reader_L18H5_attn_to_anchor": 0.60748291015625,
+            "anchor_pos": [
+              1,
+              2
+            ]
+          },
+          {
+            "pair": "Morocco->Rabat",
+            "neutral": 1.25,
+            "salience": -1.5,
+            "effect": 2.75,
+            "allheads_necessity": 1.1818182251670144,
+            "reader_L18H5_attn_to_anchor": 0.510498046875,
+            "anchor_pos": [
+              1,
+              2
+            ]
+          }
+        ],
+        "mean_effect": 6.450000047683716,
+        "mean_reader_L18H5_attn": 0.57828369140625,
+        "mean_allheads_necessity": 1.1026685371602218,
+        "n_necessity_measured": 5
+      },
+      "qa": {
+        "rows": [
+          {
+            "pair": "Australia->Canberra",
+            "neutral": 3.3125,
+            "salience": 3.0,
+            "effect": 0.3125,
+            "allheads_necessity": null,
+            "reader_L18H5_attn_to_anchor": 0.02490234375,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Texas->Austin",
+            "neutral": 6.25,
+            "salience": 5.25,
+            "effect": 1.0,
+            "allheads_necessity": 0.375,
+            "reader_L18H5_attn_to_anchor": 0.0172119140625,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Canada->Ottawa",
+            "neutral": 5.3125,
+            "salience": 5.125,
+            "effect": 0.1875,
+            "allheads_necessity": null,
+            "reader_L18H5_attn_to_anchor": 0.014404296875,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Switzerland->Bern",
+            "neutral": 5.6875,
+            "salience": 4.375,
+            "effect": 1.3125,
+            "allheads_necessity": 0.9523809523809523,
+            "reader_L18H5_attn_to_anchor": 0.032398223876953125,
+            "anchor_pos": [
+              1,
+              2
+            ]
+          },
+          {
+            "pair": "Morocco->Rabat",
+            "neutral": 3.375,
+            "salience": 3.125,
+            "effect": 0.25,
+            "allheads_necessity": null,
+            "reader_L18H5_attn_to_anchor": 0.022247314453125,
+            "anchor_pos": [
+              1,
+              2
+            ]
+          }
+        ],
+        "mean_effect": 0.6125,
+        "mean_reader_L18H5_attn": 0.022232818603515624,
+        "mean_allheads_necessity": 0.6636904761904762,
+        "n_necessity_measured": 2
+      }
+    },
+    "it": {
+      "fragment": {
+        "rows": [
+          {
+            "pair": "Australia->Canberra",
+            "neutral": -0.5,
+            "salience": 3.5,
+            "effect": -4.0,
+            "allheads_necessity": 0.171875,
+            "reader_L18H5_attn_to_anchor": 0.01080322265625,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Texas->Austin",
+            "neutral": 1.5625,
+            "salience": 6.375,
+            "effect": -4.8125,
+            "allheads_necessity": 0.24675324675324675,
+            "reader_L18H5_attn_to_anchor": 0.008544921875,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Canada->Ottawa",
+            "neutral": -0.375,
+            "salience": 4.8125,
+            "effect": -5.1875,
+            "allheads_necessity": 0.1927711302975574,
+            "reader_L18H5_attn_to_anchor": 0.0064697265625,
+            "anchor_pos": [
+              1
+            ]
+          },
+          {
+            "pair": "Switzerland->Bern",
+            "neutral": 0.0625,
+            "salience": 3.8125,
+            "effect": -3.75,
+            "allheads_necessity": 0.4666666666666667,
+            "reader_L18H5_attn_to_anchor": 0.03747749328613281,
+            "anchor_pos": [
+              1,
+              2
+            ]
+          },
+          {
+            "pair": "Morocco->Rabat",
+            "neutral": -0.4375,
+            "salience": 3.4375,
+            "effect": -3.875,
+            "allheads_necessity": 0.5967741935483871,
+            "reader_L18H5_attn_to_anchor": 0.01471710205078125,
+            "anchor_pos": [
+              1,
+              2
+            ]
+          }
+        ],
+        "mean_effect": -4.325,
+        "mean_reader_L18H5_attn": 0.015602493286132812,
+        "mean_allheads_necessity": 0.3349680474531716,
+        "n_necessity_measured": 5
+      },
+      "qa": {
+        "rows": [
+          {
+            "pair": "Australia->Canberra",
+            "neutral": 3.5,
+            "salience": 4.781250476837158,
+            "effect": -1.2812504768371582,
+            "allheads_necessity": 0.24390234825232968,
+            "reader_L18H5_attn_to_anchor": 0.010009765625,
+            "anchor_pos": [
+              4
+            ]
+          },
+          {
+            "pair": "Texas->Austin",
+            "neutral": 5.09375,
+            "salience": 6.093750476837158,
+            "effect": -1.0000004768371582,
+            "allheads_necessity": 1.2499994039538365,
+            "reader_L18H5_attn_to_anchor": 0.00958251953125,
+            "anchor_pos": [
+              4
+            ]
+          },
+          {
+            "pair": "Canada->Ottawa",
+            "neutral": 4.125000476837158,
+            "salience": 4.718749523162842,
+            "effect": -0.5937490463256836,
+            "allheads_necessity": 0.36842084129067076,
+            "reader_L18H5_attn_to_anchor": 0.0074462890625,
+            "anchor_pos": [
+              4
+            ]
+          },
+          {
+            "pair": "Switzerland->Bern",
+            "neutral": 3.28125,
+            "salience": 4.03125,
+            "effect": -0.75,
+            "allheads_necessity": 1.7083333333333333,
+            "reader_L18H5_attn_to_anchor": 0.027801513671875,
+            "anchor_pos": [
+              4,
+              5
+            ]
+          },
+          {
+            "pair": "Morocco->Rabat",
+            "neutral": 1.09375,
+            "salience": 1.5,
+            "effect": -0.40625,
+            "allheads_necessity": null,
+            "reader_L18H5_attn_to_anchor": 0.010753631591796875,
+            "anchor_pos": [
+              4,
+              5
+            ]
+          }
+        ],
+        "mean_effect": -0.80625,
+        "mean_reader_L18H5_attn": 0.013118743896484375,
+        "mean_allheads_necessity": 0.8926639817075426,
+        "n_necessity_measured": 4
+      }
+    }
+  },
+  "summary_2x2": {
+    "mean_effect": {
+      "base/fragment": 6.450000047683716,
+      "base/qa": 0.6125,
+      "it/fragment": -4.325,
+      "it/qa": -0.80625
+    },
+    "mean_L18H5_attn": {
+      "base/fragment": 0.57828369140625,
+      "base/qa": 0.022232818603515624,
+      "it/fragment": 0.015602493286132812,
+      "it/qa": 0.013118743896484375
+    },
+    "format_effect_base": 5.837500047683716,
+    "weight_effect_fragment": 10.775000047683715
+  }
+}
