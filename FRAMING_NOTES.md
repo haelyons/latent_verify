@@ -887,7 +887,11 @@ correct answer.
   are tiny, and the surviving top heads are L18.H7 / L7.2 / L1.6 — **not** the §3.10
   salience reader L18.H5 (which is disengaged). So: same *strategy* where measurable, a
   *different* (and here un-localizable) circuit — but the effect is too small to claim a
-  circuit with confidence.
+  circuit with confidence. **Scope caveat (same as §10.2's head-sweep asymmetry):**
+  `mechanism()`'s `top_heads` sweep is `TOP_LAYERS=[0,1,3,4,7,18]` = 48 heads, not all
+  208, so "top head ≠ L18.H5" is a 6-layer result (L18.H5 *is* in the sweep, so its
+  absence is real; the *shape* of the circuit is not characterized). A matched-scope
+  re-localization over all 208 heads is the missing control here too.
 - **SC6 (headline) — FALSIFIED.** Bare capitulation(it) = **−0.91 < 0** (necessity n/a,
   anchor empty by design). **Answer: NO — `bare` capitulation does not go positive in
   -it.** With no W token to copy and only content-free doubt ("I don't think that's
