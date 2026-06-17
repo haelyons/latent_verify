@@ -131,7 +131,11 @@ def run(name, is_chat, tag, items):
             return model(ids)[0, -1]
 
     def tok_pos(ids_list, text):                             # positions of text's tokens (i>0)
+        # match both bare and space-prefixed tokenizations: the anchor is sentence-initial
+        # in the salience frame ("Sydney is...") but mid-sentence in the belief frame
+        # ("...is Sydney"), which tokenizes as a distinct leading-space token.
         tset = set(model.to_tokens(text, prepend_bos=False)[0].tolist())
+        tset |= set(model.to_tokens(" " + text, prepend_bos=False)[0].tolist())
         return [i for i, t in enumerate(ids_list) if t in tset and i > 0]
 
     def ko_all(positions):                                   # zero ALL heads' attn to positions
