@@ -141,6 +141,65 @@ preference-model sycophancy mechanism in Sharma 2023 §4) — the §8 "RLHF dele
 copy" result is a *weights*-level claim that this literature should anchor. Open: keep,
 rename, or define-with-citation, then apply consistently across the docs above.
 
+### Resolved (2026-06-17)
+
+Applies **from here onward**; earlier in-doc uses of "next-token priming" /
+"RLHF agreement" are left as historical record, **not retroactively swept**.
+Validated by a split literature search (one mechanistic-interpretability arm,
+one training-dynamics arm). This is the terminology the LessWrong writeup and the
+reproduction Colab should adopt.
+
+**Base side — drop "next-token priming."** "Priming" is a psycholinguistic term
+(structural / semantic priming; Sinclair et al. 2022) and is not
+mechanistic-interpretability vocabulary; it is also flagged-anthropomorphic. Name the
+two layers separately. The *objective* is the **next-token-prediction /
+maximum-likelihood pretraining objective**. The *behavior* is **in-context token
+copying by a name-mover-style reader head** — read a referenced prompt token, OV-copy
+it into the answer slot. Our copy is **content-routed**: which token moves is selected
+by salience (concentrated, L18.H5) or by an asserted authority (diffuse). That is the
+**IOI name-mover** paradigm (Wang et al. 2023), where a *separate* signal plays the
+S-inhibition query-bias role — **not induction**. Induction (Olsson et al. 2022)
+requires token *recurrence* (prefix-match `[A][B]…[A]→[B]`); use the word "induction"
+only after a **recurrence check** (does the anchor literally reappear near the answer
+slot?). The salience-vs-numeric "same strategy, different circuit" (§10.2) is the
+field's *cue-dependent recruitment of a shared copy primitive* (Merullo et al. 2024;
+backup name-movers, Wang 2023). The mid-stack reader + first-layer anchor bias matches
+Gemma-2-2B's contextualize-then-aggregate band (arXiv:2504.00132), not IOI's late
+movers.
+
+**Method.** The "necessity" knockout (zero attention onto a span + renormalize, across
+layers) is an **attention knockout** (Geva et al. 2023), coarser than the path patching
+the IOI/induction work uses — it measures total reliance on the span, not an isolated
+path. Label it as such.
+
+**Instruct side — drop bare "RLHF."** gemma-2-2b-it is **SFT (on teacher-distilled
+responses) + RLHF + model merging** (Gemma 2 report, arXiv:2408.00118); knowledge
+distillation is a *pretraining* technique for the 2B/9B, not the -it step. There is no
+public SFT-only checkpoint, so the §8/§11 "RLHF deletes the copy" cannot attribute the
+deletion to the RL stage vs SFT — say **"post-training (SFT+RLHF) deletes the copy."**
+Reserve "RLHF" for the preference stage specifically.
+
+**Sycophancy.** Keep "sycophancy" for stated-belief deference (Sharma 2023, Perez 2022).
+The surviving §9 vulnerability — deferring to an asserted wrong number under the model's
+own uncertainty (0.80) while resisting when confident (0.13) — is
+**preference-optimization sycophancy, uncertainty-gated**, exactly the shape Sharma 2023
+§4 predicts (agreement rewarded where truth is hard to verify) and Sicilia et al.
+(arXiv:2410.14746) corroborate. §9's selective robustness *fits* the field; it is not an
+anomaly.
+
+**Two things to state explicitly so a reviewer does not misread.** (i) Kim et al.
+(arXiv:2510.02370) report that instruction tuning shifts models *toward* in-context
+reliance — surface-opposite to "post-training deletes the copy." Reconcile: our copied
+anchor is a salience **distractor**, not task-relevant context; post-training suppresses
+salience mis-copying while increasing *legitimate* context use. (ii) The L18.H5
+attention collapse (0.84→0.01) under post-training is **novel** — no public work
+isolates a *named* copy/induction head being ablated by alignment training — so present
+it as new evidence, not as literature-predicted.
+
+**Open empirical question this raises.** The recurrence check above decides whether
+"induction" may appear in the framing at all, or whether the account is purely
+name-mover. It is cheap to run and should gate the wording before external use.
+
 ## Caveats
 
 One model (gemma-2-2b / -it), n=5 frozen capital pairs, bf16, single phrasings
@@ -176,3 +235,11 @@ preprints relative to the 2026-06 work date.*
 - Duszenko, K. (2026). Sycophantic Anchors: Localizing and Quantifying User Agreement in Reasoning Models. arXiv:2601.21183.
 - Olsson, C., et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.
 - Ouyang, L., et al. (2022). Training Language Models to Follow Instructions with Human Feedback (InstructGPT). NeurIPS 2022; arXiv:2203.02155.
+- Wang, K., Variengien, A., Conmy, A., Shlegeris, B., & Steinhardt, J. (2023). Interpretability in the Wild: a Circuit for Indirect Object Identification in GPT-2 small. arXiv:2211.00593 (ICLR 2023).
+- Merullo, J., Eickhoff, C., & Pavlick, E. (2024). Circuit Component Reuse Across Tasks in Transformer Language Models. arXiv:2310.08744 (ICLR 2024).
+- Geva, M., Bastings, J., Filippova, K., & Globerson, A. (2023). Dissecting Recall of Factual Associations in Auto-Regressive Language Models. arXiv:2304.14767 (EMNLP 2023).
+- Gemma Team, Google DeepMind (2024). Gemma 2: Improving Open Language Models at a Practical Size. arXiv:2408.00118.
+- Sicilia, A., Inan, H., & Alikhani, M. (2025). [Confidence/uncertainty modulates sycophancy — verify exact title]. arXiv:2410.14746 (NAACL Findings 2025).
+- Kim, et al. (2025). How Training Data Shapes the Use of Parametric and In-Context Knowledge in Language Models. arXiv:2510.02370.
+- [Authors per arXiv] (2025). Contextualize-then-Aggregate (Gemma-2-2B contextualization band). arXiv:2504.00132. *(verify authors/title)*
+- Sinclair, A., Jumelet, J., Zuidema, W., & Cotterell, R. (2022). Structural Persistence in Language Models. TACL.

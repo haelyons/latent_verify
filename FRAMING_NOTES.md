@@ -835,6 +835,17 @@ phrasing claimed more than the experiment shows.
    above should read "attention-copy," not "sycophancy." The scoped interpretation and
    the link to the §11 calibrated probe live in the LINEAGE synthesis — not repeated here.
 
+**Terminology grounding (2026-06-17, from here onward).** A split literature search
+resolved the working labels; the decision and citations live in
+`POSITION_SYCOPHANCY.md §Terminology → Resolved`. Headline deltas for this section:
+(1) the copy is **name-mover-class** (content-routed; Wang et al. 2023), not
+"induction" — "induction" needs a token-recurrence check first, so read the
+"IOI/induction family" phrase above as "name-mover family"; (2) the knockout is an
+**attention knockout** (Geva et al. 2023), coarser than path patching; (3) §8's "RLHF
+deletes the copy" is more precisely **post-training (SFT+RLHF) deletes the copy** —
+gemma-2-2b-it is SFT+RLHF+merge (Gemma 2 report, arXiv:2408.00118) and no SFT-only
+checkpoint isolates the RL stage. Earlier in-doc wording is left intact as record.
+
 ## 11. The it/chat sycophancy half: RLHF deletes the copy, and -it entrenches under pushback (GPU, 2026-06-17)
 
 The `-it`/chat half of the calibrated sycophancy probe (`job_sycophancy.py --model it`),
