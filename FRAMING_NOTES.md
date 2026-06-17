@@ -801,6 +801,40 @@ through different heads. Caveats: single 2B model for the mechanism, one phrasin
 (authority) and one distractor type (W = a·(b+1)), the heavy renormalizing knockout,
 per-head non-additivity; scale numbers are 5 pairs / 20 products.
 
+**Correction (2026-06-17) — terminology, sweep-asymmetry, and the word "sycophancy."**
+The text above is kept intact; this overlays three fixes so the change is legible.
+Why it had to change: review pressed on *what these inputs are* and *how the heads
+were chosen*, and both the heading's "sycophancy" and the "distributed circuit"
+phrasing claimed more than the experiment shows.
+
+1. *"Distributed circuit" / "head set" misnames the experiment.* There is no "set" —
+   there is a **per-head attention-knockout necessity ranking**, defined against one
+   key token in one prompt: for each (layer, head), zero that head's attention onto
+   the **anchor key** (the W-number span here; the anchor-city token in §3.9/§3.10),
+   renormalize the row, read how much of `logp(C) − logp(W)` at the **answer slot** is
+   restored, then *rank* heads by that reverted fraction. Everywhere this section and
+   §3.9/§3.10 say "head set," read: "heads ranked by per-head knockout necessity, keyed
+   on [the W span / the anchor city] at the answer slot."
+
+2. *"Concentrated (salience) vs diffuse (numeric)" is partly a sweep-scope artifact.*
+   The two sides were not searched alike: salience was localized over **TOP_LAYERS
+   [0,1,3,4,7,18] = 48 heads on one prompt** (§3.9); numeric over the **full 208 heads
+   averaged across 28 products** (`job_numeric_localize.py`). A single-prompt sweep
+   surfaces a peak; averaging 28 items flattens one. The cross-claim **"L18.H5 ≈ 0 of
+   the numeric copy" survives** — L18.H5 was *in* the full numeric sweep (rank 151/208,
+   a real absence). The word **"diffuse" does not** survive unqualified: it conflates a
+   real property with the averaging. The missing control is same-scope re-localization
+   (numeric on per-item peaks; salience over all 208 heads).
+
+3. *This is a token-copy strategy on two base-model cues — not "sycophancy."* Both input
+   sets are the **base** model completing a fragment: salience ("{W} is the most famous
+   city in {R}…", no agent/belief — §8 shows RLHF deletes it) and numeric ("My math
+   teacher told me {a}×{b} is {W}…", authority-framed *priming*, not RLHF agreement —
+   §3.11/§4). What is shown is the **copy mechanism** (referenced token → answer slot,
+   the IOI/induction family), not deference to a stated belief. The heading and "Net"
+   above should read "attention-copy," not "sycophancy." The scoped interpretation and
+   the link to the §11 calibrated probe live in the LINEAGE synthesis — not repeated here.
+
 ## 11. The it/chat sycophancy half: RLHF deletes the copy, and -it entrenches under pushback (GPU, 2026-06-17)
 
 The `-it`/chat half of the calibrated sycophancy probe (`job_sycophancy.py --model it`),
@@ -853,7 +887,11 @@ correct answer.
   are tiny, and the surviving top heads are L18.H7 / L7.2 / L1.6 — **not** the §3.10
   salience reader L18.H5 (which is disengaged). So: same *strategy* where measurable, a
   *different* (and here un-localizable) circuit — but the effect is too small to claim a
-  circuit with confidence.
+  circuit with confidence. **Scope caveat (same as §10.2's head-sweep asymmetry):**
+  `mechanism()`'s `top_heads` sweep is `TOP_LAYERS=[0,1,3,4,7,18]` = 48 heads, not all
+  208, so "top head ≠ L18.H5" is a 6-layer result (L18.H5 *is* in the sweep, so its
+  absence is real; the *shape* of the circuit is not characterized). A matched-scope
+  re-localization over all 208 heads is the missing control here too.
 - **SC6 (headline) — FALSIFIED.** Bare capitulation(it) = **−0.91 < 0** (necessity n/a,
   anchor empty by design). **Answer: NO — `bare` capitulation does not go positive in
   -it.** With no W token to copy and only content-free doubt ("I don't think that's

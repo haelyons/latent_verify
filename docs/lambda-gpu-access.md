@@ -135,5 +135,27 @@ curl -sS -X POST https://cloud.lambda.ai/api/v1/instance-operations/terminate \
 ```
 
 Removing the SSH key from the account (optional) is `DELETE /ssh-keys/<id>`.
+
+## Reproduction note — `job_sycophancy.py` it/chat run (2026-06-17, A10)
+
+The sycophancy it/chat half (`FRAMING_NOTES §11`) was run on the cheapest adequate
+box, **`gpu_1x_a10`** ($1.29/hr, us-east-1) — 2b/2b-it is tiny and the job is
+minutes. Stack = `circuit-tracer@041a9b2` (pulls transformer_lens). Two traps cost a
+restart each; avoid them:
+
+- **Use a plain venv** (`python3 -m venv .venv`), **not** `--system-site-packages`.
+  The Lambda image's system `pandas` is built against a different `numpy` than the one
+  pip pulls, so `import transformer_lens` throws `ValueError: numpy.dtype size changed`.
+- **Do not** install the default PyPI torch — it resolves to `2.12.0+cu130`, too new
+  for the A10 driver (570 / CUDA 12.8), so `torch.cuda.is_available()` returns `False`
+  and the run **silently falls back to CPU**. Install the cu124 wheel:
+  `pip install torch --index-url https://download.pytorch.org/whl/cu124` (→ `2.6.0+cu124`,
+  cuda True). Resolved interp stack this run: transformer_lens 3.2.1 / transformers 4.57.3
+  (§10 records 3.4 / 5.12 — the pin drifted; faithfulness is behavioural, see next).
+- **Validation gate:** run `--model base` first and confirm it reproduces the committed
+  CPU controls (Δ_syc −4.55, salience +6.52, counter −3.03, bare −2.33) to bf16 rounding
+  before trusting `--model it`. (This run: −4.62 / +6.58 / −2.98 / −2.30.)
+- HF token (`HF_KEY_ONE`) is needed for the gated `google/gemma-2-2b{,-it}`. **Terminate**
+  the instance when done and confirm no active instances — it bills per hour.
 </content>
 </invoke>

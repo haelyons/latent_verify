@@ -125,6 +125,22 @@ direction (Vennemeyer-style), or (b) is a genuinely non-copy computation — a
 boundary on the "sycophancy = attention-copy" account that the repo otherwise
 defends.
 
+## Terminology (flagged for validation, not yet settled)
+
+The base/instruct contrast is worded as **"next-token priming"** (base/completion)
+vs **"RLHF agreement / assistant deference"** (instruct) — see FRAMING §3.11, §9,
+§10.2-correction and the LINEAGE ledger. These are working labels and should be
+validated before external use. "Priming" is not standard mechanistic-interpretability
+vocabulary: the base-model primitive is **in-context copying** — induction heads
+(Olsson et al. 2022) and the IOI name-mover family (Wang et al. 2023), the framing
+POSITIONING.md already uses — and "priming" risks importing psycholinguistic baggage.
+"Sycophancy" is correctly reserved here for stated-belief deference (Sharma 2023,
+Perez 2022). The base/instruct split may be cleaner cast in training-objective terms
+(next-token MLE vs preference optimization / RLHF; Ouyang et al. 2022; the
+preference-model sycophancy mechanism in Sharma 2023 §4) — the §8 "RLHF deletes the
+copy" result is a *weights*-level claim that this literature should anchor. Open: keep,
+rename, or define-with-citation, then apply consistently across the docs above.
+
 ## Caveats
 
 One model (gemma-2-2b / -it), n=5 frozen capital pairs, bf16, single phrasings
@@ -158,3 +174,5 @@ preprints relative to the 2026-06 work date.*
 - Çelebi, Ezerceli, & El Hussieni (2025). PARROT: Persuasion and Agreement Robustness Rating of Output Truth. arXiv:2511.17220.
 - Li, Y., et al. (2025). Firm or Fickle? Evaluating Large Language Models Consistency in Sequential Interactions. arXiv:2503.22353.
 - Duszenko, K. (2026). Sycophantic Anchors: Localizing and Quantifying User Agreement in Reasoning Models. arXiv:2601.21183.
+- Olsson, C., et al. (2022). In-context Learning and Induction Heads. Transformer Circuits Thread.
+- Ouyang, L., et al. (2022). Training Language Models to Follow Instructions with Human Feedback (InstructGPT). NeurIPS 2022; arXiv:2203.02155.
