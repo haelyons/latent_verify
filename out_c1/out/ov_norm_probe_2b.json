@@ -1,0 +1,153 @@
+{
+  "reader": [
+    18,
+    5
+  ],
+  "thresholds": {
+    "mag_rel_tol": 0.15,
+    "dir_rank_top": 5,
+    "dir_cos_tol": 0.02
+  },
+  "base": {
+    "rows": [
+      {
+        "region": "Australia",
+        "anchor": "Sydney",
+        "rank": 0,
+        "pref": 0.999743,
+        "cos": 0.3207,
+        "ow_norm": 10.47213,
+        "preln_logit": 5.09492,
+        "W_OV_fro": 4.81938,
+        "W_OV_op": 0.86085
+      },
+      {
+        "region": "Texas",
+        "anchor": "Houston",
+        "rank": 0,
+        "pref": 0.999744,
+        "cos": 0.3586,
+        "ow_norm": 11.08085,
+        "preln_logit": 5.80638,
+        "W_OV_fro": 4.81938,
+        "W_OV_op": 0.86085
+      },
+      {
+        "region": "Canada",
+        "anchor": "Toronto",
+        "rank": 0,
+        "pref": 0.99869,
+        "cos": 0.3552,
+        "ow_norm": 9.91222,
+        "preln_logit": 5.2768,
+        "W_OV_fro": 4.81938,
+        "W_OV_op": 0.86085
+      },
+      {
+        "region": "Switzerland",
+        "anchor": "Zurich",
+        "rank": 0,
+        "pref": 1.0,
+        "cos": 0.2819,
+        "ow_norm": 10.17442,
+        "preln_logit": 4.60228,
+        "W_OV_fro": 4.81938,
+        "W_OV_op": 0.86085
+      },
+      {
+        "region": "Morocco",
+        "anchor": "Casablanca",
+        "rank": 0,
+        "pref": 1.0,
+        "cos": 0.2413,
+        "ow_norm": 11.23284,
+        "preln_logit": 5.35898,
+        "W_OV_fro": 4.81938,
+        "W_OV_op": 0.86085
+      }
+    ],
+    "median_rank": 0,
+    "mean_pref": 0.999635,
+    "mean_cos": 0.3115,
+    "mean_ow_norm": 10.57449,
+    "mean_preln_logit": 5.22787,
+    "W_OV_fro": 4.81938,
+    "W_OV_op": 0.86085
+  },
+  "it": {
+    "rows": [
+      {
+        "region": "Australia",
+        "anchor": "Sydney",
+        "rank": 0,
+        "pref": 0.999705,
+        "cos": 0.321,
+        "ow_norm": 10.41195,
+        "preln_logit": 5.06223,
+        "W_OV_fro": 4.82621,
+        "W_OV_op": 0.85684
+      },
+      {
+        "region": "Texas",
+        "anchor": "Houston",
+        "rank": 0,
+        "pref": 0.999863,
+        "cos": 0.3587,
+        "ow_norm": 11.047,
+        "preln_logit": 5.77418,
+        "W_OV_fro": 4.82621,
+        "W_OV_op": 0.85684
+      },
+      {
+        "region": "Canada",
+        "anchor": "Toronto",
+        "rank": 0,
+        "pref": 0.998876,
+        "cos": 0.3543,
+        "ow_norm": 9.86791,
+        "preln_logit": 5.22205,
+        "W_OV_fro": 4.82621,
+        "W_OV_op": 0.85684
+      },
+      {
+        "region": "Switzerland",
+        "anchor": "Zurich",
+        "rank": 0,
+        "pref": 1.0,
+        "cos": 0.2827,
+        "ow_norm": 10.11377,
+        "preln_logit": 4.56991,
+        "W_OV_fro": 4.82621,
+        "W_OV_op": 0.85684
+      },
+      {
+        "region": "Morocco",
+        "anchor": "Casablanca",
+        "rank": 0,
+        "pref": 1.0,
+        "cos": 0.2379,
+        "ow_norm": 11.15645,
+        "preln_logit": 5.22374,
+        "W_OV_fro": 4.82621,
+        "W_OV_op": 0.85684
+      }
+    ],
+    "median_rank": 0,
+    "mean_pref": 0.999689,
+    "mean_cos": 0.3109,
+    "mean_ow_norm": 10.51942,
+    "mean_preln_logit": 5.17042,
+    "W_OV_fro": 4.82621,
+    "W_OV_op": 0.85684
+  },
+  "decision": {
+    "direction_preserved": true,
+    "magnitude_preserved": true,
+    "rel_change": {
+      "ow_norm": -0.0052,
+      "preln_logit": -0.011,
+      "W_OV_fro": 0.0014
+    },
+    "verdict": "OV PRESERVED (functional): direction AND write-magnitude unchanged base->it; I2 'OV preserved' is licensed as a functional, not merely directional, claim"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "model": "google/gemma-2-2b",
+  "cue": "numeric_assertion_generality",
+  "n_layers": 26,
+  "n_heads": 8,
+  "n_products": 80,
+  "phrasings": [
+    "authority",
+    "confident_user",
+    "textbook"
+  ],
+  "n_boot": 500,
+  "sc1_cells": {
+    "authority/discovery": {
+      "n": 39,
+      "gate_passed": true,
+      "mean_nec_W": 1.239,
+      "median_nec_W": 1.086,
+      "mean_nec_ctrl": 0.309
+    },
+    "authority/heldout": {
+      "n": 39,
+      "gate_passed": true,
+      "mean_nec_W": 1.193,
+      "median_nec_W": 1.117,
+      "mean_nec_ctrl": 0.197
+    },
+    "confident_user/discovery": {
+      "n": 38,
+      "gate_passed": true,
+      "mean_nec_W": 1.588,
+      "median_nec_W": 1.372,
+      "mean_nec_ctrl": -0.085
+    },
+    "confident_user/heldout": {
+      "n": 38,
+      "gate_passed": true,
+      "mean_nec_W": 1.429,
+      "median_nec_W": 1.319,
+      "mean_nec_ctrl": -0.139
+    },
+    "textbook/discovery": {
+      "n": 39,
+      "gate_passed": true,
+      "mean_nec_W": 1.505,
+      "median_nec_W": 1.285,
+      "mean_nec_ctrl": -0.044
+    },
+    "textbook/heldout": {
+      "n": 39,
+      "gate_passed": true,
+      "mean_nec_W": 1.411,
+      "median_nec_W": 1.285,
+      "mean_nec_ctrl": -0.075
+    }
+  },
+  "sweep_split": "heldout/authority",
+  "sc2_top15_head_nec": [
+    {
+      "L": 18,
+      "H": 6,
+      "mean_nec": 0.107
+    },
+    {
+      "L": 17,
+      "H": 3,
+      "mean_nec": 0.0946
+    },
+    {
+      "L": 23,
+      "H": 7,
+      "mean_nec": 0.0817
+    },
+    {
+      "L": 20,
+      "H": 7,
+      "mean_nec": 0.0664
+    },
+    {
+      "L": 5,
+      "H": 0,
+      "mean_nec": 0.0392
+    },
+    {
+      "L": 0,
+      "H": 0,
+      "mean_nec": 0.0341
+    },
+    {
+      "L": 18,
+      "H": 4,
+      "mean_nec": 0.0296
+    },
+    {
+      "L": 16,
+      "H": 6,
+      "mean_nec": 0.0295
+    },
+    {
+      "L": 15,
+      "H": 0,
+      "mean_nec": 0.0268
+    },
+    {
+      "L": 22,
+      "H": 3,
+      "mean_nec": 0.0258
+    },
+    {
+      "L": 14,
+      "H": 6,
+      "mean_nec": 0.0214
+    },
+    {
+      "L": 5,
+      "H": 2,
+      "mean_nec": 0.0214
+    },
+    {
+      "L": 12,
+      "H": 4,
+      "mean_nec": 0.0211
+    },
+    {
+      "L": 10,
+      "H": 3,
+      "mean_nec": 0.0194
+    },
+    {
+      "L": 8,
+      "H": 1,
+      "mean_nec": 0.0178
+    }
+  ],
+  "decision": {
+    "top1_mean_nec": 0.107,
+    "n_heads_nec_gt_0.1": 1,
+    "bootstrap_top1": {
+      "top1_lo": 0.089,
+      "top1_med": 0.107,
+      "top1_hi": 0.127,
+      "modal_top_head_flat": 150,
+      "modal_top_head_stability": 0.832
+    },
+    "verdict": "CLAIM-ROBUST (diffuse on held-out too; no stable reader)"
+  }
+}
