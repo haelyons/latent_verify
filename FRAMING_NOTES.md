@@ -691,6 +691,23 @@ n/a). The robust signals are the L18.H5 attention collapse (0.01 across all 5
 pairs, both formats) and the effect sign-flip. One 2B family, 5 pairs, single
 teacher-forced readout; base control reproduces §3.7/§3.10 to ~1–2%.
 
+**Refinement (2026-06-18, I2 — `job_rlhf_ovqk.py`, `out/rlhf_ovqk_2b.json`).** §8 above measured
+the **QK** half (where L18.H5 looks); it did not measure the **OV** half (what the head *writes* if
+it reads the anchor). A weight-only OV copy-score for L18.H5 (compose `W_U · ln_final(W_E[anchor] ·
+W_O W_V)`, read the anchor token's rank / softmax-pref), base vs -it:
+
+| | OV copy-pref (anchor) | OV rank | QK attn→anchor |
+|---|---|---|---|
+| base | 0.9997 | 0 | 0.578 |
+| -it  | 0.9997 | 0 | 0.016 |
+
+OV copy is **unchanged** by RLHF (pref 0.9997 both, rank 0 both); only the QK pattern collapses
+(0.58 → 0.016, reproducing the table above). So the precise statement is **QK-gated, OV preserved**:
+the "**RLHF removes it from the weights** / structurally absent" wording in this section is
+**overstated** — the OV copy matrix survives; what RLHF changes is where the head attends. (Agrees
+with the arc2 ARC2A note that `ov_pref` is ≈unchanged base→it; settled here on the consolidated
+branch.) Scope: one 2B family, reader L18.H5, 5 pairs.
+
 ## 9. The low-confidence numeric-flip boundary, and a sycophancy dissociation (GPU, 2026-06-15)
 
 Frontier B (`job_numeric_boundary.py`, artifacts `out/numeric_boundary_{base,it}.json`).
@@ -845,6 +862,67 @@ resolved the working labels; the decision and citations live in
 deletes the copy" is more precisely **post-training (SFT+RLHF) deletes the copy** —
 gemma-2-2b-it is SFT+RLHF+merge (Gemma 2 report, arXiv:2408.00118) and no SFT-only
 checkpoint isolates the RL stage. Earlier in-doc wording is left intact as record.
+
+### 10.3 Scale mechanism (gemma-2-9b base + -9b-it): the single-head copy does NOT transfer (2026-06-17)
+
+§10.1 attenuated the *behavior* (base salience effect 2b +6.55 → 9b +0.02) but left the
+*mechanism* open: does the §8/§3.10 concentrated attention-copy reader exist at 9b, or only
+a weaker version of the same head-level story? Ran the full attention-copy line on
+gemma-2-9b base and -9b-it, **re-localizing every head from scratch** — the 2b reader is
+2b-specific, 9b is 42L×16H=672 heads, `--reader auto` everywhere. H100; the gate
+(`job_scale_mechanism.py` on 9b base) reproduced §10.1 to 3 decimals (max-attn-to-anchor
+**0.423**, modal max-attn head L21.H10, mean salience effect ≈0). Artifacts:
+`out/{copyscore,localize_salience,recurrence}_9b_base.json`,
+`out/sycophancy_lowconf_9b_{base,it}.json`.
+
+**Headline — the copy collapses behaviorally *and dissolves mechanically*.** The three
+properties that *coincide* in the 2b reader (attends the anchor ∧ OV-copies the anchor ∧ is
+causally necessary) are carried by **different, non-overlapping heads** at 9b, and none drives
+a strong effect:
+- **Behavior (P-C, all 672 heads, 5 pairs).** Mean salience effect ≈0; per-pair effects
+  ±0.5–1.25 that *cancel* across pairs (so "≈0" is sign-cancellation, not nothing happening).
+  Per-head attention-knockout necessity is **diffuse and weak**: top head L16.H14 mean-nec only
+  **0.14**, 7 heads >0.1, **no concentrated reader**. The 2b "necessity ~1 single reader" has no
+  9b analog.
+- **Attention ≠ causation.** The modal max-attn-to-anchor head L21.H10 (attn ~0.4) carries
+  necessity **rank 112/672** (≈0). Attention to the salient token persists at scale; the causal
+  pull does not.
+- **OV-copy capacity exists but is decoupled (N-3 copy-score).** **79/672 heads** OV-copy the
+  anchor token (median W_U·OV·W_E rank <5; best L4.H14, and L21.H10 itself rank 0). But the
+  salience-*attending* head L20.H2 is **not** a copy head (rank 142), and the copy-capable
+  L21.H10 is **not** causally necessary. Copy capacity is generic and redundant at 9b, not the
+  signature of one reader. (Copy-score is weights-only; abundance here does not imply use.)
+- **Router (N-2) weak/diffuse:** top query-side gate L20.H3 reader-attn drop 0.078 (the 2b
+  selector dropped 0.33).
+
+**What DOES transfer (N-1 recurrence).** The re-localized reader L20.H2 attends the
+sentence-initial anchor (D1 anchor-dominant 5/5; anchor not prefix-reachable), is **not
+induction** (generic induction score 0.02; D2 decoy-induction ≤0.0085; asserted numeric W not
+prefix-reachable, max head L19.H1 attn 0.69), and is **position-fragile** (D2: any preamble
+flips it to the region/task token, salience → ~0.004). So the *qualitative*
+name-mover-not-induction character survives scale; the *concentrated-reader* and *strong-copy*
+claims do not.
+
+**Sycophancy (P-A/P-B, lowconf set, `--sweep-layers all`).** base reader→W **0.008** (copy
+deleted, as §8); -it chat reader L25.H15 attends W **0.39** but the salience effect is
+**−1.64** — sign-flipped, i.e. -it uses the salient distractor to *reinforce the correct*
+answer (the §8/§11 deletion, reproduced at 9b). **No caving:** base counter capitulation
+−2.44 / bare −0.69; -it counter **−4.06** / bare **−1.19** (all negative → entrenches; on its
+one uncertain item -it swings *toward truth* under a counter-push, cap −7.0). **The -it half is
+confounded exactly as §10.1 warned:** the lowconf set (calibrated for 2b uncertainty)
+**saturates** at 9b-it — 7/8 pre-margins **+3.2…+7.4**, only Ivory Coast (−0.31) has headroom —
+so -it's non-caving conflates robustness with no-room-to-cave and cannot adjudicate SC4/SC6.
+9b **base** retains headroom (5 items, |margin|≲1.6) and still does not cave to a counter-push;
+that corroborates "caving needs a copyable anchor + confidence headroom," but only on the base side.
+
+**Net.** The attention-copy reader is a **small-model phenomenon at the circuit level**. At 9b
+the salient token is still attended and is OV-copyable in the abstract, but the copy is no
+longer concentrated in one causal reader and no longer moves the answer (parametric knowledge
+dominates). Present this as a **scale boundary on the single-reader account**, not as a failure
+to find the 2b head — re-localization was from scratch and the 2b indices were never assumed.
+Scope: n=5 pairs / n=8 lowconf items, bf16, one 9b family, single phrasings; necessity
+denominators are tiny wherever effects are ≈0 (so per-head necessities at 9b are noisy and
+should be read as "diffuse/weak," not as precise rankings).
 
 ## 11. The it/chat sycophancy half: RLHF deletes the copy, and -it entrenches under pushback (GPU, 2026-06-17)
 

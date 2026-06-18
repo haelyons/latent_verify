@@ -540,3 +540,64 @@ Two supporting GPU pieces feed the visualisation and harden §3.10:
 2. **"Necessity" is a defined quantity with known artifacts.** It's the *fraction of the effect reverted* by a knockout; it can exceed 1.0 (over-correction), and the knockout itself is "heavy, somewhat unphysical" (zero a key at all layers/queries + renormalise). Below a 0.5-nat effect floor it's reported as n/a — and several early divide-by-near-zero "fractions" in committed JSON predate that guard (§3.5 flags this for `tallest_mountain`).
 3. **Two senses of "sycophancy" are not the same phenomenon** and the repo is careful to keep them apart: base-model *next-token priming* (§3.11) vs RLHF *assistant agreement* (§9). Conflating them would be the easy mistake. **(Corrected 2026-06-17:** §10.2's own "sycophancy is a strategy" headline made exactly this conflation — it labelled a *base-model* token-copy as sycophancy. Now scoped to "copy strategy"; `job_sycophancy.py` / §11 is the actual deference test. See the §10.2 and Part 4.4 correction notes.)
 4. **The repo's credibility comes partly from its retractions.** §3.10 corrects §3.9 (L0.H2 was a single-pair artifact); §10.1 retracts a monotonic-pull trend and a confounded "9b-it is robust" claim; `CHAT_FORMAT_FINDINGS.md` documents a classifier artifact that produced a wrong first-pass headline. These are features, not bugs — but it means any summary that omits them is overclaiming relative to the source.
+
+---
+
+# Part 6 — SEQUENCE_170626 terminology follow-ups (update, 2026-06-17)
+
+> Post-snapshot. Six tests (`SEQUENCE_170626_terminology-followups.md`;
+> `job_recurrence.py` / `job_copyscore.py` / `job_localize208.py` /
+> `job_distractor_task.py`; artifacts `out/{recurrence_2b_repro, copyscore_2b,
+> localize_salience_208_2b, distractor_vs_task_*, sycophancy_lowconf_*}.json`) ran to
+> ground the working vocabulary and de-confound §11. Net effect on this lineage:
+
+1. **"induction" — resolved OUT (positive update).** N-1 plants a live induction trap
+   (`decoy_prefix_reachable: true`) and the reader ignores it (<=0.015 on 5/5); N-3
+   copy-score ranks the anchor **0/5** by OV->unembed. In-task the copy is **name-mover**
+   (Wang 2023), full stop. Demote every "induction-flavoured" note (LINEAGE 2.7, 3.10)
+   to head-character (the 0.19 generic score is on random repeated text, not in-task).
+   POSITION's open "recurrence check" is closed.
+
+2. **"salience reader" — must become "position/prominence-gated OV-copy head."** N-1 D2:
+   prepend 3 tokens so the anchor is no longer sentence-initial and the reader abandons
+   it (salience attn 0.84->0.02-0.06) for the **region/task token**. In the framing prompts
+   salience was confounded with sentence-initial position. **New open confound** (not
+   previously in any ledger): salience vs position, resolvable only by an orthogonal
+   salience x position 2x2, unrun. The orphan artifact's 0.87 was the position-1 case, not
+   "the truth"; the repro that revealed the fragility is the de-confound, not a flawed run.
+
+3. **"concentrated salience vs diffuse numeric" — fully retracted (extends the Part 4.4
+   correction).** P-C swept salience over all 208 heads on the same basis as numeric:
+   top1 mean 0.25, L18.H5 rank 2, 13 heads >0.1 — salience is *also* distributed. Both
+   cues are distributed-but-reader-anchored. Only L18.H5's **cross-pair consistency**
+   survives (lone head positive on all 5; per-pair top head varies AU/TX/CA/CH/FL). Note:
+   the sweep's "top1 = L2.H2" is itself a mean-over-pairs artifact (driven by Canada 0.574)
+   — do not report L2.H2 as a head. That is the same averaging trap the numeric side was
+   corrected for.
+
+4. **SC6 de-confounded (real win) but the circuit dissociation NOT delivered.** P-A+P-B
+   (`sycophancy_lowconf_it.json`): with genuine headroom (margins down to +0.06 nat) the
+   -it model still does not cave to content-free `bare` doubt — negative capitulation on
+   all 8, it *entrenches*. So §11's SC6 falsification was not merely a capability ceiling.
+   **But** the two `counter` caves (Ivory Coast, Benin) are exactly the two items the model
+   already got **wrong** single-turn (pre-margin -1.41, -0.59), and the offered W is the
+   city it already leaned to — so copyable-anchor and prior-lean are not separated; n=2;
+   necessity inflated (4.29, divide-by-small-effect); the carrying heads are L18.H6/L1.H7,
+   not L18.H5. POSITION §4's "fillable contribution" was attempted, verdict muddy. Honest
+   claim: *no caving from a held correct belief, counter or bare.*
+
+5. **N-2 router — additive only, strip the IOI label.** L9.H7 z-ablation drops
+   reader->anchor attention (mean 0.33, 4/5 pairs; ~0 on Florida). It *promotes* anchor
+   attention — opposite sign to IOI S-inhibition, and there is no duplicate-token structure
+   here. Log as "an upstream head that feeds the reader's anchor attention (correlational,
+   attention-only)," not "the S-inhibition selector half of the name-mover story."
+
+6. **N-6 confirms the §8/Kim reconciliation.** -it suppresses the irrelevant distractor
+   (boost -2.43, reader 0.014) while strongly using task-relevant context (boost +2.45,
+   max-head 0.77). Post-training is context-*selective*, not blanket down-weighting. (The
+   task reader is L18.**H6**, not H5.)
+
+**One-line ledger update to the Synthesis above:** the through-line stands, but
+"universal late **reader**" should read "universal late **OV-copy head, query gated by
+position/prominence**," and "a concentrated reader head for salience" (Part 4.4) is
+retracted to "the only cross-pair-consistent copy head."

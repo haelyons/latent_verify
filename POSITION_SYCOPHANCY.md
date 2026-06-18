@@ -9,6 +9,43 @@ preprints — spot-check identifiers and head-level claims against the PDFs
 before external use.** Per-head semantics are not asserted: we verified causal
 role (knockout necessity), not interpretation.
 
+## Headline — SEQUENCE_170626 (2026-06-17)
+
+**TLDR (the corrected headline).** In gemma-2-2b, "framing-induced wrong answers"
+are mechanically a **name-mover copy**: one mid-stack head (L18.H5) reads a prompt
+token and writes it to the answer — copy-score rank 0/5 (`out/copyscore_2b.json`),
+attention-knockout necessity ~1.0 across 5 pairs. **Not induction** (token-recurrence
+trap rejected ≤0.015, `out/recurrence_2b_repro.json`); the trigger is token
+**position/prominence, not "salience"** (move the anchor off sentence-initial and the
+reader jumps to the region token). Post-training deletes the copy at the weights
+(head attention 0.84→0.01, §8/§11) — a *named copy head ablated by alignment*, not
+previously shown. On confident facts the -it model never caves to content-free doubt;
+it entrenches (`out/sycophancy_lowconf_it.json`). Scope: one 2B family, n=5, bf16.
+
+**Positioning (grounds §2 below).** Method niche is **causal attention-knockout**,
+not the field's behavioural evals (Sharma 2023, De Marez 2026, BrokenMath, PARROT) or
+linear probes / steering vectors (Genadi 2026, CAA 2024, Vennemeyer 2025) and
+logit-lens / activation patching (Li 2025).
+Nearest twin is Chen (ICML 2024), who path-patches sycophancy to ~4% of attention
+heads — same "heads not MLPs" conclusion, coarser knockout here. The field's
+doubt-attending mid-layer heads (Genadi 2026) sit in our reader's band but do a
+*different* job: ours attends a positionally-planted entity in a **base** model and
+**disengages under post-training**. The one genuinely novel claim is that alignment
+training ablates a *named* copy head; the rest corroborates and sharpens existing
+work. The §11 capability-ceiling confound *is* the field's central variable (De
+Marez's truth-margin; PARROT's "compliant where least certain").
+
+**SEQUENCE corrections to the prior framing (do not skip).** (1) "salience reader" is
+**position-confounded** — the cleaner salience×position 2×2 is unrun, so call L18.H5 a
+*position/prominence-gated OV-copy head*, not a salience reader. (2) "concentrated
+salience vs diffuse numeric" is fully retracted — the 208-head sweep
+(`out/localize_salience_208_2b.json`) shows salience is *also* distributed; only
+L18.H5's cross-pair consistency survives. (3) The `counter`/`bare` circuit
+dissociation (§4) was **attempted, not delivered**: the two caving items are the two
+the model already got wrong single-turn, so copyable-anchor and prior-lean are not
+separated. The robust result is *no caving from a held correct belief, even at a
++0.06-nat margin*.
+
 ## TL;DR
 
 The repo's thesis is that "sycophancy" is not a faculty but a recurring
@@ -209,6 +246,22 @@ preprints not independently replicated here. Established, citable anchors:
 Sharma 2023, Perez 2022, Wei 2023, CAA (ACL 2024), RepE, Geometry of Truth,
 Chen (ICML 2024).
 
+**Scale scope — the named single reader is 2b-specific (2026-06-17, FRAMING §10.3).**
+The whole line was re-run on **gemma-2-9b** base + -9b-it, re-localizing every head from
+scratch (672 heads). The concentrated attention-copy *reader* does **not** transfer: at 9b the
+salience effect collapses behaviorally (mean ≈0, per-pair ±0.5–1.25 cancelling) and dissolves
+mechanically — attention-to-anchor, OV-copy capacity, and causal necessity (all unified in the
+one 2b head) are carried by **different** 9b heads, none causal (top necessity 0.14; 79/672
+heads OV-copy the anchor but the attending head is not among them; max-attn head at necessity
+rank 112). What *does* transfer is the qualitative character: still name-mover-not-induction
+(induction 0.02, decoy ≤0.0085), still position-fragile, and -it still does not cave (counter
+−4.06, bare −1.19) — though the 9b-it caving test is **vacuous under a capability ceiling**
+(the 2b-calibrated lowconf set saturates: 7/8 pre-margins +3.2…+7.4). So the "deference is an
+attention-copy on a *named* reader head" claim should be scoped to small models; the
+*strategy*-level claim (where a copy occurs it is name-mover, content-routed, not recurrence)
+is what generalizes. The `counter`/`bare` circuit dissociation (§4) needs a
+9b-uncertainty-calibrated item set to be testable at scale.
+
 ## References
 
 *Identifiers from this session's web search; spot-check before external use.
@@ -220,7 +273,7 @@ preprints relative to the 2026-06 work date.*
 - Wei, J., Huang, D., Lu, Y., Zhou, D., & Le, Q. V. (2023). Simple Synthetic Data Reduces Sycophancy in Large Language Models. arXiv:2308.03958.
 - Chen, W., Huang, Z., et al. (2024). From Yes-Men to Truth-Tellers: Addressing Sycophancy in LLMs with Pinpoint Tuning. arXiv:2409.01658 (ICML 2024).
 - Genadi, R., Nwadike, M., Mukhituly, N., Alquabeh, H., Hiraoka, T., & Inui, K. (2026). Sycophancy Hides Linearly in the Attention Heads. arXiv:2601.16644.
-- Li, J., Wang, K., Yang, S., Zhang, Z., & Wang, D. (2025). When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in LLMs. arXiv:2508.02087.
+- Wang, K., Li, J., Yang, S., Zhang, Z., & Wang, D. (2025). When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models. arXiv:2508.02087. *(method: logit-lens + causal activation patching, not a fitted doubt direction; cite for sycophancy's internal origins, not for the R-4 instrument.)*
 - Vennemeyer, D., Duong, P. A., Zhan, T., & Jiang, T. (2025). Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs. arXiv:2509.21305.
 - Rimsky (Panickssery), N., Gabrieli, N., Schulz, J., Tong, M., Hubinger, E., & Turner, A. (2023/2024). Steering Llama 2 via Contrastive Activation Addition. arXiv:2312.06681 (ACL 2024).
 - Zou, A., et al. (2023). Representation Engineering: A Top-Down Approach to AI Transparency. arXiv:2310.01405.
