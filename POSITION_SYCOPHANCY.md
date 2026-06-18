@@ -262,6 +262,18 @@ attention-copy on a *named* reader head" claim should be scoped to small models;
 is what generalizes. The `counter`/`bare` circuit dissociation (§4) needs a
 9b-uncertainty-calibrated item set to be testable at scale.
 
+**Adversarial verification (2026-06-18, `latent_skeptic`@`a8fc434`).** The two load-bearing recent claims
+were triaged (fresh independent skeptics, one confound each; verify-by-running, not -reading). **C1**
+(post-training is QK-gated / OV-preserved, FRAMING §8): **robust** — a magnitude control (`ov_norm_probe.py`)
+shows the L18.H5 OV write is preserved in *magnitude* (write-norm −0.5%, pre-LN anchor logit −1.1%), not only
+direction, closing the saturated-metric crux. **C3** (the concentrated single-head copy does not transfer to
+9b, FRAMING §10.3): **core robust, sharpened** — the numeric copy's diffuse+decoupled signature is
+item/phrasing/scale-robust (held-out products × 3 phrasings × bootstrap; 9b top1 0.072, 2b 0.107), but the
+concentrated reader that fails to transfer is **salience-specific** (L18.H5); the 9b-*salience* per-head
+necessity is noise-dominated (matched control ≈ signal) and cannot itself carry "dissolves mechanically."
+Controls + result JSONs are committed; the skeptic harness is **pinned, not vendored** — its SHA above is the
+record, the tool itself stays out of this repo.
+
 ## References
 
 *Identifiers from this session's web search; spot-check before external use.

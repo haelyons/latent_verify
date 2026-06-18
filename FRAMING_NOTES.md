@@ -708,6 +708,15 @@ the "**RLHF removes it from the weights** / structurally absent" wording in this
 with the arc2 ARC2A note that `ov_pref` is ≈unchanged base→it; settled here on the consolidated
 branch.) Scope: one 2B family, reader L18.H5, 5 pairs.
 
+**Verification (2026-06-18, adversarial triage `latent_skeptic`@`a8fc434` + control `ov_norm_probe.py`,
+`out_c1/out/ov_norm_probe_2b.json`).** The triage flagged that `ov_pref`/`rank` are scale-invariant
+(direction, not magnitude) and saturated (pref ~1.0, rank 0 are at ceiling/floor) — so "OV preserved"
+needed a metric with dynamic range. The control adds a weight-only OV **write-magnitude** read for
+L18.H5, base vs -it, same 5 pairs: anchor write-norm `‖e·W_OV‖` **−0.5%**, pre-`ln_final` anchor logit
+**−1.1%**, `‖W_OV‖_F` **+0.14%** (all ≪ the pre-registered 15% tol); base reproduces I2 (rank 0,
+pref 0.9997). So the OV copy is preserved in **magnitude, not merely direction** — "QK-gated, OV-preserved"
+is a *functional* statement, not a saturation artifact. Triage verdict: **C1 robust**.
+
 ## 9. The low-confidence numeric-flip boundary, and a sycophancy dissociation (GPU, 2026-06-15)
 
 Frontier B (`job_numeric_boundary.py`, artifacts `out/numeric_boundary_{base,it}.json`).
@@ -923,6 +932,21 @@ to find the 2b head — re-localization was from scratch and the 2b indices were
 Scope: n=5 pairs / n=8 lowconf items, bf16, one 9b family, single phrasings; necessity
 denominators are tiny wherever effects are ≈0 (so per-head necessities at 9b are noisy and
 should be read as "diffuse/weak," not as precise rankings).
+
+**Verification (2026-06-18, adversarial triage `latent_skeptic`@`a8fc434`).** Two load-bearing cruxes,
+triaged from committed + new artifacts. **(1) The salience-cue "dissolves mechanically" is noise-bounded
+(R1).** On the salience cue the per-pair all-heads necessity is large but so is the matched control
+(`out/localize_salience_9b_base.json`: `all_nec` +0.89 / −0.8 / −1.2 vs `ctrl_nec` −1.9 / −2.6 / +1.5 over
+effects ~1 nat) — control ≈ signal, so the 9b-salience necessity statistic is **uninformative**, not a
+positive dissolution. Read "dissolves mechanically" here as *"necessity uninformative at 9b-salience."*
+**(2) The diffuse+decoupled result is item/phrasing/scale-robust (R2 + control `scale9b_numeric_generality.py`).**
+On the numeric cue 9b *obeys*, across held-out products × 3 phrasings (authority/user/textbook) × 500-sample
+bootstrap: all-heads `nec_W` ~0.9–1.07 / ctrl ~0, per-head **top1 0.072, 0 heads >0.1** at 9b
+(`out_c3/out/scale9b_numeric_generality_9b_base.json`), reproducing at 2b **top1 0.107**
+(`out_c3_2b/...2b.json`). So the diffuse copy is robust at every scale and is not n=28/one-phrasing overfit;
+the **concentrated single reader is salience-specific** (L18.H5) — the numeric cue was never concentrated
+(consistent with §10.2). Net: the single-reader scale boundary is a *salience-cue* statement, and the
+9b-salience necessity cannot itself adjudicate it (point 1). Triage verdict: **C3 core robust, sharpened.**
 
 ## 11. The it/chat sycophancy half: RLHF deletes the copy, and -it entrenches under pushback (GPU, 2026-06-17)
 
