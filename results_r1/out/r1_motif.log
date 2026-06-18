@@ -1,0 +1,26 @@
+[load] google/gemma-2-2b on cuda
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  39%|███▉      | 113/288 [00:00<00:00, 1118.85it/s]Loading weights:  88%|████████▊ | 252/288 [00:00<00:00, 1273.17it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1306.69it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[basket] 10 induction heads (excl [(18, 5)]): [(6, 2), (15, 0), (18, 6), (6, 3), (21, 5), (22, 4), (17, 4), (19, 1), (20, 7), (4, 4)]
+[load] google/gemma-2-2b-it on cuda
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:06<00:06,  6.80s/it]Fetching 2 files: 100%|██████████| 2/2 [00:06<00:00,  3.40s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 8835.41it/s]
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+  [ 6.2] induction 0.933->0.941 (rel +0.01) copy_rank 58837.4->64703.1 W_OV_fro rel +0.01 -> other
+  [15.0] induction 0.924->0.917 (rel -0.01) copy_rank 14061.0->14852.8 W_OV_fro rel +0.01 -> other
+  [18.6] induction 0.771->0.720 (rel -0.07) copy_rank 6326.7->7770.1 W_OV_fro rel +0.01 -> other
+  [ 6.3] induction 0.764->0.796 (rel +0.04) copy_rank 23226.7->25171.8 W_OV_fro rel +0.01 -> other
+  [21.5] induction 0.595->0.619 (rel +0.04) copy_rank 112120.8->113050.4 W_OV_fro rel +0.01 -> other
+  [22.4] induction 0.501->0.534 (rel +0.07) copy_rank 10002.5->9693.6 W_OV_fro rel -0.00 -> other
+  [17.4] induction 0.471->0.604 (rel +0.28) copy_rank 244419.6->244848.5 W_OV_fro rel +0.00 -> other
+  [19.1] induction 0.419->0.465 (rel +0.11) copy_rank 7633.2->8059.3 W_OV_fro rel -0.00 -> other
+  [20.7] induction 0.414->0.454 (rel +0.10) copy_rank 75539.1->77066.4 W_OV_fro rel -0.00 -> other
+  [ 4.4] induction 0.409->0.555 (rel +0.36) copy_rank 28762.6->30851.3 W_OV_fro rel +0.00 -> other
+
+[decision] {
+  "n": 10,
+  "n_gate_dont_delete": 0,
+  "frac_gate_dont_delete": 0.0,
+  "verdict": "SPECIFIC/MIXED: not a majority pattern (the L18.H5 signature is head-specific or heterogeneous)"
+}
+[done] wrote out/gate_dont_delete_2b.json

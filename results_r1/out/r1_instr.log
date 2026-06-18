@@ -1,0 +1,160 @@
+[load] google/gemma-2-2b on cuda
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:08<00:17,  8.69s/it]Fetching 3 files: 100%|██████████| 3/3 [00:08<00:00,  2.90s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  42%|████▏     | 121/288 [00:00<00:00, 1195.94it/s]Loading weights:  89%|████████▉ | 256/288 [00:00<00:00, 1283.00it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1309.83it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[load] done (L=26 H=8)
+[pair] Australia    effect=+9.750
+  [knockout] Australia swept layer 0
+  [knockout] Australia swept layer 1
+  [knockout] Australia swept layer 2
+  [knockout] Australia swept layer 3
+  [knockout] Australia swept layer 4
+  [knockout] Australia swept layer 5
+  [knockout] Australia swept layer 6
+  [knockout] Australia swept layer 7
+  [knockout] Australia swept layer 8
+  [knockout] Australia swept layer 9
+  [knockout] Australia swept layer 10
+  [knockout] Australia swept layer 11
+  [knockout] Australia swept layer 12
+  [knockout] Australia swept layer 13
+  [knockout] Australia swept layer 14
+  [knockout] Australia swept layer 15
+  [knockout] Australia swept layer 16
+  [knockout] Australia swept layer 17
+  [knockout] Australia swept layer 18
+  [knockout] Australia swept layer 19
+  [knockout] Australia swept layer 20
+  [knockout] Australia swept layer 21
+  [knockout] Australia swept layer 22
+  [knockout] Australia swept layer 23
+  [knockout] Australia swept layer 24
+  [knockout] Australia swept layer 25
+[pair] Texas        effect=+7.000
+  [knockout] Texas swept layer 0
+  [knockout] Texas swept layer 1
+  [knockout] Texas swept layer 2
+  [knockout] Texas swept layer 3
+  [knockout] Texas swept layer 4
+  [knockout] Texas swept layer 5
+  [knockout] Texas swept layer 6
+  [knockout] Texas swept layer 7
+  [knockout] Texas swept layer 8
+  [knockout] Texas swept layer 9
+  [knockout] Texas swept layer 10
+  [knockout] Texas swept layer 11
+  [knockout] Texas swept layer 12
+  [knockout] Texas swept layer 13
+  [knockout] Texas swept layer 14
+  [knockout] Texas swept layer 15
+  [knockout] Texas swept layer 16
+  [knockout] Texas swept layer 17
+  [knockout] Texas swept layer 18
+  [knockout] Texas swept layer 19
+  [knockout] Texas swept layer 20
+  [knockout] Texas swept layer 21
+  [knockout] Texas swept layer 22
+  [knockout] Texas swept layer 23
+  [knockout] Texas swept layer 24
+  [knockout] Texas swept layer 25
+[pair] Canada       effect=+5.875
+  [knockout] Canada swept layer 0
+  [knockout] Canada swept layer 1
+  [knockout] Canada swept layer 2
+  [knockout] Canada swept layer 3
+  [knockout] Canada swept layer 4
+  [knockout] Canada swept layer 5
+  [knockout] Canada swept layer 6
+  [knockout] Canada swept layer 7
+  [knockout] Canada swept layer 8
+  [knockout] Canada swept layer 9
+  [knockout] Canada swept layer 10
+  [knockout] Canada swept layer 11
+  [knockout] Canada swept layer 12
+  [knockout] Canada swept layer 13
+  [knockout] Canada swept layer 14
+  [knockout] Canada swept layer 15
+  [knockout] Canada swept layer 16
+  [knockout] Canada swept layer 17
+  [knockout] Canada swept layer 18
+  [knockout] Canada swept layer 19
+  [knockout] Canada swept layer 20
+  [knockout] Canada swept layer 21
+  [knockout] Canada swept layer 22
+  [knockout] Canada swept layer 23
+  [knockout] Canada swept layer 24
+  [knockout] Canada swept layer 25
+[pair] Switzerland  effect=+6.875
+  [knockout] Switzerland swept layer 0
+  [knockout] Switzerland swept layer 1
+  [knockout] Switzerland swept layer 2
+  [knockout] Switzerland swept layer 3
+  [knockout] Switzerland swept layer 4
+  [knockout] Switzerland swept layer 5
+  [knockout] Switzerland swept layer 6
+  [knockout] Switzerland swept layer 7
+  [knockout] Switzerland swept layer 8
+  [knockout] Switzerland swept layer 9
+  [knockout] Switzerland swept layer 10
+  [knockout] Switzerland swept layer 11
+  [knockout] Switzerland swept layer 12
+  [knockout] Switzerland swept layer 13
+  [knockout] Switzerland swept layer 14
+  [knockout] Switzerland swept layer 15
+  [knockout] Switzerland swept layer 16
+  [knockout] Switzerland swept layer 17
+  [knockout] Switzerland swept layer 18
+  [knockout] Switzerland swept layer 19
+  [knockout] Switzerland swept layer 20
+  [knockout] Switzerland swept layer 21
+  [knockout] Switzerland swept layer 22
+  [knockout] Switzerland swept layer 23
+  [knockout] Switzerland swept layer 24
+  [knockout] Switzerland swept layer 25
+[pair] Morocco      effect=+2.750
+  [knockout] Morocco swept layer 0
+  [knockout] Morocco swept layer 1
+  [knockout] Morocco swept layer 2
+  [knockout] Morocco swept layer 3
+  [knockout] Morocco swept layer 4
+  [knockout] Morocco swept layer 5
+  [knockout] Morocco swept layer 6
+  [knockout] Morocco swept layer 7
+  [knockout] Morocco swept layer 8
+  [knockout] Morocco swept layer 9
+  [knockout] Morocco swept layer 10
+  [knockout] Morocco swept layer 11
+  [knockout] Morocco swept layer 12
+  [knockout] Morocco swept layer 13
+  [knockout] Morocco swept layer 14
+  [knockout] Morocco swept layer 15
+  [knockout] Morocco swept layer 16
+  [knockout] Morocco swept layer 17
+  [knockout] Morocco swept layer 18
+  [knockout] Morocco swept layer 19
+  [knockout] Morocco swept layer 20
+  [knockout] Morocco swept layer 21
+  [knockout] Morocco swept layer 22
+  [knockout] Morocco swept layer 23
+  [knockout] Morocco swept layer 24
+  [knockout] Morocco swept layer 25
+[qa] Australia    effect=+0.312 below_floor=True atp_finite=True
+[qa] Texas        effect=+1.000 below_floor=False atp_finite=True
+[qa] Canada       effect=+0.188 below_floor=True atp_finite=True
+[qa] Switzerland  effect=+1.312 below_floor=False atp_finite=True
+[qa] Morocco      effect=+0.250 below_floor=True atp_finite=True
+
+[decision] {
+  "SC_INSTR_1_concordance": true,
+  "SC_INSTR_2_small_effect": true,
+  "SC_INSTR_3_specificity_linear": true,
+  "reader_atp_rank": 2,
+  "reader_patch_rank": 1,
+  "reader_knockout_rank": 1,
+  "ctrl_atp_rank": 169,
+  "ctrl_patch_frac": 0.0037,
+  "reader_patch_frac": 0.222,
+  "sign_agreement": 0.957,
+  "verdict": "CONCORDANT: AtP and activation-patch reproduce the incumbent on the known case; adopt AtP-screen + activation-patch-confirm for R1-DIFF; necessity floor retired (SC-INSTR-2)"
+}
+[done] wrote out/instr_triangulation_2b.json
