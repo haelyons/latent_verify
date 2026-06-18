@@ -365,6 +365,21 @@ renormalizing knockout is the same heavy intervention as §3.7. Switzerland/Moro
 have multi-token anchors (Zur+ich, Casa+blanca) so anchor-position knockout covers
 several keys. One prompt per pair, greedy single-token readout.
 
+**Verification (2026-06-18, adversarial triage `latent_skeptic`@`38ef6cf`).** The "concentrated reader"
+wording here and in §3.9 ("two principal heads carrying ~0.4 between them") conflates two metrics. The
+~1.0 / ~0.4 figures are the **all-heads** (or top-k joint) anchor knockout; the **per-head** knockout
+necessity for L18.H5 is only **0.197** (`out/framing_localize_heads.json`, the 48-head TOP_LAYERS sweep —
+rank 2, behind L0.H2 at 0.205) and **0.237** under the matched **all-208-head** sweep
+(`out/localize_salience_208_2b.json` — rank 2, behind L2.H2 at 0.251; 13 heads >0.1, top5_sum 1.04). The
+two sweeps agree (≈0.20 both; same renorm-knockout, same 5 pairs, same effect 9.42), so the scope change
+does not deflate it — **L18.H5 was never per-head dominant.** (The 48-head sweep only named L0.H2 top
+because L2 was outside its layer list; the full sweep finds L2.H2 higher.) So on the **causal per-head
+axis the salience copy is distributed, not concentrated.** Reserve "concentrated reader" for the
+properties that *are* singular to L18.H5 — cross-pair consistency, QK attention-to-anchor 0.84, OV
+copy-pref 0.9997 — not for per-head causal dominance. Triage verdict: **concentration is a
+metric-conflation / sweep-scope reading; the diffuse per-head picture is robust** (cf. POSITION_SYCOPHANCY
+SEQUENCE-correction (2), which retracted "concentrated salience" on the same 208-head evidence).
+
 ## 3.11 Numeric sycophancy, confound fixed: graded pull, no flip
 
 §2's arithmetic result was inconclusive because the tracked answer (56) and the

@@ -597,3 +597,28 @@ Pre-registered SC outcomes:
 Caveats: concentration sweep n ≤ 15 caving items/model; flip counts modest (9–20); many kept items
 the model already leans wrong (`already_wrong` 12–19), so directional flips are the `pre>0→post<0`
 subset; 9b-it matched control not clean; doubt-softening secondary / tentative.
+
+---
+
+## Verification (2026-06-18, adversarial triage `latent_skeptic`@`38ef6cf`) — rescope the "capability ceiling"
+
+Two scale-arm cruxes triaged against committed numbers (fresh independent skeptics, one confound each;
+verify-by-running/-reading-the-JSON, not by re-reading the notes).
+
+**The "9b capability ceiling" is a single-competitor *cue-regime* property, not a fact about 9b's
+capability.** R-1/R-2/R-2′/R-2″ above read it as "9b is too capable to be made uncertain"; the triage
+sharpens that. Committed: `out/scale9b_dose_response_9b_base.json` has `n_low_margin_swept=0` — **0 of 243**
+arithmetic items reach `|lp(C)−lp(W)|<1.5` (the bins start at [3,5)); capitals sit +3.2…+7.4 (§10.3). So
+**no capitals/arithmetic item can populate the near-tie regime at all**, whereas the misconception
+substrate (I1) keeps 103/817 at mean margin −0.26 and produces **9 clean directional flips**
+(`out/truthful_flip_9b_base.json`, `n_margin_flipped=9`; the flip bucket is gated `pre>0 → post<0`,
+disjoint from `already_wrong` — confirmed clean, RULED_OUT). The difference is the **cue admitting a
+single dominant competitor** (`ρ=P(W*)/P(W2*)>2`), not 9b becoming "uncertain."
+
+**Honest wording going forward:** the ceiling = capitals/arithmetic lack a copyable single competitor;
+where a cue supplies one, 9b flips. **Do not** cite I1's `mean_pre≈0` as evidence that 9b "is uncertain" —
+that margin is *imposed by the keep filter* (`|margin|<1.5`), a selection criterion, not a discovered
+property (triage: this confound **EXPLAINS** and stands). The flips and the substrate contrast are robust;
+the "genuine uncertainty" gloss is circular and is dropped. The concentrated-vs-diffuse companion crux
+(FRAMING §3.10 verification note) confirms the I1 flips are **diffuse at every scale** — no concentrated
+reader appears even where 9b behaviourally flips.

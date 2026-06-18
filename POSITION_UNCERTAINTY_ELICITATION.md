@@ -23,6 +23,14 @@ at its computational frontier, because its wrong-probability mass leaks over *ma
 one offered W. Result: **margin softens, never flips** (R-1/R-2/R-2″). The §10.1 capability ceiling
 is the dominant, robust finding, and it bounds the whole scale arm.
 
+> **Rescoped (2026-06-18, triage `latent_skeptic`@`38ef6cf`).** Read "capability ceiling" as a property of
+> *cues that lack a copyable single competitor*, not of 9b itself: 0/243 arithmetic items reach `|margin|<1.5`
+> (`scale9b_dose_response_9b_base.json`), but the misconception substrate (I1; see the `DESIGN` Verification
+> note) does populate the near-tie regime and flips 9b base (9/103). Caveat the triage upheld: I1's
+> `mean_pre≈0` is *imposed by the keep filter*, so it does not by itself evidence "genuine" 9b uncertainty —
+> the defensible claim is that the cue *admits* a single-competitor near-tie regime, which capitals/arithmetic
+> cannot.
+
 So the open need is a cue/item construction that **reliably lands the model in genuine uncertainty**.
 The field offers three distinct kinds of "uncertainty," and conflating them is the trap:
 
