@@ -412,3 +412,46 @@ Every claim was adversarially triaged (`latent_skeptic`, H1 fresh skeptics / H2 
 
 **Both de-confound controls now RUN.** Net: the 9b "no installed deference head" and the 27b
 "gate-don't-delete is 2b-specific" headlines are both arbiter/weight-confirmed, not instrument-limited.
+
+---
+
+## PART 4 — NEXT STEPS (highlighted, 2026-06-19)
+
+The arc is a streak of well-verified **NULLs** — concentration does not scale; RLHF installs no single
+deference head. The program's own results now mandate the pivot: stop asking *"which head?"* and ask
+**"since it is not one head, what IS the distributed object?"** Plus bank a *positive* claim (the
+biological-reuse goal needs one; this arc produced strong negatives).
+
+**NEXT-1 (recommended) — characterize the distributed object: doubt/defer DIRECTION + head-SET.**
+The 9b caving is real (9–14 flips) but not single-head-local. Two complementary tests:
+  - **direction**: fit a low-rank "cave/defer" direction in the -it residual on the misconception
+    caving items (the P-F probe that never ran); ablate / steer it; measure the C-vs-W* margin effect.
+  - **head-SET (see the heads-vs-sets note below)**: jointly activation-patch the top-k diffuse heads
+    (net_it ≈ 0.03–0.07) together — the per-head NULL does NOT exclude a *jointly-necessary set*.
+  A residual direction OR a joint set that mediates caving (where no single head does) is the positive,
+  distributed account. Cheap (9b, forward + linear fit/ablation + joint patch; no AtP backward).
+
+**NEXT-2 — close the one honest residual: realized-attention probe.**
+27b said "W_QK weights unchanged," but L18.H5's 2b result was a *realized-pattern* collapse and the
+induction probe was insensitive. Measure actual attention-to-source on a **content-copy input** (not
+induction) at 9b/27b, base vs -it. Settles whether copy heads' realized QK is gated at scale.
+
+**NEXT-3 — fresh lead the data handed us: the 27b OV-magnitude increase.**
+RLHF *raised* several 27b copy heads' OV write-magnitude (W_OV_fro +0.34/+0.52, two metrics agree).
+Unexplained, RLHF-specific, cross-scale-new: what do they write *more* of, does it matter behaviorally?
+
+Parked (single-family depth): deployment regime, cross-architecture, SFT-vs-RL staging (no Gemma
+staged checkpoints).
+
+### Heads vs head-SETS — scope of the NULLs (load-bearing)
+Every instrument this arc used (AtP differential, activation-patch confirm, gate_dont_delete) scored
+**individual heads**, ranked per-head. It did NOT test head **sets** (joint knockout/patch of several
+heads at once). This matters: Arc-1 §3.9/§3.12 + S2 showed the salience effect is carried *jointly* by
+a ~12-head set (all-heads necessity ~1.0) while **no single head exceeds ~0.2** — non-additive. So:
+- The R1-DIFF result is precisely **"no single installed head (frac_it < 0.10 each)"** — it does **not**
+  exclude a jointly-necessary installed *set* whose members are each sub-threshold. The diffuse 9b
+  picture (many heads 0.03–0.07) is exactly what such a set looks like.
+- Hence NEXT-1's head-SET joint patch is not optional polish — it is the test that would actually
+  decide whether the distributed caving is a coordinated set vs genuinely no-attention-locus (MLP /
+  residual-direction). It revives the repo's earlier joint-knockout idea on the installed-component
+  question.
