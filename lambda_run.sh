@@ -47,7 +47,8 @@ for i in $(seq 1 24); do ssh $SSHOPT ubuntu@$IP true 2>/dev/null && { echo "[ssh
 echo "[scp] code -> box"
 ssh $SSHOPT ubuntu@$IP "mkdir -p latent_verify/out"
 scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numeric_generality.py \
-  instr_triangulation.py gate_dont_delete.py rlhf_differential.py remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
+  instr_triangulation.py gate_dont_delete.py rlhf_differential.py controls/qk_collapse_metric.py \
+  remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
 
 echo "[run] $RUNNER (hard cap ${REMOTE_TIMEOUT}s)"
 ssh $SSHOPT ubuntu@$IP "cd latent_verify && timeout $REMOTE_TIMEOUT env HF_TOKEN='$HF' bash remote_run.sh bash $RUNNER"
