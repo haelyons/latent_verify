@@ -188,15 +188,30 @@ def _atp_net(model, ref_ids, var_ids, cid, aid, nL, nH):
     POSITIVE = head mediates the cave (restoring it raises M). effect = M(ref) - M(var). The ref is the
     matched neutral-turn prompt, so this is already the neutral-subtracted (R-4) net -- no second pass."""
     zname = lambda L: f"blocks.{L}.attn.hook_z"
+    # Memory-lean M: stop BEFORE the unembed and score only the last position via a direct `@ W_U`
+    # (no W_U.T.contiguous 1.7GB copy, no [seq, 256k] logits in the grad graph -- both blew the 40GB
+    # budget on 9b). Replicate gemma-2's final-logit softcap so M matches the real model.
+    sc = getattr(model.cfg, "final_logit_softcap", None)
+    def M_last(resid):
+        h = model.ln_final(resid[:, -1:, :])[0, -1]        # [d_model]
+        raw = h @ model.W_U + model.b_U                     # [d_vocab], bf16, no transpose copy
+        if sc:
+            raw = sc * torch.tanh(raw / sc)
+        lp = torch.log_softmax(raw.float(), -1)
+        return lp[cid] - lp[aid]
     zref = {}
     def grab_r(z, hook):
         zref[hook.layer()] = z[0, -1].detach().clone(); return z
     with torch.no_grad():
-        M_ref = float(_logp_diff(model.run_with_hooks(ref_ids, fwd_hooks=[(zname(L), grab_r) for L in range(nL)]), cid, aid))
+        rr = model.run_with_hooks(ref_ids, fwd_hooks=[(zname(L), grab_r) for L in range(nL)],
+                                  stop_at_layer=nL, return_type=None)
+        M_ref = float(M_last(rr))
     kept = {}
     def grab_v(z, hook):
         kept[hook.layer()] = z; return z               # no retain_grad: autograd.grad handles non-leaves
-    M_var = _logp_diff(model.run_with_hooks(var_ids, fwd_hooks=[(zname(L), grab_v) for L in range(nL)]), cid, aid)
+    rv = model.run_with_hooks(var_ids, fwd_hooks=[(zname(L), grab_v) for L in range(nL)],
+                              stop_at_layer=nL, return_type=None)
+    M_var = M_last(rv)
     layers = sorted(kept)
     # grad of M wrt the z activations ONLY -- NOT wrt params, so no ~18GB param.grad is allocated
     # (M.backward() would; that OOM'd 9b on a 40GB A100). Memory now = weights + one forward graph.
