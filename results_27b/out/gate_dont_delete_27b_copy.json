@@ -1,0 +1,315 @@
+{
+  "model_base": "google/gemma-2-27b",
+  "model_it": "google/gemma-2-27b-it",
+  "cue": "gate_dont_delete_motif",
+  "select_mode": "copy",
+  "n_layers": 46,
+  "n_heads": 32,
+  "seq_len": 40,
+  "seed": 0,
+  "thresholds": {
+    "gate_drop": 0.5,
+    "mag_tol": 0.15,
+    "copy_rank_top": 5,
+    "min_base_induction": 0.2,
+    "min_base_copy": 0.1,
+    "majority": 0.5
+  },
+  "excluded_heads": [
+    [
+      18,
+      5
+    ]
+  ],
+  "basket": [
+    [
+      11,
+      2
+    ],
+    [
+      11,
+      4
+    ],
+    [
+      11,
+      7
+    ],
+    [
+      11,
+      21
+    ],
+    [
+      16,
+      3
+    ],
+    [
+      17,
+      4
+    ],
+    [
+      19,
+      2
+    ],
+    [
+      19,
+      5
+    ],
+    [
+      19,
+      7
+    ],
+    [
+      23,
+      24
+    ]
+  ],
+  "rows": [
+    {
+      "head": [
+        11,
+        2
+      ],
+      "base": {
+        "induction": 0.02831,
+        "W_OV_fro": 4.3051,
+        "mean_copy_rank": 0.075,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.965979
+      },
+      "it": {
+        "induction": 0.02772,
+        "W_OV_fro": 5.75425,
+        "mean_copy_rank": 0.025,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.976089
+      },
+      "rel_induction": -0.0208,
+      "rel_W_OV_fro": 0.3366,
+      "it_copy_rank": 0.025,
+      "label": "other"
+    },
+    {
+      "head": [
+        11,
+        4
+      ],
+      "base": {
+        "induction": 0.01515,
+        "W_OV_fro": 4.74927,
+        "mean_copy_rank": 153.9,
+        "frac_rank0": 0.875,
+        "mean_copy_pref": 0.881347
+      },
+      "it": {
+        "induction": 0.01386,
+        "W_OV_fro": 6.34848,
+        "mean_copy_rank": 130.875,
+        "frac_rank0": 0.925,
+        "mean_copy_pref": 0.904845
+      },
+      "rel_induction": -0.0851,
+      "rel_W_OV_fro": 0.3367,
+      "it_copy_rank": 130.875,
+      "label": "other"
+    },
+    {
+      "head": [
+        11,
+        7
+      ],
+      "base": {
+        "induction": 0.01023,
+        "W_OV_fro": 4.22864,
+        "mean_copy_rank": 0.025,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.975711
+      },
+      "it": {
+        "induction": 0.0114,
+        "W_OV_fro": 5.65256,
+        "mean_copy_rank": 0.025,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.968459
+      },
+      "rel_induction": 0.1144,
+      "rel_W_OV_fro": 0.3367,
+      "it_copy_rank": 0.025,
+      "label": "other"
+    },
+    {
+      "head": [
+        11,
+        21
+      ],
+      "base": {
+        "induction": 0.02145,
+        "W_OV_fro": 4.54894,
+        "mean_copy_rank": 0.025,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.975047
+      },
+      "it": {
+        "induction": 0.02561,
+        "W_OV_fro": 6.07927,
+        "mean_copy_rank": 0.025,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.976
+      },
+      "rel_induction": 0.1939,
+      "rel_W_OV_fro": 0.3364,
+      "it_copy_rank": 0.025,
+      "label": "other"
+    },
+    {
+      "head": [
+        16,
+        3
+      ],
+      "base": {
+        "induction": 0.02685,
+        "W_OV_fro": 6.98593,
+        "mean_copy_rank": 0.3,
+        "frac_rank0": 0.95,
+        "mean_copy_pref": 0.959309
+      },
+      "it": {
+        "induction": 0.03644,
+        "W_OV_fro": 6.79415,
+        "mean_copy_rank": 0.075,
+        "frac_rank0": 0.95,
+        "mean_copy_pref": 0.952123
+      },
+      "rel_induction": 0.3572,
+      "rel_W_OV_fro": -0.0275,
+      "it_copy_rank": 0.075,
+      "label": "untouched"
+    },
+    {
+      "head": [
+        17,
+        4
+      ],
+      "base": {
+        "induction": 0.06364,
+        "W_OV_fro": 4.82946,
+        "mean_copy_rank": 0,
+        "frac_rank0": 1.0,
+        "mean_copy_pref": 0.999955
+      },
+      "it": {
+        "induction": 0.11694,
+        "W_OV_fro": 7.35177,
+        "mean_copy_rank": 0,
+        "frac_rank0": 1.0,
+        "mean_copy_pref": 0.999971
+      },
+      "rel_induction": 0.8375,
+      "rel_W_OV_fro": 0.5223,
+      "it_copy_rank": 0,
+      "label": "other"
+    },
+    {
+      "head": [
+        19,
+        2
+      ],
+      "base": {
+        "induction": 0.10359,
+        "W_OV_fro": 5.7591,
+        "mean_copy_rank": 0,
+        "frac_rank0": 1.0,
+        "mean_copy_pref": 0.999636
+      },
+      "it": {
+        "induction": 0.13048,
+        "W_OV_fro": 5.5974,
+        "mean_copy_rank": 0,
+        "frac_rank0": 1.0,
+        "mean_copy_pref": 0.999968
+      },
+      "rel_induction": 0.2596,
+      "rel_W_OV_fro": -0.0281,
+      "it_copy_rank": 0,
+      "label": "untouched"
+    },
+    {
+      "head": [
+        19,
+        5
+      ],
+      "base": {
+        "induction": 0.04349,
+        "W_OV_fro": 8.33321,
+        "mean_copy_rank": 19.15,
+        "frac_rank0": 0.7,
+        "mean_copy_pref": 0.694117
+      },
+      "it": {
+        "induction": 0.05922,
+        "W_OV_fro": 8.09958,
+        "mean_copy_rank": 16.625,
+        "frac_rank0": 0.7,
+        "mean_copy_pref": 0.694038
+      },
+      "rel_induction": 0.3617,
+      "rel_W_OV_fro": -0.028,
+      "it_copy_rank": 16.625,
+      "label": "other"
+    },
+    {
+      "head": [
+        19,
+        7
+      ],
+      "base": {
+        "induction": 0.03435,
+        "W_OV_fro": 6.6162,
+        "mean_copy_rank": 0.075,
+        "frac_rank0": 0.975,
+        "mean_copy_pref": 0.953149
+      },
+      "it": {
+        "induction": 0.05359,
+        "W_OV_fro": 6.41946,
+        "mean_copy_rank": 0.125,
+        "frac_rank0": 0.925,
+        "mean_copy_pref": 0.937602
+      },
+      "rel_induction": 0.5601,
+      "rel_W_OV_fro": -0.0297,
+      "it_copy_rank": 0.125,
+      "label": "untouched"
+    },
+    {
+      "head": [
+        23,
+        24
+      ],
+      "base": {
+        "induction": 0.09536,
+        "W_OV_fro": 7.09193,
+        "mean_copy_rank": 0,
+        "frac_rank0": 1.0,
+        "mean_copy_pref": 1.0
+      },
+      "it": {
+        "induction": 0.09096,
+        "W_OV_fro": 5.34567,
+        "mean_copy_rank": 0,
+        "frac_rank0": 1.0,
+        "mean_copy_pref": 1.0
+      },
+      "rel_induction": -0.0461,
+      "rel_W_OV_fro": -0.2462,
+      "it_copy_rank": 0,
+      "label": "other"
+    }
+  ],
+  "decision": {
+    "n": 10,
+    "n_gate_dont_delete": 0,
+    "frac_gate_dont_delete": 0.0,
+    "verdict": "SPECIFIC/MIXED: not a majority pattern (the L18.H5 signature is head-specific or heterogeneous)"
+  },
+  "caveat": "gemma-2-2b-it is SFT+RLHF+merge; base->it weight diff conflates three ops. QK side is the realized pattern (activation diff); OV side is weight-only."
+}

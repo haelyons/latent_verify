@@ -1,0 +1,73 @@
+[load] google/gemma-2-27b on cuda
+Fetching 24 files:   0%|          | 0/24 [00:00<?, ?it/s]Fetching 24 files:   4%|▍         | 1/24 [00:17<06:39, 17.39s/it]Fetching 24 files:  38%|███▊      | 9/24 [00:27<00:38,  2.57s/it]Fetching 24 files:  42%|████▏     | 10/24 [00:32<00:40,  2.90s/it]Fetching 24 files:  46%|████▌     | 11/24 [00:37<00:42,  3.27s/it]Fetching 24 files:  50%|█████     | 12/24 [00:38<00:32,  2.75s/it]Fetching 24 files:  58%|█████▊    | 14/24 [00:39<00:19,  1.93s/it]Fetching 24 files:  62%|██████▎   | 15/24 [00:39<00:14,  1.61s/it]Fetching 24 files:  71%|███████   | 17/24 [00:40<00:08,  1.15s/it]Fetching 24 files:  75%|███████▌  | 18/24 [00:43<00:09,  1.58s/it]Fetching 24 files:  79%|███████▉  | 19/24 [00:52<00:16,  3.33s/it]Fetching 24 files:  83%|████████▎ | 20/24 [00:55<00:12,  3.11s/it]Fetching 24 files: 100%|██████████| 24/24 [00:55<00:00,  2.29s/it]
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   0%|          | 1/508 [00:00<01:01,  8.26it/s]Loading weights:   9%|▉         | 47/508 [00:00<00:02, 222.25it/s]Loading weights:  14%|█▎        | 69/508 [00:00<00:02, 216.21it/s]Loading weights:  18%|█▊        | 93/508 [00:00<00:01, 211.11it/s]Loading weights:  22%|██▏       | 114/508 [00:00<00:01, 204.32it/s]Loading weights:  29%|██▊       | 146/508 [00:00<00:01, 229.22it/s]Loading weights:  33%|███▎      | 169/508 [00:00<00:01, 225.60it/s]Loading weights:  40%|███▉      | 201/508 [00:00<00:01, 231.62it/s]Loading weights:  44%|████▍     | 225/508 [00:01<00:01, 233.89it/s]Loading weights:  49%|████▉     | 249/508 [00:01<00:01, 226.56it/s]Loading weights:  55%|█████▍    | 278/508 [00:01<00:00, 234.26it/s]Loading weights:  59%|█████▉    | 302/508 [00:01<00:00, 222.12it/s]Loading weights:  66%|██████▌   | 333/508 [00:01<00:00, 237.15it/s]Loading weights:  70%|███████   | 357/508 [00:01<00:00, 223.81it/s]Loading weights:  75%|███████▍  | 380/508 [00:01<00:00, 225.37it/s]Loading weights:  81%|████████  | 410/508 [00:01<00:00, 241.19it/s]Loading weights:  86%|████████▌ | 435/508 [00:01<00:00, 239.86it/s]Loading weights:  91%|█████████ | 460/508 [00:02<00:00, 241.07it/s]Loading weights:  96%|█████████▌| 487/508 [00:02<00:00, 229.35it/s]Loading weights: 100%|██████████| 508/508 [00:02<00:00, 228.60it/s]
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+  [select-copy] scanned layer 0
+  [select-copy] scanned layer 1
+  [select-copy] scanned layer 2
+  [select-copy] scanned layer 3
+  [select-copy] scanned layer 4
+  [select-copy] scanned layer 5
+  [select-copy] scanned layer 6
+  [select-copy] scanned layer 7
+  [select-copy] scanned layer 8
+  [select-copy] scanned layer 9
+  [select-copy] scanned layer 10
+  [select-copy] scanned layer 11
+  [select-copy] scanned layer 12
+  [select-copy] scanned layer 13
+  [select-copy] scanned layer 14
+  [select-copy] scanned layer 15
+  [select-copy] scanned layer 16
+  [select-copy] scanned layer 17
+  [select-copy] scanned layer 18
+  [select-copy] scanned layer 19
+  [select-copy] scanned layer 20
+  [select-copy] scanned layer 21
+  [select-copy] scanned layer 22
+  [select-copy] scanned layer 23
+  [select-copy] scanned layer 24
+  [select-copy] scanned layer 25
+  [select-copy] scanned layer 26
+  [select-copy] scanned layer 27
+  [select-copy] scanned layer 28
+  [select-copy] scanned layer 29
+  [select-copy] scanned layer 30
+  [select-copy] scanned layer 31
+  [select-copy] scanned layer 32
+  [select-copy] scanned layer 33
+  [select-copy] scanned layer 34
+  [select-copy] scanned layer 35
+  [select-copy] scanned layer 36
+  [select-copy] scanned layer 37
+  [select-copy] scanned layer 38
+  [select-copy] scanned layer 39
+  [select-copy] scanned layer 40
+  [select-copy] scanned layer 41
+  [select-copy] scanned layer 42
+  [select-copy] scanned layer 43
+  [select-copy] scanned layer 44
+  [select-copy] scanned layer 45
+[basket] 10 OV-copy heads (frac_rank0>=0.1, excl [(18, 5)]): [(11, 2), (11, 4), (11, 7), (11, 21), (16, 3), (17, 4), (19, 2), (19, 5), (19, 7), (23, 24)]
+[load] google/gemma-2-27b-it on cuda
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files:   8%|▊         | 1/12 [00:13<02:24, 13.15s/it]Fetching 12 files:  17%|█▋        | 2/12 [00:14<00:59,  5.92s/it]Fetching 12 files:  25%|██▌       | 3/12 [00:14<00:32,  3.57s/it]Fetching 12 files:  75%|███████▌  | 9/12 [00:20<00:04,  1.51s/it]Fetching 12 files:  83%|████████▎ | 10/12 [00:27<00:04,  2.28s/it]Fetching 12 files:  92%|█████████▏| 11/12 [00:27<00:02,  2.03s/it]Fetching 12 files: 100%|██████████| 12/12 [00:27<00:00,  2.33s/it]
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights: 100%|██████████| 508/508 [00:00<00:00, 7032.66it/s]
+Loaded pretrained model google/gemma-2-27b-it into HookedTransformer
+  [11.2] induction 0.028->0.028 (rel -0.02) copy_rank 0.1->0.0 W_OV_fro rel +0.34 -> other
+  [11.4] induction 0.015->0.014 (rel -0.09) copy_rank 153.9->130.9 W_OV_fro rel +0.34 -> other
+  [11.7] induction 0.010->0.011 (rel +0.11) copy_rank 0.0->0.0 W_OV_fro rel +0.34 -> other
+  [11.21] induction 0.021->0.026 (rel +0.19) copy_rank 0.0->0.0 W_OV_fro rel +0.34 -> other
+  [16.3] induction 0.027->0.036 (rel +0.36) copy_rank 0.3->0.1 W_OV_fro rel -0.03 -> untouched
+  [17.4] induction 0.064->0.117 (rel +0.84) copy_rank 0.0->0.0 W_OV_fro rel +0.52 -> other
+  [19.2] induction 0.104->0.130 (rel +0.26) copy_rank 0.0->0.0 W_OV_fro rel -0.03 -> untouched
+  [19.5] induction 0.043->0.059 (rel +0.36) copy_rank 19.1->16.6 W_OV_fro rel -0.03 -> other
+  [19.7] induction 0.034->0.054 (rel +0.56) copy_rank 0.1->0.1 W_OV_fro rel -0.03 -> untouched
+  [23.24] induction 0.095->0.091 (rel -0.05) copy_rank 0.0->0.0 W_OV_fro rel -0.25 -> other
+
+[decision] {
+  "n": 10,
+  "n_gate_dont_delete": 0,
+  "frac_gate_dont_delete": 0.0,
+  "verdict": "SPECIFIC/MIXED: not a majority pattern (the L18.H5 signature is head-specific or heterogeneous)"
+}
+[done] wrote out/gate_dont_delete_2b_copy.json
