@@ -1,0 +1,235 @@
+{
+  "tag": "27b",
+  "name_base": "google/gemma-2-27b",
+  "name_it": "google/gemma-2-27b-it",
+  "heads": [
+    [
+      11,
+      2
+    ],
+    [
+      11,
+      4
+    ],
+    [
+      11,
+      7
+    ],
+    [
+      11,
+      21
+    ],
+    [
+      16,
+      3
+    ],
+    [
+      17,
+      4
+    ],
+    [
+      19,
+      2
+    ],
+    [
+      19,
+      5
+    ],
+    [
+      19,
+      7
+    ],
+    [
+      23,
+      24
+    ]
+  ],
+  "probe_words": [
+    "the",
+    "city",
+    "of",
+    "is",
+    "and",
+    "to",
+    "in",
+    "a",
+    "water",
+    "king"
+  ],
+  "dir_tol": 0.95,
+  "resid_tol": 0.2,
+  "copy_tol": 0.5,
+  "decision_rule": "AMPLIFY_SAME if dir_cos>=DIR_TOL and resid_frac<=RESID_TOL else REDIRECT",
+  "measurements": {
+    "11,2": {
+      "fro_base": 4.3,
+      "fro_it": 5.7478,
+      "fro_rel": 0.3367,
+      "alpha": 1.3323,
+      "resid_frac": 0.0799,
+      "dir_cos": 0.9991,
+      "write_cos": 0.9944,
+      "top5_overlap": 0.82,
+      "copy_hit_rate_base": 0.4,
+      "copy_hit_rate_it": 0.4,
+      "copy_logit_base": 0.2607,
+      "copy_logit_it": 0.3438,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "NONCOPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "11,4": {
+      "fro_base": 4.7437,
+      "fro_it": 6.341,
+      "fro_rel": 0.3367,
+      "alpha": 1.3328,
+      "resid_frac": 0.0761,
+      "dir_cos": 0.9995,
+      "write_cos": 0.9953,
+      "top5_overlap": 0.82,
+      "copy_hit_rate_base": 0.8,
+      "copy_hit_rate_it": 0.7,
+      "copy_logit_base": 0.3452,
+      "copy_logit_it": 0.4528,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "11,7": {
+      "fro_base": 4.2238,
+      "fro_it": 5.6464,
+      "fro_rel": 0.3368,
+      "alpha": 1.3324,
+      "resid_frac": 0.0805,
+      "dir_cos": 0.999,
+      "write_cos": 0.9945,
+      "top5_overlap": 0.88,
+      "copy_hit_rate_base": 0.7,
+      "copy_hit_rate_it": 0.7,
+      "copy_logit_base": 0.3251,
+      "copy_logit_it": 0.4313,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "11,21": {
+      "fro_base": 4.5434,
+      "fro_it": 6.072,
+      "fro_rel": 0.3365,
+      "alpha": 1.3324,
+      "resid_frac": 0.0773,
+      "dir_cos": 0.9994,
+      "write_cos": 0.9955,
+      "top5_overlap": 0.88,
+      "copy_hit_rate_base": 0.9,
+      "copy_hit_rate_it": 0.9,
+      "copy_logit_base": 0.3757,
+      "copy_logit_it": 0.4958,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "16,3": {
+      "fro_base": 6.9776,
+      "fro_it": 6.7858,
+      "fro_rel": -0.0275,
+      "alpha": 0.9706,
+      "resid_frac": 0.0626,
+      "dir_cos": 1.0004,
+      "write_cos": 0.9955,
+      "top5_overlap": 0.88,
+      "copy_hit_rate_base": 0.5,
+      "copy_hit_rate_it": 0.5,
+      "copy_logit_base": 0.4436,
+      "copy_logit_it": 0.4303,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "17,4": {
+      "fro_base": 4.8232,
+      "fro_it": 7.3433,
+      "fro_rel": 0.5225,
+      "alpha": 1.5185,
+      "resid_frac": 0.0696,
+      "dir_cos": 1.0,
+      "write_cos": 0.9953,
+      "top5_overlap": 0.82,
+      "copy_hit_rate_base": 1,
+      "copy_hit_rate_it": 1,
+      "copy_logit_base": 0.4056,
+      "copy_logit_it": 0.615,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "19,2": {
+      "fro_base": 5.7534,
+      "fro_it": 5.5922,
+      "fro_rel": -0.028,
+      "alpha": 0.9695,
+      "resid_frac": 0.0697,
+      "dir_cos": 0.9995,
+      "write_cos": 0.9957,
+      "top5_overlap": 0.78,
+      "copy_hit_rate_base": 1,
+      "copy_hit_rate_it": 1,
+      "copy_logit_base": 0.4742,
+      "copy_logit_it": 0.4609,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "19,5": {
+      "fro_base": 8.3241,
+      "fro_it": 8.0915,
+      "fro_rel": -0.0279,
+      "alpha": 0.9701,
+      "resid_frac": 0.0617,
+      "dir_cos": 1.0002,
+      "write_cos": 0.9959,
+      "top5_overlap": 0.82,
+      "copy_hit_rate_base": 0.4,
+      "copy_hit_rate_it": 0.4,
+      "copy_logit_base": 0.4461,
+      "copy_logit_it": 0.4332,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "NONCOPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "19,7": {
+      "fro_base": 6.6073,
+      "fro_it": 6.4107,
+      "fro_rel": -0.0297,
+      "alpha": 0.9681,
+      "resid_frac": 0.067,
+      "dir_cos": 1.0005,
+      "write_cos": 0.9953,
+      "top5_overlap": 0.8,
+      "copy_hit_rate_base": 0.5,
+      "copy_hit_rate_it": 0.5,
+      "copy_logit_base": 0.3678,
+      "copy_logit_it": 0.3523,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    },
+    "23,24": {
+      "fro_base": 7.084,
+      "fro_it": 5.3398,
+      "fro_rel": -0.2462,
+      "alpha": 0.7526,
+      "resid_frac": 0.056,
+      "dir_cos": 1.0006,
+      "write_cos": 0.9972,
+      "top5_overlap": 0.9,
+      "copy_hit_rate_base": 0.9,
+      "copy_hit_rate_it": 0.9,
+      "copy_logit_base": 0.6946,
+      "copy_logit_it": 0.523,
+      "ov_change": "AMPLIFY_SAME",
+      "head_type_base": "COPY",
+      "note": "it OV is the base OV scaled (same write direction, magnitude only)"
+    }
+  }
+}

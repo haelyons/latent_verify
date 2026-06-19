@@ -605,6 +605,26 @@ in-sample-fit crux — base≈it replication is strong evidence but LOO not yet 
 (non-off-distribution) set intervention — the joint substitution is invalid, so the head-set's true role is
 untested by a *stable* method; (c) re-triage the now-powered base-intrinsic-direction claim.
 
+#### NEXT-3 RESULT — RLHF rescales copy-head OV *gain* (same write, scalar only); a bankable POSITIVE — `ov_magnitude_characterize.py`, `results_27b_ovmag/` (RUN 2026-06-19, ~$2, weights-only/CPU)
+Pivoted off the settled-negative 9b thread to the 27b OV-magnitude lead (the one positive signal the data
+handed us). Characterized the 27b copy basket's W_OV base vs -it, weights-only: scalar-fit residual,
+matrix/write-direction cosine, copy-pref, top-vocab overlap. **Every head reads AMPLIFY_SAME** — the OV
+change is **pure scalar magnitude scaling of the same write**:
+- alpha ≈ 1 + fro_rel exactly (L17.H4 ×**1.52**, L11 kv-group {2,4,7,21} ×**1.33**, L23.H24 ×**0.75** down);
+  resid_frac ≤ **0.08**, dir_cos ≈ **1.000**, write_cos ≈ **0.995**, top5 vocab overlap 0.78–0.90.
+- still copy heads, gain-tuned: copy_logit tracks alpha (L17.H4 0.41→0.61; L23.H24 0.69→0.52); copy-hit
+  rate unchanged. The 4 near-unchanged heads (alpha ≈ 0.97) are internal controls — the metric does not
+  spuriously fire.
+**Mechanism (with the QK-unchanged result from results_27b_qk):** post-training leaves *where* copy heads
+attend (W_QK, rel ~0) and *what* they write (OV direction + promoted vocab) **untouched**, and only
+**rescales the OV write-gain** of select copy heads (amplify or attenuate). RLHF tunes copy-head
+write-strength; it does **not** install or redirect a computation. This is the program's first clean
+**positive**, RLHF-specific, cross-scale-new mechanism.
+- **Caveats:** (i) gemma-2-it = SFT+RLHF+merge, so the base→it weight diff conflates stages (B5) — "scalar
+  gain change" is a weight fact, stage-attribution is not claimed; (ii) **behavioral relevance untested** —
+  this is weights-only; whether the gain change moves logits/behavior needs a 27b forward DLA / scale-ablation
+  (80GB GPU), the open NEXT-3b.
+
 ### Handoff seed for the next agent
 > /karpathy-guidelines
 >
@@ -613,6 +633,9 @@ untested by a *stable* method; (c) re-triage the now-powered base-intrinsic-dire
 > unstable (it set_joint −0.64, 20/41 items worsen) and if anything base-favored — there is **no
 > RLHF-installed caving head-set** at 9b. What robustly survives: 9b misconception caving is a
 > **base-intrinsic residual cave-direction** (necessity ~0.45–0.58 equal in base and -it, RLHF-neutral,
-> it−base bootstrap CI straddles 0). RLHF installs no localizable caving circuit at 9b. Remaining:
-> held-out direction fit (LOO), a stable (non-off-distribution) set intervention, and a re-triage of the
-> base-intrinsic-direction claim.
+> it−base bootstrap CI straddles 0). RLHF installs no localizable caving circuit at 9b. Then PIVOTED to
+> NEXT-3 (27b OV-magnitude) and banked a clean POSITIVE: RLHF **rescales copy-head OV gain** (alpha
+> ×1.33/×1.52 up, ×0.75 down; resid_frac ≤0.08, dir_cos ≈1, same promoted vocab) while leaving W_QK and the
+> OV write-direction untouched — it tunes copy-head write-strength, does not install/redirect. Remaining:
+> NEXT-3b behavioral test of the OV-gain change (27b forward DLA/scale-ablation, 80GB GPU); 9b held-out
+> direction fit (LOO); a stable (non-off-distribution) 9b set intervention; re-triage of both surviving claims.
