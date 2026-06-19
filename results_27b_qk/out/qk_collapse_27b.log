@@ -1,0 +1,41 @@
+[load] google/gemma-2-27b on cuda
+Fetching 24 files:   0%|          | 0/24 [00:00<?, ?it/s]Fetching 24 files:   4%|▍         | 1/24 [00:12<04:57, 12.92s/it]Fetching 24 files:  38%|███▊      | 9/24 [00:26<00:38,  2.60s/it]Fetching 24 files:  42%|████▏     | 10/24 [00:26<00:31,  2.28s/it]Fetching 24 files:  62%|██████▎   | 15/24 [00:27<00:10,  1.16s/it]Fetching 24 files:  71%|███████   | 17/24 [00:34<00:12,  1.75s/it]Fetching 24 files:  75%|███████▌  | 18/24 [00:41<00:14,  2.43s/it]Fetching 24 files:  96%|█████████▌| 23/24 [00:41<00:01,  1.27s/it]Fetching 24 files: 100%|██████████| 24/24 [00:41<00:00,  1.74s/it]
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   0%|          | 1/508 [00:00<01:06,  7.62it/s]Loading weights:   9%|▉         | 47/508 [00:00<00:02, 212.38it/s]Loading weights:  14%|█▍        | 71/508 [00:00<00:02, 205.60it/s]Loading weights:  20%|██        | 102/508 [00:00<00:01, 230.19it/s]Loading weights:  25%|██▍       | 126/508 [00:00<00:01, 214.61it/s]Loading weights:  31%|███       | 157/508 [00:00<00:01, 240.65it/s]Loading weights:  37%|███▋      | 190/508 [00:00<00:01, 237.44it/s]Loading weights:  42%|████▏     | 215/508 [00:00<00:01, 232.21it/s]Loading weights:  48%|████▊     | 245/508 [00:01<00:01, 244.78it/s]Loading weights:  53%|█████▎    | 270/508 [00:01<00:01, 236.51it/s]Loading weights:  58%|█████▊    | 294/508 [00:01<00:00, 234.89it/s]Loading weights:  64%|██████▎   | 323/508 [00:01<00:00, 249.71it/s]Loading weights:  69%|██████▊   | 349/508 [00:01<00:00, 242.75it/s]Loading weights:  74%|███████▍  | 376/508 [00:01<00:00, 249.79it/s]Loading weights:  79%|███████▉  | 402/508 [00:01<00:00, 235.25it/s]Loading weights:  84%|████████▍ | 426/508 [00:01<00:00, 231.39it/s]Loading weights:  89%|████████▉ | 454/508 [00:01<00:00, 243.18it/s]Loading weights:  94%|█████████▍| 479/508 [00:02<00:00, 237.39it/s]Loading weights: 100%|██████████| 508/508 [00:02<00:00, 235.84it/s]
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+  [base] L11.H2: W_QK_fro=12.0608 W_OV_fro=4.3051 ow_norm=3.0791
+  [base] L11.H4: W_QK_fro=12.6523 W_OV_fro=4.7493 ow_norm=3.8634
+  [base] L11.H7: W_QK_fro=11.7141 W_OV_fro=4.2286 ow_norm=3.0453
+  [base] L11.H21: W_QK_fro=11.5243 W_OV_fro=4.5489 ow_norm=3.7171
+  [base] L16.H3: W_QK_fro=12.7796 W_OV_fro=6.9859 ow_norm=5.1061
+  [base] L17.H4: W_QK_fro=11.3088 W_OV_fro=4.8295 ow_norm=3.6511
+  [base] L19.H2: W_QK_fro=9.7081 W_OV_fro=5.7591 ow_norm=4.3988
+  [base] L19.H5: W_QK_fro=11.1280 W_OV_fro=8.3332 ow_norm=5.7904
+  [base] L19.H7: W_QK_fro=12.5872 W_OV_fro=6.6162 ow_norm=4.4947
+  [base] L23.H24: W_QK_fro=12.3108 W_OV_fro=7.0919 ow_norm=5.8816
+[load] google/gemma-2-27b-it on cuda
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files:   8%|▊         | 1/12 [00:09<01:48,  9.83s/it]Fetching 12 files:  17%|█▋        | 2/12 [00:12<00:54,  5.43s/it]Fetching 12 files:  25%|██▌       | 3/12 [00:12<00:28,  3.18s/it]Fetching 12 files:  33%|███▎      | 4/12 [00:13<00:19,  2.43s/it]Fetching 12 files:  75%|███████▌  | 9/12 [00:17<00:03,  1.12s/it]Fetching 12 files:  83%|████████▎ | 10/12 [00:21<00:03,  1.60s/it]Fetching 12 files: 100%|██████████| 12/12 [00:21<00:00,  1.76s/it]
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights: 100%|██████████| 508/508 [00:00<00:00, 6541.91it/s]
+Loaded pretrained model google/gemma-2-27b-it into HookedTransformer
+  [it] L11.H2: W_QK_fro=12.0614 W_OV_fro=5.7542 ow_norm=4.1129
+  [it] L11.H4: W_QK_fro=12.6515 W_OV_fro=6.3485 ow_norm=5.1363
+  [it] L11.H7: W_QK_fro=11.7130 W_OV_fro=5.6526 ow_norm=4.0465
+  [it] L11.H21: W_QK_fro=11.5211 W_OV_fro=6.0793 ow_norm=4.9337
+  [it] L16.H3: W_QK_fro=12.7860 W_OV_fro=6.7942 ow_norm=4.9523
+  [it] L17.H4: W_QK_fro=11.3122 W_OV_fro=7.3518 ow_norm=5.5243
+  [it] L19.H2: W_QK_fro=9.7257 W_OV_fro=5.5974 ow_norm=4.2561
+  [it] L19.H5: W_QK_fro=11.1548 W_OV_fro=8.0996 ow_norm=5.6223
+  [it] L19.H7: W_QK_fro=12.5987 W_OV_fro=6.4195 ow_norm=4.3591
+  [it] L23.H24: W_QK_fro=12.3208 W_OV_fro=5.3457 ow_norm=4.4256
+
+[summary] per-head per-metric base->it rel_change (verdict):
+  L11.H2: W_QK_fro: 12.0608->12.0614 rel=+0.0000 UNCHANGED | W_OV_fro: 4.3051->5.7542 rel=+0.3366 CHANGED | ow_norm: 3.0791->4.1129 rel=+0.3357 CHANGED
+  L11.H4: W_QK_fro: 12.6523->12.6515 rel=-0.0001 UNCHANGED | W_OV_fro: 4.7493->6.3485 rel=+0.3367 CHANGED | ow_norm: 3.8634->5.1363 rel=+0.3295 CHANGED
+  L11.H7: W_QK_fro: 11.7141->11.7130 rel=-0.0001 UNCHANGED | W_OV_fro: 4.2286->5.6526 rel=+0.3367 CHANGED | ow_norm: 3.0453->4.0465 rel=+0.3288 CHANGED
+  L11.H21: W_QK_fro: 11.5243->11.5211 rel=-0.0003 UNCHANGED | W_OV_fro: 4.5489->6.0793 rel=+0.3364 CHANGED | ow_norm: 3.7171->4.9337 rel=+0.3273 CHANGED
+  L16.H3: W_QK_fro: 12.7796->12.7860 rel=+0.0005 UNCHANGED | W_OV_fro: 6.9859->6.7942 rel=-0.0275 UNCHANGED | ow_norm: 5.1061->4.9523 rel=-0.0301 UNCHANGED
+  L17.H4: W_QK_fro: 11.3088->11.3122 rel=+0.0003 UNCHANGED | W_OV_fro: 4.8295->7.3518 rel=+0.5223 CHANGED | ow_norm: 3.6511->5.5243 rel=+0.5131 CHANGED
+  L19.H2: W_QK_fro: 9.7081->9.7257 rel=+0.0018 UNCHANGED | W_OV_fro: 5.7591->5.5974 rel=-0.0281 UNCHANGED | ow_norm: 4.3988->4.2561 rel=-0.0324 UNCHANGED
+  L19.H5: W_QK_fro: 11.1280->11.1548 rel=+0.0024 UNCHANGED | W_OV_fro: 8.3332->8.0996 rel=-0.0280 UNCHANGED | ow_norm: 5.7904->5.6223 rel=-0.0290 UNCHANGED
+  L19.H7: W_QK_fro: 12.5872->12.5987 rel=+0.0009 UNCHANGED | W_OV_fro: 6.6162->6.4195 rel=-0.0297 UNCHANGED | ow_norm: 4.4947->4.3591 rel=-0.0302 UNCHANGED
+  L23.H24: W_QK_fro: 12.3108->12.3208 rel=+0.0008 UNCHANGED | W_OV_fro: 7.0919->5.3457 rel=-0.2462 CHANGED | ow_norm: 5.8816->4.4256 rel=-0.2476 CHANGED
+[done] wrote out/qk_collapse_27b.json
