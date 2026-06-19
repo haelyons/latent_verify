@@ -304,8 +304,10 @@ def run(topk, do_knockout_sweep, name, pairs_set, seed, n_boot, n_null):
             Mn = M_nohook(neu, r1, r2)
             Ms_n, z_sal_n, grad_n = atp_and_zsal(sal, r1, r2)
             eff_n = Mn - Ms_n
-            if abs(eff_n) > 1e-6:
+            if abs(eff_n) > MIN_EFFECT:        # only count random objectives that move the metric
                 null_reader_by_draw[k].append(float(atp_scores(z_neu[rL], z_sal_n[rL], grad_n[rL])[rH]) / eff_n)
+            # else: a random C/W rarely produces a >MIN_EFFECT salience shift, so /eff blows up -- drop it
+            # (the bootstrap rank-CI + the matched control head L18.H6 are the primary noise-floor reads)
         # incumbent knockout per-head full sweep (optional)
         if do_knockout_sweep:
             apos = anchor_pos(sal[0].tolist(), W)
