@@ -8,6 +8,7 @@ set -uo pipefail
 cd ~/latent_verify
 . .venv/bin/activate
 export HUGGING_FACE_HUB_TOKEN="${HF_TOKEN:-}"
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True   # reduce fragmentation headroom on the 40GB A100
 
 echo "=== selftest (model-free) ==="
 python rlhf_differential.py --selftest || { echo "SELFTEST_FAIL"; exit 1; }

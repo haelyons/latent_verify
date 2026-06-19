@@ -195,15 +195,17 @@ def _atp_net(model, ref_ids, var_ids, cid, aid, nL, nH):
         M_ref = float(_logp_diff(model.run_with_hooks(ref_ids, fwd_hooks=[(zname(L), grab_r) for L in range(nL)]), cid, aid))
     kept = {}
     def grab_v(z, hook):
-        z.retain_grad(); kept[hook.layer()] = z; return z
+        kept[hook.layer()] = z; return z               # no retain_grad: autograd.grad handles non-leaves
     M_var = _logp_diff(model.run_with_hooks(var_ids, fwd_hooks=[(zname(L), grab_v) for L in range(nL)]), cid, aid)
-    model.zero_grad(set_to_none=True)
-    M_var.backward()
+    layers = sorted(kept)
+    # grad of M wrt the z activations ONLY -- NOT wrt params, so no ~18GB param.grad is allocated
+    # (M.backward() would; that OOM'd 9b on a 40GB A100). Memory now = weights + one forward graph.
+    grads = torch.autograd.grad(M_var, [kept[L] for L in layers])
     effect = M_ref - float(M_var.detach())
     scores = [0.0] * (nL * nH)
     if abs(effect) > 1e-6:
-        for L in kept:
-            s = atp_scores(zref[L], kept[L][0, -1].detach(), kept[L].grad[0, -1].detach()) / effect
+        for L, g in zip(layers, grads):
+            s = atp_scores(zref[L], kept[L][0, -1].detach(), g[0, -1].detach()) / effect
             for H in range(nH):
                 scores[L * nH + H] = float(s[H])
     return scores, effect, M_ref
