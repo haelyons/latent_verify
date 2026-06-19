@@ -1,0 +1,16 @@
+[load] google/gemma-2-27b-it on cuda
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files:   8%|▊         | 1/12 [00:19<03:32, 19.35s/it]Fetching 12 files:  17%|█▋        | 2/12 [00:19<01:21,  8.10s/it]Fetching 12 files:  50%|█████     | 6/12 [00:19<00:11,  1.89s/it]Fetching 12 files:  75%|███████▌  | 9/12 [00:28<00:07,  2.37s/it]Fetching 12 files:  92%|█████████▏| 11/12 [00:29<00:01,  1.73s/it]Fetching 12 files: 100%|██████████| 12/12 [00:29<00:00,  2.42s/it]
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights: 100%|██████████| 508/508 [00:00<00:00, 12180.34it/s]
+Loaded pretrained model google/gemma-2-27b-it into HookedTransformer
+[probe] induction copy-acc (argmax==target) = 0.56 over 16 prompts
+  L17.H4: alpha=1.518 knockout_dlogit=+0.1562 scale_dlogit=-0.2803 [MATTERS]
+  L11.H2: alpha=1.332 knockout_dlogit=+0.0303 scale_dlogit=+0.0811 [INACTIVE]
+  L11.H4: alpha=1.333 knockout_dlogit=+0.1553 scale_dlogit=-0.1680 [MATTERS]
+  L11.H7: alpha=1.332 knockout_dlogit=-0.0762 scale_dlogit=+0.4248 [INACTIVE]
+  L11.H21: alpha=1.332 knockout_dlogit=-0.1807 scale_dlogit=-0.5400 [MATTERS]
+  L23.H24: alpha=0.753 knockout_dlogit=-0.1104 scale_dlogit=+0.0918 [MATTERS]
+  L16.H3: alpha=0.971 knockout_dlogit=-0.1035 scale_dlogit=-0.0537 [MATTERS]
+  L19.H2: alpha=0.970 knockout_dlogit=+0.0332 scale_dlogit=+0.1523 [INACTIVE]
+  L19.H5: alpha=0.970 knockout_dlogit=+0.0088 scale_dlogit=-0.0186 [INACTIVE]
+  L19.H7: alpha=0.968 knockout_dlogit=+0.2246 scale_dlogit=+0.2285 [MATTERS]
+[done] wrote out/ov_behavioral_27b.json

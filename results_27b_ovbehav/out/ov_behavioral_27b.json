@@ -1,0 +1,95 @@
+{
+  "name_it": "google/gemma-2-27b-it",
+  "tag": "27b",
+  "substrate": "random-token induction",
+  "n_prompts": 16,
+  "k_rep": 12,
+  "readpos": 22,
+  "induction_copy_acc": 0.562,
+  "k_tol": 0.1,
+  "scale_tol": 0.05,
+  "alpha_source": "results_27b_ovmag",
+  "decision_rule": "INACTIVE if |knockout|<K_TOL; else MATTERS if |scale|>=SCALE_TOL else NEGLIGIBLE_GAIN",
+  "measurements": {
+    "17,4": {
+      "alpha": 1.518,
+      "scale_factor": 0.6588,
+      "knockout_dlogit": 0.1562,
+      "scale_dlogit": -0.2803,
+      "verdict": "MATTERS",
+      "note": "restoring base OV gain moves the copy logit"
+    },
+    "11,2": {
+      "alpha": 1.332,
+      "scale_factor": 0.7508,
+      "knockout_dlogit": 0.0303,
+      "scale_dlogit": 0.0811,
+      "verdict": "INACTIVE",
+      "note": "head does not drive the copy on this probe (knockout ~0)"
+    },
+    "11,4": {
+      "alpha": 1.333,
+      "scale_factor": 0.7502,
+      "knockout_dlogit": 0.1553,
+      "scale_dlogit": -0.168,
+      "verdict": "MATTERS",
+      "note": "restoring base OV gain moves the copy logit"
+    },
+    "11,7": {
+      "alpha": 1.332,
+      "scale_factor": 0.7508,
+      "knockout_dlogit": -0.0762,
+      "scale_dlogit": 0.4248,
+      "verdict": "INACTIVE",
+      "note": "head does not drive the copy on this probe (knockout ~0)"
+    },
+    "11,21": {
+      "alpha": 1.332,
+      "scale_factor": 0.7508,
+      "knockout_dlogit": -0.1807,
+      "scale_dlogit": -0.54,
+      "verdict": "MATTERS",
+      "note": "restoring base OV gain moves the copy logit"
+    },
+    "23,24": {
+      "alpha": 0.753,
+      "scale_factor": 1.328,
+      "knockout_dlogit": -0.1104,
+      "scale_dlogit": 0.0918,
+      "verdict": "MATTERS",
+      "note": "restoring base OV gain moves the copy logit"
+    },
+    "16,3": {
+      "alpha": 0.971,
+      "scale_factor": 1.0299,
+      "knockout_dlogit": -0.1035,
+      "scale_dlogit": -0.0537,
+      "verdict": "MATTERS",
+      "note": "restoring base OV gain moves the copy logit"
+    },
+    "19,2": {
+      "alpha": 0.97,
+      "scale_factor": 1.0309,
+      "knockout_dlogit": 0.0332,
+      "scale_dlogit": 0.1523,
+      "verdict": "INACTIVE",
+      "note": "head does not drive the copy on this probe (knockout ~0)"
+    },
+    "19,5": {
+      "alpha": 0.97,
+      "scale_factor": 1.0309,
+      "knockout_dlogit": 0.0088,
+      "scale_dlogit": -0.0186,
+      "verdict": "INACTIVE",
+      "note": "head does not drive the copy on this probe (knockout ~0)"
+    },
+    "19,7": {
+      "alpha": 0.968,
+      "scale_factor": 1.0331,
+      "knockout_dlogit": 0.2246,
+      "scale_dlogit": 0.2285,
+      "verdict": "MATTERS",
+      "note": "restoring base OV gain moves the copy logit"
+    }
+  }
+}

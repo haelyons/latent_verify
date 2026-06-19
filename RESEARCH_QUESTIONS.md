@@ -622,8 +622,37 @@ write-strength; it does **not** install or redirect a computation. This is the p
 **positive**, RLHF-specific, cross-scale-new mechanism.
 - **Caveats:** (i) gemma-2-it = SFT+RLHF+merge, so the base→it weight diff conflates stages (B5) — "scalar
   gain change" is a weight fact, stage-attribution is not claimed; (ii) **behavioral relevance untested** —
-  this is weights-only; whether the gain change moves logits/behavior needs a 27b forward DLA / scale-ablation
-  (80GB GPU), the open NEXT-3b.
+  this is weights-only; whether the gain change moves logits/behavior needs a 27b forward (NEXT-3b/NEXT-2 below).
+
+#### NEXT-3b — behavioral scale-ablation (INCONCLUSIVE) — `ov_behavioral_scale.py`, `results_27b_ovbehav/` (RUN, H100-80GB, ~$2)
+On -it 27b, per head scale hook_z by 1/alpha (restore base OV gain) + knockout (z=0), on random-token
+induction; Δ logit of the copied token. **Result: noisy, sign-inconsistent, NOT a behavioral claim.**
+induction copy_acc only 0.56 (n=16); knockout signs mixed (these heads are not uniform copy-promoters);
+knockout-vs-scale non-monotone for several heads (e.g. L17.H4 knockout +0.16 but scale −0.28). Effects
+≤0.54 logits, noise-dominated. The verdict labels ("MATTERS") are not trustworthy at this variance.
+
+#### NEXT-2 — realized attention-to-source (DECISIVE) — `realized_attention.py`, `results_27b_realattn/` (RUN, H100-80GB, ~$2)
+Content-copy probe ("The secret word is {w}. ... The secret word is" → copy {w}), measure each basket
+head's attention readout→source, base vs -it. **Result: NONE of the 10 basket heads attend the source**
+— attn 0.000–0.028 in BOTH base and -it (all ≪ 0.10 floor) — while **copy_acc = 1.00 in both models.**
+The model copies perfectly, but **not via these heads.** This:
+- **Explains NEXT-3b.** The OV-gain heads do not realize copying on either induction or content-copy →
+  scaling their OV gain produces only noise. Two independent probes agree: the weights-only copy basket is
+  **latent, not realized**, at 27b.
+- **Qualifies NEXT-3 hard.** RLHF's OV-gain rescaling is a real WEIGHT change to **copy-capable-but-
+  unrealized** heads — no demonstrated functional/behavioral consequence on tested copy tasks.
+- **NEXT-2 original (QK gating at scale): cannot be claimed** — the QK_GATED_AT_SCALE tags are denominator
+  artifacts (both attns ≈0; rel of 0.01→0.003 is noise-floor). There is no realized attention to gate;
+  attn≈0 in base too. The realized-QK-gating question is moot for these heads (they don't attend source in
+  either model).
+
+#### 27b OV ARC — CLOSED (bounded conclusion)
+RLHF rescales the OV write-gain of specific 27b copy-CAPABLE heads (pure scalar, same direction: NEXT-3,
+robust). But those heads do **not realize copying** on induction or content-copy probes the model solves
+perfectly (NEXT-2), so the gain change is **behaviorally latent** on tested tasks (NEXT-3b inconclusive,
+NEXT-2 explains why). The NEXT-3 "positive" is downgraded to: *a real RLHF weight-modification of latent
+copy-OV machinery, functional role unestablished.* Open: find an input where these heads DO realize copying
+(if any) before attributing function; or treat the OV-gain change as latent/epiphenomenal.
 
 ### Handoff seed for the next agent
 > /karpathy-guidelines
@@ -636,6 +665,9 @@ write-strength; it does **not** install or redirect a computation. This is the p
 > it−base bootstrap CI straddles 0). RLHF installs no localizable caving circuit at 9b. Then PIVOTED to
 > NEXT-3 (27b OV-magnitude) and banked a clean POSITIVE: RLHF **rescales copy-head OV gain** (alpha
 > ×1.33/×1.52 up, ×0.75 down; resid_frac ≤0.08, dir_cos ≈1, same promoted vocab) while leaving W_QK and the
-> OV write-direction untouched — it tunes copy-head write-strength, does not install/redirect. Remaining:
-> NEXT-3b behavioral test of the OV-gain change (27b forward DLA/scale-ablation, 80GB GPU); 9b held-out
-> direction fit (LOO); a stable (non-off-distribution) 9b set intervention; re-triage of both surviving claims.
+> OV write-direction untouched. BUT NEXT-3b (behavioral scale-ablation, inconclusive) + NEXT-2 (realized
+> attention, DECISIVE) then showed those heads do **not realize copying** (attn-to-source ≈0 in base AND
+> -it while copy_acc=1.0) — so the OV-gain change is a real weight-mod of **latent copy-OV machinery**,
+> functional role unestablished. The 27b OV arc is CLOSED at that bounded claim. Remaining: find an input
+> where these heads DO realize copying (else treat as latent/epiphenomenal); 9b held-out direction fit
+> (LOO); a stable (non-off-distribution) 9b set intervention; re-triage of the surviving committed claims.

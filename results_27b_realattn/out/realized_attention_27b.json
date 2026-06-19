@@ -1,0 +1,94 @@
+{
+  "name_base": "google/gemma-2-27b",
+  "name_it": "google/gemma-2-27b-it",
+  "tag": "27b",
+  "template": "The secret word is {w}. Remember it. The secret word is",
+  "attn_floor": 0.1,
+  "rel_tol": 0.15,
+  "base_copy_acc": 1.0,
+  "it_copy_acc": 1.0,
+  "n_prompts_base": 20,
+  "n_prompts_it": 20,
+  "measurements": {
+    "11,2": {
+      "attn_base": 0.0122,
+      "attn_it": 0.0029,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.7601,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "11,4": {
+      "attn_base": 0.0008,
+      "attn_it": 0.0002,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.7387,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "11,7": {
+      "attn_base": 0.0001,
+      "attn_it": 0.0,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.5937,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "11,21": {
+      "attn_base": 0.0028,
+      "attn_it": 0.0014,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.4987,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "16,3": {
+      "attn_base": 0.0198,
+      "attn_it": 0.0021,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.8949,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "17,4": {
+      "attn_base": 0.0,
+      "attn_it": 0.0001,
+      "realizes_copy": false,
+      "realized_attn_rel": 1.0794,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "19,2": {
+      "attn_base": 0.0003,
+      "attn_it": 0.0012,
+      "realizes_copy": false,
+      "realized_attn_rel": 2.7799,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "19,5": {
+      "attn_base": 0.0035,
+      "attn_it": 0.0028,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.2083,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "19,7": {
+      "attn_base": 0.0019,
+      "attn_it": 0.0027,
+      "realizes_copy": false,
+      "realized_attn_rel": 0.41,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    },
+    "23,24": {
+      "attn_base": 0.0283,
+      "attn_it": 0.0082,
+      "realizes_copy": false,
+      "realized_attn_rel": -0.7099,
+      "qk_gated_at_scale": true,
+      "verdict": "DOES_NOT_REALIZE_COPY; QK_GATED_AT_SCALE"
+    }
+  }
+}
