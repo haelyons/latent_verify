@@ -346,3 +346,56 @@ committed number already kills are acquitted; the rest become a `run_queue`.
 - No SFT-vs-RLHF stage attribution (B5/N-5) — externally blocked.
 - No metric beyond AtP + activation-patch + base-as-null (A5 discipline).
 - No deployment-regime or cross-architecture work (H1/H2) — parked by choice.
+
+---
+
+## PART 3 — ROUND RESULTS + TRIAGE (2026-06-19)
+
+All runs Lambda (A10/A100/H100), boxes self-terminated. Cumulative spend ≈ $4 of $500.
+Every claim was adversarially triaged (`latent_skeptic`, H1 fresh skeptics / H2 verify-by-running).
+
+### R1-INSTR (A1–A5, 2b) — `results_r1/`, `results_r2/`
+- **CONCORDANT on the curated 5 pairs**: reader L18.H5 top under all three instruments (AtP rank 2,
+  activation-patch rank 1, knockout rank 1 @0.212 — reproduces the committed 208-head sweep 0.237);
+  control L18.H6 buried (AtP 169, patch 0.0037); sign-agreement 0.957; AtP finite below the 0.5-nat
+  knockout floor (SC-INSTR-2). Triage: 7/9 confounds RULED_OUT.
+- **Held-out (R2) broke the strong form**: reader still robust (AtP #0, knockout #3, patch frac 0.305)
+  but **AtP-alone ranking is unreliable** — it under-ranked L7.H5 (AtP 0.15 → activation-patch 0.86).
+  **Lesson adopted: activation-patch is the arbiter, AtP only a cheap pre-filter.** null_floor control
+  was buggy (random-label /~0 blowup), fixed; bootstrap reader rank-CI clean (≤2).
+
+### R1-MOTIF (C2, 2b + 27b) — `results_r2/`, `results_27b/`
+- **gate-don't-delete is NOT a general motif; it is L18.H5-specific.** 0/10 on copy-selected baskets at
+  **both 2b and 27b**: no copy head shows QK gating under post-training (rel_induction never ≤ −0.5).
+- **New cross-scale signal**: at 27b, post-training *alters* OV write-magnitude of some copy heads
+  (W_OV_fro rel +0.34/+0.52/−0.25), unlike 2b L18.H5's ~0% — the "OV-preserved" half (C1) is 2b-specific.
+- **Triage caveat (open)**: `induction_probe_mismatch` EXPLAINS the 0/10 — the induction probe has no
+  dynamic range on these low-induction OV-copy heads, so it cannot decide QK gating for them. Needs a
+  non-induction QK metric (see open controls). `gqa_shared_value` RULED_OUT (OV-only, not the QK verdict).
+
+### R1-DIFF (B1–B3/E2, 9b) — `results_r1_diff/`
+- **NO head-local RLHF-installed deference component.** On the 16 I1 9b-it caving items (TruthfulQA
+  misconceptions), 0 installed candidates: top -it caving head L38.H14 net 0.152 but base has it at
+  0.151 (base-shared, not installed); largest differential L24.H11 0.098 (<0.10); Genadi L14–22 band
+  gap −0.004 (it does not attend W* more than base). Reading: **9b-it caving is diffuse and largely
+  base-shared — RLHF installed no concentrated deference head**, extending the "9b is diffuse" line.
+- **Triage caveat (open, load-bearing)**: `atp_false_negative` NEEDS_RUN — the null rests on the AtP
+  screen; given R2's ~6× under-ranking, a real installed head could sit in the net_it~0.04 band and be
+  missed. The NULL is **instrument-limited pending an activation-patch sweep over the AtP-low heads.**
+- Faithfulness: 9 it-flips reproduced (I1 ref 14; first-token margin + >0.5 effect gate, n_ok 10).
+
+### Net for the program
+- Reached **gemma-2-27b** (the next model size). The single-reader / gate-don't-delete / installed-head
+  pictures are all **diffuse-or-specific, not concentrated** at 9b/27b — the concentrated 2b reader and
+  its QK-gate/OV-preserve signature do not generalize across scale.
+- Instrument lesson banked: **AtP screens, activation-patch arbitrates** (R2). Two headline nulls (9b
+  installed-head, 27b QK-gating) are currently **instrument-limited**, not settled — the honest state.
+
+### Open de-confound controls (author_queue, ready to run — NOT yet run)
+1. **9b activation-patch sweep over AtP-low heads** (hardens/overturns the R1-DIFF NULL): activation-patch
+   each head with net_it∈[0.03,0.10] (start L24.H11) measuring true first-token-margin recovery on the
+   counter→neutral_turn gap; installed iff recovery ≥ INSTALL_THR while net_base ≤ 0.05. Reuses the
+   `_confirm` harness applied to non-candidates. *(Deeper-into-9b; left for explicit go.)*
+2. **27b non-induction QK-collapse metric** (decides the 27b motif): per basket head, rel base→it of
+   W_QK Frobenius (`qk_fro` from `controls/ov_qk_generality_probe.py`) and/or copy-attention mass on a
+   real repeated-content probe — the induction probe is uninformative for low-induction copy heads.
