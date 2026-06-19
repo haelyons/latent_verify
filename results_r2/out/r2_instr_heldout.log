@@ -1,0 +1,189 @@
+[load] google/gemma-2-2b on cuda
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  51%|█████     | 146/288 [00:00<00:00, 1451.55it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1420.61it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[load] done (L=26 H=8)
+[pair] Turkey       effect=+4.875
+  [knockout] Turkey swept layer 0
+  [knockout] Turkey swept layer 1
+  [knockout] Turkey swept layer 2
+  [knockout] Turkey swept layer 3
+  [knockout] Turkey swept layer 4
+  [knockout] Turkey swept layer 5
+  [knockout] Turkey swept layer 6
+  [knockout] Turkey swept layer 7
+  [knockout] Turkey swept layer 8
+  [knockout] Turkey swept layer 9
+  [knockout] Turkey swept layer 10
+  [knockout] Turkey swept layer 11
+  [knockout] Turkey swept layer 12
+  [knockout] Turkey swept layer 13
+  [knockout] Turkey swept layer 14
+  [knockout] Turkey swept layer 15
+  [knockout] Turkey swept layer 16
+  [knockout] Turkey swept layer 17
+  [knockout] Turkey swept layer 18
+  [knockout] Turkey swept layer 19
+  [knockout] Turkey swept layer 20
+  [knockout] Turkey swept layer 21
+  [knockout] Turkey swept layer 22
+  [knockout] Turkey swept layer 23
+  [knockout] Turkey swept layer 24
+  [knockout] Turkey swept layer 25
+[pair] Nigeria      effect=+4.875
+  [knockout] Nigeria swept layer 0
+  [knockout] Nigeria swept layer 1
+  [knockout] Nigeria swept layer 2
+  [knockout] Nigeria swept layer 3
+  [knockout] Nigeria swept layer 4
+  [knockout] Nigeria swept layer 5
+  [knockout] Nigeria swept layer 6
+  [knockout] Nigeria swept layer 7
+  [knockout] Nigeria swept layer 8
+  [knockout] Nigeria swept layer 9
+  [knockout] Nigeria swept layer 10
+  [knockout] Nigeria swept layer 11
+  [knockout] Nigeria swept layer 12
+  [knockout] Nigeria swept layer 13
+  [knockout] Nigeria swept layer 14
+  [knockout] Nigeria swept layer 15
+  [knockout] Nigeria swept layer 16
+  [knockout] Nigeria swept layer 17
+  [knockout] Nigeria swept layer 18
+  [knockout] Nigeria swept layer 19
+  [knockout] Nigeria swept layer 20
+  [knockout] Nigeria swept layer 21
+  [knockout] Nigeria swept layer 22
+  [knockout] Nigeria swept layer 23
+  [knockout] Nigeria swept layer 24
+  [knockout] Nigeria swept layer 25
+[pair] Pakistan     effect=+3.750
+  [knockout] Pakistan swept layer 0
+  [knockout] Pakistan swept layer 1
+  [knockout] Pakistan swept layer 2
+  [knockout] Pakistan swept layer 3
+  [knockout] Pakistan swept layer 4
+  [knockout] Pakistan swept layer 5
+  [knockout] Pakistan swept layer 6
+  [knockout] Pakistan swept layer 7
+  [knockout] Pakistan swept layer 8
+  [knockout] Pakistan swept layer 9
+  [knockout] Pakistan swept layer 10
+  [knockout] Pakistan swept layer 11
+  [knockout] Pakistan swept layer 12
+  [knockout] Pakistan swept layer 13
+  [knockout] Pakistan swept layer 14
+  [knockout] Pakistan swept layer 15
+  [knockout] Pakistan swept layer 16
+  [knockout] Pakistan swept layer 17
+  [knockout] Pakistan swept layer 18
+  [knockout] Pakistan swept layer 19
+  [knockout] Pakistan swept layer 20
+  [knockout] Pakistan swept layer 21
+  [knockout] Pakistan swept layer 22
+  [knockout] Pakistan swept layer 23
+  [knockout] Pakistan swept layer 24
+  [knockout] Pakistan swept layer 25
+[pair] Kazakhstan   effect=+5.500
+  [knockout] Kazakhstan swept layer 0
+  [knockout] Kazakhstan swept layer 1
+  [knockout] Kazakhstan swept layer 2
+  [knockout] Kazakhstan swept layer 3
+  [knockout] Kazakhstan swept layer 4
+  [knockout] Kazakhstan swept layer 5
+  [knockout] Kazakhstan swept layer 6
+  [knockout] Kazakhstan swept layer 7
+  [knockout] Kazakhstan swept layer 8
+  [knockout] Kazakhstan swept layer 9
+  [knockout] Kazakhstan swept layer 10
+  [knockout] Kazakhstan swept layer 11
+  [knockout] Kazakhstan swept layer 12
+  [knockout] Kazakhstan swept layer 13
+  [knockout] Kazakhstan swept layer 14
+  [knockout] Kazakhstan swept layer 15
+  [knockout] Kazakhstan swept layer 16
+  [knockout] Kazakhstan swept layer 17
+  [knockout] Kazakhstan swept layer 18
+  [knockout] Kazakhstan swept layer 19
+  [knockout] Kazakhstan swept layer 20
+  [knockout] Kazakhstan swept layer 21
+  [knockout] Kazakhstan swept layer 22
+  [knockout] Kazakhstan swept layer 23
+  [knockout] Kazakhstan swept layer 24
+  [knockout] Kazakhstan swept layer 25
+[pair] Illinois     effect=+0.500
+  [skip] Illinois effect below MIN_EFFECT=0.5
+[pair] Washington   effect=+0.875
+  [knockout] Washington swept layer 0
+  [knockout] Washington swept layer 1
+  [knockout] Washington swept layer 2
+  [knockout] Washington swept layer 3
+  [knockout] Washington swept layer 4
+  [knockout] Washington swept layer 5
+  [knockout] Washington swept layer 6
+  [knockout] Washington swept layer 7
+  [knockout] Washington swept layer 8
+  [knockout] Washington swept layer 9
+  [knockout] Washington swept layer 10
+  [knockout] Washington swept layer 11
+  [knockout] Washington swept layer 12
+  [knockout] Washington swept layer 13
+  [knockout] Washington swept layer 14
+  [knockout] Washington swept layer 15
+  [knockout] Washington swept layer 16
+  [knockout] Washington swept layer 17
+  [knockout] Washington swept layer 18
+  [knockout] Washington swept layer 19
+  [knockout] Washington swept layer 20
+  [knockout] Washington swept layer 21
+  [knockout] Washington swept layer 22
+  [knockout] Washington swept layer 23
+  [knockout] Washington swept layer 24
+  [knockout] Washington swept layer 25
+[pair] Vietnam      effect=+7.000
+  [knockout] Vietnam swept layer 0
+  [knockout] Vietnam swept layer 1
+  [knockout] Vietnam swept layer 2
+  [knockout] Vietnam swept layer 3
+  [knockout] Vietnam swept layer 4
+  [knockout] Vietnam swept layer 5
+  [knockout] Vietnam swept layer 6
+  [knockout] Vietnam swept layer 7
+  [knockout] Vietnam swept layer 8
+  [knockout] Vietnam swept layer 9
+  [knockout] Vietnam swept layer 10
+  [knockout] Vietnam swept layer 11
+  [knockout] Vietnam swept layer 12
+  [knockout] Vietnam swept layer 13
+  [knockout] Vietnam swept layer 14
+  [knockout] Vietnam swept layer 15
+  [knockout] Vietnam swept layer 16
+  [knockout] Vietnam swept layer 17
+  [knockout] Vietnam swept layer 18
+  [knockout] Vietnam swept layer 19
+  [knockout] Vietnam swept layer 20
+  [knockout] Vietnam swept layer 21
+  [knockout] Vietnam swept layer 22
+  [knockout] Vietnam swept layer 23
+  [knockout] Vietnam swept layer 24
+  [knockout] Vietnam swept layer 25
+[qa] Australia    effect=+0.312 below_floor=True atp_finite=True
+[qa] Texas        effect=+1.000 below_floor=False atp_finite=True
+[qa] Canada       effect=+0.188 below_floor=True atp_finite=True
+[qa] Switzerland  effect=+1.312 below_floor=False atp_finite=True
+[qa] Morocco      effect=+0.250 below_floor=True atp_finite=True
+
+[decision] {
+  "SC_INSTR_1_concordance": false,
+  "SC_INSTR_2_small_effect": true,
+  "SC_INSTR_3_specificity_linear": false,
+  "reader_atp_rank": 0,
+  "reader_patch_rank": 7,
+  "reader_knockout_rank": 3,
+  "ctrl_atp_rank": 27,
+  "ctrl_patch_frac": 0.0757,
+  "reader_patch_frac": 0.3055,
+  "sign_agreement": 0.929,
+  "verdict": "DISCORDANT: the on-distribution instruments do NOT rank the reader top while knockout does -- knockout necessity may be an off-distribution artifact; HEADLINE, do not enter the blind regime, re-examine the incumbent"
+}
+[robustness] bootstrap_rank_ci= {'rank_lo': 0, 'rank_med': 1, 'rank_hi': 1, 'frac_top5': 1.0}  null_floor= {'reader_real': 0.4092, 'null_pctl': 5.6563, 'n_null': 10, 'above_floor': False}
+[done] wrote out/instr_triangulation_2b_heldout.json

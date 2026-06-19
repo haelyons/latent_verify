@@ -1,0 +1,282 @@
+{
+  "model": "google/gemma-2-2b",
+  "case": "salience_flip_2b",
+  "pairs_set": "curated",
+  "seed": 0,
+  "reader": [
+    18,
+    5
+  ],
+  "ctrl": [
+    18,
+    6
+  ],
+  "n_layers": 26,
+  "n_heads": 8,
+  "n_pairs_used": 5,
+  "pairs": [
+    {
+      "pair": "Australia->Canberra",
+      "effect": 9.75,
+      "M_neutral": 0.25,
+      "M_salience": -9.5
+    },
+    {
+      "pair": "Texas->Austin",
+      "effect": 7.0,
+      "M_neutral": 1.875,
+      "M_salience": -5.125
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "effect": 5.875,
+      "M_neutral": 2.5,
+      "M_salience": -3.375
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "effect": 6.875,
+      "M_neutral": 1.375,
+      "M_salience": -5.5
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "effect": 2.75,
+      "M_neutral": 1.25,
+      "M_salience": -1.5
+    }
+  ],
+  "skipped_below_min_effect": [],
+  "thresholds": {
+    "min_effect": 0.5,
+    "sc1_topk": 5,
+    "sc1_ctrl_out": 20,
+    "sc1_ctrl_frac": 0.05,
+    "min_frac": 0.1,
+    "sign_agree": 0.8
+  },
+  "atp_top8": [
+    {
+      "L": 25,
+      "H": 4,
+      "score": 0.3199
+    },
+    {
+      "L": 20,
+      "H": 3,
+      "score": 0.2264
+    },
+    {
+      "L": 18,
+      "H": 5,
+      "score": 0.193
+    },
+    {
+      "L": 5,
+      "H": 0,
+      "score": 0.1088
+    },
+    {
+      "L": 17,
+      "H": 3,
+      "score": 0.098
+    },
+    {
+      "L": 5,
+      "H": 2,
+      "score": 0.0959
+    },
+    {
+      "L": 13,
+      "H": 0,
+      "score": 0.0946
+    },
+    {
+      "L": 22,
+      "H": 4,
+      "score": 0.0914
+    }
+  ],
+  "knockout_top8": null,
+  "activation_patch_confirm": [
+    {
+      "L": 25,
+      "H": 4,
+      "frac": 0.2925
+    },
+    {
+      "L": 18,
+      "H": 5,
+      "frac": 0.222
+    },
+    {
+      "L": 20,
+      "H": 3,
+      "frac": 0.2193
+    },
+    {
+      "L": 17,
+      "H": 3,
+      "frac": 0.2091
+    },
+    {
+      "L": 9,
+      "H": 7,
+      "frac": 0.1531
+    },
+    {
+      "L": 5,
+      "H": 2,
+      "frac": 0.1476
+    },
+    {
+      "L": 13,
+      "H": 0,
+      "frac": 0.1396
+    },
+    {
+      "L": 10,
+      "H": 4,
+      "frac": 0.1364
+    },
+    {
+      "L": 22,
+      "H": 4,
+      "frac": 0.1335
+    },
+    {
+      "L": 5,
+      "H": 0,
+      "frac": 0.1324
+    },
+    {
+      "L": 22,
+      "H": 0,
+      "frac": 0.1322
+    },
+    {
+      "L": 12,
+      "H": 7,
+      "frac": 0.1229
+    },
+    {
+      "L": 7,
+      "H": 5,
+      "frac": 0.1071
+    },
+    {
+      "L": 10,
+      "H": 3,
+      "frac": 0.0961
+    },
+    {
+      "L": 16,
+      "H": 4,
+      "frac": 0.0929
+    },
+    {
+      "L": 16,
+      "H": 5,
+      "frac": 0.0897
+    },
+    {
+      "L": 17,
+      "H": 7,
+      "frac": 0.0721
+    },
+    {
+      "L": 15,
+      "H": 3,
+      "frac": 0.0641
+    },
+    {
+      "L": 15,
+      "H": 7,
+      "frac": 0.062
+    },
+    {
+      "L": 24,
+      "H": 3,
+      "frac": 0.0545
+    },
+    {
+      "L": 25,
+      "H": 2,
+      "frac": 0.0513
+    },
+    {
+      "L": 7,
+      "H": 0,
+      "frac": 0.0455
+    },
+    {
+      "L": 18,
+      "H": 6,
+      "frac": 0.0037
+    }
+  ],
+  "qa_small_effect": [
+    {
+      "pair": "Australia->Canberra",
+      "effect": 0.3125,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.0944
+    },
+    {
+      "pair": "Texas->Austin",
+      "effect": 1.0,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.08738
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "effect": 0.1875,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.07147
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "effect": 1.3125,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.12638
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "effect": 0.25,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.07797
+    }
+  ],
+  "robustness": {
+    "bootstrap_reader_rank_ci": {
+      "rank_lo": 1,
+      "rank_med": 2,
+      "rank_hi": 2,
+      "frac_top5": 1.0
+    },
+    "null_floor": {
+      "reader_real": 0.193,
+      "null_pctl": 0.3038,
+      "n_null": 10,
+      "above_floor": false
+    }
+  },
+  "decision": {
+    "SC_INSTR_1_concordance": true,
+    "SC_INSTR_2_small_effect": true,
+    "SC_INSTR_3_specificity_linear": true,
+    "reader_atp_rank": 2,
+    "reader_patch_rank": 1,
+    "reader_knockout_rank": null,
+    "ctrl_atp_rank": 169,
+    "ctrl_patch_frac": 0.0037,
+    "reader_patch_frac": 0.222,
+    "sign_agreement": 0.957,
+    "verdict": "CONCORDANT: AtP and activation-patch reproduce the incumbent on the known case; adopt AtP-screen + activation-patch-confirm for R1-DIFF; necessity floor retired (SC-INSTR-2)"
+  }
+}

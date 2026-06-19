@@ -1,0 +1,31 @@
+[load] google/gemma-2-2b on cuda
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:07<00:14,  7.03s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:09<00:04,  4.59s/it]Fetching 3 files: 100%|██████████| 3/3 [00:09<00:00,  3.30s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  51%|█████     | 146/288 [00:00<00:00, 1434.07it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1443.72it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[load] done (L=26 H=8)
+[pair] Australia    effect=+9.750
+[pair] Texas        effect=+7.000
+[pair] Canada       effect=+5.875
+[pair] Switzerland  effect=+6.875
+[pair] Morocco      effect=+2.750
+[qa] Australia    effect=+0.312 below_floor=True atp_finite=True
+[qa] Texas        effect=+1.000 below_floor=False atp_finite=True
+[qa] Canada       effect=+0.188 below_floor=True atp_finite=True
+[qa] Switzerland  effect=+1.312 below_floor=False atp_finite=True
+[qa] Morocco      effect=+0.250 below_floor=True atp_finite=True
+
+[decision] {
+  "SC_INSTR_1_concordance": true,
+  "SC_INSTR_2_small_effect": true,
+  "SC_INSTR_3_specificity_linear": true,
+  "reader_atp_rank": 2,
+  "reader_patch_rank": 1,
+  "reader_knockout_rank": null,
+  "ctrl_atp_rank": 169,
+  "ctrl_patch_frac": 0.0037,
+  "reader_patch_frac": 0.222,
+  "sign_agreement": 0.957,
+  "verdict": "CONCORDANT: AtP and activation-patch reproduce the incumbent on the known case; adopt AtP-screen + activation-patch-confirm for R1-DIFF; necessity floor retired (SC-INSTR-2)"
+}
+[robustness] bootstrap_rank_ci= {'rank_lo': 1, 'rank_med': 2, 'rank_hi': 2, 'frac_top5': 1.0}  null_floor= {'reader_real': 0.193, 'null_pctl': 0.3038, 'n_null': 10, 'above_floor': False}
+[done] wrote out/instr_triangulation_2b_curated.json

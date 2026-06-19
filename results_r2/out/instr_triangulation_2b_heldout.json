@@ -1,0 +1,365 @@
+{
+  "model": "google/gemma-2-2b",
+  "case": "salience_flip_2b",
+  "pairs_set": "heldout",
+  "seed": 0,
+  "reader": [
+    18,
+    5
+  ],
+  "ctrl": [
+    18,
+    6
+  ],
+  "n_layers": 26,
+  "n_heads": 8,
+  "n_pairs_used": 6,
+  "pairs": [
+    {
+      "pair": "Turkey->Ankara",
+      "effect": 4.875,
+      "M_neutral": -0.5,
+      "M_salience": -5.375
+    },
+    {
+      "pair": "Nigeria->Abuja",
+      "effect": 4.875,
+      "M_neutral": -0.125,
+      "M_salience": -5.0
+    },
+    {
+      "pair": "Pakistan->Islamabad",
+      "effect": 3.75,
+      "M_neutral": 1.875,
+      "M_salience": -1.875
+    },
+    {
+      "pair": "Kazakhstan->Astana",
+      "effect": 5.5,
+      "M_neutral": 0.0,
+      "M_salience": -5.5
+    },
+    {
+      "pair": "Illinois->Springfield",
+      "effect": 0.5,
+      "M_neutral": 1.875,
+      "M_salience": 1.375
+    },
+    {
+      "pair": "Washington->Olympia",
+      "effect": 0.875,
+      "M_neutral": -2.875,
+      "M_salience": -3.75
+    },
+    {
+      "pair": "Vietnam->Hanoi",
+      "effect": 7.0,
+      "M_neutral": 4.25,
+      "M_salience": -2.75
+    }
+  ],
+  "skipped_below_min_effect": [
+    {
+      "pair": "Illinois->Springfield",
+      "effect": 0.5
+    }
+  ],
+  "thresholds": {
+    "min_effect": 0.5,
+    "sc1_topk": 5,
+    "sc1_ctrl_out": 20,
+    "sc1_ctrl_frac": 0.05,
+    "min_frac": 0.1,
+    "sign_agree": 0.8
+  },
+  "atp_top8": [
+    {
+      "L": 18,
+      "H": 5,
+      "score": 0.4092
+    },
+    {
+      "L": 5,
+      "H": 0,
+      "score": 0.3163
+    },
+    {
+      "L": 20,
+      "H": 3,
+      "score": 0.2943
+    },
+    {
+      "L": 17,
+      "H": 3,
+      "score": 0.1882
+    },
+    {
+      "L": 25,
+      "H": 4,
+      "score": 0.1839
+    },
+    {
+      "L": 5,
+      "H": 2,
+      "score": 0.1833
+    },
+    {
+      "L": 12,
+      "H": 7,
+      "score": 0.1645
+    },
+    {
+      "L": 7,
+      "H": 5,
+      "score": 0.1502
+    }
+  ],
+  "knockout_top8": [
+    {
+      "L": 2,
+      "H": 2,
+      "score": 0.4494
+    },
+    {
+      "L": 12,
+      "H": 5,
+      "score": 0.3945
+    },
+    {
+      "L": 5,
+      "H": 2,
+      "score": 0.3868
+    },
+    {
+      "L": 18,
+      "H": 5,
+      "score": 0.2908
+    },
+    {
+      "L": 8,
+      "H": 3,
+      "score": 0.2456
+    },
+    {
+      "L": 11,
+      "H": 5,
+      "score": 0.2346
+    },
+    {
+      "L": 7,
+      "H": 1,
+      "score": 0.1857
+    },
+    {
+      "L": 0,
+      "H": 4,
+      "score": 0.1789
+    }
+  ],
+  "activation_patch_confirm": [
+    {
+      "L": 7,
+      "H": 5,
+      "frac": 0.8571
+    },
+    {
+      "L": 13,
+      "H": 7,
+      "frac": 0.7143
+    },
+    {
+      "L": 5,
+      "H": 0,
+      "frac": 0.4525
+    },
+    {
+      "L": 15,
+      "H": 3,
+      "frac": 0.4286
+    },
+    {
+      "L": 12,
+      "H": 7,
+      "frac": 0.4212
+    },
+    {
+      "L": 17,
+      "H": 3,
+      "frac": 0.3945
+    },
+    {
+      "L": 25,
+      "H": 4,
+      "frac": 0.3139
+    },
+    {
+      "L": 18,
+      "H": 5,
+      "frac": 0.3055
+    },
+    {
+      "L": 13,
+      "H": 0,
+      "frac": 0.2784
+    },
+    {
+      "L": 20,
+      "H": 3,
+      "frac": 0.2691
+    },
+    {
+      "L": 5,
+      "H": 2,
+      "frac": 0.2676
+    },
+    {
+      "L": 23,
+      "H": 2,
+      "frac": 0.1591
+    },
+    {
+      "L": 9,
+      "H": 7,
+      "frac": 0.1564
+    },
+    {
+      "L": 10,
+      "H": 4,
+      "frac": 0.1333
+    },
+    {
+      "L": 14,
+      "H": 4,
+      "frac": 0.1333
+    },
+    {
+      "L": 22,
+      "H": 0,
+      "frac": 0.1238
+    },
+    {
+      "L": 25,
+      "H": 2,
+      "frac": 0.1136
+    },
+    {
+      "L": 10,
+      "H": 3,
+      "frac": 0.1043
+    },
+    {
+      "L": 16,
+      "H": 5,
+      "frac": 0.1026
+    },
+    {
+      "L": 16,
+      "H": 4,
+      "frac": 0.1007
+    },
+    {
+      "L": 22,
+      "H": 4,
+      "frac": 0.0935
+    },
+    {
+      "L": 17,
+      "H": 7,
+      "frac": 0.0836
+    },
+    {
+      "L": 18,
+      "H": 6,
+      "frac": 0.0757
+    },
+    {
+      "L": 21,
+      "H": 1,
+      "frac": 0.0682
+    },
+    {
+      "L": 24,
+      "H": 3,
+      "frac": 0.0682
+    },
+    {
+      "L": 12,
+      "H": 3,
+      "frac": 0.0513
+    },
+    {
+      "L": 15,
+      "H": 7,
+      "frac": 0.0455
+    },
+    {
+      "L": 25,
+      "H": 6,
+      "frac": 0.0357
+    }
+  ],
+  "qa_small_effect": [
+    {
+      "pair": "Australia->Canberra",
+      "effect": 0.3125,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.0944
+    },
+    {
+      "pair": "Texas->Austin",
+      "effect": 1.0,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.08738
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "effect": 0.1875,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.07147
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "effect": 1.3125,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.12638
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "effect": 0.25,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.07797
+    }
+  ],
+  "robustness": {
+    "bootstrap_reader_rank_ci": {
+      "rank_lo": 0,
+      "rank_med": 1,
+      "rank_hi": 1,
+      "frac_top5": 1.0
+    },
+    "null_floor": {
+      "reader_real": 0.4092,
+      "null_pctl": 5.6563,
+      "n_null": 10,
+      "above_floor": false
+    }
+  },
+  "decision": {
+    "SC_INSTR_1_concordance": false,
+    "SC_INSTR_2_small_effect": true,
+    "SC_INSTR_3_specificity_linear": false,
+    "reader_atp_rank": 0,
+    "reader_patch_rank": 7,
+    "reader_knockout_rank": 3,
+    "ctrl_atp_rank": 27,
+    "ctrl_patch_frac": 0.0757,
+    "reader_patch_frac": 0.3055,
+    "sign_agreement": 0.929,
+    "verdict": "DISCORDANT: the on-distribution instruments do NOT rank the reader top while knockout does -- knockout necessity may be an off-distribution artifact; HEADLINE, do not enter the blind regime, re-examine the incumbent"
+  }
+}
