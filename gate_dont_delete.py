@@ -49,7 +49,9 @@ EXCLUDE = {(18, 5)}        # the salience reader -- basket must be heads OTHER t
 GATE_DROP = 0.5            # it induction attn <= 50% of base -> QK gated
 MAG_TOL = 0.15             # |rel(W_OV_fro)| within this -> OV magnitude preserved (matches C1 MAG_REL_TOL)
 COPY_RANK_TOP = 5          # it OV copy rank <= this -> OV direction preserved
-MIN_BASE_INDUCTION = 0.20  # a basket head must be a real induction/copy head in base
+MIN_BASE_INDUCTION = 0.20  # a basket head must be a real induction/copy head in base (--select induction)
+MIN_BASE_COPY = 0.10       # a basket head must OV-copy >= this frac of probe tokens at base (--select copy)
+SELECT_SCAN_TOKENS = 8     # #tokens used in the all-head copy scan that selects the copy basket
 N_BASKET = 10
 MAJORITY = 0.5
 
@@ -138,11 +140,14 @@ def _head_patterns(model, ids):
     return store
 
 
-def run(n_basket, seq_len, seed, name_base, name_it):
+def run(n_basket, seq_len, seed, select, name_base, name_it):
     from transformer_lens import HookedTransformer
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    # ---- BASE: select the basket (top induction heads, copy-capable, excluding the salience reader) ----
+    # ---- BASE: select the basket, excluding the salience reader L18.H5 ----
+    # --select copy (default): heads that OV-COPY at base (the leg the gate-dont-delete signature needs;
+    #   the latent_skeptic triage found induction-selected baskets contain no copy heads -> 0/10 vacuous).
+    # --select induction: the original induction-pattern selection (kept for the record).
     print(f"[load] {name_base} on {device}", flush=True)
     base = HookedTransformer.from_pretrained_no_processing(name_base, dtype=torch.bfloat16, device=device)
     base.eval()
@@ -151,15 +156,31 @@ def run(n_basket, seq_len, seed, name_base, name_it):
     grp = nH // n_v if n_v and n_v < nH else 1
     ids = _probe_ids(base, seq_len, seed, device)
     sample_tokens = ids[0, 1:1 + seq_len].tolist()                  # the probe's own tokens
-    pats = _head_patterns(base, ids)
-    ind_all = []
-    for L in range(nL):
-        for H in range(nH):
-            ind_all.append({"L": L, "H": H, "induction": induction_score(pats[L][H], seq_len)})
-    ind_all.sort(key=lambda d: d["induction"], reverse=True)
-    basket = [(d["L"], d["H"]) for d in ind_all
-              if (d["L"], d["H"]) not in EXCLUDE and d["induction"] >= MIN_BASE_INDUCTION][:n_basket]
-    print(f"[basket] {len(basket)} induction heads (excl {sorted(EXCLUDE)}): {basket}", flush=True)
+    pats = _head_patterns(base, ids)                                # for induction_score (both modes use it in rows)
+    if select == "copy":
+        scan = sample_tokens[:SELECT_SCAN_TOKENS]
+        cand = []
+        for L in range(nL):
+            for H in range(nH):
+                if (L, H) in EXCLUDE:
+                    continue
+                vH = H // grp if grp > 1 else H
+                W_OV = (base.W_V[L, vH] @ base.W_O[L, H]).float()
+                cand.append({"L": L, "H": H,
+                             "frac_rank0": copy_metrics(W_OV, base.W_E, base.W_U, base.ln_final, scan)["frac_rank0"]})
+            print(f"  [select-copy] scanned layer {L}", flush=True)
+        cand.sort(key=lambda d: d["frac_rank0"], reverse=True)
+        basket = [(d["L"], d["H"]) for d in cand if d["frac_rank0"] >= MIN_BASE_COPY][:n_basket]
+        print(f"[basket] {len(basket)} OV-copy heads (frac_rank0>={MIN_BASE_COPY}, excl {sorted(EXCLUDE)}): {basket}", flush=True)
+        if not basket:
+            print(f"[basket] WARNING: no head reaches frac_rank0>={MIN_BASE_COPY}; top scan = {cand[:5]}", flush=True)
+    else:
+        ind_all = [{"L": L, "H": H, "induction": induction_score(pats[L][H], seq_len)}
+                   for L in range(nL) for H in range(nH)]
+        ind_all.sort(key=lambda d: d["induction"], reverse=True)
+        basket = [(d["L"], d["H"]) for d in ind_all
+                  if (d["L"], d["H"]) not in EXCLUDE and d["induction"] >= MIN_BASE_INDUCTION][:n_basket]
+        print(f"[basket] {len(basket)} induction heads (excl {sorted(EXCLUDE)}): {basket}", flush=True)
 
     def ov_fro_and_copy(model, L, H):
         vH = H // grp if grp > 1 else H
@@ -208,18 +229,21 @@ def run(n_basket, seq_len, seed, name_base, name_it):
 
     verdict = motif_verdict(labels)
     out = {"model_base": name_base, "model_it": name_it, "cue": "gate_dont_delete_motif",
+           "select_mode": select,
            "n_layers": nL, "n_heads": nH, "seq_len": seq_len, "seed": seed,
            "thresholds": {"gate_drop": GATE_DROP, "mag_tol": MAG_TOL, "copy_rank_top": COPY_RANK_TOP,
-                          "min_base_induction": MIN_BASE_INDUCTION, "majority": MAJORITY},
+                          "min_base_induction": MIN_BASE_INDUCTION, "min_base_copy": MIN_BASE_COPY,
+                          "majority": MAJORITY},
            "excluded_heads": [list(h) for h in sorted(EXCLUDE)],
            "basket": [list(h) for h in basket],
            "rows": rows, "decision": verdict,
            "caveat": "gemma-2-2b-it is SFT+RLHF+merge; base->it weight diff conflates three ops. "
                      "QK side is the realized pattern (activation diff); OV side is weight-only."}
     Path("out").mkdir(exist_ok=True)
-    Path("out/gate_dont_delete_2b.json").write_text(json.dumps(out, indent=2))
+    outpath = f"out/gate_dont_delete_2b_{select}.json"
+    Path(outpath).write_text(json.dumps(out, indent=2))
     print("\n[decision]", json.dumps(verdict, indent=2))
-    print("[done] wrote out/gate_dont_delete_2b.json")
+    print(f"[done] wrote {outpath}")
 
 
 # --------------------------------------------------------------------------- selftest
@@ -275,6 +299,9 @@ def selftest():
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--selftest", action="store_true", help="model-free measurement + decision check")
+    ap.add_argument("--select", choices=["copy", "induction"], default="copy",
+                    help="basket selection: 'copy' = base OV-copy heads (the clean motif test); "
+                         "'induction' = base induction-pattern heads (original, triage-confounded)")
     ap.add_argument("--n-basket", type=int, default=N_BASKET)
     ap.add_argument("--seq-len", type=int, default=40, help="repeated-token probe half-length")
     ap.add_argument("--seed", type=int, default=0)
@@ -284,4 +311,4 @@ if __name__ == "__main__":
     if a.selftest:
         selftest()
     else:
-        run(a.n_basket, a.seq_len, a.seed, a.name_base, a.name_it)
+        run(a.n_basket, a.seq_len, a.seed, a.select, a.name_base, a.name_it)

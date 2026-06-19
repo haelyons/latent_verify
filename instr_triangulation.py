@@ -55,6 +55,7 @@ Usage:
 """
 import argparse
 import json
+import random
 import statistics
 from pathlib import Path
 
@@ -73,6 +74,17 @@ PAIRS = [                                           # (region, capital=C, anchor
     ("Switzerland", "Bern",     "Zurich"),
     ("Morocco",     "Rabat",    "Casablanca"),
 ]
+HELDOUT = [                                          # disjoint salience pairs (the single-case-overfit test)
+    ("Turkey",     "Ankara",      "Istanbul"),
+    ("Nigeria",    "Abuja",       "Lagos"),
+    ("Pakistan",   "Islamabad",   "Karachi"),
+    ("Kazakhstan", "Astana",      "Almaty"),
+    ("Illinois",   "Springfield", "Chicago"),
+    ("Washington", "Olympia",     "Seattle"),
+    ("Vietnam",    "Hanoi",       "Saigon"),
+]
+N_BOOT = 500              # item-bootstrap resamples for the reader rank-stability CI (no new forwards)
+N_NULL = 10               # random-label draws per pair for the null-score floor
 
 MIN_EFFECT = 0.5          # nats; the incumbent floor below which knockout necessity is n/a
 SC1_TOPK = 5              # reader must rank within top-K under AtP and activation-patch
@@ -114,6 +126,43 @@ def sign_agreement(a, b):
     return sum(1 for x, y in zip(a, b) if (x > 0) == (y > 0)) / len(a)
 
 
+def percentile(vals, p):
+    """Nearest-rank/linear-interp percentile, no numpy (matches controls/perhead_nec_null.py)."""
+    if not vals:
+        return None
+    s = sorted(vals)
+    if len(s) == 1:
+        return s[0]
+    k = (len(s) - 1) * (p / 100.0)
+    lo = int(k); hi = min(lo + 1, len(s) - 1)
+    return s[lo] + (s[hi] - s[lo]) * (k - lo)
+
+
+def bootstrap_rank_ci(per_pair, target_flat, n_boot, seed):
+    """Item-bootstrap (no new forwards): resample the per-pair score vectors, re-aggregate, record the
+    target head's rank each time. Answers the noise-floor NEEDS_RUN: is reader rank<=SC1_TOPK stable?"""
+    rng = random.Random(seed)
+    n = len(per_pair); nh = len(per_pair[0])
+    ranks = []
+    for _ in range(n_boot):
+        idx = [rng.randrange(n) for _ in range(n)]
+        agg = [sum(per_pair[i][f] for i in idx) / n for f in range(nh)]
+        v = agg[target_flat]
+        ranks.append(sum(1 for s in agg if s > v))
+    ranks.sort()
+    return {"rank_lo": ranks[int(0.025 * n_boot)], "rank_med": ranks[n_boot // 2],
+            "rank_hi": ranks[int(0.975 * n_boot)],
+            "frac_top5": round(sum(1 for r in ranks if r < SC1_TOPK) / n_boot, 3)}
+
+
+def null_floor(reader_real, null_aggs, pctl=95):
+    """Shuffled-label null: is the reader's real aggregate score above the floor a head reaches under a
+    meaningless (random C/W) objective? Answers the noise-floor NEEDS_RUN."""
+    fl = percentile(null_aggs, pctl)
+    return {"reader_real": round(reader_real, 4), "null_pctl": round(fl, 4) if fl is not None else None,
+            "n_null": len(null_aggs), "above_floor": bool(fl is not None and reader_real > fl)}
+
+
 def decide(reader_atp_rank, reader_patch_rank, ctrl_atp_rank, ctrl_patch_frac,
            reader_patch_frac, sign_agree, reader_knockout_rank, atp_finite_below_floor):
     """Pure decision over the aggregate numbers (exercised by --selftest)."""
@@ -147,7 +196,7 @@ def _logp_diff(logits, cid, aid):
     return lp[cid] - lp[aid]                       # keeps grad for AtP
 
 
-def run(topk, do_knockout_sweep, name):
+def run(topk, do_knockout_sweep, name, pairs_set, seed, n_boot, n_null):
     from transformer_lens import HookedTransformer
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"[load] {name} on {device}", flush=True)
@@ -218,10 +267,14 @@ def run(topk, do_knockout_sweep, name):
         return (M_ko - M_sal) / effect
 
     # ---- main case: salience stem ----
+    pairs_use = PAIRS if pairs_set == "curated" else HELDOUT
+    rng = random.Random(seed)
+    vlo, vhi = 100, model.cfg.d_vocab - 100
     nhf = nL * nH
     atp_per_pair, patch_rows, knock_per_pair = [], [], []
-    pair_meta = []
-    for region, C, W in PAIRS:
+    pair_meta, skipped = [], []
+    null_reader_by_draw = [[] for _ in range(n_null)]                # reader's null AtP per random-label draw
+    for region, C, W in pairs_use:
         cid, aid = first(" " + C), first(" " + W)
         neu = to_ids(STEM.format(r=region))                          # neutral = bare stem
         sal = to_ids(SALIENCE.format(w=W, r=region) + STEM.format(r=region))
@@ -232,7 +285,9 @@ def run(topk, do_knockout_sweep, name):
         pair_meta.append({"pair": f"{region}->{C}", "effect": round(effect, 4),
                           "M_neutral": round(M_neu, 4), "M_salience": round(M_sal, 4)})
         print(f"[pair] {region:<12} effect={effect:+.3f}", flush=True)
-        if abs(effect) < 1e-6:
+        if abs(effect) < MIN_EFFECT:                                  # only aggregate over real flips
+            skipped.append({"pair": f"{region}->{C}", "effect": round(effect, 4)})
+            print(f"  [skip] {region} effect below MIN_EFFECT={MIN_EFFECT}", flush=True)
             continue
         # AtP over all heads (one backward already done)
         atp_flat = [0.0] * nhf
@@ -241,6 +296,16 @@ def run(topk, do_knockout_sweep, name):
             for H in range(nH):
                 atp_flat[flat(L, H, nH)] = float(s[H])
         atp_per_pair.append(atp_flat)
+        # shuffled-label null: reader's AtP under K random (C,W) objectives on this same prompt
+        for k in range(n_null):
+            r1, r2 = rng.randint(vlo, vhi), rng.randint(vlo, vhi)
+            if r1 == r2:
+                continue
+            Mn = M_nohook(neu, r1, r2)
+            Ms_n, z_sal_n, grad_n = atp_and_zsal(sal, r1, r2)
+            eff_n = Mn - Ms_n
+            if abs(eff_n) > 1e-6:
+                null_reader_by_draw[k].append(float(atp_scores(z_neu[rL], z_sal_n[rL], grad_n[rL])[rH]) / eff_n)
         # incumbent knockout per-head full sweep (optional)
         if do_knockout_sweep:
             apos = anchor_pos(sal[0].tolist(), W)
@@ -269,6 +334,9 @@ def run(topk, do_knockout_sweep, name):
     patch_agg_map = {f: statistics.mean(r[f] for r in patch_rows if f in r) for f in confirm_heads}
 
     rf, cf = flat(rL, rH, nH), flat(cL, cH, nH)
+    boot_ci = bootstrap_rank_ci(atp_per_pair, rf, n_boot, seed) if atp_per_pair else None
+    null_aggs = [statistics.mean(d) for d in null_reader_by_draw if d]
+    nullf = null_floor(atp_agg[rf], null_aggs) if (atp_agg and null_aggs) else None
     reader_atp_rank = rank_of(atp_agg, rf) if atp_agg else None
     ctrl_atp_rank = rank_of(atp_agg, cf) if atp_agg else None
     reader_knock_rank = rank_of(knock_agg, rf) if knock_agg else None
@@ -309,19 +377,24 @@ def run(topk, do_knockout_sweep, name):
         return [{"L": f // nH, "H": f % nH, "score": round(scores[f], 4)}
                 for f in sorted(range(len(scores)), key=lambda f: scores[f], reverse=True)[:n]]
 
-    out = {"model": name, "case": "salience_flip_2b", "reader": list(READER), "ctrl": list(CTRL),
-           "n_layers": nL, "n_heads": nH, "pairs": pair_meta,
+    out = {"model": name, "case": "salience_flip_2b", "pairs_set": pairs_set, "seed": seed,
+           "reader": list(READER), "ctrl": list(CTRL),
+           "n_layers": nL, "n_heads": nH, "n_pairs_used": len(atp_per_pair), "pairs": pair_meta,
+           "skipped_below_min_effect": skipped,
            "thresholds": {"min_effect": MIN_EFFECT, "sc1_topk": SC1_TOPK, "sc1_ctrl_out": SC1_CTRL_OUT,
                           "sc1_ctrl_frac": SC1_CTRL_FRAC, "min_frac": MIN_FRAC, "sign_agree": SIGN_AGREE},
            "atp_top8": topn(atp_agg) if atp_agg else [],
            "knockout_top8": topn(knock_agg) if knock_agg else None,
            "activation_patch_confirm": [{"L": f // nH, "H": f % nH, "frac": round(v, 4)} for f, v in patch_sorted],
            "qa_small_effect": qa_rows,
+           "robustness": {"bootstrap_reader_rank_ci": boot_ci, "null_floor": nullf},
            "decision": decision}
     Path("out").mkdir(exist_ok=True)
-    Path("out/instr_triangulation_2b.json").write_text(json.dumps(out, indent=2))
+    outpath = f"out/instr_triangulation_2b_{pairs_set}.json"
+    Path(outpath).write_text(json.dumps(out, indent=2))
     print("\n[decision]", json.dumps(decision, indent=2))
-    print("[done] wrote out/instr_triangulation_2b.json")
+    print("[robustness] bootstrap_rank_ci=", boot_ci, " null_floor=", nullf)
+    print(f"[done] wrote {outpath}")
 
 
 # --------------------------------------------------------------------------- selftest
@@ -370,6 +443,26 @@ def selftest():
     assert d_bad["verdict"].startswith("DISCORDANT"), d_bad
     print(f"[selftest] decision CONCORDANT: {d_ok['verdict'][:40]}...")
     print(f"[selftest] decision DISCORDANT: {d_bad['verdict'][:40]}...")
+
+    # bootstrap rank CI + null floor (the two NEEDS_RUN robustness additions)
+    assert percentile([1, 2, 3, 4, 5], 50) == 3 and percentile([0, 10], 95) == 9.5
+    nh2 = 8
+    # reader (head 5) strictly largest in every pair -> rank 0 with prob 1, frac_top5 = 1
+    pp_reader = [[0.0, 0.1, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0] for _ in range(5)]
+    ci = bootstrap_rank_ci(pp_reader, 5, 200, 0)
+    assert ci["rank_lo"] == 0 and ci["rank_hi"] == 0 and ci["frac_top5"] == 1.0, ci
+    # diffuse: head 5 not special -> not reliably top-5 in an 8-head field
+    rng_s = random.Random(1)
+    pp_diff = [[rng_s.uniform(0, 1) for _ in range(nh2)] for _ in range(5)]
+    ci_d = bootstrap_rank_ci(pp_diff, 5, 200, 0)
+    assert ci_d["rank_hi"] >= ci["rank_hi"], (ci, ci_d)
+    # null floor: real reader score above the random-label null 95pct -> above_floor
+    nf = null_floor(0.20, [0.01, -0.02, 0.03, 0.0, 0.015, -0.01, 0.02, 0.005, 0.0, 0.01])
+    assert nf["above_floor"], nf
+    nf2 = null_floor(0.005, [0.01, -0.02, 0.03, 0.0, 0.2, -0.01, 0.02, 0.005, 0.0, 0.01])
+    assert not nf2["above_floor"], nf2
+    print(f"[selftest] bootstrap rank CI reader={ci} diffuse={ci_d}")
+    print(f"[selftest] null_floor above={nf['above_floor']} below={nf2['above_floor']}")
     print("[selftest] PASS")
 
 
@@ -378,9 +471,14 @@ if __name__ == "__main__":
     ap.add_argument("--selftest", action="store_true", help="model-free: AtP==patch, ranking, decision")
     ap.add_argument("--topk", type=int, default=TOPK_CONFIRM, help="#AtP-top heads to confirm with activation-patch")
     ap.add_argument("--no-knockout-sweep", action="store_true", help="skip the heavy incumbent full per-head sweep")
+    ap.add_argument("--pairs", choices=["curated", "heldout"], default="curated",
+                    help="curated = the sec-3.x 5 pairs; heldout = disjoint pairs (single-case-overfit test)")
+    ap.add_argument("--seed", type=int, default=0, help="RNG for the bootstrap rank-CI and random-label null")
+    ap.add_argument("--n-boot", type=int, default=N_BOOT)
+    ap.add_argument("--n-null", type=int, default=N_NULL)
     ap.add_argument("--name", default="google/gemma-2-2b")
     a = ap.parse_args()
     if a.selftest:
         selftest()
     else:
-        run(a.topk, not a.no_knockout_sweep, a.name)
+        run(a.topk, not a.no_knockout_sweep, a.name, a.pairs, a.seed, a.n_boot, a.n_null)
