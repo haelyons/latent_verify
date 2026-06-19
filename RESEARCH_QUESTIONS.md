@@ -654,6 +654,100 @@ NEXT-2 explains why). The NEXT-3 "positive" is downgraded to: *a real RLHF weigh
 copy-OV machinery, functional role unestablished.* Open: find an input where these heads DO realize copying
 (if any) before attributing function; or treat the OV-gain change as latent/epiphenomenal.
 
+---
+
+## PART 5 — 2b QK weight-vs-realized + colleague-surfaced directions (2026-06-19)
+
+### qk_weight 2b — RLHF edits NO QK weight; the 2b copy collapse is residual-INPUT-mediated
+`controls/qk_weight_2b_l18h5.py`, `results_2b_qkweight{,2,3}/` (3x gpu_1x_a10 us-east-1, ~$1.2,
+`--device cpu`, boxes self-terminated). Authored claim-blind via `triage-author`, then extended twice
+(QK-direction decomposition; query/key/full residual swaps). `--selftest` PASS each version.
+
+**Question (the §8 scope challenge).** FRAMING §8 says "RLHF deletes the copy *at the weights*" (L18.H5
+attn-to-anchor 0.84->0.01, complete already in the it/bare fragment). Is that a weight edit to L18.H5's
+own QK, or is the head's QK intact and the change upstream (input-driven)?
+
+**Result (L18.H5; L18.H6 = matched control, identical pattern):**
+- **QK weights intact** — fro_rel **-0.5%** (magnitude) AND **dir_cos 0.998 / resid_frac 0.069** (direction).
+  No magnitude edit, no rotation. The earlier W_QK-magnitude-only read is now closed on both axes.
+- **Realized attention collapses** — base **0.578** -> it **0.016** (reproduces §8's 0.58->0.016 across all
+  3 runs = the faithfulness gate; the 0.84 in §8 was the Australia pair, 0.58 is the 5-pair mean).
+- **Collapse is 100% residual-input-mediated** — swapping the full `resid_pre[L18]` base->it recovers
+  **0.97**; L18's weights are exonerated end to end.
+- **The input change is JOINT (super-additive)** — query-residual alone recovers **0.42**, key-residual
+  alone **0.02**, full **0.97**. Neither side alone restores the anchor focus; both together do (softmax:
+  -it's query no longer points at the anchor AND the competing context shifted).
+
+**Verdict `INPUT_MEDIATED`.** §8's "deletes at the weights" is **over-tight** — post-training does not
+touch L18.H5; it changes the residual stream feeding layer 18, jointly across the query and context
+positions. Closes, by running, the two confounds raised in review (`qk_rotation_not_excluded`,
+`single_position_swap_underestimates`).
+
+**Cross-scale coherence (with NEXT-2 / NEXT-3).** Copy-head *weights* are never edited at any scale:
+W_QK intact at 2b (this) and 27b (`qk_collapse_metric`); OV direction intact at 27b, only gain rescaled
+(NEXT-3). Where copying IS realized (2b L18.H5, base attn 0.58) RLHF removes it via the head's *input*;
+at 27b the basket heads do not realize copying at all (NEXT-2, latent). **Unifying read: RLHF modulates
+the inputs to / the gain of base copy machinery; it edits none of its routing weights.**
+
+**Triage status:** ready for `latent_skeptic`. Residual confound = n=5 pairs, no CI (mean recoveries only).
+Scope: 2b only — the concentrated reader is 2b-specific (FRAMING §10.3), so this explains the cleanest
+case, not a scaling law.
+
+### Colleague-surfaced directions — critical evaluation vs total results
+
+**The total-results state these sit against.** One surviving *positive* (9b caving = a base-intrinsic
+residual cave-direction, RLHF-neutral); three verified *nulls* (no installed deference head; head-set
+retracted under power; gate-don't-delete L18.H5-specific); two *modulation* findings (27b OV gain
+rescaled but latent; 2b QK collapse input-mediated; copy-head weights never edited). Emergent theme:
+**RLHF modulates base machinery, gated by confidence — it installs no localizable new circuitry.** The
+risk that comes with it: an *"everything is confidence"* overfit — confidence/headroom is now invoked to
+explain every null — while confidence has **never been localized as a representation**.
+
+**D (do first) — harden the surviving positive against the linear-probe illusion.** The cave-direction
+(the only positive) rests on diff-of-means + ablate/steer, the failure mode of Makelov et al. 2023;
+triage already flagged the in-sample-fit crux OPEN. Cheap, 9b, reuses `headset_direction.py`.
+- **SC-D1 (held-out):** fit the cave-direction on train items, test necessity on disjoint items; PASS if
+  out-of-sample necessity sits within the in-sample CI.
+- **SC-D2 (feature-decomposition):** decompose the direction at its layer into GemmaScope SAE features;
+  PASS if a small interpretable set reconstructs it (direction -> circuit, the granularity the
+  attribution-graph method gives but a bare probe does not).
+- **SC-D3 (counterfactual, Makelov):** the direction reads ~0 on matched no-cave items, and steering
+  produces the correct downstream change, not merely the target-logit nudge.
+- Until D passes, "caving is a base-intrinsic direction" is a *direction*, not a *mechanism*.
+
+**C (then) — localize the confidence / factual-recall representation; test the unifier.** Every result
+reduces to confidence-headroom; hypothesis: RLHF acts on the *confidence* representation, not a caving
+circuit. Fit a confidence direction (diff-of-means high- vs low-margin) with D's guards baked in. Cheap,
+9b, reuses the harness; highest strategic leverage.
+- **SC-C1:** necessity/sufficiency of the confidence direction, base vs -it (does post-training move it?).
+- **SC-C2 (the crux):** project the cave-direction onto the confidence-direction. High |cos| -> same axis
+  -> the program collapses to *"post-training tunes confidence, not deference"*; low cos -> caving and
+  confidence are distinct objects. MUST carry D's illusion-guards or it deepens the overfit.
+
+**A (if the 2b thread is worth finishing) — query-trace upstream of L18.H5.** qk_weight showed the 2b
+collapse is input-mediated; a path-patch to L18 `resid_pre` base-vs-it finds *which* upstream component
+moved the input. Cheap, 2b.
+- **SC-A1:** identify the upstream sender(s) whose base->it residual write accounts for the query-side
+  recovery (path-patch / DLA on the L18 query input + the key-side residual).
+- Critical limit: **2b-only** (no concentrated reader at scale) -> explains the cleanest case, no scaling
+  law. Lower priority than D/C.
+
+**B (scope decision required) — RLVR / verifiable-reward model.** The best available *test* of the
+confidence hypothesis, and it unblocks stage-attribution (RLVR families ship staged checkpoints, the B5
+blocker). Substrate = numeric-assertion copy (survives to 9b, uncertainty-gated).
+- **SC-B1:** in a same-family base vs RLVR pair, numeric caving drops tracking the per-item
+  verifiable-confidence rise, and NOT on non-verifiable factual items.
+- Cost: **breaks the single-family Gemma scope**, needs external models. GATED behind an explicit
+  decision — not a proceed.
+
+**Disciplined ordering (from the results): D -> C -> A -> B.** D/C/A are cheap and in-scope (2b/9b,
+existing harnesses); B is the strategic bet that spends the single-family discipline. Sharpest caution:
+the program is one LOO-test (D) from knowing whether its one positive is mechanism or overlay — do D
+before building the confidence-unifier (C) on top of it, or "confidence-gating" risks becoming an
+unfalsifiable catch-all.
+
+---
+
 ### Handoff seed for the next agent
 > /karpathy-guidelines
 >
@@ -671,3 +765,14 @@ copy-OV machinery, functional role unestablished.* Open: find an input where the
 > functional role unestablished. The 27b OV arc is CLOSED at that bounded claim. Remaining: find an input
 > where these heads DO realize copying (else treat as latent/epiphenomenal); 9b held-out direction fit
 > (LOO); a stable (non-off-distribution) 9b set intervention; re-triage of the surviving committed claims.
+>
+> Then banked **qk_weight 2b** (PART 5): RLHF edits NO QK weight of L18.H5 (dir_cos 0.998, fro_rel -0.5%);
+> the 2b copy collapse is **100% residual-input-mediated** (full resid_pre[L18] swap recovers 0.97), JOINT
+> across query (0.42) + key (0.02) + super-additive. So "RLHF deletes the copy at the weights" is
+> over-tight at 2b too — copy-head routing weights are untouched at every scale; RLHF modulates their
+> inputs/gain. PART 5 pre-registers the four colleague-surfaced directions in priority order:
+> **D** harden the cave-direction vs the linear-probe illusion (held-out/LOO + SAE feature-decomp +
+> counterfactual) -> **C** localize the confidence representation and project the cave-direction onto it
+> (the unifier test) -> **A** 2b query-trace upstream of L18.H5 -> **B** RLVR confidence test (scope-gated,
+> breaks single-family). Sharpest caution: the program is one LOO-test from knowing if its one positive is
+> mechanism or overlay; do D before building C on it, or "confidence-gating" becomes an unfalsifiable catch-all.

@@ -57,8 +57,9 @@ billing read. Update the cumulative line whenever you run a box.
 | 2026-06-19 | NEXT-3 ov_magnitude x2 incl 1 crash (27b, CPU) | gpu_1x_a100_sxm4 | $1.99 | 0.90 | $1.79 |
 | 2026-06-19 | NEXT-3b ov_behavioral (27b) | gpu_1x_h100_sxm5 | $4.29 | 0.45 | $1.93 |
 | 2026-06-19 | NEXT-2 realized_attention (27b) | gpu_1x_h100_sxm5 | $4.29 | 0.45 | $1.93 |
+| 2026-06-19 | qk_weight 2b x3 (v1/v2/v3) + 1 orphan boot | gpu_1x_a10 | $1.29 | 0.95 | $1.23 |
 
-**Cumulative (est.): ~$12 of $500.** (latent_skeptic triage is Anthropic-API tokens, not Lambda spend.)
+**Cumulative (est.): ~$13 of $500.** (latent_skeptic triage is Anthropic-API tokens, not Lambda spend.)
 
 ## Lambda Cloud API — endpoints leveraged
 
