@@ -396,6 +396,12 @@ Every claim was adversarially triaged (`latent_skeptic`, H1 fresh skeptics / H2 
    each head with net_it∈[0.03,0.10] (start L24.H11) measuring true first-token-margin recovery on the
    counter→neutral_turn gap; installed iff recovery ≥ INSTALL_THR while net_base ≤ 0.05. Reuses the
    `_confirm` harness applied to non-candidates. *(Deeper-into-9b; left for explicit go.)*
-2. **27b non-induction QK-collapse metric** (decides the 27b motif): per basket head, rel base→it of
-   W_QK Frobenius (`qk_fro` from `controls/ov_qk_generality_probe.py`) and/or copy-attention mass on a
-   real repeated-content probe — the induction probe is uninformative for low-induction copy heads.
+2. **27b non-induction QK-collapse metric** — ✅ RUN (`controls/qk_collapse_metric.py`,
+   `results_27b_qk/`): W_QK_fro rel base→it **UNCHANGED for all 10 copy heads** (≈0) → no weight-level
+   QK gate; W_OV_fro + ow_norm **CHANGED for ~half** (L17.H4 +0.52, L11 group +0.34 [GQA-shared],
+   L23.H24 −0.25). Resolves the induction-probe-mismatch crux: the 2b L18.H5 signature is 2b-specific
+   (QK weights don't gate, OV not preserved). Residual (not run, avoids drilling): realized QK
+   *attention-pattern* on a content-copy input — weight magnitude ≠ realized pattern.
+
+Only open control left: **(1)** the 9b activation-patch sweep over AtP-low heads — left for an explicit
+go (deeper-into-9b).
