@@ -38,6 +38,28 @@ Load the token without echoing it:
 LAMBDA_KEY_ONE=$(grep '^LAMBDA_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 ```
 
+## Budget and running spend
+
+**Agents are authorized to use the Lambda API to launch/run/terminate GPU instances up to a cumulative
+$500 cap; stay under it and keep the tally below current.**
+
+Lambda exposes no clean per-account spend endpoint in the v1 API, so this tally is estimated from
+instance-hours (active -> terminate) x the instance rate; treat it as a lower-bound-ish estimate, not a
+billing read. Update the cumulative line whenever you run a box.
+
+| date | run | instance | rate | ~hrs | ~cost |
+|------|-----|----------|------|------|-------|
+| (pre 06-19) | Round 1-3 (2b/9b/27b) | mixed A10/A100/H100 | - | - | ~$4 |
+| 2026-06-19 | NEXT-1 headset_joint (9b) | gpu_1x_a100_sxm4 | $1.99 | 0.25 | $0.50 |
+| 2026-06-19 | NEXT-1 direction x2 incl 1 crash (9b) | gpu_1x_a100_sxm4 | $1.99 | 0.43 | $0.86 |
+| 2026-06-19 | matched de-confound n=6 (9b) | gpu_1x_a100_sxm4 | $1.99 | 0.30 | $0.60 |
+| 2026-06-19 | matched de-confound wide n=41 (9b) | gpu_1x_a100_sxm4 | $1.99 | 0.30 | $0.60 |
+| 2026-06-19 | NEXT-3 ov_magnitude x2 incl 1 crash (27b, CPU) | gpu_1x_a100_sxm4 | $1.99 | 0.90 | $1.79 |
+| 2026-06-19 | NEXT-3b ov_behavioral (27b) | gpu_1x_h100_sxm5 | $4.29 | 0.45 | $1.93 |
+| 2026-06-19 | NEXT-2 realized_attention (27b) | gpu_1x_h100_sxm5 | $4.29 | 0.45 | $1.93 |
+
+**Cumulative (est.): ~$12 of $500.** (latent_skeptic triage is Anthropic-API tokens, not Lambda spend.)
+
 ## Lambda Cloud API — endpoints leveraged
 
 Base URL `https://cloud.lambda.ai/api/v1/`. Auth on every call:
