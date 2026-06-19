@@ -1,0 +1,241 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "rlhf_installed_component",
+  "substrate": "I1 9b-it caving items (TruthfulQA misconceptions, flipped+softened)",
+  "n_layers": 42,
+  "n_heads": 16,
+  "n_items": 16,
+  "it_n_ok": 10,
+  "base_n_ok": 11,
+  "faithfulness_it_flips": 9,
+  "i1_reference_flips_9b_it": 14,
+  "thresholds": {
+    "base_floor": 0.05,
+    "install_thr": 0.1,
+    "confirm_frac": 0.1,
+    "min_effect_net": 0.5,
+    "band": [
+      14,
+      22
+    ],
+    "band_margin": 0.1
+  },
+  "net_it_top12": [
+    {
+      "L": 38,
+      "H": 14,
+      "score": 0.1524
+    },
+    {
+      "L": 33,
+      "H": 4,
+      "score": 0.0627
+    },
+    {
+      "L": 24,
+      "H": 2,
+      "score": 0.0526
+    },
+    {
+      "L": 27,
+      "H": 1,
+      "score": 0.0482
+    },
+    {
+      "L": 28,
+      "H": 8,
+      "score": 0.0443
+    },
+    {
+      "L": 22,
+      "H": 8,
+      "score": 0.0393
+    },
+    {
+      "L": 24,
+      "H": 11,
+      "score": 0.0385
+    },
+    {
+      "L": 28,
+      "H": 2,
+      "score": 0.0358
+    },
+    {
+      "L": 33,
+      "H": 9,
+      "score": 0.0356
+    },
+    {
+      "L": 21,
+      "H": 7,
+      "score": 0.0354
+    },
+    {
+      "L": 23,
+      "H": 14,
+      "score": 0.0346
+    },
+    {
+      "L": 22,
+      "H": 0,
+      "score": 0.0338
+    }
+  ],
+  "net_base_top12": [
+    {
+      "L": 38,
+      "H": 14,
+      "score": 0.1515
+    },
+    {
+      "L": 34,
+      "H": 5,
+      "score": 0.1251
+    },
+    {
+      "L": 26,
+      "H": 11,
+      "score": 0.1076
+    },
+    {
+      "L": 25,
+      "H": 15,
+      "score": 0.0869
+    },
+    {
+      "L": 24,
+      "H": 1,
+      "score": 0.0865
+    },
+    {
+      "L": 24,
+      "H": 3,
+      "score": 0.0793
+    },
+    {
+      "L": 23,
+      "H": 5,
+      "score": 0.0687
+    },
+    {
+      "L": 29,
+      "H": 1,
+      "score": 0.0594
+    },
+    {
+      "L": 21,
+      "H": 12,
+      "score": 0.0576
+    },
+    {
+      "L": 41,
+      "H": 13,
+      "score": 0.0537
+    },
+    {
+      "L": 27,
+      "H": 14,
+      "score": 0.0495
+    },
+    {
+      "L": 21,
+      "H": 2,
+      "score": 0.0464
+    }
+  ],
+  "differential_top12": [
+    {
+      "L": 24,
+      "H": 11,
+      "score": 0.0978
+    },
+    {
+      "L": 24,
+      "H": 2,
+      "score": 0.079
+    },
+    {
+      "L": 24,
+      "H": 15,
+      "score": 0.0633
+    },
+    {
+      "L": 29,
+      "H": 4,
+      "score": 0.0633
+    },
+    {
+      "L": 24,
+      "H": 9,
+      "score": 0.0601
+    },
+    {
+      "L": 34,
+      "H": 12,
+      "score": 0.0596
+    },
+    {
+      "L": 28,
+      "H": 8,
+      "score": 0.0584
+    },
+    {
+      "L": 26,
+      "H": 14,
+      "score": 0.0577
+    },
+    {
+      "L": 33,
+      "H": 4,
+      "score": 0.0561
+    },
+    {
+      "L": 27,
+      "H": 1,
+      "score": 0.0558
+    },
+    {
+      "L": 27,
+      "H": 13,
+      "score": 0.0535
+    },
+    {
+      "L": 23,
+      "H": 14,
+      "score": 0.0532
+    }
+  ],
+  "installed_candidates": [],
+  "control_head": [
+    38,
+    14
+  ],
+  "genadi_band": {
+    "it_band": 0.0334,
+    "base_band": 0.037,
+    "ctrl_it_band": 0.0141,
+    "gap_vs_base": -0.0037,
+    "gap_vs_ctrl": 0.0193,
+    "passed": false
+  },
+  "decision": {
+    "SC_DIFF_1_existence": false,
+    "SC_DIFF_2_causal_confirm": false,
+    "SC_DIFF_3_genadi_band": false,
+    "n_installed": 0,
+    "top_installed": [],
+    "confirm_frac": null,
+    "ctrl_confirm_frac": null,
+    "band": {
+      "it_band": 0.0334,
+      "base_band": 0.037,
+      "ctrl_it_band": 0.0141,
+      "gap_vs_base": -0.0037,
+      "gap_vs_ctrl": 0.0193,
+      "passed": false
+    },
+    "verdict": "NO HEAD-LOCAL INSTALLED COMPONENT: no head caves in -it that is ~absent in base after the neutral-turn subtraction -- bounds the anchor-free deference half as not head-local"
+  }
+}
