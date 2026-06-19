@@ -1,0 +1,180 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "atp_low_activation_patch_confirm",
+  "n_heads_swept": 18,
+  "install_thr": 0.1,
+  "base_floor": 0.05,
+  "frac_it": {
+    "33.4": 0.0674,
+    "24.2": 0.0555,
+    "27.1": 0.0509,
+    "28.8": 0.0367,
+    "22.8": 0.025,
+    "24.11": 0.0371,
+    "28.2": 0.0367,
+    "33.9": 0.0322,
+    "21.7": 0.0452,
+    "23.14": 0.0397,
+    "22.0": 0.0362,
+    "24.15": 0.0325,
+    "29.4": 0.0131,
+    "24.9": -0.0006,
+    "34.12": -0.0011,
+    "26.14": 0.0122,
+    "27.13": -0.0097,
+    "23.5": -0.0683
+  },
+  "frac_base": {
+    "33.4": -0.0086,
+    "24.2": 0.0197,
+    "27.1": 0.0192,
+    "28.8": 0.0911,
+    "22.8": 0.0046,
+    "24.11": -0.0425,
+    "28.2": 0.0567,
+    "33.9": -0.006,
+    "21.7": 0.0036,
+    "23.14": 0.0317,
+    "22.0": -0.0228,
+    "24.15": 0.0395,
+    "29.4": -0.0633,
+    "24.9": 0.0005,
+    "34.12": 0.028,
+    "26.14": 0.0778,
+    "27.13": -0.0026,
+    "23.5": 0.0453
+  },
+  "decision": {
+    "installed": [],
+    "rows": [
+      {
+        "L": 33,
+        "H": 4,
+        "frac_it": 0.0674,
+        "frac_base": -0.0086,
+        "installed": false
+      },
+      {
+        "L": 24,
+        "H": 2,
+        "frac_it": 0.0555,
+        "frac_base": 0.0197,
+        "installed": false
+      },
+      {
+        "L": 27,
+        "H": 1,
+        "frac_it": 0.0509,
+        "frac_base": 0.0192,
+        "installed": false
+      },
+      {
+        "L": 21,
+        "H": 7,
+        "frac_it": 0.0452,
+        "frac_base": 0.0036,
+        "installed": false
+      },
+      {
+        "L": 23,
+        "H": 14,
+        "frac_it": 0.0397,
+        "frac_base": 0.0317,
+        "installed": false
+      },
+      {
+        "L": 24,
+        "H": 11,
+        "frac_it": 0.0371,
+        "frac_base": -0.0425,
+        "installed": false
+      },
+      {
+        "L": 28,
+        "H": 8,
+        "frac_it": 0.0367,
+        "frac_base": 0.0911,
+        "installed": false
+      },
+      {
+        "L": 28,
+        "H": 2,
+        "frac_it": 0.0367,
+        "frac_base": 0.0567,
+        "installed": false
+      },
+      {
+        "L": 22,
+        "H": 0,
+        "frac_it": 0.0362,
+        "frac_base": -0.0228,
+        "installed": false
+      },
+      {
+        "L": 24,
+        "H": 15,
+        "frac_it": 0.0325,
+        "frac_base": 0.0395,
+        "installed": false
+      },
+      {
+        "L": 33,
+        "H": 9,
+        "frac_it": 0.0322,
+        "frac_base": -0.006,
+        "installed": false
+      },
+      {
+        "L": 22,
+        "H": 8,
+        "frac_it": 0.025,
+        "frac_base": 0.0046,
+        "installed": false
+      },
+      {
+        "L": 29,
+        "H": 4,
+        "frac_it": 0.0131,
+        "frac_base": -0.0633,
+        "installed": false
+      },
+      {
+        "L": 26,
+        "H": 14,
+        "frac_it": 0.0122,
+        "frac_base": 0.0778,
+        "installed": false
+      },
+      {
+        "L": 24,
+        "H": 9,
+        "frac_it": -0.0006,
+        "frac_base": 0.0005,
+        "installed": false
+      },
+      {
+        "L": 34,
+        "H": 12,
+        "frac_it": -0.0011,
+        "frac_base": 0.028,
+        "installed": false
+      },
+      {
+        "L": 27,
+        "H": 13,
+        "frac_it": -0.0097,
+        "frac_base": -0.0026,
+        "installed": false
+      },
+      {
+        "L": 23,
+        "H": 5,
+        "frac_it": -0.0683,
+        "frac_base": 0.0453,
+        "installed": false
+      }
+    ],
+    "verdict": "NULL HARDENED: no AtP-low head restores the cave in -it (>=INSTALL_THR) while ~absent in base; the arbiter agrees with the AtP screen -- no head-local installed component"
+  }
+}

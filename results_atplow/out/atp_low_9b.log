@@ -1,0 +1,12 @@
+[sweep] activation-patch arbiter over 18 AtP-low heads on 16 items
+[load] google/gemma-2-9b-it (confirm pass) on cuda
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:13<00:40, 13.56s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:13<00:03,  3.66s/it]Fetching 4 files: 100%|██████████| 4/4 [00:13<00:00,  3.48s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 7521.18it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[load] google/gemma-2-9b (confirm pass) on cuda
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:19<02:15, 19.36s/it]Fetching 8 files: 100%|██████████| 8/8 [00:19<00:00,  2.42s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:   0%|          | 1/464 [00:00<01:00,  7.68it/s]Loading weights:  15%|█▌        | 71/464 [00:00<00:01, 359.12it/s]Loading weights:  27%|██▋       | 125/464 [00:00<00:00, 401.08it/s]Loading weights:  39%|███▉      | 180/464 [00:00<00:00, 444.64it/s]Loading weights:  49%|████▊     | 226/464 [00:00<00:00, 442.92it/s]Loading weights:  59%|█████▉    | 275/464 [00:00<00:00, 454.50it/s]Loading weights:  70%|██████▉   | 323/464 [00:00<00:00, 461.62it/s]Loading weights:  80%|███████▉  | 370/464 [00:00<00:00, 455.10it/s]Loading weights:  91%|█████████ | 422/464 [00:00<00:00, 465.58it/s]Loading weights: 100%|██████████| 464/464 [00:01<00:00, 442.82it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+
+[verdict] NULL HARDENED: no AtP-low head restores the cave in -it (>=INSTALL_THR) while ~absent in base; the arbiter agrees with the AtP screen -- no head-local installed component
+[done] wrote out/atp_low_confirm_9b.json

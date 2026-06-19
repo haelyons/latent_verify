@@ -403,5 +403,12 @@ Every claim was adversarially triaged (`latent_skeptic`, H1 fresh skeptics / H2 
    (QK weights don't gate, OV not preserved). Residual (not run, avoids drilling): realized QK
    *attention-pattern* on a content-copy input — weight magnitude ≠ realized pattern.
 
-Only open control left: **(1)** the 9b activation-patch sweep over AtP-low heads — left for an explicit
-go (deeper-into-9b).
+1. **9b activation-patch sweep over AtP-low heads** — ✅ RUN (`atp_low_confirm.py`, `results_atplow/`):
+   the arbiter on the 18 AtP-sub-threshold heads gives frac_it **max 0.067, none ≥ INSTALL_THR**, and the
+   strongest aren't base-absent (L28.H8 base 0.091, L26.H14 base 0.078). **NULL HARDENED** — resolves the
+   `atp_false_negative` crux by running: no head-local installed deference component at 9b; caving is
+   diffuse + base-shared. (Activation-patch, which in R2 *did* surface a head AtP missed at 0.86, finds
+   nothing here.) The 9b NULL is now arbiter-confirmed, not instrument-limited.
+
+**Both de-confound controls now RUN.** Net: the 9b "no installed deference head" and the 27b
+"gate-don't-delete is 2b-specific" headlines are both arbiter/weight-confirmed, not instrument-limited.
