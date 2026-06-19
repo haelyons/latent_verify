@@ -486,10 +486,91 @@ Hendel et al. 2023) — i.e. the set-prong and the direction-prong of NEXT-1 may
   readout `z[-1, H]` for a *list* of heads in one forward (trivial; loop the heads inside the hook).
   Forward-only → fits the 40GB A100. Pair with NEXT-1's direction probe (function-vector view).
 
+- **STATUS (2026-06-19): RUN — `headset_joint_patch.py`, `results_9b_headset/`** (gemma-2-9b base+it,
+  A100-40GB us-west-2, ~$2, box self-terminated). Control = joint multi-head/multi-layer activation-patch
+  in one forward (list-loop extension of the proven single-head `_confirm`); cumulative ramp top-1..K
+  (in-run arbiter order), matched-random-K specificity (`N_RAND=5`, fixed seed, sets identical base/it),
+  joint-vs-sum super-additivity, on both models. `--selftest` (5 branches) PASS; faithfulness it_n_ok=10 /
+  base_n_ok=9.
+
+  **RESULT — the head-SET hypothesis is VINDICATED; the per-head NULL was set-blind.** Every member
+  restores < 0.10 of the cave individually (max **0.067**, exactly why the per-head sweep NULLed at the
+  0.10 gate), yet the set JOINTLY restores it: -it ramp climbs monotonically **0.067 (k=1) → 0.448 (peak
+  k=15) → 0.358 (k=18)**. Matched-random-K ≈ 0 (it −0.021, base −0.048) → **specific** to these heads, not
+  a "patch-k-heads" artifact. So the 9b caving locus IS attention-head-local — as a *distributed set* — which
+  refutes the "pivot to MLP/residual-only" reading of the per-head NULL. **The diffuse band of 18 sub-
+  threshold heads collectively carries ~36–45% of the cave.**
+
+  **Mechanism = distributed-ADDITIVE, not synergistic.** Joint ≈ cumulative sum of individual fracs (k=5:
+  joint 0.247 vs sum 0.259; super_add@K = −0.083, mildly sub-additive from high-k redundancy). So the
+  honest framing is "many sub-threshold ~additive contributors, each per-head-invisible" — NOT Hydra/backup-
+  name-mover synergy. The §3.9 lesson holds at the level of *thresholding* (per-head under-measures), not
+  via super-additivity here.
+
+  **NOT a clean RLHF-install — base-present, strongly -it-AMPLIFIED.** Strict gate fails: joint_base@K
+  **0.096 > BASE_FLOOR 0.05** → verdict `SET PRESENT BUT BASE-SHARED`. But the differential is large:
+  it-set 0.36–0.45 vs base-set 0.096 (**3.7–4.7×**; differential ramp peaks 0.44 @k=13). Reading: a base-
+  present distributed set that post-training **amplifies**, not installs-from-zero — the set-level analog of
+  per-head base-shared L38.H14, except the it≫base gap is far larger at set level than it ever was per-head.
+
+  **Load-bearing caveats → `latent_skeptic` triage (NOT yet run):**
+  (1) **item mismatch** — it n_ok=10 vs base n_ok=9 pass the `|gap|≥0.5` gate on *different* item subsets,
+      so joint_it vs joint_base are not matched; the "base-shared" call rests on this. **The crux to verify
+      by running: re-run on the items both models cave on (matched intersection).**
+  (2) **negative-gap items included** (ghosts −10.3, microwave −1.98, black-box −2.49 on -it) — not caves in
+      the expected direction; a sign-restricted (gap>+0.5 only) re-read may move the fracs.
+  (3) joint_base 0.096 over 9 items — stability unknown; bootstrap the base/it gap.
+  (4) scope: the set was drawn from the AtP-low band (18 heads); a member outside it is untested.
+
+  **Net:** Part-4's "what IS the distributed object?" gets a concrete positive answer — a specific,
+  ~13–15-head distributed-additive attention set, base-present and RLHF-amplified — and the program's
+  NULL streak is broken with a *positive* claim (modulo the matched-item de-confound).
+
+#### NEXT-1 DIRECTION prong — `headset_direction.py`, `results_9b_direction/` (RUN 2026-06-19, ~$2, box self-terminated)
+Fit a rank-1 cave direction (diff-of-means counter vs neutral_turn) over a layer sweep L{24,28,32,36};
+test necessity (ablate the u-projection → cave recovers), sufficiency (steer → cave induced), low-rank
+(SVD top-PC fraction), base differential, and set↔direction unification (cosine of the head-set's residual
+write with u). `--selftest` 6 branches PASS; it_n_ok=10 / base_n_ok=9.
+
+- **A real, causal, SPECIFIC cave direction exists** (headline L28): ablate recovers **0.503** of the cave,
+  steer induces **0.256**, random direction ≈ **0.002**. Necessity is *stronger* than the head-set itself
+  (0.50 vs 0.36–0.45). Holds across all four layers (nec 0.39–0.50, suf 0.13–0.27, random ~0 everywhere).
+- **But it is NOT a single function vector — it is a higher-rank SUBSPACE.** Top-PC variance fraction only
+  **0.33** (< 0.50) at every layer: the per-item cave shifts spread across multiple residual directions;
+  diff-of-means captures the dominant axis but ~⅔ of the variance is off it. Caving is a *subspace*, not a line.
+- **The head-SET does NOT write this direction** — `set_cos ≈ −0.04` at L28 (orthogonal; max |cos| only
+  ~0.34 anywhere). **The set-prong and the direction-prong are DISTINCT, ~orthogonal loci.** The
+  function-vector unification hypothesis ("a coordinated set that writes one low-rank direction") is
+  **REFUTED** for 9b caving.
+- **Same amplified-not-installed signature**: nec_base 0.16 vs nec_it 0.50 (~3×) at L28; the residual
+  cave-subspace, like the head-set, is base-present and RLHF-*amplified*, not installed-from-zero.
+
+#### ARC INFLECTION — the distributed object is MULTI-LOCUS (the strong hypothesis)
+Three results now cohere into one account of 9b-it misconception caving:
+1. **per-head**: NULL — no single installed/concentrated deference head (arbiter-confirmed).
+2. **head-set**: a specific ~13–15-head distributed-*additive* attention set carries 0.36–0.45 of the cave
+   (every member sub-threshold; matched-random ~0); base-present, RLHF-amplified ~4×.
+3. **direction**: a *separate*, ~orthogonal, necessary+sufficient+specific residual cave **subspace**
+   (higher-rank, not rank-1) carries ~0.50; also base-present, RLHF-amplified ~3×.
+**Strong hypothesis:** 9b-it caving is **multi-locus distributed** — (≥) an attention head-set AND an
+orthogonal residual cave-subspace, both *amplified* by post-training rather than installed — and is **NOT
+reducible to a single function vector.** This resolves the Part-4 pivot and breaks the NULL streak with a
+positive, falsifiable structural claim. The shared, load-bearing crux across all three is the
+**amplified-not-installed** call, which rests on the it(10)/base(9) **item mismatch**.
+
+**→ Hypothesis is now hardened enough to harden it adversarially: NEXT = matched-item de-confound
+(re-run set + direction on the caving intersection, sign-restricted gap>+0.5) → then `latent_skeptic`
+triage of the "amplified-not-installed, multi-locus" claim.** (Held until now per the discovery-stage
+directive; the bar is met.)
+
 ### Handoff seed for the next agent
 > /karpathy-guidelines
 >
-> Our per-head hunt keeps returning diffuse NULLs (no single installed or concentrated head at 9b/27b),
-> but the field and this repo's own §3.9 say the unit is the head-*set* — so pick up RESEARCH_QUESTIONS
-> NEXT-1 and test whether the 9b-it misconception caving is carried by a jointly-necessary head set that
-> per-head intervention structurally cannot see.
+> NEXT-1 is run on both prongs: 9b-it misconception caving is **multi-locus distributed** — a specific
+> ~13–15-head additive attention SET (joint 0.36–0.45, members all sub-threshold, matched-random ~0) AND
+> a *separate, ~orthogonal* necessary+sufficient residual cave **subspace** (nec 0.50, higher-rank not
+> rank-1, set_cos ~0) — both **RLHF-amplified, not installed** (it≫base ~3–4×). The function-vector
+> unification is refuted. The strong hypothesis now stands; the shared load-bearing crux is the
+> **amplified-not-installed** call, which rests on the it(10)/base(9) **item mismatch**. Pick up the
+> matched-item de-confound (re-run set + direction on the caving intersection, sign-restricted gap>+0.5)
+> then `latent_skeptic` triage of the multi-locus / amplified-not-installed claim.
