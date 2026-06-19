@@ -455,3 +455,41 @@ a ~12-head set (all-heads necessity ~1.0) while **no single head exceeds ~0.2** 
   decide whether the distributed caving is a coordinated set vs genuinely no-attention-locus (MLP /
   residual-direction). It revives the repo's earlier joint-knockout idea on the installed-component
   question.
+
+**Field precedent for head-sets** (so this is the standard unit, not a workaround): IOI is a
+~26-head set with **backup name-movers** that compensate under single-head ablation (Wang et al. 2023);
+self-repair / Hydra (Rushing & Nanda 2024; McGrath et al. 2023) is exactly why per-head under-measures;
+causal scrubbing (Chan et al. 2022) and path patching (Goldowsky-Dill et al. 2023) are the set-level
+test methods; **sycophancy itself was path-patched to a ~4% head set (Chen et al. ICML 2024)**; and a
+coordinated set that writes one low-rank direction is a **function/task vector** (Todd et al. 2023;
+Hendel et al. 2023) — i.e. the set-prong and the direction-prong of NEXT-1 may be the same object.
+(Spot-check IDs before external use, per POSITIONING.)
+
+### NEXT-1 head-set test — concrete protocol (the immediate next test)
+- **Substrate**: the 16 I1 9b-it caving items, already embedded in `rlhf_differential.py ITEMS`
+  (and `atp_low_confirm.py`). Metric: first-token margin lp(C)−lp(W*); restoration frac on the
+  counter→neutral_turn gap (the R-4-controlled contrast), per the validated `_confirm` harness.
+- **Candidate set**: the diffuse heads from `results_r1_diff/` (the 18 in `atp_low_confirm.HEADS`,
+  net_it ≈ 0.03–0.07), i.e. exactly the band a per-head sweep cannot resolve.
+- **Joint intervention** (the new bit; the per-head harness patched one head — patch the SET in one
+  hook pass): activation-patch the top-k heads *together* (-it counter z[-1] → neutral_turn z[-1] for
+  all k), measure the joint restoration frac. Run on base too (set-level differential).
+- **Controls / shape**: (a) **cumulative ramp** top-1,2,…,k (à la Arc-1 §3.9) — concentrated if 2–3
+  heads carry it, distributed-set if it needs many; (b) **matched-random k-head set** (the specificity
+  control — the §3.5/S3 lesson at set level); (c) compare joint frac vs the **sum of individual** fracs
+  (quantifies super-additivity).
+- **Success criteria (pre-register)**: INSTALLED-SET if joint frac_it ≥ INSTALL_THR (0.10) while every
+  member < 0.10 individually AND matched-random-k ≈ 0 AND joint frac_base ≤ BASE_FLOOR. NULL-holds if
+  the joint set still does not reach threshold over base (then the locus is non-attention: MLP /
+  residual direction → pivot to the direction probe). Either way the per-head NULL's scope is settled.
+- **Implementation**: extend the `atp_low_confirm` / `rlhf_differential._confirm` patch hook to set the
+  readout `z[-1, H]` for a *list* of heads in one forward (trivial; loop the heads inside the hook).
+  Forward-only → fits the 40GB A100. Pair with NEXT-1's direction probe (function-vector view).
+
+### Handoff seed for the next agent
+> /karpathy-guidelines
+>
+> Our per-head hunt keeps returning diffuse NULLs (no single installed or concentrated head at 9b/27b),
+> but the field and this repo's own §3.9 say the unit is the head-*set* — so pick up RESEARCH_QUESTIONS
+> NEXT-1 and test whether the 9b-it misconception caving is carried by a jointly-necessary head set that
+> per-head intervention structurally cannot see.
