@@ -1,0 +1,19 @@
+[gap] load google/gemma-2-9b-it (chat=True)
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:09<00:28,  9.46s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:09<00:02,  2.51s/it]Fetching 4 files: 100%|██████████| 4/4 [00:09<00:00,  2.40s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 14254.64it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[gap] load google/gemma-2-9b (chat=False)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:16<01:54, 16.35s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:16<00:22,  4.41s/it]Fetching 8 files: 100%|██████████| 8/8 [00:16<00:00,  2.10s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:   0%|          | 1/464 [00:00<01:02,  7.36it/s]Loading weights:  17%|█▋        | 78/464 [00:00<00:00, 393.77it/s]Loading weights:  27%|██▋       | 126/464 [00:00<00:00, 407.38it/s]Loading weights:  39%|███▉      | 181/464 [00:00<00:00, 458.20it/s]Loading weights:  50%|████▉     | 231/464 [00:00<00:00, 471.47it/s]Loading weights:  60%|██████    | 280/464 [00:00<00:00, 458.27it/s]Loading weights:  72%|███████▏  | 335/464 [00:00<00:00, 483.67it/s]Loading weights:  83%|████████▎ | 385/464 [00:00<00:00, 486.68it/s]Loading weights:  94%|█████████▍| 435/464 [00:00<00:00, 487.01it/s]Loading weights: 100%|██████████| 464/464 [00:01<00:00, 456.23it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[matched] 6 items cave on BOTH (gap>+0.5): [3, 4, 6, 7, 13, 15]
+[effect] load google/gemma-2-9b-it on 6 matched items
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 5050.97it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[effect] load google/gemma-2-9b on 6 matched items
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:   0%|          | 1/464 [00:00<01:03,  7.33it/s]Loading weights:  19%|█▉        | 88/464 [00:00<00:00, 423.39it/s]Loading weights:  31%|███       | 143/464 [00:00<00:00, 464.92it/s]Loading weights:  42%|████▏     | 193/464 [00:00<00:00, 473.40it/s]Loading weights:  53%|█████▎    | 247/464 [00:00<00:00, 481.01it/s]Loading weights:  66%|██████▌   | 306/464 [00:00<00:00, 515.38it/s]Loading weights:  77%|███████▋  | 359/464 [00:00<00:00, 510.73it/s]Loading weights:  89%|████████▊ | 411/464 [00:00<00:00, 502.84it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 475.55it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+
+[eff_it] {'set_joint': 0.1472, 'dir_nec': 0.4812} [eff_base] {'set_joint': -0.034, 'dir_nec': 0.4308}
+[verdict] MIXED on matched items: set=INSTALLED (it 0.147 >= 0.1, base -0.034 <= 0.05 (~0)); direction=BASE_SHARED (it 0.481 ~ base 0.431 (ratio 1.1 < 2.0)). The amplified-not-installed claim holds for some loci, not all.
+[done] wrote out/matched_item_deconfound_9b.json

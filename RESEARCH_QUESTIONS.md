@@ -558,19 +558,61 @@ reducible to a single function vector.** This resolves the Part-4 pivot and brea
 positive, falsifiable structural claim. The shared, load-bearing crux across all three is the
 **amplified-not-installed** call, which rests on the it(10)/base(9) **item mismatch**.
 
-**→ Hypothesis is now hardened enough to harden it adversarially: NEXT = matched-item de-confound
-(re-run set + direction on the caving intersection, sign-restricted gap>+0.5) → then `latent_skeptic`
-triage of the "amplified-not-installed, multi-locus" claim.** (Held until now per the discovery-stage
-directive; the bar is met.)
+**→ NEXT = matched-item de-confound** (re-run set + direction on the caving intersection, sign-restricted
+gap>+0.5) → then `latent_skeptic`. (Ran; see below. The de-confound + a powered re-run OVERTURN this
+multi-locus framing — the section above is the pre-de-confound, confounded picture, kept for the record.)
+
+#### latent_skeptic triage of the multi-locus claim (Pass 1, no-GPU, 33 skeptics) — `wf_5274b996`
+All three claims (set-installed, direction-base-shared, set⊥direction) came back **NEEDS_RUN**: the n=6
+matched de-confound (run before this triage) had no dispersion/CI, an **it-selected** head set (the
+"installed" read is partly circular), no base-side faithfulness, and an in-sample direction fit; only
+`regime specificity` / `scale` / `ceiling-floor` were RULED_OUT. Dominant cruxes: off-distribution joint
+patch, it-selection circularity, n=6 underpower. `run_queue` empty (no existing control settles them).
+→ chose to **break the n=6 power wall first** (broaden the substrate) before authoring the deeper controls.
+
+#### POWERED MATCHED DE-CONFOUND (n=41) — `matched_item_deconfound.py --wide`, `results_9b_matched_wide/` (RUN 2026-06-19, ~$2)
+Broadened the substrate to a 61-item misconception pool (`misconception_pool.py`: committed 16 + 45 new
+single-dominant-competitor items); the both-cave intersection grew **6 → 41**. Re-measured the set-joint
+and direction-necessity differentials on the matched set, base vs -it, with paired bootstrap CIs.
+
+- **The head-SET claim COLLAPSES under power.** it set_joint mean **−0.636** (bootstrap CI [−1.13, −0.21]),
+  median −0.083, trimmed −0.40; only **10/41 items restore**, **20/41 get WORSE**, min −6.33 — the joint
+  18-head substitution is **off-distribution-unstable** (the triage's top crux, confirmed by running). And
+  it is directionally REVERSED: the same it-selected set restores *more in BASE* (median **+0.10**, 20/41)
+  than in -it. The n=6 "installed 0.147" was a small-sample fluke; the earlier unmatched 0.36–0.45 was
+  it-gated-item + small-n + off-distribution artifact. **There is no RLHF-installed/amplified caving head-set.**
+- **The cave DIRECTION is the robust, surviving mechanism — and it is BASE-INTRINSIC.** it dir_nec 0.441
+  (CI [0.25, 0.64]) vs base 0.472 (CI [0.26, 0.64]); it−base diff CI **[−0.31, +0.27] straddles 0**;
+  medians it 0.47 / base 0.58 (base if anything higher). Necessary in BOTH models, **RLHF-neutral**.
+  Replicates n=6 → n=41.
+
+#### ARC INFLECTION (corrected, powered) — 9b caving is a BASE-INTRINSIC residual direction; RLHF installs no localizable caving circuit
+The whole installed/amplified/multi-locus head-set line does **not** survive a powered (n=41), matched,
+sign-restricted de-confound. What robustly survives:
+1. **per-head NULL** — no single installed deference head (arbiter-confirmed). *Holds.*
+2. **head-SET** — does NOT robustly carry it-caving (median −0.08, 20/41 worsen, off-distribution-unstable;
+   if anything base-favored). The "distributed additive installed set" is **retracted**.
+3. **residual cave DIRECTION** — necessary ~0.45–0.58 in BOTH base and -it, RLHF-neutral, **base-intrinsic**;
+   higher-rank (top-PC 0.33), orthogonal to the head-set. *The real mechanism.*
+**Settled hypothesis:** 9b misconception caving is mediated by a **base-intrinsic residual cave-direction**
+that post-training neither installs nor amplifies (necessity equal in base and -it). RLHF's contribution to
+9b caving is **not a localizable attention mechanism** — the caving capacity is largely base-intrinsic.
+This is a clean negative on "RLHF installs sycophancy circuitry at 9b" and a positive on "caving is a
+base-intrinsic linear direction," and it *extends* (not breaks) the program's diffuse-NULL line.
+
+**Open (remaining hardening for the surviving claim):** (a) held-out / split-half direction fit (the
+in-sample-fit crux — base≈it replication is strong evidence but LOO not yet run); (b) a clean
+(non-off-distribution) set intervention — the joint substitution is invalid, so the head-set's true role is
+untested by a *stable* method; (c) re-triage the now-powered base-intrinsic-direction claim.
 
 ### Handoff seed for the next agent
 > /karpathy-guidelines
 >
-> NEXT-1 is run on both prongs: 9b-it misconception caving is **multi-locus distributed** — a specific
-> ~13–15-head additive attention SET (joint 0.36–0.45, members all sub-threshold, matched-random ~0) AND
-> a *separate, ~orthogonal* necessary+sufficient residual cave **subspace** (nec 0.50, higher-rank not
-> rank-1, set_cos ~0) — both **RLHF-amplified, not installed** (it≫base ~3–4×). The function-vector
-> unification is refuted. The strong hypothesis now stands; the shared load-bearing crux is the
-> **amplified-not-installed** call, which rests on the it(10)/base(9) **item mismatch**. Pick up the
-> matched-item de-confound (re-run set + direction on the caving intersection, sign-restricted gap>+0.5)
-> then `latent_skeptic` triage of the multi-locus / amplified-not-installed claim.
+> NEXT-1 ran, was triaged, and a POWERED (n=41) matched de-confound corrected it. The installed/amplified
+> multi-locus head-set picture is **retracted**: under power the joint 18-head patch is off-distribution-
+> unstable (it set_joint −0.64, 20/41 items worsen) and if anything base-favored — there is **no
+> RLHF-installed caving head-set** at 9b. What robustly survives: 9b misconception caving is a
+> **base-intrinsic residual cave-direction** (necessity ~0.45–0.58 equal in base and -it, RLHF-neutral,
+> it−base bootstrap CI straddles 0). RLHF installs no localizable caving circuit at 9b. Remaining:
+> held-out direction fit (LOO), a stable (non-off-distribution) set intervention, and a re-triage of the
+> base-intrinsic-direction claim.

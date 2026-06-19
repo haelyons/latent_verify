@@ -1,0 +1,78 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "matched_item_deconfound",
+  "min_eff": 0.5,
+  "dir_layer": 28,
+  "amp_ratio": 2.0,
+  "n_matched": 6,
+  "matched_idxs": [
+    3,
+    4,
+    6,
+    7,
+    13,
+    15
+  ],
+  "it_gaps": {
+    "0": 0.0,
+    "1": -0.312,
+    "2": -10.299,
+    "3": 2.453,
+    "4": 7.672,
+    "5": 0.0,
+    "6": 6.719,
+    "7": 6.543,
+    "8": 3.127,
+    "9": -0.205,
+    "10": 0.0,
+    "11": -1.984,
+    "12": -2.492,
+    "13": 4.375,
+    "14": 0.0,
+    "15": 4.29
+  },
+  "base_gaps": {
+    "0": 0.0,
+    "1": 0.875,
+    "2": -1.75,
+    "3": 2.625,
+    "4": 1.75,
+    "5": 0.0,
+    "6": 3.0,
+    "7": 0.75,
+    "8": 0.0,
+    "9": 1.0,
+    "10": 0.0,
+    "11": -0.125,
+    "12": -0.125,
+    "13": 1.375,
+    "14": 0.0,
+    "15": 3.875
+  },
+  "eff_it": {
+    "set_joint": 0.1472,
+    "dir_nec": 0.4812
+  },
+  "eff_base": {
+    "set_joint": -0.034,
+    "dir_nec": 0.4308
+  },
+  "decision": {
+    "set": {
+      "tag": "INSTALLED",
+      "it_eff": 0.1472,
+      "base_eff": -0.034,
+      "ratio": null,
+      "msg": "it 0.147 >= 0.1, base -0.034 <= 0.05 (~0)"
+    },
+    "direction": {
+      "tag": "BASE_SHARED",
+      "it_eff": 0.4812,
+      "base_eff": 0.4308,
+      "ratio": 1.12,
+      "msg": "it 0.481 ~ base 0.431 (ratio 1.1 < 2.0)"
+    },
+    "verdict": "MIXED on matched items: set=INSTALLED (it 0.147 >= 0.1, base -0.034 <= 0.05 (~0)); direction=BASE_SHARED (it 0.481 ~ base 0.431 (ratio 1.1 < 2.0)). The amplified-not-installed claim holds for some loci, not all."
+  }
+}
