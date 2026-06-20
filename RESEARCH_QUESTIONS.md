@@ -1087,6 +1087,43 @@ NOT L18.H5) -> the diffuse-caving line extends to 2b. Caveat: `already_wrong`=19
 base(qa)/it(chat) template difference partly confounds the it>base gap. **Unblocks the attribution-graph route
 at the fully-tooled 2b** (Step B), with a scale-transfer caveat (2b caving may differ from 9b's).
 
+**Why 2b-it caves NOW where §11 found it did NOT (substrate-confidence-gating, reconciliation).** §11
+(`FRAMING_NOTES`, 2026-06-17) pushed 2b-it on `sycophancy_items.json` = **capitals** (Canberra/Sydney, ...)
+and found it **ENTRECHES**: "counter -4.06 ... all negative -> entrenches", "does not cave to pushback on these
+capitals". §11 itself named the cause: "The load-bearing confound: a capability/confidence ceiling" and
+prescribed a low-confidence substrate. This session ran exactly that: TruthfulQA misconceptions through
+`select_items` (keep iff |lp(C)-lp(W*)| < 1.5 AND P(W*)/P(W2*) > 2 -> single-dominant-competitor near-tie),
+same counter cue. The caved items are near-tie by construction (pre +0.1..+1.3) with a nameable W* ("eat after
+8pm" -> "causes weight gain"; "who caused 9/11" -> "inside job"). So the prior no-cave was a **substrate /
+confidence-ceiling artifact, NOT a capability or RLHF property** -- caving was latent, capitals kept the gate
+shut. **Reading (ties to Q1): confidence/headroom GATES whether caving is possible (saturated -> entrench;
+near-tie -> cave); deference (the cave-direction) is the mechanism that fires once the gate is open.** Caveat:
+the keep-filter IMPOSES the near-tie (`mean_pre~0` is filter-imposed), and the capitals(§11)->misconception
+(here) change also varies cue-family + template + filter, so "the difference is confidence-regime" is a
+cross-run causal attribution still confounded -- **the clean control is a matched-template margin-sweep at
+2b-it** (hold substrate/cue/template fixed, vary only the C-vs-W* margin; entrench at high margin, cave at
+near-tie).
+
+**latent_skeptic verdict (`wf_a6f0b689`, 6 skeptics): the CAUSAL reconciliation is CONFOUNDED (4 NEEDS_RUN +
+1 EXPLAINS); what survives is only "2b-it caves genuinely (not incapacity)".**
+- **SALVAGED by reading (incapacity crux RULED OUT):** the skeptic flagged that flipped=19 == already_wrong=19
+  might be the SAME items (incapacity surfacing, not deference). Checked the committed rows: flipped (all pre
+  in [0.08, 1.30] > 0) and already_wrong (all pre in [-1.44, -0.12] <= 0) are **DISJOINT (overlap 0)** --
+  `parrot_state` defines them mutually exclusive (flip requires pre>0 = preferred C single-turn). So the 19
+  flips are genuine caves on items 2b-it got (weakly) right, NOT items it never knew. "2b-it caves" HOLDS.
+- **CONFOUNDED (the causal "regime not model" attribution does NOT survive):** the `select_items` keep-filter
+  (|margin|<1.5 AND rho>2) is itself the confidence selector, applied ONLY this session -- so "capitals
+  high-confidence, misconceptions near-tie" **restates the filter, it does not test the model** (circular).
+  Capitals(§11) -> misconceptions(here) also changed substrate KIND + cue + chat-template + filter at once,
+  and KIND is ~collinear with LEVEL (a half-believed misconception is by construction low-margin). No
+  committed number holds those fixed while varying only margin. **=> the clean reconciliation I wrote above
+  is OVER-STATED; downgrade to: "2b-it caves genuinely on filtered near-tie misconceptions; whether the
+  prior capitals no-cave was specifically the confidence REGIME (vs substrate kind/template) is UNTESTED."**
+- **Decisive control (skeptic run_queue + author_queue): matched substrate x margin grid** -- capitals vs
+  misconceptions, each binned high vs low pre-margin, FIXED chat template, n>=20/cell, capitulation vs
+  pre-margin. Plus a cheap rerun: capitals through `select_items --chat` (do any survive the filter; do
+  filtered low-margin capitals cave?). This is forward-path item A, now **skeptic-REQUIRED, not optional**.
+
 **Net update to the program.** Two prior headlines move: (1) the cave-direction is now **hardened as real**
 (held-out) — the one positive is no longer "a direction not a mechanism" on the illusion axis; (2) it is
 **regime-specific, not base-intrinsic** (item-confound pending) -> **RLHF DOES act on caving** (reshapes the
@@ -1172,3 +1209,94 @@ caving is base-intrinsic / RLHF installs no caving mechanism": RLHF *does* act o
 attention head/head-set (retracted) nor a single neuron (null), but by **reshaping a distributed residual
 direction**. The behavioral analog holds at 2b (it>>base caving). The natural next instrument is the
 attribution graph of this reshaped direction (SAE-decomp -> circuit), per the colleague's question.
+
+### PART 7 RESULTS, batch 2 (2026-06-20) — confidence-gating + SAE grain (3 boxes, self-terminated)
+`latent_skeptic` Pass-3 running on the 3 load-bearing claims (`wf_e982dc73`); queue folded when it lands.
+
+**Control A -- substrate x margin grid (`results_2b_marginsweep/`, 2b base+it).** First run died on a
+flat-scp path bug (`sycophancy_items.json` resolved to `~/`); fixed (cwd-robust lookup), re-run.
+- **METHOD CORRECTION (load-bearing):** raw `capitulation = pre-post` is **headroom-confounded** -- high-margin
+  items shed more ABSOLUTE margin without flipping (e.g. misconception `pre +17.02 -> post +1.60`, cap +15.4,
+  but only *softened*, still correct), so the grid's raw-cap decision (it NOT_MARGIN_GATED) is an artifact.
+  The unconfounded readout is **flip-rate** (fraction of pre>0 items that cross to post<0).
+- **Flip-rate result:** 2b-**base** MISCONCEPTION LOW-margin flip 0.444 (4/9) vs HIGH 0.143 (1/7) -> **clear
+  confidence-gating (~3x)**; 2b-**it** LOW 0.714 (15/21) vs HIGH 0.619 (13/21) -> **weak gating** (-it flips
+  high-margin items too). Capitals cells n=2-3 (underpowered): 2b-it flips 100% both bins (NB contradicts
+  §11 "entrench on capitals" -> §11's entrenchment is itself **cue-specific**, this counter cue flips them).
+
+**Control C -- causal confidence direction (`results_9b_confdir/`, 9b base+it).**
+- **Confidence-as-MARGIN is NON-causal** (margin-quartile diff-of-means necessity ~0 all layers, both models)
+  -- confirms C3 and explains why the C3 margin axis read CONF=NONE.
+- **Confidence-as-ENTROPY IS causal in BASE** (entropy-quartile@L36 held-out necessity **0.788**, random ~0
+  -> CAUSAL_CONFIDENCE_DIRECTION) but **sub-threshold in -it** (necessity **0.180** < DIR_THR 0.20).
+- **cave ⊥ confidence even vs this causal axis:** cos(u_cave, u_conf) = **-0.17** (LOW_COS) in base -> the
+  C3 "cave ⊥ a non-causal axis" caveat is RESOLVED: cave is distinct from a genuinely *causal* confidence axis.
+
+**Control B-A -- SAE-feature decomposition of the cave-direction (`results_9b_saedecomp/`, GemmaScope canonical
+res SAE width_16k; sae_lens loaded cleanly).**
+- **DISTRIBUTED at the feature grain:** top-20 features reconstruct recon@20 = it L28 0.365 / L32 0.224,
+  base L28 0.372 / L32 0.371 -- all < FRAC_TOL 0.5. The cave-direction is NOT a small interpretable feature
+  set. base-vs-it top-20 feature overlap **11/20 (L28), 8/20 (L32)** -- ~half, consistent with regime-specific.
+  (Fit on n_ok=9 caving items -- small; a triage crux.)
+
+**Synthesis (batch 2) -- the confidence story is base-clear, RLHF-DECOUPLED, and the cave-direction is
+distributed at every grain tried.**
+- Confidence gates caving in **base** (flip-rate 3x; causal entropy-confidence axis nec 0.79) but only
+  **weakly in -it** (flip-rate 0.71 vs 0.62; entropy axis nec 0.18). **RLHF decouples caving from the model's
+  own confidence** -- -it caves more uniformly. This *corrects* the earlier clean "confidence gates caving":
+  true for base, weak for -it.
+- **Deference != confidence** is now HARDENED: cave ⊥ a *causal* confidence axis (cos -0.17), not just a
+  non-causal one.
+- **The cave-direction is distributed at the SAE-feature grain too** (recon@20 ~0.37) -- so the
+  attribution-graph route (B Step B) will yield a BROAD circuit, not a clean small one; "direction -> circuit"
+  is harder than hoped. The honest through-line holds: **caving is distributed at every grain probed**
+  (head / head-set / neuron / SAE-feature), real as a residual direction, RLHF-reshaped + RLHF-decoupled
+  from confidence.
+- **Method note banked:** flip-rate, not raw capitulation, is the caving readout (raw cap is headroom-confounded).
+
+#### latent_skeptic Pass-3 (`wf_e982dc73`, 18 skeptics) + Fisher RETRACTION (2026-06-20)
+- **Claim "confidence gates caving (base 3x, it weak)" -- RETRACTED.** Pass-3 flagged it small-n (5 NEEDS_RUN);
+  computed Fisher exact on the committed flip-rate 2x2s (no GPU, the deciding number that was missing):
+  **base MISCONCEPTION LOW 0.444 vs HIGH 0.143 -> Fisher p=0.308 (NOT significant); -it 0.714 vs 0.619 ->
+  p=0.744.** And **denominator-fragile**: excluding `softened`, HIGH-margin flips MORE (base 1.00 vs 0.67;
+  it 1.00 vs 0.94) -- the gating direction REVERSES. So the behavioral confidence-gating at 2b is **not
+  established on either model**; my "base-clear gating" was an underpowered, denominator-sensitive artifact.
+  **What survives:** the 9b CAUSAL entropy-confidence DIRECTION (base held-out necessity 0.788, random ~0 ->
+  de-confounded and real; it 0.180) is a genuine direction-level fact -- but its LINK to the caving BEHAVIOR
+  is now UNSUPPORTED (the behavioral gate is n.s.). The two literature confidence operationalizations split:
+  entropy-as-confidence is causal (base), margin-as-confidence is not.
+- **Claim "cave perpendicular to causal confidence axis (base)" -- HOLDS** (3/4 RULED_OUT: scope, partial-cos,
+  layer-sweep all ruled out; cos -0.17 clears COS_THR widely, holds across layers). Open: bootstrap CI on the
+  cosine (cheap hardening, not blocking).
+- **Claim "cave-direction distributed at SAE grain" -- PROVISIONAL** (3 NEEDS_RUN): recon@20 ~0.37 could be a
+  width_16k / fitted-direction-vs-real-activation artifact; needs width_131k + SAE-encode of real (rc-rn)
+  activations + a cross-layer-transcoder basis before "distributed at feature grain" is firm.
+- **Net:** the confidence-GATES-caving line does not survive (behavior n.s., 2nd confidence story to collapse
+  this session). What stands hardened: caving = a real, held-out, regime-specific (RLHF-reshaped) residual
+  direction, **distinct from confidence** (cos perpendicular to a causal confidence axis), distributed at every
+  grain probed. RLHF acts on caving by reshaping this direction, NOT by tightening a confidence gate.
+
+#### GATE TEST (decisive) -- confidence_caving_gate.py, `results_9b_gate/` -- NO CONFIDENCE GATE
+The cross-intervention nothing prior ran: steer the (causal) entropy-confidence direction u_conf UP on caving
+items, measure whether the cave is SUPPRESSED. gate_up = (M_steerup - M_counter)/(M_neutral - M_counter).
+- **base: NO_GATE** -- gate_up **-0.188** (random -0.004); steering confidence UP does not suppress the cave,
+  it slightly DEEPENS it. Run at L36 where base's entropy-confidence direction IS causal (necessity 0.79) --
+  so the null is NOT "a non-causal direction": confidence is controllable there, and controlling it does not
+  control caving.
+- **-it: NO_GATE** -- gate_up -0.082 (random 0.007).
+- **=> the confidence GATE does not exist (directly tested + refuted).** A confidence gate requires that the
+  confidence signal CONTROLS caving; steering it does not. Confidence and caving are **causally independent**
+  on Gemma-2 -- consistent with the geometric ⊥ (cos -0.17), the n.s. behavioral gradient, and the whole
+  confidence line's failure to bind to caving. Residual caveat (not blocking): off-distribution steering
+  magnitude -- but the matched-random steer reads ~0 and gate_up is NEGATIVE (not a noise-floor zero), so
+  off-manifold damage does not explain it.
+
+#### CONFIDENCE/CAVING SUB-ARC -- CLOSED (settled negative on the gate)
+Across this session, the "confidence gates / explains caving" hypothesis was probed at every level and
+**failed at each**: no entropy neuron (PART 6); logit-lens unfaithful (PART 5/6); margin-as-confidence
+non-causal (C3/C); behavioral margin->caving gradient n.s. (Fisher p 0.31/0.74); cave ⊥ a causal
+confidence axis (cos -0.17); and now the **direct gate test = NO_GATE**. The program's own "everything is
+confidence" overfit risk is **empirically rejected**. What stands: caving = a real, held-out, regime-specific
+(RLHF-reshaped), confidence-independent, distributed residual direction. **RLHF acts on the caving direction
+directly; it does not route caving through confidence.** This is a clean, well-tested closure -- a positive
+structural claim (the cave-direction) plus a decisive negative (no confidence gate), both triaged/run-verified.

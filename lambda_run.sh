@@ -53,6 +53,9 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/logit_lens_margin_trajectory.py controls/logit_lens_margin_matched.py controls/logit_lens_attribution.py \
   controls/entropy_neuron_gemma2.py controls/cave_direction_heldout.py controls/confidence_vs_cave_direction.py \
   controls/entropy_distributed_presoftcap.py controls/cave_direction_xregime_deconfound.py \
+  controls/substrate_margin_grid.py sycophancy_items.json \
+  controls/confidence_direction_causal.py controls/cave_direction_sae_decomp.py \
+  controls/confidence_caving_gate.py \
   remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
 
 echo "[run] $RUNNER (hard cap ${REMOTE_TIMEOUT}s)"
