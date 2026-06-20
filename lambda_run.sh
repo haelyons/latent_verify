@@ -10,7 +10,7 @@ API=https://cloud.lambda.ai/api/v1
 KEY=$(grep '^LAMBDA_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 HF=$(grep '^HF_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 SSHOPT="-o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -i $HOME/.ssh/lambda_ed25519"
-REMOTE_TIMEOUT=5400          # 90 min hard cap on the on-box batch (safety against a hung job)
+REMOTE_TIMEOUT=${REMOTE_TIMEOUT:-5400}   # 90 min hard cap (env-overridable for heavier multi-load runs)
 auth(){ curl -sS -H "Authorization: Bearer $KEY" "$@"; }
 
 ID=""
@@ -49,7 +49,9 @@ ssh $SSHOPT ubuntu@$IP "mkdir -p latent_verify/out"
 scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numeric_generality.py \
   instr_triangulation.py gate_dont_delete.py rlhf_differential.py controls/qk_collapse_metric.py \
   atp_low_confirm.py headset_joint_patch.py headset_direction.py matched_item_deconfound.py misconception_pool.py \
-  ov_magnitude_characterize.py ov_behavioral_scale.py realized_attention.py controls/qk_weight_2b_l18h5.py remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
+  ov_magnitude_characterize.py ov_behavioral_scale.py realized_attention.py controls/qk_weight_2b_l18h5.py \
+  controls/logit_lens_margin_trajectory.py controls/logit_lens_margin_matched.py controls/logit_lens_attribution.py \
+  controls/entropy_neuron_gemma2.py remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
 
 echo "[run] $RUNNER (hard cap ${REMOTE_TIMEOUT}s)"
 ssh $SSHOPT ubuntu@$IP "cd latent_verify && timeout $REMOTE_TIMEOUT env HF_TOKEN='$HF' bash remote_run.sh bash $RUNNER"

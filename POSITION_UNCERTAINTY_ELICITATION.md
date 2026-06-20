@@ -223,3 +223,53 @@ them, and the choice of which to apply (if any) is deferred to a later round.
 - Li et al. 2023, Inference-Time Intervention — https://arxiv.org/abs/2306.03341
 - Marks & Tegmark 2023, Geometry of Truth — https://arxiv.org/abs/2310.06824
 - Poulis et al. 2026, limits of truth directions — https://arxiv.org/abs/2604.03754
+
+## Knowledge-predicate methods + causal-confidence-on-Gemma gap (2026-06-20 lit search)
+
+Two thorough sub-agent literature searches; verbatim cites, **spot-check before external use**. Recorded
+because the repo's prior docs cited NONE of the knowledge-predicate canon and used single-prompt
+greedy-correctness as its knowledge gate (the weakest method).
+
+### A. "Does the model KNOW a fact" — method support
+- **single-prompt greedy-correct: WEAK / CONTESTED** (lower bound; prompt- and regularity-confounded).
+  Petroni et al., "Language Models as Knowledge Bases?", EMNLP-IJCNLP 2019, arXiv:1909.01066.
+  Jiang et al., "How Can We Know What Language Models Know?", TACL 8:423-438, 2020, arXiv:1911.12543.
+  Zhong, Friedman, Chen, "Factual Probing Is [MASK]: Learning vs. Learning to Recall", NAACL 2021, arXiv:2104.05240.
+- **multi-paraphrase consistency: WELL-SUPPORTED** stronger criterion (models fail it).
+  Elazar et al., "Measuring and Improving Consistency in Pretrained Language Models", TACL 9:1012-1031, 2021, arXiv:2102.01017 (ParaRel).
+- **calibration P(correct)~accuracy: WELL-SUPPORTED**, foundational.
+  Guo et al., "On Calibration of Modern Neural Networks", ICML 2017, arXiv:1706.04599.
+  Kadavath et al., "Language Models (Mostly) Know What They Know", arXiv:2207.05221, 2022 [**PREPRINT only**; P(IK)].
+  Tian et al., "Just Ask for Calibration", EMNLP 2023, arXiv:2305.14975 (RLHF degrades logit calibration; verbalized better).
+- **output entropy / prob-mass: PARTIAL** — raw token entropy confounded post-RLHF; *semantic* entropy is the supported form.
+  Kuhn, Gal, Farquhar, "Semantic Uncertainty", ICLR 2023, arXiv:2302.09664.
+  Farquhar et al., "Detecting hallucinations ... using semantic entropy", Nature 630:625-630, 2024 [vol/pages spot-check].
+- **knows vs expresses: WELL-SUPPORTED** program; the unsupervised-direction (CCS) claim CONTESTED.
+  Burns et al., "Discovering Latent Knowledge ... Without Supervision", ICLR 2023, arXiv:2212.03827 [CCS; contested by arXiv:2312.10029, unverified].
+  Azaria & Mitchell, "The Internal State of an LLM Knows When It's Lying", Findings of EMNLP 2023, arXiv:2304.13734.
+  Lin, Hilton, Evans, "TruthfulQA", ACL 2022, arXiv:2109.07958.
+  Lin, Hilton, Evans, "Teaching Models to Express Their Uncertainty in Words", TMLR 2022, arXiv:2205.14334.
+
+**Implication:** upgrade the repo knowledge gate from single-prompt greedy -> robust multi-paraphrase +
+calibration + final-layer (faithful) expressed-confidence, with *knows* kept separate from *expresses*.
+
+### B. Causal/mechanistic CONFIDENCE on Gemma — the GAP
+- Canonical **causal** confidence mechanism = **ENTROPY NEURONS** (write to the unembedding low-sensitivity
+  "null" subspace + modulate the final-LN scale -> tune output entropy), causal via **mean-ablation**,
+  ~30x dEntropy/dLoss ratio:
+  Stolfo, Wu, Gurnee, Belinkov, Song, Sachan, Nanda, "Confidence Regulation Neurons in Language Models",
+  NeurIPS 2024, arXiv:2406.16254. Models: GPT-2, Pythia, Phi-2, **Gemma 2B (= first-gen Gemma-1)**, LLaMA2-7B.
+  **NOT Gemma-2** -- the string "Gemma 2B" is Gemma-1, not the Gemma-2 family (easy, consequential confusion).
+- Only Gemma-2 causal hit: Han, Kossen, Razzak, Gal, "Semantic Entropy Neurons", NeurIPS 2024 MINT
+  **workshop** (OpenReview BbZKxrZCNn) -- causal activation-clamping on Gemma-2-9B (~27% semantic-entropy
+  reduction [figure unverified vs PDF]). Caveat: workshop; targets SEMANTIC (multi-generation) entropy, not
+  single-pass output-entropy / calibration.
+- Geva et al., "Dissecting Recall of Factual Associations", EMNLP 2023, arXiv:2304.14767 -- causal
+  (attention-knockout) but factual-recall, GPT-2/GPT-J, not confidence, not Gemma.
+- Belrose et al., Tuned Lens, arXiv:2303.08112 -- the raw logit-lens is unfaithful in general (corroborates
+  the repo's early_argmatch=0.0 finding); no Gemma-2-specific causal characterization exists.
+
+**GAP:** a root single-token confidence/calibration mechanism has **NOT** been causally identified on
+Gemma-2 (entropy-neuron style established on other families + Gemma-1, never replicated on Gemma-2). Open,
+citable, in-scope, method-idiom-aligned (causal intervention, not a probe) -> pre-registered in
+`RESEARCH_QUESTIONS` PART 6.

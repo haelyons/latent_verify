@@ -776,3 +776,106 @@ unfalsifiable catch-all.
 > (the unifier test) -> **A** 2b query-trace upstream of L18.H5 -> **B** RLVR confidence test (scope-gated,
 > breaks single-family). Sharpest caution: the program is one LOO-test from knowing if its one positive is
 > mechanism or overlay; do D before building C on it, or "confidence-gating" becomes an unfalsifiable catch-all.
+
+---
+
+## PART 6 — NEXT (mechanistic confidence): entropy-neuron identification on Gemma-2 (2026-06-20)
+
+### Why this is the move
+The logit-lens early-encoding line is **CLOSED as a negative** (`results_9b_logitlens_attr/`,
+`controls/logit_lens_attribution.py`): the early it>base margin was mostly a **chat-template format
+artifact** (native it-base +9.34 -> format-matched +0.89 on Q/A, +3.45 on chat) and the early logit-lens
+is **unfaithful** (early_argmatch 0.0 in BOTH models -> the early margin does not predict the output, so
+it is not "early confidence"). A logit-lens margin cannot measure confidence (unfaithful intermediate,
+format-confounded, conflates knows-vs-expresses). Claim 2 ("it more challenge-robust") **retracted**
+(frac-erosion diff CI [-4.47, 0.31] includes 0 after normalization). Cross-lens = null (calibration not
+the driver).
+
+Two literature searches (`POSITION_UNCERTAINTY` 2026-06-20) then established: (a) the well-supported
+knowledge predicate is **multi-paraphrase consistency + calibration + knows/expresses split**, NOT
+single-prompt greedy (the repo's current gate); (b) the literature's **causal** confidence mechanism is
+**ENTROPY NEURONS** (Stolfo/Gurnee, NeurIPS 2024, arXiv:2406.16254; causal via mean-ablation) -- established
+on GPT-2/Pythia/Phi-2/**Gemma-1**/LLaMA2 but **NOT Gemma-2**. The one Gemma-2 causal result (Semantic
+Entropy Neurons, NeurIPS 2024 MINT workshop) targets *semantic* (multi-generation) entropy, not single-pass
+confidence. So a root single-token confidence mechanism on Gemma-2 is an **OPEN, citable gap** -- and it is
+mechanistic (root mechanism), causal (ablation, NOT a probe), single-family (Gemma), method-idiom-aligned.
+It replaces the discredited logit-lens with the right instrument.
+
+### Unit ENTROPY-NEURON — causal confidence neurons on gemma-2-9b (base + it)
+- **Identify** late-layer MLP neurons whose output direction `w_out` writes into the unembedding's
+  low-sensitivity ("null") subspace (the bottom singular directions of `W_U`) -- the entropy-neuron weight
+  signature -- then **validate CAUSALLY by mean-ablation**: a true entropy neuron modulates output
+  **entropy** with little change to next-token **loss** (the ~30x dEntropy/dLoss ratio, Stolfo/Gurnee).
+- **base vs -it differential**: are the same neurons entropy-regulators in both, and does post-training
+  change their ablation-effect? (the late-mediation hypothesis, now with a faithful causal instrument.)
+
+**Pre-registered SCs:**
+- **SC-EN-1 (existence/replication):** >=1 late MLP neuron with null_frac >= NULL_TOL AND mean-ablation
+  dEntropy >= ENT_TOL AND |dLoss| <= LOSS_TOL -> a causal entropy neuron exists on gemma-2-9b (the Gemma-2
+  replication of Stolfo/Gurnee; novel -- closes the gap). NULL = none found (also informative).
+- **SC-EN-2 (base/it differential):** compare the entropy-neuron set + per-neuron dEntropy base vs -it,
+  against a matched-random-neuron control; RLHF-mediated iff the set / ablation-effect differs clear of
+  control.
+- **SC-EN-3 (caving link, GATED on EN-1):** does mean-ablating the entropy neuron(s) shift caving on the
+  misconception substrate? ties the confidence mechanism to the sycophancy behaviour.
+- **Controls:** matched-random late-layer neuron set (specificity); the |dLoss| <= LOSS_TOL gate (it is
+  entropy regulation, not capability damage). Forward-only -> A100. Claim-blind author + `latent_skeptic`.
+
+**Knowledge predicate upgrade (folds in here):** drop single-prompt greedy; gate items by robust
+multi-paraphrase greedy-correct + report final-layer (faithful) P(correct)/margin/entropy + calibration,
+keeping *knows* separate from *expresses* (per the lit search). Wary of the bare margin (it just failed).
+
+### Handoff (PART 6)
+> Logit-lens confidence line CLOSED (negative: format artifact + unfaithful early lens; claim-2 retracted).
+> Lit search: causal confidence mechanism = entropy neurons (Stolfo/Gurnee 2406.16254, mean-ablation), done
+> on Gemma-1 not Gemma-2 -> open gap. NEXT = port entropy-neuron identification + causal mean-ablation to
+> gemma-2-9b (base+it), then link to caving. RLVR parked (`RLVR_SKETCH_PARKED.md`, breaks single-family).
+> Knowledge gate upgraded to multi-paraphrase + calibration + knows/expresses split.
+
+### PART 6 RESULT — entropy-neuron NULL (hardened) — `controls/entropy_neuron_gemma2.py`, `results_9b_entropyneuron{,_powered2}/`
+First run (mean-ablation, short ref, K=10): EN count 0 both models; `latent_skeptic` (wf, 6 confounds) flagged it
+underpowered -- top cruxes mean-ablation-preserves-the-mean and short-vs-long-context regime.
+**Powered re-run (2026-06-20, A100):** BOTH mean + **zero**-ablation, **long-context** WikiText-2 (20x256 =
+5120 positions), **K=50**. **NULL HOLDS:** ENTROPY_NEURON count **0 in base and -it**; the high-null_frac
+late neurons (null_frac up to 0.92) move output entropy negligibly (|dEntropy| <= 0.008 nats under both mean
+and zero ablation, vs ENT_TOL 0.05) and are indistinguishable from matched-random (zero-abl avg ~0.0004).
+**The Stolfo/Gurnee single-neuron entropy regulator does NOT replicate on Gemma-2-9b** under the de-confounded
+protocol. The zero-ablation + long-context cruxes are resolved by running; the null is now ablation-mode- and
+regime-robust. **Open (deferred):** joint group-ablation (distributed regulator) + pre-softcap entropy --
+the *distributed* alternative is untested and is the leading remaining explanation.
+
+### STOCK-TAKE (2026-06-20) — caving, factual recall, and "confidence" cohere into one negative
+This session's mechanistic observations, and the prior arc, converge on a single picture:
+- **2b copy collapse (`qk_weight`):** RLHF does not edit L18.H5's QK weights (magnitude AND direction intact,
+  dir_cos 0.998); the realized copy collapse is 100% residual-INPUT-mediated (full resid_pre[L18] swap recovers
+  0.97), joint query+key. RLHF changes what *feeds* the head, not the head.
+- **27b copy heads (NEXT-2/3):** W_QK unchanged; OV gain rescaled but the heads are LATENT (do not realize
+  copying). Copy-head routing weights are edited at no scale.
+- **Early "confidence" (logit-lens, de-confounded):** the apparent it>base early margin was a chat-template
+  FORMAT artifact (+9.34 -> +0.89 format-matched) and the early logit-lens is UNFAITHFUL (early_argmatch 0.0).
+  A logit-lens margin cannot measure confidence; no clean early base-vs-it confidence difference survives.
+  Claim that "-it is more challenge-robust" retracted (baseline-magnitude artifact).
+- **Entropy/confidence neuron (PART 6, this session):** no single-neuron entropy regulator on Gemma-2-9b
+  (hardened null).
+- **Caving (prior arc):** 9b misconception caving = a base-intrinsic residual cave-DIRECTION (necessity
+  ~0.45-0.58, RLHF-neutral, higher-rank subspace); per-head NULL; head-set retracted under power.
+
+**The through-line: NO SINGLE LOCUS AT SCALE.** Every candidate mechanism -- the copy reader (concentrated at
+2b, diffuse at 9b), the installed deference head (null), the jointly-necessary head-set (retracted under
+power), the early-readable confidence representation (format artifact + unfaithful), the single entropy/
+confidence neuron (null) -- comes back **diffuse / distributed / base-intrinsic**, never a clean RLHF-installed
+single locus. RLHF modulates the **inputs to / gain of / late expression of** base-intrinsic machinery; it does
+not install localizable new circuits.
+
+**For caving + confidence specifically:** the two literature-standard confidence mechanisms -- an early-readable
+representation (logit-lens) and a single-neuron entropy regulator (entropy neurons) -- BOTH fail to materialize
+cleanly on Gemma-2-9b. So if confidence gates caving, it does so via a **distributed / base-intrinsic** substrate,
+not a single neuron or an early-readable axis -- consistent with the one robust positive (caving = a
+base-intrinsic, higher-rank residual direction). The "RLHF mediates confidence at late layers" hypothesis is
+**neither supported nor cleanly testable** with the instruments tried (logit-lens unfaithful; no entropy neuron
+to ablate). Honest state: **confidence on Gemma-2-9b appears distributed**; its link to caving runs through the
+base-intrinsic cave-direction, not a localizable confidence mechanism.
+
+**Next instruments that fit this picture (all distributed-aware):** joint group-ablation of the high-null_frac
+set (distributed entropy regulator); pre-softcap entropy; and the still-unrun **D** (held-out/LOO + SAE
+feature-decomposition of the cave-direction -- turn the one positive from a direction into a circuit).
