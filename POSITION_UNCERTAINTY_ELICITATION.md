@@ -256,7 +256,9 @@ calibration + final-layer (faithful) expressed-confidence, with *knows* kept sep
 ### B. Causal/mechanistic CONFIDENCE on Gemma — the GAP
 - Canonical **causal** confidence mechanism = **ENTROPY NEURONS** (write to the unembedding low-sensitivity
   "null" subspace + modulate the final-LN scale -> tune output entropy), causal via **mean-ablation**,
-  ~30x dEntropy/dLoss ratio:
+  dEntropy/dLoss ratio ~~(stated as ~30x)~~ [**CORRECTION 2026-06-20:** the paper gives **no explicit ratio**
+  — qualitative only ("minimal impact on the prediction", Fig. 1/2c); the "~30x" was our paraphrase, not
+  Stolfo/Gurnee's figure; verified vs arXiv:2406.16254 HTML. Misquote struck-through, kept visible]:
   Stolfo, Wu, Gurnee, Belinkov, Song, Sachan, Nanda, "Confidence Regulation Neurons in Language Models",
   NeurIPS 2024, arXiv:2406.16254. Models: GPT-2, Pythia, Phi-2, **Gemma 2B (= first-gen Gemma-1)**, LLaMA2-7B.
   **NOT Gemma-2** -- the string "Gemma 2B" is Gemma-1, not the Gemma-2 family (easy, consequential confusion).

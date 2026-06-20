@@ -805,7 +805,11 @@ It replaces the discredited logit-lens with the right instrument.
 - **Identify** late-layer MLP neurons whose output direction `w_out` writes into the unembedding's
   low-sensitivity ("null") subspace (the bottom singular directions of `W_U`) -- the entropy-neuron weight
   signature -- then **validate CAUSALLY by mean-ablation**: a true entropy neuron modulates output
-  **entropy** with little change to next-token **loss** (the ~30x dEntropy/dLoss ratio, Stolfo/Gurnee).
+  **entropy** with little change to next-token **loss** (~~the ~30x dEntropy/dLoss ratio, Stolfo/Gurnee~~
+  — **CORRECTION 2026-06-20:** the paper reports **no explicit ratio**; it shows the effect qualitatively
+  ("minimal impact on the prediction", Fig. 1/2c). The "~30x" was our over-precise paraphrase / selftest-gate
+  framing, **not** a figure Stolfo/Gurnee state — verified vs arXiv:2406.16254 HTML, per our own
+  "spot-check every external method before relying on it" rule. Original misquote struck-through, not deleted).
 - **base vs -it differential**: are the same neurons entropy-regulators in both, and does post-training
   change their ablation-effect? (the late-mediation hypothesis, now with a faithful causal instrument.)
 
@@ -879,3 +883,292 @@ base-intrinsic cave-direction, not a localizable confidence mechanism.
 **Next instruments that fit this picture (all distributed-aware):** joint group-ablation of the high-null_frac
 set (distributed entropy regulator); pre-softcap entropy; and the still-unrun **D** (held-out/LOO + SAE
 feature-decomposition of the cave-direction -- turn the one positive from a direction into a circuit).
+
+---
+
+## PART 7 — confidence-mechanism + cave-direction hardening (pre-registration, 2026-06-20)
+
+Pre-registered BEFORE running, repo idiom (`SC-N`, faithfulness gate first, matched controls, honest-null,
+no goalpost moves). Authored claim-blind (`triage-author`), reviewed, model-free selftest, then run, then
+`latent_skeptic`. Three controls discharge the four colleague-surfaced tests (a/b/c/d) plus the cruxes a
+Pass-1 `latent_skeptic` triage (`wf_781b6f41`, 24 skeptics, no-GPU) raised against the two load-bearing
+committed claims (PART 6 entropy NULL; PART 3 cave-direction). Cited cruxes are folded in below verbatim.
+
+### Why these, from the triage (the deciding cruxes, not the story)
+- **Entropy NULL is robust at the single-neuron grain.** 7/11 confounds RULED_OUT (`off-distribution`,
+  `selection`, `readout`, `regime`, `construct`, `noise floor`, `ceiling/floor`). The crux that closes
+  selection: "the HIGHEST-null_frac late neurons (0.82-0.86) ... were ablated. A null at the top of the
+  predicted distribution is pro-mechanism selection, not adverse selection." The only LIVE alternatives are
+  three NEEDS_RUN, each a different grain the single-neuron sweep is blind to: `pre-softcap` ("A candidate
+  whose pre-softcap dEntropy >= 0.05 could be compressed below the observed <=0.008"), `joint/group`
+  ("No committed number bounds the joint effect of the top-K"), `feature-grain SAE`, and `self-repair`
+  direct-effect ("neither isolates a DIRECT pre-compensation write to the null directions").
+- **Cave-direction "base-intrinsic" is NOT yet established — two EXPLAINS dents + five NEEDS_RUN.**
+  `selection bias` EXPLAINS: "the both-cave intersection (n=41) -- items selected precisely because base
+  AND -it both cave. Conditioning on equal behavior manufactures the equal-necessity result." `confidence/
+  headroom` EXPLAINS: "a base-intrinsic, RLHF-stable confidence axis predicts exactly this equality, so the
+  null IS the confound producing the claim." The necessity magnitude is `in-sample diff-of-means` (no
+  held-out), and `regime specificity` NEEDS_RUN: "Two separately-overfit regime-specific directions of
+  equal magnitude reproduce this exact pattern. No cross-regime transfer number (base-derived direction
+  tested in -it) ... on record." So the headline rests on an un-hardened, possibly-circular fit.
+
+### Control 1 — `controls/entropy_distributed_presoftcap.py` (tests a + b; discharges 3 entropy NEEDS_RUN)
+**Question.** Does the entropy NULL survive (a) a PRE-softcap readout and (b) JOINT group-ablation of the
+high-null_frac set? (Both are grains the single-neuron post-softcap sweep cannot see.)
+**Procedure.** Reuse the weights-only null-space screen (`null_basis`/`null_frac`/late-layer) from
+`entropy_neuron_gemma2.py` (do not edit it). Top-G high-null_frac late neurons ablated TOGETHER (group
+mean- AND zero-ablation), cumulative ramp G=1,2,4,8,…,K, vs a matched-random-G non-candidate set, on
+long-context WikiText-2. Entropy computed BOTH pre-softcap (logits before the gemma-2 final-logit softcap,
+cap=30) and post-softcap. Base and -it.
+**Pre-registered SCs.**
+- **SC-EN-D1 (distributed):** group |dEntropy| >= ENT_TOL (0.05) at some G while each member < ENT_TOL
+  AND group |dEntropy| exceeds matched-random-G by >= MARGIN → a DISTRIBUTED entropy regulator exists
+  (the single-neuron null does not generalize). NULL = group also sub-threshold → regulator is not in this
+  neuron set at any group size (hardens PART 6).
+- **SC-EN-D2 (pre-softcap):** if pre-softcap |dEntropy| >= 0.05 while post-softcap < 0.05 for the same
+  candidates → the PART-6 null was a softcap-readout artifact (retract); if pre ≈ post (both < 0.05) →
+  null is softcap-robust (hardens PART 6). Settles the `post-softcap vs pre-softcap` NEEDS_RUN by running.
+
+### Control 2 — `controls/cave_direction_heldout.py` (test c, SC-D; discharges the cave-direction existence + base-intrinsic cruxes)
+**Question.** Does the cave-direction's necessity survive OUT-OF-SAMPLE, and is it the SAME direction in
+base and -it (base-intrinsic) or two separately-overfit regime-specific fits?
+**Procedure.** Extend the `headset_direction.py` diff-of-means + necessity/sufficiency + random-control
+machinery with: (1) **held-out / LOO** — fit `u` on train fold, test necessity on disjoint test fold /
+leave-one-out; (2) **cross-regime transfer** — apply base-derived `u` in -it and -it-derived `u` in base;
+(3) **label-permuted in-sample null** — refit diff-of-means on permuted condition labels, the control the
+random-direction (~0.002) does NOT give for fitting degrees of freedom.
+**Pre-registered SCs.**
+- **SC-D1 (held-out):** out-of-sample necessity within the in-sample bootstrap CI AND clear of the
+  label-permuted null → the cave-direction is real, not in-sample overfit. (PART 5 SC-D.)
+- **SC-D-XREG (base-intrinsic):** base-fit `u` retains necessity ≥ DIR_THR in -it (and vice-versa), and
+  the cross-regime necessity ≈ within-regime → "base-intrinsic / RLHF-neutral" earned, not an intersection
+  artifact. Cross-regime necessity ≈ 0 (or ≪ within-regime) → two regime-specific directions; the PART-3
+  "base-intrinsic" headline is **retracted** to "each regime has its own equally-necessary fit." Settles
+  the `regime specificity` + `selection bias` cruxes that committed data could not.
+
+### Control 3 — `controls/confidence_vs_cave_direction.py` (test d, SC-C; discharges the confidence/headroom EXPLAINS)
+**Question.** Is the cave-direction a DEFERENCE signal or a CONFIDENCE/headroom axis? (The unifier test.)
+**Procedure.** Fit a margin/confidence direction by diff-of-means (high- vs low-|M| items, margin-stratified
+from `misconception_pool.py`); measure its necessity/sufficiency (held-out, same guards as Control 2);
+compute cosine(cave_dir, confidence_dir) per layer; and test cave-direction necessity on NON-caved / single-
+cave items (where confidence and deference are NOT collinear by construction — the dissociation the both-cave
+intersection forbids).
+**Pre-registered SCs.**
+- **SC-C1:** the confidence direction is necessary/sufficient out-of-sample, base vs -it (does post-training
+  move it?).
+- **SC-C2 (the crux):** `High |cos| -> same axis -> the program collapses to "post-training tunes
+  confidence, not deference"; low cos -> caving and confidence are distinct objects.` MUST carry Control 2's
+  held-out + label-permuted guards or it deepens the overfit.
+- **SC-C-DISSOC:** cave-direction necessity on non-caved/single-cave items separates deference from
+  confidence; if necessity vanishes off the both-cave set, the direction was the confidence axis the triage
+  flagged (`conditioning on caving makes confidence and deference collinear by construction`).
+
+### Ordering, compute, gates
+- **Run order: Control 2 → Control 3 → Control 1.** Control 2 (held-out + cross-regime) is the single
+  highest-value test — it decides whether the program's ONE positive is mechanism or overlay, and whether
+  "base-intrinsic" survives at all. Control 3 builds on Control 2's hardened direction (do not build the
+  unifier on an un-LOO'd direction — the PART 5 caution). Control 1 hardens an already-robust null, so it
+  is last.
+- **Faithfulness gate (each):** reproduce the committed numbers before adding the new arm — Control 1 the
+  PART-6 single-neuron post-softcap dEntropy (≤0.008); Control 2/3 the I1 flip counts + in-sample necessity
+  (0.441/0.472) that the held-out/cross-regime arms are compared against.
+- **Compute:** all forward-only (diff-of-means, projection edits, group-ablation; no backward) → A100-40GB,
+  per the `entropy`/`headset` precedent; box self-terminates. Authored claim-blind; every surviving SC →
+  `latent_skeptic` (the runner verifies the `run_queue` items — LOO and group-ablation are existing-script
+  extensions; the cross-regime/label-permuted/confidence arms are the `author_queue`).
+- **GATED follow-ups (not authored now, pre-registered):** SAE-feature-grain entropy ablation (GemmaScope,
+  heavier dependency); self-repair direct-effect DLA with LayerNorm frozen; downstream-engagement patch of
+  the cave-direction into other items. Authored only if Controls 1–3 leave the grain open.
+
+### PART 7 addendum (gated) — cave-direction → attribution graph (colleague Q, 2026-06-20)
+Q: "have we considered making caving (our cave direction) an attribution graph again?" — i.e. pull the
+program back to its founding method (the `attribution-graphs-experiment` branch) and turn the one positive
+from a *direction* into a *circuit*. This is already the PART-6 stock-take's stated next step ("turn the one
+positive from a direction into a circuit") and the unit-correct (feature, not neuron/direction) grain that
+Anthropic model-biology mandates (Lindsey et al. 2025 *Biology of an LLM* / Ameisen et al. 2025 *Circuit
+Tracing*; superposition → features, Elhage 2022 / Bricken 2023). **Recommended — but GATED, two gates:**
+1. **Result gate (the "consider LATER"):** trace nothing until Control 2 says the cave-direction is real
+   out-of-sample + base-intrinsic (SC-D1/SC-D-XREG) AND Control 3 says it is DEFERENCE not a confidence axis
+   (SC-C2/DISSOC). Tracing an in-sample-overfit or a confidence axis = wasted graph.
+2. **Tooling/scale gate (spot-check, web 2026-06-20):** `circuit-tracer` (decoderesearch) builds attribution
+   graphs from (cross-layer) MLP transcoders and **fully supports Gemma-2-2B** now (GemmaScope transcoders,
+   PLT + newly CLT; ~15GB). **Gemma-2-9B is NOT in the shipped support** — GemmaScope ships 9b *SAEs* but the
+   tracer's bundled transcoders are 2b; a 9b graph needs 9b transcoders sourced/trained (heavier). Tension:
+   caving is established at **9b** (2b saturates), so either (a) first check whether 2b-it caves on the
+   misconception substrate and trace the cheap, fully-tooled 2b, or (b) wire GemmaScope-9b transcoders into
+   the tracer for the established-9b substrate.
+**Why caving fits attribution graphs better than the copy-head arc did:** I2 flagged that attribution graphs
+*freeze attention*, which blocked head-level QK claims — but the cave-direction is a **residual subspace,
+orthogonal to the (retracted) attention head-set**, so it is MLP/residual-mediated and the attention-freeze
+does not bite. Caving is a good-fit target; the QK copy arc was not.
+**Two-step path (post-results, cheap→full):**
+- **Step A (SAE only, no transcoder; = SC-D2):** decompose u_cave into GemmaScope-**9b** SAE features at its
+  layer — direction → interpretable feature-set. Needs only the 9b SAEs (exist), not transcoders. Minimal,
+  in-scope, do first.
+- **Step B (full graph):** trace the caving logit-diff (the M drop under the challenge turn) with cross-layer
+  transcoders, cave-direction features as the output nodes; validate the graph on a known case (program
+  idiom). Feasible at 2b now (if 2b caves); at 9b pending transcoder sourcing.
+
+### PART 7 follow-ups — deference-vs-confidence + is-caving-9b (colleague Qs, 2026-06-20)
+**Q1 — deference vs confidence (the distinction Control 3 exists to make).** Operationally distinct objects:
+- **Confidence / headroom** = the model's PRE-pressure certainty about the fact, = the neutral-turn margin
+  M = lp(C) - lp(W*). Gated by the model's own knowledge state. A confidence axis separates high-|M| from
+  low-|M| items *regardless of social context*. It says WHERE the model CAN be moved (susceptibility).
+- **Deference / caving** = the answer SHIFT caused by the user's social pressure, = M(challenge) - M(neutral).
+  Gated by the social cue (user doubt/assertion), not the fact. It is the act of moving when pressed.
+- **They are conceptually orthogonal** (epistemic state vs social-response mechanism) but **empirically
+  collinear on the both-cave intersection BY CONSTRUCTION** (the triage's `selection bias`/`confidence`
+  EXPLAINS): items are kept *because* both models cave -> those are exactly the low-confidence items, so
+  u_cave (counter-vs-neutral) and a confidence axis (high-vs-low margin) point the same way there. The
+  distinguishing prediction: a pure-confidence account predicts **no caving on high-|M| items**; a
+  deference account predicts caving even where the model is confident (the "scary half" / bare-doubt
+  sycophancy). SC-C2 (cos(u_cave,u_conf) on independently-fit dirs) + SC-C-DISSOC (u_cave necessity OFF the
+  both-cave set) are exactly this dissociation. High cos AND cave dies off the low-confidence set => caving
+  IS confidence (program collapses to "RLHF tunes headroom"); low cos AND cave survives on confident items
+  => deference is a distinct mechanism.
+**Q2 — is caving a 9b phenomenon? (partly OPEN; launched the decisive check.)** What is established:
+caving is MEASURED at **9b** (9b base 9-14 misconception flips, `DESIGN_9b §I1`; R1-DIFF faithfulness 9
+it-flips; the n=41 both-cave intersection is 9b). It is **NOT shown to be 9b-EXCLUSIVE** — whether 2b-it /
+27b-it cave on the same items was flagged opportunistic and never committed. Principled reason it may be a
+**capability x substrate WINDOW**, not a scale: a right->wrong cave needs (a) the model KNOWS C, (b) at a
+low-enough margin to be movable, (c) under pressure. 9b-on-misconceptions hits all three; capitals/arithmetic
+**saturate** (can't be moved, the §10.1 ceiling); 2b may sit **below the capability floor** (can't cave what
+it never knew -> that is incapacity, not deference). So caving is best read as pinned at 9b-on-misconceptions
+with scale-breadth open. **Launched** `run_2b_cavecheck.sh` (`job_truthful_flip.py` 2b base + 2b-it on
+TruthfulQA, `results_2b_cavecheck/`, a10): flip count vs the 9b 9-14 ref answers it directly, and the SC-B
+per-head knockout bonus says whether a 2b flip recruits L18.H5. If 2b caves -> the attribution-graph route
+(Step B) runs on the fully-tooled 2b; if not -> caving is capability-gated and the graph needs 9b transcoders.
+
+### PART 7 RESULTS (2026-06-20) — 4 boxes, parallel, self-terminated, ~$8
+All forward-only; selftests gated each run. `latent_skeptic` Pass-2 running on the 5 load-bearing claims
+(`wf_fd82127d`); de-confound queue folded below when it lands.
+
+**Control 2 — cave_direction_heldout (`results_9b_cavedir/`) — the decisive test, two-part verdict.**
+- **SC-D1 (held-out): PASS both — the cave-direction is REAL, not an in-sample probe artifact.** Headline L36:
+  it held-out k-fold **0.963** / LOO **0.988** vs in-sample 0.989 (within CI [0.32,1.64]); base k-fold
+  **0.703** / LOO 0.710 vs in-sample 0.711 (within CI [0.46,0.98]). Label-permuted-fit null ~**0.13** both;
+  random ~**0.005**. **The linear-probe-illusion / in-sample-fit crux (PART 5 SC-D, triage's top cave crux)
+  is KILLED by running.** The program's one positive survives hardening.
+- **SC-D-XREG (base-intrinsic): FAIL — REGIME_SPECIFIC both.** base->it cross 0.422 / within 0.963 (ratio
+  **0.44**); it->base cross 0.229 / within 0.703 (ratio **0.33**); both < 0.6. The base and -it cave-directions
+  are partially correlated but substantially DISTINCT; they do not transfer.
+- **=> PART-3 "base-intrinsic / RLHF-neutral" is CORRECTED** (see the PART 3 correction note): each regime has
+  its OWN real, held-out-valid cave-direction, but they are **regime-specific** -> **RLHF reshapes the
+  cave-direction** (partially reviving the RLHF-on-caving effect the prior arc had nulled).
+- **Load-bearing caveat (open):** cross-regime applies one regime's u to the OTHER regime's HELD-OUT items,
+  and base caves on 51 items / it on 54 DIFFERENT items -> direction-difference is confounded with
+  item-set-difference. The clean test = **cross-regime on the shared both-cave intersection** (the same
+  item-mismatch that retracted the head-set under power). "RLHF reshapes the direction" is the lead reading,
+  NOT yet de-confounded.
+
+**Control 3 — confidence_vs_cave_direction (`results_9b_confcave/`) — caving vs confidence.**
+- **cos(u_cave, u_conf) ≈ 0** (best-layer -0.036 base / -0.165 it, << 0.5) -> the cave axis and the
+  margin/confidence axis are **~orthogonal**. Leans against "caving IS confidence."
+- **But CONF=NONE** — the margin diff-of-means direction is itself NOT causal out-of-sample (necessity
+  0.041 base / 0.085 it < 0.20). So the clean claim is "cave ⊥ *margin-diff axis*", NOT "cave ⊥ a *causal*
+  confidence mechanism" (none was isolated; consistent with PART 6 "confidence appears distributed").
+- **DISSOC** fired CAVE_SURVIVES_OFF_INTERSECTION but `frac_nec_cave_off` = 0.23 @L24 vs **2.09/2.30/3.27**
+  @L28/32/36 on only n_off=9 items -> the >1 values are small-gap denominator blow-up; suggestive, not clean.
+
+**Control 1 — entropy_distributed_presoftcap (`results_9b_entropydistrib/`) — clean double null, hardens PART 6.**
+- **SC-EN-D1 (distributed): NULL HOLDS.** No G in {1,2,4,8,16,32} reaches GROUP_ENTROPY_EFFECT, base/it,
+  mean/zero. Max group |dEntropy| base +0.0109 / it -0.0130 (G=32) vs ENT_TOL 0.05; random-G ~0. Even 32
+  top-null_frac neurons jointly barely move entropy. The single-neuron null extends to the group grain.
+- **SC-EN-D2 (pre-softcap): null softcap-robust.** screen `softcap=None` (from_pretrained_no_processing),
+  baseline entropy pre=post=1.9118, pre_minus_post=0.0000 every G -> the readout was already uncompressed;
+  the null is not a softcap artifact (softcap would only compress further). Open: the deployed softcap-ON
+  load path untested; SAE-feature grain still the leading distributed alternative -> attribution-graph route.
+
+**Q2 — caving is NOT 9b-specific (`results_2b_cavecheck/`).** gemma-2-2b caves: 2b-**it** n_kept 49, flipped
+**19**, capitulation **+2.806**, doubt-softening **+3.598**, caves-via-copy TRUE; 2b-**base** n_kept 101,
+flipped **20**, capitulation **-0.552**, copy FALSE. (9b ref 9-14 flips.) The 2b **it>>base** caving gap is a
+*cleaner* RLHF-caving signal than 9b gave. Both SC-B **DIFFUSE** (top1 head necessity 0.039 it / 0.036 base;
+NOT L18.H5) -> the diffuse-caving line extends to 2b. Caveat: `already_wrong`=19 each = capability floor; the
+base(qa)/it(chat) template difference partly confounds the it>base gap. **Unblocks the attribution-graph route
+at the fully-tooled 2b** (Step B), with a scale-transfer caveat (2b caving may differ from 9b's).
+
+**Net update to the program.** Two prior headlines move: (1) the cave-direction is now **hardened as real**
+(held-out) — the one positive is no longer "a direction not a mechanism" on the illusion axis; (2) it is
+**regime-specific, not base-intrinsic** (item-confound pending) -> **RLHF DOES act on caving** (reshapes the
+direction at 9b; amplifies the behavior 2b it>>base), partially reversing the prior "RLHF installs no
+caving / caving is base-intrinsic" conclusion. And the "everything is confidence" overfit is **checked**:
+cave ⊥ margin axis, and confidence is not a localized neuron/group (C1) nor the margin-diff axis (C3).
+
+### PART 3 correction (2026-06-20, from PART 7 Control 2)
+The PART-3 "**ARC INFLECTION (corrected, powered) — 9b caving is a BASE-INTRINSIC residual direction,
+RLHF-neutral**" headline is **superseded** (kept above for the record). Held-out + cross-regime (Control 2)
+show: the cave-direction is **real out-of-sample in BOTH models** (necessity held-out it 0.96 / base 0.70,
+label-perm ~0.13) — that part STANDS and is now hardened — but it is **regime-SPECIFIC, not a single shared
+base-intrinsic direction** (cross/within ratio 0.33-0.44 < 0.6). The n=41 matched de-confound's "necessity
+equal in base and -it" was measured at a single layer (L28, where the magnitudes do happen to be close: it
+0.42 / base 0.49) and does NOT imply the SAME direction — the cross-regime transfer (the test the n=41 run
+never did) shows they are distinct. **Corrected claim: 9b caving is a real, held-out residual cave-direction
+that RLHF RESHAPES (regime-specific), pending the shared-item cross-regime de-confound.**
+
+### latent_skeptic Pass-2 (`wf_fd82127d`, 28 skeptics, no-GPU) — per-claim outcome + de-confound queue
+- **cave-direction REAL (held-out): SURVIVES** (4/5 RULED_OUT). Off-distribution killed by the random
+  control (0.005 vs 0.96-0.99); overfit/noise/construct killed by held-out + LOO + label-permuted (0.13).
+  Open: `readout artifact` NEEDS_RUN — the L36 necessity ~0.99 (CI to 1.64, over-recovery) sits one block
+  from the unembed and may be direct logit-movement; **the mid-layers L28/L32 (it 0.42/0.57, base 0.49/0.55)
+  are further from readout and still generalize, so existence stands; only the L36 magnitude is in doubt.**
+  AUTHOR: direct-vs-indirect (logit-lens) split of the L36 necessity.
+- **regime-specific (RLHF reshapes): NOT YET ESTABLISHED — one decisive de-confound.** The `item-set
+  mismatch` I flagged was **RULED_OUT** by the skeptic (cross and within are scored on the SAME host items;
+  the 51-vs-54 only changes what the *donor* was fit on; the selftest shows shared-direction-with-different-
+  items still gives ratio ~0.77 >= 0.6). The real crux is `off-distribution ablation` NEEDS_RUN: **cross uses
+  the DONOR's proj_n shift target, calibrated on the donor's residual scale; base/it have different
+  post-RLHF residual magnitudes, so the host is shifted off-distribution -> depresses cross-necessity for
+  SCALE reasons, not direction reshaping.** => the "REGIME_SPECIFIC / RLHF-reshapes" verdict could be a
+  proj_n scale artifact. **Decisive fix authored:** `controls/cave_direction_xregime_deconfound.py` — cross
+  with the HOST's own proj_n + matched-item (shared-intersection) fit. If host-proj_n cross/within >= 0.6 ->
+  directions ARE shared -> **"base-intrinsic" REINSTATED** (RLHF does not reshape); if still < 0.6 ->
+  regime-specificity is real -> RLHF reshapes. **RESOLVED — see the de-confound RESULT below: regime-specificity is REAL (all 8 variants < 0.6); the PART-3 correction is CONFIRMED, not provisional.**
+- **cave ⊥ confidence: WEAK (2 EXPLAINS dents).** u_conf is non-causal (CONF=NONE), so cos≈0 is "cave ⊥ a
+  *non-lever* margin axis", not "cave ⊥ a *causal* confidence mechanism". AUTHOR: build a confidence
+  direction that passes held-out causal necessity (>= DIR_THR), THEN re-measure cos(u_cave, u_conf).
+- **entropy distributed null: robust at tested grains; 3 grains open** (NEEDS_RUN): self-repair
+  (frozen-downstream direct-effect), softcap-ON load path (re-run with `final_logit_softcap=30`), SAE-feature
+  grain (gemma-scope MLP SAE) — the last ties to the attribution-graph route.
+- **caving at 2b: holds; it>>base CONFOUNDED.** `regime specificity` EXPLAINS — 2b-base ran as qa, 2b-it as
+  chat template, so the it>base capitulation gap (+2.81 vs -0.55) conflates RLHF with the template; plus
+  `capability floor` (already_wrong 19) + `selection bias` (n_kept 49 vs 101) NEEDS_RUN. RUN_QUEUE (existing
+  `job_truthful_flip.py`): known-only flip-rate + neutral control; matched-n / shared already_wrong slice.
+
+**Disciplined next order (autonomous):** (1) `cave_direction_xregime_deconfound` — the single test that
+decides base-intrinsic-vs-RLHF-reshapes (the corrected headline hinges on it); (2) 2b template-matched +
+known-only rerun (cheap, cleans the it>>base RLHF-at-2b signal); (3) causal-confidence-direction (makes
+cave⊥confidence meaningful); (4) the deferred entropy grains + the L36 direct-vs-indirect split + the
+attribution-graph route (SAE-feature decomposition of the now-hardened cave-direction).
+
+### xregime de-confound RESULT (`results_9b_xregime/`) — regime-specificity is REAL (hardened)
+`cave_direction_xregime_deconfound.py`, 9b base+it, A100, self-terminated. Headline L36, both pair
+directions, all four variants -> **REGIME_SPECIFIC (8/8, every cross/within ratio < XREG_RATIO 0.6):**
+
+| variant | base->it (cross/within=ratio) | it->base |
+|---|---|---|
+| cross_donor_projn       | 0.422/0.963 = **0.44** | 0.229/0.703 = **0.33** |
+| cross_host_projn (scale-fix) | 0.466/0.963 = **0.48** | 0.084/0.703 = **0.12** |
+| matched_item_donor_projn | 0.447/1.058 = **0.42** | 0.250/0.755 = **0.33** |
+| matched_item_host_projn (scale+item-fix) | 0.498/1.058 = **0.47** | 0.093/0.755 = **0.12** |
+
+- **The two triage cruxes are RULED OUT by running** (H2): the **host-proj_n** (scale-corrected) target did
+  NOT rescue sharing (base->it 0.44->0.48 barely moved; it->base 0.33->0.12 *dropped*), and the
+  **matched-item** (shared n=48 both-cave intersection, identical items for both directions) gives the same
+  picture. So REGIME_SPECIFIC is **not a proj_n residual-scale artifact and not an item-set artifact** --
+  the base and -it cave-directions genuinely differ.
+- **Partial overlap + asymmetry:** cross necessity 0.42-0.50 (base->it) sits well above the random (~0) and
+  label-permuted (~0.13) floors -> the directions are not orthogonal, but substantially regime-specific.
+  base's direction partially mediates in -it (~0.47) while -it's barely mediates in base (~0.12) -> RLHF
+  **specializes** the base cave-direction into one base cannot reproduce.
+- Residual caveat (flagged, not blocking): the headline is L36 (one block from unembed; the C1-claim-1
+  `readout artifact` crux). But the cross/within RATIO largely cancels readout geometry, and mid-layers
+  L28/L32 show the same within-necessity structure -> the regime-specific verdict is not a pure readout
+  effect. A direct-vs-indirect L36 split (queued) would close it fully.
+
+**FINAL headline (this session, hardened):** 9b misconception caving is a **real, held-out residual
+cave-direction that RLHF RESHAPES** -- regime-specific (de-confounded against scale + item-set), asymmetric
+(RLHF specializes it), and ⊥ the (non-causal) margin axis. This **reverses** the prior arc's "RLHF-neutral /
+caving is base-intrinsic / RLHF installs no caving mechanism": RLHF *does* act on 9b caving -- not as an
+attention head/head-set (retracted) nor a single neuron (null), but by **reshaping a distributed residual
+direction**. The behavioral analog holds at 2b (it>>base caving). The natural next instrument is the
+attribution graph of this reshaped direction (SAE-decomp -> circuit), per the colleague's question.
