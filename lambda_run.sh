@@ -56,6 +56,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/substrate_margin_grid.py sycophancy_items.json \
   controls/confidence_direction_causal.py controls/cave_direction_sae_decomp.py \
   controls/confidence_caving_gate.py controls/cave_direction_dla.py controls/cave_direction_dla_robust.py \
+  controls/cave_direction_overlay.py controls/mlp_stream_caving_patch.py \
   remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
 
 echo "[run] $RUNNER (hard cap ${REMOTE_TIMEOUT}s)"

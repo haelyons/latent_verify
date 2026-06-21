@@ -1354,6 +1354,86 @@ Readout sweep L{28,32,36,40}, magnitude-residualized ranking, item-bootstrap CI:
   mechanistic frame: not "which head/neuron/MLP," but "a distributed MLP-stream rewrite of a base-present
   direction." This is the third self-correction this session where a "localized" reading de-confounded to
   distributed (head-set, SAE-feature, now MLP-band).
+
+#### MECHANISM TESTS (2026-06-21) -- is the cave-direction a mechanism, and do the MLP writes drive caving?
+- **(B) MLP-stream causal closure (`mlp_stream_caving_patch.py`, `results_9b_mlppatch/`) -- NEGATIVE.**
+  DLA showed MLPs WRITE the base->it cave-direction change; does removing those writes CAUSE less caving?
+  Project u_cave OUT of every MLP output (in-distribution, no cross-model substitution), measure cave
+  recovery. **NOT_MLP_DRIVEN / WRITES_BUT_DOES_NOT_DRIVE** both models: it L36 mlp recovery **-0.284**
+  (removing the MLP cave-component DEEPENS the cave), base **+0.137** (< DRIVE_THR 0.20); attn -0.131/0.096,
+  random -0.005/-0.029. **=> the DLA localization was CORRELATIONAL: MLPs write the direction-shift
+  geometrically, but their writes do NOT causally drive caving.** The full-residual u_cave ablation is still
+  necessary (0.96), but that causal power is NOT carried by the MLP-stream's contribution (it lives in
+  attention + earlier residual + direct path). "What RLHF changes geometrically (MLP writes the direction)"
+  != "what causally produces caving" -- the same latent-vs-realized gap as the 27b OV arc. QUALIFIES (1):
+  "RLHF reshapes via MLP writes" is a WEIGHT/geometry fact, NOT a demonstrated behavioral driver.
+- **(A) overlay/Makelov test (`cave_direction_overlay.py`, `results_9b_overlay/`) -- OVERLAY_LIKE both models
+  (PROVISIONAL, in triage `wf_a4d67013`).** base L36: target_frac **0.164** (only 16% of the L1 output change
+  on {C,W*}), dP(C)=**-0.043** (P(C) DROPS under ablation), dP(W*)=-0.105, offreg_ratio 0.289, random 0.137
+  (cave barely beats random). it L36: target_frac **0.0001**, dP(C)=0.0, dP(W*)=-2e-6 -- **output softmax
+  essentially UNCHANGED** -- despite in-sample cave-necessity at L36 = **1.40**. So ablating u_cave moves the
+  M=logp(C)-logp(W*) metric but does NOT coherently move the realized output toward C.
+
+#### MECHANISM TESTS -- COMBINED READ (PROVISIONAL): the "one positive" is largely an OVERLAY on the M metric
+A (overlay) + B (MLP-causal) together substantially **undercut the cave-direction as a mechanism**:
+- the cave-direction's celebrated necessity (0.45-0.96) is necessity on **M=logp(C)-logp(W*)**; the overlay
+  test shows ablating it does NOT coherently recover C in the actual output (it: output unmoved while M swings
+  1.40; base: W* drops but C also drops, mass spreads, barely beats random) -> **causal-on-the-metric, overlay-
+  on-the-behavior.**
+- B: the MLP writes that geometrically reshape the direction do NOT causally drive caving either.
+- **Methodological alarm it surfaces:** in -it CHAT, C and W* may be TAIL tokens (the realized first answer is
+  neither), so M is a tail-log-ratio that does not track behavior -- a confound on the WHOLE caving-M line (ties
+  to the §6 chat-disengagement / flip-vanishes-in-chat note). The honest provisional read: **the robust object
+  is "a direction that controls the C-vs-W* log-margin," NOT "the caving mechanism."** If the skeptic confirms
+  (and the it dP~0 is not a measurement bug), the sub-arc's positive downgrades to: a real causal handle on a
+  logit-difference metric whose behavioral faithfulness is unestablished -- and the program returns to its
+  honest baseline: caving has NO demonstrated localized OR direction-level *mechanism* at 9b, only metric-level
+  control. Crux to verify by running: re-do the overlay on a faithful behavioral readout (realized-answer
+  probability / generation), and confirm P(C),P(W*) are non-negligible at the slot.
+
+#### OVERLAY CONFIRMED (`latent_skeptic wf_a4d67013`, 7 skeptics) -- the cave-direction is metric-overlay, not mechanism
+4 RULED_OUT + 2 EXPLAINS (both EXPLAINS SUPPORT the claim) + 1 NEEDS_RUN (a base-only refinement):
+- **measurement-artifact: RULED OUT** -- the same proj_edit_hook feeds both the necessity (1.40) and the
+  full-softmax readout, so the edit demonstrably took effect (off-regime L1 0.271 != 0); dP~0 means C/W* hold
+  ~0 realized mass. "Edit-not-applied ruled out; the low-mass clause IS the claim holding."
+- **tail-token: EXPLAINS** (supports) -- C/W* are tail tokens in -it chat; the OVERLAY verdict is on the FULL
+  softmax (target_frac/random), so tail-ness can't make it a false positive, BUT **item SELECTION (M-gap>=0.5)
+  is tail-confounded** -- a methodological hit on the whole caving-M line (ties to §6 chat-disengagement).
+- **base partial-mechanism: RULED OUT** -- dP(C)=-0.043 < 0 (ablation pushes C DOWN), barely beats random
+  (0.164 vs 0.137) -> the W* reduction is incidental broad perturbation, not directed un-caving.
+- residual NEEDS_RUN: paraphrase-aware target_frac for BASE only (does un-caving route to C-synonyms?); -it is
+  settled (output frozen, no rescue possible); base already overlay-robust on dP(C)<0 -> refinement, not load-bearing.
+
+### ARC-LEVEL RECONTEXTUALIZATION (2026-06-21) -- the "one positive" was an overlay on a logit-difference metric
+The Makelov overlay test (pre-registered as SC-D3, never run until now) overturns the program's central
+positive. **The 9b cave-direction is a causal handle on M=logp(C)-logp(W*), but an OVERLAY on the behavior:**
+ablating it moves the metric (necessity 0.45-1.40) without coherently moving the realized output toward C
+(it: softmax frozen; base: C drops, mass spreads, barely beats random). Cascades backward:
+- ALL cave-direction results this arc -- held-out necessity 0.96, regime-specific/RLHF-reshaped (xregime),
+  SAE-distributed, MLP-DLA -- were necessity/structure ON M. They characterize a **metric-overlay direction**,
+  not a verified caving mechanism. "RLHF reshapes the cave-direction" stays true as a geometry fact about that
+  overlay; its behavioral meaning is now unestablished.
+- **Methodological alarm (load-bearing):** M=logp(C)-logp(W*) at the first answer token -- the metric the
+  ENTIRE Arc-2 caving line is built on -- may be behaviorally UNFAITHFUL in -it chat (C/W* are tail tokens; the
+  realized answer is neither). The §6 "flip vanishes in chat" note was an early symptom; this is the mechanism.
+- **What still stands:** the NEGATIVES (no confidence gate; no entropy neuron; no installed head/head-set;
+  gate-don't-delete 2b-specific) -- those don't depend on the cave-direction's mechanism status. And the WEIGHT
+  facts (RLHF rescales 27b OV gain; 2b QK input-mediated; the cave-direction geometry is RLHF-reshaped).
+- **Honest standing:** the program has NO demonstrated behavioral *mechanism* for caving at 9b -- only a
+  metric-overlay direction -- and its core caving metric needs re-validation on a faithful readout. This is the
+  fourth and deepest "positive -> distributed/overlay" correction of the session; the Makelov test is what the
+  diffuse-NULL streak had been missing.
+
+### RE-FOUNDATION (pre-registered next; scope decision for the human)
+The fix is to re-validate caving on a FAITHFUL behavioral readout before any further mechanism work:
+- **F1 -- faithful caving metric:** define caving on the realized answer (generated/argmax answer is C vs W*,
+  or P over a C-answer first-token SET incl. paraphrases), not the bare logp(C)-logp(W*) on possibly-tail tokens.
+  Re-count flips and re-select items on it. (Cheap-ish; needs an answer-set or short generation + grading.)
+- **F2 -- re-test the cave-direction necessity + overlay on F1.** If a direction is necessary AND targeted on
+  the faithful metric -> a real mechanism survives; if not -> caving at 9b-it (in this single-token chat regime)
+  may be a metric artifact, and the deployable phenomenon is the BASE Q/A caving (where C/W* carry real mass).
+- **F3 (paraphrase de-confound):** the one open base refinement, folds into F1.
+This re-foundation re-does the arc's substrate -> a scope call worth surfacing rather than auto-spawning.
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
   heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did
