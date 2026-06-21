@@ -1666,6 +1666,11 @@ Limits (not a proof): n=13/7 no CI; reader-end path-patch-confirmed, writer-end 
 closure on M failed); base slice only (-it chat = metric ghost). "Directions aren't mechanistic" stands -- we have
 a hardened causal direction and a DISTRIBUTED (non-localizable) account of its fan-in/out: the mechanistic
 CONCLUSION is a negative on "clean circuit," not a graph. (B)/(C) would only re-confirm distributed.
+**CONFIRMED cross-basis (2026-06-21):** the founding-method attribution graph (circuit-tracer + GemmaScope-2b
+transcoders, NODE/feature basis, on 2b) returns BROAD_DISTRIBUTED -- completeness 0.93, top-15 influence 0.17,
+random-feature ablation ~= top-feature ablation -- agreeing with the direction-basis verdict across a different
+method AND a different scale. The distributed account survived its strongest orthogonal test (see ATTRIBUTION-GRAPH
+RESULT below).
 
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
@@ -1674,3 +1679,50 @@ Flagged worthwhile (not yet run):
 - **(4) method debt:** raw capitulation (pre-post) is headroom-confounded; re-express the load-bearing prior
   caving magnitudes (§11, R-4, dose-response, 2b cavecheck) as FLIP-RATE and spot-check whether any prior
   conclusion moves. Cheap (recompute from committed per-item states where available).
+
+### ATTRIBUTION-GRAPH BUILD (pre-registration, 2026-06-21) -- `controls/cave_attribution_graph.py`, `results_2b_attrgraph/`
+The founding-method test, in the **NODE/feature basis** -- the opposite of every prior control (which were
+direction-basis). Directly answers the human's "directional metrics don't tell us graph importance; investigate
+the mechanism VIA the graph." Builds a circuit-tracer + GemmaScope-2b-transcoder attribution graph on
+**gemma-2-2b base (Q/A)** -- the fully-tooled route (circuit-tracer ships 2b transcoders out of the box).
+- **Target:** ONE faithful argmax-W* caving instance (selected layer-independently: PUSH/NEUTRAL, cave gate
+  M_drop >= MIN_EFFECT_NET, COUNTER argmax == W*-first-tok), realized caving logit-diff `logit[W*] - logit[C]`
+  at the answer slot. NODES = transcoder features + error/residual + tokens + logits; EDGES = direct attributions.
+- **Procedure:** build graph -> per-node influence on target -> prune -> split feature vs error/residual influence
+  (completeness) -> top-k-vs-matched-random feature clamp-off ablation (causal validation).
+- **Neutral decision** (TOPK=15, SPARSE_FRAC=0.5, COMPLETE_TOL=0.5, ABLATE_THR=0.2): INCOMPLETE iff completeness
+  < 0.5 (transcoder error nodes dominate -> transcoders don't reconstruct caving; a TOOLING limit, not a mechanism
+  claim); else SPARSE_CIRCUIT iff top-15 carry >= 0.5 of node influence AND their clamp drops the metric >= 0.2
+  while matched-random does not; else BROAD_DISTRIBUTED.
+- **Pre-registered prediction:** the direction-basis verdict is DISTRIBUTED (diffuse fan-in + fan-out on 9b), so
+  prior = **BROAD_DISTRIBUTED** here too. A **SPARSE_CIRCUIT** result would be a genuine surprise that reopens the
+  circuit question -- it is the outcome that could overturn the verdict, which is why the feature basis is worth
+  running. Caveats that blunt the inference either way: (i) 2b != 9b (the verdict was hardened on 9b; 2b may not
+  cave faithfully -> NO_FAITHFUL_INSTANCE means the faithful target is scale-gated, fall back to wiring 9b
+  transcoders); (ii) GemmaScope-2b transcoder reconstruction error -> INCOMPLETE bounds what the graph can claim;
+  (iii) circuit-tracer/transcoder availability on the box -> TOOLING_UNAVAILABLE (control exits 0, records `tried`).
+- **Status:** DONE (a100 40GB, `results_2b_attrgraph/`, ~$6 over 5 boxes incl. 3 OOM/API-iteration runs).
+
+### ATTRIBUTION-GRAPH RESULT (2026-06-21) -- `BROAD_DISTRIBUTED`; the founding method, NODE basis, CONFIRMS distributed
+The first attribution graph actually built in this program (circuit-tracer + `mwhanna/gemma-scope-transcoders`,
+the colleague's repeated ask). gemma-2-2b base, faithful instance = "Does lightning never strike the same place
+twice?" (argmax-W* under pushback, m_drop +1.375, target logit-diff W*-C = +0.125). Graph: N=54777 nodes
+(53336 transcoder features + 26x53 error + 53 token + 10 logit), confirmed by the node-layout arithmetic.
+Influence = row-normalized geometric-path influence on the W*-C logit-diff (acyclic graph -> series converges).
+- **completeness 0.927** -- the transcoder FEATURES (not error/residual nodes) carry 93% of the influence on the
+  caving logit-diff. The graph is FAITHFUL: GemmaScope-2b reconstructs the caving computation, NOT error-dominated.
+  Rules out the INCOMPLETE/tooling-artifact escape -- the distributed read is real, not a transcoder failure.
+- **top-15 influence frac 0.166** -- of 53336 active features the top 15 carry only 16.6%; each top feature ~2%.
+  Top nodes span L16,18,19,21,23,25 (all at the answer slot pos 52) -- NO dominant feature, NO localized band.
+- **ablation (causal): top-15 clamp -> -80% (0.125->0.025); matched-RANDOM 15 -> -64% (0.125->0.045).** Random
+  features are nearly as destructive as the top set -> NON-SPECIFIC. No privileged small feature set carries the
+  cave. (Decisive distributed signature; `feature_intervention(inputs, interventions, ...)` worked, full causal
+  decision -- not the geometry-only fallback.)
+- **CONVERGENCE (the headline):** an INDEPENDENT method (feature/node basis, circuit-tracer + transcoders) on a
+  DIFFERENT model (2b) reaches the SAME verdict as the direction basis hardened on 9b: **caving is a distributed
+  computation, not a localizable sparse circuit.** The pre-registered SPARSE_CIRCUIT -- the one outcome that could
+  have overturned the verdict -- did NOT occur. The distributed account survived its strongest, most orthogonal test.
+- **Limits (honest):** n=1 graph (one faithful instance, one prompt); base metric is small (0.125) so absolute
+  ablation drops are noisy -- but the RELATIVE top~=random comparison (the distributed signature) is robust to that.
+  2b-graph vs 9b-direction (cross-scale agreement is a strength, but they are different models). Single transcoder
+  set. This is confirmation of "distributed," not a new mechanism.
