@@ -1434,6 +1434,43 @@ The fix is to re-validate caving on a FAITHFUL behavioral readout before any fur
   may be a metric artifact, and the deployable phenomenon is the BASE Q/A caving (where C/W* carry real mass).
 - **F3 (paraphrase de-confound):** the one open base refinement, folds into F1.
 This re-foundation re-does the arc's substrate -> a scope call worth surfacing rather than auto-spawning.
+
+### COLLEAGUE THREAD (2026-06-21) -- attention-copy-of-W* on caving: tested faithfully -> OVERLAY (refuted at 9b)
+Colleague asked: the Arc-1 attention-copy primitive (copy the offered token) -- since the pushback prompt
+contains the asserted wrong answer W*, isn't "copy W*" the caving mechanism, and was it tested on caving?
+- **It WAS tested** (it's the `necessity`/`control_necessity` + SC-B in `job_truthful_flip`: all-heads knockout
+  of attention TO the W* span). On the M=logp(C)-logp(W*) metric: 2b-it necessity 0.83 (control -0.15, clean);
+  **9b-it 0.59 but control 0.305 (weak specificity); 9b-base ~0.02 (absent)**; per-head DIFFUSE at all scales.
+- **Faithful re-test (`controls/faithful_copy_wstar.py`, `results_9b_faithcopy/`): M_ONLY (overlay) both models.**
+  Knocking attn-to-W* moves M (necessity 0.44) but does NOT reduce the realized P(W*) and NEVER moves the argmax
+  off W* (base dP(W*)=+0.026 rose / argmax_off 0; it dP(W*)~1e-5 / argmax_off 0). **base_P(W*)=0.15 (real mass)
+  yet still M_ONLY -> not only a tail-token issue**; and **it base_P(W*)=3e-6 -> W* is a deep-tail token the chat
+  model never emits** (the entire -it M-caving is a tail log-ratio). Controls match/exceed W* (base neutral 0.375;
+  it c_answer 0.607) -> non-specific too.
+- **=> the attention-copy-of-W* mechanism is an OVERLAY at 9b, not a behavioral driver** -- same verdict as the
+  cave-direction. The lead that bridged Arc-1->caving does not survive a faithful readout at 9b. (2b-it's clean
+  M-necessity 0.83/control -0.15 is the lone possible exception -- 2b salience regime; a 2b faithful re-test
+  would settle whether ANY scale has a real behavioral copy mechanism.)
+- Reinforces the arc recontextualization: at 9b, every caving mechanism measured on M (direction, head-set,
+  copy-of-W*) is metric-overlay; the realized output does not move; -it metrics sit on tail tokens. The
+  behaviorally-real caving is BASE (W* carries ~0.15 mass), but no tested attention/direction mechanism moves it.
+
+### 27b CAVING -- the gap filled (`job_truthful_flip --sweep-cap 0`, driver output; JSON fetch lost, see note)
+Caving (TruthfulQA misconceptions) had never been run at 27b. Now run (H100 @ us-south-2):
+- **27b-it (chat): CAVES** -- n_kept 73, **flipped 17**, capitulation **+0.88**, doubt_softening 1.63, caves-via-copy
+  TRUE; all-heads attn->W* necessity (M) **0.736**, control **0.224** (net ~0.51). Same pattern as 9b-it (caves;
+  copy-necessity present but with a dirty control).
+- **27b-base (qa): RESISTS** -- flipped 12 but capitulation **-0.94** (negative), attn->W* necessity **-0.38**,
+  caves-via-copy FALSE, corrected 36. Mirrors 9b-base (base resists/corrects pushback).
+- **=> caving is present from 2b->9b->27b in the -it models** (it caves, base resists), confirming it is not
+  scale-specific. BUT the 27b necessity is on the M=logp(C)-logp(W*) metric, and given the 9b faithful re-test
+  came back M_ONLY (W* a tail token in chat), the 27b-it 0.74 is almost certainly the same metric-overlay --
+  a faithful re-test (realized P(W*)/argmax) at 27b is owed before treating it as behavioral.
+- **Process notes:** (1) added a backward-compatible `--sweep-cap` flag to `job_truthful_flip` so 27b skips the
+  1472-head per-head sweep (kept the primary flips + all-heads necessity). (2) The JSON fetch was lost to a
+  self-inflicted bug -- editing `lambda_run.sh` (scp list) WHILE the 27b run was reading it corrupted its tail
+  (line-70 syntax error); the on-box run completed and the box self-terminated (no orphan), and the numbers are
+  from the driver log. Lesson: never edit a live runner mid-run.
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
   heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did

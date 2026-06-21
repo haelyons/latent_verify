@@ -114,7 +114,7 @@ def load_items(use_tqa, items_path):
 
 
 # --------------------------------------------------------------- real run
-def run(name, tag, is_chat, items):
+def run(name, tag, is_chat, items, sweep_cap=SWEEP_CAP):
     import torch
     from transformer_lens import HookedTransformer
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -216,11 +216,11 @@ def run(name, tag, is_chat, items):
     # ---- SC-B concentration: per-head W*-knockout sweep on the caving/flipping items ----
     sweepable = sorted([r for r in kept if (r.get("post_counter", 9) < 0 or abs(r.get("cap_counter", 0)) > MIN_EFFECT)
                         and r.get("necessity") is not None], key=lambda r: -abs(r["cap_counter"]))
-    swept = sweepable[:SWEEP_CAP]
+    swept = sweepable[:sweep_cap]
     sc_b = None
     if swept:
         print(f"[sweep] per-head W*-knockout over {nL*nH} heads on {len(swept)}/{len(sweepable)} caving items "
-              f"(cap {SWEEP_CAP})", flush=True)
+              f"(cap {sweep_cap})", flush=True)
         head_nec = {}
         for r in swept:
             q, C, W = r["q"], r["correct"], r["Wstar"]
@@ -309,8 +309,10 @@ if __name__ == "__main__":
     ap.add_argument("--truthfulqa", action="store_true", help="load TruthfulQA (generation) via datasets")
     ap.add_argument("--items", default=None, help="custom items json [{q,correct,wrong:[...]}]")
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--sweep-cap", type=int, default=SWEEP_CAP,
+                    help="cap per-head knockout sweep to top-N caving items; 0 skips the sweep (e.g. 27b, where 1472 heads x items is too slow). Primary flips + all-heads attn->W* necessity + control are unaffected.")
     a = ap.parse_args()
     if a.selftest:
         _selftest()
     else:
-        run(a.name, a.tag, a.chat, load_items(a.truthfulqa, a.items))
+        run(a.name, a.tag, a.chat, load_items(a.truthfulqa, a.items), a.sweep_cap)
