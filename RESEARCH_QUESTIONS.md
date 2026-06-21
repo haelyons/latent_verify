@@ -1603,6 +1603,33 @@ cave is rank-1 and specific, even though the full counter-neutral residual shift
   mechanism. Substrate (faithful base Q/A vs tail -it chat), not scale, decided everything.
 - **Next (c, not yet run):** re-localize WHAT WRITES u_cave on the faithful base readout (path-patch / DLA to
   the cave-direction's input, base) -- now well-motivated, since u_cave is a verified mechanism, not an overlay.
+
+#### CORRECTION (2026-06-21) -- "mechanism" was an over-read; u_cave is a causal DIRECTION, the circuit is OPEN
+Per review: a DIRECTION is not a mechanism. The hardened result is that u_cave is a **causal, faithful, specific,
+rank-1 LOCALIZATION** (a handle) -- NOT a circuit. A mechanism requires the circuit: WRITERS (what computes u_cave)
+-> u_cave -> READERS (what consumes it to flip the answer) -> logit. We have the middle, not the ends. Every reach
+for the ends came back distributed/null: writers (DLA geometric = distributed MLP; causal MLP-patch FAILED on M);
+feature content (SAE-decomp = distributed, recon 0.37 -- not even a clean feature); readers = UNTESTED. So replace
+"caving HAS a clean mechanism" with: **caving has a hardened causal rank-1 direction at base; the circuit is open
+and may be distributed (no localizable circuit).**
+
+#### FAITHFUL CONFIDENCE-GATE (`results_9b_confgatefaithful/`, sibling-agent) -- NO_GATE confirmed on the realized readout
+The earlier NO_GATE was on M; this re-runs it faithfully. base: STEER=INDEPENDENT_REALIZED -- steering u_conf UP
+on argmax-W* caving items does NOT change the realized answer (frac_neutral 0.0, 6/7 stay W*, dP(W*) -0.004, KL
+unchanged 1.06 vs 1.06). cos(u_cave,u_conf)=0.158, bootstrap CI [0.065,0.267] -> AXIS_ORTHOGONAL. -it INSUFFICIENT
+(0 argmax-W*). => confidence does not gate caving, now confirmed on the realized argmax (not just M); cave perpendicular
+to confidence with a CI. (Still direction-level -- a faithful NEGATIVE, not progress toward a circuit.)
+
+#### TOWARD A CIRCUIT (2026-06-21) -- reader-side path-patch RUNNING
+Are we getting to a mechanism/graph account? Not via more direction-steering. The decisive move = path-patch the
+READER side (which downstream components carry u_cave's restoration to the logits) on the faithful base readout.
+`controls/cave_reader_pathpatch.py` (RUNNING, `results_9b_readerpp/`): per held-out argmax-W* item, the u_cave-removal
+delta at L; measure DIRECT-path restoration (delta -> logits, downstream frozen) vs per-downstream-component
+path-patch effect(R). DIRECT_WRITE (delta acts on logits directly -> u_cave ~ a write-direction, minimal reader
+circuit) / LOCALIZED_READERS (top-5 carry >=50% + jointly reconstruct -> a circuit edge u_cave->{R}) /
+DISTRIBUTED_READERS (spread -> no clean reader). This is the one end never tested; its outcome alone = "circuit" or
+"distributed". (B writer-path-patch + (C) feature attribution-graph gated on it.
+
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
   heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did
