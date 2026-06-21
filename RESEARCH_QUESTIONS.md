@@ -1471,6 +1471,70 @@ Caving (TruthfulQA misconceptions) had never been run at 27b. Now run (H100 @ us
   self-inflicted bug -- editing `lambda_run.sh` (scp list) WHILE the 27b run was reading it corrupted its tail
   (line-70 syntax error); the on-box run completed and the box self-terminated (no orphan), and the numbers are
   from the driver log. Lesson: never edit a live runner mid-run.
+
+### STEP 1 (decisive) -- 2b faithful copy: the lone clean-on-M case is ALSO an overlay (`results_2b_faithcopy/`)
+The one crack of light was 2b-it's CLEAN M-necessity (0.83, control -0.15). Faithful re-test at 2b:
+- **2b-base: M_ONLY** -- M-necessity reproduces clean (0.836) but realized P(W*) does NOT drop (dP=+0.093,
+  it ROSE), argmax never moves; base_P(W*)=0.098 (W* carries real mass, NOT tail) -> the copy knockout still
+  fails to move the realized output. **2b-it: ABSENT** (n_cave 4, W* tail, necessity -0.37).
+- **=> there is NO behavior-faithful attention-copy mechanism at ANY scale (2b/9b/27b).** The 2b "clean on M"
+  was clean on the SPECIFICITY control but still an overlay on behavior -- "clean specificity on M" != "faithful
+  mechanism". This closes the copy-of-W* lead: metric-overlay everywhere.
+
+### CONSOLIDATED (post-Step-1): no behavioral caving mechanism found at any scale
+Every candidate, faithfully tested, is a metric-overlay or null: cave-direction (overlay, 9b), copy-of-W*
+(overlay 2b/9b, absent 2b-it), MLP-writes (don't drive), confidence gate (NO_GATE), head/head-set/neuron (null).
+The caving BEHAVIOR is real and scales (2b/9b/27b -it cave, base resists) but **no localizable single-token
+mechanism moves the realized output at any scale.** Through-line: the whole arc measured M=logp(C)-logp(W*),
+a proxy that does not track the realized answer (tail tokens in chat). STEP 0+2 (`faithful_caving`, RUNNING)
+quantifies the M-vs-realized flip gap (F1) and whether u_cave moves the realized answer (F2) -- the foundation
+that should have come first. Then STEP 3 = the strategic fork (salvage on a faithful metric / bank the negative /
+scope-pivot to multi-token) -- a human call.
+
+### STEP 0+2 RESULT (`results_9b_faithcaving/`) -- SUBSTRATE SPLITS IT: base = real mechanism, -it = tail artifact (PROVISIONAL, in triage `wf_336d9a54`)
+The faithful metric flips the picture by SUBSTRATE -- and partially REVERSES "overlay everywhere":
+- **base (Q/A): caving is BEHAVIORALLY REAL + the cave-direction is a FAITHFUL MECHANISM.** F1 METRIC_FAITHFUL
+  (23/23 M-flips realized, median realized P(W*)=**0.20**, 0/23 tail). F2: on the **12 items whose counter
+  argmax is actually W*** (the model would really say the wrong answer), ablating u_cave returns the **argmax
+  to C on 75%** (random 0%, m_necessity 0.478). So at base the cave-direction CONTROLS the emitted answer --
+  the program's first behavior-faithful mechanism.
+- **-it (chat): TAIL ARTIFACT.** All 16 M-flip items have realized P(W*) below the 1e-4 floor; the argmax is
+  frozen at a template token (2045) under both neutral and counter. The model NEVER actually emits W* -- the
+  -it "caving" is purely a logp(C)-logp(W*) tail-ratio. (F2 labels it FAITHFUL via the relative-P(W*)-drop
+  channel, but that is meaningless on tail probabilities -- the argmax channel is dead.)
+- **Reconciliation with the overlay test (the conflict, in triage):** cave_direction_overlay called BASE
+  OVERLAY (target_frac 0.164, dP(C)=-0.043). The likely resolution: target_frac measures MASS-CONCENTRATION
+  (low when the QA answer distribution is spread) while realized_restore_frac measures the ARGMAX DECISION
+  (W*->C) -- the latter is the behaviorally-right criterion for "does the model's answer change." So the
+  overlay test under-called base by using a mass-concentration metric; the argmax flip is real. **But two of
+  our own controls disagree on base, so this is PROVISIONAL pending `wf_336d9a54` (+ the small n=12).**
+- **If it holds:** the whole arc reconciles cleanly -- **the cave-direction is a real mechanism where the
+  answer is realized (base Q/A) and an overlay where it is not (-it chat, tail tokens). Substrate, not scale,
+  determines faithfulness.** The "overlay everywhere" gloom was an artifact of (a) the -it tail regime and
+  (b) the overlay test's mass-concentration metric. This would RESTORE a positive -- a behaviorally-faithful,
+  causal, base-substrate caving direction -- and sharpen STEP 3 toward "salvage on the base Q/A substrate."
+
+#### SKEPTIC HARDENING (`wf_336d9a54`, 7 skeptics) -- the base result is REAL but the strong form was an OVER-READ
+4 RULED_OUT + 1 EXPLAINS (corrects me) + 1 NEEDS_RUN. The skeptic read the code and reconciled the conflict:
+- **CORRECTION (EXPLAINS):** `realized_restore_frac` counts `argmax==C OR P(C)>P(W*)` -- a relative-ordering
+  tie-break, NOT literal C-recovery. Reconciled with the overlay's dP(C)=-0.043: ablating u_cave **diffusely
+  deflates realized W* (rel-drop 0.49) WITHOUT pushing mass onto C** (P(C) actually drops); C "wins" the
+  C-vs-W* ordering only because W* falls faster. So my "controls the answer TOWARD C / restores argmax to C"
+  was an **over-read** that dP(C)<0 refutes. The two controls are mutually consistent.
+- **What SURVIVES, hardened (RULED_OUT):** (1) base caving is **behaviorally real** -- W* carries 0.20 mass,
+  argmaxes vary (590/1307/6287/1646), NOT the -it tail freeze. (2) The cave-direction ablation is a **real,
+  specific, held-out, downstream** effect that **SUPPRESSES realized W*** (rel-drop 0.49 vs random 0.0007;
+  ordering flip 9/12 vs random 0/12). Circularity/Makelov RULED_OUT (the realized argmax channel is not the
+  fit channel; matched-random restores 0/12). NOT a pure overlay.
+- **CORRECTED CLAIM:** at base Q/A, ablating the cave-direction **specifically removes the wrong-answer pull
+  (deflates realized W*) but does NOT install the correct answer C** -- a "suppress-W*, not install-C" PARTIAL
+  mechanism. Real and behaviorally-relevant (unlike the -it tail overlay), but weaker than "controls the answer."
+- **One cheap NEEDS_RUN:** on the 12 argmax-W* items, report dP(C) + the fraction whose ablated argmax is
+  literally C (vs a third token) -- settles "suppress W* vs install C" definitively.
+- **Net (substrate split, hardened):** -it chat caving = tail artifact (W* never emitted, metric unfaithful);
+  base Q/A caving = behaviorally real, and the cave-direction is a genuine causal **W*-suppressor** (not an
+  overlay, not circular) that does not install C. So "overlay everywhere" was too strong: in the faithful
+  (base) regime the direction has a real, specific behavioral effect -- just a partial one (anti-W*, not pro-C).
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
   heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did
