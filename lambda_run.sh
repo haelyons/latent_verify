@@ -60,7 +60,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/faithful_caving.py controls/cave_suppress_vs_install.py controls/cave_carrier_deconfound.py \
   controls/confidence_caving_gate_faithful.py controls/cave_reader_pathpatch.py \
   controls/cave_attribution_graph.py controls/cave_copy_confidence_conditional.py \
-  controls/cave_doubt_cue_attention.py \
+  controls/cave_doubt_cue_attention.py controls/cave_headset_specificity.py \
   remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
 
 echo "[run] $RUNNER (hard cap ${REMOTE_TIMEOUT}s)"

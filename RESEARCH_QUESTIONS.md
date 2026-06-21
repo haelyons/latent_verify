@@ -1814,3 +1814,43 @@ lead and the 9b doubt-head lead.
 no copy, no confidence gate. The two NEW leads are both at the place we have the least faithful data (the RLHF -it
 model / the input cue) and both share one un-run de-confound (span-specificity). The next step that earns its keep
 is the specificity control, plus a faithful -it readout to power the RLHF side. Cost so far this sub-thread ~$3.
+
+### HEAD-SET SPECIFICITY (2026-06-21) -- the DOUBT cue, not the copy, is the caving driver. First CLEAN mechanism.
+`controls/cave_headset_specificity.py`, `results_{9b_hsspec_doubt,2b_hsspec_copy}/`. The de-confound DISCRIMINATED:
+size-sweep (concentrated vs set-distributed) + matched-random-K (head-specificity) + content-swap (doubt mode:
+swap the challenge framing for a length-matched neutral phrase, keep the W* assertion -- behavioral, NO knockout
+artifact). Big pool (TruthfulQA), faithful realized readout.
+
+**DOUBT cue @ 9b -- CLEAN POSITIVE at base (the program's first):**
+- **base (n=27, POWERED): CONCENTRATED_SET + head-specific + CONTENT_SPECIFIC.** restore by K=1/3/5/10/20 =
+  0.04/0.25/**0.59**/0.60/0.63 -> a **~5-head SET** carries it (not 1 head, not 20). **matched-random-5 = 0.03**
+  (<< top-5 0.59) -> the heads are SPECIFIC, not the near-total-ablation artifact. **Content swap: caving
+  1.0 -> 0.15** when the doubt/challenge framing is removed (W* assertion kept) -> the DOUBT CONTENT is causal,
+  cleanly (no knockout). Top heads: L25.H15, L2.H13, L26.H7, L12.H2, L23.H5 (spread early/mid/late; NOT the
+  Genadi L10-15 band per se).
+- **it (n=5): CONCENTRATED + CONTENT_SPECIFIC but NOT head-specific** (random-5 0.81 ~= top 0.80). Content swap
+  1.0 -> 0.6 (weaker than base). So the doubt-CONTENT causality survives at -it; the head-LOCALIZATION is a base
+  phenomenon (RLHF broadens the reading, or n=5 noise).
+
+**COPY (W*) @ 2b -- NOT the driver, confirming the long arc:**
+- **base (n=33, POWERED): NO_RESTORE.** restore by K = 0.01/0.01/0.02/0.01/0.12 (all < 0.2 even at 20 heads).
+- **it (n=7): CONCENTRATED (K=1=0.57) BUT random-5 = 0.49 ~= top -> NON-head-specific.** Copy-reading of W* is a
+  real causal *ingredient* at -it (faithful, behavioral -- vindicates the head-ablation evidence; NOT a Makelov
+  artifact) but DISTRIBUTED across heads, not a discrete element. (copy mode had no content-swap -- W* can't be
+  swapped; the high random floor is the non-specificity signal.)
+
+**THE SYNTHESIS (answers the arc).** Caving is driven by READING THE USER'S DOUBT/CHALLENGE, not by copying the
+asserted wrong answer. The doubt-cue reading is content-causal at both substrates (swap collapses caving) and, at
+9b base, is carried by a concentrated, head-SPECIFIC ~5-head set -- the first clean circuit-element-grade object
+in the program. Attention-copy-of-W* is capacity-not-use at base (NO_RESTORE) and a distributed ingredient at -it.
+Reconciles with the distributed verdict as a TWO-STAGE picture: **concentrated doubt-DETECTION (input head set)
+-> distributed deference COMPUTATION (the cave-direction / attribution graph downstream) -> caved output.** The
+graph/direction work characterized the distributed downstream; this characterizes the concentrated input. The
+methodological lesson banked: the copy "mechanism" was capacity (F2: can-copy != does-copy); the doubt cue is use.
+
+**Limits (honest).** -it n=5/7 (underpowered; base n=27/33 fine). The content-swap is ONE swap phrase (add
+variants to harden). it head-specificity fails (random~=top) -- localization is base-only. The copy mode lacked a
+span-control (W* vs control span) -- the high random floor leans non-specific but doesn't fully separate
+"distributed W*-reading causal" from "removing attention to any salient span destabilizes." Next: (a) copy
+span-control to close that; (b) more content-swap variants + power the -it doubt side (n>=16); (c) DLA of the
+doubt-head set's output -> does it write the cave-direction (input head set -> distributed writer, the two-stage link).
