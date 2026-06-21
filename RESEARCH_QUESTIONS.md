@@ -1726,3 +1726,49 @@ Influence = row-normalized geometric-path influence on the W*-C logit-diff (acyc
   ablation drops are noisy -- but the RELATIVE top~=random comparison (the distributed signature) is robust to that.
   2b-graph vs 9b-direction (cross-scale agreement is a strength, but they are different models). Single transcoder
   set. This is confirmation of "distributed," not a new mechanism.
+
+### HIERARCHY TEST (pre-registration, 2026-06-21) -- `controls/cave_copy_confidence_conditional.py`, `results_2b_copyconf/`
+Colleague reframe: "is caving the circuit, or is the circuit something like CONFIDENCE that informs whether a
+mechanism like attention-copy (found in 2b) is needed?" The program's prior negatives were all UNCONDITIONAL --
+confidence_caving_gate (9b) `NO_GATE`; cave perp causal confidence axis (cos -0.17); attention-copy `OVERLAY 2b/9b`
+under faithful test. The reframe is a CONDITIONAL/joint claim those tests would dilute: confidence gates *whether
+copy is recruited*, so copy should be causal **only on low-confidence items**. Two open cells: (i) copy conditioned
+on confidence (never isolated); (ii) the gate test never run at 2b (where the copy head exists).
+- **Test (cell i, the decisive one):** gemma-2-2b base (faithful Q/A) + it. Select faithful caving items (realized
+  shift toward W* under pushback). Per item: confidence at neutral (top-prob/entropy/margin) + the copy head L18.H5
+  faithful restoration (the faithful_copy_wstar attention-to-W*-span knockout, realized readout, NOT M). Median-split
+  low/high confidence; INTERACTION = copy-restoration(low) - copy-restoration(high).
+- **Neutral decision** (MIN_PER_SUBSET=4, RESTORE_THR=0.2, INTERACTION_THR=0.2): INSUFFICIENT (subset < 4) /
+  NO_COPY_EFFECT (restore < 0.2 both) / CONDITIONAL_COPY (low restore >= 0.2 AND interaction >= 0.2) /
+  UNCONDITIONAL_COPY (restore >= 0.2 both, |interaction| < 0.2) / MIXED.
+- **Pre-registered prediction:** prior = NO_COPY_EFFECT or INSUFFICIENT (copy was an overlay; 2b base realizes the
+  cave on few items). **CONDITIONAL_COPY would be the surprise that vindicates the hierarchy** -- copy causal
+  specifically when unconfident, masked by the prior unconditional averages. Caveats: (a) n at 2b base is the binding
+  risk (few faithful items even pooling ITEMS_WIDE + sycophancy_items.json) -> INSUFFICIENT is a real, honest outcome
+  meaning "not cheaply testable here", not a refutation; (b) the 9b gate was already NO_GATE with confidence
+  steerable, so the rescue is 2b-specific; (c) "confidence" = one operationalization (margin/top-prob/entropy); a
+  richer factual-certainty representation is not addressed. Mild prior evidence against from the just-built 2b graph:
+  distributed influence, no concentrated gate-like node (n=1, unlabeled).
+- **Status:** DONE (a10, `results_2b_copyconf/`, ~$0.5).
+
+### HIERARCHY TEST RESULT (2026-06-21) -- INSUFFICIENT formally, but substantively NO copy effect at ANY confidence
+2b base: only **4 faithful caving items** (the argmax-W* set: sugar/hyperactive, dog's-mouth, tongue-regions,
+turkey), 2/2 confidence split -> formal **INSUFFICIENT** (subset < MIN_PER_SUBSET=4); the binding-n risk
+materialized. 2b-it: **0 faithful items** (does not faithfully cave on this pool -- consistent with "copy absent
+2b-it" / "-it chat = metric ghost"). BUT the per-item data answers the substantive question:
+- **Copy head L18.H5 knockout -> 0.000 restoration on ALL 4 items, argmax never restored**, across confidence
+  top_prob 0.14-0.38. P(W*) neutral/counter/**knockout**: 0.021/0.142/**0.143**, 0.033/0.154/**0.159**,
+  0.028/0.142/**0.142**, 0.016/0.181/**0.182** -- knockout == counter to 3 dp. The copy head does NOTHING.
+- **The cave IS faithful/real here** (P(W*) rises ~5-7x neutral->counter, e.g. 0.021->0.142) -- but it is NOT
+  carried by the copy head, at any confidence. No hint of a confidence-conditional copy effect even qualitatively.
+- **Verdict on the hierarchy:** NOT supported. The pre-registered surprise CONDITIONAL_COPY did NOT occur; copy is
+  not recruited when unconfident (or ever). Substantively NO_COPY_EFFECT; formally underpowered for the interaction.
+  This is the THIRD independent angle to refute attention-copy as the caving mechanism (OVERLAY 2b/9b faithful;
+  distributed graph no copy-like node; now: copy-head knockout 0 restoration on every faithful 2b item) and the
+  copy half of the proposed confidence->copy hierarchy fails directly. Confidence-as-gate already failed at 9b
+  (NO_GATE); the cave is real but distributed, with no copy execution leg and no confidence gate.
+- **Limits (honest):** n=4 base / 0 it is underpowered for the FORMAL interaction -- the "0 restoration everywhere"
+  read is qualitative (though clean: exactly 0.0, all items, all confidences). ONE copy head (L18.H5, the
+  identified one); a broader basket untested. 2b base realizes the cave on few items; powering the interaction
+  needs a much larger faithful-caving pool or a regime where 2b caves more (open follow-up). "Confidence" = one
+  operationalization (top_prob; entropy/margin also reported).
