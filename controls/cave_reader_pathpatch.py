@@ -632,7 +632,7 @@ def _measure_one_direction(model, recs, test, L, u, proj_n, device, nH, nL, comp
     }
 
 
-def _measure_model(name, is_chat, device, pool, fit_layers):
+def _measure_model(name, is_chat, device, pool, fit_layers, force_layer=None):
     """One model end-to-end. Collect realized + M readouts under neutral/counter on the wide pool; restrict to
     the argmax-W* caving items; fit u_cave HELD-OUT (TRAIN fold) at the headline layer; on the TEST fold run
     the direct-path + per-receiver + joint-top-k path patches for u_cave and a matched random direction; build
@@ -674,6 +674,12 @@ def _measure_model(name, is_chat, device, pool, fit_layers):
 
     headline, per_layer_nec = _headline_layer(model, recs, train, fit_layers, device)
     out["in_sample_necessity_by_layer"] = per_layer_nec
+    # --layer override: force a non-argmax MID layer (de-confound for layer-proximity of the DIRECT_WRITE
+    # result -- at a mid layer there are many downstream components that could read u_cave).
+    if force_layer is not None and force_layer in fit_layers and per_layer_nec.get(force_layer) is not None:
+        out["argmax_necessity_layer"] = headline
+        headline = force_layer
+        out["forced_layer"] = force_layer
     out["headline_layer"] = headline
     if headline is None:
         del model
@@ -741,7 +747,7 @@ def _measure_model(name, is_chat, device, pool, fit_layers):
     return out
 
 
-def run(name_base, name_it, tag, device, chat_it, pool):
+def run(name_base, name_it, tag, device, chat_it, pool, force_layer=None):
     # Real run: pin the diff-of-means layer sweep to the reference if importable; fall back to the module
     # constant (same value). --selftest never reaches here, so it stays import-free on CPU.
     try:
@@ -749,8 +755,8 @@ def run(name_base, name_it, tag, device, chat_it, pool):
         fit_layers = list(_FL)
     except Exception:
         fit_layers = list(FIT_LAYERS)
-    res = {"base": _measure_model(name_base, False, device, pool, fit_layers),
-           "it": _measure_model(name_it, bool(chat_it), device, pool, fit_layers)}
+    res = {"base": _measure_model(name_base, False, device, pool, fit_layers, force_layer),
+           "it": _measure_model(name_it, bool(chat_it), device, pool, fit_layers, force_layer)}
     out = {
         "name_base": name_base, "name_it": name_it, "device": device, "tag": tag,
         "cue": "cave_reader_pathpatch", "pool_size": len(pool), "fit_layers": fit_layers,
@@ -1016,12 +1022,15 @@ def main():
     p.add_argument("--device", default="cuda", choices=["cpu", "cuda"])
     p.add_argument("--chat", action="store_true",
                    help="use chat template for the -it model (qa template otherwise)")
+    p.add_argument("--layer", type=int, default=None,
+                   help="force the headline layer (a FIT_LAYERS value, e.g. 28) instead of max-necessity; the "
+                        "layer-proximity de-confound -- run the reader path-patch at a MID layer with downstream depth.")
     args = p.parse_args()
     if args.selftest:
         selftest()
     else:
         from misconception_pool import ITEMS_WIDE
-        run(args.name_base, args.name_it, args.tag, args.device, args.chat, ITEMS_WIDE)
+        run(args.name_base, args.name_it, args.tag, args.device, args.chat, ITEMS_WIDE, args.layer)
 
 
 if __name__ == "__main__":

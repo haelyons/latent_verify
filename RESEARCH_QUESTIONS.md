@@ -1630,6 +1630,43 @@ circuit) / LOCALIZED_READERS (top-5 carry >=50% + jointly reconstruct -> a circu
 DISTRIBUTED_READERS (spread -> no clean reader). This is the one end never tested; its outcome alone = "circuit" or
 "distributed". (B writer-path-patch + (C) feature attribution-graph gated on it.
 
+#### (A) RESULT (`results_9b_readerpp/`) -- DIRECT_WRITE: no reader circuit (PROVISIONAL, triage `wf_e716e1ad`)
+base, n_argmaxW=13, headline L36: **direct_frac=1.0** -- ablating u_cave restores the unpushed answer ENTIRELY via
+the direct residual->final-LN->unembed path (downstream layers 37-41 FROZEN); the indirect/reader effect is ~0
+(conc@5 0.06, moot). Random = NO_RESTORATION. -it INSUFFICIENT (0 argmax-W*).
+- **=> NO reader circuit.** u_cave is not READ by downstream components that then flip the answer; it WRITES the
+  answer logits directly. Shape of the mechanism now: **diffuse fan-in (distributed MLP writers, from DLA) ->
+  rank-1 u_cave at L36 -> direct write to the unembedding.** One rank-1 hop, not a multi-node graph. This is the
+  "distributed / no multi-node circuit" branch in its specific form: a write-to-logit direction.
+- **Load-bearing confound (in triage + the obvious de-confound):** LAYER PROXIMITY -- L36 is 6 of 42 layers from
+  the readout, AND the headline layer was SELECTED as max-necessity (i.e. where the write happens), so DIRECT_WRITE
+  may be the trivial outcome there. The decisive de-confound = redo the reader path-patch at a MID layer (L28),
+  where many downstream layers exist, to test whether u_cave has readers when there is room. Pending that, "no
+  reader circuit" is provisional (it holds AT the write layer; a mid-layer reader stage is untested).
+
+#### (A) de-confound RESULT (`results_9b_readerpp_mid/`, L28+L24) -- DIRECT_WRITE was a PROXIMITY ARTIFACT; readers are DISTRIBUTED
+The layer-proximity crux (skeptic `wf_e716e1ad`) was RIGHT -- running at mid layers FLIPS the L36 read:
+- **L28: DISTRIBUTED_READERS.** Ablating u_cave restores 0.857, but the DIRECT path restores **0.0** (NOT a
+  direct logit-write at a mid layer), AND no single downstream component nor the top-5 carry it (conc@5=0,
+  joint=0) while the FULL downstream stack does -> the effect reaches the logits through MANY downstream
+  components diffusely. No localized reader.
+- **L24: NO_RESTORATION** (full=0) -- u_cave not causal on the realized answer there; causal window ~L28-L36.
+- **L36's DIRECT_WRITE was the artifact**: 6 layers from the readout, no downstream stack left, so the
+  distributed propagation just LOOKS direct. Corrected.
+- **=> reader side RESOLVED (proximity confound addressed): readers are DISTRIBUTED, not a localized circuit.**
+
+### MECHANISM VERDICT (2026-06-21) -- caving is a DISTRIBUTED low-rank computation, NOT a localizable circuit
+Both ends now characterized: **writers distributed** (DLA: MLP-dominated, position-dependent, no localized band);
+**readers distributed** (this de-confound: at a mid layer the effect propagates through the whole downstream
+stack, no localized reader). Best-supported account:
+> **base-Q/A caving is a rank-1, causal, faithful residual cave-DIRECTION (causal window ~L28-L36) with diffuse
+> fan-in AND diffuse fan-out -- a distributed low-rank computation, not a multi-node circuit/graph.** u_cave is a
+> real causal handle; there is NO localizable circuit writing or reading it.
+Limits (not a proof): n=13/7 no CI; reader-end path-patch-confirmed, writer-end from DLA (geometric, causal
+closure on M failed); base slice only (-it chat = metric ghost). "Directions aren't mechanistic" stands -- we have
+a hardened causal direction and a DISTRIBUTED (non-localizable) account of its fan-in/out: the mechanistic
+CONCLUSION is a negative on "clean circuit," not a graph. (B)/(C) would only re-confirm distributed.
+
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
   heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did
