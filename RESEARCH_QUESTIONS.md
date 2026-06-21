@@ -1535,6 +1535,74 @@ The faithful metric flips the picture by SUBSTRATE -- and partially REVERSES "ov
   base Q/A caving = behaviorally real, and the cave-direction is a genuine causal **W*-suppressor** (not an
   overlay, not circular) that does not install C. So "overlay everywhere" was too strong: in the faithful
   (base) regime the direction has a real, specific behavioral effect -- just a partial one (anti-W*, not pro-C).
+
+### STEP 3(a) RESULT (`results_9b_suppinstall/`) -- u_cave IS the pushback's behavioral effect (PROVISIONAL, triage `wf_61a324bb`)
+The "suppress-W*, not install-C" reading was using the wrong target (the labeled-C TOKEN). The right question
+-- where does the emitted answer go? -- gives a clean mechanism:
+- **base: RESTORES_NEUTRAL.** On all **13/13** held-out items whose counter argmax is W* (model would emit the
+  wrong answer), ablating u_cave returns the **argmax to the model's UNPUSHED (neutral) answer** (frac_neutral
+  **1.0**), and the realized distribution snaps back toward neutral (**KL 1.062 -> 0.098**, ~10x). frac_C=0.0
+  LITERAL only because the unpushed answer != the labeled-C token-id (it is the model's own answer, not the
+  dataset C string). dP(W*)=-0.18. **Matched-random rank-1 ablation = NO_EFFECT** (KL unchanged 1.062).
+- **=> u_cave is the SPECIFIC carrier of the counter-pushback's behavioral effect:** remove it (not a random
+  direction) and the model says what it would have said WITHOUT the pushback. Non-trivial: u_cave is RANK-1 but
+  the full counter-neutral residual shift is higher-rank (top-PC ~0.33) -- yet this one direction restores the
+  answer 13/13 while a random rank-1 does nothing. So the behaviorally-relevant part of the cave is rank-1 = u_cave.
+- **-it: INSUFFICIENT** -- 0 items ever have argmax=W* (chat never emits the wrong answer; the -it M-caving is a
+  pure tail artifact). Confirms: caving is behaviorally real ONLY in the faithful (base Q/A) regime.
+- **This is the arc's cleanest positive** -- a real, specific, behavioral, rank-1 caving mechanism at base. It
+  UPGRADES the prior "suppress-W*-not-install-C": the right frame is restore-the-unpushed-answer (1.0), not
+  install-the-labeled-C-token (0.0). Load-bearing crux in triage: **circularity** (u_cave=mean(counter-neutral);
+  is restore-to-neutral trivial? -- defended by the random floor doing nothing, and by u_cave being rank-1 of a
+  higher-rank shift, but the sharper control is an OTHER-rank-1/orthogonalized-PC specificity test) + small n=13
+  + is the unpushed answer actually CORRECT (vs the model's prior). Pending `wf_61a324bb`.
+
+#### STEP 3(a) SKEPTIC (`wf_61a324bb`, 7 skeptics) -- 4 RULED_OUT, 2 NEEDS_RUN (the two sharp cruxes)
+- **RULED_OUT:** small-n (the 7/7 held-out restore is a unanimous PAIRED contrast vs the matched-random floor,
+  p~2^-7, per-item KL3 0.05-0.20 vs KL2 0.93-1.24 -- n can't manufacture it); correctness-scope (claim is
+  "restore the UNPUSHED answer", not the labeled-C token -- frac_neutral=1.0 is exactly that); held-out (test
+  fold n=7 disjoint, the "13" is the qualifying pool); layer-leak (random-at-L36 = NO_EFFECT, so L36 isn't
+  generically high-leverage; u_cave-at-L36 specifically is the carrier).
+- **NEEDS_RUN (now running, `cave_carrier_deconfound.py`, `results_9b_carrierdecon/`):** (1) CIRCULARITY -- the
+  ablation installs the neutral-mean value that "restore-to-neutral" measures; need ZERO/RESAMPLE-ablation
+  (remove the counter component without installing neutral). (2) IN-SHIFT SPECIFICITY -- the isotropic-random
+  floor is near-orthogonal to the shift (trivially does nothing); need an ORTHOGONALIZED in-shift direction
+  (PC2 / GS-removed) to test whether u_cave is special among in-shift directions or just one ~0.33 slice.
+- Decision: **HARDENED_CARRIER iff zero/resample still restore neutral (NOT_CIRCULAR) AND the orthogonalized
+  in-shift direction does NOT restore (SPECIFIC).** If it breaks either way, the capstone downgrades (CIRCULAR
+  = the restore was the install-op; SHARED_BY_SHIFT = u_cave is one slice of a diffuse shift, not THE carrier).
+
+#### STEP 3(b/c) RESULT (`results_9b_carrierdecon/`) -- HARDENED_CARRIER: both cruxes resolved FOR the positive
+base verdict **HARDENED_CARRIER** (NOT_CIRCULAR + SPECIFIC_CARRIER), n_argmaxW=13, L36:
+- A u_cave->neutral-mean: frac_neutral **1.0**, KL 0.098, dP(W*) -0.182 (restores, the original).
+- **B u_cave->0 (zero-abl): frac_neutral 0.29, KL 1.06->0.231, dP(W*) -0.141** -- suppresses W* + moves toward
+  neutral hard, argmax-restores only partially (neutral's own u_cave proj != 0, so zero slightly overshoots).
+- **C u_cave->shuffled-neutral (resample): frac_neutral 1.0, KL 0.096, dP(W*) -0.184** -- RESTORES with a
+  DIFFERENT item's neutral value => **NOT_CIRCULAR** (the restore is not "install THIS item's neutral answer").
+- **D orthogonalized in-shift direction->neutral-mean: frac_neutral 0.0, KL 1.066 (UNCHANGED), dP(W*) +0.005**
+  -- does NOTHING => **SPECIFIC_CARRIER** (u_cave is special, not one ~0.33 slice of the higher-rank shift).
+- E isotropic random: 0.0 / 1.062 (floor). -it: INSUFFICIENT (0 argmax-W*).
+
+=> **HARDENED.** Combined with the 4 RULED_OUT from `wf_61a324bb`, the capstone stands: **at base Q/A a single
+rank-1 cave-direction is the SPECIFIC, NON-CIRCULAR carrier of the counter-pushback's behavioral effect** --
+ablating it (not random, not an in-shift orthogonal direction, and via a resampled-not-installed neutral value)
+returns the model's emitted answer to its unpushed answer (13/13, KL 10x). The behaviorally-relevant part of the
+cave is rank-1 and specific, even though the full counter-neutral residual shift is higher-rank.
+
+### ARC RESOLUTION (2026-06-21) -- caving HAS a clean mechanism, in the faithful regime
+- **-it chat caving = metric ghost** (model never emits W*; argmax frozen; the logp(C)-logp(W*) "caving" is a tail
+  ratio). The whole prior -it arc (cave-direction necessity, head-set, copy-of-W*, confidence) was measured on
+  this unfaithful metric -- explains why every "mechanism" there was an overlay.
+- **base Q/A caving = behaviorally real + has a hardened rank-1 mechanism** -- u_cave carries the pushback's
+  effect; ablate it -> unpushed answer returns. This is the arc's clean positive.
+- **Overlays/nulls (still true):** copy-of-W* (overlay every scale), confidence gate (NO_GATE), single neuron,
+  head-set, single concentrated reader at scale. RLHF reshapes u_cave's GEOMETRY (regime-specific, distributed
+  MLP writes) -- geometry, not a new localized circuit.
+- **Lesson (the spine):** the field-standard caving metric was behaviorally unfaithful in chat; validating the
+  metric against the realized answer FIRST would have saved the arc and is what finally surfaced the real
+  mechanism. Substrate (faithful base Q/A vs tail -it chat), not scale, decided everything.
+- **Next (c, not yet run):** re-localize WHAT WRITES u_cave on the faithful base readout (path-patch / DLA to
+  the cave-direction's input, base) -- now well-motivated, since u_cave is a verified mechanism, not an overlay.
 Flagged worthwhile (not yet run):
 - **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
   heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did
