@@ -1772,3 +1772,45 @@ materialized. 2b-it: **0 faithful items** (does not faithfully cave on this pool
   identified one); a broader basket untested. 2b base realizes the cave on few items; powering the interaction
   needs a much larger faithful-caving pool or a regime where 2b caves more (open follow-up). "Confidence" = one
   operationalization (top_prob; entropy/margin also reported).
+
+### TWO PARALLEL MOVES (2026-06-21) -- powered copy-pool + the doubt cue. Both: suggestive-but-confounded, base/-it split
+Colleague: "proceed with both -- larger pool, and doubt cue, parallel." Ran concurrently on 2 boxes.
+
+**MOVE 1 -- POWERED copy x confidence (`results_2b_copyconf_bigpool/`, `cave_copy_confidence_conditional.py --big-pool`).**
+Fixed the pool (the first big-pool run silently fell back to 66: TruthfulQA needs the namespaced repo id
+`truthfulqa/truthful_qa`, and `sycophancy_items_lowconf.json` was not scp'd). Re-run: TruthfulQA merged (+817 ->
+pool 891). Results SPLIT by substrate:
+- **2b BASE: NO_COPY_EFFECT, POWERED (n_faithful=33; 16 low / 17 high conf).** low_restore 0.011, high_restore
+  0.003, interaction 0.008. The copy head L18.H5 carries ~0 of the faithful cave at ANY confidence. **The
+  confidence->copy hierarchy is refuted at base, now with power** (the prior n=4 INSUFFICIENT is upgraded to a
+  powered null).
+- **2b-IT: INSUFFICIENT (n_faithful=7; 3 low / 4 high) -- but the numbers LEAN the hierarchy's way.** copy
+  knockout restores **0.51-0.67** (vs ~0 at base!), and **low-confidence restores MORE** (0.667 vs 0.508,
+  interaction +0.159, just under INTERACTION_THR=0.20). This **REOPENS attention-copy specifically at the RLHF
+  model** -- contra the prior "copy OVERLAY/absent 2b-it" -- and points the predicted confidence-conditional
+  direction. Underpowered (low subset n=3) and carries the same near-total-knockout specificity confound (below).
+  Note: this -it run used the QA template (not chat), unlike the earlier "ghost" -it chat runs -- a possible
+  reconciliation of the discrepancy that itself needs nailing down.
+
+**MOVE 2 -- DOUBT CUE (`results_9b_doubtcue/`, `cave_doubt_cue_attention.py`).** 9b. Is the cave driven by heads
+attending the user's DOUBT/CHALLENGE span (excluding W*, so dissociated from copy), and is it RLHF-installed?
+- **9b BASE (5 faithful): top doubt-attending-head knockout restores the cave ~0.68** (P(W*) 0.306->0.076) -- a
+  real causal-looking handle. BUT the top heads are spread **L2/L12/L23/L25/H26**, NOT the Genadi L10-15 band, and
+  the **L10-15 band-only knockout restores just ~0.12** -> the Genadi prior is NOT supported; the causal
+  doubt-attention is late/diffuse.
+- **RLHF-deference question UNANSWERED:** 9b-it gave **0 faithful items** (chat-template P(W*) ghost) -> attn_it=0
+  for every head -> the it-minus-base elevation is an ARTIFACT (every head reads as "de-elevated"), and the
+  `DOUBT_PRESENT_NOT_CAUSAL` category label is driven by that artifact, not a real base-vs-it contrast.
+
+**COMMON CONFOUND (both moves) -- the decisive next control.** Both restorations come from zeroing a single
+head's attention to ONE span where that head puts 0.77-0.94 of its mass + renormalizing -- i.e. **near-total
+ablation of that head**, not a span-specific lesion. So "knockout restores the cave" may mean "this head matters"
+not "reading THIS cue matters." **Specificity control:** knock out the SAME head's attention to a matched CONTROL
+span (random tokens / the question span / the W* span) and compare -- only restoration that is span-SPECIFIC
+(target >> control) supports a doubt-reading (or copy) mechanism. This single control gates both the -it copy
+lead and the 9b doubt-head lead.
+
+**Honest synthesis.** Neither move produced a clean positive. The base story is unchanged and hardened: distributed,
+no copy, no confidence gate. The two NEW leads are both at the place we have the least faithful data (the RLHF -it
+model / the input cue) and both share one un-run de-confound (span-specificity). The next step that earns its keep
+is the specificity control, plus a faithful -it readout to power the RLHF side. Cost so far this sub-thread ~$3.

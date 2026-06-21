@@ -274,12 +274,15 @@ def _ko_head_to(L, H, positions):
     return nm, hook
 
 
-def _build_pool(extra_path=None):
+def _build_pool(extra_path=None, big_pool=False):
     """Merge misconception_pool.ITEMS_WIDE with the sycophancy_items.json factual items into the
     select_items schema [{q, correct, wrong:[...]}]. ITEMS_WIDE carries a single 'Wstar' (wrap [Wstar] ->
     rho=inf passes; the per-model |margin|<MARGIN_KEEP filter still applies, the same adaptation
     faithful_copy_wstar uses). sycophancy_items.json factual items are {region, correct, wrong}, wrapped
-    into a capital-misconception question. Deferred imports so --selftest never reaches here."""
+    into a capital-misconception question. With big_pool=True ALSO merge sycophancy_items_lowconf.json (the
+    low-confidence factual set) and the full TruthfulQA `generation` set (question -> q, best_answer ->
+    correct, incorrect_answers -> wrong[...]) to lift the faithful-caving n at 2b base (the binding limit;
+    the faithfulness selection still filters). Deferred imports so --selftest never reaches here."""
     from misconception_pool import ITEMS_WIDE
     pool = []
     for it in ITEMS_WIDE:
@@ -287,20 +290,43 @@ def _build_pool(extra_path=None):
             pool.append({"q": it["q"], "correct": it["correct"], "wrong": list(it["wrong"])})
         else:
             pool.append({"q": it["q"], "correct": it["correct"], "wrong": [it["Wstar"]]})
-    # sycophancy_items.json (factual capital items) -- any other available item source, merged in.
+    # factual capital items (sycophancy_items.json, + the low-conf set under big_pool) -- {region,correct,wrong}.
     here = Path(__file__).resolve().parent
-    candidates = [here / "sycophancy_items.json", here.parent / "sycophancy_items.json"]
-    if extra_path:
-        candidates.insert(0, Path(extra_path))
-    syc = None
-    for c in candidates:
-        if c.exists():
-            syc = json.loads(c.read_text())
-            break
-    if syc and isinstance(syc, dict):
-        for r in syc.get("factual", []):
-            region, correct, wrong = r["region"], r["correct"], r["wrong"]
-            pool.append({"q": f"What is the capital of {region}?", "correct": correct, "wrong": [wrong]})
+    syc_files = ["sycophancy_items.json"] + (["sycophancy_items_lowconf.json"] if big_pool else [])
+    for fn in syc_files:
+        for c in (Path(extra_path) if extra_path and Path(extra_path).name == fn else None,
+                  here / fn, here.parent / fn):
+            if c and c.exists():
+                syc = json.loads(c.read_text())
+                if isinstance(syc, dict):
+                    for r in syc.get("factual", []):
+                        pool.append({"q": f"What is the capital of {r['region']}?",
+                                     "correct": r["correct"], "wrong": [r["wrong"]]})
+                break
+    # TruthfulQA generation set (standard benchmark; non-contaminating large misconception pool). Newer
+    # `datasets` requires the namespaced repo id 'truthfulqa/truthful_qa'; older accepts the bare alias -> ladder.
+    if big_pool:
+        ds = None
+        try:
+            from datasets import load_dataset
+            for repo in ("truthfulqa/truthful_qa", "truthful_qa"):
+                try:
+                    ds = load_dataset(repo, "generation")["validation"]
+                    print(f"[pool] TruthfulQA loaded from {repo!r}", flush=True)
+                    break
+                except Exception as e:
+                    print(f"[pool] TruthfulQA {repo!r} failed ({type(e).__name__}: {str(e)[:80]})", flush=True)
+        except Exception as e:
+            print(f"[pool] datasets import failed ({type(e).__name__}: {e})", flush=True)
+        if ds is not None:
+            n0 = len(pool)
+            for r in ds:
+                wrong = [w for w in (r.get("incorrect_answers") or []) if w]
+                if r.get("question") and r.get("best_answer") and wrong:
+                    pool.append({"q": r["question"], "correct": r["best_answer"], "wrong": wrong})
+            print(f"[pool] TruthfulQA generation merged: +{len(pool) - n0} items (pool now {len(pool)})", flush=True)
+        else:
+            print("[pool] TruthfulQA unavailable; proceeding without it", flush=True)
     return pool
 
 
@@ -412,8 +438,8 @@ def _measure_model(name, is_chat, device, pool, conf_var):
     return out
 
 
-def run(name_base, name_it, tag, device, chat_it, do_it, conf_var, extra_path):
-    pool = _build_pool(extra_path)
+def run(name_base, name_it, tag, device, chat_it, do_it, conf_var, extra_path, big_pool=False):
+    pool = _build_pool(extra_path, big_pool=big_pool)
     res = {"base": _measure_model(name_base, False, device, pool, conf_var)}
     if do_it and name_it:
         res["it"] = _measure_model(name_it, bool(chat_it), device, pool, conf_var)
@@ -628,12 +654,14 @@ def main():
     p.add_argument("--conf-var", default="top_prob", choices=list(CONF_VARS),
                    help="confidence split variable read at NEUTRAL (default neutral top-softmax-prob)")
     p.add_argument("--items", default=None, help="optional extra sycophancy-style items json (factual list)")
+    p.add_argument("--big-pool", action="store_true",
+                   help="merge sycophancy_items_lowconf.json + TruthfulQA generation set to lift faithful-caving n")
     args = p.parse_args()
     if args.selftest:
         selftest()
     else:
         run(args.name_base, args.name_it, args.tag, args.device, args.chat,
-            not args.no_it, args.conf_var, args.items)
+            not args.no_it, args.conf_var, args.items, args.big_pool)
 
 
 if __name__ == "__main__":
