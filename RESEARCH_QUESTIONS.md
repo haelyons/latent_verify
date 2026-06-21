@@ -1300,3 +1300,64 @@ confidence" overfit risk is **empirically rejected**. What stands: caving = a re
 (RLHF-reshaped), confidence-independent, distributed residual direction. **RLHF acts on the caving direction
 directly; it does not route caving through confidence.** This is a clean, well-tested closure -- a positive
 structural claim (the cave-direction) plus a decisive negative (no confidence gate), both triaged/run-verified.
+
+#### NEXT (post-closure, 2026-06-21) — localize the RLHF reshaping; two flagged threads
+The sub-arc opened the mechanistic question: NOT whether RLHF acts on caving (it does -- reshapes the
+direction) but WHERE. Proceeding with:
+- **(1) RUNNING -- DLA of the cave-direction's upstream writers, base vs -it** (`controls/cave_direction_dla.py`):
+  decompose resid_post[L]·u_cave into per-component (attn-head / MLP) contributions; the base->it differential
+  along the fixed base cave-axis (delta_onbase) + the write along the RLHF-added axis (u_delta) localize which
+  senders RLHF re-tasked. LOCALIZED_RESHAPE if top-10 carry >= 50% of the differential, else DIFFUSE. Turns
+  "RLHF reshapes a direction" into "RLHF changes [these components] that write it." Forward-only DLA (exact
+  residual decomposition), 9b base+it.
+  **RESULT (`results_9b_dla/`) -- LOCALIZED + MLP-DOMINATED (first localized RLHF caving effect in the program).**
+  Both readout layers LOCALIZED_RESHAPE: L28 top-10 carry **58.5%** of total|delta_onbase|=81.2 (aggregate
+  attn_frac 0.24 / **mlp_frac 0.76**, band L14-28); L32 top-10 carry **68.1%** of 166.0 (attn 0.13 / **mlp 0.87**,
+  band L22-32). **Top-10 are ALL MLPs at both layers** -- a contiguous mid/late band, the MLPs nearest the
+  readout writing strongest along the RLHF-added axis (mlp L28 c_it_ondelta +25.3; mlp L31 +19.1). The aggregate
+  all-heads-vs-all-MLPs split is fair (handles the 1-MLP-vs-16-heads granularity) and still ~80% MLP. So RLHF
+  reshapes the cave-direction through **MLP writes, not attention** -- which **downweights thread (3)** (the
+  Genadi attention doubt-heads are not where the reshaping is written). `latent_skeptic` (`wf_92f4e19a`) RUNNING.
+  Load-bearing caveats (in triage): n_ok=9-10 fit; **proximity/magnitude** (top MLPs are those nearest L -> need
+  delta_onbase relative to each MLP's own base write, not absolute); and the **overlay** caveat (DLA localizes
+  what writes the cave-DIRECTION, a causal-but-not-mechanistic axis; "writes the overlay" may not be "computes caving").
+  **latent_skeptic Pass (`wf_92f4e19a`, 7 skeptics) -- splits the claim:**
+  - **MLP-dominance: ROBUST (3 RULED_OUT).** The aggregate attn/MLP split is granularity-invariant (re-sums all
+    16 heads -> MLP 0.76/0.87 regardless of the 1-MLP-vs-16-heads slicing); the u_delta axis recovers the same
+    MLP band (not a u_base artifact); the overlay caveat doesn't apply to a direction-scoped claim. **"RLHF
+    reshapes the cave-direction via MLP writes, not attention" stands.**
+  - **The specific BAND: CONFOUNDED (1 EXPLAINS + 2 NEEDS_RUN).** Decisive crux EXPLAINS: the band slides with
+    the readout layer in lockstep (L28->L14-28, L32->L22-32) -- the DLA-at-resid_post[L] positional artifact
+    (over-credits MLPs just before L). Plus small-n (no bootstrap CI) and un-normalized concentration. (Skeptic
+    noted proximity is NOT the naive form -- the late MLPs reshape by near-flipping a large base write, a genuine
+    change, not magnitude -- but cannot confirm the band survives a position-controlled ranking.)
+  - **=> "MLP-mediated" holds; "which MLPs / a real band" needs a position-controlled de-confound.** Authored
+    `controls/cave_direction_dla_robust.py`: fixed-readout sweep (incl. a late fixed L) + magnitude-residualized
+    ranking (|delta| residualized on |c_base|) + bootstrap CI over the n=9-10 items; ROBUST only if a stable MLP
+    set tops the normalized ranking ACROSS readouts with CI clear of the diffuse floor.
+
+#### NEXT-(1) RESULT, de-confounded (`results_9b_dla_robust/`) — MLP-mediated but DISTRIBUTED (not a localized set)
+Readout sweep L{28,32,36,40}, magnitude-residualized ranking, item-bootstrap CI:
+- **MLP_DOMINATED: ROBUST** — mlp_frac **0.76 / 0.87 / 0.88 / 0.84** across all four readouts (granularity-
+  invariant). RLHF reshapes the cave-direction through the **MLP stream, not attention**. *Stands.*
+- **POSITION_DEPENDENT — the "localized band" is REJECTED.** Cross-readout top-10-by-residual intersection =
+  only **2** components (mlp23, mlp26) < STABLE_MIN 3; the dominant set TURNS OVER with the readout layer (the
+  DLA-at-resid_post[L] positional artifact the skeptic flagged, confirmed by running). And the magnitude-
+  residualized conc@10 falls to **0.43-0.49** (bootstrap-CI upper bounds ~0.49-0.55, lower bounds 0.41-0.44) --
+  below CONC_FRAC 0.5. So once the position + base-write-magnitude trends are removed, there is **no small stable
+  MLP set**; the reshaping is **distributed across MLPs**. (mlp23/mlp26 persist across readouts -- a weak hint of
+  a couple recurring MLPs, but below the bar, not claimed.)
+- **=> (1) ANSWERED:** RLHF reshapes the 9b cave-direction via **distributed MLP-stream writes** -- MLP-mediated
+  (robust), attention-excluded, but NOT a localized circuit. The program's distributed-at-every-grain through-
+  line holds even at the level of *what RLHF changes*. Two real structural facts now stand: (a) caving is a real
+  causal residual direction; (b) RLHF reshapes it, and does so through the (distributed) MLP stream. The honest
+  mechanistic frame: not "which head/neuron/MLP," but "a distributed MLP-stream rewrite of a base-present
+  direction." This is the third self-correction this session where a "localized" reading de-confounded to
+  distributed (head-set, SAE-feature, now MLP-band).
+Flagged worthwhile (not yet run):
+- **(3) deference's driver, since NOT confidence:** does the cave-direction's RLHF-added component come from
+  heads attending the user challenge/doubt token (Genadi L10-15 band, B3 -- the lead the retracted head-set did
+  not kill)? Ties the direction to its input cue. Natural follow-on to (1) if the top senders are attn heads.
+- **(4) method debt:** raw capitulation (pre-post) is headroom-confounded; re-express the load-bearing prior
+  caving magnitudes (§11, R-4, dose-response, 2b cavecheck) as FLIP-RATE and spot-check whether any prior
+  conclusion moves. Cheap (recompute from committed per-item states where available).
