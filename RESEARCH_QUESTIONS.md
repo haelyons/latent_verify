@@ -1854,3 +1854,44 @@ span-control (W* vs control span) -- the high random floor leans non-specific bu
 "distributed W*-reading causal" from "removing attention to any salient span destabilizes." Next: (a) copy
 span-control to close that; (b) more content-swap variants + power the -it doubt side (n>=16); (c) DLA of the
 doubt-head set's output -> does it write the cave-direction (input head set -> distributed writer, the two-stage link).
+
+### FRAMING CORRECTION (2026-06-22) -- CIRCUITS not directions; "caving" is a behavioral umbrella; direction is an aggregate
+Colleague thread forced three corrections; banked as the operating frame going forward.
+1. **The objects of study are prompt-specific CIRCUITS, not directions.** "copy" and "doubt" are mechanistic
+   circuits (attention-copy head set reading the asserted W*; doubt head set reading the user's challenge), NOT
+   the copy/doubt/cave DIRECTIONS. Study heads + what they read (QK) / write (OV) / route to the output. The
+   diff-of-means directions were a distraction.
+2. **The cave-DIRECTION is a higher-level AGGREGATE, not a downstream stage.** u_cave = mean(resid_counter -
+   resid_neutral) at the cave layer. That diff CONTAINS the input circuits' own writes (a doubt head at L25
+   writes into the very residual the diff is computed from). So calling u_cave "downstream of" the circuits was
+   wrong AND near-circular ("does the head write u_cave?" projects a summand onto its own aggregate). u_cave is a
+   causal-when-ablated aggregate / end-state probe, NOT a mechanistically distinct stage. (My "two-stage: input
+   circuit -> downstream direction" over-read is RETRACTED. The DLA-link's u_cave-projection is a decomposition,
+   not a stage-link; only its direct-logit-write + QK-target are clean.)
+3. **The direction may NOT be prompt-specific; the MECHANISMS are.** Earlier I over-conceded "direction is
+   prompt-specific." Better (colleague): the caving END-STATE may CARRY across framings (a common representation
+   of "I am now asserting W*"), while the CIRCUITS that produce it are framing-specific. Empirical: fit the
+   aggregate shift on doubt-prompts vs bare-alt-prompts and check alignment / whether the framing-specific
+   circuits converge on the SAME downstream components. High alignment/convergence -> caving carries, mechanisms
+   don't.
+
+**STATUS: the circuits are POSITED, not proven.**
+- **Doubt (9b base):** a causal, head-SPECIFIC (random~=0), content-SPECIFIC (swap kills caving) ~5-head INPUT
+  DETECTOR (reads the challenge span). The READ side is established; the WRITE side (OV content) and the ROUTE to
+  the output are UNTRACED -> not yet a full circuit. ("first clean mechanism" tempered to "causal specific input
+  detector.")
+- **Copy:** UNPROVEN (dead at base powered; distributed/non-head-specific at -it n=7). PF matrix tests whether a
+  framing recruits a real head-specific copy circuit.
+
+**GATED ORDER (the operating plan).**
+1. **Prove the circuits.** (a) PF matrix -- framing {bare-alt, hedge, doubt, strong-doubt} -> which circuit
+   (copy vs doubt restore), distinctness + which heads [running, results_{2b,9b}_promptfeat]. (b) Trace the doubt
+   circuit: read (QK target token), write (OV content + does intervening on the heads' OUTPUT reproduce the cave),
+   route (path-patch heads -> W* logit). (c) Establish whether copy is ever a real head-specific circuit.
+2. **THEN, only if (1) holds: downstream-CONVERGENCE / does-caving-carry.** Do the framing-specific circuits hit
+   the SAME downstream components? That (not a direction projection) answers whether caving is a common end-state.
+This convergence test is GATED on (1) -- can't compare circuits before proving them.
+
+**Methodological lesson banked:** a causal direction (ablation restores) is NOT a mechanism or a stage -- it can
+be a causal aggregate that contains the very circuit it seems to be "downstream" of. Circuits (components +
+read/write/route), not directions, are the mechanistic unit.
