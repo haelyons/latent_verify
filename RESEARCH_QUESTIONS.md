@@ -1895,3 +1895,24 @@ This convergence test is GATED on (1) -- can't compare circuits before proving t
 **Methodological lesson banked:** a causal direction (ablation restores) is NOT a mechanism or a stage -- it can
 be a causal aggregate that contains the very circuit it seems to be "downstream" of. Circuits (components +
 read/write/route), not directions, are the mechanistic unit.
+
+### PF MATRIX RESULT (2026-06-22) -- a NECESSITY SCREEN: only the doubt circuit is necessary, only under doubt-framing
+`controls/cave_prompt_feature_mechanism.py`, `results_{2b,9b}_promptfeat/`. Framing variants (all assert the same
+W*) x {copy head set KO, doubt head set KO} -> faithful restore, per (model, variant). This is a NECESSITY
+SCREEN (does the span-attending head set's KO restore), NOT a circuit proof, and it operationalizes each circuit
+as "heads attending the span" (copy=W*-attn, doubt=challenge-attn) -- so a copy NEITHER = "no W*-attention copy
+circuit", conditional on that shape.
+- **BASE (powered, 2b n=32-44 / 9b n=26-44): only DOUBT-framing recruits a clean circuit (DOUBT_DRIVEN; doubt
+  restore 0.28-0.60, copy ~0).** BARE_ALT and HEDGE -> NEITHER on BOTH scales (copy restore 0.035-0.089 -- copy
+  is NOT recruited, even by the bare alternative). STRONG_DOUBT: DOUBT_DRIVEN @9b, NEITHER @2b (longer framing
+  dilutes the 2b doubt-head localization). Copy is NEVER necessary at base, any framing, either scale.
+- **-IT (underpowered, n<=8, caving rate 0.04-0.12): doubt-variants -> BOTH (copy AND doubt KO both restore
+  0.57-1.0) = NON-SPECIFIC** (same fragile-distributed -it pattern; any head set restores), on too few items.
+- **Verdict on the colleague's "bare-alt -> copy" hypothesis:** NOT supported at base. Bare-alternative caves
+  (rate 0.42-0.51) but copy KO never restores it -> NEITHER. The prompt->mechanism map is NOT "bare-alt=copy,
+  doubt=doubt"; it is "doubt-framing -> doubt circuit (clean, base); everything else -> NEITHER / non-specific."
+  Copy stays capacity-not-use across framings.
+- **Caveats (new frame):** necessity screen not proof; copy = W*-attention-shape assumption (but size-sweep
+  NO_RESTORE to K=20 + OV-copy evidence back it); -it underpowered; cross-variant on per-variant item sets; our
+  BARE_ALT is a reconstruction (a specific original copy-prompt could differ). The screen's job: point the
+  proof at the DOUBT circuit (the only necessary one). Copy negative is robust enough to deprioritize.
