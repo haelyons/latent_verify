@@ -1971,3 +1971,16 @@ matched-random-5 output-patch.
   write) is still infra-blocked (6 ssh-abort 255s) but the behavioral output-patch already answers the WRITE
   question. Method lesson banked: ATP under-ranks redundant sets -> always confirm SETS jointly + test the
   attention/span-ranked set directly, do not trust ATP-individual ranking to find a redundant circuit.
+
+### CROSS-SCALE (c) + -it (d) (2026-06-22) -- doubt circuit REPLICATES at 2b base; -it readout-blocked
+`controls/cave_doubt_write_vs_read.py` at other models. (255s were on teardown, not the run; JSONs valid.)
+- **(c) 2b BASE: REPLICATES. BOTH, powered (n=33).** read attention-KO=0.282, write output-patch=0.327,
+  matched-random output=0.035 -> head-SPECIFIC (gap 0.29). Span-doubt-5 = L16H7/L8H3/L11H6/L16H3/L13H3 (2b
+  layers, different from 9b's L25H15/L2H13/L26H7/L12H2/L23H5 -- re-localized per scale, as expected). Magnitudes
+  smaller than 9b (read 0.28/write 0.33 vs 0.59/0.44) but the QUALITATIVE circuit holds: a head-specific
+  read+write doubt circuit exists at BOTH 2b and 9b base. The doubt circuit is cross-scale.
+- **(d) 9b-IT (QA template): INSUFFICIENT (n=5) + NON-specific.** attention-KO=0.80, output-patch=0.861, but
+  matched-random output=0.816 (gap 0.045 < 0.15) -> NOT head-specific, and n<8. The -it/RLHF-installation
+  question stays BLOCKED by the readout: chat-template gives a P(W*) ghost (~0 faithful), QA-template on -it
+  gives few faithful (n=5) and the restoration is non-specific (any head set restores -- the fragile-distributed
+  -it pattern). Needs a faithful flip-rate -it readout to power; deferred. 27b (c) not yet run (h100 capacity).
