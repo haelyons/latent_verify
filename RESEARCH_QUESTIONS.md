@@ -1984,3 +1984,29 @@ matched-random-5 output-patch.
   question stays BLOCKED by the readout: chat-template gives a P(W*) ghost (~0 faithful), QA-template on -it
   gives few faithful (n=5) and the restoration is non-specific (any head set restores -- the fragile-distributed
   -it pattern). Needs a faithful flip-rate -it readout to power; deferred. 27b (c) not yet run (h100 capacity).
+
+### ROUTE (a) (2026-06-22) -- the doubt-head effect does NOT route through a small MLP bottleneck (distributed downstream)
+`controls/cave_doubt_route.py`, `results_9b_doubtroute/`. 9b base, n=27. Freeze-mediation: does the doubt-head
+attention-KO restoration flow THROUGH the top-5 ATP MLPs?
+- **Verdict: DIRECT_OR_OTHER.** baseline_restore=0.589; freezing the top-5 MLPs [31,24,32,37,40] at their counter
+  values -> restoration only drops to **0.358** (block ~0.39, BELOW the 0.5 bar); matched-random-5 MLP freeze ->
+  0.528 (block ~0.10). So the top MLPs PARTIALLY mediate (0.39 > 0.10 random) but the doubt-head restoration
+  LARGELY SURVIVES freezing them -> it does NOT route through a small MLP bottleneck; the downstream path is
+  distributed/direct. (Consistent with the ATP finder needing K=15 MLPs jointly for 0.79 -- the downstream is
+  many-component, not a 5-MLP relay.)
+
+### DOUBT-CIRCUIT -- CONSOLIDATED MECHANISM (2026-06-22)
+Putting (resolution + a + c + d) together, the best-supported account of the caving mechanism under doubt-framing:
+- **A concentrated, head-SPECIFIC doubt head set** reads the user's challenge span (attention-KO restores: 9b
+  0.59 / 2b 0.28, head-specific) AND writes toward the cave (output-patch restores: 9b 0.44 / 2b 0.33,
+  head-specific; random ~0.02-0.04). Read AND write, both causal, both head-specific.
+- **Cross-scale:** replicates at 2b and 9b base (re-localized heads per scale).
+- **Downstream is DISTRIBUTED:** the head write (~0.44) reaches the logits via a distributed/direct path, NOT a
+  small MLP bottleneck (route = DIRECT_OR_OTHER; top-5 MLP freeze blocks only 39%). The remaining restoration to
+  full is carried many-component (ATP K=15 -> 0.79).
+- So: **concentrated head-specific doubt detection+write (input) -> distributed many-component downstream ->
+  caved logits.** NOT a clean linear circuit; NOT purely distributed. The doubt head set is the localizable,
+  head-specific, cross-scale core; everything downstream of its write is distributed.
+- **Open:** -it/RLHF-installation (readout-blocked, d); 27b (h100); finer write-content (DLA-link, infra-blocked,
+  6x 255); the doubt-vs-copy prompt-conditionality holds (copy never a circuit; doubt is). (b) does-caving-carry
+  is now well-posed (a circuit exists) but parked per plan.
