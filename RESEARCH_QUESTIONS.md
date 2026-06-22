@@ -1916,3 +1916,31 @@ circuit", conditional on that shape.
   NO_RESTORE to K=20 + OV-copy evidence back it); -it underpowered; cross-variant on per-variant item sets; our
   BARE_ALT is a reconstruction (a specific original copy-prompt could differ). The screen's job: point the
   proof at the DOUBT circuit (the only necessary one). Copy negative is robust enough to deprioritize.
+
+### SHAPE-AGNOSTIC CIRCUIT-FINDER (2026-06-22) -- the (a)+(b) upgrade: output-carrier is DISTRIBUTED + MLP-heavy
+`controls/cave_circuit_patch.py`, `results_9b_circuit/`. The (a)+(b) re-spec: FIXED faithful-caving item set
+(n=27, selected once under DOUBT framing) + SHAPE-AGNOSTIC attribution-patching (ATP) over EVERY head + MLP (no
+span-attention assumption) -> rank -> SET-AWARE confirm (joint activation-patch size-sweep of the ATP-top-K, +
+the DOUBT-classed top set as a reference). Set-aware after the colleague's "what about head sets" (the
+per-component confirm was set-blind; ATP also under-ranks redundant sets, so a joint sweep + doubt-set reference
+were added). [3 launches: us-east-1 ssh-abort 255, us-west-2 bf16-dtype crash, us-west-2 OK.]
+- **Verdict: DISTRIBUTED, MLP-dominated.** conc_frac(top-15)=0.29; joint restore by K=1/3/5/10/15 =
+  0.00/0.00/0.04/0.36/**0.79** -> needs ~15 components, NO small set. The ATP-top components are mostly **MLPs**
+  (MLP24 confirm 0.35, MLP31 0.37, MLP23 0.13, + MLP19/25/26/34); the cave's OUTPUT-carrier is distributed MLPs.
+- **The doubt-attending heads are NOT the output-carriers:** the ATP-top DOUBT-classed heads (3) jointly
+  OUTPUT-patch to **~0 (0.0025)**. So replacing the doubt heads' OUTPUT with neutral barely restores the cave.
+- **TENSION with the head-set finding (unresolved):** head-set control said the span-attn-ranked top-5 doubt
+  heads' ATTENTION-KO restores **0.59**; here the OUTPUT-patch of the ATP-ranked doubt heads is ~0 and the
+  carrier is distributed MLPs. Two reasons they are NOT directly comparable: (i) **different intervention** --
+  attention-KO removes the doubt-READ (input gating); output-patch removes the WRITE. A head can gate the cave by
+  what it READS without its OUTPUT being the carrier. (ii) **different components** -- ATP (a marginal score)
+  under-ranks a redundant set, so the ATP-top DOUBT-classed 3 are NOT the head-set's span-ranked 5 (only L26H7
+  overlaps). The doubt_set_restore here is on the wrong heads for a direct comparison.
+- **Honest status:** the cave's OUTPUT-CARRIER is distributed + MLP-heavy -- NOT a concentrated doubt-head WRITE
+  circuit. The doubt-READ gating (head-set, attention-KO 0.59) is real but is an INPUT effect, separate from
+  "the doubt heads write the cave." So the doubt circuit is NOT proven as a write circuit; it is at most an
+  input-read gate feeding a distributed MLP-heavy downstream.
+- **RESOLUTION (next, decisive):** OUTPUT-patch the SAME span-ranked top-5 doubt heads (the head-set's set)
+  jointly on the fixed items -> if their output restores (like their attention-KO did) -> doubt heads DO write
+  the cave and ATP under-ranked them (redundancy); if ~0 -> they gate input but don't write, distributed MLPs
+  carry it. Plus the DLA-link cross-check (their direct-logit-write) -- pending (ssh-abort 255, fixed, re-run).

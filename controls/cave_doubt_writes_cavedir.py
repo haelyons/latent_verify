@@ -198,7 +198,7 @@ def dla_logit_diff(vec, ln_final, W_U, b_U, cap, wstar_id, c_id):
     (tensors + ids -> float). `ln_final` is a callable (the model's final LayerNorm) or a pure function in
     the selftest."""
     h = ln_final(vec.float().unsqueeze(0))[0]            # [d_model]; final LN exactly as applied at readout
-    h = h.to(W_U.device)                                 # head writes are cpu; W_U is on-device -> align
+    h = h.to(W_U.device).float()                         # align device AND dtype (ln_final returns bf16; W_U.float() is f32)
     logits = h @ W_U.float() + (b_U.float() if b_U is not None else 0.0)   # [d_vocab]
     logits = softcap(logits, cap)
     return float(logits[wstar_id] - logits[c_id])
