@@ -3,7 +3,7 @@
 How the GPU session for this project was provisioned, in plain terms, so it can
 be reproduced. Date: 2026-06-15. All steps were driven from the local Windows
 workstation (`LAPTOP-ULDACBRE`), **not** the Claude Code web sandbox — the
-sandbox's HTTPS-only egress proxy blocks outbound SSH (see `README_RUN.md`),
+sandbox's HTTPS-only egress proxy blocks outbound SSH (see `archive/README_RUN.md`),
 whereas the workstation has normal outbound network, which is what makes
 "instrument from here over SSH" viable at all.
 

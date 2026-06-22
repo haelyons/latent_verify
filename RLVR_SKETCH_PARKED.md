@@ -3,7 +3,7 @@
 > **Status: PARKED. Recorded verbatim so the design is not lost; we are staying with the
 > single-family Gemma line for now.** RLVR breaks the single-family scope (needs external
 > staged checkpoints) and is a tangent off the current confidence question. Revisit only on
-> an explicit scope decision. Companion to `RESEARCH_QUESTIONS` PART 5 (the logit-lens
+> an explicit scope decision. Companion to `archive/research_log.md` PART 5 (the logit-lens
 > early-encoding line, now closed as a negative) and `POSITION_UNCERTAINTY_ELICITATION`.
 
 ## Why it was on the table

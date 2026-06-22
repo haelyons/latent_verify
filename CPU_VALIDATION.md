@@ -81,7 +81,7 @@ HuggingFace, and Neuronpedia). Date: 2026-06-12.
 The only thing not validated is the thing that needs the model:
 `google/gemma-2-2b` is gated (`gated: manual`; anonymous file fetch → 401)
 and this environment has no HF token. Running T0/T1 for real therefore still
-needs either the GPU path in `README_RUN.md` or, in principle, this very
+needs either the GPU path in `docs/lambda-gpu-access.md` (Arc-1 PoC path archived at `archive/README_RUN.md`) or, in principle, this very
 container *if* a licence-accepted HF token is provided: the weights
 (~5 GB bf16) plus transcoders (~4 GB) fit in 15 GB RAM, and the experiment
 is only ~60 short-prompt forward passes, so a CPU run is slow but plausible.

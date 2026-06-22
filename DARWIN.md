@@ -1,16 +1,16 @@
 # DARWIN — warm-little-pond framing options (parked, not yet placed)
 
 Origins image: Darwin's "warm little pond" = life precipitating from existing chemistry.
-Load-bearing map: pond = pretraining (base model); caving precipitates there; post-training =
-selection on a trait already present, not its creator. States the base-intrinsic thesis in one image.
-Dosage: use ONCE (epigraph/tagline + one woven sentence). Body stays spare — register is flat
-declaratives; a metaphor reused turns melodramatic.
+Load-bearing map: pond = pretraining (base model); behaviours might precipitate there; post-training =
+selection on a trait already present, not its creator -- loose analogy. 
+
+States the base-intrinsic thesis in one image. Dosage: use ONCE (epigraph/tagline + one woven sentence).
 
 ## 1. Tagline / title options
 
 - Dispatches from the warm little pond of interpretability
 - Notes from the warm little pond of interpretability
-- Title: "Caving was already in the pond"
+- Title: "{X behaviour} was already in the pond"
   - subtitle: what post-training does to a mechanism it didn't build
 
 ## 2. Epigraph (Darwin, trimmed)
@@ -23,7 +23,7 @@ VERIFY exact wording vs Darwin Correspondence Project, letter DCP-LETT-7471, bef
 
 ## 3. Woven sentence (capstone of intro para 2)
 
-> That makes caving an origins question, and the biology framing answers it the older way: the base model is the warm little pond — caving precipitates there, out of nothing but next-token prediction on human text — and post-training selects on a trait that already exists rather than creating it.
+> That makes caving an origins question, and the biology framing answers it the older way: the base model is the warm little pond — {caving seems to precipitate there}, out of nothing but next-token prediction on human text — and post-training selects on a trait that already exists rather than creating it.
 
 ## Note — stacks on Anthropic's frame
 

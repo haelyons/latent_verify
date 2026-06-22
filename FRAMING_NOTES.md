@@ -537,7 +537,7 @@ mode that matters; we should not assume it transfers.
 
 The mechanism actually lets us make *directional, falsifiable* predictions about
 the untested regime (derived from §3.7-3.12, independent of the
-`PROMPTING_OBSERVATIONS.md` tips):
+`archive/PROMPTING_OBSERVATIONS.md` tips):
 
 - **P1 (transfer).** The salience flip persists for a full-sentence question on
   gemma-2-2b-**it** with the chat template, and the same reader head L18.H5 carries
@@ -655,6 +655,15 @@ read "high" — the real gradient is in the correct-answer margin; one phrasing 
 item, fragment regime only.
 
 ## 8. What RLHF did to the copy circuit (GPU, 2026-06-15) — the reader head disengages
+
+> **Status — the "weight change" claim below is SUPERSEDED; read this first.** The bold
+> "it is a weight change / RLHF removes it from the weights / structurally absent" wording is
+> overturned in two steps. (a) The I2 refinement *in this section* softens it to "QK-gated, OV
+> preserved" (the OV copy matrix is unchanged). (b) `qk_weight 2b` (2026-06-19) goes further: the
+> QK *weights* are intact too (direction AND magnitude), and the realized-attention collapse is
+> **100% residual-INPUT-mediated** — RLHF changes what *feeds* L18.H5, not L18.H5 itself. Read the
+> numbers in `results_2b_qkweight*/` and `archive/research_log §"PART 5 … qk_weight 2b"` before
+> citing anything in §8 as a weight edit.
 
 First result from the GPU instrument (Lambda A100; `job_chat_mechanism.py`,
 artifacts `out/chat_mechanism_{base,it}.json`). Stack is transformer_lens 3.4 /

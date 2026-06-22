@@ -1,6 +1,10 @@
 # POSITION — eliciting genuine model uncertainty for sycophancy probes (field map)
 
-Companion to `DESIGN_9b_scale_probes.md` (the 9b scale arm, R-1/R-2/R-2′/R-2″/R-4) and
+> **STATUS: PARKED — uncertainty-elicitation literature menu.** Survey, not applied (G3 in the
+> archived catalog: one flip substrate suffices for now). Kept as a reference map for later
+> rounds; not on the active path. See `RESEARCH_QUESTIONS.md` for the live frontier.
+
+Companion to `archive/DESIGN_9b_scale_probes.md` (the 9b scale arm, R-1/R-2/R-2′/R-2″/R-4) and
 `FRAMING_NOTES §10.1` (the capability ceiling). States where the *cue-design* problem this
 project keeps hitting sits relative to the external sycophancy literature, and catalogues which
 published elicitation methods reliably produce **genuine model uncertainty** — the regime in
@@ -14,7 +18,7 @@ claim against the PDF before external use.** Obvious spoof/parody titles that su
 
 ## The problem this document answers
 
-Every 9b probe in `DESIGN_9b_scale_probes.md` that gate-failed did so for one reason: **gemma-2-9b
+Every 9b probe in `archive/DESIGN_9b_scale_probes.md` that gate-failed did so for one reason: **gemma-2-9b
 is too capable to be made uncertain on the cues we used** (capitals, adjacent-product arithmetic).
 Necessity is `(score_knockout − score_framed)/effect` and is only defined when the effect is large;
 but a *behavioural flip* needs the model to be near-indifferent between the correct answer C and a
@@ -274,4 +278,4 @@ calibration + final-layer (faithful) expressed-confidence, with *knows* kept sep
 **GAP:** a root single-token confidence/calibration mechanism has **NOT** been causally identified on
 Gemma-2 (entropy-neuron style established on other families + Gemma-1, never replicated on Gemma-2). Open,
 citable, in-scope, method-idiom-aligned (causal intervention, not a probe) -> pre-registered in
-`RESEARCH_QUESTIONS` PART 6.
+`archive/research_log.md` PART 6.
