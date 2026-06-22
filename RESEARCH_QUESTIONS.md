@@ -1944,3 +1944,30 @@ were added). [3 launches: us-east-1 ssh-abort 255, us-west-2 bf16-dtype crash, u
   jointly on the fixed items -> if their output restores (like their attention-KO did) -> doubt heads DO write
   the cave and ATP under-ranked them (redundancy); if ~0 -> they gate input but don't write, distributed MLPs
   carry it. Plus the DLA-link cross-check (their direct-logit-write) -- pending (ssh-abort 255, fixed, re-run).
+
+### RESOLUTION (2026-06-22) -- the doubt heads ARE a real WRITE circuit (head-specific); ATP missed it via redundancy
+`controls/cave_doubt_write_vs_read.py`, `results_9b_doubtwvr/`. The direct comparison: on the SAME span-ranked
+top-5 doubt heads (L25.H15, L2.H13, L26.H7, L12.H2, L23.H5) + SAME fixed faithful items (9b base, n=27),
+ATTENTION-KO (remove the READ) vs OUTPUT-PATCH (remove the WRITE, replace counter z with neutral z) vs
+matched-random-5 output-patch.
+- **Verdict: BOTH.** attention_ko_restore=**0.589** (reproduces the head-set read-gate), output_patch_restore=
+  **0.440** (>= RESTORE_THR), random-5 output=**0.019** -> the OUTPUT effect is HEAD-SPECIFIC (gap 0.42 >> 0.15).
+- **The span-doubt-5 heads DO write the cave** (output-patch 0.44, head-specific) -- not merely gate the read.
+  Both their READ (0.59) and their WRITE (0.44) are causal and head-specific. A real, concentrated, head-specific
+  doubt circuit (read + write).
+- **RESOLVES the tension with the shape-agnostic ATP finder.** That finder's "doubt heads ~0 output, cave
+  distributed/MLP" was on the ATP-RANKED doubt-classed 3 (L23H15/L25H8/L26H7) -- the WRONG heads. ATP (a marginal
+  first-order score) UNDER-RANKS a REDUNDANT set: the span-doubt-5 each contribute little marginally (the
+  head-set K-curve K=1=0.04) so ATP buried them below the top-15, and the doubt-set-reference I added tested
+  ATP-selected heads (-> 0.0025). The DIRECT output-patch of the span-ranked 5 restores 0.44. **This is the
+  concrete instance of the ATP-redundancy caveat we pre-flagged ("what about head sets").**
+- **Corrected picture:** the cave is carried by a CONCENTRATED, head-specific doubt-head WRITE circuit (~0.44,
+  reads+writes) PLUS additional distributed downstream (the ATP finder's MLPs took the joint set to 0.79). So
+  NOT purely distributed and NOT purely concentrated: a head-specific doubt circuit + distributed downstream
+  amplification. The doubt circuit is the strongest-established caving mechanism -- causal, head-specific, both
+  read and write, on the faithful base regime.
+- **Limits:** output-patch 0.44 < attention-KO 0.59 < full restore -> the doubt heads are a substantial but not
+  complete carrier (downstream MLPs add the rest). n=27, 9b base. The DLA-link finer decomposition (direct-logit
+  write) is still infra-blocked (6 ssh-abort 255s) but the behavioral output-patch already answers the WRITE
+  question. Method lesson banked: ATP under-ranks redundant sets -> always confirm SETS jointly + test the
+  attention/span-ranked set directly, do not trust ATP-individual ranking to find a redundant circuit.
