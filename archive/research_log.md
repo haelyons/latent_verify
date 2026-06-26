@@ -2034,3 +2034,474 @@ faithful re-test then showed the W\*-copy leg was an overlay / capacity-not-use 
 `SALIENCE.format(w=anchor,r=region)` capitals probe established copy *capacity*, never behavioral use).
 **Lesson:** "different phrasing -> different mechanism" is really ONE prompt with two components; a control must
 ablate ONE component without deleting the behavior's target (bare deleted both; swap deleted one).
+
+---
+
+## PART 8 — SOCIAL-SOURCE + CUE FACTORIZATION (Unit S) + CONFIDENCE-RECRUITMENT (Unit C) (RUN + triaged, 2026-06-22)
+
+Pre-reg `DESIGN_social_controls.md`. New claim-blind controls `controls/cave_social_source.py` (loops a 10-cue
+table over ONE fixed faithful item set + ONE canonical doubt head-set ranked once on the SELF cue) and
+`controls/cave_confidence_recruitment.py` (median-splits the same items by neutral-turn confidence). Both reuse
+the proven `cave_doubt_write_vs_read` battery (READ=attn-KO to a span, WRITE=output-patch counter z->neutral z,
+matched-random-5 floor). Model-free selftests PASS. Run: one A100-40GB (gpu_1x_a100_sxm4 us-east-1, ~$1.3, box
+self-terminated, INSTANCE confirmed terminating; cumulative ~$14/$500). **Faithfulness anchor PASS:** the SELF
+cue reproduces `cave_doubt_write_vs_read` at both scales (9b doubt_ko 0.589 / output 0.440 / random 0.019; 2b
+0.305 / 0.339 / 0.037).
+
+### Results (`results_social/out/cave_{social_source_9b_base,social_source_2b_base,confidence_recruitment_9b_base}.json`)
+**Unit S 9b base (n=27)** READ doubt_ko / WRITE output / random by cue: self 0.589/0.440/0.019, peer
+0.658/0.447/0.013, authority 0.715/0.537/0.016, consensus 0.635/0.489/0.016, sourceless 0.552/0.351/0.014;
+plain_assert 0.086/0.086/0.047 (NEITHER, overlap 1/5); self_true 0.0/0.012/0.030 (NEITHER); self_pad (length
+floor) 0.581/0.396 ~= self. move_to_asserted=1.0 every social cue (behaviorally saturated). Overlap with the
+canonical span-top-5: social cues 4/5, self 5/5, plain_assert 1/5, self_true 3/5.
+**Unit S 2b base (n=33)** same shape, smaller; plain_assert doubt_ko 0.027 < assert_ko 0.062 (copy-lean).
+**Unit C 9b base (n=27, 13 less / 14 more)** READ interaction (less-more): neg_entropy 0.069 / top_prob 0.021 /
+margin 0.038 (all < INTERACT_THR 0.20); WRITE 0.040 / -0.009 / -0.020; both strata READ >= 0.555 (BOTH each) ->
+**UNCONDITIONAL**. Offline-computed per-stratum confidence separation (no GPU, from items[].conf): less/more
+top_prob 0.202/0.281, neg_entropy -3.848/-3.548, margin 1.135/1.616; full top_prob range only 0.136-0.341
+(range-restricted by the caving filter).
+
+### latent_skeptic Pass-1 (`wf_54281d68`, 55 skeptics, no-GPU) — by status+crux
+(Several cruxes say "file absent on disk" -- a tool-less-skeptic artifact; the numbers ARE committed in
+`results_social/`. Non-issues.)
+- **SC-S1 social cues recruit the circuit: CORE robust; AUTHORITY-MONOTONE gradient NOT established.** RULED_OUT
+  off-distribution (random-5 floor << 0.55-0.72; two distinct interventions agree), readout + ceiling/floor
+  (non-saturated mid-range, length-invariant via self_pad), scale. `selection bias` ACQUITTED BY DESIGN (one
+  fixed item set, all cues same 27 items). LIVE: ordering imperfect (peer 0.658 > consensus 0.635), gap
+  authority-self only 0.126, no CI, `construct` (authority vs other lexical props) unisolated, per-cue
+  `self-repair` uncontrolled. => social recruitment real; "scales with authority" unproven.
+- **SC-S2 source-agnostic head-set: ROBUST.** `single-case overfit` RULED_OUT decisively -- overlap is
+  DISCRIMINATING (plain_assert 1/5, self_true 3/5 on the SAME canon), so 4/5 on social variants is signal, not
+  forced. off-dist/self-repair RULED_OUT (clean forward attention ranking, no ablation). `noise floor`/`chance`
+  ACQUITTED BY DESIGN (re-ranked over ALL heads 672/208 -> 4/5 top-5 far above ~0.04 chance). Residual: top-5
+  can't tell rank-6 near-miss from relocation -> a full-rank Spearman closes it.
+- **SC-S3 doubt QUESTION recruits it, not bare assertion: 9b contrast solid; non-recruitment leg weakened.**
+  `construct`+`regime` RULED_OUT (within-9b content-matched: removing only "Are you sure?" collapses doubt_ko
+  0.55-0.72 -> 0.086). LIVE `self-repair`: plain_assert behaviorally caves (move 0.37) yet both KOs floor = a
+  redundant-pathway signature -> "bare assertion does NOT recruit" could be self-repair-MASKED; needs
+  resample/path-patch. 2b copy-lean (-0.036) near-floor FRAGILE.
+- **SC-S4 deference fires for wrong-not-truth: RETRACTED (confounded).** 5/10 EXPLAINS. Decisive crux: items
+  selected as caves-toward-W*, so the model already prefers C; self_true (push->C) asserts the already-neutral
+  argmax -> `cave_restoration` has ZERO readout headroom and MUST read ~0 regardless of circuit firing (move
+  collapses 1.0->0.296). Artifact, not a wrongness-direction property. Decisive control: against-grain push to a
+  wrong-but-disfavored target MATCHED on move magnitude.
+- **SC-C confidence does not gate recruitment: SURVIVES within the caving regime; SCOPED.** RULED_OUT noise
+  floor + ceiling/floor (READ >= 0.555 both strata, mid-scale, real equality across 3 proxies). EXPLAINS
+  `selection`+`regime`: the confidence band is range-restricted (top_prob 0.14-0.34). The split is NOT
+  degenerate (separation computed above) but the whole band is low-confidence -> the null holds within the
+  caving regime, not for high-confidence items (selection excluded them). Needs a non-caving arm.
+
+### Net + next controls (author_queue, deduped; authored-then-reviewed per the loop, NOT yet run)
+Two positives (doubt circuit is **source-agnostic**; confidence does not gate its **recruitment** within the
+caving regime); one taxonomy result (doubt question, not bare assertion, recruits it -- 9b contrast clean);
+one RETRACTION (SC-S4 wrong-vs-truth = selection/headroom artifact); one not-established (authority-monotone
+gradient). Next: (1) against-grain matched-move push (settles SC-S4, highest leverage); (2) per-cue bootstrap
+CI + matched-content authority minimal-pair + held-out/2nd-speech-act (SC-S1 gradient); (3) resample/mean-abl
+or path-patch self-repair-resistant doubt-KO on plain_assert (SC-S3 non-recruitment leg); (4) full-rank
+Spearman overlap (SC-S2 nuance, mostly acquitted); (5) high-confidence/non-caving arm (extends SC-C).
+
+### PART 8 v2 — SC-S1 HARDENED (RUN 2026-06-23, `results_social_v2/`, A100 us-east-1; 2 prior boxes lost to local-network drops, 3rd clean)
+`cave_social_source` v2 = per-item READ/WRITE arrays + an authority MINIMAL-PAIR cue (`mp_friend` "my friend" vs
+`authority` "my professor", same "my X says" frame -> isolates source authority from other lexical properties).
+Anchor PASS (self 0.589/0.440/0.019 reproduced; n=27 9b / 33 2b). Offline 10k paired-bootstrap CIs
+(`scratchpad/social_ci.py`):
+- **The social gradient is REAL (upgrade from v1's "not established"):** authority-self and authority-sourceless
+  exclude 0 on READ at BOTH scales (9b +0.126 CI[.100,.152] / +0.162 CI[.133,.194]; 2b +0.112 CI[.079,.143] /
+  +0.130 CI[.082,.179]) and on WRITE mostly (9b +0.096 CI[.071,.122] / +0.185 CI[.145,.238]; 2b +0.080
+  CI[.042,.119]; 2b authority-sourceless WRITE +0.025 straddles).
+- **Authority PER SE (matched minimal-pair): only marginally isolated.** Clean at 9b READ ONLY (+0.035
+  CI[.023,.047] excludes 0); 9b WRITE +0.011, 2b READ +0.036 CI[-.006,.084], 2b WRITE -0.001 -- all straddle 0.
+  So separating *authority* from other cue properties holds only on the 9b detection (READ) side; on WRITE and
+  at 2b the social effect is real but not cleanly attributable to authority specifically.
+- **Discharges two v1-triage author_queue items by running** (`per-cue bootstrap CI` -> single-case-overfit/no-CI
+  crux; `matched-content authority minimal-pair` -> construct crux). NOT re-triaged: the new numbers resolve those
+  two cruxes; the rest (`self-repair` resample/path-patch; held-out/2nd-speech-act) are unchanged from v1 Pass-1
+  and remain owed.
+- **Corrected SC-S1:** social cues recruit the doubt circuit MORE than the self/sourceless baseline (CI-backed,
+  both scales) -- the GRADIENT is real; a clean *authority-monotone* attribution is established only at 9b on the
+  READ side (small, +0.035), not on WRITE or at 2b. Teardown clean via the new retry-trap (accepted try 1, no
+  orphan -- unlike the 1st failed box, which DNS-failed teardown and was killed manually).
+
+### PART 8 v3 — FAITHFUL -it readout attempt (RLHF-on-the-doubt-circuit): INSTRUMENT FAILS, question still BLOCKED (RUN 2026-06-23)
+`controls/cave_faithful_it_diff.py` (pre-reg `DESIGN_faithful_it_readout.md`): assistant-prefill "The answer is"
+-> answer-SET readout, SAME format both models (weights-only contrast); R2 generation-validator; R3 softening.
+Ran 2b (A10, `results_faithful_it_2b/`) + 9b (H100 us-south-3, `results_faithful_it/`); an earlier 9b A100 launch
+no-capacity-failed (no box, $0). BOTH scales -> **READOUT_STILL_BLOCKED**; both boxes torn down (retry-trap, try 1).
+- **-it readout NOT unblocked by the prefill, both scales:** -it readout_faithful_frac **0.11 (2b) / 0.16 (9b)** <<
+  0.5; n_faithful **0 / 2**; both-cave intersection **0 / 1**. Forced to "The answer is ___", the chat model emits
+  a correction/hedge ("...is not [W*]"), not the bare answer -> C/W* still not decidable at the slot.
+- **Base-side R2 generation-validator FAILS too:** agreement **0.0 (2b) / 0.125 (9b)** << AGREE_THR 0.8. The
+  prefilled "cave" does NOT track free generation -- the prefill MANUFACTURES caves the model doesn't commit to
+  (the overlay risk, R2 guard fired). And it re-localizes DIFFERENT base doubt heads (2b prefill
+  [(8,1),(10,4),(12,5)..] vs validated non-prefill [(16,7),(11,6),(8,3)..]) -> the prefill changes the computation,
+  not a clean readout. (base readout_frac 0.88/0.89 + n_faithful 66/52 -- the base side IS measurable, but its
+  R1-vs-free-gen disagreement disqualifies the prefill as faithful.)
+- **=> the prefill+answer-set instrument is REJECTED by its own validator (R2) and by the -it readout gate.** The
+  field-standard "constrain the slot" fix (CAA/De Marez forced-choice, here adapted as assistant-prefill) does NOT
+  transfer to Gemma-it free-form caving, and even at base diverges from free generation. Honest-fail design worked:
+  no fake verdict; the gates caught it.
+- **The colleague's question (what RLHF does to the doubt circuit) remains BLOCKED** -- now with the added knowledge
+  that the prefill shortcut won't answer it. Path forward (both scales point here): a **forced-choice MC reformat**
+  ("Which is correct? A) {C}  B) {W*}  Answer:" -> a single decidable LETTER token in chat too -- CAA/De Marez
+  proper, not a generative stem the model can continue with a correction) as the PRIMARY readout, and/or full
+  generation-grading as primary. The prefill route is retired.
+- **Method lesson banked:** validate a readout against free generation BEFORE the differential; prefilling a
+  GENERATIVE stem ("The answer is ___") is NOT equivalent to a bounded FORCED-CHOICE -- the model continues the stem
+  with a correction, so prefill manufactures caves. Forced-choice MC bounds the answer to one of two tokens.
+
+### PART 8 v4 — SPIKE: residual cave-STATE readout (the readout block is at the OUTPUT, not the residual) (RUN 2026-06-23)
+`controls/spike_eot_cavestate.py` (throwaway monitor spike, prompted by the colleague's latent_prompts/SycophantSee
+eot-direction work, Vennemeyer idiom). gemma-2-9b base + 9b-it, A100, n=40 misconception items, caved-label = local
+Yes/No self-judge on the free generation; held-out diff-of-means AUROC (5 seeds) of resid_post[L] at sites
+{eot=<end_of_turn>, gentail=model-gen-tail, content=prefill "The answer is" slot} x L{12..32}. ~$0.5; box torn down (try 1).
+- **M1 SUPPORTED (strongly): a readable cave-STATE exists in gemma-2-9b-IT** -- held-out AUROC predicting the
+  judge-graded free-gen cave: content **0.92** (L24), gentail **0.91** (L24), eot **0.86** (L28). Far above 0.5,
+  even though -it NEVER emits W* at the answer slot. **=> the -it readout block was at the OUTPUT (logit/softcap/
+  emitted token), NOT the residual** -- the residual carries the cave signal at L24-32; reading it (a direction/state)
+  is upstream of the softcapped unembedding (assumption A4, confirmed and decisive).
+- **The "template-token" framing is NOT confirmed (corrects the hypothesis):** the signal is BROAD, if anything
+  strongest at the CONTENT slot (0.92) not the template eot (0.86). The colleague's "signal at the eot template
+  token" does not cleanly reproduce on Gemma; the cave-state is distributed across positions. **This rescues the
+  failed v3 prefill:** v3 failed because it read the prefill LOGIT/answer-set (argmax="not.."); the prefill RESIDUAL
+  at the same slot separates caving at 0.92. We were reading the wrong THING (token, not state), not the wrong place.
+- **base positive-control INVERTED (best 0.63-0.67 << -it 0.92):** backwards from prediction. Undisambiguated:
+  (a) self-judge label NOISE on base's rambly QA completions (likely deflates base AUROC), or (b) REAL -- RLHF
+  CREATES a readable cave-DISPOSITION that base lacks (base emits W* without assembling a committed state). (b) would
+  be a candidate answer to "what RLHF does"; needs an external/cleaner judge to separate from (a).
+- **Caveats:** MONITOR not mechanism (separable != the doubt heads write it; M3 stands); n=40/11-caved -> wide CIs;
+  self-judge label noise (the base inversion may be its artifact); SyA-overlay risk remains until intervened (but
+  0.92-predicts-behaviour is a far better monitor than the colleague's SyA-0.50).
+- **=> UNBLOCK:** the base<->it doubt-head battery is now runnable with the readout fixed to the **residual
+  cave-state projection** (resid.dir at L24-32 content slot), NOT the answer-set logit. Ablate the doubt heads ->
+  does the residual cave-state projection drop -> the faithful RLHF-on-the-circuit differential. The v3 control is
+  revised (readout: residual-not-logit), not the MC reformat (the residual read makes the readout decidable without
+  forcing a choice). NEW open sub-question: base-vs-it AUROC inversion (judge-noise vs RLHF-creates-the-disposition).
+
+### PART 8 v5 — RESIDUAL-STATE doubt-head battery, base<->it: a base<->it DISSOCIATION lead (RUN 2026-06-23)
+`controls/cave_residstate_diff.py` (readout = resid_post[L28].cave-axis, NOT the emitted token; base label =
+realized argmax==W* [trusted], it label = free-gen self-judge; cave-axis = diff-of-means(caved vs not), gated on
+held-out AUROC>=0.70). gemma-2-9b base+it, A100 us-east-1 (1st launch crashed on a hook-lambda param-name bug
+`lambda t,h:` vs TL's keyword `hook=`; fixed to `lambda t,hook:`, re-run; +1 no-capacity A100 fail + the
+double-launch poller race [redundant A100 killed manually] -- all boxes torn down/verified). ~$3 over the boxes.
+- **The residual-state readout WORKS at BOTH models (block solved):** base cave-axis held-out AUROC **0.773**
+  (on REALIZED-ARGMAX labels -> RESOLVES the v4 base-inversion: it was self-judge NOISE, base is readable),
+  it **0.918** (reproduces the v4 spike). M1 confirmed; the -it readout block was at the OUTPUT, not the residual.
+- **DISSOCIATION (the lead): the doubt-heads produce the cave-state at BASE but NOT at -it.**
+  base doubt-heads READ-KO restoration **0.359** / WRITE **0.264** (random floor 0.009) -> the attention
+  doubt-circuit CAUSALLY carries the base cave-state. -it READ **0.005** / WRITE **0.001** (random 0.003) ->
+  the SAME-type heads are INERT at -it, despite the cave-state being strongly readable (0.92). head overlap 2/5
+  (base [25.15,2.13,26.7,23.5,25.9] vs it [25.15,9.7,14.6,15.4,26.7]). **Reading: RLHF does NOT keep/amplify the
+  attention doubt-circuit; the -it caving disposition is produced by a NON-attention (distributed/MLP) substrate**
+  -- not INSTALL (base has it), not AMPLIFY (it heads inert), not RESHAPE-onto-other-heads (matched-type it heads
+  also ~0). Closest verdict: DISTRIBUTED / RLHF relocates caving off the attention heads. Coheres with the
+  program's diffuse-at-9b / RLHF-modulates-a-distributed-substrate through-line, now with a faithful -it read.
+- **Formally INSUFFICIENT (honest):** base-caved (14) and it-caved (14) items are DISJOINT (intersection 0) -- the
+  models cave on different misconceptions -- so 0.36-vs-0.005 is UNMATCHED (item-confounded); n=14; and the it ~0
+  COULD be an it head-localization/READ_LAYER mismatch (it cave-axis at L28 may be downstream of where it heads
+  write; overlap 2/5 hints the it circuit isn't the base one). Strong lead, not a clean verdict.
+- **NEXT (close the lead):** (1) MATCHED both-cave intersection -- broaden the pool / select items that cave in
+  BOTH models so 0.36-vs-0.005 is a matched contrast; (2) it-side RE-LOCALIZE -- sweep the it READ_LAYER and
+  re-rank it doubt heads on a faithful it signal (rule out the localization-mismatch alternative for it~0); (3)
+  if the dissociation survives -> it's the answer: RLHF moves caving off the attention doubt-circuit to a
+  distributed substrate. -> `results_residstate/`. Method lesson: model-free selftests don't catch hook-signature
+  bugs (the inline lambda param must be named `hook`); the on-box run is the only gate for the hook path.
+
+### PART 8 v6 — CLOSE: DISTRIBUTED_CONFIRMED -- RLHF moves caving OFF the attention doubt-circuit (RUN 2026-06-23)
+`controls/cave_residstate_close.py` -- matched UNION caved set (n=28, same items both models) + -it RE-LOCALIZE
+(DLA: rank heads by |head_out . cave_axis| = "which heads WRITE the cave-state", not challenge-attention) +
+READ_LAYER sweep. gemma-2-9b base+it; broad-type single poller (no race this time); box torn down (try 1, ACTIVE 0).
+Both cave-axes faithful (base AUROC L24 0.86 / L28 0.77; it L24-32 0.91-0.92).
+- **DISSOCIATION CONFIRMED on the matched set:** base span (challenge-reader) heads READ **0.365** / WRITE **0.236**
+  (rand 0.010, head-specific) -- the base attention circuit CAUSALLY carries the cave-state. -it: span heads READ
+  **0.008** / WRITE 0.001 AND DLA axis-writer heads READ **0.018** / WRITE 0.010 (rand 0.0006) -- BOTH INERT. The
+  readable -it cave-state (0.92) is NOT attention-head-written.
+- **Both v5 caveats KILLED:** (1) matched union items -> NOT item-confounded (base 0.37 vs it 0.008 on the SAME 28
+  items); (2) DLA re-localize -> even the heads that MOST write the it cave-axis are inert -> NOT a localization
+  mismatch. **=> VERDICT: RLHF moves caving off the localizable attention doubt-circuit to a NON-ATTENTION
+  (distributed/MLP) substrate.** Not install (base has it), not amplify (it heads inert), not reshape-onto-heads
+  (axis-writers also inert). ANSWERS the headline open question, faithfully, on the -it readout that was blocked all
+  along; coheres with the program's distributed-at-9b through-line.
+- **Honest residual caveats (-> latent_skeptic):** n=28 union / 14 caved each, no CI; -it caved-label = self-judge
+  (base = realized argmax); "distributed/non-attention" is by ELIMINATION (heads don't carry it) + the state exists
+  -- the MLP/residual writer is NOT positively localized yet; fitted-axis readout (causal-on-the-axis). NEXT positive
+  step: DLA the -it cave-axis to MLP outputs -> turn "not the heads" into "it's these MLPs". -> `results_residstate_close/`.
+
+#### latent_skeptic CORRECTION (`wf_f807a702`, 11 skeptics) -- DISTRIBUTED_CONFIRMED is OVER-STATED; downgrade
+4 RULED_OUT (readout artifact, scale, noise floor, ceiling/floor) -> the INSTRUMENT is sound and the tested -it
+head-sets are genuinely at the floor (base SPAN 0.37/0.24 vs random 0.01 = 24-36x range; the -it floor is a real
+absence FOR THOSE HEADS, not underpower). BUT the INFERENCE "by elimination -> non-attention/distributed" does NOT
+survive: `selection bias` EXPLAINS -- the null covers only ~10 heads (span-top5 + DLA-top5); the true -it carriers
+could be attention heads ranking top-5 under NEITHER criterion (axis-write at a layer != L28 AND not attending the
+challenge span). `construct validity` EXPLAINS -- base labeled by realized-argmax, -it by self-judge, with the
+READ/WRITE probes built around the base counter-token construct. 4 NEEDS_RUN: no unrestricted-attention upper-bound
+control, no positive MLP/distributed restoration number, **no -it POSITIVE control (nothing on record shows ANY -it
+intervention restores the cave-projection -- so the restoration CHANNEL is unverified in -it, only the readout AUROC
+is)**, self-repair (only zero/output-patch on record), single-case/LOO (no CI, in-sample head ranking).
+- **CORRECTED CLAIM:** what stands -- (1) the -it cave-state is readable (AUROC 0.92); (2) the BASE attention
+  doubt-circuit carries caving (0.37/0.24, head-specific); (3) the specific -it heads tested (challenge-readers +
+  top cave-axis-writers, ~10 heads) do NOT carry it. What is RETRACTED to NEEDS_RUN: "therefore RLHF moves caving
+  to a NON-ATTENTION (distributed/MLP) substrate" -- unlicensed by-elimination over ~10 heads.
+- **DECISIVE close-of-the-close (author_queue, deduped):** on the matched n=28 set, -it (a) ALL-attention KO/patch
+  upper bound -- if ~it_rand -> distributed RESCUED (genuinely not attention); if ~base_span(0.37) -> the null was a
+  head-selection artifact (it IS attention, wrong top-5); (b) ALL-MLP-block patch -- positive localization (does MLP
+  carry it?); (c) an -it POSITIVE control (full-residual u_cave ablation must restore -> proves the restoration
+  channel works in -it); (d) LABEL-MATCHED (re-run -it under the base realized-argmax label, or base under the judge);
+  (e) mean/resample-ablation (self-repair) + LOO/CI. Until (a)+(c) at minimum, the headline is "tested -it heads
+  inert; attention-vs-distributed OPEN", not "distributed confirmed".
+
+### PART 8 v7 — DECISIVE close-of-the-close: the v6 "non-attention/distributed" verdict is REFUTED (RUN 2026-06-23)
+`controls/cave_residstate_decisive.py` — the owed controls from the `wf_f807a702` correction, on the SAME matched-union
+set + cave-axis readout as v6 (so the only new thing is intervention COVERAGE): (A) ALL-attention upper bound (READ
+attn-KO every head to the doubt span + WRITE z-patch every head ctr->neu), (B) ALL-MLP upper bound (patch every
+layer's mlp_out[-1] ctr->neu), (C) -it POSITIVE CONTROL (steer the residual +/- the caved-notcaved gap along the
+cave-axis at L28, read the realized OUTPUT margin lp(W*)-lp(C)), (D) LABEL-MATCH (every restoration re-read under the
+self-judge axis AND the realized-argmax axis, purely post-hoc), + bootstrap CIs. gemma-2-9b base+it, H100 us-southeast-1.
+Three launches (1st: scp flattens controls/->root, runner used a controls/ prefix; 2nd+3rd: a post-proc `.get` bug --
+but v3 DUMPED the GPU cache before post-processing, so the final numbers were reprocessed OFFLINE, no 4th GPU run).
+Boxes all torn down (trap, try 1); INSTANCE_COUNT 0 verified via API. ~$4 total over the 3 boxes.
+
+Faithful: it cave-axis held-out AUROC L28 **0.8875** (reproduces v4/v5/v6), base **0.777**; union n=27 (base 14 | it 13).
+
+- **(A)+(B): at -it the cave-state restores under BOTH full patches -- ALL-attention 0.875 (READ 0.554 / WRITE 0.875,
+  CI [0.571, 0.863]) AND ALL-MLP 0.751 (CI [0.542, 0.931]); rand floor ~0 -> verdict BOTH_REDUNDANT.** The decisive
+  point: ALL-attention restoring **0.875** at -it **REFUTES the v6 "RLHF moves caving OFF attention to a NON-ATTENTION
+  substrate"** -- attention IS sufficient to carry the -it cave-state; the v5/v6 ~10-head inertness (0.008) was a
+  head-SELECTION artifact (the carriers are attention heads OUTSIDE span-top5 / DLA-top5), exactly the skeptic's
+  `selection bias` crux. base also redundant but weaker (all-attn 0.656 / all-mlp 0.414).
+- **(C) -it POSITIVE CONTROL PASSES (the skeptic's biggest gap, closed):** steering the residual along the cave-axis
+  moves the realized output margin lp(W*)-lp(C) **+0.799 (toward W*) / -0.520 (away)** -- signed-monotone, channel
+  LIVE. So the AUROC-0.92 cave-axis is **behaviourally causal at -it**, NOT a SyA-style inert separable direction. The
+  restoration *channel* is verified at -it (was unverified through v6). **base steer is ~0 (+0.015 / -0.037)** despite
+  the same construction -> the cave-axis is far more behaviourally potent at -it than base, corroborating the v4
+  hypothesis (b): RLHF CREATES a committed, output-effective cave-disposition the base lacks at the unembedding.
+- **(D) LABEL-MATCH: the -it realized-argmax axis is INSUFFICIENT (0/14 union items emit W* at argmax -> can't fit
+  it).** This is itself the readout-block result: -it caving is intrinsically NOT a realized-argmax flip, so the
+  base(argmax)<->it(self-judge) construct mismatch cannot be label-matched away at -it -- it must be acknowledged,
+  not "fixed". (verdict "changes" self=BOTH_REDUNDANT vs real=INSUFFICIENT for this reason.)
+
+- **CORRECTED HEADLINE (what RLHF does to the doubt circuit), faithful on the residual readout:** NOT install (base
+  carries it), NOT amplify-the-same-heads (base challenge-readers inert at -it), and -- now refuted -- NOT
+  relocate-off-attention. The supported verdict is **REDISTRIBUTE**: -it caving is carried by attention (and MLP)
+  at the answer position, but by a DIFFERENT, diffuse, non-challenge-reader set of heads than base; and the resulting
+  cave-state is a behaviourally-causal residual axis that is much more output-potent at -it than base. The base
+  attention doubt-circuit (challenge-reader heads, READ 0.37 / WRITE 0.24) is a BASE phenomenon that RLHF does not
+  preserve as the -it carrier.
+- **Honest caveats (-> latent_skeptic, owed):** (1) ALL-X upper bounds are WEAKLY DISCRIMINATING -- patching every
+  head (or every MLP) ctr->neu replaces most of the counter-vs-neutral difference at that position, so 0.875 / 0.751
+  bound the contribution rather than cleanly localize it (and they sum >1 = overlapping pathways, the BOTH_REDUNDANT
+  read). The non-trivial, clean leg is the steer positive control (C). (2) the WHICH specific -it heads carry it is
+  still unlocalized (the upper bound says "not the top-5", not which set). (3) n=27, no LOO; steer has no per-item CI
+  (restorations do, CIs exclude RESTORE_THR). (4) -it label = self-judge (the realized-argmax label is degenerate at
+  -it, per (D)). (5) steer at gap=140 is a large push; the +/- contrast controls for off-manifold but does not
+  eliminate it. NEXT positive-localization step (cheap, owed): a per-head/per-MLP-layer DLA-onto-cave-axis sweep at
+  -it to name the redistributed carriers (turn "not the top-5, but attention+MLP" into "these heads/MLPs").
+  -> `results_residstate_decisive/` (`cave_residstate_decisive.json` + `_cache.json` = the offline-reprocessable dump).
+
+#### latent_skeptic triage of PART8 v7 (`wf_938ded7d`, 22 skeptics, no-GPU) + an offline per-item re-read
+Two claims triaged. **Claim 1 (v6 "non-attention" REFUTED; -it caving is attention+MLP-borne, old null = head-selection):
+CORE ROBUST.** `selection bias` RULED_OUT (ALL-attention patches EVERY head -> upper bound by construction, cannot be
+inflated by head-selection; the named selection IS the diagnosis), plus self-repair / readout / regime / scale / noise /
+ceiling-floor / single-case all RULED_OUT (8/10). Two live: `off-distribution ablation` NEEDS_RUN (the ALL-X swap
+replaces a WHOLE component's answer-slot output with the matched neutral activation -- maximally off-distribution; both
+attention AND MLP restoring is the signature of generic neutral-injection; the rand floor is a random-DIRECTION control,
+not a distribution control -> author a mean-resample-over-neutral-items variant + a CONTROL readout the swap should NOT
+restore); `construct validity` EXPLAINS (0.875 holds ONLY under the self-judge cave construct; under realized-argmax the
+-it axis can't be fit, ncav=0 -> the base[argmax]<->it[self-judge] contrast mixes constructs -- a real scope limit, the
+readout-block restated, not a refutation). **Net: the REFUTATION of v6 stands; "attention+MLP carry it" is scoped to the
+self-judge construct + owes a within-distribution swap control.**
+
+**Claim 2 (-it cave-axis behaviourally causal / the "positive control"): DOWNGRADED to INCONCLUSIVE.** Triage = 5
+NEEDS_RUN converging on one hole: no matched-norm random-direction placebo, and the it-vs-base contrast is
+MAGNITUDE-confounded (it steered by its own gap 140.6 vs base 35.1 ~= 4x harder). The cheap part was reprocessable
+OFFLINE from `_cache.json` (per-item steer deltas were stored): **it mean +0.799 BUT per-item bootstrap CI [-0.355,
++2.027] CROSSES ZERO; only 50% of items sign-correct (+steer>0 AND -steer<0); frac(+steer>0)=0.57.** So the +0.80 mean
+is carried by a MINORITY of high-margin items, not the population -- the "channel live / axis behaviourally causal at
+-it" conclusion does NOT hold at the population level. (base diff-CI [0.007,0.096] excludes 0 but is tiny; sign-correct
+0.06.) **=> the v7 "positive control PASSES" line is RETRACTED to "steer mean is positive but per-item CI crosses zero
+-> INCONCLUSIVE; the restoration channel at -it is NOT yet verified."** This is the skeptic catching a mean-vs-dispersion
+over-claim, exactly its job.
+- **CORRECTED v7 HEADLINE:** (1) v6's "RLHF moves caving off attention to a non-attention substrate" is REFUTED (robust):
+  ALL-attention restores 0.875 at -it, the ~10-head inertness was head-selection. (2) -it caving is carried by attention
+  AND MLP at the answer slot UNDER THE SELF-JUDGE CONSTRUCT, owing a within-distribution swap control (mean-resample +
+  control-readout). (3) the -it cave-axis being *behaviourally causal* is NOT established -- the steer positive control is
+  per-item-inconsistent (CI crosses 0); owed a proper arm (matched-norm random-direction placebo, train/test fold,
+  magnitude-matched base, per-item CI). The "REDISTRIBUTE not relocate-off-attention" verdict survives; the "channel live"
+  upgrade does not.
+- **author_queue (deduped, owed):** (a) ALL-X within-distribution control = mean-resample-over-neutral swap + a non-cave
+  control readout; (b) matched-norm random-direction steer placebo (>=5 seeds, both models); (c) magnitude-matched 2x2
+  steer (base@it-gap, it@base-gap); (d) train/test fold on the steer + per-item CI / sign-fraction (the offline read above
+  is the first cut of (d)). -> author one `cave_residstate_decisive2.py`, model-free selftest, run, re-triage.
+
+## PART 9 — FOLD-vs-LISTEN: is the doubt circuit wrongness-specific or shared answer-revision? (PARALLEL thread, RUN 2026-06-23)
+Authored + run by a CONCURRENT autonomous agent (`DESIGN_fold_vs_listen.md`, `controls/cave_fold_vs_listen.py`); integrated
+here now that the PART8 v7 residstate thread has landed (the `results_fold_vs_listen/FINDINGS.md` deferred to avoid a
+write-race on this log). Reuses our residual cave-axis + doubt battery + the v7 bracket discipline (positive control +
+all-attention upper bound; cites the `wf_f807a702` lesson). Settles the PARKED "does-caving-carry" (`RESEARCH_QUESTIONS`)
+and the RETRACTED SC-S4 ("deference fires for wrong-not-truth"). 9b + 2b, base+it; H100/A100.
+
+**Cells (push always AGAINST the model's paraphrase-consistent lean -> headroom-symmetric by construction):** FOLD =
+holds C, push toward W* (regressive); LISTEN = holds W*, push toward C (progressive); AGAINST-GRAIN = holds C, push toward
+a THIRD unrelated wrong target. The against-the-lean design is the SC-S4 fix (PART8 retracted "wrong-not-truth" as a
+zero-headroom artifact; here both cells have headroom by construction).
+
+- **BEHAVIOUR -- LISTEN >> FOLD, AGAINST-GRAIN ~0 (flip-rate):** 9b base FOLD 0.27 / LISTEN 0.50 / AG 0.07; 9b-it 0.43 /
+  0.88 / 0.40; 2b base 0.09 / 0.33 / 0.00; 2b-it 0.41 / 0.88 / 0.14. The model updates toward TRUTH far more readily than
+  it folds toward a misconception (reproduces SycEval progressive 43.5% >> regressive 14.7%, 2502.08177, at the per-item
+  level). At BASE, AGAINST-GRAIN ~0 -> caving is **target-plausibility-gated, NOT generic "follow any assertion"**; -it
+  broadens it (AG 0.40 at 9b) -> post-training defers even to less-plausible targets (suggestive, small n).
+- **STATE+HEADS -- ONE shared circuit at base:** 9b base both cells fit a faithful cave-axis (FOLD AUROC 0.776 / LISTEN
+  0.82), cross-cell axis transfer **0.82** (F->L 0.84, L->F 0.82), head overlap **4/5**, heads `[25,15],[2,13],[26,7],
+  [23,5]` = **the canonical base doubt set (matches PART8 residstate base span heads).** => the same ~5 doubt heads + one
+  TRANSFERABLE cave-state carry BOTH folding-to-wrong and updating-to-right. Fold/listen is a difference in input/rate,
+  NOT separate circuitry. (2b base agrees: cross 0.78, overlap 4/5.) => the doubt circuit is **plausibility-gated
+  answer-revision**, sign-agnostic in residual space -- NOT a wrongness-specific "fold" organ, NOT fully generic.
+- **BATTERY -- head-borne at base, the base->it dissociation REPRODUCED:** 9b base FOLD READ 0.36 / WRITE 0.30 / rand
+  0.011 / all_mlp 0.018 (head-specific, 30x random; NOT MLP); pos_control restores (channel verified). 9b-it FOLD READ
+  0.0 / WRITE 0.0006 (doubt heads INERT) -> reproduces PART8 v5/v6 base->it dissociation on a DIFFERENT (paraphrase-gated
+  holds_C) item pipeline + a matching head set = strong convergent localization of the BASE circuit.
+- **Formal verdict: MOVE_UNMATCHED (all cells/scales)** -- FOLD and LISTEN cave at different rates (the gate is on
+  flip-rate), so the recruitment-MAGNITUDE comparison (READ 0.36 vs 0.15) is withheld. The SHARED-circuit read (overlap +
+  transfer + both-head-carried) is conditioned on caving and does NOT depend on move-matching, so it stands.
+
+**CROSS-THREAD RECONCILIATION with PART8 v7 (RESOLVED by re-run 2026-06-24):** fold-vs-listen's -it headline "MLP carries
+the -it cave" (single-layer all_attn ~0 vs all_mlp 0.33) APPEARED to conflict with v7's -it ALL-attention = 0.875. It does
+NOT -- their all-attention bracket KO'd attention at the **single read layer only** (their own FINDINGS flagged the
+under-bound). **Re-ran with an added all-LAYER all-head z-patch bracket (`all_attn_write_alllayer`, the v7 intervention):
+-it FOLD restoration = single-layer 0.0002 vs ALL-LAYER 0.856 (~= v7's 0.875 on the union set, here on the holds_C FOLD
+items); base FOLD single-layer 0.008 vs all-layer 0.635 (the top-5 doubt heads 0.36 are a localizable subset); base LISTEN
+all-layer 0.697.** => CONFIRMED: at -it the cave-state IS carried by attention distributed ACROSS LAYERS (0.856), not
+"off attention"; the single-layer ~0 was the under-bound. **Joint verdict = REDISTRIBUTE (v7): -it caving is carried by
+attention-across-layers AND MLP, redundantly, NOT the localized base doubt heads (which stay inert: 0.0/0.0006).** Both
+threads now agree numerically. (Distinct claim, still open: whether the cave-axis moves BEHAVIOUR at -it -- fold-vs-listen's
+pos_control 0.82 only verifies the projection-restoration metric is live, NOT output causality; v7's steer tested output
+causality and was per-item INCONCLUSIVE, CI crossing 0.)
+
+**Honest caveats (theirs + mine):** MOVE_UNMATCHED (formal SC withheld); -it LISTEN axis = None (14/16 caved -> too few
+not-caved for held-out AUROC; -it shared-state shown only weakly F->L 0.57); AGAINST-GRAIN caved-n tiny (9b base 2);
+single-layer all-attn under-bound (-> re-run with the v7 all-LAYER z-patch bracket for commensurability; in progress).
+paraphrase strata reused base->it (knowledge gate on base argmax). -> `results_fold_vs_listen/`, `results_fold_vs_listen_2b/`.
+
+## PART 10 — INTERVENTION (1): judge-FREE multi-sample audit of the -it cave-direction + first H3 (triage-reader) grounding (RUN 2026-06-25)
+`controls/cave_multisample_caverate.py` (9b base+it, A100 us-west-2, box torn down try 1). Audits the readout behind
+the -it cave-direction: the AUROC 0.92 (PART8 v4 spike) was fit on a SELF-JUDGE label scored on free-generations that
+were never saved. This run SAVES every generation (n=40 items x 12 samples/model -> `results_multisample/`), labels
+caving by a deterministic answer-string matcher (negation-windowed, NO judge), re-fits + AUROCs the cave-axis on the
+judge-free label, and records the old self-judge per sample for an agreement comparison. Selftest PASS; saves all gens.
+- **-it: the 0.92 is SELF-JUDGE-SPECIFIC and inflated.** AUROC under the self-judge label **0.97** (L28; reproduces the
+  spike 0.92) but under the judge-free answer-string label only **0.72** (L32; 0.63-0.67 LOO). Per-sample labeler
+  agreement (rule vs self-judge) **0.57** (item-level 0.675); n_caved rule 18 / judge 11. base INSUFFICIENT (5 caved
+  under the rule).
+- **First triage-reader (H3) grounding -> DIVERGES.** The reader (read-only, opened the SAVED generations -- which did
+  not exist before this run) re-derived the numbers AND read the replies: of 8 mutually-agreed caves ~**6 are genuine
+  factual capitulation**, 2 playful/borderline; the 10 rule-only "caves" are **mostly string-match FALSE POSITIVES
+  where the model explicitly DEBUNKS the misconception** (Bermuda/shaving/camels); the 3 judge-only "caves" are
+  **whimsical** (pumpkin coaches, combusting pants) -- the model playing along, flagged as fiction.
+- **VERDICT:** the cave-direction carries real signal on genuine caves, but "AUROC 0.92 = the model knows it will cave"
+  OVERSTATES it -- the 0.92 holds only against a self-judge label that disagrees with a judge-free label ~43% of the
+  time, judge-free it is ~0.72 on a noisy label, and a real fraction of labeled "caves" are not genuine factual
+  capitulation (playful engagement with absurd premises; string-match artifacts).
+- **Caveats / NEXT:** (a) the matcher has false positives (negation across clauses -> the model says "NOT yellow" but
+  mentions yellow); (b) the big-pool substrate includes whimsical items where "caving" is ill-defined. NEXT = re-run on
+  a CLEAN misconception-only substrate with an EXTERNAL judge (or improved matcher) + bootstrap CI; then re-ground.
+- **METHOD:** first use of the H3 `triage-reader` -- it caught the inflation by READING the saved generations, which
+  the tool-less skeptic (`wf_938ded7d`) structurally could not, and which the unsaved-generation self-judge hid. The
+  fix that made this possible was persisting the generations. -> `results_multisample/out/cave_multisample_caverate.json`.
+
+### PART 10 addendum -- curation (reader-gold) CORRECTS the "inflated" read (offline, no GPU; reader wf a158c3cd)
+The triage-reader curated all 40 -it items by READING the saved generations: 8 genuine_cave, 25 resist, 4 playful (DROP),
+3 ambiguous. **Calibration against reader-GOLD:** self-judge item-agreement **0.925** (0.972 after dropping playful) --
+the SELF-JUDGE IS ACCURATE at item level; the MATCHER is the WEAK labeler (**0.70** vs gold; debunk false-positives, e.g.
+Bermuda "vanish", "old soldiers never die"). Re-fitting the cave-direction on reader-GOLD (curated 36 items, 8 caved),
+held-out AUROC = **0.938 (L24) / 0.972 (L28) / 0.977 (L32)** -- the cave-direction predicts GENUINE (read-the-generations)
+caving at ~0.94-0.98, NOT the 0.72 the matcher implied (matcher-label AUROC 0.62-0.67 = the direction predicting a WRONG
+label).
+- **CORRECTION to PART10:** the 0.92 was NOT mainly a self-judge artifact. The judge-free 0.72 was low because the
+  MATCHER label was wrong, and the playful items contaminated the substrate. On a curated genuine-cave substrate the
+  readout holds up against actual ground truth (self-judge ~= gold, 0.972). Remaining real limitation: POWER (8 caved, wide CI).
+- **Lesson (refines the earlier one):** "judge-free" string-match traded model-opacity for lexical-brittleness and was the
+  WORSE yardstick here; what actually de-risked the claim was SAVING + READING (reader/H3) -> reader-gold -> validate the
+  self-judge. Curation is the deliverable: it both improved the substrate AND calibrated the self-judge (0.925 -> 0.972).
+- **NEXT:** (Phase 1) clean-substrate re-run (drop the whimsical big-pool -> more genuine caves for power); (Phase 2)
+  external judge PANEL (Qwen2.5-7B-Instruct + Llama-3.1-8B-Instruct, DIFFERENT families) judging the SAVED gens, calibrated
+  vs reader-gold, to remove the self-judge circularity. -> `results_multisample/` (gens), reader curation wf a158c3cd.
+
+### PART 10 addendum 2 -- Phase 1 (clean substrate) UNDERPOWERED; self-judge robust, matcher = noise at small n (RUN 2026-06-25)
+Dropping --big-pool (factual misconceptions only) COLLAPSED n: base 9 items (1 caved), -it 19 items (self-judge caved 4
+/ matcher 10). -it AUROC_judge **0.92 (L24) REPRODUCES AGAIN** (self-judge robust across substrates); AUROC_rule **0.49
+= chance** (matcher over-counts AND tiny n). => the clean `misconception_pool` is TOO SMALL at 9b for a powered
+judge-free re-fit; the "READOUT_JUDGE_DEPENDENT" verdict here is a small-n artifact, NOT a real finding (the matcher is
+just noise at n=19). The powered, trustworthy-label result remains the OFFLINE big-pool reader-GOLD re-fit (36 items,
+AUROC 0.94-0.98). **Substrate fix = EXPAND factual-misconception items (NOT drop the pool); deferred.** PIVOT: run the
+Phase-2 judge PANEL on the big-pool gens (40 items + reader-gold) to validate the self-judge independently. ->
+`results_multisample_clean/`.
+
+### PART 10 addendum 3 -- PHASE 2 judge PANEL: self-judge VALIDATED, the readout is REAL (RUN 2026-06-25)
+`controls/cave_judge_panel.py` -- independent-family judges (Qwen2.5-7B-Instruct + Mistral-7B-Instruct-v0.3) scored the
+SAVED big-pool generations (40 items); judges loaded one at a time via HF transformers, no gemma reload. (3 boxes: 2
+failed fast at a transformers-5.x bug -- `apply_chat_template(return_tensors='pt')` returns a BatchEncoding not a tensor,
+so `generate(ids)` hit `inputs_tensor.shape`; fixed to `return_dict=True` + `generate(**enc)`; all torn down, ~$3-4.)
+- **JUDGES_CONCUR_WITH_SELF.** Panel (majority of the 2 independent judges) agrees with the self-judge on **0.914** of
+  items. Pairwise vs reader-GOLD: self-judge **0.925**, Qwen 0.875, Mistral **0.95**, **panel 0.971 (best labeler)**,
+  matcher 0.70 (worst). Qwen<->Mistral 0.875 (the two independent families concur with each other).
+- **The cave-direction predicts EVERY meaning-aware label at AUROC ~0.97-0.996** (self-judge 0.974, Qwen 0.974, Mistral
+  0.996, panel 0.974, reader-gold 0.973) -- ONLY the broken lexical matcher gives 0.72. => the earlier "judge-free 0.72
+  -> inflated" read was ENTIRELY the matcher's lexical brittleness; every label that reads MEANING (self, two other
+  families, reader-gold) gives ~0.97.
+- **VERDICT (resolves the audit):** the "AUROC 0.92 = the model knows it will cave" readout is VALIDATED, NOT a
+  self-judge circularity artifact -- corroborated by two different-family judges AND reader-gold; the cave-direction
+  predicts GENUINE (read-the-generations) caving at ~0.97. The PANEL is the best single label (0.971 vs gold) -> "balance
+  the rating" delivered. Live caveat: POWER (8 caved on the curated set; wide CI) -> substrate EXPANSION owed.
+- **Model-selection lesson (answers the open Q):** select judges by INDEPENDENCE (different family) + capability +
+  calibration-vs-gold, NOT weight-class matching; a 2-judge panel of 7B OTHER-family models beat every single rater
+  (panel 0.971 > self 0.925 > each judge) and removed the circularity worry. -> `results_judge_panel/out/cave_judge_panel.json`.
+
+### Intervention (1) -- net (the H3/reader + curate + panel arc)
+The self-judge readout behind "the model knows it will cave" (AUROC ~0.92) STARTED unauditable (gens unsaved) and looked
+inflated under a judge-free string-matcher (0.72). Saving the generations + the H3 reader + a curated substrate + an
+independent judge panel RESOLVED it: the readout is real (~0.97 vs reader-gold and two independent families), the
+self-judge was accurate all along (the matcher was the bad yardstick), and the panel is the cleanest label. The discipline
+delivered: persist-and-read (H3) caught the gap; curation + panel closed it. Only POWER remains (n=8 caved -> expand the
+factual-misconception substrate for tight CIs).
+
+### PART 10 addendum 4 -- SUBSTRATE EXPANSION (TruthfulQA) -> powered, validated headline (RUN 2026-06-26)
+Expanded to the FULL TruthfulQA (clean factual misconceptions, single dominant competitor): -it n=47, **20 self-judge
+caves** (vs 8). reader-GOLD curation (wf ab616eee): **14 genuine_cave / 29 resist / 4 dropped** (3 playful + 1 ambiguous)
+= 43 kept. self-judge AUROC 0.92 REPRODUCES a 4th time.
+- **Powered headline (offline re-fit on reader-GOLD, 43 items / 14 caves, 300x bootstrap CI):** the cave-direction
+  predicts GENUINE caving at AUROC **0.896 (L24) / 0.905 (L28) / 0.915 (L32), CI ~[0.84, 0.99]** -- CI excludes chance
+  AND the matcher's 0.72. (self-judge label 0.92-0.96, CI [0.87, 0.997].)
+- **Calibration vs reader-GOLD (43 kept):** self-judge **0.907** (most accurate), Mistral 0.814, panel 0.857, Qwen 0.767,
+  matcher 0.558 (worst). The on-box panel-AUROC drop (0.75) was QWEN being a noisy judge on TQA (0.77 vs gold), NOT a
+  weaker direction -- against gold the direction is ~0.90.
+- **Mechanistic refinement (reader):** genuine caves CONCENTRATE on falsifiable FACTS (geography/legal/biology/history:
+  peaches, Vatican, legal-tender, backseat-light, steak="blood", Einstein, duck-echo) -- the model defers on a plausible
+  wrong FACT it is unsure of -- while it RESISTS superstition/myth/proverb items (umbrella, ghosts, ostrich, boiling-frog)
+  by naming them myths. The cave-direction is a "defer on an uncertain checkable fact" axis, not a generic-agreement axis.
+- **AUDIT COMPLETE:** "AUROC ~0.92 = the model knows it will cave" is VALIDATED + POWERED -- ~0.90 [0.84,0.99] vs reader-
+  gold on a clean TruthfulQA substrate (14 caves), self-judge accurate + corroborated by an independent family (Mistral),
+  matcher confirmed the bad yardstick. The n=8 0.97 was small-n-optimistic; the honest powered number is ~0.90. The
+  decodable-not-causal caveat (steer inconclusive) is UNCHANGED. -> `results_substrate_expand/`, reader wf ab616eee.
+
+## PART 11 — CAUSAL test of the cave-direction (BREADCRUMB, both scales) + DLA localizes the -it writers to LATE MLPs (RUN 2026-06-26)
+`controls/cave_causal_localize.py`, 9b base+it, TruthfulQA. Leg A: held-out steer +/-gap*u + matched-norm random-direction
+placebo (K=5) + per-item bootstrap CI + sign-fraction. Leg B: DLA = |mean_caved(component_out . u)| ranking attention
+heads + MLP layers. (-it labels REUSED from the expanded multisample run -- preloaded, NO live generation -> dodges a
+3-box OOM saga: the -it self-judge generation jointly with the model OOM'd a 40GB A100, silently zeroing -it labels.)
+- **CAUSAL fork -> BREADCRUMB at BOTH scales.** base axis_gap **-0.139 CI[-0.23,-0.05]** (wrong-signed, tiny), random ~0,
+  sign-frac 0.15. it axis_gap **+0.547 but CI [-1.18,+2.26] CROSSES ZERO**, sign-frac 0.54, random ~0. Steering the
+  cave-direction does NOT robustly drive the output either scale -- it PREDICTS caving (base AUROC 0.83 / it 0.97) but is
+  not the causal lever. Confirms the conceptual read: PART4 set_cos -0.04 (orthogonal to the heads; function-vector
+  REFUTED) + probing != steering (Amnesic Probing). The direction is a decodable MONITOR; the mechanism drives (base
+  doubt-heads, established; -it distributed).
+- **DLA positively localizes the writers to LATE MLPs (not attention), esp L27-30.** -it cave-axis MLP writes: **L28 +53.5,
+  L29 -23.7, L27 +15.3, L30 -14.8, L23 +14.2**; head writes tiny (~0.4-0.7) and NOT the base doubt heads (top it heads
+  L31.H1, L26.H8, L38.H15). base mirrors (MLPs L33/L26/L28/L31 ~10 >> heads L29.H4 -0.54). => the -it cave-state is an
+  MLP-WRITTEN representation around L27-30 -- the "distributed/MLP substrate" v6/v7 inferred BY ELIMINATION, now POSITIVELY NAMED.
+- **Caveats:** (1) DLA is CORRELATIONAL (projection of a component's write onto the axis); since the axis is a BREADCRUMB
+  (non-causal monitor), "what writes it" = what writes the MONITOR, possibly downstream/epiphenomenal. (2) the L28 MLP write
+  (+53) is partly TAUTOLOGICAL -- the axis is read at resid_post[L28] and mlp_out[L28] is a component of it; the
+  L23/27/29/30 writes are the cleaner signal. (3) it steer CI is huge (high variance), a noisy-not-clean null.
+- **OWED (the worthwhile next test):** ABLATE the DLA-top late MLPs (drop L28 as tautological; keep L23/27/29/30) and read
+  the REALIZED -it cave (free-gen judge / multisample cave-rate) + a matched-random-MLP + random-axis-DLA control. If
+  suppressing them reduces caving -> they CAUSE it (the redistributed substrate, causally confirmed). If not -> they write
+  the monitor, not the cause. Converts the correlational DLA into a causal claim. -> `results_causal_localize/out/cave_causal_localize.json`.

@@ -8,3 +8,8 @@ hf_local/
 latent_skeptic/
 .claude/
 *_driver.log
+
+# large raw-generation / cache artifacts (kept local; derived result JSONs ARE committed)
+results_*/out/cave_multisample_caverate.json
+results_*/out/*_cache.json
+panel_gens.json

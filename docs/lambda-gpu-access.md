@@ -58,8 +58,18 @@ billing read. Update the cumulative line whenever you run a box.
 | 2026-06-19 | NEXT-3b ov_behavioral (27b) | gpu_1x_h100_sxm5 | $4.29 | 0.45 | $1.93 |
 | 2026-06-19 | NEXT-2 realized_attention (27b) | gpu_1x_h100_sxm5 | $4.29 | 0.45 | $1.93 |
 | 2026-06-19 | qk_weight 2b x3 (v1/v2/v3) + 1 orphan boot | gpu_1x_a10 | $1.29 | 0.95 | $1.23 |
+| 2026-06-22 | social-source (Unit S) + confidence-recruitment (Unit C), 9b+2b base, one box | gpu_1x_a100_sxm4 | $1.99 | ~0.65 | ~$1.30 |
+| 2026-06-22 | social v2 (SC-S1 hardening) -- 2 boxes FAILED on local-network drops (idle SSH reset mid-run; "Network is unreachable" at scp), no results; 1st orphaned billing (DNS-failed teardown) caught + killed manually, 2nd torn down cleanly by the new retry-trap | gpu_1x_a100_sxm4 | $1.99 | ~0.4 total | ~$0.80 |
+| 2026-06-23 | social v2 (SC-S1 hardening) -- CLEAN run, 9b+2b base; anchor reproduced; retry-trap teardown OK (try 1) | gpu_1x_a100_sxm4 | $1.99 | ~0.3 | ~$0.60 |
+| 2026-06-23 | faithful-it-diff 2b (base+it) | gpu_1x_a10 | $1.29 | ~0.4 | ~$0.50 |
+| 2026-06-23 | faithful-it-diff 9b (base+it); +1 no-capacity A100 launch (no box, $0) | gpu_1x_h100_sxm5 | $4.29 | ~0.6 | ~$2.60 |
+| 2026-06-23 | spike: eot/residual cave-state, 9b base+it (M1 supported) | gpu_1x_a100_sxm4 | $1.99 | ~0.3 | ~$0.60 |
+| 2026-06-23 | residstate battery 9b base+it -- 1 crash (hook-lambda bug) + 1 no-cap fail + a poller-race A100 killed manually + clean A100 re-run; readout works, base↔it dissociation lead | a100_sxm4 / h100_pcie | ~$2-4 | ~0.9 | ~$3.00 |
+| 2026-06-23 | residstate CLOSE 9b base+it (matched union + DLA re-localize) -- DISTRIBUTED_CONFIRMED; polled box, reload-heavy | a100/h100 (polled) | ~$2-4 | ~0.7 | ~$3.00 |
+| 2026-06-23 | residstate DECISIVE 9b base+it (all-attn + all-MLP upper bounds + -it steer positive control + label-match) -- 3 H100 boxes (1 scp-path bug, 1 post-proc bug w/ cache-dump -> reprocessed OFFLINE, 1 = the cache); REFUTES v6 non-attention verdict | gpu_1x_h100_sxm5 (polled) | $4.29 | ~0.9 total | ~$4.00 |
 
-**Cumulative (est.): ~$13 of $500.** (latent_skeptic triage is Anthropic-API tokens, not Lambda spend.)
+**Cumulative (est.): ~$30 of $500.** (latent_skeptic triage is Anthropic-API tokens, not Lambda spend.)
+**Lesson banked (2026-06-22):** `lambda_run.sh` hardened after a network blip orphaned a box -- `ServerAliveInterval=30`/`CountMax=120` (survive quiet compute) + a retry loop in the teardown trap (survive a transient DNS/network failure at teardown). Still: a flaky LOCAL connection can fail the scp/run outright; always verify `INSTANCE_COUNT 0` via the API after a run, the trap is best-effort.
 
 ## Lambda Cloud API — endpoints leveraged
 

@@ -59,6 +59,28 @@ Sketches, not commitments. An "up-for-verification" contribution likely needs
 - Which single venue to lead with — and whether to frame the contribution as
   corroboration/replication rather than a primary finding.
 
+## Addendum — the impact path (how work like this gets traction), 2026-06
+
+Believed true as of 2026-06; spot-check. The independent route that repeatedly turns a single-model
+interp result into reach and a role — Nina Rimsky/Panickssery (bioengineering → SERI MATS under Hubinger
+→ a trail of small activation-steering posts → the CAA flagship → ACL Outstanding Paper → Anthropic), and
+Arditi et al.'s "refusal is a single direction" (blog-first April 2024 → NeurIPS, which the open-weights
+world adopted as "abliteration") — shares a fixed shape:
+
+1. **One crisp, nameable claim** — the title is the result; never "a battery of N controls."
+2. **Forum first** (LessWrong / Alignment Forum), paper later. The post earns the traction; arXiv /
+   conference backfills the credential.
+3. **Lead with intuition + a demo a non-expert can feel** (TL;DR, analogy, before/after); rigor below the fold.
+4. **Runnable on an open model, open code** — reproducibility is what turns a post into a movement
+   (refusal-direction → abliteration). Our open Gemma-2 substrate already fits.
+5. **Sit inside a live lineage** so the work is legible and citable.
+6. **Build a sequence** of small posts; competence and attention compound.
+7. **Honest framing** — state the one caveat plainly; do not over-claim.
+
+For this repo: to share a *result* (not just this venue map), extract one behaviour, one figure, one
+intuition, open code, one caveat — and strip the battery, the redundancy, and the triage scaffolding
+from the public artifact.
+
 ## References (spot-check before external use)
 
 - Circuit Tracing — methods: https://transformer-circuits.pub/2025/attribution-graphs/methods.html
