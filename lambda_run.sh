@@ -76,6 +76,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/spike_eot_cavestate.py controls/cave_residstate_diff.py controls/cave_residstate_close.py \
   controls/cave_residstate_decisive.py \
   controls/cave_multisample_caverate.py controls/cave_judge_panel.py controls/cave_causal_localize.py \
+  controls/cave_ablate_late_mlp.py \
   controls/cave_fold_vs_listen.py \
   controls/cave_residstate_anyscale.py controls/cave_faithful_it_mc.py \
   remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
