@@ -356,7 +356,12 @@ def run(base_name, it_name, device, layers, k_rand, mode, use_tqa=False, items_p
         print("[DLA %s] top MLPs (secondary) = %s" % (m["tag"], m["dla_top_mlps"][:5]), flush=True)
     Path("out").mkdir(exist_ok=True)
     Path("out/cave_ablate_late_mlp.json").write_text(json.dumps(out, indent=2, default=str))
-    print("[done] wrote out/cave_ablate_late_mlp.json (includes ALL generations -> auditable, H3)", flush=True)
+    # tiny summary (decision + numbers, NO per-item generations) -> survives a truncated/flaky fetch of the
+    # big gens json (2026-06-26: a wifi-cut scp delivered a truncated multi-MB json and lost the -it result).
+    summary = {k: v for k, v in out.items() if k != "models"}
+    summary["models"] = {tag: {k: v for k, v in m.items() if k != "items"} for tag, m in out["models"].items()}
+    Path("out/cave_ablate_late_mlp_summary.json").write_text(json.dumps(summary, indent=2, default=str))
+    print("[done] wrote out/cave_ablate_late_mlp.json (ALL gens -> H3) + cave_ablate_late_mlp_summary.json (tiny)", flush=True)
 
 
 # ----------------------------------------------------------------------------- selftest (model-free)

@@ -11,6 +11,7 @@ KEY=$(grep '^LAMBDA_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 HF=$(grep '^HF_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 SSHOPT="-o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ServerAliveInterval=30 -o ServerAliveCountMax=120 -i $HOME/.ssh/lambda_ed25519"   # ServerAlive keeps the SSH session up through long QUIET compute (model load + 891-item screen) -- a quiet idle is what dropped the run on 2026-06-22; ~1h unresponsiveness tolerated
 REMOTE_TIMEOUT=${REMOTE_TIMEOUT:-5400}   # 90 min hard cap (env-overridable for heavier multi-load runs)
+POLL_EVERY=${POLL_EVERY:-60}             # local marker-poll cadence for the DETACHED on-box run (see below)
 auth(){ curl -sS -H "Authorization: Bearer $KEY" "$@"; }
 
 ID=""
@@ -19,14 +20,16 @@ terminate(){
     echo "[teardown] terminating $ID"
     # RETRY: a transient local DNS/network blip at teardown previously left the box billing (2026-06-22).
     # Retry until the API confirms 'terminating', so one failed curl can no longer orphan the instance.
-    for t in 1 2 3 4 5 6; do
+    # ~10 min retry window: a DNS/network outage at teardown previously ran >60s and orphaned a box
+    # (2026-06-26). 30 tries x 20s survives a longer local-network blackout before giving up.
+    for t in $(seq 1 30); do
       if auth -m 20 -X POST $API/instance-operations/terminate -H 'Content-Type: application/json' \
-           --data "{\"instance_ids\":[\"$ID\"]}" | grep -q 'terminat'; then
+           --data "{\"instance_ids\":[\"$ID\"]}" 2>/dev/null | grep -q 'terminat'; then
         echo "[teardown] terminate accepted for $ID (try $t)"; return
       fi
-      echo "[teardown] terminate try $t failed (network?); retrying in 10s"; sleep 10
+      echo "[teardown] terminate try $t failed (network/DNS?); retrying in 20s"; sleep 20
     done
-    echo "[teardown] WARNING: terminate NOT confirmed for $ID after 6 tries -- VERIFY/KILL MANUALLY"
+    echo "[teardown] WARNING: terminate NOT confirmed for $ID after 30 tries -- VERIFY/KILL MANUALLY: $ID"
   fi
 }
 trap terminate EXIT          # fires on success, error, or Ctrl-C -> box always torn down
@@ -50,7 +53,11 @@ done
 [ -z "$IP" ] && { echo "[poll] never became active"; exit 1; }
 
 echo "[ssh] waiting for sshd @ $IP"
-for i in $(seq 1 24); do ssh $SSHOPT ubuntu@$IP true 2>/dev/null && { echo "[ssh] up"; break; }; sleep 10; done
+SSHUP=0
+for i in $(seq 1 24); do ssh $SSHOPT ubuntu@$IP true 2>/dev/null && { echo "[ssh] up"; SSHUP=1; break; }; sleep 10; done
+# UNHEALTHY box: sshd never came up in ~4min -> abort NOW (exit fires the teardown trap -> terminate). A box
+# that never accepts SSH otherwise bleeds billing for the full marker deadline (2026-06-28 orphan, ~3h).
+[ "$SSHUP" = 0 ] && { echo "[ssh] sshd NEVER came up -> unhealthy box; aborting + tearing down"; exit 1; }
 
 echo "[scp] code -> box"
 ssh $SSHOPT ubuntu@$IP "mkdir -p latent_verify/out"
@@ -79,13 +86,90 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/cave_ablate_late_mlp.py \
   controls/cave_fold_vs_listen.py \
   controls/cave_residstate_anyscale.py controls/cave_faithful_it_mc.py \
+  gen_outputs_table.py \
   remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
 
-echo "[run] $RUNNER (hard cap ${REMOTE_TIMEOUT}s)"
-ssh $SSHOPT ubuntu@$IP "cd latent_verify && timeout $REMOTE_TIMEOUT env HF_TOKEN='$HF' bash remote_run.sh bash $RUNNER"
-echo "[run] remote exit=$?"
+# --- ORPHAN BACKSTOP: the box self-terminates after the run cap + grace, even if THIS machine dies mid-run
+# (2026-06-26: a local process exit before teardown orphaned a box). A detached on-box timer terminates THIS
+# instance via the API. Never fires in the happy path (local fetch+terminate is far sooner) -- pure billing
+# safety net. Key is written to a root-only (umask 077) file on the ephemeral, single-tenant box.
+SELFDESTRUCT_AFTER=$((REMOTE_TIMEOUT + 1800))
+echo "[backstop] arming box self-destruct in ${SELFDESTRUCT_AFTER}s ($ID)"
+ssh $SSHOPT ubuntu@$IP "umask 077; cat > ~/selfdestruct.sh" <<EOF
+#!/usr/bin/env bash
+sleep $SELFDESTRUCT_AFTER
+for t in 1 2 3 4 5 6 7 8 9 10 11 12; do
+  curl -sS -m 30 -X POST $API/instance-operations/terminate -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" --data '{"instance_ids":["$ID"]}' | grep -q terminat && exit 0
+  sleep 30
+done
+EOF
+ssh $SSHOPT ubuntu@$IP "setsid bash ~/selfdestruct.sh < /dev/null > /tmp/selfdestruct.log 2>&1 &" 2>/dev/null
+echo "[backstop] armed"
 
-echo "[fetch] out/ -> $RDIR"
-mkdir -p "$RDIR"
-scp -r $SSHOPT ubuntu@$IP:latent_verify/out "$RDIR/" 2>/dev/null && echo "[fetch] ok" || echo "[fetch] FAILED"
+echo "[run] $RUNNER DETACHED on box (cap ${REMOTE_TIMEOUT}s); local marker-poll every ${POLL_EVERY}s"
+# Start the job under setsid + </dev/null so a dropped local SSH cannot SIGHUP-kill it; on finish it writes
+# latent_verify/RUN_DONE=<exitcode>. We then poll that marker over fresh short-lived SSH connections, so a
+# transient local-network drop just retries next cycle instead of killing the run (the 2026-06-26 failure).
+# $REMOTE_TIMEOUT/$HF/$RUNNER expand LOCALLY (double quotes); \$? is the REMOTE exit code; the inner
+# single-quoted bash -c body is passed literally to the box.
+STARTED=0
+for s in 1 2 3; do
+  ssh $SSHOPT ubuntu@$IP "cd latent_verify && rm -f RUN_DONE && setsid bash -c 'timeout $REMOTE_TIMEOUT env HF_TOKEN=\"$HF\" bash remote_run.sh bash $RUNNER > out/run_detached.log 2>&1; echo \$? > RUN_DONE' < /dev/null > /dev/null 2>&1 &" 2>/dev/null
+  sleep 8
+  if ssh $SSHOPT ubuntu@$IP "test -f latent_verify/out/run_detached.log" 2>/dev/null; then
+    echo "[run] confirmed started (try $s)"; STARTED=1; break
+  fi
+  echo "[run] start not confirmed (try $s); retrying"
+done
+[ "$STARTED" = 0 ] && echo "[run] WARNING: start unconfirmed; polling for marker anyway"
+
+RC="?"; DEADLINE=$((REMOTE_TIMEOUT + 900)); EL=0; NOCONN=0; EVERCONN=0
+while [ $EL -lt $DEADLINE ]; do
+  sleep $POLL_EVERY; EL=$((EL + POLL_EVERY))
+  [ -f STOP_ABLATE ] && { echo "[run] STOP_ABLATE flag set -> abort + teardown"; RC="STOPPED"; break; }
+  if ssh $SSHOPT ubuntu@$IP true 2>/dev/null; then              # box reachable this cycle
+    EVERCONN=1; NOCONN=0
+    M=$(ssh $SSHOPT ubuntu@$IP "cat latent_verify/RUN_DONE 2>/dev/null" 2>/dev/null | tr -dc '0-9')
+    if [ -n "$M" ]; then RC="$M"; echo "[run] DONE marker rc=$RC after ${EL}s"; break; fi
+    P=$(ssh $SSHOPT ubuntu@$IP "tail -1 latent_verify/out/run_detached.log 2>/dev/null" 2>/dev/null | tr -d '\r' | head -c 110)
+    echo "[poll-run] +${EL}s | ${P:-<running>}"
+  else                                                          # could not reach the box this cycle
+    NOCONN=$((NOCONN + 1))
+    echo "[poll-run] +${EL}s | NO SSH (consec=$NOCONN ever_conn=$EVERCONN)"
+    # UNHEALTHY: never reachable after ~8min -> terminate early (the 2026-06-28 orphan bled the full deadline)
+    if [ "$EVERCONN" = 0 ] && [ "$NOCONN" -ge 8 ]; then
+      echo "[run] ABORT: box never reachable in $((NOCONN * POLL_EVERY))s -> UNHEALTHY; terminate early"; RC="UNHEALTHY"; break
+    fi
+    # was healthy then went dark ~20min -> give up + terminate
+    if [ "$NOCONN" -ge 20 ]; then
+      echo "[run] ABORT: box unreachable $((NOCONN * POLL_EVERY))s -> LOST; terminate"; RC="LOST"; break
+    fi
+  fi
+done
+[ "$RC" = "?" ] && echo "[run] WARNING: no DONE marker before deadline (${DEADLINE}s); fetch what exists, tear down"
+
+echo "[fetch] -> $RDIR : tiny criticals FIRST (summary/log/marker), then the big out/ blobs"
+mkdir -p "$RDIR/out"
+# Small, decision-bearing files first -- they survive a flaky link where a multi-MB gens json would truncate
+# (2026-06-26). *summary*.json carries the numbers+decision; logs carry the printed verdict.
+SUMOK=0
+for f in 1 2 3 4 5; do
+  scp $SSHOPT "ubuntu@$IP:latent_verify/out/*summary*.json" "$RDIR/out/" 2>/dev/null
+  scp $SSHOPT "ubuntu@$IP:latent_verify/out/*.log" "$RDIR/out/" 2>/dev/null
+  scp $SSHOPT "ubuntu@$IP:latent_verify/RUN_DONE" "$RDIR/" 2>/dev/null
+  # verify a summary actually parses (a truncated scp is caught here, not trusted)
+  if ls "$RDIR"/out/*summary*.json >/dev/null 2>&1 && \
+     python -c "import json,glob,sys; [json.load(open(p)) for p in glob.glob('$RDIR/out/*summary*.json')]" 2>/dev/null; then
+    echo "[fetch] summary+logs verified (try $f)"; SUMOK=1; break
+  fi
+  echo "[fetch] summary try $f not yet valid; retry 10s"; sleep 10
+done
+[ "$SUMOK" = 0 ] && echo "[fetch] WARNING: no VALID summary fetched; rely on logs"
+# then the full out/ (big generation blobs for H3) -- best-effort; result already safe in the summary
+FETCHED=0
+for f in 1 2 3 4 5; do
+  if scp -r $SSHOPT ubuntu@$IP:latent_verify/out "$RDIR/" 2>/dev/null; then echo "[fetch] full out/ ok (try $f)"; FETCHED=1; break; fi
+  echo "[fetch] full try $f failed; retry 15s"; sleep 15
+done
+[ "$FETCHED" = 0 ] && echo "[fetch] full out/ incomplete; summary+logs above are authoritative"
 echo "[done] $RDIR (teardown trap will terminate $ID)"
