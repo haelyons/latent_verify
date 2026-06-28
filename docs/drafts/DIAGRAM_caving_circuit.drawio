@@ -1,0 +1,93 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.0.0">
+  <diagram name="caving-circuit" id="caving-circuit-1">
+    <mxGraphModel dx="900" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- title / subtitle -->
+        <mxCell id="title" value="The base-model doubt circuit" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#1F2329;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="36" y="14" width="420" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="position ( → ) × layer ( ↑ ).  Arrows show where the doubt heads read and write." style="text;html=1;fontSize=11;fontColor=#6B7280;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="36" y="36" width="520" height="16" as="geometry"/>
+        </mxCell>
+
+        <!-- boxed legend: two named arrow roles -->
+        <mxCell id="legend" value="&lt;b&gt;arrows&lt;/b&gt;&lt;br&gt;&lt;span style='color:#3B6FB0'&gt;→  key / value · head READS this stream (QK)&lt;/span&gt;&lt;br&gt;&lt;span style='color:#D08A3A'&gt;→  query / output · head WRITES this stream (OV)&lt;/span&gt;" style="rounded=1;fillColor=#FFFFFF;strokeColor=#C9CDD4;fontColor=#1F2329;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="582" y="12" width="288" height="62" as="geometry"/>
+        </mxCell>
+
+        <!-- axis labels -->
+        <mxCell id="axisLayer" value="layer ↑" style="text;html=1;fontSize=10;fontStyle=2;fontColor=#9097A1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="18" y="78" width="60" height="14" as="geometry"/>
+        </mxCell>
+        <mxCell id="posAxis" value="position →" style="text;html=1;fontSize=10;fontStyle=2;fontColor=#9097A1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="150" y="486" width="90" height="14" as="geometry"/>
+        </mxCell>
+        <mxCell id="lblLate" value="late" style="text;html=1;fontSize=10;fontColor=#9097A1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="26" y="112" width="52" height="14" as="geometry"/>
+        </mxCell>
+        <mxCell id="lblMid" value="mid" style="text;html=1;fontSize=10;fontColor=#9097A1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="26" y="242" width="52" height="14" as="geometry"/>
+        </mxCell>
+        <mxCell id="lblEarly" value="early" style="text;html=1;fontSize=10;fontColor=#9097A1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="26" y="404" width="52" height="14" as="geometry"/>
+        </mxCell>
+
+        <!-- faint neutral alignment rules (one colour) -->
+        <mxCell id="gA" value="" style="endArrow=none;dashed=1;strokeColor=#C9CDD4;opacity=40;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="240" y="96" as="sourcePoint"/><mxPoint x="240" y="430" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="gB" value="" style="endArrow=none;dashed=1;strokeColor=#C9CDD4;opacity=40;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="460" y="96" as="sourcePoint"/><mxPoint x="460" y="430" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="gC" value="" style="endArrow=none;dashed=1;strokeColor=#C9CDD4;opacity=40;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="690" y="96" as="sourcePoint"/><mxPoint x="690" y="430" as="targetPoint"/></mxGeometry>
+        </mxCell>
+
+        <!-- output node (late) -->
+        <mxCell id="out" value="&lt;b&gt;output&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;color:#6B7280'&gt;White → “Yellow”&lt;/span&gt;" style="rounded=1;fillColor=#C9E9D8;strokeColor=#6FB394;fontColor=#1F2329;fontSize=13;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="96" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- doubt heads (mid) -->
+        <mxCell id="heads" value="&lt;b&gt;Doubt heads&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;color:#6B7280'&gt;×5 · L?.H? · mid layers&lt;/span&gt;" style="rounded=1;fillColor=#F4D8B0;strokeColor=#C98A4A;fontColor=#1F2329;fontSize=13;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="224" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- position tokens (bottom edge = data axis) -->
+        <mxCell id="tokChallenge" value="&lt;b&gt;challenge&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px;color:#6B7280'&gt;“…Are you sure?”&lt;/span&gt;" style="rounded=1;fillColor=#F2F3F5;strokeColor=#C9CDD4;fontColor=#1F2329;fontSize=12;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="430" width="180" height="46" as="geometry"/>
+        </mxCell>
+        <mxCell id="tokYellow" value="&lt;b&gt;“Yellow”&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px;color:#6B7280'&gt;asserted W*&lt;/span&gt;" style="rounded=1;fillColor=#FBEBD4;strokeColor=#E0C089;fontColor=#1F2329;fontSize=12;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="430" width="120" height="46" as="geometry"/>
+        </mxCell>
+        <mxCell id="tokAnswer" value="&lt;b&gt;answer&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px;color:#6B7280'&gt;slot we read (END)&lt;/span&gt;" style="rounded=1;fillColor=#E2F1E9;strokeColor=#A9D5C0;fontColor=#1F2329;fontSize=12;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="430" width="140" height="46" as="geometry"/>
+        </mxCell>
+
+        <!-- READ (key/value, blue) heads -> challenge -->
+        <mxCell id="aReadCue" value="QK · reads challenge — cut → 0.36" style="endArrow=block;html=1;strokeColor=#3B6FB0;strokeWidth=1.5;fontColor=#3B6FB0;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="heads" target="tokChallenge">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- READ (key/value, blue) heads -> Yellow -->
+        <mxCell id="aReadYellow" value="reads asserted token" style="endArrow=block;html=1;strokeColor=#3B6FB0;strokeWidth=1.5;fontColor=#3B6FB0;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="heads" target="tokYellow">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- WRITE (query/output, orange) heads -> output -->
+        <mxCell id="aWrite" value="OV · writes “Yellow” to answer — cut → 0.30" style="endArrow=block;html=1;strokeColor=#D08A3A;strokeWidth=1.5;fontColor=#D08A3A;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.65;entryDx=0;entryDy=0;" edge="1" parent="1" source="heads" target="out">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- caption -->
+        <mxCell id="caption" value="Base model, near-tie item (Sun: White vs Yellow).  ~5 heads carry the cave — cutting their challenge-read (QK) restores 0.36, cancelling their copy (OV) 0.30, vs 0.01 for random heads.  After RLHF the same job spreads across every attention layer and the MLP." style="text;html=1;fontSize=11;fontColor=#4B5563;align=left;verticalAlign=top;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="36" y="506" width="824" height="40" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
