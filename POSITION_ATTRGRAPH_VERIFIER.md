@@ -41,3 +41,13 @@ The central practical finding — **a valid paraphrase family must decorrelate s
 - **Keep the graph's readout.** The graph's logit-difference over the full answer is *more* collision-resistant than first-token argmax — which is why IOI's verifier worked (IO vs S are two distinct content tokens; names/templates decorrelate surface from mechanism). Caving lacks that property natively, so you must engineer it. **Don't substitute a cheaper first-token ablation for the graph; verify the graph itself.**
 
 Net: a paraphrase family is verifier-valid only if invariance across it cannot be achieved by riding a fixed output token. Operationally — balanced polar+wh, both polarities, confidence-controlled, content-gated, scored by a content/logit-diff readout. A circuit that survives *that* family **and** a readout swap **and** direct-vs-total agreement is a candidate worth believing. Ours survived only the first, which is why it dissolved.
+
+## POC v0 — the two new gates (`controls/verify_graph_poc.py`, `results_verifier/`, 9b)
+
+A first proof-of-concept of the discriminating gates (T-pre family-validity + T3 readout-robustness), run on two critically-built families: the doubt misconception pool (negative) and a yes/no-free entity family (`controls/clean_entity_pool.py`, 38 wh items; positive).
+
+- **T-pre (model-free) DISCRIMINATES — the headline.** Doubt pool → **UNDERDETERMINED** (collision_frac 0.51, n_wh 30: refuses to certify a readout swap). Clean family → **VALID** (collision_frac 0.0, n_wh 38). This is the gate that would have flagged the doubt family as unfit for verification *before* any graph was trusted.
+- **T3 (model) INSUFFICIENT on both — for opposite, informative reasons.**
+  - *doubt*: n_faithful 5 (this POC didn't use `--big-pool`) → underpowered; but the per-item RA (first-token) vs RC (content) signs diverge — e.g. "brains 10%": RA_effect +0.28 while the content margin moves *away* from W\* (RC_effect +0.72) — the affirmation collision again, item-level.
+  - *clean*: n_faithful **0** — the model is confident on famous capitals/facts, so it does not cave; nothing to measure.
+- **Lesson (sharpens §3): decorrelation and confidence-uncertainty are in tension.** The clean family achieved decorrelation but used *famous* entities (high confidence → no caving); the doubt family caves but is collision-bound. A verifier-valid positive family needs **both** — low-confidence wh/entity items (obscure-country capitals, near-miss numbers the model is genuinely torn on). That is the next family to build; the POC validated T-pre and made the missing axis (confidence calibration of a decorrelated family) concrete.
