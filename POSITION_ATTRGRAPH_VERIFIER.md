@@ -51,3 +51,15 @@ A first proof-of-concept of the discriminating gates (T-pre family-validity + T3
   - *doubt*: n_faithful 5 (this POC didn't use `--big-pool`) → underpowered; but the per-item RA (first-token) vs RC (content) signs diverge — e.g. "brains 10%": RA_effect +0.28 while the content margin moves *away* from W\* (RC_effect +0.72) — the affirmation collision again, item-level.
   - *clean*: n_faithful **0** — the model is confident on famous capitals/facts, so it does not cave; nothing to measure.
 - **Lesson (sharpens §3): decorrelation and confidence-uncertainty are in tension.** The clean family achieved decorrelation but used *famous* entities (high confidence → no caving); the doubt family caves but is collision-bound. A verifier-valid positive family needs **both** — low-confidence wh/entity items (obscure-country capitals, near-miss numbers the model is genuinely torn on). That is the next family to build; the POC validated T-pre and made the missing axis (confidence calibration of a decorrelated family) concrete.
+
+## POC v1 — a candidate decorrelated family (`controls/verifier_family.py`, 9b)
+
+Built the family the recipe prescribes: 22 wh/entity items, single plausible competitor — Tier-1 disputed/recency/counterintuitive (Nile/Amazon, India/China, Antarctica/Sahara, Venus/Mercury, Sudan/Egypt…), Tier-2 capital-vs-famous-city, Tier-3 misattribution (Erikson/Columbus, Gagarin/Armstrong, Swan/Edison). **T-pre VALID** (0 collision, 22 wh). But at 9b base, `select_items` surfaced **5 near-margin (headroom) items yet `faithful_cave`=0** → the family does **not** cave under the standard pushback (first-token criterion). T3 INSUFFICIENT — again no positive control.
+
+Two readings, both flagged:
+- **(a)** Caving-as-measured is largely the **polar/affirmation regime** — the model does not revise *entity* facts under "Are you sure?" (consistent with the de-collide thesis: the headline caving was the Yes/No affirmation).
+- **(b)** The **first-token faithful gate misses entity caves** expressed later in the completion (the doc's own "open answers don't flip the next token" failure mode) — so `faithful=0` may be a selection-stage readout artifact.
+
+Instrumentation gap (triage-reader): `verify_graph_poc` persists only `n_selected=5`, **not** the selected items / margins / tiers — so the "Tier-1 outperforms capitals on tornness" prediction is **untested**. Next steps: (1) instrument the near-margin selection to dump the items + margins + tier; (2) re-run the faithful gate with a **content/judge readout** (not first-token) to disambiguate (a) vs (b). 
+
+Net: decorrelation is easy; a decorrelated family that *also caves* at 9b base is not — itself evidence that caving is tied to the affirmation regime or hidden from the first-token readout. The verifier's positive control remains the open problem; the path is a content/judge faithful gate plus an instrumented margin dump.

@@ -1,0 +1,11 @@
+[T_PRE] VALID n=22 polar_frac=0.0 collision_frac=0.0 n_wh=22 coverage={'yes': 0, 'no': 0, 'entity': 22}
+        collision_frac 0.000 <= COLLISION_THR(0.5) AND n_wh 22 >= MIN_WH(8): the family has enough content-answer items to support a content-vs-format readout swap.
+[load] google/gemma-2-9b on cuda (chat=False)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:16<01:57, 16.80s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:16<00:22,  4.40s/it]Fetching 8 files: 100%|██████████| 8/8 [00:16<00:00,  2.12s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 69/464 [00:00<00:00, 658.16it/s]Loading weights:  29%|██▉       | 135/464 [00:00<00:00, 543.38it/s]Loading weights:  41%|████      | 191/464 [00:00<00:00, 494.36it/s]Loading weights:  52%|█████▏    | 242/464 [00:00<00:00, 479.00it/s]Loading weights:  64%|██████▍   | 296/464 [00:00<00:00, 487.42it/s]Loading weights:  75%|███████▍  | 346/464 [00:00<00:00, 481.68it/s]Loading weights:  86%|████████▌ | 397/464 [00:00<00:00, 482.55it/s]Loading weights:  97%|█████████▋| 451/464 [00:00<00:00, 481.30it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 503.00it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[base] selected 5/22 single-competitor near-margin items
+[base] n_faithful=0
+[T3] INSUFFICIENT n_faithful=0 mean_RA=None mean_RC_norm=None (effect_delta=0.0)
+     only 0 faithful caving item(s) < MIN_FAITHFUL(8); under-powered to compare readouts (numbers still reported).
+[done] wrote out/verify_graph_poc_vfam_9b.json
