@@ -75,3 +75,31 @@ NET: the research voice (afe6488) held discipline; the production voice (af209c5
 
 KARPATHY: every claim a verbatim cite to a committed file (commit msg / result JSON / .gitignore / draft line); INSUFFICIENT base-arm reported as insufficient not spun; af209c5 title flagged as overclaim not fraud (script real, ran, just artifact not committed); recommended the cheap fix (commit the summary JSON), did not invent the table.
 ARTIFACTS TOUCHED: `CAVEMAN.md` (appended dis block). all else read-only.
+
+---
+
+## 2026-06-29 (II) — re-look: main advanced af209c5→6eabb22, the doubt circuit self-falsified (read-only)
+
+TARGET: new commit `6eabb22` on origin/main (1 commit, +19,484 lines, 24 files). NOT a new branch — main moved. SCOPE: situate vs the prior review + the whole arc. read-only.
+
+WHAT LANDED: `6eabb22 decollide: doubt-circuit table is a Yes/No first-token confound, not a circuit`. three claim-blind controls (`cave_doubt_decollide`, `cave_doubt_contentgate`, `cave_headset_specificity_decollide`) x 3 scales (2b/9b/27b base) + reader grounding. `archive/SEQUENCE_290626_decollide-confound.md`.
+
+THE CONFOUND (verbatim, SEQUENCE): caving metric scores W*'s FIRST TOKEN; pushback ends "Are you sure?"; ~60% of pool are yes/no items "whose W\* begins 'Yes,…'". so reply "Yes, I am sure" "puts mass on the **same 'Yes' token** the metric reads as W\*. Affirmation and capitulation collide on one token." the cid==aid guard "guards the *wrong* collision."
+
+GROUNDED (decisions read from committed JSON, claim-blind rule "no claim attached to any ... category"):
+- `cave_doubt_decollide_9b`: `READOUT_SENSITIVE`, `|mean_READ_RA - mean_READ_RC| = 0.458 and |mean_WRITE_RA - mean_WRITE_RC| = 0.392`. RC (yes/no-stripped seq-margin) WRITE → floor every scale (0.019/0.051/0.037).
+- `cave_doubt_contentgate_9b`: `CONSISTENT`, `head_overlap = 3` (same doubt-span heads survive) BUT honest content set ~2x bigger / ~half wh; on honest set restoration `0.03–0.09`, RA≈RC.
+- `cave_headset_specificity_decollide_9b`: `READOUT_SENSITIVE`, `|contentswap_first - contentswap_content| = 0.862`; R2 content-swap ≈0/neg → committed "1.0→0.15" concentration was first-token artifact.
+
+VERDICT (verbatim): "Five independent lines ... **converge: there is no localized causal doubt-circuit for content-level caving.**" FALLS: "caving works through a localized doubt circuit (read+write, concentrated, content-causal, reproduced across scales)" — the headline mechanistic claim. SURVIVES: behavioral caving real (polar+wh); a doubt-span head set exists (overlap 5/3/5) "but carries only ~0.03–0.09"; cave-direction monitor + plausibility gating untouched (still correlational).
+
+SITUATING (vs prior review + arc):
+1. RETRACTS the arc's ONE clean positive. RESEARCH_QUESTIONS handoff ("one clean positive — a head-SPECIFIC ~5-head **doubt circuit**") + README's banked positive now downgraded to "weak lever (~0.03–0.09), distributed." my 2026-06-29(I) NET line ("one positive (the doubt circuit) is banked") is SUPERSEDED.
+2. CONVERGENCE not surprise: this is line #5; lines #1–4 (attribution_graph BROAD_DISTRIBUTED, MLP-ablation "monitor not lever" afe6488 — the one I praised, K-sweep, content-swap) already trended distributed. the arc self-corrected on schedule. discipline working: built a control to kill its own headline, ran it claim-blind, reported the kill.
+3. CLOSES my FINDING 2 gap (committed-ground-truth): decollide "saved the W\* strings + per-item restorations the original runs never persisted (closing a prior unauditable gap)" — 2240-line JSONs committed under `results_decollide/out/` (NOT gitignored). opposite of af209c5's RUN_DONE-only.
+4. SHARPENS FINDING 3 (drafting drift): LW draft V3b leans on the doubt-circuit / "Localising the doubt circuit" table that the note says must be "withdrawn or re-stated against a content readout." the prose got ahead of the science; the localized-circuit framing cannot ship.
+
+CAVEATS (note's own, not smoothed): base-only — "the **-it redistribution claim is untested here** and likely inherits the same first-token confound — next run"; "the 9b READ residual is real but weak and non-replicating"; "RC ... is one operationalization."
+
+KARPATHY: a falsification of our own headline reported as such, not softened; decisions quoted from claim-blind JSON not the synthesis prose; my own prior NET marked superseded; the note's open caveats (-it untested, weak 9b read) carried not buried. all read-only.
+ARTIFACTS TOUCHED: `CAVEMAN.md` (appended dis block). all else read-only.
