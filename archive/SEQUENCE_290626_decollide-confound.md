@@ -85,9 +85,17 @@ Artifacts: `results_mech/out/*.json`; runner `archive/runners/run_mech.sh`.
   2024, a 1-D necessary mediator), caving is ablation-robust/distributed; steerable like
   CAA sycophancy (Rimsky 2024) but not a single-direction mediator.
 
-**Mechanism synthesis.** The Yes/No polarity write is localizable (early formatting heads); the
-content-revision under pressure is distributed (no necessary direction, no localized write circuit,
-BROAD_DISTRIBUTED graph). The doubt heads are a stable challenge-reading GATE upstream of that
-distributed revision. A genuine caving circuit looks like refusal+S-inhibition (a read-gate + a
+- **`cave_polarity_causal`** (Q1 causal confirmation). Ablating the DLA-top Yes/No-axis heads does
+  NOT drop P(" Yes"): K=1 (L0.H1) dP_yes 0.0002; K=3 dP_yes 0.0017 (BELOW random floor 0.0029);
+  K=5 0.0014 -> **NULL**. So even the polarity write is **redundant/distributed**, not localizable
+  to a sparse head set -- DLA's direct-effect ranking is fully compensated downstream when zeroed
+  (the third direct-vs-total redundancy result). (Steer arm over-steered, alpha 4-8 in resid-norm
+  units collapsed P(yes); uninformative.) CORRECTS the earlier "Yes/No write is localizable to early
+  heads" read: it is NOT.
+
+**Mechanism synthesis.** The Yes/No polarity write is NOT localizable either (ablation-redundant);
+the content-revision under pressure is distributed (no necessary direction, no localized write
+circuit, BROAD_DISTRIBUTED graph). Gemma-2-9b caving is distributed at every level probed. The doubt
+heads are a stable challenge-reading GATE upstream of that distributed revision. A genuine caving circuit looks like refusal+S-inhibition (a read-gate + a
 distributed/steerable defer signal), NOT an IOI copy circuit. Open: -it (instruction-tuned) still
 untested under all of the above; likely inherits the first-token confound.
