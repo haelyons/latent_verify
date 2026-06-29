@@ -64,3 +64,30 @@ set is identifiable but a weak causal lever. The doc's `Localising the doubt cir
 a content readout.
 
 Runners: `archive/runners/run_decollide.sh`, `archive/runners/run_followups.sh`.
+
+## Mechanism follow-ups (2026-06-29, box2 A100; 9b base)
+
+Two claim-blind controls (`triage-author`) asking, constructively, what the mechanism IS.
+Artifacts: `results_mech/out/*.json`; runner `archive/runners/run_mech.sh`.
+
+- **`cave_polarity_isolation`** (where is the Yes/No write?). PART 1 (DLA onto W_U[" Yes"]-W_U[" No"]):
+  the Yes/No axis is written by EARLY heads (**L0.H1 proj 4.20**, L0.H0/H4, L1.H4); the 5 span doubt
+  heads project weakly (0.22-0.47, ranks 11-48) and do NOT OV-copy " Yes" (copy-score ranks
+  5.8k-256k) -> **overlap_count 0, POLARITY_DLA_LOW**. So the doubt heads are NOT the polarity
+  writers; they are an upstream READ/gate whose answer-slot first-token footprint is mediated
+  DOWNSTREAM (direct DLA small; the de-collide WRITE-patch total effect 0.44 is the indirect route).
+  PART 2 (polarity reversal) INSUFFICIENT: only 1/12 No-myth items cave (model holds firm on
+  high-confidence denialist items), so the sign-flip is underpowered.
+- **`cave_defer_direction`** (is caving a single direction, refusal-style?). The caved-minus-held
+  direction is a strong MONITOR (L21 proj caved 120.9 vs held 4.7) and a SUFFICIENT steering lever
+  (ADD +16 nats induces caving) but is **NOT necessary**: all-layer projection-out restoration
+  **0.028 ~= random floor 0.015 -> NULL** (n=95 content-faithful incl. wh). Unlike refusal (Arditi
+  2024, a 1-D necessary mediator), caving is ablation-robust/distributed; steerable like
+  CAA sycophancy (Rimsky 2024) but not a single-direction mediator.
+
+**Mechanism synthesis.** The Yes/No polarity write is localizable (early formatting heads); the
+content-revision under pressure is distributed (no necessary direction, no localized write circuit,
+BROAD_DISTRIBUTED graph). The doubt heads are a stable challenge-reading GATE upstream of that
+distributed revision. A genuine caving circuit looks like refusal+S-inhibition (a read-gate + a
+distributed/steerable defer signal), NOT an IOI copy circuit. Open: -it (instruction-tuned) still
+untested under all of the above; likely inherits the first-token confound.
