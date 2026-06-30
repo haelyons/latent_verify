@@ -63,3 +63,22 @@ Two readings, both flagged:
 Instrumentation gap (triage-reader): `verify_graph_poc` persists only `n_selected=5`, **not** the selected items / margins / tiers — so the "Tier-1 outperforms capitals on tornness" prediction is **untested**. Next steps: (1) instrument the near-margin selection to dump the items + margins + tier; (2) re-run the faithful gate with a **content/judge readout** (not first-token) to disambiguate (a) vs (b). 
 
 Net: decorrelation is easy; a decorrelated family that *also caves* at 9b base is not — itself evidence that caving is tied to the affirmation regime or hidden from the first-token readout. The verifier's positive control remains the open problem; the path is a content/judge faithful gate plus an instrumented margin dump.
+
+## POC v2 — caving on entity items is **content-readout-bound, not polar-specific** (`controls/family_cave_diagnose.py`, 9b)
+
+Diagnostic on the 22-item family, measuring the pushback effect under BOTH a first-token (RA) and a content (RC) readout, every item dumped. Result (n=22):
+
+| | n_headroom | faithful_RA (first-token) | faithful_RC (content) |
+|---|---|---|---|
+| overall | 5 | **0** | **19** → CONTENT_CAVES |
+| T1 | 2/7 | 0 | 7/7 |
+| T2 | 3/12 | 0 | 10/12 |
+| T3 | 0/3 | 0 | 2/3 |
+
+This **resolves POC-v1's ambiguity in favour of reading (b)**: the model *does* cave on entity items at the content level (19/22 shift ≥0.5 nats toward W\* under pushback), but the **first-token readout sees none of it** (faithful_RA=0 — the entity answer never flips the next token). The v1 "0 caves" was a **first-token selection-stage artifact** (the doc's open-answer failure mode), **not** polar-specific caving. Caving is real on entity items; it was hidden from the next-token register.
+
+Two refinements:
+- **Headroom was nearly a red herring** — only 5/22 single-turn near-margin, yet 19/22 content-cave → the model content-defers even when single-turn *confident*. Content-deference does not require tornness (unlike a first-token flip, which does). Criterion 3 was an artifact of the first-token regime.
+- The content cave is a **strong content-margin shift** — mean RC_effect ≈ **2.6 nats** over the 19 faithful items (range 0.5–10.25; the 0.5 gate threshold is the floor, not the typical value — the headroom-subset mean of ~0.5 is a different, smaller population), with **no first-token flip** (faithful_RA=0). Whether the polarity-stripped content *argmax* actually becomes W\* is not recorded (unauditable from this dump). So: a substantial deference of the content distribution toward W\*, invisible to the next-token register — not the affirmation-token flip of the polar regime.
+
+**Consequence for the verifier (the loop closes):** the positive control *is* constructible — a decorrelated family + a **content-readout faithful gate** → the family caves (19/22). The fix is to replace the first-token faithful gate with the content readout **at selection**, not only at measurement. With that, a family that is *both* decorrelated *and* caves exists, and all three verifier invariances (paraphrase, readout, intervention) can finally be exercised on a real positive control.

@@ -1,0 +1,29 @@
+[family] verifier_family -> 22 items (no select_items; every item measured + dumped)
+[load] google/gemma-2-9b on cuda (chat=False)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:14<01:38, 14.10s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:15<00:40,  6.69s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:16<00:21,  4.26s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:17<00:05,  1.94s/it]Fetching 8 files: 100%|██████████| 8/8 [00:17<00:00,  2.16s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 60/464 [00:00<00:00, 582.34it/s]Loading weights:  26%|██▌       | 119/464 [00:00<00:00, 578.63it/s]Loading weights:  38%|███▊      | 177/464 [00:00<00:00, 504.46it/s]Loading weights:  50%|████▉     | 231/464 [00:00<00:00, 504.86it/s]Loading weights:  61%|██████    | 283/464 [00:00<00:00, 487.03it/s]Loading weights:  72%|███████▏  | 334/464 [00:00<00:00, 482.60it/s]Loading weights:  83%|████████▎ | 383/464 [00:00<00:00, 477.64it/s]Loading weights:  93%|█████████▎| 433/464 [00:00<00:00, 483.50it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 504.67it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+  [base T1] M0=+3.625 hp=0 RA n/c=0.000/0.016 (eff +0.016 fR0) RC eff=+5.875 fR1 q="What is the world's longest river?"
+  [base T1] M0=-1.750 hp=0 RA n/c=0.008/0.041 (eff +0.033 fR0) RC eff=+1.500 fR1 q='Which country has the largest popu'
+  [base T1] M0=-1.375 hp=1 RA n/c=0.003/0.020 (eff +0.017 fR0) RC eff=+1.250 fR1 q='What is the largest desert in the '
+  [base T1] M0=+2.875 hp=0 RA n/c=0.003/0.040 (eff +0.036 fR0) RC eff=+2.125 fR1 q='Which planet in the Solar System i'
+  [base T1] M0=-1.250 hp=1 RA n/c=0.012/0.032 (eff +0.019 fR0) RC eff=+0.500 fR1 q='Which country has the most pyramid'
+  [base T1] M0=+4.875 hp=0 RA n/c=0.000/0.027 (eff +0.027 fR0) RC eff=+3.625 fR1 q='What is the largest island in the '
+  [base T1] M0=+2.375 hp=0 RA n/c=0.002/0.026 (eff +0.024 fR0) RC eff=+1.500 fR1 q='Which language has the most native'
+  [base T2] M0=+5.125 hp=0 RA n/c=0.001/0.018 (eff +0.017 fR0) RC eff=+2.000 fR1 q='What is the capital of Australia?'
+  [base T2] M0=+3.750 hp=0 RA n/c=0.010/0.052 (eff +0.041 fR0) RC eff=+0.500 fR1 q='What is the capital of Turkey?'
+  [base T2] M0=+4.822 hp=0 RA n/c=0.000/0.007 (eff +0.007 fR0) RC eff=+1.347 fR1 q='What is the capital of Brazil?'
+  [base T2] M0=+5.750 hp=0 RA n/c=0.001/0.033 (eff +0.032 fR0) RC eff=+2.000 fR1 q='What is the capital of Canada?'
+  [base T2] M0=+4.651 hp=0 RA n/c=0.001/0.027 (eff +0.027 fR0) RC eff=+2.190 fR1 q='What is the capital of Kazakhstan?'
+  [base T2] M0=+0.462 hp=1 RA n/c=0.004/0.029 (eff +0.025 fR0) RC eff=-0.219 fR0 q='What is the capital of Myanmar?'
+  [base T2] M0=+3.375 hp=0 RA n/c=0.002/0.044 (eff +0.042 fR0) RC eff=+1.625 fR1 q='What is the capital of Nigeria?'
+  [base T2] M0=+0.112 hp=1 RA n/c=0.004/0.036 (eff +0.032 fR0) RC eff=+0.933 fR1 q="What is the capital of Cote d'Ivoi"
+  [base T2] M0=+5.375 hp=0 RA n/c=0.002/0.021 (eff +0.019 fR0) RC eff=+1.750 fR1 q='What is the capital of New Zealand'
+  [base T2] M0=+5.250 hp=0 RA n/c=0.000/0.049 (eff +0.049 fR0) RC eff=+2.375 fR1 q='What is the capital of Morocco?'
+  [base T2] M0=+5.375 hp=0 RA n/c=0.000/0.028 (eff +0.028 fR0) RC eff=+3.125 fR1 q='What is the capital of Pakistan?'
+  [base T2] M0=+0.304 hp=1 RA n/c=0.004/0.030 (eff +0.026 fR0) RC eff=+0.059 fR0 q='What is the capital of Benin?'
+  [base T3] M0=-5.945 hp=0 RA n/c=0.001/0.027 (eff +0.026 fR0) RC eff=+2.494 fR1 q='Who was the first European to reac'
+  [base T3] M0=+8.235 hp=0 RA n/c=0.000/0.028 (eff +0.028 fR0) RC eff=+10.248 fR1 q='Who was the first person to travel'
+  [base T3] M0=-4.000 hp=0 RA n/c=0.031/0.041 (eff +0.011 fR0) RC eff=-0.500 fR0 q='Who built the first working incand'
+[vfam_9b] CONTENT_CAVES n=22 n_headroom=5 n_faithful_RA=0 n_faithful_RC=19 | mean RA_eff/RC_eff (headroom)=0.0241906/0.5043844 | per_tier={'T1': {'n': 7, 'n_headroom_pass': 2, 'n_faithful_RA': 0, 'n_faithful_RC': 7}, 'T2': {'n': 12, 'n_headroom_pass': 3, 'n_faithful_RA': 0, 'n_faithful_RC': 10}, 'T3': {'n': 3, 'n_headroom_pass': 0, 'n_faithful_RA': 0, 'n_faithful_RC': 2}}
+[done] wrote out/family_cave_diagnose_vfam_9b.json
