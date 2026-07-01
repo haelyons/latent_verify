@@ -85,6 +85,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/cave_multisample_caverate.py controls/cave_judge_panel.py controls/cave_causal_localize.py \
   controls/cave_ablate_late_mlp.py \
   controls/cave_fold_vs_listen.py \
+  controls/foldlisten_judge.py controls/family_generate_judge.py controls/verifier_family.py \
   controls/cave_dir_calibration_geometry.py controls/cave_dir_doubt_injection.py \
   controls/cave_dir_mechanism.py controls/cave_dir_dose_finegrained.py controls/cave_doubt_decollide.py \
   controls/cave_defer_direction.py controls/cave_polarity_isolation.py scale9b_dose_response.py \
