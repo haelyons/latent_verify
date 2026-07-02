@@ -91,6 +91,20 @@ zero margin), 27b-it PASS (11/22), 2b-it FAIL** — not on caving (9/22) but on 
 32/44; the smaller model's self-judge is noisy — the "judge can lie" risk realized). So the substrate is real at
 9b/27b-it; the 9b marginal clear (exactly 8) is the evidence for the family-scale requirement in §4.
 
+**Status addendum (2026-07-02, review): gate persisted + denominator disambiguated + epistemic caveat.**
+(i) The gate decision is now a committed ARTIFACT, not prose: `--gate` mode (pure, no model) writes
+`foldlisten_gate_<tag>.json` beside each summary (`results_foldlisten{,_2b,_27b}/out/`), embedding thresholds,
+measured counts, checks, decision, and decision_rule. (ii) The `>= 18/22` agreement threshold was ambiguous
+between denominators: the committed evaluation used the AGGREGATE reading (rate 18/22 over all 44 fold+listen
+records) — that reading is hereby the registered one; the PER-CELL reading is reported in every gate JSON as
+`sensitivity`. On record: 9b-it PASSES aggregate (36/44 = 0.818, exactly at threshold) but FAILS per-cell
+(fold cell 17/22) — the per-cell reading WOULD FLIP 9b's decision. (iii) Epistemic weight: the gate thresholds
+and their first evaluation landed in the same commit by a non-claim-blind author, and 9b-it clears at zero
+margin on BOTH axes (faithful 8/22 = floor; agreement 36/44 = 0.818 = floor). This Phase-1 PASS is therefore a
+DESCRIPTION of known data, not a passed gate. The real gate is the expanded family (§4): thresholds are frozen
+NOW (the fractions in `controls/foldlisten_judge.py` gate()), the new items are unseen, and the mechanism
+phases proceed only if the expanded family re-clears `--gate` on its own numbers.
+
 ### Phase 0.5 — De-risk the THINK probe (highest-risk shared component)
 Build the C-vs-W* ANSWER-IDENTITY probe (linear probe + tuned-lens on content tokens at the answer-prep position),
 trained on clean unpressured items where the answer is known. Validate: held-out AUROC >= 0.8 vs a
@@ -100,17 +114,30 @@ fabricate buckets.** Do this before investing in the full family/experiment.
 
 ### Phase 1 — Substrate gate (KILL gate; cheapest decisive check)
 At 9b-it on the frozen family, confirm the positive control is genuine adoption before any handle work. ALL must
-hold: fold_rate >= 0.5; abstain <= 3/22; NEUTRAL-arm drift <= 3/22 each direction (else "movement" is
-content-independent, the base failure mode); decoded⟂judge agreement >= 18/22. **Fail any -> STOP; report
+hold (fractions of cell-n, so the gate is n-invariant; at n=22 these are the original absolute counts):
+fold_rate >= 0.5; abstain <= 3/22-frac each cell; NEUTRAL-arm drift <= 3/22-frac each cell (else "movement" is
+content-independent, the base failure mode); decoded⟂judge agreement >= 18/22-frac on the AGGREGATE (all
+fold+listen records — the registered reading; the per-cell reading is reported as sensitivity, see Phase-0
+status addendum); genuine dual-confirmed CAVE >= 8/22-frac (`select_faithful`). Implemented as `--gate` in
+`controls/foldlisten_judge.py`; the decision is a committed JSON artifact. **Fail any -> STOP; report
 READOUT/SUBSTRATE-blocked; no handle is derived.** A causal-handle experiment on a positive control that isn't
 genuine adoption reproduces the original error.
 
 ### Phase 2 — Breadcrumbs + read-side fork
 Linear probe as INSTRUMENT only (item selection, intervention layer/timing) — not a claim. DLA/logit-lens as a
 breadcrumb to rank candidate layers/heads/sites — correlational, distrust per on-record noise, confirm causally or
-discard. **-it ALL-attention-KO upper bound** (the owed RQ gap): settles read-gate = attention vs distributed
-(~floor => read-gate off heads; ~base-level => attention IS the read gate at -it). Pre-check overlap: do fold-DLA
-and listen-DLA peak at overlapping layers? Disjoint layers => "one handle" is near-refuted before any intervention.
+discard. **-it ALL-attention-KO upper bound.** CORRECTION (review 2026-07-02): this is NOT an unrun "owed RQ gap"
+— PART8 v7 already ran it (`POSITION_KNOWING_BEFORE_SAYING.md:308-315`, 2026-06-23: -it ALL-attention restores
+0.875, ALL-MLP 0.751, verdict REDISTRIBUTE, and ALL-X KO flagged there as weakly discriminating). The v7 run was
+scored on the RESID-STATE CAVE-AXIS (a monitor readout); what has never been run is this KO on the
+CONTENT/REALIZED readout of the decorrelated family — that readout change is the sole justification for re-running
+it, and the v7 numbers are the prior. If the realized-readout KO agrees with v7 (attention-heavy restoration),
+skip ahead; treat a disagreement as information about the readouts, not as a fresh discovery. Settles read-gate =
+attention vs distributed (~floor => read-gate off heads; ~base-level => attention IS the read gate at -it).
+Pre-check overlap: do fold-DLA and listen-DLA peak at overlapping layers? Disjoint layers => "one handle" is
+near-refuted before any intervention. Prior to acknowledge, not rediscover: PART9 at BASE found fold/listen share
+heads correlationally (overlap 4/5, cross-cell axis AUROC 0.82, `RESEARCH_QUESTIONS.md` does-caving-carry) — the
+-it causal cross-transport claim of Phase 3 is strictly stronger and remains open.
 
 ### Phase 3 — Core experiment (one handle, both arms, invariance-c arbiter)
 Arms (same items, same handle, same scale): FOLD (state C, push W*), LISTEN (state W*, push C), NEUTRAL (push
@@ -127,9 +154,14 @@ BROAD if it is). Per C9: derive/select the handle on greedy (deterministic faith
 EFFECT-SIZE on a sampled per-item cave-RATE (temp ~0.8, n samples, per-sample scored) so a propensity shift is
 detected on a rate, not a coarse binary flip.
 
-Decision table (pre-registered): **CONFIRM "one lever"** iff H_fold≡H_listen (cosine >= ~0.7) AND each
-cross-transports (ablate drops both fold-CAVE and listen-CAVE by >= 4/22 beyond the RANDOM-HANDLE floor; add raises
-both) AND direct==total. **FALSIFY "two dials"** iff the handles decorrelate (cosine ~0) or transport one-way only.
+Decision table (pre-registered; thresholds as FRACTIONS of the frozen family n, so they survive the §4 expansion —
+at n=22, 4/22 ≈ 0.18): **CONFIRM "one lever"** iff H_fold≡H_listen (cosine >= ~0.7) AND each
+cross-transports (ablate drops both fold-CAVE and listen-CAVE rate by >= 0.18 beyond the RANDOM-HANDLE floor; add
+raises both by the same margin) AND direct==total. Ceiling guard for the "add raises both" arm: greedy listen sits
+at 1.000 (no headroom) — verify the SAMPLED listen cave-rate (temp 0.8, n=12) is <= 0.8 on the frozen family
+BEFORE relying on the raise direction; if sampled listen is also at ceiling, the raise arm is scored on FOLD only
+and listen-raise is reported UNMEASURABLE (not passed). **FALSIFY "two dials"** iff the handles decorrelate
+(cosine ~0) or transport one-way only.
 **FALSIFY "monitor again"** iff neither handle beats the random floor on cross-transport, OR direct>>total, OR the
 ablation effect is erased by backup. SAY/THINK may split: SAY-flip CONFIRM + THINK held at C = a compliance-overlay
 lever (acts on utterance not belief); SAY+THINK both flip = belief-flip lever; THINK flips but SAY held is NOT
@@ -138,7 +170,10 @@ scored as CAVE (realized behaviour is primary).
 ### Phase 4 — Confirmation
 Steering / CAA LAST — sufficiency only, never the headline (the monitor trap). Scale-transport the handle + the
 decision to 2b-it and 27b-it (all MOVEMENT_BOTH); a "one lever" claim holds only if it transports across >= 2
-scales. Confirm the three verifier invariances (paraphrase, readout-swap, intervention-consistency) on the
+scales. FALLBACK (registered now): 2b-it FAILED the Phase-1 measurement layer (self-judge agreement 32/44) — its
+transport cell is unusable unless the 2b judge is repaired (a cross-scale judge would break the same-model
+self-judge design and would need its own >= 0.9 validation first). Default: transport = 9b-it -> 27b-it only,
+which still satisfies ">= 2 scales"; report 2b-it as MEASUREMENT-BLOCKED, not as a transport failure. Confirm the three verifier invariances (paraphrase, readout-swap, intervention-consistency) on the
 decorrelated, confidence-controlled, content-gated family. Report one of: LEVER / TWO DIALS / MONITOR AGAIN /
 DISTRIBUTED NULL — all publishable under the honest-null idiom.
 
@@ -179,6 +214,12 @@ already asserts wh + distinct-first-word + no-yes/no); (3) screen on -it with `c
 holds C unpressured, conf_proxy > 0) + one fold generation (keep genuine CAVE); expected yield ~40% (matches
 8-11/22). `conf_proxy` IS the screening instrument. One GPU box + a curation pass. Run only if the existing-22 gate
 is marginal for the target scale (it is, at 9b-it) — i.e. proceed to Option C for the mechanism phases.
+SELECTION CAVEAT (registered): step (3) selects items on caving, so the expanded family is cave-enriched by
+construction. That is correct for LEVER IDENTIFICATION (the mechanism needs positive items) but it makes every
+rate/effect-size measured on this family CONDITIONAL on cave-selected items — no population caving-rate claim may
+be read off it; behavioural rates stay with the unselected `RESULTS_FOLDLISTEN.md` table. The expanded-family
+`--gate` re-run (Phase-0 addendum) is still legitimate as a gate because its thresholds were frozen before the
+new items were screened.
 
 ## 5. Global success / kill criteria
 
@@ -195,7 +236,11 @@ is marginal for the target scale (it is, at 9b-it) — i.e. proceed to Option C 
 
 ## 6. A-priori honest expectation (not a goalpost)
 
-The one localizable handle (read-side doubt-gate) is on record as weak + decoupled from the write at base; the write
+The one localizable handle (read-side doubt-gate) is on record at base as WEAK toward the u-coordinate but NOT
+toward behaviour — disambiguate: gate->u-coordinate formation restoration ~0.05-0.11
+(`POSITION_CAVE_DIRECTION_MECHANISM.md:48`) vs gate->cave-BEHAVIOUR restoration 0.589 read / 0.440 write
+(`POSITION_KNOWING_BEFORE_SAYING.md:237-238` — the repo's one clean base causal result). The read-side candidate
+of Phase 3 inherits the 0.589 prior, not the 0.05 one; both are base numbers and carry no -it guarantee. The write
 side is distributed + redundant and the graph honestly says so. Most-likely outcome: no single-component lever;
 strongest claimable result is a resample-ablated redundant-SET write lever confirmed by direct==total, or an honest
 "distributed, no sparse lever; adoption at -it is carried distributedly / is compliance-overlay / is actually

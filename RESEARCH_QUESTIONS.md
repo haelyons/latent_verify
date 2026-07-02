@@ -88,7 +88,7 @@ Direction-level, NOT a circuit (framing-corrected):
 
 ---
 
-## Open questions / current frontier (post-doubt-circuit, 2026-06-22)
+## Open questions / current frontier (swept 2026-07-02; previous sweep 2026-06-22)
 
 - **[PARTLY ANSWERED (v6, triage-corrected) — the headline open Q] Does RLHF *install* the doubt circuit, or amplify a
   base-present one?** **PARTIAL:** base attention doubt-heads carry the cave-state (read/write **0.37/0.24**,
@@ -139,6 +139,27 @@ Direction-level, NOT a circuit (framing-corrected):
   6. **Power** — n=28 union / 14 caved each, in-sample head ranking, no LOO/bootstrap CI.
   7. **Fitted-axis readout** — causal-on-the-axis, not on a verified mechanism (SyA-overlay risk; mitigated by the
      behavioural AUROC gate, not eliminated).
+
+  **PART8 v7 (2026-06-23) — gaps 1 + 3 CLOSED on the MONITOR readout:** the ‑it ALL-attention KO ran —
+  ALL-attention restores **0.875**, ALL-MLP **0.751** → the v6 "relocates-off-heads" verdict is **REFUTED**;
+  honest verdict **REDISTRIBUTE** (attention-heavy but not head-sparse at ‑it), with ALL-X KO flagged as weakly
+  discriminating. → `POSITION_KNOWING_BEFORE_SAYING.md:308-315`. STILL OPEN: the same KO on the
+  CONTENT/REALIZED readout of the decorrelated family (the monitor readout may not track realized adoption)
+  — now Phase 2 of `DESIGN_foldlisten_mechanism.md`, which carries the v7 numbers as its prior.
+- **[CURRENT FRONTIER (2026-06-23 → 07-02) — verifier positive control FOUND at ‑it; mechanism plan registered.]**
+  The verifier-POC arc (v0–v3) settled that 9b BASE does not genuinely cave on the decorrelated entity family —
+  decoded "caves" are ABSTENTION not adoption (margin-flip ≠ answer-flip; 1/22 outputs W\*) → `21c11c8`,
+  `4fad46a`, `1666d21`, `5cbdbdf`, `POSITION_ATTRGRAPH_VERIFIER.md`. The fold/listen behavioural arc then found
+  genuine adoption at **-it, every scale** (MOVEMENT_BOTH; fold 0.57–0.81, listen 1.000, abstain ~0, neutral
+  drift low → push-attributable; base is drift-contaminated) → `RESULTS_FOLDLISTEN.md`, `results_foldlisten*/`,
+  `bf81042`. That is the positive control the de-collide arc lacked. The mechanism question — ONE causal handle
+  for both fold and listen at ‑it, LEVER vs MONITOR, direct==total arbiter, THINK vs SAY — is pre-registered in
+  `DESIGN_foldlisten_mechanism.md` (`4ef7885`). Phase-0/1 status: measurement layer implemented; substrate gate
+  PERSISTED as artifacts (`results_foldlisten*/out/foldlisten_gate_*.json`): 9b-it PASS **at zero margin on both
+  axes** (faithful 8/22 = floor; agreement 36/44 = 0.818 = floor; per-cell sensitivity reading would FLIP it),
+  27b-it PASS (11/22, 38/44), 2b-it FAIL (self-judge 32/44 — measurement layer, not caving). The 9b PASS is a
+  description of known data (thresholds + evaluation same commit, not claim-blind); the REAL gate is the
+  expanded family (~60–100 items, thresholds frozen first) — production + screen pending.
 - **[GATED on capacity] The doubt circuit at 27b** (re-localized) — h100.
 - **[INFRA-BLOCKED] Finer write-content of the doubt heads** — DLA-link / direct-logit write
   (6× ssh-abort 255 on teardown; the behavioural output-patch already answered the WRITE
@@ -150,6 +171,10 @@ Direction-level, NOT a circuit (framing-corrected):
   **plausibility-gated answer-revision** (AGAINST-GRAIN to an unrelated wrong target ≈0 at base), sign-agnostic
   in residual space — not a wrongness-specific "fold" organ. → `results_fold_vs_listen/`, `archive/research_log §PART9`.
   (Owed: numeric/salience-copy convergence still untested; only the doubt↔correct-update pair is done.)
+  RE-SCOPE (2026-07-02): the PART9 YES is BASE + CORRELATIONAL (shared heads, shared axis). The ‑it CAUSAL
+  version — one handle that cross-transports between fold and listen on the realized readout — is strictly
+  stronger and OPEN; it is exactly Phase 3 of `DESIGN_foldlisten_mechanism.md`. The owed numeric/salience-copy
+  convergence stays owed: it is out of that DESIGN's scope by choice, parked here so it is not lost.
 - **[METHOD DEBT] Raw `capitulation` (pre−post) is headroom-confounded** — re-express the prior
   load-bearing caving magnitudes (§11, R-4, dose-response, 2b cavecheck) as **flip-rate** and
   spot-check whether any prior conclusion moves.
@@ -190,24 +215,20 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> The caving arc has resolved to: **caving is a behavioural umbrella, not one mechanism.** On the
-> faithful base Q/A readout there is one clean positive — a head-SPECIFIC ~5-head **doubt circuit**
-> that reads the user's challenge (QK) and writes toward the wrong answer (OV), cross-scale (2b·9b
-> base); everything downstream of its write is distributed (MLP-heavy; 2b attribution graph =
-> BROAD_DISTRIBUTED). Attention-copy-of-W\* is refuted as the driver (capacity-not-use). Standing
-> nulls hold (no installed head, head-set retracted under power, no entropy neuron, no confidence
-> gate). RLHF edits no copy-head routing weights at any scale; it modulates inputs/gain.
+> Where we are (2026-07-02): **the verifier's positive control exists and lives at ‑it.** Base does
+> not genuinely cave on the decorrelated entity family (POC v0–v3: decoded caves are ABSTENTION;
+> margin-flip ≠ answer-flip). At ‑it the fold/listen behavioural arc shows genuine, push-attributable
+> adoption in BOTH directions at every scale (`RESULTS_FOLDLISTEN.md`; elicited-final-answer readout is
+> the load-bearing instrument). The standing base results (doubt circuit ~5 heads read/write, downstream
+> distributed, monitor-not-lever cave-direction, all PART≤9 nulls) are unchanged.
 >
-> The gating open question is **RLHF-installation of the doubt circuit**, blocked by the -it
-> faithful readout (chat = tail ghost). The next test that earns its keep is a faithful flip-rate
-> -it readout to power the base-vs-it doubt-circuit differential — then re-localize at 27b and run
-> the does-caving-carry convergence test. Read the source JSONs before extending; faithfulness-gate
-> then triage every new claim.
->
-> PART 8 (2026-06-22): the doubt circuit is **source-agnostic** (same head-set across
-> self/peer/authority/consensus/sourceless) and **question-driven** (the challenge, not the bare
-> assertion of W\*, recruits it); confidence does NOT gate its recruitment (within the caving regime).
-> The wrong-vs-truth asymmetry RETRACTED (selection/headroom artifact). Authority-monotone gradient
-> NOT established. Cheapest decisive next controls: against-grain matched-move push (settles the
-> retraction) and per-cue bootstrap CI + authority minimal-pair (settles the gradient).
-> `controls/cave_social_source.py`, `controls/cave_confidence_recruitment.py`; `→ archive/research_log §PART8`.
+> The active plan is `DESIGN_foldlisten_mechanism.md` (pre-registered, `4ef7885` + review amendments):
+> one-causal-handle-for-both-arms at ‑it, LEVER vs MONITOR, direct==total arbiter, THINK vs SAY probe.
+> Phase-0/1: gate PERSISTED (`--gate`, `foldlisten_gate_*.json`) — 9b-it PASS at zero margin (per-cell
+> sensitivity would flip it), 27b-it PASS, 2b-it MEASUREMENT-BLOCKED (self-judge 32/44). Because the
+> first gate evaluation was not claim-blind, the REAL gate is the expanded family (~60–100 items;
+> thresholds frozen in `gate()` BEFORE screening). Next steps in order: produce + screen the expanded
+> family (conf_proxy > 0, one fold generation, ~40% yield expected), re-run `--gate` on the NEW items,
+> Phase 0.5 THINK-probe de-risk on that family, then Phases 2–4. Owed-not-lost: numeric/salience-copy
+> convergence; social per-cue resample-ablation; method-debt flip-rate re-expression. Read the source
+> JSONs before extending; faithfulness-gate then triage every new claim.

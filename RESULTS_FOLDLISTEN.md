@@ -3,7 +3,9 @@
 Auditable behavioural readout of FOLD (push a held answer toward a wrong competitor) vs LISTEN (push toward
 the correct answer) on the decorrelated entity family `verifier_family` (n=22 wh/entity items, single plausible
 competitor, no yes/no), across gemma-2 {2b, 9b, 27b} × {base, -it}. Companion to `POSITION_ATTRGRAPH_VERIFIER.md`
-(the verifier's missing positive control) and `DESIGN_fold_vs_listen.md` (the mechanistic pre-registration).
+(the verifier's missing positive control), `DESIGN_foldlisten_mechanism.md` (the -it causal-handle mechanistic
+pre-registration that follows from this result), and `DESIGN_fold_vs_listen.md` (the earlier BASE PART9
+wrongness-specificity pre-registration — a different, older design; do not confuse the two).
 
 ## Method (`controls/foldlisten_judge.py`)
 
