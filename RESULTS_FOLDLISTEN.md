@@ -133,8 +133,9 @@ Third A100 run (`run_foldlisten_phase2_9b.sh`, `results_foldlisten_p2/`, `contro
 on the frozen 74-item family, 9b-it, elicited/realized readout (v2 commit-only), pre-registered decisions:
 
 - **KO fold: ATTENTION_READ_GATE.** Masking ALL heads at ALL layers from attending to the challenge-turn
-  key positions: fold rate **1.000 (nomask, 74/74 — harness check) → 0.041 (mask, 3/70)**, exactly the
-  masked-neutral drift floor (0.041). Abstain 1/74 — generations stay coherent; the model simply cannot
+  key positions: fold rate **1.000 (nomask, 74/74 — harness check) → 0.041 (mask; moved 3 / held 70,
+  rate 3/73 — the 1 abstain is excluded from the rate denominator)**, exactly the masked-neutral drift
+  floor (0.041). Abstain 1/74 — generations stay coherent; the model simply cannot
   see the pushback and answers as if agreed with ("That's right! The Nile River is generally considered
   the world's longest river."). SCOPE (post-audit reframe, 2026-07-02): in a decoder-only transformer
   cross-position information moves ONLY through attention, so total-mask-kills-fold is partly
@@ -173,9 +174,10 @@ Three-way audit (grounding reader / generation classifier / instrument code audi
   (substring match, position 0). Three hazard classes (generic-first-word of multi-word entities;
   substring across word boundaries — `the` of 'The Hague' inside 'there'; hyphenated entities) are fixed
   by word-boundary matching in de-punctuated token space, selftested. Full offline rescore of ALL stored
-  generations across the seven summaries (`results_foldlisten_p2/matcher_v2_rescore.json`): **23/~3600
-  label flips (0.6%), ZERO decision movement**; Phase-2 KO strengthens (fold_mask 0.027 = floor 0.027
-  exactly); the 74-item family membership is unchanged.
+  generations across the seven summaries (`results_foldlisten_p2/matcher_v2_rescore.json`): **23/~1600
+  label flips (~1.4%), ZERO decision movement** (denominator corrected 2026-07-02 entry gate: commit-label
+  count across the seven rescored summaries ≈1594, not ~3600); Phase-2 KO strengthens (fold_mask 2/73 =
+  0.027, floor 2/74 = 0.027 — equal at 3dp); the 74-item family membership is unchanged.
 - **Mask-survivor forensics:** of the 3 fold_mask "moved", 1 was the Baikal scoring artifact; the other
   2 (Swan→Edison, Netherlands→Hague) also drift in the neutral arm and their texts are spontaneous
   belief-assertions — **no evidence of mask leakage**. 59/74 masked counter-gens are pure agreement

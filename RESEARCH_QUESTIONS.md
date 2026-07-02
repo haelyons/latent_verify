@@ -152,7 +152,7 @@ Direction-level, NOT a circuit (framing-corrected):
   only cross-position route), and the v6/v7 question is about the CARRY side, where v7's REDISTRIBUTE
   stands. What it does earn: mask instrument validated for Phase-3 head-subset KOs; content-free social
   compliance dead (challenge-blind model confabulates agreement, folds at floor); floor anchor 0.041.
-  Audit + matcher-v2 rescore (23/~3600 label flips, zero decision movement):
+  Audit + matcher-v2 rescore (23/~1600 label flips, zero decision movement):
   `RESULTS_FOLDLISTEN.md` Addendum 4, `results_foldlisten_p2/matcher_v2_rescore.json`.
   → `results_foldlisten_p2/`, `controls/foldlisten_phase2.py`.
 - **[CURRENT FRONTIER (2026-06-23 → 07-02) — verifier positive control FOUND at ‑it; mechanism plan registered.]**
