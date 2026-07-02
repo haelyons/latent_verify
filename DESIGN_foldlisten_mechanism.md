@@ -281,6 +281,31 @@ be read off it; behavioural rates stay with the unselected `RESULTS_FOLDLISTEN.m
 `--gate` re-run (Phase-0 addendum) is still legitimate as a gate because its thresholds were frozen before the
 new items were screened.
 
+### Phase 3 implementation pre-registration addendum (2026-07-02, frozen BEFORE the 3a run's data)
+
+Phase 3 splits into two controls at the handle-freeze boundary: `controls/foldlisten_phase3a.py`
+(owed instrument patches + handle derivation on the DERIVE half — even sorted-index of the frozen 74;
+handles persisted to `out/phase3_handles_*`) and `controls/foldlisten_phase3b.py` (everything
+decision-bearing, evaluated on the EVAL half only). Numeric choices NOT already fixed by §3-Phase-3,
+frozen now, before any 3a number exists:
+
+- Read-side handle identity: Jaccard(fold subset, listen subset) >= 0.5 = SAME_HEADS; decorrelate
+  bound for TWO DIALS: write cosine mean <= 0.3 AND read Jaccard <= 0.2. One-way transport = one
+  direction clears 0.18-beyond-floor, other <= floor + 0.05.
+- Write ablation = resample (matched source: same item's neutral arm — C-stated for FOLD, W*-stated
+  for LISTEN), positions from the challenge turn on, band L28-37. Random floors: 3 seeds
+  (size/layer-matched head subsets; norm-matched directions), mean drop.
+- ADD (sufficiency) is SAMPLED-ONLY (temp 0.8 n=12), alpha = 1.0 x frozen raw diff norm, single dose;
+  ceiling guard extended symmetrically: any pushed arm with sampled baseline > 0.8 -> that raise cell
+  UNMEASURABLE; both unmeasurable -> CONFIRM may pass on necessity+arbiter alone but is named
+  ONE_LEVER_NECESSITY_ONLY with raise_arms: UNMEASURABLE_ALL carried.
+- Arbiter: DIRECT_TOTAL_AGREE = sign agreement AND magnitude ratio <= 2 (aggregate); backup check =
+  ablated component's downstream projection reappearing >= 50% of baseline -> BACKUP_RESTORES.
+- Verdict precedence (registered resolution order): MONITOR -> TWO_DIALS -> ONE_LEVER ->
+  DISTRIBUTED_NULL -> INCONCLUSIVE.
+- Sampled pass quantifies, greedy pass decides; a reversal is reported FRAGILE, never silently
+  overridden. Category split (superlative vs non) is report-only (n too small for a hard gate).
+
 ## 5. Global success / kill criteria
 
 - **A LEVER (claim-worthy) passes ALL:** (1) moves the decoded, judge-scored realized flip (not M / first-token /
