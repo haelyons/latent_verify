@@ -155,11 +155,14 @@ Direction-level, NOT a circuit (framing-corrected):
   `bf81042`. That is the positive control the de-collide arc lacked. The mechanism question — ONE causal handle
   for both fold and listen at ‑it, LEVER vs MONITOR, direct==total arbiter, THINK vs SAY — is pre-registered in
   `DESIGN_foldlisten_mechanism.md` (`4ef7885`). Phase-0/1 status: measurement layer implemented; substrate gate
-  PERSISTED as artifacts (`results_foldlisten*/out/foldlisten_gate_*.json`): 9b-it PASS **at zero margin on both
-  axes** (faithful 8/22 = floor; agreement 36/44 = 0.818 = floor; per-cell sensitivity reading would FLIP it),
-  27b-it PASS (11/22, 38/44), 2b-it FAIL (self-judge 32/44 — measurement layer, not caving). The 9b PASS is a
-  description of known data (thresholds + evaluation same commit, not claim-blind); the REAL gate is the
-  expanded family (~60–100 items, thresholds frozen first) — production + screen pending.
+  PERSISTED as artifacts (`results_foldlisten*/out/foldlisten_gate*_*.json`). The expansion round ran
+  (2026-07-02, `results_foldlisten_ext/`, repro EXACT): behaviour generalizes to 34 unseen items (fold 0.576),
+  and the same-model SELF-JUDGE FAILED its pre-registered human validation (belief-contaminated on contested
+  items: judge-vs-human 0.679 vs commit_prog 0.982, n=56 hand-labelled) → measurement layer v2 = commit-only
+  faithful, judge diagnostic. v2 dissolves the old marginality: 9b-it 13/22, 27b-it 12/22, 2b-it 17/22 (2b was
+  judge-blocked, not caving-blocked). Screen yield 16/34 = 47% (T1-heavy; cold anchors cause neutral-arm
+  drift — curation lesson). 9b-it mechanism pool = 29 fold-faithful; ~1–2 more T1-heavy curation rounds reach
+  the ~60 target, then Phase 0.5 (THINK probe) and Phases 2–4.
 - **[GATED on capacity] The doubt circuit at 27b** (re-localized) — h100.
 - **[INFRA-BLOCKED] Finer write-content of the doubt heads** — DLA-link / direct-logit write
   (6× ssh-abort 255 on teardown; the behavioural output-patch already answered the WRITE
@@ -224,11 +227,13 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 >
 > The active plan is `DESIGN_foldlisten_mechanism.md` (pre-registered, `4ef7885` + review amendments):
 > one-causal-handle-for-both-arms at ‑it, LEVER vs MONITOR, direct==total arbiter, THINK vs SAY probe.
-> Phase-0/1: gate PERSISTED (`--gate`, `foldlisten_gate_*.json`) — 9b-it PASS at zero margin (per-cell
-> sensitivity would flip it), 27b-it PASS, 2b-it MEASUREMENT-BLOCKED (self-judge 32/44). Because the
-> first gate evaluation was not claim-blind, the REAL gate is the expanded family (~60–100 items;
-> thresholds frozen in `gate()` BEFORE screening). Next steps in order: produce + screen the expanded
-> family (conf_proxy > 0, one fold generation, ~40% yield expected), re-run `--gate` on the NEW items,
-> Phase 0.5 THINK-probe de-risk on that family, then Phases 2–4. Owed-not-lost: numeric/salience-copy
-> convergence; social per-cue resample-ablation; method-debt flip-rate re-expression. Read the source
-> JSONs before extending; faithfulness-gate then triage every new claim.
+> Phase-0/1: gate PERSISTED (`--gate[--v2]`, `foldlisten_gate*_*.json`). The expansion round ran
+> (2026-07-02): repro EXACT; behaviour generalizes (unseen fold 0.576); and the SELF-JUDGE failed its
+> pre-registered human validation (belief-contaminated on contested items; 0.679 vs commit_prog 0.982,
+> n=56) → measurement layer v2 (commit-only faithful, judge diagnostic). v2 corrected counts: 9b-it 13/22,
+> 27b-it 12/22, 2b-it 17/22 (2b transport restored). Screen yield 16/34 = 47%; survivors T1-heavy;
+> mechanism pool 29 at 9b-it. Next steps in order: one more T1-heavy curation round (~30 items, no cold
+> anchors, no accented entities) to reach ~60; 2b hand-label spot-check; Phase 0.5 THINK-probe de-risk on
+> the frozen family; then Phases 2–4. Owed-not-lost: numeric/salience-copy convergence; social per-cue
+> resample-ablation; method-debt flip-rate re-expression. Read the source JSONs before extending;
+> faithfulness-gate then triage every new claim.

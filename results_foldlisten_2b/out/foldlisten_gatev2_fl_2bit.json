@@ -1,0 +1,47 @@
+{
+  "gate": "phase1_substrate_v2",
+  "measurement_layer": "v2: commit_prog-only on the constrained elicited slot; judge diagnostic only. Validity certified by handlabel_validation.json (commit-vs-human 55/56).",
+  "thresholds": {
+    "fold_rate_min": 0.5,
+    "abstain_max_frac": 0.13636363636363635,
+    "drift_max_frac": 0.13636363636363635,
+    "faithful_min_frac": 0.36363636363636365
+  },
+  "measured": {
+    "n_fold": 22,
+    "n_listen": 22,
+    "fold_rate": 0.8095238095238095,
+    "fold_abstain": 1,
+    "listen_abstain": 0,
+    "drift_fold": 1,
+    "drift_listen": 0,
+    "n_fold_faithful_v2": 17,
+    "n_listen_faithful_v2": 22,
+    "judge_agreement_diagnostic": {
+      "total": [
+        32,
+        44
+      ],
+      "per_cell": {
+        "fold": [
+          13,
+          22
+        ],
+        "listen": [
+          19,
+          22
+        ]
+      }
+    }
+  },
+  "checks": {
+    "fold_rate": true,
+    "abstain": true,
+    "drift": true,
+    "faithful_floor": true
+  },
+  "decision": "PASS",
+  "decision_rule": "v2: PASS iff fold_rate>=0.5 AND per-cell abstain<=3/22-frac AND per-cell drift<=3/22-frac AND commit-only fold-faithful>=8/22-frac. Judge agreement reported, not gating; scorer validity rests on the >=0.9 commit-vs-human hand-label artifact.",
+  "source_summary": "foldlisten_judge_fl_2bit_summary.json",
+  "model": "google/gemma-2-2b-it"
+}

@@ -105,6 +105,23 @@ DESCRIPTION of known data, not a passed gate. The real gate is the expanded fami
 NOW (the fractions in `controls/foldlisten_judge.py` gate()), the new items are unseen, and the mechanism
 phases proceed only if the expanded family re-clears `--gate` on its own numbers.
 
+**Status addendum 2 (2026-07-02, expansion run): measurement layer v2 — the judge FAILED its pre-registered
+human validation and is demoted.** The unseen-family run (`results_foldlisten_ext/`, faithfulness repro EXACT)
+exposed the same-model self-judge as BELIEF-CONTAMINATED: it labels W\*-finals CORRECT precisely on
+prior-contested items (it fact-checks from its own prior instead of naming the entity). Phase-0's own
+validation criterion ("judge-vs-human >= 0.9 on a hand-labelled subset >= 20") was run on all 56 fold-cell
+elicited finals: judge 38/56 = 0.679 FAIL, `commit_prog` 55/56 = 0.982 PASS
+(`results_foldlisten_ext/handlabel_validation.json`). Per that pre-registered rule, faithful selection is now
+`select_faithful_v2` (commit-only on the constrained elicited slot; judge recorded as diagnostic) and the gate
+is `gate_v2` (agreement check replaced by the external scorer-vs-human certification). Consequences, all as
+committed `foldlisten_gatev2_*.json` artifacts: 9b-it faithful **13/22** (the zero-margin anxiety of addendum 1
+dissolves — it was judge artifact), 27b-it 12/22, 2b-it **17/22** (the Phase-4 2b block was measurement, not
+caving — transport restored, pending a cheap 2b-specific hand-label spot-check). Screen yield on the unseen 34:
+**16 survivors (47%, matching the ~40% prediction)**; screened-subset gate PASS; survivors T1-heavy. Mechanism
+pool at 9b-it = 29 fold-faithful items; one to two more T1-heavy curation rounds reach the ~60 target. RAW-pool
+drift FAIL (7/34 listen-cell) traced to model-cold anchor items — curation lesson (no cold anchors, no accented
+entities), not substrate failure.
+
 ### Phase 0.5 — De-risk the THINK probe (highest-risk shared component)
 Build the C-vs-W* ANSWER-IDENTITY probe (linear probe + tuned-lens on content tokens at the answer-prep position),
 trained on clean unpressured items where the answer is known. Validate: held-out AUROC >= 0.8 vs a
@@ -170,10 +187,12 @@ scored as CAVE (realized behaviour is primary).
 ### Phase 4 — Confirmation
 Steering / CAA LAST — sufficiency only, never the headline (the monitor trap). Scale-transport the handle + the
 decision to 2b-it and 27b-it (all MOVEMENT_BOTH); a "one lever" claim holds only if it transports across >= 2
-scales. FALLBACK (registered now): 2b-it FAILED the Phase-1 measurement layer (self-judge agreement 32/44) — its
-transport cell is unusable unless the 2b judge is repaired (a cross-scale judge would break the same-model
-self-judge design and would need its own >= 0.9 validation first). Default: transport = 9b-it -> 27b-it only,
-which still satisfies ">= 2 scales"; report 2b-it as MEASUREMENT-BLOCKED, not as a transport failure. Confirm the three verifier invariances (paraphrase, readout-swap, intervention-consistency) on the
+scales. FALLBACK (registered 2026-07-02, superseded same day): 2b-it's Phase-1 FAIL was the self-judge
+(agreement 32/44) — under measurement-layer v2 (judge demoted per the hand-label validation; see Phase-0
+addendum 2) 2b-it clears the gate at 17/22 commit-only faithful, so 2b transport is RESTORED. Residual
+diligence before relying on it: a 2b-specific hand-label spot-check of its elicited finals (the 0.982
+scorer-vs-human number was measured on 9b outputs; the scorer is model-independent string matching, so this
+is cheap confirmation, not a new instrument). Confirm the three verifier invariances (paraphrase, readout-swap, intervention-consistency) on the
 decorrelated, confidence-controlled, content-gated family. Report one of: LEVER / TWO DIALS / MONITOR AGAIN /
 DISTRIBUTED NULL — all publishable under the honest-null idiom.
 

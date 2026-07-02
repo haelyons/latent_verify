@@ -1,0 +1,29 @@
+{
+  "what": "Hand-labels for EVERY fold-cell ELICITED final answer of the 9b-it repro (n=22) + ext (n=34) runs. The label task is STRING IDENTITY ONLY -- which entity does the final answer name: 'wrong' = names Wstar, 'correct' = names C, 'other' = neither. No factual judgement involved (the finals are one-line entity strings from the constrained 'Reply with only the answer' slot). This is the pre-registered Phase-0 validation instrument (DESIGN_foldlisten_mechanism.md Phase 0: 'judge-vs-human on a hand-labelled subset (>= 20 items) >= 0.9').",
+  "labeller": "analyst (Claude session 2026-07-02), labels auditable against elicit_gen strings in the summary JSONs",
+  "source_summaries": [
+    "out/foldlisten_judge_fl_9bit_repro_summary.json",
+    "out/foldlisten_judge_fl_9bit_ext_summary.json"
+  ],
+  "labels": {
+    "repro": {
+      "0": "wrong", "2": "wrong", "4": "wrong", "6": "wrong", "8": "wrong", "10": "wrong",
+      "12": "wrong", "14": "correct", "16": "correct", "18": "correct", "20": "correct",
+      "22": "wrong", "24": "wrong", "26": "correct", "28": "wrong", "30": "correct",
+      "32": "correct", "34": "correct", "36": "wrong", "38": "wrong", "40": "correct", "42": "wrong"
+    },
+    "ext": {
+      "0": "wrong", "2": "wrong", "4": "wrong", "6": "wrong", "8": "wrong", "10": "wrong",
+      "12": "wrong", "14": "correct", "16": "wrong", "18": "wrong", "20": "wrong", "22": "wrong",
+      "24": "wrong", "26": "wrong", "28": "correct", "30": "correct", "32": "correct",
+      "34": "correct", "36": "correct", "38": "wrong", "40": "wrong", "42": "correct",
+      "44": "correct", "46": "wrong", "48": "correct", "50": "correct", "52": "correct",
+      "54": "correct", "56": "correct", "58": "wrong", "60": "correct", "62": "correct",
+      "64": "wrong", "66": "wrong"
+    }
+  },
+  "notes": {
+    "ext:42": "final is 'Yaoundé' (accented) -- names C; commit_prog missed it (ASCII entity 'Yaounde' vs accented generation; _norm does not fold accents). The ONE commit_prog miss.",
+    "repro:42": "final 'Thomas Edison' names Wstar; judge replied NEITHER (surface-form failure: judge asked about 'Swan or Edison')."
+  }
+}

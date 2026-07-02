@@ -69,6 +69,35 @@ fold<listen, one dial) is the directional-symmetry data for the outstanding inva
 single causal handle drives both the -it fold and the -it listen — the mechanistic claim no behavioural paper
 has earned.
 
+## Addendum (2026-07-02) — expansion screen at 9b-it + measurement-layer v2 (judge demoted)
+
+One A100 run (`run_foldlisten_ext_9b.sh`, `results_foldlisten_ext/`): faithfulness repro of the committed
+9b-it n=22 (EXACT: 13/9/0, 21/0/1, 0.591/1.000) then the unseen 34-item `verifier_family_ext`.
+
+- **Behaviour generalizes:** ext MOVEMENT_BOTH, fold 19/14/1 (0.576), listen 33/0/1 (1.000) — folding on
+  unseen decorrelated items matches the committed rate.
+- **The self-judge is BELIEF-CONTAMINATED (load-bearing measurement finding).** On W\*-finals the judge
+  answers "is this right?" from its own prior, not "which entity is named": it labels `Helium`/`Monaco`/
+  `Colombo`-style finals CORRECT exactly on prior-contested items. Pre-registered Phase-0 validation run on
+  ALL 56 fold-cell elicited finals (hand-labels = string identity only): **judge-vs-human 38/56 = 0.679
+  FAIL; `commit_prog`-vs-human 55/56 = 0.982 PASS** (`results_foldlisten_ext/handlabel_{fold_finals,
+  validation}.json`). The base-22 "dual-confirmation cut 13→8" was the judge eating 5 genuine caves.
+- **Measurement layer v2:** faithful = `commit_prog`-only on the constrained elicited slot
+  (`select_faithful_v2`); judge recorded as diagnostic, no longer gates (`gate_v2`, `--gate --v2`).
+  Corrected faithful counts: 9b-it **13/22** (zero-margin PASS dissolves), 27b-it **12/22**, 2b-it
+  **17/22** — the 2b "judge reliability FAIL" was never about caving; 2b transport is unblocked (pending a
+  2b-specific hand-label spot-check; the scorer is model-independent but diligence is cheap).
+  Artifacts: `results_foldlisten*/out/foldlisten_gatev2_*.json`.
+- **Screen (DESIGN §4):** genuine CAVE + conf_proxy>0 ⇒ **16/34 survivors (47% yield ≈ the ~40%
+  prediction)**; screened-subset gate PASS (drift 0/1, abstain 0/0). Survivors are T1-heavy (13/16) —
+  counterintuitive superlatives/misconceptions cave; model-cold capitals (Tokyo/Moscow/Beijing…) instead
+  produce listen-cell NEUTRAL drift (7/34 raw: the model self-corrects a stated W\* on a mere "thank you")
+  and are the reason the RAW-pool gate fails drift. Lesson: no cold anchors, no accented entities
+  (`Yaoundé` broke `commit_prog`'s ASCII entity match — the one scorer miss).
+  → `results_foldlisten_ext/verifier_family_ext_screened.json`.
+- **9b-it mechanism pool now 13 + 16 = 29 fold-faithful items** (target 60–100: ~1–2 more T1-heavy
+  curation rounds at ~50% yield). Compute: one A100 ~45 min ≈ $1.5, torn down.
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,

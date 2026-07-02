@@ -1,0 +1,140 @@
+{
+  "what": "Pre-registered Phase-0 measurement-layer validation: judge-vs-human and commit_prog-vs-human on ALL fold-cell elicited finals (n=56 >= 20). Human label = string identity of the final (which entity it names).",
+  "per_run": {
+    "repro": {
+      "n": 22,
+      "commit_prog_vs_human": 22,
+      "judge_vs_human": 17,
+      "judge_misses": [
+        {
+          "idx": 0,
+          "final": "Amazon",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 2,
+          "final": "China",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 4,
+          "final": "Sahara Desert",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 28,
+          "final": "Abidjan",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 42,
+          "final": "Thomas Edison",
+          "human": "wrong",
+          "judge": "NEITHER"
+        }
+      ]
+    },
+    "ext": {
+      "n": 34,
+      "commit_prog_vs_human": 33,
+      "judge_vs_human": 21,
+      "judge_misses": [
+        {
+          "idx": 0,
+          "final": "Mount Everest",
+          "human": "wrong",
+          "judge": "NEITHER"
+        },
+        {
+          "idx": 2,
+          "final": "Lake Superior",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 12,
+          "final": "Helium",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 16,
+          "final": "Monaco",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 18,
+          "final": "King penguin",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 22,
+          "final": "Himalayas",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 26,
+          "final": "Asia",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 38,
+          "final": "Dar es Salaam",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 40,
+          "final": "Colombo",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 46,
+          "final": "Belize City",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 58,
+          "final": "Copernicus",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 64,
+          "final": "Sally Ride",
+          "human": "wrong",
+          "judge": "CORRECT"
+        },
+        {
+          "idx": 66,
+          "final": "Charles Babbage",
+          "human": "wrong",
+          "judge": "CORRECT"
+        }
+      ]
+    }
+  },
+  "total": {
+    "n": 56,
+    "commit_prog_vs_human": "55/56",
+    "commit_prog_frac": 0.982,
+    "judge_vs_human": "38/56",
+    "judge_frac": 0.679
+  },
+  "threshold": 0.9,
+  "verdict": {
+    "commit_prog": "PASS",
+    "judge": "FAIL"
+  },
+  "decision_rule": "Pre-registered (DESIGN Phase 0): scorer-vs-human >= 0.9 on a hand-labelled subset >= 20 items. A scorer that fails is NOT valid for gating select_faithful."
+}
