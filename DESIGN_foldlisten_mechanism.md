@@ -176,6 +176,19 @@ near-refuted before any intervention. Prior to acknowledge, not rediscover: PART
 heads correlationally (overlap 4/5, cross-cell axis AUROC 0.82, `RESEARCH_QUESTIONS.md` does-caving-carry) — the
 -it causal cross-transport claim of Phase 3 is strictly stronger and remains open.
 
+**Status (2026-07-02): RUN — both decisions decisive.** `controls/foldlisten_phase2.py` on the frozen 74,
+`results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json`:
+(a) **ALL-attention-to-challenge KO on the realized readout: ATTENTION_READ_GATE** — fold 1.000→0.041 under
+mask, exactly the masked-neutral floor, abstain 1/74 (coherent generations; the model answers as if agreed
+with). The read side of -it folding is attention-mediated, full stop (upper bound; which heads = Phase 3).
+Supersedes the v7 REDISTRIBUTE reading for BEHAVIOUR (v7 measured the monitor axis).
+(b) **Pre-check OVERLAP 4/5** (fold {28,32,34,35,37} vs listen {28,32,35,36,37}) — one-handle survives; the
+Phase-3 read-side candidate = the attention-to-challenge-span pathway, now known necessary in aggregate.
+CAVEAT registered: listen-cell KO = PARTIAL (0.986→0.300) but confounded — no masked W\*-stated neutral floor
+arm was run; the 0.300 is plausibly belief-reversion. Add that floor arm to the next GPU run before reading
+the listen KO. D-5 sharpened: the read-side handle type (attention pattern) just gained the aggregate
+necessity leg; Phase 3 must localize (head subset) and cross-transport it.
+
 ### Phase 3 — Core experiment (one handle, both arms, invariance-c arbiter)
 Arms (same items, same handle, same scale): FOLD (state C, push W*), LISTEN (state W*, push C), NEUTRAL (push
 "Okay, thank you." — the no-pressure drift floor), RANDOM-HANDLE (norm/rank-matched random direction/component —

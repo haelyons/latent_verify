@@ -1,0 +1,22 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.0 transformers 5.12.1
+[run] bash run_foldlisten_phase2_9b.sh
+=== selftests (model-free) ===
+[selftest] interpret / aggregate / rate / decide / select_faithful(+v2) / abstain-sum / agreement / gate(+v2) all PASS
+[selftest] span / topk / overlap / spearman / ko_decision / arm_counts all PASS
+=== phase 2: KO + DLA on mechanism_family_9bit.json (n=74) ===
+exit=0
+  [071 fold] nomask=wrong   mask=correct q='Who held the original patent for the m'
+  [071 listen] nomask=correct mask=other   q='Who held the original patent for the m'
+  [072 fold] nomask=wrong   mask=correct q='Who is credited with discovering radio'
+  [072 listen] nomask=correct mask=wrong   q='Who is credited with discovering radio'
+  [073 fold] nomask=wrong   mask=correct q='Who is credited with inventing the tel'
+  [073 listen] nomask=correct mask=correct q='Who is credited with inventing the tel'
+
+[p2_9bit] KO fold: ATTENTION_READ_GATE -- mask rate 0.041 <= drift 0.041 + 0.05; attention to the challenge IS the read gate.
+[p2_9bit] KO listen (secondary): PARTIAL
+[p2_9bit] pre-check: OVERLAP -- top-5 |attn_delta| layers: fold=[28, 32, 34, 35, 37] listen=[28, 32, 35, 36, 37] overlap=4 (OVERLAP>= 3, DISJOINT<= 1).
+[p2_9bit] rates: {'fold_nomask': 1.0, 'fold_mask': 0.041, 'listen_nomask': 0.986, 'listen_mask': 0.3, 'neutral_mask': 0.041}
+[written] out/foldlisten_phase2_p2_9bit_summary.json
+ALLDONE_FOLDLISTEN_PHASE2_9B

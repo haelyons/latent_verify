@@ -127,6 +127,30 @@ Phase-3 content-category robustness split is owed so "one handle" is not a super
 Phase 0.5); reading the model's LATENT answer during an actual cave (THINK) is the Phase-3 application, not
 yet run. (3) Family is cave-enriched by construction — no population-rate claim (registered).
 
+## Addendum 3 (2026-07-02) — Phase 2: attention to the challenge IS the read gate at -it (realized readout)
+
+Third A100 run (`run_foldlisten_phase2_9b.sh`, `results_foldlisten_p2/`, `controls/foldlisten_phase2.py`)
+on the frozen 74-item family, 9b-it, elicited/realized readout (v2 commit-only), pre-registered decisions:
+
+- **KO fold: ATTENTION_READ_GATE.** Masking ALL heads at ALL layers from attending to the challenge-turn
+  key positions: fold rate **1.000 (nomask, 74/74 — harness check) → 0.041 (mask, 3/70)**, exactly the
+  masked-neutral drift floor (0.041). Abstain 1/74 — generations stay coherent; the model simply cannot
+  see the pushback and answers as if agreed with ("That's right! The Nile River is generally considered
+  the world's longest river."). **No attention to the challenge → no fold, to floor.** This is the
+  realized-readout closure of the PART8 "attention vs distributed" gap: v7's REDISTRIBUTE was about the
+  resid-state MONITOR axis; on BEHAVIOUR, the read side of -it folding is 100% attention-mediated (upper
+  bound over all heads; head-level localization = Phase 3).
+- **KO listen: PARTIAL, but confounded — registered instrument gap.** listen 0.986 → 0.300 under mask.
+  The 21/70 that still land on C are plausibly belief-reversion (model restates its own knowledge at
+  elicitation with no push visible), and the proper floor arm — masked NEUTRAL with stated=W\* — was NOT
+  run (the neutral arm was fold-stated only). Listen KO is unresolved until that floor lands (cheap
+  follow-up, rides along with the next GPU run).
+- **DLA pre-check: OVERLAP (4/5).** Top-5 |attn Δmargin| lens layers: fold {28,32,34,35,37} vs listen
+  {28,32,35,36,37} — same late-layer band. The "one handle" hypothesis SURVIVES its cheap falsifier
+  (DISJOINT would have near-refuted Phase 3 before spending). Note the answer-identity probe peaks at
+  L19 while margin movement concentrates L28-37 — identity readable mid-stack, margin written late,
+  consistent with the knowing-before-saying arc. Breadcrumb only; no causal claim.
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,
