@@ -136,20 +136,58 @@ on the frozen 74-item family, 9b-it, elicited/realized readout (v2 commit-only),
   key positions: fold rate **1.000 (nomask, 74/74 — harness check) → 0.041 (mask, 3/70)**, exactly the
   masked-neutral drift floor (0.041). Abstain 1/74 — generations stay coherent; the model simply cannot
   see the pushback and answers as if agreed with ("That's right! The Nile River is generally considered
-  the world's longest river."). **No attention to the challenge → no fold, to floor.** This is the
-  realized-readout closure of the PART8 "attention vs distributed" gap: v7's REDISTRIBUTE was about the
-  resid-state MONITOR axis; on BEHAVIOUR, the read side of -it folding is 100% attention-mediated (upper
-  bound over all heads; head-level localization = Phase 3).
+  the world's longest river."). SCOPE (post-audit reframe, 2026-07-02): in a decoder-only transformer
+  cross-position information moves ONLY through attention, so total-mask-kills-fold is partly
+  information-theoretically forced — this does NOT close the PART8 v6/v7 "attention vs distributed"
+  question, which is about the component class that CARRIES/reconstructs the cave state downstream (v7
+  REDISTRIBUTE, monitor axis, stands). What the KO genuinely establishes: (i) the mask instrument is
+  clean (floor = unmasked drift, coherent generations) and validated for Phase-3 HEAD-SUBSET use, where
+  it becomes discriminating; (ii) one real alternative dies — **content-free social compliance** ("fold
+  whenever the user pushes back, regardless of content"): a challenge-blind model confabulates agreement
+  and folds at exactly floor, so folding requires reading the challenge CONTENT; (iii) the
+  challenge-blind floor (0.041) is the quantitative anchor for Phase-3 necessity claims.
 - **KO listen: PARTIAL, but confounded — registered instrument gap.** listen 0.986 → 0.300 under mask.
   The 21/70 that still land on C are plausibly belief-reversion (model restates its own knowledge at
   elicitation with no push visible), and the proper floor arm — masked NEUTRAL with stated=W\* — was NOT
   run (the neutral arm was fold-stated only). Listen KO is unresolved until that floor lands (cheap
   follow-up, rides along with the next GPU run).
 - **DLA pre-check: OVERLAP (4/5).** Top-5 |attn Δmargin| lens layers: fold {28,32,34,35,37} vs listen
-  {28,32,35,36,37} — same late-layer band. The "one handle" hypothesis SURVIVES its cheap falsifier
-  (DISJOINT would have near-refuted Phase 3 before spending). Note the answer-identity probe peaks at
-  L19 while margin movement concentrates L28-37 — identity readable mid-stack, margin written late,
-  consistent with the knowing-before-saying arc. Breadcrumb only; no causal claim.
+  {28,32,35,36,37} — same late-layer band; robust at k=3 (identical sets) and k=7 (6/7); attn deltas are
+  not dwarfed by MLP (peak ratio ~1.3, distinct bands: attn 28-37, mlp 38-41). The "one handle"
+  hypothesis SURVIVES its cheap falsifier (DISJOINT would have near-refuted Phase 3 before spending).
+  CAVEAT (post-audit): late-layer attn margin movement at the elicit slot could be generic
+  answer-formation rather than shared revision machinery — the discriminating NEUTRAL-arm DLA baseline
+  profile was not captured; owed on the next GPU run before the overlap is cited as one-handle evidence.
+  Note the answer-identity probe peaks at L19 while margin movement concentrates L28-37 — identity
+  readable mid-stack, margin written late, consistent with knowing-before-saying. Breadcrumb only.
+
+## Addendum 4 (2026-07-02) — Phase-2 audit: numbers reproduce; matcher v2; scope corrections
+
+Three-way audit (grounding reader / generation classifier / instrument code auditor) + analyst review:
+
+- **Every Phase-2 number reproduces** from `items[]` (370 records) — arm counts, exact rate fractions,
+  both KO inequalities, overlap sets, Spearman 0.4423 to 15 s.f.; spans sane; thresholds+decision_rule
+  embedded per convention.
+- **Matcher bug found and fixed forward (`commit_prog_v2`).** The generation classifier caught 'Lake
+  Baikal' scored `wrong` because `entity_forms("Lake Superior")` includes the bare first word `lake`
+  (substring match, position 0). Three hazard classes (generic-first-word of multi-word entities;
+  substring across word boundaries — `the` of 'The Hague' inside 'there'; hyphenated entities) are fixed
+  by word-boundary matching in de-punctuated token space, selftested. Full offline rescore of ALL stored
+  generations across the seven summaries (`results_foldlisten_p2/matcher_v2_rescore.json`): **23/~3600
+  label flips (0.6%), ZERO decision movement**; Phase-2 KO strengthens (fold_mask 0.027 = floor 0.027
+  exactly); the 74-item family membership is unchanged.
+- **Mask-survivor forensics:** of the 3 fold_mask "moved", 1 was the Baikal scoring artifact; the other
+  2 (Swan→Edison, Netherlands→Hague) also drift in the neutral arm and their texts are spontaneous
+  belief-assertions — **no evidence of mask leakage**. 59/74 masked counter-gens are pure agreement
+  confabulation; 0 degenerate.
+- **Code audit risks, registered as pre-Phase-3 instrument patches:** (Q1) prefix-stability of the
+  challenge span is asserted only on the 2-vs-3-turn conversation, not the real 5-turn elicit context —
+  behaviourally held this run (confabulation shows challenge-blindness) but a runtime assert + storing
+  the full prompts is owed; (Q2) counter_gen echoes into the elicit turn unmasked — measured impact
+  ≤2/74, belief-reversion, conservative direction; (Q5) the neutral floor's masked span is shorter than
+  the challenge span (not length-matched — conservative direction); (Q7) the DLA docstring's softcap
+  justification corrected (per-layer residual contributions never see the softcap; raw margins are the
+  right object; generic logit-lens renormalization caveat stands).
 
 ## Artifacts
 

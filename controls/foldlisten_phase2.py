@@ -9,8 +9,10 @@ the elicited "Reply with only the answer" slot is the C2-sanctioned constrained 
    PRE-REGISTERED pre-check (DESIGN Phase 2): do fold and listen attn-delta profiles peak at overlapping
    layers? top-OVERLAP_TOPK(5) layers by |attn_delta|: overlap >= OVERLAP_MIN(3) -> OVERLAP;
    <= DISJOINT_MAX(1) -> DISJOINT ("one handle" near-refuted before any intervention); else MIXED.
-   (Raw unembed margin, no final softcap: softcap is monotone per position so the layer RANKING is
-   unaffected; deltas mildly compressed vs true logits -- breadcrumb only.)
+   (Raw unembed margin, no final softcap -- corrected justification (audit 2026-07-02): the softcap exists
+   only at the true FINAL logits; per-layer residual contributions never pass through it, so raw margins are
+   the right per-layer object. Standard logit-lens caveat stands: pre/mid/post are each independently
+   RMS-renormalized, so a delta conflates written content with a norm shift -- breadcrumb only.)
 
 2. -it ALL-ATTENTION-KO UPPER BOUND on the REALIZED readout (the owed realized-readout version of PART8
    v7, which ran on the resid-state cave-axis monitor and returned REDISTRIBUTE / attention 0.875).

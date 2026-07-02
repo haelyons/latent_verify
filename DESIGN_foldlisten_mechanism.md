@@ -176,18 +176,24 @@ near-refuted before any intervention. Prior to acknowledge, not rediscover: PART
 heads correlationally (overlap 4/5, cross-cell axis AUROC 0.82, `RESEARCH_QUESTIONS.md` does-caving-carry) — the
 -it causal cross-transport claim of Phase 3 is strictly stronger and remains open.
 
-**Status (2026-07-02): RUN — both decisions decisive.** `controls/foldlisten_phase2.py` on the frozen 74,
-`results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json`:
-(a) **ALL-attention-to-challenge KO on the realized readout: ATTENTION_READ_GATE** — fold 1.000→0.041 under
-mask, exactly the masked-neutral floor, abstain 1/74 (coherent generations; the model answers as if agreed
-with). The read side of -it folding is attention-mediated, full stop (upper bound; which heads = Phase 3).
-Supersedes the v7 REDISTRIBUTE reading for BEHAVIOUR (v7 measured the monitor axis).
-(b) **Pre-check OVERLAP 4/5** (fold {28,32,34,35,37} vs listen {28,32,35,36,37}) — one-handle survives; the
-Phase-3 read-side candidate = the attention-to-challenge-span pathway, now known necessary in aggregate.
-CAVEAT registered: listen-cell KO = PARTIAL (0.986→0.300) but confounded — no masked W\*-stated neutral floor
-arm was run; the 0.300 is plausibly belief-reversion. Add that floor arm to the next GPU run before reading
-the listen KO. D-5 sharpened: the read-side handle type (attention pattern) just gained the aggregate
-necessity leg; Phase 3 must localize (head subset) and cross-transport it.
+**Status (2026-07-02): RUN; audited same day — scope corrected.** `controls/foldlisten_phase2.py` on the
+frozen 74, `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json`; audit in
+`RESULTS_FOLDLISTEN.md` Addendum 4 (all numbers reproduce; matcher v2 rescore moves no decision):
+(a) **KO: ATTENTION_READ_GATE** — fold 1.000→0.041 = masked-neutral floor, coherent generations.
+POST-AUDIT SCOPE: total-mask-kills-fold is partly information-theoretically forced (attention is the only
+cross-position route), so this does NOT supersede v7's REDISTRIBUTE (a monitor-axis carry-side result) and
+does NOT by itself privilege the read-side handle. What it earns: the mask instrument is validated for the
+Phase-3 HEAD-SUBSET KOs (where it becomes discriminating); the content-free-social-compliance alternative
+is dead (challenge-blind model confabulates agreement, folds at floor); the challenge-blind floor 0.041 is
+the Phase-3 necessity anchor.
+(b) **Pre-check OVERLAP 4/5** (robust k=3/5/7; attn deltas not MLP-dwarfed) — one-handle survives its cheap
+falsifier. CAVEAT: could be generic late answer-formation; the NEUTRAL-arm DLA baseline profile is owed
+before this overlap is cited as one-handle evidence.
+**D-5 stands as originally registered — NOT sharpened.** Phase 3 carries BOTH candidates (read-side head
+set, write-side residual SET); the arbiter chooses. Pre-Phase-3 instrument patches owed: (1) runtime
+prefix-stability assert on the real 5-turn masked context + store full prompts; (2) masked W\*-stated
+neutral floor arm (the listen KO 0.300 is floor-less, plausibly belief-reversion — unread until then);
+(3) neutral-arm DLA baseline.
 
 ### Phase 3 — Core experiment (one handle, both arms, invariance-c arbiter)
 Arms (same items, same handle, same scale): FOLD (state C, push W*), LISTEN (state W*, push C), NEUTRAL (push

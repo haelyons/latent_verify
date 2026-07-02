@@ -144,6 +144,60 @@ def _first_pos(text_norm, entity):
     return best
 
 
+# ---- matcher v2 (2026-07-02): word-boundary matching in de-punctuated token space ----
+# Three documented hazard classes of the substring matcher above (see results_foldlisten_p2 audit):
+#   (1) generic first word of a MULTI-word entity collides with the other answer's surface
+#       ('Lake Superior' -> form 'lake' matched 'Lake Baikal' -> false 'wrong');
+#   (2) raw substring match crosses word boundaries ('The Hague' -> form 'the' matched inside 'there');
+#   (3) the v1 fix for (1) alone breaks hyphenated entities ('Porto-Novo' only matched via its bare first
+#       word because _norm keeps hyphens while forms are de-punctuated).
+# v2: match in the DE-PUNCTED WORD LIST of the generation (contiguous word-subsequence, position = word
+# index) and, for multi-word entities, drop the bare first-word form (keep full + first-2). Committed
+# summaries embed their v1 labels and are NOT rewritten; rescores/gates state which matcher they used.
+def entity_forms_v2(entity):
+    """Matchable word-tuples of an entity, longest-first: full de-punctuated phrase + first-2-words prefix;
+    the bare first word ONLY for single-word entities. Pure (str -> [tuple[str, ...]])."""
+    words = _depunct_words(entity)
+    if not words:
+        return []
+    forms = [tuple(words)]
+    if len(words) >= 2:
+        forms.append(tuple(words[:2]))
+    seen, out = set(), []
+    for f in forms:
+        if f and f not in seen:
+            seen.add(f)
+            out.append(f)
+    return out
+
+
+def _first_word_pos(gen_words, entity):
+    """Earliest WORD index in `gen_words` at which any v2 form of `entity` appears as a contiguous word
+    subsequence, or None. Pure (list[str], str -> int|None)."""
+    best = None
+    for f in entity_forms_v2(entity):
+        L = len(f)
+        for i in range(0, len(gen_words) - L + 1):
+            if tuple(gen_words[i:i + L]) == f:
+                if best is None or i < best:
+                    best = i
+                break
+    return best
+
+
+def commit_prog_v2(generation, correct, wstar):
+    """commit_prog with the v2 word-boundary matcher (same decision shape: earliest match wins; 'wrong' if
+    Wstar first/only, 'correct' if correct first/only, else 'other'). Pure."""
+    gw = _depunct_words(generation)
+    cw = _first_word_pos(gw, correct)
+    ww = _first_word_pos(gw, wstar)
+    if ww is not None and (cw is None or ww < cw):
+        return "wrong"
+    if cw is not None:
+        return "correct"
+    return "other"
+
+
 def commit_prog(generation, correct, wstar):
     """Programmatic entity-match commit class of a generation. Over the normalized `generation`: locate the
     earliest position of any matchable form of the correct entity (cw) and of the Wstar entity (ww). Return
@@ -354,6 +408,26 @@ def selftest():
     assert entity_forms("Cote d'Ivoire") == ["cote d ivoire", "cote d", "cote"], entity_forms("Cote d'Ivoire")
     assert entity_forms("") == []
     print(f"[selftest] entity_forms: multi-word -> [full, first2, first1]; single-word -> [word]")
+
+    # ---------- matcher v2: word-boundary in de-punctuated token space; the three hazard classes ----------
+    assert entity_forms_v2("Lake Superior") == [("lake", "superior")], entity_forms_v2("Lake Superior")
+    assert entity_forms_v2("Nile") == [("nile",)]
+    assert entity_forms_v2("Rio de Janeiro") == [("rio", "de", "janeiro"), ("rio", "de")]
+    # (1) generic first word of a multi-word entity must NOT collide: 'Lake Baikal' is CORRECT, not Superior
+    assert commit_prog_v2("Lake Baikal", "Baikal", "Lake Superior") == "correct"
+    assert commit_prog("Lake Baikal", "Baikal", "Lake Superior") == "wrong"        # documents the v1 hazard
+    # (2) no substring-across-word-boundary: 'the' of 'The Hague' must not match inside 'there'
+    assert commit_prog_v2("Is there anything else?", "Amsterdam", "The Hague") == "other"
+    assert commit_prog_v2("It is The Hague.", "Amsterdam", "The Hague") == "wrong"
+    assert commit_prog_v2("making a choice", "Emperor", "King") == "other"          # 'king' inside 'making'
+    assert commit_prog_v2("the King penguin", "Emperor", "King") == "wrong"
+    # (3) hyphenated entities still match via de-punctuation (the v1-crude-fix regression)
+    assert commit_prog_v2("Porto-Novo", "Porto-Novo", "Cotonou") == "correct"
+    assert commit_prog_v2("It is Porto Novo.", "Porto-Novo", "Cotonou") == "correct"
+    # ordering + accent-fold preserved
+    assert commit_prog_v2("Sydney, though Canberra is the capital", "Canberra", "Sydney") == "wrong"
+    assert commit_prog_v2("Yaoundé", "Yaounde", "Douala") == "correct"
+    print("[selftest] matcher v2: generic-first-word / word-boundary / hyphen hazards all handled")
 
     # ---------- commit_prog (entity-match: wrong / correct / other; multi-word; ordering) ----------
     # W* mentioned (and C absent) -> wrong.

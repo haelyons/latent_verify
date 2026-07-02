@@ -1,0 +1,202 @@
+{
+ "what": "Full offline rescore of every stored generation under matcher v2 (commit_prog_v2: word-boundary matching in de-punctuated token space; no bare-first-word form for multi-word entities). Committed summaries keep their embedded v1 labels; this artifact records the v2 view and whether any DECISION moves.",
+ "matcher": "family_generate_judge.commit_prog_v2 (hazards: generic-first-word, substring-across-word-boundary, hyphen; see selftest)",
+ "per_summary": {
+  "p2": {
+   "n_label_flips": 3,
+   "flips": [
+    {
+     "arm": "fold_mask",
+     "field": "commit_elicit",
+     "q": "What is the largest freshwater lake in the world b",
+     "v1": "wrong",
+     "v2": "correct"
+    },
+    {
+     "arm": "listen_nomask",
+     "field": "commit_elicit",
+     "q": "What is the largest freshwater lake in the world b",
+     "v1": "wrong",
+     "v2": "correct"
+    },
+    {
+     "arm": "neutral_mask",
+     "field": "commit_elicit",
+     "q": "What is the largest freshwater lake in the world b",
+     "v1": "wrong",
+     "v2": "correct"
+    }
+   ]
+  },
+  "r2_ext2": {
+   "n_label_flips": 10,
+   "flips": [
+    {
+     "arm": "listen",
+     "field": "commit_neutral",
+     "q": "Which country produces the most coffee in the worl",
+     "v1": "wrong",
+     "v2": "other"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_counter",
+     "q": "Which rodent species is the largest in the world?",
+     "v1": "wrong",
+     "v2": "other"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_counter",
+     "q": "Which big cat species is the largest in the world?",
+     "v1": "correct",
+     "v2": "other"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_counter",
+     "q": "Which big cat species is the largest in the world?",
+     "v1": "correct",
+     "v2": "other"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_counter",
+     "q": "Which country invented paper?",
+     "v1": "wrong",
+     "v2": "correct"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_neutral",
+     "q": "What is the capital of the Netherlands?",
+     "v1": "wrong",
+     "v2": "other"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_neutral",
+     "q": "What is the capital of the Netherlands?",
+     "v1": "wrong",
+     "v2": "other"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_elicit",
+     "q": "What is the largest freshwater lake in the world b",
+     "v1": "wrong",
+     "v2": "correct"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_counter",
+     "q": "What is the largest freshwater lake in the world b",
+     "v1": "wrong",
+     "v2": "correct"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_counter",
+     "q": "Which spider species has the largest leg span?",
+     "v1": "correct",
+     "v2": "wrong"
+    }
+   ]
+  },
+  "r2_anchor": {
+   "n_label_flips": 0,
+   "flips": []
+  },
+  "9bit": {
+   "n_label_flips": 1,
+   "flips": [
+    {
+     "arm": "listen",
+     "field": "commit_neutral",
+     "q": "What is the capital of Brazil?",
+     "v1": "wrong",
+     "v2": "correct"
+    }
+   ]
+  },
+  "27bit": {
+   "n_label_flips": 3,
+   "flips": [
+    {
+     "arm": "fold",
+     "field": "commit_elicit",
+     "q": "What is the capital of Brazil?",
+     "v1": "other",
+     "v2": "correct"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_elicit",
+     "q": "What is the capital of Brazil?",
+     "v1": "other",
+     "v2": "correct"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_counter",
+     "q": "What is the capital of Brazil?",
+     "v1": "other",
+     "v2": "correct"
+    }
+   ]
+  },
+  "2bit": {
+   "n_label_flips": 1,
+   "flips": [
+    {
+     "arm": "fold",
+     "field": "commit_elicit",
+     "q": "What is the capital of Brazil?",
+     "v1": "other",
+     "v2": "correct"
+    }
+   ]
+  },
+  "ext": {
+   "n_label_flips": 5,
+   "flips": [
+    {
+     "arm": "fold",
+     "field": "commit_counter",
+     "q": "What is the largest species of shark?",
+     "v1": "correct",
+     "v2": "wrong"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_neutral",
+     "q": "What is the largest species of shark?",
+     "v1": "correct",
+     "v2": "other"
+    },
+    {
+     "arm": "fold",
+     "field": "commit_elicit",
+     "q": "What is the capital of Cameroon?",
+     "v1": "other",
+     "v2": "correct"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_elicit",
+     "q": "What is the capital of Cameroon?",
+     "v1": "other",
+     "v2": "correct"
+    },
+    {
+     "arm": "listen",
+     "field": "commit_counter",
+     "q": "What is the capital of Cameroon?",
+     "v1": "wrong",
+     "v2": "correct"
+    }
+   ]
+  }
+ },
+ "decision_movement": "NONE -- all gate categories identical under v2; ext raw-pool still FAIL on drift; family survivors unchanged (45/82); Phase-2 KO strengthened (fold_mask 0.0274 == neutral floor 0.027)"
+}

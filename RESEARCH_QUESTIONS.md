@@ -146,12 +146,15 @@ Direction-level, NOT a circuit (framing-corrected):
   discriminating. → `POSITION_KNOWING_BEFORE_SAYING.md:308-315`. STILL OPEN: the same KO on the
   CONTENT/REALIZED readout of the decorrelated family (the monitor readout may not track realized adoption)
   — now Phase 2 of `DESIGN_foldlisten_mechanism.md`, which carries the v7 numbers as its prior.
-  **REALIZED-READOUT CLOSURE (2026-07-02, Phase 2): the read side of ‑it folding is ATTENTION, to floor.**
-  Masking all heads at all layers from attending to the challenge turn: fold 1.000→0.041 (= masked-neutral
-  drift floor), abstain 1/74, generations coherent (the model answers as if agreed with — it cannot see the
-  pushback). The "RLHF moves caving off attention" family of readings is dead for BEHAVIOUR; v7's
-  REDISTRIBUTE stands only for the monitor axis. Head-level localization + fold/listen cross-transport =
-  DESIGN Phase 3. → `results_foldlisten_p2/`, `controls/foldlisten_phase2.py`.
+  **Phase-2 KO (2026-07-02, realized readout; audited + scope-corrected same day):** masking all heads at
+  all layers from the challenge turn: fold 1.000→0.041 = masked-neutral floor, coherent generations. NOT a
+  closure of this gap — total-mask necessity is partly information-theoretically forced (attention is the
+  only cross-position route), and the v6/v7 question is about the CARRY side, where v7's REDISTRIBUTE
+  stands. What it does earn: mask instrument validated for Phase-3 head-subset KOs; content-free social
+  compliance dead (challenge-blind model confabulates agreement, folds at floor); floor anchor 0.041.
+  Audit + matcher-v2 rescore (23/~3600 label flips, zero decision movement):
+  `RESULTS_FOLDLISTEN.md` Addendum 4, `results_foldlisten_p2/matcher_v2_rescore.json`.
+  → `results_foldlisten_p2/`, `controls/foldlisten_phase2.py`.
 - **[CURRENT FRONTIER (2026-06-23 → 07-02) — verifier positive control FOUND at ‑it; mechanism plan registered.]**
   The verifier-POC arc (v0–v3) settled that 9b BASE does not genuinely cave on the decorrelated entity family —
   decoded "caves" are ABSTENTION not adoption (margin-flip ≠ answer-flip; 1/22 outputs W\*) → `21c11c8`,
@@ -245,14 +248,16 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > 27b-it 12/22, 2b-it 17/22 (2b transport restored; 2b hand-label spot-check DONE 21/22 PASS). Round-2
 > expansion DONE (2026-07-02): 74 fold-faithful 9b-it items frozen as `mechanism_family_9bit.json`
 > (clears the ~60 target); NFKD accent-fold fix landed. Phase 0.5 THINK probe DONE = PROBE_VALID (AUROC
-> 0.84 @ L19, `controls/think_probe_identity.py`). Phase 2 RAN (2026-07-02, `results_foldlisten_p2/`): **KO = ATTENTION_READ_GATE**
-> (fold 1.000→0.041 = floor under all-heads challenge-mask; realized readout; coherent gens) and
-> **DLA pre-check OVERLAP 4/5** (fold {28,32,34,35,37} / listen {28,32,35,36,37}) — one-handle survives,
-> read side is attention in aggregate. D-1 resolved (option i, listen-vs-neutral). NEXT = Phase 3 on the
-> frozen 74: localize the head subset (derive on greedy faithful set), cross-transport fold<->listen,
-> direct==total arbiter, THINK/SAY split (probe valid @L19), content-category robustness split
-> (family is superlative-dominant 56/74), sampled effect-size per C9. Owed on the next GPU run: masked
-> W*-stated neutral floor (the listen-KO 0.300 is floor-less, plausibly belief-reversion — do not read it
-> until then). Owed-not-lost: numeric/salience-copy convergence; social per-cue resample-ablation;
-> method-debt flip-rate re-expression. Read source JSONs before extending; faithfulness-gate then triage
-> every new claim.
+> 0.84 @ L19, `controls/think_probe_identity.py`). Phase 2 RAN + AUDITED (2026-07-02, `results_foldlisten_p2/`): KO = ATTENTION_READ_GATE
+> (fold 1.000→0.041 = floor; scope-corrected — partly information-theoretically forced, so it validates
+> the mask instrument + kills content-free compliance + sets the 0.041 floor anchor, and does NOT settle
+> read-vs-write or supersede v7) and DLA pre-check OVERLAP 4/5 (robust k=3/5/7; generic-answer-formation
+> caveat — neutral-arm DLA baseline owed). Matcher v2 (word-boundary) fixed a scorer hazard; full rescore
+> moved ZERO decisions (Addendum 4). D-1 resolved (option i). D-5 UNCHANGED: both candidates to Phase 3.
+> NEXT = Phase 3 on the frozen 74: localize the head subset (derive on greedy faithful set),
+> cross-transport fold<->listen, direct==total arbiter, THINK/SAY split (probe valid @L19),
+> content-category robustness split (family superlative-dominant 56/74), sampled effect-size per C9.
+> Pre-Phase-3 instrument patches owed: 5-turn prefix assert + store prompts; masked W*-stated neutral
+> floor (listen-KO unread until then); neutral-arm DLA baseline. Owed-not-lost: numeric/salience-copy
+> convergence; social per-cue resample-ablation; method-debt flip-rate re-expression. Read source JSONs
+> before extending; faithfulness-gate then triage every new claim.
