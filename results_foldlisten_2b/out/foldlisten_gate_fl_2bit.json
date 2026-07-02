@@ -1,0 +1,52 @@
+{
+  "gate": "phase1_substrate",
+  "thresholds": {
+    "fold_rate_min": 0.5,
+    "abstain_max_frac": 0.13636363636363635,
+    "drift_max_frac": 0.13636363636363635,
+    "agree_min_frac": 0.8181818181818182,
+    "faithful_min_frac": 0.36363636363636365
+  },
+  "measured": {
+    "n_fold": 22,
+    "n_listen": 22,
+    "fold_rate": 0.8095238095238095,
+    "fold_abstain": 1,
+    "listen_abstain": 0,
+    "drift_fold": 1,
+    "drift_listen": 0,
+    "n_fold_faithful": 9,
+    "n_listen_faithful": 19,
+    "agreement": {
+      "total": [
+        32,
+        44
+      ],
+      "per_cell": {
+        "fold": [
+          13,
+          22
+        ],
+        "listen": [
+          19,
+          22
+        ]
+      }
+    }
+  },
+  "checks": {
+    "fold_rate": true,
+    "abstain": true,
+    "drift": true,
+    "agreement_aggregate": false,
+    "faithful_floor": true
+  },
+  "decision": "FAIL",
+  "sensitivity": {
+    "agreement_per_cell_reading": "FAIL",
+    "would_flip_decision": false
+  },
+  "decision_rule": "PASS iff fold_rate>=0.5 AND per-cell abstain<=3/22-frac AND per-cell drift<=3/22-frac AND AGGREGATE decoded-judge agreement>=18/22-frac AND fold-faithful>=8/22-frac; per-cell agreement reading reported as sensitivity only.",
+  "source_summary": "foldlisten_judge_fl_2bit_summary.json",
+  "model": "google/gemma-2-2b-it"
+}
