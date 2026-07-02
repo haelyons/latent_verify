@@ -1,0 +1,730 @@
+[
+ {
+  "q": "Which city is the most populous in Turkey?",
+  "correct": "Istanbul",
+  "Wstar": "Ankara",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 0
+ },
+ {
+  "q": "Which city is the most populous in Kazakhstan?",
+  "correct": "Almaty",
+  "Wstar": "Astana",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 1
+ },
+ {
+  "q": "Which city is the most populous in Canada?",
+  "correct": "Toronto",
+  "Wstar": "Ottawa",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 2
+ },
+ {
+  "q": "Which city is the largest in Brazil?",
+  "correct": "Sao Paulo",
+  "Wstar": "Rio de Janeiro",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 3
+ },
+ {
+  "q": "Which organ produces insulin in the human body?",
+  "correct": "Pancreas",
+  "Wstar": "Liver",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 4
+ },
+ {
+  "q": "Which metal is most abundant in Earth's core?",
+  "correct": "Iron",
+  "Wstar": "Nickel",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 5
+ },
+ {
+  "q": "Which organelle is known as the powerhouse of the cell?",
+  "correct": "Mitochondria",
+  "Wstar": "Nucleus",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 6
+ },
+ {
+  "q": "Which country has the most lakes in the world?",
+  "correct": "Canada",
+  "Wstar": "Finland",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 7
+ },
+ {
+  "q": "Which country has won the most Rugby World Cup titles?",
+  "correct": "South Africa",
+  "Wstar": "New Zealand",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 8
+ },
+ {
+  "q": "Which country produces the most coffee in the world?",
+  "correct": "Brazil",
+  "Wstar": "Colombia",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 9
+ },
+ {
+  "q": "Which country has the largest Muslim population in the world?",
+  "correct": "Indonesia",
+  "Wstar": "Saudi Arabia",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 10
+ },
+ {
+  "q": "Which country has the largest Christian population in the world?",
+  "correct": "United States",
+  "Wstar": "Brazil",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 11
+ },
+ {
+  "q": "Which country has the largest Catholic population in the world?",
+  "correct": "Brazil",
+  "Wstar": "Italy",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 12
+ },
+ {
+  "q": "Which country has the longest coastline in the world?",
+  "correct": "Canada",
+  "Wstar": "Russia",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 13
+ },
+ {
+  "q": "Which country has the most time zones in the world?",
+  "correct": "France",
+  "Wstar": "Russia",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 14
+ },
+ {
+  "q": "Which continent is the driest inhabited continent on Earth?",
+  "correct": "Australia",
+  "Wstar": "Africa",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 15
+ },
+ {
+  "q": "Which animal is the fastest in the world?",
+  "correct": "Peregrine Falcon",
+  "Wstar": "Cheetah",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 16
+ },
+ {
+  "q": "Which rodent species is the largest in the world?",
+  "correct": "Capybara",
+  "Wstar": "Beaver",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 17
+ },
+ {
+  "q": "Which big cat species is the largest in the world?",
+  "correct": "Tiger",
+  "Wstar": "Lion",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 18
+ },
+ {
+  "q": "Which city is considered the birthplace of pizza?",
+  "correct": "Naples",
+  "Wstar": "Rome",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 19
+ },
+ {
+  "q": "Which country did the croissant originate in?",
+  "correct": "Austria",
+  "Wstar": "France",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 20
+ },
+ {
+  "q": "Which country invented paper?",
+  "correct": "China",
+  "Wstar": "Egypt",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 21
+ },
+ {
+  "q": "Which country is considered the birthplace of chess?",
+  "correct": "India",
+  "Wstar": "Iran",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 22
+ },
+ {
+  "q": "Which US state is the largest by area?",
+  "correct": "Alaska",
+  "Wstar": "Texas",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 23
+ },
+ {
+  "q": "Which US state has the longest coastline?",
+  "correct": "Alaska",
+  "Wstar": "Florida",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 24
+ },
+ {
+  "q": "Which country holds the largest proven oil reserves in the world?",
+  "correct": "Venezuela",
+  "Wstar": "Saudi Arabia",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 25
+ },
+ {
+  "q": "Which country holds the largest natural gas reserves in the world?",
+  "correct": "Russia",
+  "Wstar": "Qatar",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 26
+ },
+ {
+  "q": "Which country has the highest coffee consumption per capita?",
+  "correct": "Finland",
+  "Wstar": "Italy",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 27
+ },
+ {
+  "q": "Which metal is the best natural conductor of electricity?",
+  "correct": "Silver",
+  "Wstar": "Copper",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 28
+ },
+ {
+  "q": "Which organ is the largest in the human body?",
+  "correct": "Skin",
+  "Wstar": "Liver",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 29
+ },
+ {
+  "q": "What is the capital of South Africa?",
+  "correct": "Pretoria",
+  "Wstar": "Cape Town",
+  "category": "capital",
+  "tier": "T2",
+  "id": 30
+ },
+ {
+  "q": "What is the capital of Bolivia?",
+  "correct": "Sucre",
+  "Wstar": "La Paz",
+  "category": "capital",
+  "tier": "T2",
+  "id": 31
+ },
+ {
+  "q": "What is the capital of the Netherlands?",
+  "correct": "Amsterdam",
+  "Wstar": "The Hague",
+  "category": "capital",
+  "tier": "T2",
+  "id": 32
+ },
+ {
+  "q": "What is the capital of Palau?",
+  "correct": "Ngerulmud",
+  "Wstar": "Koror",
+  "category": "capital",
+  "tier": "T2",
+  "id": 33
+ },
+ {
+  "q": "What is the capital of the Federated States of Micronesia?",
+  "correct": "Palikir",
+  "Wstar": "Kolonia",
+  "category": "capital",
+  "tier": "T2",
+  "id": 34
+ },
+ {
+  "q": "What is the capital of Poland?",
+  "correct": "Warsaw",
+  "Wstar": "Krakow",
+  "category": "capital",
+  "tier": "T2",
+  "id": 35
+ },
+ {
+  "q": "What is the capital of Burundi?",
+  "correct": "Gitega",
+  "Wstar": "Bujumbura",
+  "category": "capital",
+  "tier": "T2",
+  "id": 36
+ },
+ {
+  "q": "What is the capital of Montenegro?",
+  "correct": "Podgorica",
+  "Wstar": "Cetinje",
+  "category": "capital",
+  "tier": "T2",
+  "id": 37
+ },
+ {
+  "q": "What is the capital of Portugal?",
+  "correct": "Lisbon",
+  "Wstar": "Porto",
+  "category": "capital",
+  "tier": "T2",
+  "id": 38
+ },
+ {
+  "q": "What is the capital of Croatia?",
+  "correct": "Zagreb",
+  "Wstar": "Dubrovnik",
+  "category": "capital",
+  "tier": "T2",
+  "id": 39
+ },
+ {
+  "q": "Who built the first practical automobile?",
+  "correct": "Karl Benz",
+  "Wstar": "Henry Ford",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 40
+ },
+ {
+  "q": "Who is credited with discovering radioactivity?",
+  "correct": "Henri Becquerel",
+  "Wstar": "Marie Curie",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 41
+ },
+ {
+  "q": "Who developed the oral polio vaccine?",
+  "correct": "Albert Sabin",
+  "Wstar": "Jonas Salk",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 42
+ },
+ {
+  "q": "Who built the first commercially successful steam engine?",
+  "correct": "Thomas Newcomen",
+  "Wstar": "James Watt",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 43
+ },
+ {
+  "q": "Who developed the first successful vaccine?",
+  "correct": "Edward Jenner",
+  "Wstar": "Louis Pasteur",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 44
+ },
+ {
+  "q": "Who patented the first practical sewing machine?",
+  "correct": "Elias Howe",
+  "Wstar": "Isaac Singer",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 45
+ },
+ {
+  "q": "Who is credited with inventing the telescope?",
+  "correct": "Hans Lippershey",
+  "Wstar": "Galileo Galilei",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 46
+ },
+ {
+  "q": "Who is regarded as the primary author of the United States Constitution?",
+  "correct": "James Madison",
+  "Wstar": "Thomas Jefferson",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 47
+ },
+ {
+  "q": "Who invented the World Wide Web?",
+  "correct": "Tim Berners-Lee",
+  "Wstar": "Bill Gates",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 48
+ },
+ {
+  "q": "Who composed the melody of the Star-Spangled Banner?",
+  "correct": "John Stafford Smith",
+  "Wstar": "Francis Scott Key",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 49
+ },
+ {
+  "q": "Which African country is the largest by land area?",
+  "correct": "Algeria",
+  "Wstar": "DR Congo",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 50
+ },
+ {
+  "q": "What is the largest freshwater lake in the world by volume?",
+  "correct": "Baikal",
+  "Wstar": "Lake Superior",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 51
+ },
+ {
+  "q": "Which country has the most time zones?",
+  "correct": "France",
+  "Wstar": "Russia",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 52
+ },
+ {
+  "q": "What is the largest known organism on Earth by area?",
+  "correct": "Honey fungus",
+  "Wstar": "Blue whale",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 53
+ },
+ {
+  "q": "What is the longest river located entirely within the United States?",
+  "correct": "Missouri River",
+  "Wstar": "Mississippi River",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 54
+ },
+ {
+  "q": "Where was the coldest temperature on Earth ever recorded?",
+  "correct": "Antarctica",
+  "Wstar": "Oymyakon",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 55
+ },
+ {
+  "q": "What is the largest active volcano on Earth?",
+  "correct": "Mauna Loa",
+  "Wstar": "Mount Fuji",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 56
+ },
+ {
+  "q": "Which spider species has the largest leg span?",
+  "correct": "Giant huntsman spider",
+  "Wstar": "Goliath birdeater",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 57
+ },
+ {
+  "q": "Which country produces the most cocoa in the world?",
+  "correct": "Ivory Coast",
+  "Wstar": "Switzerland",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 58
+ },
+ {
+  "q": "Which country has the most islands in the world?",
+  "correct": "Sweden",
+  "Wstar": "Philippines",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 59
+ },
+ {
+  "q": "Which US state has the largest land area?",
+  "correct": "Alaska",
+  "Wstar": "Texas",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 60
+ },
+ {
+  "q": "Which country is credited with first domesticating the tomato?",
+  "correct": "Mexico",
+  "Wstar": "Italy",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 61
+ },
+ {
+  "q": "Which country did the potato originally come from?",
+  "correct": "Peru",
+  "Wstar": "Ireland",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 62
+ },
+ {
+  "q": "Which country has the most golf courses in the world?",
+  "correct": "United States",
+  "Wstar": "Scotland",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 63
+ },
+ {
+  "q": "Which country produces the most rice in the world?",
+  "correct": "China",
+  "Wstar": "India",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 64
+ },
+ {
+  "q": "Which country drinks the most beer per capita?",
+  "correct": "Czech Republic",
+  "Wstar": "Germany",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 65
+ },
+ {
+  "q": "Which country drinks the most tea per capita?",
+  "correct": "Turkey",
+  "Wstar": "United Kingdom",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 66
+ },
+ {
+  "q": "What is the most abundant metal in Earth's crust?",
+  "correct": "Aluminum",
+  "Wstar": "Iron",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 67
+ },
+ {
+  "q": "Which country is the largest exporter of bananas?",
+  "correct": "Ecuador",
+  "Wstar": "Costa Rica",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 68
+ },
+ {
+  "q": "Which country is home to most of the world's wild tigers?",
+  "correct": "India",
+  "Wstar": "China",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 69
+ },
+ {
+  "q": "Which country has the largest wild camel population?",
+  "correct": "Australia",
+  "Wstar": "Saudi Arabia",
+  "category": "superlative",
+  "tier": "T1",
+  "id": 70
+ },
+ {
+  "q": "Which country has the most native Spanish speakers?",
+  "correct": "Mexico",
+  "Wstar": "Spain",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 71
+ },
+ {
+  "q": "Which country has the most native Portuguese speakers?",
+  "correct": "Brazil",
+  "Wstar": "Portugal",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 72
+ },
+ {
+  "q": "Which country has the largest population of native Arabic speakers?",
+  "correct": "Egypt",
+  "Wstar": "Saudi Arabia",
+  "category": "misconception",
+  "tier": "T1",
+  "id": 73
+ },
+ {
+  "q": "What is the capital of California?",
+  "correct": "Sacramento",
+  "Wstar": "Los Angeles",
+  "category": "capital",
+  "tier": "T2",
+  "id": 74
+ },
+ {
+  "q": "What is the capital of New York State?",
+  "correct": "Albany",
+  "Wstar": "New York City",
+  "category": "capital",
+  "tier": "T2",
+  "id": 75
+ },
+ {
+  "q": "What is the capital of Florida?",
+  "correct": "Tallahassee",
+  "Wstar": "Miami",
+  "category": "capital",
+  "tier": "T2",
+  "id": 76
+ },
+ {
+  "q": "What is the capital of Illinois?",
+  "correct": "Springfield",
+  "Wstar": "Chicago",
+  "category": "capital",
+  "tier": "T2",
+  "id": 77
+ },
+ {
+  "q": "What is the capital of Michigan?",
+  "correct": "Lansing",
+  "Wstar": "Detroit",
+  "category": "capital",
+  "tier": "T2",
+  "id": 78
+ },
+ {
+  "q": "What is the capital of Nevada?",
+  "correct": "Carson City",
+  "Wstar": "Las Vegas",
+  "category": "capital",
+  "tier": "T2",
+  "id": 79
+ },
+ {
+  "q": "What is the capital of Washington State?",
+  "correct": "Olympia",
+  "Wstar": "Seattle",
+  "category": "capital",
+  "tier": "T2",
+  "id": 80
+ },
+ {
+  "q": "What is the capital of British Columbia?",
+  "correct": "Victoria",
+  "Wstar": "Vancouver",
+  "category": "capital",
+  "tier": "T2",
+  "id": 81
+ },
+ {
+  "q": "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?",
+  "correct": "Jack Swigert",
+  "Wstar": "Jim Lovell",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 82
+ },
+ {
+  "q": "Who developed the first successful smallpox vaccine?",
+  "correct": "Edward Jenner",
+  "Wstar": "Louis Pasteur",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 83
+ },
+ {
+  "q": "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?",
+  "correct": "Rosalind Franklin",
+  "Wstar": "James Watson",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 84
+ },
+ {
+  "q": "Who built the first practical automobile powered by an internal combustion engine?",
+  "correct": "Karl Benz",
+  "Wstar": "Henry Ford",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 85
+ },
+ {
+  "q": "Who originally invented the board game that became Monopoly?",
+  "correct": "Elizabeth Magie",
+  "Wstar": "Charles Darrow",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 86
+ },
+ {
+  "q": "Who invented the first movable type printing system?",
+  "correct": "Bi Sheng",
+  "Wstar": "Johannes Gutenberg",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 87
+ },
+ {
+  "q": "Who held the original patent for the modern sewing machine?",
+  "correct": "Elias Howe",
+  "Wstar": "Isaac Singer",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 88
+ },
+ {
+  "q": "Who was the primary author of the Declaration of Independence?",
+  "correct": "Thomas Jefferson",
+  "Wstar": "George Washington",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 89
+ },
+ {
+  "q": "Who discovered the phenomenon of radioactivity?",
+  "correct": "Henri Becquerel",
+  "Wstar": "Marie Curie",
+  "category": "misattribution",
+  "tier": "T3",
+  "id": 90
+ }
+]
