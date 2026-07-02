@@ -1,0 +1,10 @@
+{
+  "model": "google/gemma-2-9b-it",
+  "family": "combined_family.json",
+  "n_items": 138,
+  "n_examples": 276,
+  "n_layers": 42,
+  "d_model": 3584,
+  "regime": "chat",
+  "context_template_note": "chat: apply_chat_template([user:q, assistant:'{A}.'], add_generation_prompt=False); resid_post at the LAST token of the assistant-final context, every layer"
+}

@@ -98,6 +98,35 @@ One A100 run (`run_foldlisten_ext_9b.sh`, `results_foldlisten_ext/`): faithfulne
 - **9b-it mechanism pool now 13 + 16 = 29 fold-faithful items** (target 60–100: ~1–2 more T1-heavy
   curation rounds at ~50% yield). Compute: one A100 ~45 min ≈ $1.5, torn down.
 
+## Addendum 2 (2026-07-02) — round-2 expansion clears the ~60 target; THINK probe PROBE_VALID
+
+Second A100 run (`run_foldlisten_r2_9b.sh`, `results_foldlisten_r2/`): anchor repro + 82 web-verified
+unseen items (`verifier_family_ext2.json`, provenance in `results_foldlisten_ext/PROVENANCE_ext2.md`) +
+THINK-probe capture on the combined 138.
+
+- **Anchor repro EXACT** (fold-cell `commit_elicit` byte-identical to the committed n=22; faithful 13/22,
+  agree 36/44). The only shift is neutral-arm listen-drift 2→3, caused by the new NFKD accent-fold in
+  `commit_prog` surfacing one more entity match — deterministic core unchanged.
+- **Unseen gate (the real gate) PASS, not at margin:** ext2 gate v2 all checks pass — fold_rate **0.662**
+  (curated T1-heavy folds MORE than base 0.591), fold-faithful **53/82**, listen drift 5/82 = 0.061
+  (< 0.136-frac). `foldlisten_gatev2_fl_9bit_ext2.json`.
+- **Screen yield 45/82 = 55%** (conf_proxy>0 AND genuine CAVE). **9b-it mechanism pool now base 13 + ext 16
+  + ext2 45 = 74 fold-faithful items** — clears the DESIGN ~60 target. Frozen as `mechanism_family_9bit.json`
+  (tiers T1 56 / T2 9 / T3 9; cats superlative 36 / misconception 20 / capital 9 / misattribution 9).
+- **Phase 0.5 THINK probe: PROBE_VALID** (`controls/think_probe_identity.py`, capture on combined-138).
+  A diff-of-means answer-identity direction reads WHICH answer a stated context names, out-of-item:
+  heldout AUROC **0.84** at best layer **19/42** (monotone rise from ~0.51, plateau ~0.83 across L17-40),
+  perm floor 0.507, rand floor 0.498. This is the FRESH C-vs-W\* answer-identity object DESIGN C4 required
+  (distinct from the 0.92 cave-STATE axis) — it clears its own gate, so the THINK/SAY belief-vs-compliance
+  split is instrument-supported for Phase 3. `results_foldlisten_r2/out/think_probe_fit_tp_9bit_comb.json`.
+
+FLAGS (karpathy): (1) the mechanism family is T1/superlative-dominant (56/74 T1) — the surviving T2 capitals
+and T3 misattributions are fewer because many are model-cold (held, not caved) or belief-contested; a
+Phase-3 content-category robustness split is owed so "one handle" is not a superlative-only artifact.
+(2) The probe validates answer-identity on TEACHER-FORCED stated answers (clean, known-answer items, per
+Phase 0.5); reading the model's LATENT answer during an actual cave (THINK) is the Phase-3 application, not
+yet run. (3) Family is cave-enriched by construction — no population-rate claim (registered).
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,

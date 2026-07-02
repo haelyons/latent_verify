@@ -1,0 +1,8 @@
+[gatev2 fl_9bit_anchor2] PASS  (model=google/gemma-2-9b-it)
+  fold_rate=0.591 faithful=13/22 agree_total=36/44 agree_per_cell=fold 17/22, listen 19/22 abstain f/l=0/1 drift f/l=1/3
+  checks={'fold_rate': True, 'abstain': True, 'drift': True, 'faithful_floor': True}
+[written] out/foldlisten_gatev2_fl_9bit_anchor2.json
+[gatev2 fl_9bit_ext2] PASS  (model=google/gemma-2-9b-it)
+  fold_rate=0.662 faithful=53/82 agree_total=129/164 agree_per_cell=fold 53/82, listen 76/82 abstain f/l=2/0 drift f/l=1/5
+  checks={'fold_rate': True, 'abstain': True, 'drift': True, 'faithful_floor': True}
+[written] out/foldlisten_gatev2_fl_9bit_ext2.json

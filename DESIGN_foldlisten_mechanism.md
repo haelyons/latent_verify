@@ -122,12 +122,32 @@ pool at 9b-it = 29 fold-faithful items; one to two more T1-heavy curation rounds
 drift FAIL (7/34 listen-cell) traced to model-cold anchor items — curation lesson (no cold anchors, no accented
 entities), not substrate failure.
 
+**Status addendum 3 (2026-07-02, round-2): the ~60 family target is CLEARED; the frozen family exists.** A
+second unseen batch (82 items, drafted claim-blind by two agents, fact-checked by two independent web
+verifiers, `results_foldlisten_ext/PROVENANCE_ext2.md`) cleared its own `--gate --v2` on unseen items NOT at
+margin (fold_rate 0.662, fold-faithful 53/82, drift 5/82). Screen yield 45/82 = 55%. **9b-it fold-faithful
+mechanism pool = base 13 + ext 16 + ext2 45 = 74**, frozen as `mechanism_family_9bit.json` (T1 56 / T2 9 /
+T3 9). The NFKD accent-fold fix (`family_generate_judge._norm`) removed the last known scorer miss; the anchor
+repro is byte-identical on fold cells. OPEN before Phase 3: (D-1 listen negative) still owed; a
+content-CATEGORY robustness split is now explicitly owed because the frozen family is superlative-dominant
+(56/74 T1) — "one handle both arms" must be shown NOT to be a superlative-only artifact (run the Phase-3
+cross-transport within-category and across-category).
+
 ### Phase 0.5 — De-risk the THINK probe (highest-risk shared component)
 Build the C-vs-W* ANSWER-IDENTITY probe (linear probe + tuned-lens on content tokens at the answer-prep position),
 trained on clean unpressured items where the answer is known. Validate: held-out AUROC >= 0.8 vs a
 random-direction / label-permutation floor near 0.5. This is a different, stronger object than the 0.92 cave-state
 axis and must clear its own gate. **If it fails -> report SAY-only, drop the belief/compliance split; do not
 fabricate buckets.** Do this before investing in the full family/experiment.
+
+**Status (2026-07-02): DONE, PROBE_VALID.** `controls/think_probe_identity.py` (claim-blind authored, reviewed,
+model-free selftest PASS) captured resid_post at the last token of two stated-answer contexts
+([user:q][assistant:"{C}."] vs "{W}.") per item on the combined 138-item family, item-level 5-fold. Heldout
+answer-identity AUROC **0.84** at layer **19/42** (monotone rise, plateau ~0.83 across L17-40), perm floor 0.507,
+rand floor 0.498 -> PROBE_VALID (>= 0.8, floors <= 0.6). Fresh object, distinct from the 0.92 cave-STATE axis, as
+C4 required. `results_foldlisten_r2/out/think_probe_fit_tp_9bit_comb.json`. CAVEAT: validated on TEACHER-FORCED
+stated answers (clean known-answer items, exactly Phase 0.5's remit); reading the model's LATENT answer during an
+actual cave (the THINK read of Phase 3) is the downstream application, not yet run. D-2 resolved: build (done).
 
 ### Phase 1 — Substrate gate (KILL gate; cheapest decisive check)
 At 9b-it on the frozen family, confirm the positive control is genuine adoption before any handle work. ALL must

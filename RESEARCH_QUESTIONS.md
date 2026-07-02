@@ -161,8 +161,13 @@ Direction-level, NOT a circuit (framing-corrected):
   items: judge-vs-human 0.679 vs commit_prog 0.982, n=56 hand-labelled) → measurement layer v2 = commit-only
   faithful, judge diagnostic. v2 dissolves the old marginality: 9b-it 13/22, 27b-it 12/22, 2b-it 17/22 (2b was
   judge-blocked, not caving-blocked). Screen yield 16/34 = 47% (T1-heavy; cold anchors cause neutral-arm
-  drift — curation lesson). 9b-it mechanism pool = 29 fold-faithful; ~1–2 more T1-heavy curation rounds reach
-  the ~60 target, then Phase 0.5 (THINK probe) and Phases 2–4.
+  drift — curation lesson). Round-2 (2026-07-02, `results_foldlisten_r2/`): 82 more unseen items (2
+  claim-blind drafters -> 2 independent web verifiers -> 82 KEPT, `PROVENANCE_ext2.md`) cleared the unseen
+  `--gate --v2` NOT at margin (fold 0.662, faithful 53/82); screen 45/82. **9b-it mechanism pool = 74
+  fold-faithful (base 13 + ext 16 + ext2 45), CLEARS the ~60 target**, frozen `mechanism_family_9bit.json`
+  (T1 56 / T2 9 / T3 9 — superlative-dominant; content-category robustness owed at Phase 3). **Phase 0.5
+  THINK probe DONE = PROBE_VALID** (answer-identity heldout AUROC 0.84 @ L19, floors ~0.50;
+  `controls/think_probe_identity.py`; distinct from the 0.92 cave-STATE axis per C4). Next: Phases 2-4.
 - **[GATED on capacity] The doubt circuit at 27b** (re-localized) — h100.
 - **[INFRA-BLOCKED] Finer write-content of the doubt heads** — DLA-link / direct-logit write
   (6× ssh-abort 255 on teardown; the behavioural output-patch already answered the WRITE
@@ -231,9 +236,14 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > (2026-07-02): repro EXACT; behaviour generalizes (unseen fold 0.576); and the SELF-JUDGE failed its
 > pre-registered human validation (belief-contaminated on contested items; 0.679 vs commit_prog 0.982,
 > n=56) → measurement layer v2 (commit-only faithful, judge diagnostic). v2 corrected counts: 9b-it 13/22,
-> 27b-it 12/22, 2b-it 17/22 (2b transport restored). Screen yield 16/34 = 47%; survivors T1-heavy;
-> mechanism pool 29 at 9b-it. Next steps in order: one more T1-heavy curation round (~30 items, no cold
-> anchors, no accented entities) to reach ~60; 2b hand-label spot-check; Phase 0.5 THINK-probe de-risk on
-> the frozen family; then Phases 2–4. Owed-not-lost: numeric/salience-copy convergence; social per-cue
-> resample-ablation; method-debt flip-rate re-expression. Read the source JSONs before extending;
+> 27b-it 12/22, 2b-it 17/22 (2b transport restored; 2b hand-label spot-check DONE 21/22 PASS). Round-2
+> expansion DONE (2026-07-02): 74 fold-faithful 9b-it items frozen as `mechanism_family_9bit.json`
+> (clears the ~60 target); NFKD accent-fold fix landed. Phase 0.5 THINK probe DONE = PROBE_VALID (AUROC
+> 0.84 @ L19, `controls/think_probe_identity.py`). NEXT = the mechanism phases on the frozen family:
+> Phase 2 (breadcrumbs + -it ALL-attention-KO on the CONTENT/realized readout, v7 numbers as prior; DLA
+> fold/listen layer-overlap pre-check), Phase 3 (one-handle-both-arms cross-transport, direct==total
+> arbiter, THINK/SAY split now that the probe is valid, WITH a content-category robustness split since the
+> family is superlative-dominant), Phase 4 (scale-transport 9b->27b, 2b restored). Still-owed decisions:
+> D-1 (listen within-arm negative). Owed-not-lost: numeric/salience-copy convergence; social per-cue
+> resample-ablation; method-debt flip-rate re-expression. Read source JSONs before extending;
 > faithfulness-gate then triage every new claim.
