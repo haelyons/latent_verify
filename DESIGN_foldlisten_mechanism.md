@@ -229,7 +229,9 @@ Resolved conflicts / OPEN DECISIONS (must be called before Phase 3; Phase 0 can 
 - **D-1 (listen arm has no within-arm negative).** At 9b-it listen = 21/0/1 (zero held items), so caved-held cannot
   derive H_listen. Option (i) derive H_listen from listen-vs-neutral (pushed-unpushed) — asymmetric recipe, cosine
   comparison still valid; option (ii) build a harder listen family with resisted items — mutates the frozen family.
-  LEAN: (i) for the first pass. DECISION OWED.
+  LEAN: (i) for the first pass. **RESOLVED (2026-07-02, autonomous per the registered lean): option (i)** —
+  H_listen from listen-vs-neutral for the first Phase-3 pass; revisit (ii) only if the cosine comparison proves
+  uninterpretable under the asymmetric recipe.
 - **D-2 (THINK/SAY probe).** Build + gate in Phase 0.5 (adds cost, strongest lead) vs defer and run SAY-only first.
   LEAN: build (Phase 0.5). DECISION OWED.
 - **D-3 (family).** Extend `verifier_family` for confidence/expectation balance now, vs run the Phase 1 substrate
