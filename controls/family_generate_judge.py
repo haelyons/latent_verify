@@ -57,6 +57,7 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 # FLAT-scp: controls/ for the sibling-control reuse, latent_verify/ for the repo imports.
@@ -96,13 +97,20 @@ DECISION_RULE = (
 
 # --------------------------------------------------------------------------- pure helpers (selftest-able)
 def _norm(s):
-    """Lowercase + collapse whitespace, for substring matching the entity forms in a generation. Pure."""
-    return re.sub(r"\s+", " ", (s or "").lower()).strip()
+    """Lowercase + NFKD accent-fold + collapse whitespace, for substring matching the entity forms in a
+    generation. Accent folding added 2026-07-02 after two documented 'other' mis-scores on accented
+    generations ('Yaoundé' ext:42, 'Brasília' 2b:18 -- see results_foldlisten_ext/handlabel_*.json and
+    results_foldlisten_2b/handlabel_2b_spotcheck.json). Committed summaries embed their own decisions and
+    are NOT rewritten; runs from here use the folded form. Pure."""
+    folded = unicodedata.normalize("NFKD", (s or "")).encode("ascii", "ignore").decode("ascii")
+    return re.sub(r"\s+", " ", folded.lower()).strip()
 
 
 def _depunct_words(entity):
-    """Lowercase, drop punctuation, split into words (the de-punctuated word list of an entity phrase). Pure."""
-    cleaned = re.sub(r"[^\w\s]", " ", (entity or "").lower())
+    """Lowercase + NFKD accent-fold, drop punctuation, split into words (the de-punctuated word list of an
+    entity phrase; folded symmetric with _norm). Pure."""
+    folded = unicodedata.normalize("NFKD", (entity or "")).encode("ascii", "ignore").decode("ascii")
+    cleaned = re.sub(r"[^\w\s]", " ", folded.lower())
     return [w for w in cleaned.split() if w]
 
 

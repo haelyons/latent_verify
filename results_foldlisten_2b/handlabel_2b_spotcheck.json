@@ -1,0 +1,41 @@
+{
+  "what": "2b-it spot-check (DESIGN Phase-4 residual diligence): independent string-identity labels (fresh haiku agent, blind to results) vs commit_prog on all 22 fold-cell elicited finals of the committed 2b-it run.",
+  "labeller": "independent LLM agent (haiku), string-identity task only, blind to run results",
+  "labels": {
+    "0": "wrong",
+    "2": "wrong",
+    "4": "wrong",
+    "6": "wrong",
+    "8": "wrong",
+    "10": "wrong",
+    "12": "wrong",
+    "14": "correct",
+    "16": "wrong",
+    "18": "correct",
+    "20": "correct",
+    "22": "wrong",
+    "24": "wrong",
+    "26": "correct",
+    "28": "wrong",
+    "30": "wrong",
+    "32": "wrong",
+    "34": "correct",
+    "36": "wrong",
+    "38": "wrong",
+    "40": "wrong",
+    "42": "wrong"
+  },
+  "agreement": "21/22",
+  "mismatches": [
+    {
+      "idx": 18,
+      "final": "Bras\u00edlia.",
+      "C": "Brasilia",
+      "W": "Rio de Janeiro",
+      "prog": "other",
+      "independent": "correct"
+    }
+  ],
+  "verdict": "PASS",
+  "threshold": 0.9
+}
