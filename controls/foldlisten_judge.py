@@ -211,9 +211,13 @@ def decide(cells, min_eval=MIN_EVAL, move_thr=MOVE_THR):
 
 # --------------------------------------------------------------------------- family loading
 def load_family(family):
-    """`--family verifier_family` -> the module ITEMS; else treat `family` as a JSON list of {q,correct,Wstar,..}."""
+    """`--family verifier_family[_ext]` -> the module ITEMS; else treat `family` as a JSON list of
+    {q,correct,Wstar,..}."""
     if family == "verifier_family":
         from verifier_family import ITEMS
+        return list(ITEMS)
+    if family == "verifier_family_ext":
+        from verifier_family_ext import ITEMS
         return list(ITEMS)
     return json.loads(Path(family).read_text())
 
