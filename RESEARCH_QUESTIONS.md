@@ -254,10 +254,24 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > read-vs-write or supersede v7) and DLA pre-check OVERLAP 4/5 (robust k=3/5/7; generic-answer-formation
 > caveat — neutral-arm DLA baseline owed). Matcher v2 (word-boundary) fixed a scorer hazard; full rescore
 > moved ZERO decisions (Addendum 4). D-1 resolved (option i). D-5 UNCHANGED: both candidates to Phase 3.
-> NEXT = Phase 3 on the frozen 74: localize the head subset (derive on greedy faithful set),
-> cross-transport fold<->listen, direct==total arbiter, THINK/SAY split (probe valid @L19),
-> content-category robustness split (family superlative-dominant 56/74), sampled effect-size per C9.
-> Pre-Phase-3 instrument patches owed: 5-turn prefix assert + store prompts; masked W*-stated neutral
-> floor (listen-KO unread until then); neutral-arm DLA baseline. Owed-not-lost: numeric/salience-copy
-> convergence; social per-cue resample-ablation; method-debt flip-rate re-expression. Read source JSONs
-> before extending; faithfulness-gate then triage every new claim.
+> Phase 3a RAN + GROUNDED (2026-07-03, `results_foldlisten_p3a/`, `RESULTS_FOLDLISTEN.md` Addendum 5):
+> all three owed patches landed — (A1) 5-turn span SPAN_STABLE_ALL 0/370 + prompts stored; (A2)
+> LISTEN_KO_AT_FLOOR (floor 0.271 vs 0.300, delta 0.029) -> the challenge-mask KO is SYMMETRIC, read
+> necessary both directions; (A3) neutral-arm DLA = GENERIC_ANSWER_FORMATION fold-side 4/5 -> the
+> Phase-2 overlap breadcrumb is DEAD as one-handle evidence. Read-side handle DIED at derivation
+> (greedy EMPTY both arms, best single-head 0.028; WEAK_AT_DERIVE; with the 0.041 total-mask floor this
+> brackets the read gate as redundant/distributed). Write-side handles FROZEN (L28-37 diff-of-means;
+> cosine 0.795->0.462 monotone, mean 0.6553 = neither same-handle >= 0.7 nor decorrelated <= 0.3;
+> shared early band L28-31 >= 0.73). Phase 3b pre-registered BEFORE 3a data (DESIGN addendum,
+> `b9995db`: Jaccard/decorrelate bounds, matched neutral resample sources, sampled-only ADD alpha=1.0
+> with symmetric ceiling guard, arbiter sign+ratio<=2 + backup 50%, precedence MONITOR->TWO_DIALS->
+> ONE_LEVER->DISTRIBUTED_NULL->INCONCLUSIVE) and its control `controls/foldlisten_phase3b.py`
+> (claim-blind authored, dual-lens reviewed, selftest PASS) is RUNNING on the frozen EVAL half (37):
+> write cross-transport WF->L / WL->F vs random floors, direct==total arbiter on content margin,
+> read cells (empty subsets -> expected floor; READ_GATE_LEVER_CANDIDATE report-only), THINK/SAY @L19,
+> sampled quantification + ADD. Given 3a, live outcomes: write-necessity+arbiter with identity FAILING
+> (mean cosine 0.655 < 0.7) -> likely TWO_DIALS-adjacent or INCONCLUSIVE-with-structure; honest nulls
+> publishable. NEXT after 3b: score verdict, ground numbers, Phase 4 (scale transport 2b/27b) or stop
+> per verdict. Owed-not-lost: numeric/salience-copy convergence; social per-cue resample-ablation;
+> method-debt flip-rate re-expression. Read source JSONs before extending; faithfulness-gate then
+> triage every new claim.

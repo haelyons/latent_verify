@@ -191,6 +191,42 @@ Three-way audit (grounding reader / generation classifier / instrument code audi
   justification corrected (per-layer residual contributions never see the softcap; raw margins are the
   right object; generic logit-lens renormalization caveat stands).
 
+## Addendum 5 (2026-07-03) — Phase 3a: owed patches land; read-side handle dies at derivation; write handles frozen
+
+Fourth GPU run (`run_foldlisten_phase3a_9b.sh`, H100 PCIe ~3.5h, `results_foldlisten_p3a/`,
+`controls/foldlisten_phase3a.py` — claim-blind authored, dual-lens reviewed, selftest-gated). All numbers
+below re-derived from raw records by an isolated reader (19/19 contested generations spot-relabelled by
+stated meaning, zero disagreements; the only flag was a prose mean — corrected here).
+
+- **A1 (Q1 patch): SPAN_STABLE_ALL.** 0/370 records unstable on the real 5-turn masked context, at both
+  the counter and elicit stages; full prompts now stored per stage. The Phase-2 Q1 debt is closed.
+- **A2 (the missing listen floor): LISTEN_KO_AT_FLOOR.** Masked W\*-stated neutral floor = 0.271
+  (19/70 move off the stated W\* with NO push visible); committed Phase-2 listen_mask = 0.300; delta
+  0.029 << 0.18. The Phase-2 "listen KO PARTIAL (0.986→0.300)" is now READ: the residual 0.300 is
+  belief-reversion (the model restating its own knowledge), not surviving read of the push. **The
+  challenge-mask KO is symmetric: attention read of the challenge content is necessary for BOTH fold and
+  listen.** Reference drifts: unmasked W\*-stated neutral 0.135 (knowledge pressure alone moves 13.5% off
+  a stated wrong answer); C-stated masked neutral 0.027.
+- **A3 (neutral-arm DLA baseline): the Phase-2 overlap is DEFLATED.** The C-stated masked NEUTRAL arm's
+  top-5 |attn Δmargin| layers {28,34,35,36,37} overlap the committed fold top-5 at **4/5** →
+  `GENERIC_ANSWER_FORMATION` (fold side); listen side 2/5 MIXED. Addendum 3's fold/listen overlap 4/5
+  is late-layer generic answer formation and **may not be cited as one-handle evidence** (the registered
+  caveat, now enforced by measurement).
+- **B1 (read-side handle): EMPTY at derivation.** Greedy forward selection over the top-10
+  challenge-attending heads selected ZERO heads on both arms (best single-head KO drop 0.028 < 0.03
+  min-drop; listen best 0.0); both sides `WEAK_AT_DERIVE`, `handle_freeze = FROZEN`. With Phase-2's
+  total-mask floor (0.041) this brackets the read gate: ALL-attention KO kills folding, no sparse subset
+  does — the attention read is redundant/distributed at ‑it. Breadcrumb: the top-10 candidate rankings
+  overlap 9/10 across fold/listen (shared challenge-readers, correlational only).
+- **B2 (write-side handles): FROZEN, identity ambiguous.** Per-layer diff-of-means directions
+  (fold−neutral, listen−neutral_wstar; D-1 option i) over band L28–37, n=37 DERIVE items. Per-layer
+  cosine(H_fold, H_listen) declines monotonically 0.795 (L28) → 0.462 (L37), **mean 0.6553** (the 0.645
+  in commit 165f198's message was arithmetic slip; artifact list is exact) — under the frozen 3b rule
+  neither SAME_HANDLE (≥0.7) nor decorrelated (≤0.3). Early band L28–31 ≥ 0.73: a shared early-band
+  revision direction that diverges by arm late.
+- Phase 3b (cross-transport on EVAL half, direct==total arbiter, THINK/SAY, sampled ADD) consumes these
+  frozen handles: `results_foldlisten_p3a/out/phase3_handles_p3a_9bit.{json,npz}`.
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,
