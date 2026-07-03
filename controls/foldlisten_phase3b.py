@@ -1231,7 +1231,7 @@ def run(family, name, tag, device, is_chat, n, handles_json, p2_summary, stage):
         # discard the decided verdict); the final summary supersedes this checkpoint on a clean finish
         ckpt = Path("out") / f"foldlisten_phase3b_{tag}_greedy_ckpt.json"
         ckpt.parent.mkdir(parents=True, exist_ok=True)
-        ckpt.write_text(json.dumps(sanitize({"stage": "greedy_checkpoint", "greedy": greedy,
+        ckpt.write_text(json.dumps(sanitize({"stage": "greedy_checkpoint", "greedy": greedy_summary,
                                              "thresholds": thresholds_dict(),
                                              "decision_rule": DECISION_RULE}), indent=2))
         print(f"[ckpt] greedy stage banked -> {ckpt}", flush=True)
