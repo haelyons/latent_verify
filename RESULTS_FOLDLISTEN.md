@@ -256,27 +256,45 @@ Read side: both cross cells also at floor (expected — 3a killed the read handl
 identity from 3a: SAME_HANDLE False (mean cos 0.655 < 0.7), SAME_HEADS False (empty subsets),
 decorrelated False → identity is genuinely ambiguous, but moot given necessity fails.
 
-**THINK/SAY (secondary Q — captured).** In-run answer-identity probe refit at L19 (heldout AUROC 0.755,
-n_ctx 148 — below the standalone 0.84 but > floor; diagnostic only, THINK never scored as CAVE). The
-SAY×THINK 2×2 is CLEAN and directional: FOLD caves are `belief_flip` 37/37 (THINK follows SAY to W\*);
-LISTEN caves are `compliance_overlay` 36/36 (SAY moves to C but the L19 latent stays); the KO/read cells
-inherit their arm's bucket (wf→l & rf→l compliance; wl→f & rl→f belief_flip); `latent_only` and
-`no_change` are 0 everywhere. Read literally this says fold=belief-revision / listen=utterance-only —
-but with the probe at 0.755 and the direction arm-confounded (fold pushes toward W\*, listen toward C,
-so "THINK follows SAY" and "THINK follows the wrong-answer direction" are not separated here) this is a
-BREADCRUMB, not a claim; it does not bear on the MONITOR verdict.
+**THINK/SAY (secondary Q — NO INDEPENDENT SIGNAL; question UNANSWERED).** The SAY×THINK 2×2 as stored
+reads clean (FOLD `belief_flip` 37/37, LISTEN `compliance_overlay` 36/36, KO/read cells inherit their
+arm, `latent_only`/`no_change` 0). But grounding refutes it as evidence: `think_flip` is PERFECTLY
+collinear with the cell label (0/222 rows where think_flip ≠ (cell=='fold')), `think_class` is uniformly
+'W\*', and `think_proj` ranges OVERLAP across all four cells (fold −49..−20, listen −44..−17, wf→l
+−47..−16, wl→f −46..−20). So belief_flip-vs-compliance_overlay is a re-encoding of the arm, not an
+internal-state measurement — the pre/post projections that would make `think_flip` a real latent-flip
+signal were never persisted, and the probe is weak (see below). **The belief-vs-utterance question is
+UNANSWERED**, not answered; do not cite the 2×2 as fold=belief / listen=compliance.
 
-**GROUNDING STATUS.** The full greedy summary (37 EVAL, 888 per-item records incl. prompts + THINK
-matrices) was RECOVERED at `results_foldlisten_p3b_greedy/out/foldlisten_phase3b_p3b_9bit_summary.json`
-(a fetch waiter caught the run finishing before the box was torn down; three earlier fetch attempts had
-been lost to session-kill / cap-timeout / `lambda_run.sh` `trap terminate EXIT` interactions). The
-verdict reproduces across TWO independent greedy runs (checkpoint arbiter direct/total −1.81/+2.27 vs
-recovered summary −1.81/+2.24; both `both_at_floor`, both SIGN_DISAGREE) — a de-facto reproducibility
-check. Per-item H3 grounding of the recovered summary is the remaining step (records now exist; owed to
-an isolated reader). Verdict converges with three independent priors — 3a (read handle dead, write
-identity ambiguous), the base cave-DIRECTION MONITOR (RESEARCH_QUESTIONS §9 / STOP-list), and the 2b
-attribution graph's BROAD_DISTRIBUTED. INFRA NOTE for any future run: use a launcher that does not
-`trap terminate EXIT` the box when the local process is session-killed (root cause of the earlier losses).
+**GROUNDING STATUS (isolated reader, adversarial).** The full greedy summary (37 EVAL, 888 per-item
+records + prompts) was RECOVERED at `results_foldlisten_p3b_greedy/out/foldlisten_phase3b_p3b_9bit_summary.json`
+(a fetch waiter caught the run finishing before teardown; three earlier attempts lost to session-kill /
+cap-timeout / `lambda_run.sh` `trap terminate EXIT`). What grounds and what does not:
+- **GROUNDED (the load-bearing leg).** All 24 arm rates reproduce from raw `items[]` by stated meaning;
+  the necessity result is confirmed at the character level — wf→l elicit generations are byte-identical
+  to listen_nomask in 37/37, wl→f identical to fold_nomask in 36/37 (the 1 diff is capitalization,
+  same commit). Ablation flips **zero** realized answers → `both_at_floor` / `neither_beats_floor`.
+  This leg is INDEPENDENTLY H3-grounded and, per the precedence, is ALONE sufficient to force
+  MONITOR_AGAIN. Span-stability 0/888, abstains counted (13, all listen-cell), verdict reasons reproduce.
+- **UNAUDITABLE (corroborating, not load-bearing).** The arbiter (agg direct −1.81 / total +2.24,
+  SIGN_DISAGREE) and backup (wf→l 315×) per-item measurements were NOT persisted to `items[]` — only
+  aggregate scalars, checkable against themselves, not re-derivable from raw. Backup's 315× additionally
+  rides a near-zero denominator (baseline_proj −0.145) and is FRAGILE. The probe AUROC 0.755 is not
+  re-derivable (in-sample proj_all give 0.839; the held-out CV split was not saved). **The verdict does
+  NOT rest on any of these** — they corroborate the grounded necessity leg; treat their magnitudes as
+  indicative only. (Note SIGN_DISAGREE is not itself a monitor trigger in the precedence; the active
+  triggers are neither_beats_floor — grounded — and backup_restores — fragile/unauditable.)
+- **REPRODUCIBILITY.** The verdict + arbiter agree across TWO independent greedy runs (checkpoint
+  −1.81/+2.27 vs recovered −1.81/+2.24; both `both_at_floor`, both SIGN_DISAGREE).
+- **CONVERGENCE.** 3a (read handle dead, write identity ambiguous) + base cave-DIRECTION MONITOR
+  (RESEARCH_QUESTIONS §9 / STOP-list) + 2b BROAD_DISTRIBUTED graph all agree: distributed, no lever.
+
+**Instrument debt (H4, registered).** `foldlisten_phase3b.py` persists arbiter/backup/THINK as
+aggregates only; a groundable re-run must save per-item direct/total/backup_proj and the probe CV split.
+The THINK read also needs a design that breaks the arm↔direction collinearity (a within-arm C-vs-W\*
+contrast, not fold-vs-listen). INFRA: any re-run needs a launcher that does not `trap terminate EXIT`
+the box on a local session-kill (root cause of the three fetch losses). All three are OWED-NON-DECISIVE
+— the MONITOR verdict stands on the grounded necessity leg.
 
 **Bottom line for the arc.** The pre-registered question "is there ONE causal handle for both fold and
 listen adoption at ‑it, a genuine LEVER or only a MONITOR?" resolves to **MONITOR_AGAIN / distributed

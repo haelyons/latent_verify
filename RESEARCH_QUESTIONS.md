@@ -87,12 +87,15 @@ Standing NULLs (each arbiter- or power-confirmed):
     read); (3b) write-direction resample-ablation flips ZERO of 37 realized answers (= random floor), the
     arbiter SIGN_DISAGREEs (direct −1.81 vs total +2.27), and backup restores → `MONITOR_AGAIN`. Converges
     with the base cave-DIRECTION MONITOR (§9) and the 2b BROAD_DISTRIBUTED graph. → `RESULTS_FOLDLISTEN.md`
-    Addendum 5+6, `results_foldlisten_p3a/`, `controls/foldlisten_phase3{a,b}.py`. **Grounding:** 3a fully
-    H3-grounded; 3b verdict reproduces across TWO independent greedy runs (ckpt vs recovered full summary,
-    arbiter −1.81/+2.27 vs −1.81/+2.24) and the full per-item summary (37 EVAL, 888 records + THINK/SAY)
-    was RECOVERED (`results_foldlisten_p3b_greedy/out/`) — per-item H3 grounding by an isolated reader is
-    the one remaining step (records now exist). THINK/SAY breadcrumb (probe 0.755, arm-confounded): fold=
-    belief_flip, listen=compliance_overlay, 0 latent_only — non-decisive, does not touch MONITOR.
+    Addendum 5+6, `results_foldlisten_p3a/`, `controls/foldlisten_phase3{a,b}.py`. **Grounding (isolated
+    reader, adversarial):** 3a fully H3-grounded; 3b's LOAD-BEARING leg (necessity = `neither_beats_floor`)
+    IS grounded — all 24 arm rates reproduce and wf→l/wl→f generations are character-identical to baseline
+    (ablation flips 0/37), and that leg ALONE forces MONITOR. The arbiter (SIGN_DISAGREE) + backup (315×,
+    fragile near-zero denom) + probe AUROC 0.755 are UNAUDITABLE (per-item values not persisted) and
+    corroborating-only — verdict does not rest on them. Reproduces across two greedy runs. THINK/SAY is
+    NOT usable: `think_flip` perfectly collinear with the arm label (no independent signal) → belief-vs-
+    compliance UNANSWERED. Instrument debt (H4): persist per-item arbiter/backup + break arm↔direction
+    collinearity in the THINK design; both OWED-NON-DECISIVE.
 
 Direction-level, NOT a circuit (framing-corrected):
 
@@ -280,16 +283,16 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > `controls/foldlisten_phase3b.py` claim-blind + dual-lens reviewed + selftest): greedy stage 37/37
 > completed, **verdict = MONITOR_AGAIN** (claim 10) — write-ablation flips 0/37 realized answers (= random
 > floor, `both_at_floor`); arbiter SIGN_DISAGREE (direct -1.81 vs total +2.27); backup restores. Verdict
-> LOGIC re-derived from the committed aggregate checkpoint via the pure `final_verdict`. GROUNDING CAVEAT:
-> the 3b per-item raw records were LOST across three fetch attempts (all killed by session-limit /
-> cap-timeout / `lambda_run.sh` `trap terminate EXIT` firing when the local launcher is session-killed) ->
-> aggregates committed + logic-verified but per-item magnitudes UNAUDITED; a groundable re-run + the
-> never-captured THINK/SAY matrices are OWED-NON-DECISIVE (necessity+arbiter are rate-ceiling-independent,
-> and it converges with the base cave-DIRECTION MONITOR §9 + the 2b BROAD_DISTRIBUTED graph).
-> INFRA FIX before any 3b re-run: a launch path that detaches the run WITHOUT the EXIT-trap terminating
-> the box on a local kill (root cause of all three losses). Budget ~$452 of $500 -> GPU ON HOLD.
-> NEXT (no GPU): the arc's headline (distributed MONITOR, no single lever for caving at ‑it) already
-> STANDS at 9b; Phase 4 scale-transport (2b/27b‑it) is the only remaining mechanism arc and is GATED on
-> the infra fix + budget. Owed-not-lost: numeric/salience-copy convergence; social per-cue
-> resample-ablation; method-debt flip-rate re-expression. Read source JSONs before extending;
-> faithfulness-gate then triage every new claim.
+> LOGIC re-derived via the pure `final_verdict`. The full per-item summary (37 EVAL, 888 records) was
+> RECOVERED (`results_foldlisten_p3b_greedy/out/`) and H3-GROUNDED by an isolated reader: the necessity
+> leg (ablation flips 0/37, generations character-identical to baseline) reproduces and ALONE forces
+> MONITOR; arbiter/backup/probe are unauditable (per-item not persisted) + backup fragile → corroborating
+> only, verdict does not rest on them; THINK/SAY collinear-with-arm → belief-vs-compliance UNANSWERED.
+> Reproduces across two greedy runs. Verdict converges with base cave-DIRECTION MONITOR §9 + 2b
+> BROAD_DISTRIBUTED. Budget cap now $600 (+$100 authorized 2026-07-04), spend ~$452, headroom ~$148.
+> The arc's HEADLINE (distributed MONITOR, no single causal lever for caving at ‑it) STANDS at 9b and is
+> grounded. NEXT is a CHOICE (no urgent GPU): (a) Phase 4 scale-transport 2b/27b‑it — GATED on the infra
+> fix (launcher must not `trap terminate EXIT` on local kill) + persisting per-item arbiter/backup +
+> a THINK design that breaks arm↔direction collinearity; (b) close the arc here (headline is grounded);
+> (c) an owed-not-lost side thread (numeric/salience-copy convergence; social per-cue resample-ablation;
+> method-debt flip-rate re-expression). Read source JSONs before extending; faithfulness-gate then triage.
