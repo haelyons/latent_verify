@@ -212,6 +212,11 @@ Direction-level, NOT a circuit (framing-corrected):
 - **[METHOD DEBT] Raw `capitulation` (pre−post) is headroom-confounded** — re-express the prior
   load-bearing caving magnitudes (§11, R-4, dose-response, 2b cavecheck) as **flip-rate** and
   spot-check whether any prior conclusion moves.
+- **[PRIORITY READ before Phase 4] Yang & Jia arXiv:2505.16170** — internal "belief" probe predicts
+  retraction AND steering it reportedly controls retraction causally: the closest published
+  neighbour to this program's endgame. Verify their protocol against our monitor-trap standards
+  (direct==total, projection-out vs floor, backup) before citing or building on the lever claim.
+  Full lit context: `docs/NOTE_phase34_improvements_lit.md` (2026-07-04).
 - **[PARTLY RESOLVED] Social source scales doubt-circuit recruitment — gradient REAL, authority-per-se
   marginal.** Bootstrap CIs (v2): authority > self/sourceless excludes 0 on READ at both scales (and WRITE
   mostly) → the social gradient is real, not noise. The matched minimal-pair (professor vs friend, same

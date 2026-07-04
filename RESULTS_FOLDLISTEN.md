@@ -59,6 +59,12 @@ Full prompts + completions stored per item; see `results_foldlisten*/foldlisten_
 - `MOVE_THR=0.34`, `MIN_EVAL=6` are reporting thresholds, not a hypothesis test.
 - Base neutral-drift confound (above) — treat base rates as drift-contaminated.
 - 9b-base INSUFFICIENT: too few committed (non-abstain) fold items to compute a fold rate.
+- `conf_proxy` (and any logit margin here) is used as a RANK/threshold only, never an absolute
+  probability — post-training sharpens absolute probabilities (GPT-4 ECE 0.007→0.074 post-PPO);
+  ranking survives monotone recalibration. (Registered 2026-07-04, lit note `docs/NOTE_phase34_improvements_lit.md`.)
+- External vocabulary mapping (SycEval, AIES 2025): our fold = "regressive sycophancy" (flip toward
+  wrong), listen = "progressive sycophancy" (flip toward correct). Adopted for citability only;
+  in-repo terms unchanged.
 
 ## For the verifier
 
