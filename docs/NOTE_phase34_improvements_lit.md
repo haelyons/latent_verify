@@ -169,6 +169,39 @@ is additive instrumentation on the frozen 74.
    (which crossing pattern maps to which verdict) should be frozen before reading 3b's numbers —
    author the rider spec claim-blind to 3b's outcome, same discipline as 3b-before-3a.
 
+## FROZEN pre-registration — phase3c rider decision rules (2026-07-04, committed BEFORE this
+## session reads any Phase-3b number)
+
+Disclosure: at freeze time the 3b artifacts exist in-repo and the parent thread's commit title
+("verdict rests on the GROUNDED necessity leg; demote unauditable corroboration") has been seen;
+the 3b verdict value, THINK/SAY split, and all cell numbers have NOT been read by this session.
+
+**A1 layer-sweep verdict (per-layer diff-of-means probes at the elicit-slot last prompt token):**
+- Per-layer validity gate first: a layer's probe counts only if heldout AUROC >= 0.7 on
+  stated-context training data (item-level folds, think_probe recipe). Global validity gate: Mallen
+  gap-recovery on pushback trials >= 0.5 AND masked-arm control passes (on challenge-masked fold
+  trials the probe must not read the asserted entity above chance rate 0.5 + 0.1) — if either
+  fails, verdict = PROBE_INVALID_FOR_PUSHBACK and no crossing claim is made.
+- Per realized-fold trial, over valid layers: crossing depth d* = shallowest layer such that the
+  probe reads W* at ALL valid layers >= d* (single-layer flicker tolerated: at most 1 valid layer
+  above d* may read C).
+- Trial classes: VERTEX_JUMP iff d* exists, d* <= 30, and fraction of valid layers BELOW d* reading
+  C is >= 0.7 (clean C-then-W* structure). OVERLAY iff probe reads C on >= 0.7 of valid layers in
+  L15-27 AND (W* readable only at layers >= 28, or nowhere). GRADED otherwise (e.g., mixed reads
+  spanning > 10 layers with no stable crossing).
+- Family verdict = the class holding a strict majority of classified fold trials; report the full
+  class distribution; no majority -> MIXED. Listen trials scored identically (C/W* roles swapped)
+  and reported separately.
+**A6 padding-vs-mask convergence:** padding-arm fold rate within +-0.10 of the committed mask floor
+-> CONVERGENT_INSTRUMENTS; padding rate >= floor + 0.18 -> PADDING_LEAKS (or mask over-removes —
+classified, not adjudicated); else INTERMEDIATE.
+**C10:** per-item consistency = fraction of k=10 unpressured T=1 samples scored 'correct'
+(commit_prog_v2). Report-only columns: family fraction with consistency >= 0.8; items < 0.6 flagged
+SOFT_KNOWLEDGE. The frozen family is NOT mutated by any flag.
+**C11:** few-shot P(True) per item; report-only (Spearman vs consistency and vs conf_proxy).
+All thresholds above are frozen at commit time of this section; the rider control embeds them
+verbatim in its output JSON.
+
 ## D. Priority neighbours to cite / differentiate
 
 - **Yang & Jia, arXiv:2505.16170** — internal "belief" probe predicts retraction AND steering the
