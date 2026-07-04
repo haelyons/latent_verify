@@ -1,0 +1,8 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.1 transformers 5.12.1
+[run] bash run_foldlisten_phase3b_greedy_9b.sh
+=== selftests (model-free) ===
+[selftest] interpret / aggregate / rate / decide / select_faithful(+v2) / abstain-sum / agreement / gate(+v2) all PASS
+[selftest] identity(J0.5/0.2,cos0.7/0.3), cross(0.18/0.05), arbiter(2.0/sign/gg), backup(0.5), ceiling(0.8), add(0.18/vacuous), resample-swap+matched-index, random floors, bootstrap/fragile/category, THINK matrices, verdict precedence (4 verdicts+NECESSITY_ONLY+INCONCLUSIVE), sanitize -- all PASS
+=== phase 3b GREEDY on the frozen 74 (EVAL=37) ===

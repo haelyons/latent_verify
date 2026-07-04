@@ -1,0 +1,24 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.1 transformers 5.12.1
+[run] bash run_foldlisten_phase3b_9b.sh
+=== selftests (model-free) ===
+[selftest] interpret / aggregate / rate / decide / select_faithful(+v2) / abstain-sum / agreement / gate(+v2) all PASS
+[selftest] identity(J0.5/0.2,cos0.7/0.3), cross(0.18/0.05), arbiter(2.0/sign/gg), backup(0.5), ceiling(0.8), add(0.18/vacuous), resample-swap+matched-index, random floors, bootstrap/fragile/category, THINK matrices, verdict precedence (4 verdicts+NECESSITY_ONLY+INCONCLUSIVE), sanitize -- all PASS
+=== smoke: --n 8 --stage greedy (must exercise EVAL>0 and exit 0) ===
+[load] google/gemma-2-9b-it on cuda; family mechanism_family_9bit.json -> 8 items; EVAL=5 (frozen from 3a); stage=greedy; handles=phase3_handles_p3a_9bit.json
+SMOKE_FAIL rc=1
+[load] google/gemma-2-9b-it on cuda; family mechanism_family_9bit.json -> 8 items; EVAL=5 (frozen from 3a); stage=greedy; handles=phase3_handles_p3a_9bit.json
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:17<00:53, 17.91s/it]Fetching 4 files:  50%|█████     | 2/4 [00:18<00:15,  7.58s/it]Fetching 4 files: 100%|██████████| 4/4 [00:18<00:00,  4.56s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 332/464 [00:00<00:00, 3311.70it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 3598.76it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[think] capturing stated-C / stated-W* contexts at L19 over the full family for the probe refit
+[think] refit at L19: heldout AUROC=0.546875 threshold=224.3610 n_ctx=16
+  [greedy 001/5] unstable so far=0 q='Which country has the largest popu'
+  [greedy 005/5] unstable so far=0 q='Which language has the most native'
+Traceback (most recent call last):
+  File "/home/ubuntu/latent_verify/foldlisten_phase3b.py", line 1482, in <module>
+    run(a.family, a.name, a.tag, a.device, a.chat, a.n, a.handles, a.p2_summary, a.stage)
+  File "/home/ubuntu/latent_verify/foldlisten_phase3b.py", line 1234, in run
+    ckpt.write_text(json.dumps(sanitize({"stage": "greedy_checkpoint", "greedy": greedy,
+NameError: name 'greedy' is not defined

@@ -227,6 +227,64 @@ stated meaning, zero disagreements; the only flag was a prose mean — corrected
 - Phase 3b (cross-transport on EVAL half, direct==total arbiter, THINK/SAY, sampled ADD) consumes these
   frozen handles: `results_foldlisten_p3a/out/phase3_handles_p3a_9bit.{json,npz}`.
 
+## Addendum 6 (2026-07-03) — Phase 3b: the mechanism verdict is MONITOR_AGAIN (no single causal lever)
+
+Phase 3b (`controls/foldlisten_phase3b.py`, claim-blind authored, dual-lens reviewed, selftest-gated)
+on the frozen EVAL half (37 of 74; deterministic even/odd split). The greedy stage — which DECIDES the
+verdict — completed 37/37 and its aggregate decision was banked to
+`results_foldlisten_p3b/out/foldlisten_phase3b_p3b_9bit_greedy_ckpt.json`. **Verdict = `MONITOR_AGAIN`**,
+re-derived from the committed aggregates by the pure `final_verdict` (three independent legs, each
+sufficient on its own):
+
+- **Cross-transport necessity FAILS (write handle).** Resample-ablating the frozen write directions
+  (never zeroed; swapped to the same item's neutral-arm component) in the CROSS arm — H_fold in LISTEN
+  (`wf→l`), H_listen in FOLD (`wl→f`) — dropped the realized cave-rate by **0.0** on both cells; the
+  norm-matched random-direction floor also dropped 0.0 → `both_at_floor`, `any_clear=False`. Ablating the
+  handle flips zero of 37 realized answers, no better than a random direction. (Baselines: fold/listen
+  nomask 1.000; neutral_mask 0.054; neutral_wstar_mask 0.222.)
+- **Direct ≠ total (the arbiter this program exists to catch).** Aggregate arbiter = `SIGN_DISAGREE`:
+  direct-effect logit-lens DLA of the ablated component = **−1.81**, total-effect resample-ablation
+  content-margin change = **+2.27** — opposite signs. Per-cell: `wf→l` direct −0.54 / total +1.67 (ratio
+  3.1); `wl→f` direct −3.08 / total +2.86. The naive DLA contribution contradicts the component's actual
+  causal role — the epiphenomenal/redundant signature. (The C3 lesson recurs: the content MARGIN moved
+  +2.27 while the realized RATE did not move at all — margin-flip ≠ answer-flip.)
+- **Backup restores.** `wf→l` downstream (band-max+2) projection reappears after ablation. CAVEAT: this
+  cell's backup ratio (565×) rides a near-zero baseline projection (−0.08), so the backup flag is
+  fragile — but MONITOR does not depend on it; `neither_beats_floor` forces the verdict independently.
+
+Read side: both cross cells also at floor (expected — 3a killed the read handle at derivation). Handle
+identity from 3a: SAME_HANDLE False (mean cos 0.655 < 0.7), SAME_HEADS False (empty subsets),
+decorrelated False → identity is genuinely ambiguous, but moot given necessity fails.
+
+**THINK/SAY (secondary Q — captured).** In-run answer-identity probe refit at L19 (heldout AUROC 0.755,
+n_ctx 148 — below the standalone 0.84 but > floor; diagnostic only, THINK never scored as CAVE). The
+SAY×THINK 2×2 is CLEAN and directional: FOLD caves are `belief_flip` 37/37 (THINK follows SAY to W\*);
+LISTEN caves are `compliance_overlay` 36/36 (SAY moves to C but the L19 latent stays); the KO/read cells
+inherit their arm's bucket (wf→l & rf→l compliance; wl→f & rl→f belief_flip); `latent_only` and
+`no_change` are 0 everywhere. Read literally this says fold=belief-revision / listen=utterance-only —
+but with the probe at 0.755 and the direction arm-confounded (fold pushes toward W\*, listen toward C,
+so "THINK follows SAY" and "THINK follows the wrong-answer direction" are not separated here) this is a
+BREADCRUMB, not a claim; it does not bear on the MONITOR verdict.
+
+**GROUNDING STATUS.** The full greedy summary (37 EVAL, 888 per-item records incl. prompts + THINK
+matrices) was RECOVERED at `results_foldlisten_p3b_greedy/out/foldlisten_phase3b_p3b_9bit_summary.json`
+(a fetch waiter caught the run finishing before the box was torn down; three earlier fetch attempts had
+been lost to session-kill / cap-timeout / `lambda_run.sh` `trap terminate EXIT` interactions). The
+verdict reproduces across TWO independent greedy runs (checkpoint arbiter direct/total −1.81/+2.27 vs
+recovered summary −1.81/+2.24; both `both_at_floor`, both SIGN_DISAGREE) — a de-facto reproducibility
+check. Per-item H3 grounding of the recovered summary is the remaining step (records now exist; owed to
+an isolated reader). Verdict converges with three independent priors — 3a (read handle dead, write
+identity ambiguous), the base cave-DIRECTION MONITOR (RESEARCH_QUESTIONS §9 / STOP-list), and the 2b
+attribution graph's BROAD_DISTRIBUTED. INFRA NOTE for any future run: use a launcher that does not
+`trap terminate EXIT` the box when the local process is session-killed (root cause of the earlier losses).
+
+**Bottom line for the arc.** The pre-registered question "is there ONE causal handle for both fold and
+listen adoption at ‑it, a genuine LEVER or only a MONITOR?" resolves to **MONITOR_AGAIN / distributed
+null**: no sparse read-side gate (3a), no necessary write-direction lever (3b), direct≠total. This is the
+§6 a-priori most-likely outcome, reached honestly, and it extends the base MONITOR finding to the ‑it
+realized-adoption readout. Sampled effect-size + ADD sufficiency + THINK/SAY are owed-but-non-decisive
+(the necessity+arbiter legs are rate-ceiling-independent).
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,

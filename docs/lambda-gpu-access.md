@@ -42,6 +42,11 @@ LAMBDA_KEY_ONE=$(grep '^LAMBDA_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 
 Real usage reconstructs from the audit log: `GET /api/v1/audit-events` (`launched`/`terminated` `event_time` + `additional_details.instance_type`), priced with `GET /api/v1/instance-types`. The dollar invoice is in the Lambda dashboard only.
 
+**Budget addendum (2026-07-04): cap raised $500 → $600 (+$100, user-authorized).** Project-attributable
+spend since 2026-06-10 ≈ $452 (audit-log reconstruction; the account's ~$938 Jan–Feb pre-dates this
+project and is excluded). Phase-3 mechanism runs (3a + three 3b greedy attempts incl. the two lost to
+infra) are inside that figure. Remaining headroom ≈ $148.
+
 ## Lambda Cloud API — endpoints leveraged
 
 Base URL `https://cloud.lambda.ai/api/v1/`. Auth on every call:

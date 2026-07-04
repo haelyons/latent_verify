@@ -80,6 +80,20 @@ Standing NULLs (each arbiter- or power-confirmed):
    — but only shown WITHIN the caving (near-tie, range-restricted) regime; a high-confidence arm is
    owed. → `results_9b_gate/`, `results_9b_confgatefaithful/`, `results_social/cave_confidence_recruitment_9b_base.json`.
 
+10. **No single causal LEVER for fold/listen adoption at ‑it — the mechanism is a distributed MONITOR.**
+    The pre-registered one-handle question (`DESIGN_foldlisten_mechanism.md` Phase 3) resolves NEGATIVE at
+    9b‑it on the frozen 74-item family: (3a) the read-side head subset dies at derivation (greedy EMPTY
+    both arms, best single-head KO 0.028; total-mask kills folding but no sparse subset does → redundant
+    read); (3b) write-direction resample-ablation flips ZERO of 37 realized answers (= random floor), the
+    arbiter SIGN_DISAGREEs (direct −1.81 vs total +2.27), and backup restores → `MONITOR_AGAIN`. Converges
+    with the base cave-DIRECTION MONITOR (§9) and the 2b BROAD_DISTRIBUTED graph. → `RESULTS_FOLDLISTEN.md`
+    Addendum 5+6, `results_foldlisten_p3a/`, `controls/foldlisten_phase3{a,b}.py`. **Grounding:** 3a fully
+    H3-grounded; 3b verdict reproduces across TWO independent greedy runs (ckpt vs recovered full summary,
+    arbiter −1.81/+2.27 vs −1.81/+2.24) and the full per-item summary (37 EVAL, 888 records + THINK/SAY)
+    was RECOVERED (`results_foldlisten_p3b_greedy/out/`) — per-item H3 grounding by an isolated reader is
+    the one remaining step (records now exist). THINK/SAY breadcrumb (probe 0.755, arm-confounded): fold=
+    belief_flip, listen=compliance_overlay, 0 latent_only — non-decisive, does not touch MONITOR.
+
 Direction-level, NOT a circuit (framing-corrected):
 
 9. The cave-DIRECTION is a causal handle on M, an overlay on -it behaviour, and in base a real
@@ -262,16 +276,20 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > (greedy EMPTY both arms, best single-head 0.028; WEAK_AT_DERIVE; with the 0.041 total-mask floor this
 > brackets the read gate as redundant/distributed). Write-side handles FROZEN (L28-37 diff-of-means;
 > cosine 0.795->0.462 monotone, mean 0.6553 = neither same-handle >= 0.7 nor decorrelated <= 0.3;
-> shared early band L28-31 >= 0.73). Phase 3b pre-registered BEFORE 3a data (DESIGN addendum,
-> `b9995db`: Jaccard/decorrelate bounds, matched neutral resample sources, sampled-only ADD alpha=1.0
-> with symmetric ceiling guard, arbiter sign+ratio<=2 + backup 50%, precedence MONITOR->TWO_DIALS->
-> ONE_LEVER->DISTRIBUTED_NULL->INCONCLUSIVE) and its control `controls/foldlisten_phase3b.py`
-> (claim-blind authored, dual-lens reviewed, selftest PASS) is RUNNING on the frozen EVAL half (37):
-> write cross-transport WF->L / WL->F vs random floors, direct==total arbiter on content margin,
-> read cells (empty subsets -> expected floor; READ_GATE_LEVER_CANDIDATE report-only), THINK/SAY @L19,
-> sampled quantification + ADD. Given 3a, live outcomes: write-necessity+arbiter with identity FAILING
-> (mean cosine 0.655 < 0.7) -> likely TWO_DIALS-adjacent or INCONCLUSIVE-with-structure; honest nulls
-> publishable. NEXT after 3b: score verdict, ground numbers, Phase 4 (scale transport 2b/27b) or stop
-> per verdict. Owed-not-lost: numeric/salience-copy convergence; social per-cue resample-ablation;
-> method-debt flip-rate re-expression. Read source JSONs before extending; faithfulness-gate then
-> triage every new claim.
+> shared early band L28-31 >= 0.73). Phase 3b RAN (pre-registered BEFORE 3a data, `b9995db`;
+> `controls/foldlisten_phase3b.py` claim-blind + dual-lens reviewed + selftest): greedy stage 37/37
+> completed, **verdict = MONITOR_AGAIN** (claim 10) — write-ablation flips 0/37 realized answers (= random
+> floor, `both_at_floor`); arbiter SIGN_DISAGREE (direct -1.81 vs total +2.27); backup restores. Verdict
+> LOGIC re-derived from the committed aggregate checkpoint via the pure `final_verdict`. GROUNDING CAVEAT:
+> the 3b per-item raw records were LOST across three fetch attempts (all killed by session-limit /
+> cap-timeout / `lambda_run.sh` `trap terminate EXIT` firing when the local launcher is session-killed) ->
+> aggregates committed + logic-verified but per-item magnitudes UNAUDITED; a groundable re-run + the
+> never-captured THINK/SAY matrices are OWED-NON-DECISIVE (necessity+arbiter are rate-ceiling-independent,
+> and it converges with the base cave-DIRECTION MONITOR §9 + the 2b BROAD_DISTRIBUTED graph).
+> INFRA FIX before any 3b re-run: a launch path that detaches the run WITHOUT the EXIT-trap terminating
+> the box on a local kill (root cause of all three losses). Budget ~$452 of $500 -> GPU ON HOLD.
+> NEXT (no GPU): the arc's headline (distributed MONITOR, no single lever for caving at ‑it) already
+> STANDS at 9b; Phase 4 scale-transport (2b/27b‑it) is the only remaining mechanism arc and is GATED on
+> the infra fix + budget. Owed-not-lost: numeric/salience-copy convergence; social per-cue
+> resample-ablation; method-debt flip-rate re-expression. Read source JSONs before extending;
+> faithfulness-gate then triage every new claim.
