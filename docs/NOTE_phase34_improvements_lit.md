@@ -74,6 +74,101 @@
     probability (post-training sharpening: GPT-4 ECE 0.007->0.074; monotone transforms preserve
     ordering). Already our usage; state it once in the measurement docs.
 
+## Reasoning appendix (why each item earns its place — the threat it closes or the fork it decides)
+
+- **A1 (layer sweep).** Decides the central open fork of the whole program: genuine belief revision
+  (Sun-style discrete vertex jump: one C->W* crossing, C retained nowhere above it) vs compliance
+  overlay (C decodable mid-stack while W* appears only late/output). Every other instrument we have
+  brackets but does not enter the predicted decision band (~L22-27). Also directly tests Sun's
+  negative prediction that answer identity should NOT be readable below the band — our L19 AUROC
+  0.84 is already mild counter-evidence; the sweep settles whether that was leakage or refutation.
+  Field-mandated validity rider (Orgad non-transfer; ELK human-simulator; Farquhar prominent-feature):
+  run the Mallen gap-recovery protocol — train the probe on stated contexts only, evaluate at
+  pushback, report fraction-of-gap recovered, plus the masked-arm control (probe must NOT track the
+  asserted entity when the model cannot see it — else it reads context salience, not belief).
+- **A2 (restoration sweep).** Our sparse KOs failed in the DESTRUCTION direction; Sun's sparsity was
+  found in the RESTORATION direction (patch clean/neutral values in). Self-repair (Hydra) makes
+  destruction systematically under-read necessity, so the two directions genuinely measure different
+  things; running restoration on OUR realized readout either recovers their sparsity (=> our
+  no-sparse-subset result was a destruction artifact) or shows the conversational fold has no sparse
+  restoration point either (=> their sparsity is regime-specific). Either outcome is a result.
+- **A3 (head-write PCA).** Their geometry lives in a head's additive write, not raw residuals — we
+  never looked there. Generality test with teeth: their 4-vertex structure may be an artifact of a
+  4-option menu in-prompt; our open-recall setting has no menu, so vertex structure surviving here
+  would be strong evidence the code is answer-identity, not option-slot.
+- **A4 (rank-1 QK monitor).** If any head passes A2, this compresses it into a one-number monitor
+  (key-side score on the asserted answer's tokens) and a dosed lever. We add the missing floors:
+  random-direction control, suppression direction, and our direct==total arbiter — their +0.68 add
+  vs -0.04 suppress asymmetry is exactly the monitor-vs-lever ambiguity our machinery exists to cut.
+- **A5 (pattern-only patching).** Mechanism-class separator: Sun's mechanism is attention-PATTERN
+  routing; a compliance overlay is plausibly written through values/MLPs with patterns intact.
+  Freezing neutral patterns into the fold run (values free) at L20-27 blocks folding under their
+  picture and leaves it intact under the overlay picture. Middle rung our instruments skip: sparse
+  KO (failed) and total mask (information-theoretically forced) straddle it.
+- **A6 (padding control).** Convergent-instrument discipline (readout-swap invariance, our verifier
+  idiom applied to the mask): the attention mask and padding substitution remove the same
+  information by different mechanisms; agreement immunizes the Phase-2/3a floor anchors against
+  "mask-artifact" objections at near-zero cost.
+- **B7 (evidence-vs-social split).** The literature's named open gap and our sharpest
+  differentiation from Sun/knowledge-conflict work: no published mechanistic result tests whether a
+  bare social assertion recruits the retrieval/copy machinery that evidence passages do, or a
+  separate compliance/task channel. We already hold the correlational seed (source-agnostic doubt
+  recruitment at base); the -it realized version with per-channel head fingerprints would be new.
+- **B8 (plausibility dose-response).** Connects our causal plausibility gate (PART9 against-grain~0)
+  to the field's correlational gradient (ClashEval monotone curve). Also a family-quality upgrade:
+  formalizes the T1/T2/T3 tier intuition into a measured deviation axis, which the
+  content-category robustness split currently proxies crudely.
+- **B9 (conflict-signal read).** Cheap breadcrumb on data A1 already captures: does a
+  conflict-detectable direction (Zhao/Adarsh) exist in our mid-band, distinct from answer identity?
+  If yes, it is the natural candidate for the "plausibility gate" input — report-only until it
+  survives its own probe-validity gauntlet.
+- **C10 (k-sample consistency).** Closes the reviewer's knowledge-control objection with the
+  field's own ground-truth definition (Kadavath P(IK)); greedy-pass screening provably masks split
+  internal states (Gekhman: answers known internally never emitted; a 60/40 split looks like
+  knowledge under greedy). Also upgrades conf_proxy: margin and consistency disagreeing flags items
+  where the margin is sharp but unstable — exactly the items where fold should be cheapest.
+- **C11 (few-shot P(True)).** Near-free secondary check with decent published discrimination
+  (few-shot only; zero-shot is ~chance). Belt-and-braces against consistency's known blind spot:
+  consistently-held misconceptions sail through sampling; P(True) sometimes catches them.
+- **C12 (high-confidence arm).** Our confidence-gating null is registered only within the near-tie
+  regime; the field now has both directions on record (stated confidence protects nothing — Sharma;
+  internal confidence tracks flips — Firm-or-Fickle, PARROT, Yang&Jia). Margin-stratified fold-rates
+  on the realized readout close our owed arm and adjudicate for our substrate.
+- **C13 (reporting hygiene).** Zero-cost inoculation: absolute post-training probabilities are
+  sharpened artifacts; margin-as-rank survives every monotone recalibration. One sentence in the
+  measurement docs prevents a class of review objections.
+
+## Implementation sketch — cheap tier (NOT yet implemented; sequenced AFTER Phase-3b lands)
+
+One rider control + offline analysis + doc edits. No frozen pre-registration is touched; the rider
+is additive instrumentation on the frozen 74.
+
+1. `controls/foldlisten_phase3c_riders.py` (single new file, repo idiom: claim-blind authored from a
+   spec, dual-lens reviewed, model-free --selftest, GPU behind --run):
+   - CAPTURE: all-layer resid_post at the elicit-slot last prompt token for fold_nomask /
+     listen_nomask / neutral arms on all 74 (serves A1 layer sweep + B9 conflict read). Also
+     capture stated-answer contexts (probe training domain) per think_probe recipe.
+   - C10: k=10 unpressured T=1 samples per item, scored commit_prog_v2 -> per-item consistency
+     column (+ per-item margin-vs-consistency disagreement flag).
+   - C11: few-shot P(True) pass per item (one forward each + fixed few-shot prefix).
+   - A6: fold arm with challenge span replaced by length-matched padding tokens (Gemma pad token,
+     else mean-embedding expansion token), vs the committed mask floor.
+   - Outputs: one summary JSON (thresholds/decision_rule embedded; all report-only except A6 which
+     gets a convergence check vs the mask floor) + one npz of captures.
+   - Cost estimate: 74 x (10 samples x 2 gens + 1 padding arm x 2 gens) + ~300 capture/P(True)
+     forwards ~= 1.7k generations ~ 1.5-2.5h single A100 ~ $4-6.
+2. Offline (CPU, no GPU): per-layer diff-of-means probe refit on the captured npz; Mallen
+   gap-recovery transfer eval (train stated, test pushback); per-trial crossing-depth profile
+   (the A1 discriminator); B9 conflict-direction check on the same captures. Pure-python analysis
+   script with selftest, same review path.
+3. Doc edits only: C13 sentence in the measurement docs; D vocabulary (progressive/regressive
+   mapping) in RESULTS_FOLDLISTEN.md; Yang&Jia added to the priority-read list of
+   RESEARCH_QUESTIONS.md.
+4. Sequencing rationale: 3b's THINK/SAY output may already answer part of A1 at L19; the rider's
+   capture is designed to be decisive regardless of which way 3b lands, but its ANALYSIS spec
+   (which crossing pattern maps to which verdict) should be frozen before reading 3b's numbers —
+   author the rider spec claim-blind to 3b's outcome, same discipline as 3b-before-3a.
+
 ## D. Priority neighbours to cite / differentiate
 
 - **Yang & Jia, arXiv:2505.16170** — internal "belief" probe predicts retraction AND steering the
