@@ -308,7 +308,7 @@ def read_p2(path):
 
 
 # --------------------------------------------------------------------------- run (torch / TL ONLY here)
-def run(family, name, tag, device, is_chat, n, p2_summary):
+def run(family, name, tag, device, is_chat, n, p2_summary, wb_lo=None, wb_hi=None):
     import torch
     from transformer_lens import HookedTransformer
     from job_truthful_flip import PUSH, NEUTRAL
@@ -328,7 +328,14 @@ def run(family, name, tag, device, is_chat, n, p2_summary):
     model.eval()
     tok = model.tokenizer
     nL, nH, d_model = model.cfg.n_layers, model.cfg.n_heads, model.cfg.d_model
-    band = [L for L in WRITE_BAND if L < nL]
+    # Scale-transport: default = 9b's frozen WRITE_BAND L28-37 (UNCHANGED at 9b). For 2b/27b pass an
+    # explicit band via --write-band-lo/--write-band-hi = the relative-depth analogue of L28-37 (fracs
+    # ~[0.667, 0.905] of n_layers: 2b nL=26 -> L17-23, 27b nL=46 -> L31-41). The fixed L28-37 does NOT
+    # transport: it is EMPTY at 2b (all >= nL=26) and mid-stack (not the late third) at 27b.
+    write_band = tuple(range(wb_lo, wb_hi)) if (wb_lo is not None and wb_hi is not None) else WRITE_BAND
+    band = [L for L in write_band if L < nL]
+    print(f"[band] write_band={list(write_band)} -> clipped-to-nL={band} (nL={nL})", flush=True)
+    assert band, f"write band empty at nL={nL}: pass --write-band-lo/--write-band-hi for this scale"
     raw, single, push, first, num_lp = _helpers(model, device, is_chat)
     W_U = model.W_U
 
@@ -875,8 +882,14 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda", choices=["cpu", "cuda"])
     ap.add_argument("--chat", action="store_true")
     ap.add_argument("--n", type=int, default=0, help="cap items (0 = all; smoke only)")
+    ap.add_argument("--write-band-lo", dest="wb_lo", type=int, default=None,
+                    help="explicit write-band lower layer, inclusive (default = frozen 9b L28-37). "
+                         "Scale-transport relative-depth analogue: 2b->17, 27b->31.")
+    ap.add_argument("--write-band-hi", dest="wb_hi", type=int, default=None,
+                    help="explicit write-band upper layer, EXCLUSIVE (default = frozen 9b L28-37). "
+                         "Scale-transport relative-depth analogue: 2b->24, 27b->42.")
     a = ap.parse_args()
     if a.run and not a.selftest:
-        run(a.family, a.name, a.tag, a.device, a.chat, a.n, a.p2_summary)
+        run(a.family, a.name, a.tag, a.device, a.chat, a.n, a.p2_summary, a.wb_lo, a.wb_hi)
     else:
         selftest()

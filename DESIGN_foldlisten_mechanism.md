@@ -235,6 +235,33 @@ is cheap confirmation, not a new instrument). Confirm the three verifier invaria
 decorrelated, confidence-controlled, content-gated family. Report one of: LEVER / TWO DIALS / MONITOR AGAIN /
 DISTRIBUTED NULL — all publishable under the honest-null idiom.
 
+### Phase 4 scale-transport pre-registration (2026-07-05, frozen BEFORE the 2b/27b runs)
+
+Phase 3 at 9b resolved **MONITOR_AGAIN** (no single causal lever; claim 10) — so Phase 4 transports the
+DECISION machinery + the (offline, now-VALID) in-domain THINK read, not a confirmed handle. Per-scale
+on-box pipeline: `foldlisten_phase3a` (re-derive the write-SET at scale) → `foldlisten_phase3b`
+(necessity + arbiter + backup on EVAL half, `--stage greedy`; `--stage all` sampled is infeasible, as
+at 9b) → `foldlisten_phase3c_riders` (capture neutral/fold/listen/mask elicit-slot residuals). Then
+OFFLINE locally: `foldlisten_phase4_indomain_probe` on the fetched captures.
+
+- **Write-band transport rule (frozen).** 9b's frozen write band is L28-37 = relative depth
+  [28/42, 38/42] ≈ [0.667, 0.905] of `n_layers`. The scale analogue uses the SAME relative span,
+  passed to phase3a as explicit `--write-band-lo/--write-band-hi` (9b unchanged; the fixed L28-37 is
+  EMPTY at 2b and mid-stack at 27b, so it must not be used raw): **2b (nL=26) → L17-23**
+  (`--write-band-lo 17 --write-band-hi 24`); **27b (nL=46) → L31-41** (`--write-band-lo 31
+  --write-band-hi 42`). The effective clipped band is persisted in the phase3a handles JSON for
+  grounding. This matches Sun-2026's relative-depth heuristic and is the fair-transport analogue.
+- **Family (frozen).** The frozen `mechanism_family_9bit.json` (74) is transported as-is; the per-scale
+  fold-faithful subset emerges from the run (phase3b evaluates realized-fold items, commit=='wrong').
+  Rates on this family stay CONDITIONAL (cave-enriched by 9b selection) — no population claim; the
+  transport question is the VERDICT (does MONITOR + the mid-stack state-change read replicate), not a rate.
+- **Transport decision.** MONITOR_AGAIN replicates iff, at ≥ 2 scales, the write-SET resample-ablation
+  flips ≈ 0 realized answers (necessity at floor) AND no direct==total lever emerges (same phase3b rule,
+  thresholds as fractions of that scale's EVAL n). The in-domain probe (Addendum 8) is re-run per scale:
+  does PROBE_VALID + the mid-stack committed-state read (fold-W\*-by-mid-band; listen crossing) hold.
+- **Judge caveat carried:** 2b behavioural scoring is commit-only faithful (self-judge demoted, v2);
+  the phase3b/riders scorer is model-independent string matching, so this transports.
+
 ## 4. Requirements per phase, resolved conflicts, and open decisions
 
 Confounds to pre-empt (all phases): -it chat = compliance/instruction-following vs plausibility — control by varying
