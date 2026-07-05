@@ -4,6 +4,40 @@
 > Companion: `docs/NOTE_sun2026_prompt_metric_comparison.md`. For the live thread to triage into
 > Phase 3b scoring / Phase 4 design. Nothing here mutates a frozen pre-registration; items are
 > candidate ADDITIONS, each marked [phase / cost].
+>
+> **LABEL-COLLISION WARNING.** This note's item IDs (A1–A6, B7–B9, C10–C13) are a SEPARATE namespace
+> from the phase3a-addendum's A1/A2/A3 (owed-patch labels in `RESULTS_FOLDLISTEN.md` Addendum 5). They
+> are NOT the same objects — e.g. this note's A1 = THINK layer sweep; Addendum-5 A1 = 5-turn prefix
+> assert. Read the ID in context.
+
+## STATUS LEDGER (updated 2026-07-05, post-Phase-3c) — the authoritative done/outstanding record
+
+Phase 3c riders (`results_foldlisten_p3c/`, Addendum 7) ported the cheap tier. Current status:
+
+- **PORTED + banked:** A1 (THINK layer sweep → PROBE_INVALID_FOR_PUSHBACK, domain gap), A6 (padding
+  control → CONVERGENT_INSTRUMENTS), C10 (consistency → 77% ≥0.8, 10 soft), C11 (P(True) → Spearman
+  0.37), C13 (reporting hygiene → caveat committed), SycEval vocabulary (caveat committed).
+- **CAPTURED but NOT pursued:** B9 (conflict breadcrumb) — the analysis emitted it (min |cosine| @L14
+  + low-band, report-only) but it was never interpreted or turned into a claim. Cheapest remaining item;
+  computable offline on the existing `phase3c_captures_p3c_9bit.npz`.
+- **NOT ported — all [Phase-4] scope, by design (Phase 4 is an untaken CHOICE):**
+  - A2 Restoration sweep R(c) [4] — neutral→fold single-component patch, realized readout; the
+    destruction/restoration asymmetry test. Needs a GPU run.
+  - A3 head-write-delta PCA / tetrahedron generality [4] — **TAG CORRECTION: NOT "cheap on stored
+    data".** phase3c captured `hook_resid_post` (full stream), NOT per-head additive writes
+    (`hook_result` / z·W_O), so A3 is NOT doable on the current npz; it needs a fresh head-resolved
+    capture. The original "cheap on stored data" tag was wrong.
+  - A4 rank-1 QK monitor + dosed lever [4] — gated on A2 producing candidate heads first.
+  - A5 attention-pattern-only patching at L20–27 [4] — routing-vs-value middle rung. Needs a GPU run.
+  - B7 evidence-vs-social channel split [4] — the lit's named open gap + our sharpest differentiation
+    from Sun. Needs a run + curation.
+  - B8 plausibility dose-response [4] — ClashEval graded-deviation curve; currently only crudely
+    proxied by the T1/T2/T3 tiers.
+  - C12 high-confidence arm [4] — margin-stratified fold-rates outside the near-tie regime; the owed
+    confidence-gating arm.
+- **FLAGGED only (not executed):** Yang & Jia arXiv:2505.16170 (priority-read in `RESEARCH_QUESTIONS.md`,
+  not yet read/verified against our monitor-trap standards); Sun's relative-depth heuristic (a Phase-4
+  scale-transport check, not run).
 
 ## A. Instruments lifted from Sun et al. 2026 (arXiv:2605.09314)
 
