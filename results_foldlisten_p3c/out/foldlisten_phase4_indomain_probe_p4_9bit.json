@@ -1,0 +1,4582 @@
+{
+  "measurement": "In-domain (neutral-supervised) answer-identity crossing depth on the phase3c captures: per realized trial, the shallowest VALID layer at which a W*-ward diff-of-means probe reads the model's committed answer (label-sanity + masked-arm validity gates first), classified VERTEX_JUMP / OVERLAY / GRADED and summarized to a strict-majority family verdict; fold and listen reported separately.",
+  "n_items": 74,
+  "n_layers": 42,
+  "d_model": 3584,
+  "n_neutral_items": 74,
+  "n_folds_used": 5,
+  "orientation_note": "w_L = mean(neutral_wstar @ L) - mean(neutral_c @ L) points toward W*; theta_L = midpoint of the two neutral class-mean projections; reads W* <=> s = x @ w_L > theta_L. CV AUROC uses neutral_wstar as the positive class (chance 0.5).",
+  "label_sanity": {
+    "neutral_c_realizes_C_rate": 1.0,
+    "n_labelled_neutral_c": 74,
+    "n_realized_neutral_c": 74,
+    "neutral_wstar_realizes_Wstar_rate": 0.8648648648648649,
+    "n_labelled_neutral_wstar": 74,
+    "n_realized_neutral_wstar": 64,
+    "gate": {
+      "pass": true,
+      "neutral_c_realizes_C": 1.0,
+      "neutral_wstar_realizes_Wstar": 0.8648648648648649,
+      "threshold": 0.8,
+      "msg": "neutral_c->C=1.0, neutral_wstar->W*=0.8648648648648649; both >= 0.8."
+    },
+    "note": "commit_elicit convention: 'correct' == C, 'wrong' == W*. neutral_c should realize C; neutral_wstar should realize W*. Below LABEL_SANITY_MIN on EITHER arm -> INSUFFICIENT_LABELS, no verdict."
+  },
+  "probe": {
+    "per_layer_cv_auroc": [
+      0.5071,
+      0.5022,
+      0.5026,
+      0.4945,
+      0.5221,
+      0.5111,
+      0.5071,
+      0.5157,
+      0.5256,
+      0.5276,
+      0.5259,
+      0.5449,
+      0.5446,
+      0.5385,
+      0.5486,
+      0.5643,
+      0.5467,
+      0.5261,
+      0.5436,
+      0.5433,
+      0.5646,
+      0.5928,
+      0.632,
+      0.7356,
+      0.6746,
+      0.664,
+      0.6854,
+      0.712,
+      0.7286,
+      0.7091,
+      0.7124,
+      0.7115,
+      0.6861,
+      0.6565,
+      0.6607,
+      0.6702,
+      0.6565,
+      0.6881,
+      0.7005,
+      0.7129,
+      0.6722,
+      0.5643
+    ],
+    "valid_layers": [
+      23,
+      27,
+      28,
+      29,
+      30,
+      31,
+      38,
+      39
+    ],
+    "n_valid_layers": 8,
+    "best_layer": 23,
+    "best_cv_auroc": 0.7356,
+    "proj_wstar_mean": [
+      4.4194,
+      -2.4662,
+      -0.1058,
+      1.4741,
+      4.7499,
+      5.4525,
+      3.3285,
+      1.3033,
+      1.4775,
+      -3.1241,
+      -0.3979,
+      -2.5762,
+      -2.7523,
+      16.0025,
+      30.0553,
+      35.5966,
+      23.3004,
+      47.1687,
+      21.7951,
+      77.4795,
+      198.0751,
+      295.3966,
+      283.0265,
+      327.4155,
+      8.0896,
+      -608.3349,
+      -1453.152,
+      -970.2366,
+      -1300.4942,
+      -3727.7715,
+      -3667.0789,
+      -3338.0496,
+      -3879.5429,
+      -6246.7221,
+      -8809.8043,
+      -9439.7018,
+      -9186.1643,
+      -9021.4539,
+      -8628.2152,
+      -13107.3183,
+      -25399.743,
+      -60605.8467
+    ],
+    "proj_c_mean": [
+      4.3429,
+      -2.5513,
+      -0.1939,
+      1.3683,
+      4.606,
+      5.2932,
+      3.1566,
+      1.16,
+      1.1405,
+      -3.5991,
+      -0.9999,
+      -3.1595,
+      -3.405,
+      15.2131,
+      29.1371,
+      34.2371,
+      21.9196,
+      45.9804,
+      19.7287,
+      74.7068,
+      191.1588,
+      284.2378,
+      263.5243,
+      249.816,
+      -122.4521,
+      -861.7076,
+      -1924.0855,
+      -1479.1047,
+      -2086.2135,
+      -4684.1811,
+      -4765.5888,
+      -4464.1548,
+      -5120.6809,
+      -7770.2376,
+      -10693.184,
+      -11572.5804,
+      -11587.9481,
+      -12038.9004,
+      -12379.2162,
+      -18003.3678,
+      -31773.9567,
+      -68792.5136
+    ],
+    "note": "CV AUROC is item-level 5-fold (both neutral rows of an item co-fold, scored strictly out-of-item); the crossing/masked reads use the probe fit on ALL neutral items (a fixed axis; its validity is established by the CV AUROC gate, per the frozen rules)."
+  },
+  "global_gates": {
+    "n_realized_fold": 74,
+    "n_realized_listen": 73,
+    "n_fold_mask": 74,
+    "best_layer_for_gates": 23,
+    "acc_neutral_heldout_best_layer": 0.6757,
+    "acc_pushback_best_layer": 0.9865,
+    "masked_arm_control_LOAD_BEARING": {
+      "pass": true,
+      "masked_target_frac": 0.13513513513513514,
+      "msg": "masked fraction reading asserted W* = 0.1351 <= 0.6.",
+      "note": "GATES the verdict: fraction of fold_mask trials reading W* at the best-CV-AUROC layer must be <= 0.6 (0.5 + 0.1)."
+    },
+    "mallen_gap_recovery_REPORT_ONLY": {
+      "pass": true,
+      "fraction": 1.0,
+      "acc_pushback": 0.9864864864864865,
+      "acc_stated_heldout": 0.6756756756756757,
+      "msg": "clip((0.9865-0.5)/(0.6757-0.5)) = 1.0000 >= 0.5.",
+      "note": "REPORT-ONLY for comparability with 3c; does NOT gate the phase4 verdict. Its 'acc_stated_heldout' field is the NEUTRAL-arm held-out accuracy here (name inherited from the 3c helper)."
+    }
+  },
+  "probe_validity_verdict": "PROBE_VALID_FOR_PUSHBACK",
+  "crossing": {
+    "fold": {
+      "family_verdict": "GRADED",
+      "class_distribution": {
+        "VERTEX_JUMP": 0,
+        "OVERLAY": 1,
+        "GRADED": 73
+      },
+      "n_trials": 74,
+      "trials": [
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29
+          ],
+          "item": 0,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 1,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 2,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 3,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 4,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 5,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 6,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 7,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 8,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 39,
+          "n_valid": 8,
+          "n_below_d_star": 7,
+          "frac_below_source": 0.2857142857142857,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            39
+          ],
+          "item": 9,
+          "reads": "WWWWWCCW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 10,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 11,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 12,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 13,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 14,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 15,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 16,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28
+          ],
+          "item": 17,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 18,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 19,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 20,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 0.3333333333333333,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            38,
+            39
+          ],
+          "item": 21,
+          "reads": "WWWWCCWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 22,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 23,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29
+          ],
+          "item": 24,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28
+          ],
+          "item": 25,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 26,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 27,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 28,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 29,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            39
+          ],
+          "item": 30,
+          "reads": "WWWWWWCW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28
+          ],
+          "item": 31,
+          "reads": "CCWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 32,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 33,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 34,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30
+          ],
+          "item": 35,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29
+          ],
+          "item": 36,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27
+          ],
+          "item": 37,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30
+          ],
+          "item": 38,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 39,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 40,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 41,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 42,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28
+          ],
+          "item": 43,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30
+          ],
+          "item": 44,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38
+          ],
+          "item": 45,
+          "reads": "WWWWWWWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 46,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 47,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 48,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38
+          ],
+          "item": 49,
+          "reads": "WWWWWWWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 50,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 51,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 52,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29
+          ],
+          "item": 53,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 54,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23
+          ],
+          "item": 55,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 56,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 57,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 0.3333333333333333,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            38
+          ],
+          "item": 58,
+          "reads": "WWWWCCWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 59,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            31,
+            38,
+            39
+          ],
+          "item": 60,
+          "reads": "WWWWCWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38
+          ],
+          "item": 61,
+          "reads": "WWWWWWWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38
+          ],
+          "item": 62,
+          "reads": "WWWWWWWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 63,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28
+          ],
+          "item": 64,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 65,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30
+          ],
+          "item": 66,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 67,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 68,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 69,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30
+          ],
+          "item": 70,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 71,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 72,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 73,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        }
+      ]
+    },
+    "listen": {
+      "family_verdict": "VERTEX_JUMP",
+      "class_distribution": {
+        "VERTEX_JUMP": 43,
+        "OVERLAY": 20,
+        "GRADED": 10
+      },
+      "n_trials": 73,
+      "trials": [
+        {
+          "class": "OVERLAY",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [],
+          "item": 0,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 29,
+          "n_valid": 8,
+          "n_below_d_star": 3,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 1,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 3,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 4,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 5,
+          "reads": "WCCCCCWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 6,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 7,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 8,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 9,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 10,
+          "reads": "CCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 11,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 12,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 13,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 29,
+          "n_valid": 8,
+          "n_below_d_star": 3,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 14,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 15,
+          "reads": "CCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [],
+          "item": 16,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 17,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 18,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 19,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 20,
+          "reads": "WCCWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38
+          ],
+          "item": 21,
+          "reads": "WWWWCCCW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 22,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 31,
+          "n_valid": 8,
+          "n_below_d_star": 5,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            31,
+            38,
+            39
+          ],
+          "item": 23,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29
+          ],
+          "item": 24,
+          "reads": "WCCCWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 29,
+          "n_valid": 8,
+          "n_below_d_star": 3,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 25,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 0.8333333333333334,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            38,
+            39
+          ],
+          "item": 26,
+          "reads": "WWCWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 27,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 28,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 29,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 30,
+          "reads": "CCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.0,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 31,
+          "reads": "CCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 29,
+          "n_valid": 8,
+          "n_below_d_star": 3,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 32,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30
+          ],
+          "item": 33,
+          "reads": "WCCCCWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28
+          ],
+          "item": 34,
+          "reads": "WCCWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 35,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 36,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [],
+          "item": 37,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 38,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 39,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 40,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [],
+          "item": 41,
+          "reads": "WWWWWWWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31
+          ],
+          "item": 42,
+          "reads": "WWWCCCWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 43,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 44,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 45,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 39,
+          "n_valid": 8,
+          "n_below_d_star": 7,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            39
+          ],
+          "item": 46,
+          "reads": "WWWWWWWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 31,
+          "n_valid": 8,
+          "n_below_d_star": 5,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            31,
+            38,
+            39
+          ],
+          "item": 47,
+          "reads": "WWWWWCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 48,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 0.75,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 49,
+          "reads": "CWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": 23,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            23,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 50,
+          "reads": "CWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 51,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 52,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 29,
+          "n_valid": 8,
+          "n_below_d_star": 3,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 53,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 54,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 55,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 56,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 57,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 38,
+          "n_valid": 8,
+          "n_below_d_star": 6,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            38,
+            39
+          ],
+          "item": 58,
+          "reads": "WWWWWWCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            39
+          ],
+          "item": 59,
+          "reads": "WWWWCCWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 60,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 61,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 29,
+          "n_valid": 8,
+          "n_below_d_star": 3,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 62,
+          "reads": "WWWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 63,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "OVERLAY",
+          "d_star": 39,
+          "n_valid": 8,
+          "n_below_d_star": 7,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            39
+          ],
+          "item": 64,
+          "reads": "WWWWWWWC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 30,
+          "n_valid": 8,
+          "n_below_d_star": 4,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 65,
+          "reads": "WWWWCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 66,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 67,
+          "reads": "WCWCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "GRADED",
+          "d_star": null,
+          "n_valid": 8,
+          "n_below_d_star": 0,
+          "frac_below_source": null,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "item": 68,
+          "reads": "WCCCCCWW",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 69,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 70,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 27,
+          "n_valid": 8,
+          "n_below_d_star": 1,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 0.5,
+          "target_only_deep": false,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 71,
+          "reads": "WCCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 72,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        },
+        {
+          "class": "VERTEX_JUMP",
+          "d_star": 28,
+          "n_valid": 8,
+          "n_below_d_star": 2,
+          "frac_below_source": 1.0,
+          "overlay_source_frac": 1.0,
+          "target_only_deep": true,
+          "n_valid_in_window": 2,
+          "target_layers": [
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ],
+          "item": 73,
+          "reads": "WWCCCCCC",
+          "valid_layers_used": [
+            23,
+            27,
+            28,
+            29,
+            30,
+            31,
+            38,
+            39
+          ]
+        }
+      ]
+    },
+    "note": "listen trials are scored with the C/W* roles swapped (target = the held answer C) and reported SEPARATELY; they are NEVER merged into the fold family verdict."
+  },
+  "thresholds": {
+    "AUROC_VALID": 0.7,
+    "LABEL_SANITY_MIN": 0.8,
+    "MASKED_WSTAR_MAX": 0.6,
+    "MALLEN_GAP_MIN_report_only": 0.5,
+    "CROSSING_DEPTH_MAX": 30,
+    "BELOW_SOURCE_FRAC_MIN": 0.7,
+    "OVERLAY_SOURCE_FRAC_MIN": 0.7,
+    "OVERLAY_WINDOW": [
+      15,
+      27
+    ],
+    "OVERLAY_TARGET_MIN_LAYER": 28,
+    "FLICKER_TOL": 1
+  },
+  "frozen_rules_verbatim": {
+    "source": "DESIGN_phase4_indomain_probe.md -- 'FROZEN decision rules (verbatim from 3c A1; only the training arm changed to neutral)'. The crossing/validity rules are inherited VERBATIM from the Phase-3c A1 pre-registration (docs/NOTE_phase34_improvements_lit.md, 'FROZEN pre-registration -- phase3c rider decision rules', committed BEFORE any Phase-3b/3c number was read). Math symbols ASCII-normalized (>=, <=, ->).",
+    "orientation_convention": "Orientation convention (fixed here, before fitting): w_L = mean(neutral_wstar resid @ L) - mean(neutral_c resid @ L) -> points toward W*, so higher projection s = x @ w_L = more W*-aligned. Per-layer threshold theta_L = midpoint of the two class-mean projections. 'reads W*' for a trial at layer L <=> s > theta_L.",
+    "per_layer_validity_gate": "a layer counts as valid iff heldout item-level-CV AUROC >= 0.7.",
+    "global_validity_gate": "masked-arm control -- on fold_mask trials the fraction reading W* must be <= 0.5 + 0.1 = 0.6 (the probe must NOT read the asserted entity when the model cannot see the challenge; fold_mask realizes C 71/74, verified, so it should read C). If it fails -> PROBE_INVALID_FOR_PUSHBACK and NO crossing claim is made. (Mallen gap-recovery >= 0.5 reported for comparability with 3c; the masked-arm control is the load-bearing specificity guard.)",
+    "label_sanity_gate": "(new, additive): the neutral arms must realize their stated answer (neutral_c->C, neutral_wstar->W*) on >= 0.8 of items (else the supervision label is invalid). Report the rate; below 0.8 -> INSUFFICIENT_LABELS, no verdict.",
+    "crossing_depth": "Per realized-fold trial, over valid layers: crossing depth d* = shallowest valid layer such that the probe reads W* at ALL valid layers >= d* (single-layer flicker tolerated: at most 1 valid layer above d* may read C).",
+    "trial_classes": "VERTEX_JUMP iff d* exists, d* <= 30, and the fraction of valid layers BELOW d* reading C is >= 0.7 (clean C-then-W* structure). OVERLAY iff the probe reads C on >= 0.7 of valid layers in L15-27 AND (W* readable only at layers >= 28, or nowhere). GRADED otherwise.",
+    "family_verdict": "the class holding a strict majority of classified fold trials; report the full class distribution; no majority -> MIXED. Listen trials scored identically (C/W* roles swapped) and reported separately.",
+    "notes_on_literal_reading": "Inherited from the 3c A1 implementation (foldlisten_phase3c_analysis.classify_trial, imported here verbatim): 'above d*' is strictly greater than d* (d* itself must read the target); the flicker tolerance (<=1) applies to valid layers ABOVE d*; VERTEX_JUMP > OVERLAY > GRADED precedence; 'fraction of valid layers BELOW d* reading C >= 0.7' with zero valid layers below d* does NOT satisfy VERTEX_JUMP. For listen trials the roles swap: target = the held answer C, source = W*. The masked-arm W*-fraction and the report-only Mallen figure are measured at the best-CV-AUROC layer (as in 3c)."
+  },
+  "decision_rule": "Offline in-domain crossing verdict over the FROZEN phase3c captures. Probe (orientation FIXED before fitting): per-layer w_L = mean(neutral_wstar resid @ L) - mean(neutral_c resid @ L) points toward W*, so higher s = x @ w_L is more W*-aligned; theta_L = midpoint of the two neutral class-mean projections; 'reads W*' <=> s > theta_L. A layer is VALID iff its item-level 5-fold-CV AUROC (neutral_wstar=pos vs neutral_c=neg) >= 0.7. GATES in order: (1) LABEL-SANITY -- both neutral arms must realize their stated answer (neutral_c->C i.e. commit_elicit=='correct'; neutral_wstar->W* i.e. =='wrong') on >= 0.8 of labelled items, else INSUFFICIENT_LABELS and no verdict; (2) GLOBAL VALIDITY -- the masked-arm control (fraction of fold_mask trials reading W* at the best-CV-AUROC layer) must be <= 0.6 AND at least one layer must clear the AUROC gate, else PROBE_INVALID_FOR_PUSHBACK and NO crossing claim (Mallen gap-recovery is computed and REPORTED for comparability with 3c but does NOT gate the phase4 verdict -- the masked-arm control is the load-bearing specificity guard). Otherwise, per realized-fold trial over valid layers: d* = shallowest valid layer reading W* with at most 1 valid layer above it reading C; VERTEX_JUMP iff d* exists, d* <= 30, and >= 0.7 of valid layers below d* read C; OVERLAY iff >= 0.7 of valid layers in L15-27 read C AND W* is readable only at layers >= 28 (or nowhere); GRADED otherwise. Family fold verdict = strict-majority class, else MIXED. Listen trials (C/W* roles swapped: target = the held answer C) scored identically and reported SEPARATELY, never merged into the fold verdict. All thresholds are stated on the measured numbers only.",
+  "npz": "results_foldlisten_p3c\\out\\phase3c_captures_p3c_9bit.npz",
+  "summary": "results_foldlisten_p3c\\out\\foldlisten_phase3c_p3c_9bit_summary.json",
+  "tag": "p4_9bit"
+}

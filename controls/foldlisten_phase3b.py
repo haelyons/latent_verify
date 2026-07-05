@@ -1065,8 +1065,8 @@ def run(family, name, tag, device, is_chat, n, handles_json, p2_summary, stage):
                                                         "commit_elicit": r["commit_elicit"]})
         records.append(rr)
 
-    arb = {"wf_to_l": {"direct": [], "total": [], "bkb": [], "bka": []},
-           "wl_to_f": {"direct": [], "total": [], "bkb": [], "bka": []}}
+    arb = {"wf_to_l": {"direct": [], "total": [], "bkb": [], "bka": [], "item_idx": []},
+           "wl_to_f": {"direct": [], "total": [], "bkb": [], "bka": [], "item_idx": []}}
     think_events = {c: {"say": [], "sxt": []} for c in ("fold", "listen", "wf_to_l", "wl_to_f",
                                                         "rf_to_l", "rl_to_f")}
     baseline_class = {"fold": {}, "listen": {}}
@@ -1152,6 +1152,7 @@ def run(family, name, tag, device, is_chat, n, handles_json, p2_summary, stage):
                     af = arbiter_forward(base_eids, Hdev, comps_e, t_p, t_s)
                     arb[arm]["direct"].append(af["direct"]); arb[arm]["total"].append(af["total"])
                     arb[arm]["bkb"].append(af["backup_base_proj"]); arb[arm]["bka"].append(af["backup_abl_proj"])
+                    arb[arm]["item_idx"].append(gi)
             for seed in range(N_RAND_SEEDS):
                 rdirs = random_unit_dirs(len(band), d_model, seed)
                 rdev = [torch.tensor(rdirs[bi], dtype=torch.float32, device=device) for bi in band_idx]
@@ -1226,6 +1227,10 @@ def run(family, name, tag, device, is_chat, n, handles_json, p2_summary, stage):
                               "write_fold": rw_fold, "write_listen": rw_listen},
             "cross_read": gcross_read, "cross_write": gcross_write, "write_drops": gwrite_drops,
             "arbiter_aggregate": arbiter_agg, "arbiter_per_cell": per_cell_arb,
+            "arbiter_per_item": {a: {"item_idx": arb[a]["item_idx"], "direct": arb[a]["direct"],
+                                     "total": arb[a]["total"], "backup_base_proj": arb[a]["bkb"],
+                                     "backup_abl_proj": arb[a]["bka"]}
+                                 for a in ("wf_to_l", "wl_to_f")},
             "backup": backup_cells, "backup_restores": backup_flag, "n_span_unstable": n_unstable}
         # bank the greedy stage before the multi-hour sampled stage (a sampled-stage crash/timeout must not
         # discard the decided verdict); the final summary supersedes this checkpoint on a clean finish

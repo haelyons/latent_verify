@@ -92,10 +92,19 @@ Standing NULLs (each arbiter- or power-confirmed):
     IS grounded — all 24 arm rates reproduce and wf→l/wl→f generations are character-identical to baseline
     (ablation flips 0/37), and that leg ALONE forces MONITOR. The arbiter (SIGN_DISAGREE) + backup (315×,
     fragile near-zero denom) + probe AUROC 0.755 are UNAUDITABLE (per-item values not persisted) and
-    corroborating-only — verdict does not rest on them. Reproduces across two greedy runs. THINK/SAY is
-    NOT usable: `think_flip` perfectly collinear with the arm label (no independent signal) → belief-vs-
-    compliance UNANSWERED. Instrument debt (H4): persist per-item arbiter/backup + break arm↔direction
-    collinearity in the THINK design; both OWED-NON-DECISIVE.
+    corroborating-only — verdict does not rest on them. Reproduces across two greedy runs. THINK/SAY was
+    NOT usable at 3b (`think_flip` collinear with the arm) → belief-vs-compliance was UNANSWERED.
+    **PARTLY RESOLVED (2026-07-05, Phase-4 offline, `RESULTS_FOLDLISTEN.md` Addendum 8):** a VALID
+    in-domain THINK probe (neutral-arm-supervised, 5-turn, breaks the collinearity — the literal
+    realized-label spec is degenerate at greedy: fold 74/74 W\*, listen 73/74 C) PASSES the masked-arm
+    guard the 3c stated-probe failed (masked W\*-frac 0.135) and reads the committed answer mid-stack
+    (best L23, Sun's band). Fold reads the caved W\* by L23 (REFUTES late output-only overlay;
+    discrete vertex-jump depth unresolved, below probe floor); listen shows a mid-stack W\*→C revision
+    crossing. → adoption leans **MID-STACK STATE-CHANGE, not compliance overlay** (compatible with the
+    distributed MONITOR — a monitor can carry a real mid-stack state). Instrument debt (H4): per-item
+    arbiter/backup persistence LANDED in `controls/foldlisten_phase3b.py`; arm↔direction collinearity
+    broken via neutral-supervision. Still owed at scale: a realized-label in-domain probe (needs
+    sampled per-sample captures = GPU) at 2b/27b.
 
 Direction-level, NOT a circuit (framing-corrected):
 
@@ -259,6 +268,27 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 ## Handoff seed (latest — overwrite this each session)
 
 > /karpathy-guidelines
+>
+> CURRENT (2026-07-05, this session): headline STANDS + grounded — distributed MONITOR at 9b-it, no
+> single causal lever for caving (§10, claim 10). Two advances this session, both $0 / no-GPU: (1) **Yang &
+> Jia arXiv:2505.16170 READ + VERIFIED** (2 convergent claim-blind reads) — COMPATIBLE-not-contradicting
+> (spontaneous self-retraction, not pushback; Llama/Qwen/Olmo not Gemma; their lever fails our G1/G3), so
+> no borrowed lever for our regime. (2) **Phase-4 offline prereqs landed:** P1 `lambda_run.sh` trap fix
+> (local Ctrl-C no longer tears down a detached run once the backstop is CONFIRMED armed; a reviewer-caught
+> orphan bug was fixed), P2 per-item arbiter/backup persistence in `foldlisten_phase3b.py` (additive,
+> verdict byte-identical), P3 the **in-domain THINK probe (`controls/foldlisten_phase4_indomain_probe.py`,
+> pre-reg `DESIGN_phase4_indomain_probe.md`) is PROBE_VALID_FOR_PUSHBACK** and H3-grounded → belief-vs-
+> compliance moves from OPEN to **LEANS MID-STACK STATE-CHANGE, not output overlay** (fold reads the caved
+> W\* by L23 = refutes late overlay, discrete-jump depth unresolved below probe floor; listen shows a
+> mid-stack W\*→C revision crossing; best L23 = Sun's L22-27 band). Neutral-arm-supervised because the
+> literal realized-label probe is degenerate at greedy (collinear). See `RESULTS_FOLDLISTEN.md` Addendum 8.
+> Budget ~$457 of $700 cap, headroom ~$143. NEXT is a CHOICE: (a) **GPU scale-transport 2b/27b-it** — now
+> carries a *validated* THINK instrument + per-item persistence; needs the frozen-74 re-screen at each scale
+> (`mechanism_family_2bit/27bit.json` DO NOT EXIST) then the phase3b machinery + the in-domain probe per
+> scale (does the MONITOR headline AND the state-change read replicate?); (b) close the arc (headline
+> grounded, neighbour sited); (c) owed side threads. A realized-label in-domain probe (vs the offline
+> neutral-supervised one) needs sampled per-sample captures = GPU, folded into (a). Faithfulness-gate then
+> triage before extending; read source JSONs, not this summary.
 >
 > Where we are (2026-07-02): **the verifier's positive control exists and lives at ‑it.** Base does
 > not genuinely cave on the decorrelated entity family (POC v0–v3: decoded caves are ABSTENTION;

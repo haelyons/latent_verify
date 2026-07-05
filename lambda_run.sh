@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Local Lambda lifecycle for ONE box: launch -> poll -> scp code -> run on-box batch ->
-# fetch results -> TERMINATE. Teardown is guaranteed via `trap ... EXIT` so a box can never
-# orphan billing, and the remote batch self-kills after a hard timeout. Credentials read from
+# fetch results -> TERMINATE. Teardown on NORMAL completion/error is guaranteed via `trap ... EXIT`;
+# a LOCAL interrupt (Ctrl-C/SIGHUP) AFTER the on-box self-destruct backstop is armed deliberately does
+# NOT tear down (the run is detached and the backstop bounds billing) so a stray Ctrl-C can't kill a
+# live run. The remote batch also self-kills after a hard timeout. Credentials read from
 # ./.keys (LAMBDA_KEY_ONE, HF_KEY_ONE) and never echoed.
 #   usage: bash lambda_run.sh <instance_type> <region> <onbox_runner.sh> <local_result_dir>
 set -uo pipefail
@@ -15,6 +17,7 @@ POLL_EVERY=${POLL_EVERY:-60}             # local marker-poll cadence for the DET
 auth(){ curl -sS -H "Authorization: Bearer $KEY" "$@"; }
 
 ID=""
+BACKSTOP_ARMED=0   # flipped to 1 once the on-box self-destruct timer is armed; gates local-kill behaviour below
 terminate(){
   if [ -n "$ID" ]; then
     echo "[teardown] terminating $ID"
@@ -32,7 +35,23 @@ terminate(){
     echo "[teardown] WARNING: terminate NOT confirmed for $ID after 30 tries -- VERIFY/KILL MANUALLY: $ID"
   fi
 }
-trap terminate EXIT          # fires on success, error, or Ctrl-C -> box always torn down
+# EXIT trap tears the box down on NORMAL completion or error. A LOCAL interrupt (Ctrl-C / SIGHUP /
+# terminal loss) is handled separately: AFTER the on-box self-destruct backstop is armed it must NOT
+# kill the box -- the job is DETACHED (setsid) and the backstop bounds billing, so a stray local Ctrl-C
+# should leave the run going (the earlier failure: watching the poll loop, Ctrl-C fired `trap terminate
+# EXIT`, box torn down mid-run + cascading ssh-abort 255). BEFORE the backstop is armed a local interrupt
+# still tears down (the box is not yet self-protected, so declining would orphan billing).
+on_signal(){
+  if [ "$BACKSTOP_ARMED" = 1 ]; then
+    echo "[signal] local interrupt after backstop armed -> LEAVING box $ID RUNNING; detached job continues, self-destruct backstop terminates it within ${SELFDESTRUCT_AFTER:-?}s. Reconnect via ssh, or terminate $ID manually to stop billing sooner."
+    trap - EXIT            # cancel the imminent EXIT teardown so the box survives
+    exit 130
+  fi
+  echo "[signal] local interrupt BEFORE backstop armed -> box not yet self-protected; tearing down"
+  exit 1                   # EXIT trap fires -> terminate()
+}
+trap terminate EXIT          # normal completion / error -> teardown (billing safety net)
+trap on_signal INT TERM HUP  # local kill -> defer to on-box backstop if armed (see block above)
 
 echo "[launch] $TYPE @ $REGION"
 ID=$(auth -X POST $API/instance-operations/launch -H 'Content-Type: application/json' \
@@ -114,7 +133,16 @@ for t in 1 2 3 4 5 6 7 8 9 10 11 12; do
 done
 EOF
 ssh $SSHOPT ubuntu@$IP "setsid bash ~/selfdestruct.sh < /dev/null > /tmp/selfdestruct.log 2>&1 &" 2>/dev/null
-echo "[backstop] armed"
+# ARM local-kill-survives ONLY if the backstop process is CONFIRMED running on the box. The start ssh
+# above is `2>/dev/null` and `set -u` has no `-e`, so a silent ssh failure would otherwise still reach an
+# unconditional arm -> a later local Ctrl-C would then leave the box with NEITHER the EXIT-trap teardown
+# NOR a backstop = orphaned billing. Verify (pgrep), don't trust the exit path.
+if ssh $SSHOPT ubuntu@$IP "pgrep -f selfdestruct.sh >/dev/null" 2>/dev/null; then
+  BACKSTOP_ARMED=1   # box self-protected: a local Ctrl-C/SIGHUP now leaves the detached run going (on_signal)
+  echo "[backstop] armed + confirmed running"
+else
+  echo "[backstop] WARNING: self-destruct NOT confirmed on box -> keeping EXIT-trap teardown ACTIVE (a local Ctrl-C will tear down the box; no orphan risk)"
+fi
 
 echo "[run] $RUNNER DETACHED on box (cap ${REMOTE_TIMEOUT}s); local marker-poll every ${POLL_EVERY}s"
 # Start the job under setsid + </dev/null so a dropped local SSH cannot SIGHUP-kill it; on finish it writes
