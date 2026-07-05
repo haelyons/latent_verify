@@ -294,10 +294,26 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > MONITOR; arbiter/backup/probe are unauditable (per-item not persisted) + backup fragile → corroborating
 > only, verdict does not rest on them; THINK/SAY collinear-with-arm → belief-vs-compliance UNANSWERED.
 > Reproduces across two greedy runs. Verdict converges with base cave-DIRECTION MONITOR §9 + 2b
-> BROAD_DISTRIBUTED. Budget cap now $600 (+$100 authorized 2026-07-04), spend ~$452, headroom ~$148.
+> BROAD_DISTRIBUTED.
+> Phase 3c RIDERS RAN + GROUNDED (2026-07-05, `results_foldlisten_p3c/`, Addendum 7; A1 rules FROZEN
+> `76926c4` before this session read any 3b number; `controls/foldlisten_phase3c_riders.py` capture +
+> `controls/foldlisten_phase3c_analysis.py` offline, both claim-blind + reviewed + selftest): (A1) the
+> CHEAP THINK read is **PROBE_INVALID_FOR_PUSHBACK** — the pre-registered masked-arm guard fired: the
+> stated-context answer-identity probe (valid on its own domain, AUROC ~0.78 L18-23) does NOT transfer to
+> the 5-turn elicit slot (all arms incl. masked-fold read W* at frac 1.00, projections collapse to one
+> W*-side cluster; fold-vs-listen in-domain AUROC 0.235 ≈ chance). VERTEX_JUMP vs OVERLAY (belief vs
+> compliance) stays OPEN — the cheap route is ruled out, a valid THINK read needs an IN-DOMAIN probe
+> (fit on elicit-slot residuals with realized-answer labels, cross-validated), new pre-registration.
+> (A6) padding-substitution vs attention-mask = **CONVERGENT_INSTRUMENTS** (0.014 vs 0.027, 74/74 exact
+> length-match) → the Phase-2/3a mask floor is validated by independent removal, not a mask artifact.
+> (C10) knowledge-control delivered: 57/74=77% consistency>=0.8, 10/74 SOFT_KNOWLEDGE (<0.6). (C11)
+> P(True)~consistency Spearman 0.37 (asking discriminates weakly, as lit predicts).
+> Budget cap $600 (+$100 authorized 2026-07-04), spend ~$457, headroom ~$143.
 > The arc's HEADLINE (distributed MONITOR, no single causal lever for caving at ‑it) STANDS at 9b and is
 > grounded. NEXT is a CHOICE (no urgent GPU): (a) Phase 4 scale-transport 2b/27b‑it — GATED on the infra
 > fix (launcher must not `trap terminate EXIT` on local kill) + persisting per-item arbiter/backup +
-> a THINK design that breaks arm↔direction collinearity; (b) close the arc here (headline is grounded);
-> (c) an owed-not-lost side thread (numeric/salience-copy convergence; social per-cue resample-ablation;
-> method-debt flip-rate re-expression). Read source JSONs before extending; faithfulness-gate then triage.
+> the IN-DOMAIN THINK probe now specified by 3c A1 (elicit-slot residuals, realized-answer labels, CV;
+> breaks the arm↔direction collinearity AND the 2-turn→5-turn domain gap that killed the cheap route);
+> (b) close the arc here (headline is grounded); (c) an owed-not-lost side thread
+> (numeric/salience-copy convergence; social per-cue resample-ablation; method-debt flip-rate
+> re-expression). Read source JSONs before extending; faithfulness-gate then triage.

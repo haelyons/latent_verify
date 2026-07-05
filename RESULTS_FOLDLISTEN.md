@@ -309,6 +309,56 @@ null**: no sparse read-side gate (3a), no necessary write-direction lever (3b), 
 realized-adoption readout. Sampled effect-size + ADD sufficiency + THINK/SAY are owed-but-non-decisive
 (the necessity+arbiter legs are rate-ceiling-independent).
 
+## Addendum 7 (2026-07-05) — Phase 3c riders: cheap THINK read is INVALID (domain gap), mask instrument validated, knowledge-control delivered
+
+Fifth GPU run (`run_foldlisten_phase3c_9b.sh`, A100 ~2h, `results_foldlisten_p3c/`,
+`controls/foldlisten_phase3c_riders.py` capture + `controls/foldlisten_phase3c_analysis.py` offline —
+both claim-blind authored, reviewed, selftest-gated; A1 decision rules FROZEN pre-run in
+`docs/NOTE_phase34_improvements_lit.md` before this session read any 3b number). All numbers below
+reproduce under isolated-reader grounding (one soft flag noted inline).
+
+- **A1 (cheap THINK read, the belief-flip-vs-compliance-overlay fork): PROBE_INVALID_FOR_PUSHBACK —
+  the pre-registered masked-arm guard fired.** The stated-answer-identity probe is valid on its OWN
+  domain (heldout AUROC ~**0.78**, L18–23 band; exact best-layer split-dependent — reader's 5-fold
+  0.795@L23 / 0.751@L21; 23 valid layers L18–40) but does NOT transfer to the 5-turn elicit slot. All
+  five elicit-domain arms — fold, listen, neutral-C, neutral-W\*, AND challenge-masked fold — collapse
+  to a tight cluster (proj ≈ −21…−25) far on the W\* side of the stated-context midpoint (−17.2;
+  stated range [−30 W\*, −4 C]); every arm reads W\* at fraction **1.00**. The Mallen gap "passes"
+  (1.0) only because the probe reads W\* everywhere and so trivially agrees with realized folds; the
+  **masked-arm control exposes it** (masked_target_frac **1.0**, must be ≤ 0.6 — the probe reads the
+  asserted W\* even when the challenge is masked and W\* is absent from context). It is not a
+  re-centerable threshold offset: fold-vs-listen **in-domain** separability at L21 is AUROC **0.235**
+  (≈chance/inverted), so the direction itself barely transfers. A genuine representational domain gap
+  between 2-turn teacher-forced stated contexts and the 5-turn elicit slot — exactly Orgad et al.'s
+  cross-context non-transfer and the domain-shift caveat registered when the probe was built.
+  **VERTEX_JUMP (belief flip) vs OVERLAY (compliance overlay) stays OPEN.** The cheap route is ruled
+  out with evidence; a valid THINK read needs an IN-DOMAIN probe (fit on elicit-slot residuals with
+  realized-answer labels, cross-validated across items) — a new instrument requiring its own
+  pre-registration (the real Phase-4 THINK design).
+- **A6 (padding-substitution vs attention-mask): CONVERGENT_INSTRUMENTS.** Replacing the challenge
+  text with a token-length-matched pad run gives fold rate **0.014** vs the cited committed
+  masked-neutral floor **0.027** (|Δ| = 0.013 ≤ 0.10); **74/74 items matched the challenge's exact
+  content-token count** (bounded-search guard, added at review; spot-check: 13 `<pad>` tokens, model
+  held C). Two independent removal mechanisms (attention mask, text substitution) land at the same
+  floor → the Phase-2/3a challenge-mask floor is a real information-removal effect, not a mask
+  artifact.
+- **C10 (knowledge control, k=10 unpressured T=1 samples): delivered.** **57/74 = 77.0%** of the
+  family has consistency ≥ 0.8 (model robustly reproduces C unpressured); **10/74 (13.5%)** flagged
+  SOFT_KNOWLEDGE (< 0.6) — items where a "fold" is ambiguous because C was not firmly held (e.g.
+  Swan→"Thomas Edison" 0/10, Erikson→"Columbus" 2/10). Report-only; the frozen family is not mutated.
+  Answers the knowledge-control question with the field's own ground-truth (Kadavath P(IK)) idiom.
+- **C11:** P(True)-vs-consistency Spearman **0.37** (weak positive) — asking the model discriminates
+  its own knowledge only weakly, as the calibration literature predicts; conf_proxy Spearman None
+  (frozen family JSON carries no conf_proxy field).
+- Sanity (all reproduce): arm rates fold 1.0 / listen 1.0 / neutral-C 0.0 / neutral-W\* 0.135 /
+  fold-mask 0.027 / padding 0.014; SPAN_STABLE_ALL (0 unstable across all arms incl. padded).
+
+**Reading.** Phase 3c returns two validated NULLs and two validated instruments, no positive: the
+cheap belief-read shortcut is invalid (domain gap, honestly caught by its own guard), consistent with
+Phase-3b's MONITOR_AGAIN (no single causal lever). Banked: the challenge-mask instrument is now
+cross-validated (A6), the knowledge-control column exists (C10), and the THINK/SAY fork is cleanly
+OPEN with a specified in-domain path forward rather than falsely closed.
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,
