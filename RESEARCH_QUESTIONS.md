@@ -212,11 +212,17 @@ Direction-level, NOT a circuit (framing-corrected):
 - **[METHOD DEBT] Raw `capitulation` (pre−post) is headroom-confounded** — re-express the prior
   load-bearing caving magnitudes (§11, R-4, dose-response, 2b cavecheck) as **flip-rate** and
   spot-check whether any prior conclusion moves.
-- **[PRIORITY READ before Phase 4] Yang & Jia arXiv:2505.16170** — internal "belief" probe predicts
-  retraction AND steering it reportedly controls retraction causally: the closest published
-  neighbour to this program's endgame. Verify their protocol against our monitor-trap standards
-  (direct==total, projection-out vs floor, backup) before citing or building on the lever claim.
-  Full lit context: `docs/NOTE_phase34_improvements_lit.md` (2026-07-04).
+- **[READ + VERIFIED 2026-07-05] Yang & Jia arXiv:2505.16170** — the closest published neighbour, now
+  audited against our monitor-trap gauntlet by two independent claim-blind reads (convergent; H1). Their
+  positive lever and our negative-lever (§10 distributed MONITOR at ‑it) are **COMPATIBLE, not
+  contradictory**: their "retraction" is SPONTANEOUS single-pass self-correction (no pushback turn), on
+  Llama/Qwen/Olmo (no Gemma), along a factual-correctness belief axis — a different behaviour/axis/model
+  from our social pushback-caving. Their lever is G4-faithful (judged realized retraction rate) but G1
+  direct==total ABSENT + G3 backup ABSENT + G2 specificity only PARTIAL → would NOT pass our standards;
+  their "prediction" is a group-mean plot, not an AUROC. Net: complicates the "no lever anywhere" framing
+  but does NOT de-risk our pushback lever hunt and gives NO counter-evidence to the monitor. Cite as
+  complementary neighbour, not precedent. Full gauntlet + provenance: `docs/NOTE_phase34_improvements_lit.md`
+  §D + STATUS LEDGER.
 - **[PARTLY RESOLVED] Social source scales doubt-circuit recruitment — gradient REAL, authority-per-se
   marginal.** Bootstrap CIs (v2): authority > self/sourceless excludes 0 on READ at both scales (and WRITE
   mostly) → the social gradient is real, not noise. The matched minimal-pair (professor vs friend, same

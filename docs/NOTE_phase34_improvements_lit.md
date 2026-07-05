@@ -35,9 +35,13 @@ Phase 3c riders (`results_foldlisten_p3c/`, Addendum 7) ported the cheap tier. C
     proxied by the T1/T2/T3 tiers.
   - C12 high-confidence arm [4] — margin-stratified fold-rates outside the near-tie regime; the owed
     confidence-gating arm.
-- **FLAGGED only (not executed):** Yang & Jia arXiv:2505.16170 (priority-read in `RESEARCH_QUESTIONS.md`,
-  not yet read/verified against our monitor-trap standards); Sun's relative-depth heuristic (a Phase-4
-  scale-transport check, not run).
+- **READ + VERIFIED (2026-07-05):** Yang & Jia arXiv:2505.16170 — audited against the monitor-trap
+  gauntlet by two independent claim-blind subagent reads that CONVERGE on every load-bearing fact
+  (regime, models, prediction-metric, steering-outcome). Verdict: **COMPATIBLE, not contradictory** —
+  regime/model/axis mismatch, and their lever claim would NOT pass our standards (G1 direct==total
+  ABSENT, G3 backup ABSENT, G2 specificity only PARTIAL; G4 realized-readout PASS). Resolves the
+  `RESEARCH_QUESTIONS.md` [PRIORITY READ] frontier item. Full gauntlet table + verdict in §D below.
+- **FLAGGED only (not executed):** Sun's relative-depth heuristic (a Phase-4 scale-transport check, not run).
 
 ## A. Instruments lifted from Sun et al. 2026 (arXiv:2605.09314)
 
@@ -238,11 +242,36 @@ verbatim in its output JSON.
 
 ## D. Priority neighbours to cite / differentiate
 
-- **Yang & Jia, arXiv:2505.16170** — internal "belief" probe predicts retraction AND steering the
-  belief direction causally controls retraction. CLOSEST published neighbour to the whole program.
-  Differentiation: their lever claim has not (from the abstract-level read) faced our monitor-trap
-  gauntlet (direct==total, projection-out-vs-floor, backup) — exactly what our Phase-3b arbiter
-  machinery tests. Verify their protocol in detail before Phase 4.
+- **Yang & Jia, arXiv:2505.16170 — READ + VERIFIED 2026-07-05** (two independent claim-blind subagent
+  reads, convergent; H1 satisfied). Paper: *"When Do LLMs Admit Their Mistakes? Understanding The Role
+  Of Model Belief In Retraction."* Models Llama3.1-8B / Qwen2.5-7B / Olmo2-7B-Instruct (judge
+  Llama3.3-70B); **no Gemma**. Their "belief" probe = per-layer LINEAR probe on residual states after
+  the answer, trained on FACTUAL-CORRECTNESS labels (Universal-Truthfulness QA). Steering = diff-of-means
+  activation-add across a mid-layer band with a dose curve + strong sign asymmetry.
+  - **Regime mismatch (the crux, independently confirmed):** their "retraction" is SPONTANEOUS single-pass
+    self-correction ("the model continues after its own incorrect answer and admits it is wrong") — there
+    is NO adversarial user-pushback turn. Their construct is *self-flagging one's own answer as wrong*,
+    NOT *social compliance to a contradicting user* (our caving). Different behaviour, different axis
+    (factual-correctness belief vs social compliance), different model family.
+  - **Gauntlet:** G1 direct==total arbiter **ABSENT** (net behaviour only; §5.2 W-vs-V patching localizes
+    a mediator but is not a direct-vs-total decomposition). G2 specificity **PARTIAL** (no random /
+    matched-norm floor; only a best-of-search comparison against two semantic alt-directions). G3
+    self-repair / backup **ABSENT** (additive steering only, no resample-ablation / Hydra check). G4
+    readout faithfulness **PASS** (outcome = judged realized retraction rate, >70% neg-steer / ~0
+    pos-steer — non-circular, plus an " is"-append control against the stop-behaviour confound).
+  - **Prediction claim is softer than the abstract implies:** it is a Fig-2 GROUP-MEAN separation across
+    layers, **not an AUROC / accuracy** for the retraction event.
+  - **Bearing on us:** their positive lever and our negative-lever (distributed MONITOR at 9b-it) are
+    plausibly BOTH true in different regimes — so this **complicates the "no lever anywhere" framing**
+    (a correctness-belief direction can causally drive self-retraction) but does **NOT de-risk** our
+    pushback-caving lever hunt and offers **no counter-evidence** to the distributed monitor, because
+    their claim would not itself pass G1–G3. Like-for-like would require reproducing their spontaneous
+    setup on Gemma-2-9b-it AND subjecting any found lever to G1/G2/G3 (a faithful behavioural flip is
+    necessary, not sufficient, to call something a lever vs a monitor). Cite as complementary neighbour,
+    not as a precedent lever for our regime.
+  - Provenance caveat: quoted fragments extracted via a summarization pass over the arXiv HTML; spot-check
+    verbatim wording against the PDF before any publication. Numeric values (recall figures, α, layer
+    bands) are table-sourced and internally consistent across both reads.
 - **SycEval (AIES 2025)** progressive/regressive = our listen/fold; adopt vocabulary for citability.
 - **Sun 2026 depth heuristic** at Phase-4 scale transport: their Gemma-2-2B decision head at
   L17/26 (~65% depth) — if any machinery localizes at 2b/9b/27b, check relative-depth alignment.
