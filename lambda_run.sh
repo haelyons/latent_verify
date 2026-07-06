@@ -14,6 +14,10 @@ HF=$(grep '^HF_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 SSHOPT="-o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -o ServerAliveInterval=30 -o ServerAliveCountMax=120 -i $HOME/.ssh/lambda_ed25519"   # ServerAlive keeps the SSH session up through long QUIET compute (model load + 891-item screen) -- a quiet idle is what dropped the run on 2026-06-22; ~1h unresponsiveness tolerated
 REMOTE_TIMEOUT=${REMOTE_TIMEOUT:-5400}   # 90 min hard cap (env-overridable for heavier multi-load runs)
 POLL_EVERY=${POLL_EVERY:-60}             # local marker-poll cadence for the DETACHED on-box run (see below)
+REATTACH_GRACE=${REATTACH_GRACE:-1800}   # extra seconds the on-box backstop waits past REMOTE_TIMEOUT before
+                                         # self-destruct -- also the window a LATER session has to reattach +
+                                         # fetch if THIS launcher dies (e.g. the laptop is closed mid-run).
+                                         # Bump it (e.g. 21600) for long runs you may need to recover offline.
 auth(){ curl -sS -H "Authorization: Bearer $KEY" "$@"; }
 
 ID=""
@@ -70,6 +74,11 @@ for i in $(seq 1 80); do
   sleep 15
 done
 [ -z "$IP" ] && { echo "[poll] never became active"; exit 1; }
+# Record the instance so a LATER session can reattach + fetch if THIS launcher dies (closed laptop / killed
+# terminal). The on-box run is setsid-detached and the backstop bounds billing, so a dead launcher only
+# loses the FETCH -- lambda_reattach.sh recovers it from this file within the REATTACH_GRACE window.
+printf '%s %s %s %s\n' "$ID" "$IP" "$RDIR" "$(date -u +%s 2>/dev/null || echo 0)" > .last_lambda_instance
+echo "[reattach] recorded $ID $IP -> .last_lambda_instance (recover via: bash lambda_reattach.sh)"
 
 echo "[ssh] waiting for sshd @ $IP"
 SSHUP=0
@@ -122,7 +131,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
 # (2026-06-26: a local process exit before teardown orphaned a box). A detached on-box timer terminates THIS
 # instance via the API. Never fires in the happy path (local fetch+terminate is far sooner) -- pure billing
 # safety net. Key is written to a root-only (umask 077) file on the ephemeral, single-tenant box.
-SELFDESTRUCT_AFTER=$((REMOTE_TIMEOUT + 1800))
+SELFDESTRUCT_AFTER=$((REMOTE_TIMEOUT + REATTACH_GRACE))
 echo "[backstop] arming box self-destruct in ${SELFDESTRUCT_AFTER}s ($ID)"
 ssh $SSHOPT ubuntu@$IP "umask 077; cat > ~/selfdestruct.sh" <<EOF
 #!/usr/bin/env bash
@@ -178,8 +187,10 @@ while [ $EL -lt $DEADLINE ]; do
     if [ "$EVERCONN" = 0 ] && [ "$NOCONN" -ge 8 ]; then
       echo "[run] ABORT: box never reachable in $((NOCONN * POLL_EVERY))s -> UNHEALTHY; terminate early"; RC="UNHEALTHY"; break
     fi
-    # was healthy then went dark ~20min -> give up + terminate
-    if [ "$NOCONN" -ge 20 ]; then
+    # was healthy then went dark ~40min -> give up + terminate (longer tolerance survives a transient
+    # network blip / brief laptop sleep; a genuinely closed laptop kills THIS process so this never runs --
+    # that case is handled by the backstop + lambda_reattach.sh, not here).
+    if [ "$NOCONN" -ge 40 ]; then
       echo "[run] ABORT: box unreachable $((NOCONN * POLL_EVERY))s -> LOST; terminate"; RC="LOST"; break
     fi
   fi
