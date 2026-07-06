@@ -100,13 +100,6 @@ belief-vs-compliance fork at 9b, to be grounded by an isolated reader (H3) befor
 
 ## OUTCOME (2026-07-05, ran + H3-grounded)
 
-Ran on `results_foldlisten_p3c/out/phase3c_captures_p3c_9bit.npz`; verdict
-`results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json`; full writeup
-`RESULTS_FOLDLISTEN.md` Addendum 8. **PROBE_VALID_FOR_PUSHBACK** — passes the masked-arm guard the 3c
-stated-context probe failed (masked W\*-frac 0.135 ≤ 0.6, split-independent), best layer L23 (Sun's band),
-valid layers confined to L22–40. Fold reads the caved W\* by L23 (73/74 → refutes late output-only
-overlay; discrete-jump depth below the probe's valid floor → unresolved). Listen shows a mid-stack W\*→C
-revision crossing (56/73). Net: adoption under pushback LEANS mid-stack state-change, not output overlay
-— compatible with the §10 distributed MONITOR. H3-grounded by an isolated reader: reads reproduce
-bit-for-bit, masked gate + label-sanity exact; the exact valid-layer count + VERTEX/OVERLAY/GRADED
-tallies are split-dependent (best-layer + masked gate + per-trial reads are split-robust).
+Verdict **PROBE_VALID_FOR_PUSHBACK**; belief-vs-compliance **LEANS mid-stack state-change, not output
+overlay**. Numbers: `results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json`. Full
+reading + caveats + grounding: `RESULTS_FOLDLISTEN.md` Addendum 8.

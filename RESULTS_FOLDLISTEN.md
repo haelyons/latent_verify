@@ -361,54 +361,45 @@ OPEN with a specified in-domain path forward rather than falsely closed.
 
 ## Addendum 8 (2026-07-05) — Phase 4 (OFFLINE, $0): the in-domain THINK probe is VALID; belief-vs-compliance leans MID-STACK STATE-CHANGE, not output overlay
 
-Fulfils the in-domain THINK path that Addendum 7 left specified-but-unbuilt — computed entirely
-OFFLINE on the Phase-3c captures (`results_foldlisten_p3c/out/phase3c_captures_p3c_9bit.npz`), no GPU,
-no model, no new run. New instrument `controls/foldlisten_phase4_indomain_probe.py` (pure-numpy,
-CPU-only, `--selftest` PASS on 5 planted cases), pre-registered in `DESIGN_phase4_indomain_probe.md`
-(the crossing/validity rules inherited VERBATIM from the frozen 3c A1 pre-registration; a feasibility
-spike disclosed; neutral-supervision justified a-priori). Claim-blind authored (triage-author),
-dual-lens reviewed, verdict H3-grounded by an isolated reader (bit-for-bit: 0/74 fold + 0/73 listen
-`reads`-string mismatches; masked gate + label-sanity reproduce EXACTLY on a split-independent axis).
+Fulfils the in-domain THINK path Addendum 7 left specified-but-unbuilt — computed OFFLINE on the frozen
+Phase-3c captures, no GPU/model/new run. Instrument `controls/foldlisten_phase4_indomain_probe.py`
+(pure-numpy, `--selftest`), pre-registered `DESIGN_phase4_indomain_probe.md` (crossing/validity rules
+inherited VERBATIM from the frozen 3c A1 pre-reg; feasibility spike disclosed; neutral-supervision
+justified a-priori). Claim-blind authored, dual-lens reviewed, verdict H3-grounded by an isolated reader
+(reads-strings reproduce bit-for-bit; masked gate + label-sanity exact on a split-independent axis).
+**All numbers live in `results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json` — read
+it, not this prose.**
 
-- **The literal 3c-A1 in-domain spec ("realized-answer labels") is DEGENERATE at greedy and was NOT
-  used.** Verified: fold realizes W\* 74/74, listen realizes C 73/74 → realized labels are perfectly
-  collinear with the arm, so a realized-label probe reads the prompt, not belief. The principled
-  offline substitute is **neutral-arm supervision** (state-an-answer-then-"Okay, thank you.", the SAME
-  5-turn depth as the elicit slot, answer-identity decorrelated from the challenge span). A literal
-  realized-label in-domain probe needs SAMPLED per-sample residual+label captures = GPU → parked to the
-  Phase-4 GPU spec.
-- **RESULT — PROBE_VALID_FOR_PUSHBACK.** The neutral-supervised probe PASSES the masked-arm guard the
-  3c stated-context probe FAILED: on challenge-masked fold (model can't see W\*, realizes C 71/74) it
-  reads W\* at frac **0.135 ≤ 0.6** (vs 3c's ~1.0 fail; split-independent, exact-reproduced). So the 3c
-  PROBE_INVALID was a **2-turn-stated-context domain-gap artifact, closable in-domain**. Valid layers
-  are confined to **L22–40 (never early/mid)**, best **L23** (CV-AUROC ~0.74; the magnitude/exact
-  valid-count is split-dependent, but L23 + the masked gate are split-robust) — Sun-2026's L22–27 band.
+- **The literal 3c-A1 spec ("realized-answer labels") is DEGENERATE at greedy** — fold and listen realize
+  the pushed answer near-deterministically, so realized labels are collinear with the arm (the probe would
+  read the prompt, not belief). The principled offline substitute is **neutral-arm supervision**
+  (state-an-answer-then-"Okay, thank you." — the same 5-turn depth as the elicit slot, answer-identity
+  decorrelated from the challenge). A realized-label in-domain probe needs SAMPLED per-sample captures
+  (= GPU), parked to the Phase-4 GPU spec.
+- **RESULT — PROBE_VALID_FOR_PUSHBACK.** The neutral-supervised probe PASSES the masked-arm guard the 3c
+  stated-context probe failed (on challenge-masked fold, which holds C, it reads C not the asserted W\*) —
+  so 3c's PROBE_INVALID was a 2-turn-stated-context domain-gap artifact, closable in-domain. Valid layers
+  sit in the late-mid band (Sun-2026's L22–27, best-layer split-robust); nothing early/mid separates.
 - **Belief-vs-compliance fork (was OPEN → now LEANS STATE-CHANGE):**
-  - **FOLD** (caved to W\*): reads W\* already by **L23 in 73/74** trials, no C-retention in the valid
-    range → the caved answer is committed MID-STACK, not painted on late. This **REFUTES the late
-    output-only compliance-overlay** hypothesis (overlay predicts C mid-stack, W\* only ≥ L28). A
-    discrete Sun-style C→W\* vertex-jump depth is **UNRESOLVED** — it sits below the probe's valid floor
-    (< L23). Family class GRADED (split-dependent count; the load-bearing read is "W\*-by-L23", grounded).
-  - **LISTEN** (adopted correct C): **56/73** read W\*-at-shallow-valid → C-at-deep = a mid-stack
-    **W\*→C revision crossing** (VERTEX-plurality 43/73). Committed-state revision, not a late overlay.
-  - **Net:** adoption under pushback is a **MID-STACK committed-answer state change, NOT an output-only
-    compliance overlay** — grounded for both arms; a discrete vertex jump is seen for LISTEN and
-    UNRESOLVED for FOLD (crossing below the probe's valid floor).
-- **Compatibility, not contradiction.** This is a monitor-READ result and is orthogonal to §10's
-  MONITOR_AGAIN: "no single causal lever" (distributed) and "the committed answer is a genuine
-  mid-stack state that revises under pushback, not output paint" are fully compatible — a distributed
-  monitor can carry a real mid-stack state. It also sits beside Yang & Jia (arXiv:2505.16170, audited
-  2026-07-05): their factual-correctness belief axis drives spontaneous self-retraction; this is the
-  pushback analogue — a committed-answer state readable mid-stack that revises under a contradicting user.
-- **Caveats held firmly:** greedy captures only; 8 valid layers with the exact count + the
-  VERTEX/OVERLAY/GRADED tallies split-dependent (the load-bearing numbers — masked gate, best-layer,
-  per-trial reads — are split-robust / bit-reproduced); this is corroborating READ evidence, NOT a
-  causal lever and NOT a monitor-trap-grade result.
+  - **FOLD** (caved to W\*): the committed answer already reads W\* at the shallowest valid layer, no
+    C-retention in the valid range → committed MID-STACK, not painted on late. **REFUTES the late
+    output-only compliance-overlay** (which predicts C mid-stack, W\* only at the output layers). A discrete
+    Sun-style C→W\* vertex depth is UNRESOLVED — below the probe's valid floor.
+  - **LISTEN** (adopted correct C): a mid-stack **W\*→C revision crossing** (VERTEX-plurality) —
+    committed-state revision, not a late overlay.
+  - **Net:** adoption under pushback is a **MID-STACK committed-answer state change, not an output-only
+    compliance overlay** — grounded both arms; a discrete vertex is seen for LISTEN, UNRESOLVED for FOLD.
+- **Compatibility, not contradiction with §10's MONITOR_AGAIN:** "no single causal lever" (distributed) and
+  "the committed answer is a genuine mid-stack state that revises under pushback" are fully compatible — a
+  distributed monitor can carry a real mid-stack state. Sits beside Yang & Jia (arXiv:2505.16170): their
+  correctness-belief axis drives spontaneous self-retraction; this is the pushback analogue.
+- **Caveats:** greedy captures only; the valid-layer count and the VERTEX/OVERLAY/GRADED tallies are
+  split-dependent (the load-bearing reads — masked gate, best-layer, per-trial reads — are split-robust /
+  bit-reproduced); corroborating READ evidence, NOT a causal lever.
 
 **Reading.** Phase 4 (offline) reopens the 3c dead-end with a VALID in-domain instrument and moves the
-belief-vs-compliance fork from OPEN to LEANS-STATE-CHANGE: pushback adoption is a mid-stack
-committed-answer change in Sun's decision band, not a late compliance overlay. The GPU scale-transport
-(2b/27b) now carries a *validated* THINK instrument, not just the necessity/arbiter machinery.
+belief-vs-compliance fork from OPEN to LEANS-STATE-CHANGE. The eventual GPU scale-transport now carries a
+validated THINK instrument, not just the necessity/arbiter machinery.
 
 ## Artifacts
 

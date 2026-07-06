@@ -47,6 +47,9 @@ spend since 2026-06-10 ≈ $452 (audit-log reconstruction; the account's ~$938 J
 project and is excluded). Phase-3 mechanism runs (3a + three 3b greedy attempts incl. the two lost to
 infra) are inside that figure. Remaining headroom ≈ $148.
 
+**Failed run addendum (2026-07-06): phase-4 2b transport launch `e032e06b…` failed** (cost/timing in the audit log). Lesson (proper home: a known-issue comment in the launcher, not here) — a multi-hour run driven from this workstation is fragile to a network drop / session end: the launcher dies, detached on-box results go unfetched, and the box bills until the on-box self-destruct backstop fires.
+On launcher death, SSH-fetch from the still-live box BEFORE terminating; consider hardening the launcher (longer NOCONN tolerance + a fetch-only reattach; don't auto-terminate on LOST while the backstop is armed).
+
 ## Lambda Cloud API — endpoints leveraged
 
 Base URL `https://cloud.lambda.ai/api/v1/`. Auth on every call:

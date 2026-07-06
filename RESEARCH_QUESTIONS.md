@@ -94,17 +94,17 @@ Standing NULLs (each arbiter- or power-confirmed):
     fragile near-zero denom) + probe AUROC 0.755 are UNAUDITABLE (per-item values not persisted) and
     corroborating-only — verdict does not rest on them. Reproduces across two greedy runs. THINK/SAY was
     NOT usable at 3b (`think_flip` collinear with the arm) → belief-vs-compliance was UNANSWERED.
-    **PARTLY RESOLVED (2026-07-05, Phase-4 offline, `RESULTS_FOLDLISTEN.md` Addendum 8):** a VALID
-    in-domain THINK probe (neutral-arm-supervised, 5-turn, breaks the collinearity — the literal
-    realized-label spec is degenerate at greedy: fold 74/74 W\*, listen 73/74 C) PASSES the masked-arm
-    guard the 3c stated-probe failed (masked W\*-frac 0.135) and reads the committed answer mid-stack
-    (best L23, Sun's band). Fold reads the caved W\* by L23 (REFUTES late output-only overlay;
+    **PARTLY RESOLVED (2026-07-05, Phase-4 offline):** a VALID in-domain THINK probe
+    (neutral-arm-supervised, breaks the collinearity — the literal realized-label spec is degenerate at
+    greedy) PASSES the masked-arm guard the 3c stated-probe failed and reads the committed answer
+    mid-stack (Sun's band). Fold reads the caved W\* mid-stack (REFUTES late output-only overlay;
     discrete vertex-jump depth unresolved, below probe floor); listen shows a mid-stack W\*→C revision
     crossing. → adoption leans **MID-STACK STATE-CHANGE, not compliance overlay** (compatible with the
-    distributed MONITOR — a monitor can carry a real mid-stack state). Instrument debt (H4): per-item
-    arbiter/backup persistence LANDED in `controls/foldlisten_phase3b.py`; arm↔direction collinearity
-    broken via neutral-supervision. Still owed at scale: a realized-label in-domain probe (needs
-    sampled per-sample captures = GPU) at 2b/27b.
+    distributed MONITOR — a monitor can carry a real mid-stack state). → `RESULTS_FOLDLISTEN.md`
+    Addendum 8; verdict JSON `results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json`.
+    Instrument debt (H4): per-item arbiter/backup persistence LANDED in
+    `controls/foldlisten_phase3b.py`; arm↔direction collinearity broken via neutral-supervision. Still
+    owed at scale: a realized-label in-domain probe (needs sampled per-sample captures = GPU) at 2b/27b.
 
 Direction-level, NOT a circuit (framing-corrected):
 
@@ -226,12 +226,11 @@ Direction-level, NOT a circuit (framing-corrected):
   positive lever and our negative-lever (§10 distributed MONITOR at ‑it) are **COMPATIBLE, not
   contradictory**: their "retraction" is SPONTANEOUS single-pass self-correction (no pushback turn), on
   Llama/Qwen/Olmo (no Gemma), along a factual-correctness belief axis — a different behaviour/axis/model
-  from our social pushback-caving. Their lever is G4-faithful (judged realized retraction rate) but G1
-  direct==total ABSENT + G3 backup ABSENT + G2 specificity only PARTIAL → would NOT pass our standards;
-  their "prediction" is a group-mean plot, not an AUROC. Net: complicates the "no lever anywhere" framing
-  but does NOT de-risk our pushback lever hunt and gives NO counter-evidence to the monitor. Cite as
-  complementary neighbour, not precedent. Full gauntlet + provenance: `docs/NOTE_phase34_improvements_lit.md`
-  §D + STATUS LEDGER.
+  from our social pushback-caving. Their lever would NOT pass our monitor-trap standards (per-check
+  verdicts + their group-mean "prediction" plot vs our AUROC bar live in §D). Net: complicates the "no
+  lever anywhere" framing but does NOT de-risk our pushback lever hunt and gives NO counter-evidence to
+  the monitor. Cite as complementary neighbour, not precedent. Full gauntlet + provenance:
+  `docs/NOTE_phase34_improvements_lit.md` §D + STATUS LEDGER.
 - **[PARTLY RESOLVED] Social source scales doubt-circuit recruitment — gradient REAL, authority-per-se
   marginal.** Bootstrap CIs (v2): authority > self/sourceless excludes 0 on READ at both scales (and WRITE
   mostly) → the social gradient is real, not noise. The matched minimal-pair (professor vs friend, same
@@ -279,10 +278,12 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > verdict byte-identical), P3 the **in-domain THINK probe (`controls/foldlisten_phase4_indomain_probe.py`,
 > pre-reg `DESIGN_phase4_indomain_probe.md`) is PROBE_VALID_FOR_PUSHBACK** and H3-grounded → belief-vs-
 > compliance moves from OPEN to **LEANS MID-STACK STATE-CHANGE, not output overlay** (fold reads the caved
-> W\* by L23 = refutes late overlay, discrete-jump depth unresolved below probe floor; listen shows a
-> mid-stack W\*→C revision crossing; best L23 = Sun's L22-27 band). Neutral-arm-supervised because the
-> literal realized-label probe is degenerate at greedy (collinear). See `RESULTS_FOLDLISTEN.md` Addendum 8.
-> Budget ~$457 of $700 cap, headroom ~$143. NEXT is a CHOICE: (a) **GPU scale-transport 2b/27b-it** — now
+> W\* mid-stack = refutes late overlay, discrete-jump depth unresolved below probe floor; listen shows a
+> mid-stack W\*→C revision crossing; best-layer in Sun's band). Neutral-arm-supervised because the
+> literal realized-label probe is degenerate at greedy (collinear). See `RESULTS_FOLDLISTEN.md` Addendum 8
+> + verdict JSON `results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json`.
+> Budget: headroom remains under the cap (audit-log reconstruction in `docs/lambda-gpu-access.md`). NEXT
+> is a CHOICE: (a) **GPU scale-transport 2b/27b-it** — now
 > carries a *validated* THINK instrument + per-item persistence; needs the frozen-74 re-screen at each scale
 > (`mechanism_family_2bit/27bit.json` DO NOT EXIST) then the phase3b machinery + the in-domain probe per
 > scale (does the MONITOR headline AND the state-change read replicate?); (b) close the arc (headline
