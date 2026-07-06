@@ -14,8 +14,19 @@ auth(){ curl -sS -H "Authorization: Bearer $KEY" "$@"; }
 
 if [ $# -ge 3 ]; then
   ID=$1; IP=$2; RDIR=$3
+elif [ $# -eq 1 ]; then
+  # <rdir>: look the box up by its launch name (drill_<rdir>) via the API. Robust for CONCURRENT runs
+  # (each box is uniquely named), and needs no local record file -- works from any fresh session.
+  RDIR=$1
+  read -r ID IP < <(auth $API/instances | python -c "
+import sys,json
+for i in json.load(sys.stdin).get('data',[]):
+    if i.get('name')=='drill_$RDIR' and i.get('status')=='active':
+        print(i.get('id',''), i.get('ip','') or ''); break
+")
+  { [ -n "${ID:-}" ] && [ -n "${IP:-}" ]; } || { echo "[reattach] no ACTIVE instance named drill_$RDIR (already gone, or never launched)"; exit 1; }
 else
-  [ -f .last_lambda_instance ] || { echo "[reattach] no .last_lambda_instance and no <id ip rdir> args"; exit 1; }
+  [ -f .last_lambda_instance ] || { echo "[reattach] usage: lambda_reattach.sh <rdir> | <id ip rdir>  (or have .last_lambda_instance)"; exit 1; }
   read -r ID IP RDIR _ < .last_lambda_instance
 fi
 { [ -n "${ID:-}" ] && [ -n "${IP:-}" ] && [ -n "${RDIR:-}" ]; } || { echo "[reattach] bad instance record"; exit 1; }

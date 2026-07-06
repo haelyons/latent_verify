@@ -119,6 +119,8 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/foldlisten_phase3a.py results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json \
   controls/foldlisten_phase3b.py results_foldlisten_p3a/out/phase3_handles_p3a_9bit.json \
   results_foldlisten_p3a/out/phase3_handles_p3a_9bit.npz \
+  results_foldlisten_mech_2b/out/phase3_handles_p3a_2bit.json \
+  results_foldlisten_mech_2b/out/phase3_handles_p3a_2bit.npz \
   controls/foldlisten_phase3c_riders.py \
   controls/cave_dir_calibration_geometry.py controls/cave_dir_doubt_injection.py \
   controls/cave_dir_mechanism.py controls/cave_dir_dose_finegrained.py controls/cave_doubt_decollide.py \
