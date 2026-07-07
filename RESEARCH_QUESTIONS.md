@@ -286,14 +286,15 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > mid-stack W\*→C revision crossing; best-layer in Sun's band). Neutral-arm-supervised because the
 > literal realized-label probe is degenerate at greedy (collinear). See `RESULTS_FOLDLISTEN.md` Addendum 8
 > + verdict JSON `results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json`.
-> Budget: headroom remains under the cap (audit-log reconstruction in `docs/lambda-gpu-access.md`). NEXT
-> is a CHOICE: (a) **GPU scale-transport 2b/27b-it** — now
-> carries a *validated* THINK instrument + per-item persistence; needs the frozen-74 re-screen at each scale
-> (`mechanism_family_2bit/27bit.json` DO NOT EXIST) then the phase3b machinery + the in-domain probe per
-> scale (does the MONITOR headline AND the state-change read replicate?); (b) close the arc (headline
-> grounded, neighbour sited); (c) owed side threads. A realized-label in-domain probe (vs the offline
-> neutral-supervised one) needs sampled per-sample captures = GPU, folded into (a). Faithfulness-gate then
-> triage before extending; read source JSONs, not this summary.
+> Budget cap $950 (2026-07-07 +$300); headroom via audit-log reconstruction in `docs/lambda-gpu-access.md`.
+> GPU SCALE-TRANSPORT IN PROGRESS (2026-07-07): **2b-it DONE + grounded + committed (`bbd94d8`, Addendum 9)**
+> — MONITOR_AGAIN REPLICATES 9b (SIGN_DISAGREE, now per-item auditable) so **2b + 9b meets the ≥2-scale bar**;
+> the in-domain probe is INVALID at 2b (belief-state read is 9b-scale). **27b RUNNING** (H100, id
+> 36d4a464…) — recovery + next steps in task "P0 + GPU" (`bash lambda_reattach.sh results_foldlisten_mech_27b`
+> from THIS workstation once done; then the offline probe + H3-ground + record). Owed-not-lost: a
+> realized-label in-domain probe (needs sampled per-sample captures = GPU); the parked side threads
+> (numeric/salience-copy convergence, social per-cue resample-ablation, method-debt flip-rate). Faithfulness-
+> gate then triage before extending; read source JSONs, not this summary.
 >
 > Where we are (2026-07-02): **the verifier's positive control exists and lives at ‑it.** Base does
 > not genuinely cave on the decorrelated entity family (POC v0–v3: decoded caves are ABSTENTION;
