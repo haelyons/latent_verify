@@ -1,0 +1,192 @@
+{
+  "measurement": "In-domain (neutral-supervised) answer-identity crossing depth on the phase3c captures: per realized trial, the shallowest VALID layer at which a W*-ward diff-of-means probe reads the model's committed answer (label-sanity + masked-arm validity gates first), classified VERTEX_JUMP / OVERLAY / GRADED and summarized to a strict-majority family verdict; fold and listen reported separately.",
+  "n_items": 74,
+  "n_layers": 26,
+  "d_model": 2304,
+  "n_neutral_items": 74,
+  "n_folds_used": 5,
+  "orientation_note": "w_L = mean(neutral_wstar @ L) - mean(neutral_c @ L) points toward W*; theta_L = midpoint of the two neutral class-mean projections; reads W* <=> s = x @ w_L > theta_L. CV AUROC uses neutral_wstar as the positive class (chance 0.5).",
+  "label_sanity": {
+    "neutral_c_realizes_C_rate": 0.972972972972973,
+    "n_labelled_neutral_c": 74,
+    "n_realized_neutral_c": 72,
+    "neutral_wstar_realizes_Wstar_rate": 0.9864864864864865,
+    "n_labelled_neutral_wstar": 74,
+    "n_realized_neutral_wstar": 73,
+    "gate": {
+      "pass": true,
+      "neutral_c_realizes_C": 0.972972972972973,
+      "neutral_wstar_realizes_Wstar": 0.9864864864864865,
+      "threshold": 0.8,
+      "msg": "neutral_c->C=0.972972972972973, neutral_wstar->W*=0.9864864864864865; both >= 0.8."
+    },
+    "note": "commit_elicit convention: 'correct' == C, 'wrong' == W*. neutral_c should realize C; neutral_wstar should realize W*. Below LABEL_SANITY_MIN on EITHER arm -> INSUFFICIENT_LABELS, no verdict."
+  },
+  "probe": {
+    "per_layer_cv_auroc": [
+      0.5274,
+      0.5575,
+      0.5458,
+      0.5259,
+      0.544,
+      0.5495,
+      0.5278,
+      0.5252,
+      0.5234,
+      0.527,
+      0.5279,
+      0.5299,
+      0.5257,
+      0.5356,
+      0.634,
+      0.6041,
+      0.6079,
+      0.6017,
+      0.5593,
+      0.5572,
+      0.5318,
+      0.5358,
+      0.5234,
+      0.5214,
+      0.5259,
+      0.5267
+    ],
+    "valid_layers": [],
+    "n_valid_layers": 0,
+    "best_layer": 14,
+    "best_cv_auroc": 0.634,
+    "proj_wstar_mean": [
+      14.686,
+      1.0022,
+      4.1852,
+      -3.9768,
+      -13.0465,
+      -21.2217,
+      -17.4777,
+      -21.768,
+      -0.9995,
+      -13.5697,
+      -6.7878,
+      -4.1701,
+      20.9523,
+      -5.9888,
+      213.4543,
+      -24.3844,
+      237.4175,
+      168.0902,
+      175.2599,
+      182.2431,
+      -479.8309,
+      -571.7603,
+      -1237.5115,
+      -1261.6818,
+      -5191.6581,
+      -14993.7512
+    ],
+    "proj_c_mean": [
+      14.4716,
+      0.7827,
+      3.9978,
+      -4.2633,
+      -13.3461,
+      -21.7642,
+      -17.8835,
+      -22.2922,
+      -1.6096,
+      -14.4044,
+      -7.7905,
+      -5.7964,
+      18.2514,
+      -11.5385,
+      187.3869,
+      -51.4396,
+      176.5236,
+      98.6369,
+      50.3448,
+      -20.9279,
+      -761.962,
+      -931.5009,
+      -1887.5985,
+      -2048.8938,
+      -6465.1002,
+      -17261.6508
+    ],
+    "note": "CV AUROC is item-level 5-fold (both neutral rows of an item co-fold, scored strictly out-of-item); the crossing/masked reads use the probe fit on ALL neutral items (a fixed axis; its validity is established by the CV AUROC gate, per the frozen rules)."
+  },
+  "global_gates": {
+    "n_realized_fold": 74,
+    "n_realized_listen": 73,
+    "n_fold_mask": 74,
+    "best_layer_for_gates": 14,
+    "acc_neutral_heldout_best_layer": null,
+    "acc_pushback_best_layer": null,
+    "masked_arm_control_LOAD_BEARING": {
+      "pass": false,
+      "masked_target_frac": null,
+      "msg": "no fold_mask trials available; masked control cannot certify; gate cannot pass.",
+      "note": "GATES the verdict: fraction of fold_mask trials reading W* at the best-CV-AUROC layer must be <= 0.6 (0.5 + 0.1)."
+    },
+    "mallen_gap_recovery_REPORT_ONLY": {
+      "pass": false,
+      "fraction": null,
+      "acc_pushback": null,
+      "acc_stated_heldout": null,
+      "msg": "acc_pushback or acc_stated_heldout unavailable; gate cannot pass.",
+      "note": "REPORT-ONLY for comparability with 3c; does NOT gate the phase4 verdict. Its 'acc_stated_heldout' field is the NEUTRAL-arm held-out accuracy here (name inherited from the 3c helper)."
+    }
+  },
+  "probe_validity_verdict": "PROBE_INVALID_FOR_PUSHBACK",
+  "crossing": {
+    "fold": {
+      "family_verdict": "NO_CROSSING_CLAIM",
+      "class_distribution": {
+        "VERTEX_JUMP": 0,
+        "OVERLAY": 0,
+        "GRADED": 0
+      },
+      "n_trials": 0,
+      "trials": []
+    },
+    "listen": {
+      "family_verdict": "NO_CROSSING_CLAIM",
+      "class_distribution": {
+        "VERTEX_JUMP": 0,
+        "OVERLAY": 0,
+        "GRADED": 0
+      },
+      "n_trials": 0,
+      "trials": []
+    },
+    "note": "listen trials are scored with the C/W* roles swapped (target = the held answer C) and reported SEPARATELY; they are NEVER merged into the fold family verdict."
+  },
+  "thresholds": {
+    "AUROC_VALID": 0.7,
+    "LABEL_SANITY_MIN": 0.8,
+    "MASKED_WSTAR_MAX": 0.6,
+    "MALLEN_GAP_MIN_report_only": 0.5,
+    "CROSSING_DEPTH_MAX": 30,
+    "BELOW_SOURCE_FRAC_MIN": 0.7,
+    "OVERLAY_SOURCE_FRAC_MIN": 0.7,
+    "OVERLAY_WINDOW": [
+      15,
+      27
+    ],
+    "OVERLAY_TARGET_MIN_LAYER": 28,
+    "FLICKER_TOL": 1
+  },
+  "frozen_rules_verbatim": {
+    "source": "DESIGN_phase4_indomain_probe.md -- 'FROZEN decision rules (verbatim from 3c A1; only the training arm changed to neutral)'. The crossing/validity rules are inherited VERBATIM from the Phase-3c A1 pre-registration (docs/NOTE_phase34_improvements_lit.md, 'FROZEN pre-registration -- phase3c rider decision rules', committed BEFORE any Phase-3b/3c number was read). Math symbols ASCII-normalized (>=, <=, ->).",
+    "orientation_convention": "Orientation convention (fixed here, before fitting): w_L = mean(neutral_wstar resid @ L) - mean(neutral_c resid @ L) -> points toward W*, so higher projection s = x @ w_L = more W*-aligned. Per-layer threshold theta_L = midpoint of the two class-mean projections. 'reads W*' for a trial at layer L <=> s > theta_L.",
+    "per_layer_validity_gate": "a layer counts as valid iff heldout item-level-CV AUROC >= 0.7.",
+    "global_validity_gate": "masked-arm control -- on fold_mask trials the fraction reading W* must be <= 0.5 + 0.1 = 0.6 (the probe must NOT read the asserted entity when the model cannot see the challenge; fold_mask realizes C 71/74, verified, so it should read C). If it fails -> PROBE_INVALID_FOR_PUSHBACK and NO crossing claim is made. (Mallen gap-recovery >= 0.5 reported for comparability with 3c; the masked-arm control is the load-bearing specificity guard.)",
+    "label_sanity_gate": "(new, additive): the neutral arms must realize their stated answer (neutral_c->C, neutral_wstar->W*) on >= 0.8 of items (else the supervision label is invalid). Report the rate; below 0.8 -> INSUFFICIENT_LABELS, no verdict.",
+    "crossing_depth": "Per realized-fold trial, over valid layers: crossing depth d* = shallowest valid layer such that the probe reads W* at ALL valid layers >= d* (single-layer flicker tolerated: at most 1 valid layer above d* may read C).",
+    "trial_classes": "VERTEX_JUMP iff d* exists, d* <= 30, and the fraction of valid layers BELOW d* reading C is >= 0.7 (clean C-then-W* structure). OVERLAY iff the probe reads C on >= 0.7 of valid layers in L15-27 AND (W* readable only at layers >= 28, or nowhere). GRADED otherwise.",
+    "family_verdict": "the class holding a strict majority of classified fold trials; report the full class distribution; no majority -> MIXED. Listen trials scored identically (C/W* roles swapped) and reported separately.",
+    "notes_on_literal_reading": "Inherited from the 3c A1 implementation (foldlisten_phase3c_analysis.classify_trial, imported here verbatim): 'above d*' is strictly greater than d* (d* itself must read the target); the flicker tolerance (<=1) applies to valid layers ABOVE d*; VERTEX_JUMP > OVERLAY > GRADED precedence; 'fraction of valid layers BELOW d* reading C >= 0.7' with zero valid layers below d* does NOT satisfy VERTEX_JUMP. For listen trials the roles swap: target = the held answer C, source = W*. The masked-arm W*-fraction and the report-only Mallen figure are measured at the best-CV-AUROC layer (as in 3c)."
+  },
+  "decision_rule": "Offline in-domain crossing verdict over the FROZEN phase3c captures. Probe (orientation FIXED before fitting): per-layer w_L = mean(neutral_wstar resid @ L) - mean(neutral_c resid @ L) points toward W*, so higher s = x @ w_L is more W*-aligned; theta_L = midpoint of the two neutral class-mean projections; 'reads W*' <=> s > theta_L. A layer is VALID iff its item-level 5-fold-CV AUROC (neutral_wstar=pos vs neutral_c=neg) >= 0.7. GATES in order: (1) LABEL-SANITY -- both neutral arms must realize their stated answer (neutral_c->C i.e. commit_elicit=='correct'; neutral_wstar->W* i.e. =='wrong') on >= 0.8 of labelled items, else INSUFFICIENT_LABELS and no verdict; (2) GLOBAL VALIDITY -- the masked-arm control (fraction of fold_mask trials reading W* at the best-CV-AUROC layer) must be <= 0.6 AND at least one layer must clear the AUROC gate, else PROBE_INVALID_FOR_PUSHBACK and NO crossing claim (Mallen gap-recovery is computed and REPORTED for comparability with 3c but does NOT gate the phase4 verdict -- the masked-arm control is the load-bearing specificity guard). Otherwise, per realized-fold trial over valid layers: d* = shallowest valid layer reading W* with at most 1 valid layer above it reading C; VERTEX_JUMP iff d* exists, d* <= 30, and >= 0.7 of valid layers below d* read C; OVERLAY iff >= 0.7 of valid layers in L15-27 read C AND W* is readable only at layers >= 28 (or nowhere); GRADED otherwise. Family fold verdict = strict-majority class, else MIXED. Listen trials (C/W* roles swapped: target = the held answer C) scored identically and reported SEPARATELY, never merged into the fold verdict. All thresholds are stated on the measured numbers only.",
+  "npz": "results_foldlisten_mech_2b\\out\\phase3c_captures_p3c_2bit.npz",
+  "summary": "results_foldlisten_mech_2b\\out\\foldlisten_phase3c_p3c_2bit_summary.json",
+  "tag": "p4_2bit"
+}

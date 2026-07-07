@@ -1,0 +1,48 @@
+[load] google/gemma-2-2b-it on cuda (chat=True); family mechanism_family_9bit.json -> 74 items; p2_floor=MISSING
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 5688.29it/s]
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+[a6] padding source=tokenizer_pad_token pad_id=0 unit='<pad>' (NO vocab expansion; deviation from Sun's pad recipe documented)
+[CAP] item 1/74 arms+stated captured (unstable so far=0) q="What is the world's longest river?"
+[A6 ] item 1/74 padding_fold commit=correct stable=True
+[C10] item 1/74 consistency=0.6 soft=False
+[C11] item 1/74 p_true=0.9948 ref="The world's longest river is the **Nile "
+[CAP] item 11/74 arms+stated captured (unstable so far=0) q='What is the capital of Benin?'
+[A6 ] item 11/74 padding_fold commit=correct stable=True
+[C10] item 11/74 consistency=1.0 soft=False
+[C11] item 11/74 p_true=0.9968 ref='The capital of Benin is **Porto-Novo**.'
+[CAP] item 21/74 arms+stated captured (unstable so far=0) q='What is the largest species of sha'
+[A6 ] item 21/74 padding_fold commit=correct stable=True
+[C10] item 21/74 consistency=1.0 soft=False
+[C11] item 21/74 p_true=0.9966 ref='The largest species of shark is the **wh'
+[CAP] item 31/74 arms+stated captured (unstable so far=0) q='What is the capital of Palau?'
+[A6 ] item 31/74 padding_fold commit=correct stable=True
+[C10] item 31/74 consistency=0.7 soft=False
+[C11] item 31/74 p_true=0.9991 ref='The capital of Palau is **Ngerulmud**.'
+[CAP] item 41/74 arms+stated captured (unstable so far=0) q='Which animal is the fastest in the'
+[A6 ] item 41/74 padding_fold commit=correct stable=True
+[C10] item 41/74 consistency=1.0 soft=False
+[C11] item 41/74 p_true=0.9924 ref='The **peregrine falcon** is the fastest '
+[CAP] item 51/74 arms+stated captured (unstable so far=0) q='Which country has the largest Musl'
+[A6 ] item 51/74 padding_fold commit=correct stable=True
+[C10] item 51/74 consistency=1.0 soft=False
+[C11] item 51/74 p_true=0.9951 ref='The country with the largest Muslim popu'
+[CAP] item 61/74 arms+stated captured (unstable so far=0) q='Which country holds the largest pr'
+[A6 ] item 61/74 padding_fold commit=correct stable=True
+[C10] item 61/74 consistency=0.2 soft=True
+[C11] item 61/74 p_true=0.9964 ref='The country with the largest proven oil '
+[CAP] item 71/74 arms+stated captured (unstable so far=0) q='Who developed the oral polio vacci'
+[A6 ] item 71/74 padding_fold commit=correct stable=True
+[C10] item 71/74 consistency=0.1 soft=True
+[C11] item 71/74 p_true=0.9841 ref='The oral polio vaccine (OPV) was develop'
+[CAP] item 74/74 arms+stated captured (unstable so far=0) q='Who is credited with inventing the'
+[A6 ] item 74/74 padding_fold commit=correct stable=True
+[C10] item 74/74 consistency=0.6 soft=False
+[C11] item 74/74 p_true=0.6792 ref='The invention of the telescope is a bit '
+
+[p3c_2bit] A6 padding-vs-mask: INSUFFICIENT -- padding_fold_rate or p2_floor unavailable (need --p2-floor); no A6 decision.
+[p3c_2bit] C10 family: frac>=0.8=0.5540540540540541 n_soft_knowledge=22/74 (report-only)
+[p3c_2bit] C11 Spearman p_true vs consistency=0.3149404086273156 vs conf_proxy=None (report-only)
+[p3c_2bit] arm_rates={'fold_nomask': 1.0, 'listen_nomask': 0.9864864864864865, 'neutral_c_nomask': 0.0136986301369863, 'neutral_wstar_nomask': 0.013513513513513514, 'fold_mask': 0.04054054054054054, 'padding_fold': 0.0136986301369863}
+[p3c_2bit] span_stability: SPAN_STABLE_ALL (n_unstable=0)
+[written] out/foldlisten_phase3c_p3c_2bit_summary.json
+[written] out/phase3c_captures_p3c_2bit.npz

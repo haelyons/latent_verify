@@ -401,6 +401,33 @@ it, not this prose.**
 belief-vs-compliance fork from OPEN to LEANS-STATE-CHANGE. The eventual GPU scale-transport now carries a
 validated THINK instrument, not just the necessity/arbiter machinery.
 
+## Addendum 9 (2026-07-07) — Phase 4 scale-transport: 2b-it replicates MONITOR_AGAIN (H3-grounded); in-domain probe INVALID at 2b; 27b running
+
+Per the frozen Phase-4 pre-reg (`DESIGN_foldlisten_mechanism.md`), the 9b decision machinery + in-domain
+probe transported to 2b-it (A100; runners `run_foldlisten_mech_2b{,_resume}.sh`; write-band **L17-23** =
+the scale-relative analogue of 9b's L28-37, confirmed derived). All numbers live in the result JSONs
+(`results_foldlisten_mech_2b/out/foldlisten_phase3b_p3b_2bit_summary.json`,
+`.../foldlisten_phase4_indomain_probe_p4_2bit.json`) — H3-grounded by an isolated reader (necessity,
+arbiter, per-layer probe AUROC, arm-rates all reproduce from the raw artifacts).
+
+- **3b: MONITOR_AGAIN — replicates 9b, same failure-signature.** Necessity at floor (write-ablation flips
+  none of the realized answers), arbiter SIGN_DISAGREE (direct<0, total>0), backup restores, read-side
+  WEAK_AT_DERIVE both arms (banked 3a). **The arbiter is now PER-ITEM AUDITABLE (P2's first real use —
+  the aggregate reproduces exactly from the persisted per-item values, closing the 9b unauditability).**
+- **In-domain THINK probe: PROBE_INVALID_FOR_PUSHBACK at 2b.** No layer clears the frozen 0.70 CV-AUROC
+  gate (best mid-stack ~0.64; grounded null across split schemes). The mid-stack committed-answer READ
+  does NOT transport to 2b — belief-vs-compliance is a 9b-scale read (2b's answer-identity is not linearly
+  separable at the elicit slot above the bar; smaller model). Instrument note: the masked-arm guard is not
+  exercised at 2b (the AUROC gate fails first → no valid layer to measure it at; verdict forced by
+  n_valid_layers=0, not the guard).
+- **Behaviour transports:** arm-rates fold≈1.0 / listen≈0.99 / fold_mask≈floor — 2b caves+listens like 9b;
+  2b holds C less firmly (C10 report-only in the 3c summary; more soft-knowledge items than 9b).
+
+**Reading (partial, 27b pending).** The MONITOR headline transports: no single causal lever at 2b either,
+same SIGN_DISAGREE signature (now auditable). The belief-state READ is 9b-specific (probe invalid at 2b).
+**2b + 9b = two scales on the MONITOR verdict → the pre-registered "transports across ≥2 scales" bar is
+met.** 27b (H100) still running; its 3b verdict + probe re-run extend this.
+
 ## Artifacts
 
 - Code: `controls/foldlisten_judge.py` (model-free `--selftest`), runners `run_foldlisten_{9b,2b,27b}.sh`,

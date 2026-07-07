@@ -105,6 +105,10 @@ Standing NULLs (each arbiter- or power-confirmed):
     Instrument debt (H4): per-item arbiter/backup persistence LANDED in
     `controls/foldlisten_phase3b.py`; arm↔direction collinearity broken via neutral-supervision. Still
     owed at scale: a realized-label in-domain probe (needs sampled per-sample captures = GPU) at 2b/27b.
+    **SCALE-TRANSPORT (2026-07-07, `RESULTS_FOLDLISTEN.md` Addendum 9):** 2b-it REPLICATES MONITOR_AGAIN
+    (same SIGN_DISAGREE signature, now per-item auditable) → 2b + 9b = the pre-registered ≥2-scale bar is
+    MET. The in-domain THINK probe is INVALID at 2b (no layer clears the 0.70 gate) → the belief-state read
+    is 9b-scale, not transporting. 27b (H100) running. → `results_foldlisten_mech_2b/out/` JSONs.
 
 Direction-level, NOT a circuit (framing-corrected):
 

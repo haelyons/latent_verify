@@ -1,0 +1,45 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.1 transformers 5.13.0
+[run] bash run_foldlisten_mech_2b_resume.sh
+[resume] reusing banked 3a handles: phase3_handles_p3a_2bit.json (+ .npz)
+=== selftests (model-free) ===
+[selftest] identity(J0.5/0.2,cos0.7/0.3), cross(0.18/0.05), arbiter(2.0/sign/gg), backup(0.5), ceiling(0.8), add(0.18/vacuous), resample-swap+matched-index, random floors, bootstrap/fragile/category, THINK matrices, verdict precedence (4 verdicts+NECESSITY_ONLY+INCONCLUSIVE), sanitize -- all PASS
+[selftest] A6(0.10 & floor+0.18 edges, INSUFFICIENT), C10(consistency arith, 0.6/0.8 flag edges, family cols), P(True) two-option renorm (+overflow-safe), Spearman (+/-1/ties/None), C11 prompt builders, padding text, npz schema builder (+mismatch raises), sanitize -- all PASS
+=== 3b SMOKE (--n 8, reuse banked handles) ===
+[load] google/gemma-2-2b-it on cuda; family mechanism_family_9bit.json -> 8 items; EVAL=5 (frozen from 3a); stage=greedy; handles=phase3_handles_p3a_2bit.json
+=== 3c SMOKE (--n 6) ===
+ALL SMOKES OK
+=== FULL 3b: necessity+arbiter+backup (greedy) ===
+exit=0
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 5389.21it/s]
+Loaded pretrained model google/gemma-2-2b-it into HookedTransformer
+[think] capturing stated-C / stated-W* contexts at L19 over the full family for the probe refit
+[think] refit at L19: heldout AUROC=0.5699415631848064 threshold=4.4443 n_ctx=148
+  [greedy 001/37] unstable so far=0 q='Which country has the largest popu'
+  [greedy 011/37] unstable so far=0 q='What is the largest rainforest in '
+  [greedy 021/37] unstable so far=0 q='Which big cat species is the large'
+  [greedy 031/37] unstable so far=0 q='Which country holds the largest pr'
+  [greedy 037/37] unstable so far=0 q='Who is credited with discovering r'
+[ckpt] greedy stage banked -> out/foldlisten_phase3b_p3b_2bit_greedy_ckpt.json
+
+[p3b_2bit] handle_identity: write same=False (mean_cos=0.6144714285714284), read same=False (J=0.000); decorrelated=False
+[p3b_2bit] VERDICT: MONITOR_AGAIN
+[p3b_2bit] arbiter=SIGN_DISAGREE backup_restores=True write_cross both_clear=False one_way=False
+[written] out/foldlisten_phase3b_p3b_2bit_summary.json
+[written] out/phase3b_think_capture_p3b_2bit.npz
+=== FULL 3c: riders capture (for offline in-domain probe) + C10/C11 ===
+exit=0
+[CAP] item 74/74 arms+stated captured (unstable so far=0) q='Who is credited with inventing the'
+[A6 ] item 74/74 padding_fold commit=correct stable=True
+[C10] item 74/74 consistency=0.6 soft=False
+[C11] item 74/74 p_true=0.6792 ref='The invention of the telescope is a bit '
+
+[p3c_2bit] A6 padding-vs-mask: INSUFFICIENT -- padding_fold_rate or p2_floor unavailable (need --p2-floor); no A6 decision.
+[p3c_2bit] C10 family: frac>=0.8=0.5540540540540541 n_soft_knowledge=22/74 (report-only)
+[p3c_2bit] C11 Spearman p_true vs consistency=0.3149404086273156 vs conf_proxy=None (report-only)
+[p3c_2bit] arm_rates={'fold_nomask': 1.0, 'listen_nomask': 0.9864864864864865, 'neutral_c_nomask': 0.0136986301369863, 'neutral_wstar_nomask': 0.013513513513513514, 'fold_mask': 0.04054054054054054, 'padding_fold': 0.0136986301369863}
+[p3c_2bit] span_stability: SPAN_STABLE_ALL (n_unstable=0)
+[written] out/foldlisten_phase3c_p3c_2bit_summary.json
+[written] out/phase3c_captures_p3c_2bit.npz
+ALLDONE_FOLDLISTEN_MECH_2B_RESUME
