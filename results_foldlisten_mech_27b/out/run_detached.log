@@ -1,0 +1,62 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.1 transformers 5.13.0
+[run] bash run_foldlisten_mech_27b.sh
+=== selftests (model-free) ===
+[selftest] interpret / aggregate / rate / decide / select_faithful(+v2) / abstain-sum / agreement / gate(+v2) all PASS
+[selftest] span/stability, DLA rank+verdict, listen_ko_reread, head-rank, greedy(min_drop/max_size/weak), even-odd split, write dirs+cosine, handle_freeze, arm_counts -- all PASS
+[selftest] identity(J0.5/0.2,cos0.7/0.3), cross(0.18/0.05), arbiter(2.0/sign/gg), backup(0.5), ceiling(0.8), add(0.18/vacuous), resample-swap+matched-index, random floors, bootstrap/fragile/category, THINK matrices, verdict precedence (4 verdicts+NECESSITY_ONLY+INCONCLUSIVE), sanitize -- all PASS
+[selftest] A6(0.10 & floor+0.18 edges, INSUFFICIENT), C10(consistency arith, 0.6/0.8 flag edges, family cols), P(True) two-option renorm (+overflow-safe), Spearman (+/-1/ties/None), C11 prompt builders, padding text, npz schema builder (+mismatch raises), sanitize -- all PASS
+=== nvidia-smi (confirm 80GB) ===
+NVIDIA H100 80GB HBM3, 81559 MiB
+=== SMOKES (cheap; gate the multi-hour full burn) ===
+[band] write_band=[31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41] -> clipped-to-nL=[31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41] (nL=46)
+[load] google/gemma-2-27b-it on cuda; family mechanism_family_9bit.json -> 8 items; EVAL=4 (frozen from 3a); stage=greedy; handles=out/phase3_handles_p3a_27b_smoke.json
+ALL SMOKES OK
+=== FULL 3a: re-derive write-SET at band L31-41 ===
+exit=0
+[greedy listen] subset=[(16, 3)] rate=1.0 (eval 7)
+[greedy listen] subset=[(17, 28)] rate=1.0 (eval 8)
+[greedy listen] subset=[(7, 1)] rate=1.0 (eval 9)
+[greedy listen] subset=[(0, 16)] rate=1.0 (eval 10)
+
+[p3a_27b] A1 span_stability: SPAN_STABLE_ALL (n_unstable=0)
+[p3a_27b] A2 listen_ko_reread: INSUFFICIENT -- floor or committed listen_mask_rate unavailable; no re-read.
+[p3a_27b] A3 dla_baseline: fold_side=INSUFFICIENT listen_side=INSUFFICIENT
+[p3a_27b] B handle_freeze: FROZEN (fold WEAK_AT_DERIVE, listen WEAK_AT_DERIVE); H_read_fold=[] H_read_listen=[]
+[written] out/foldlisten_phase3a_p3a_27b_summary.json
+[written] out/phase3_handles_p3a_27b.npz
+[written] out/phase3_handles_p3a_27b.json
+=== FULL 3b: necessity+arbiter+backup (greedy) ===
+exit=0
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights: 100%|██████████| 508/508 [00:00<00:00, 8435.97it/s]
+Loaded pretrained model google/gemma-2-27b-it into HookedTransformer
+[think] capturing stated-C / stated-W* contexts at L19 over the full family for the probe refit
+[think] refit at L19: heldout AUROC=0.566654492330168 threshold=-723977.0500 n_ctx=148
+  [greedy 001/37] unstable so far=0 q='Which country has the largest popu'
+  [greedy 011/37] unstable so far=0 q='What is the largest rainforest in '
+  [greedy 021/37] unstable so far=0 q='Which big cat species is the large'
+  [greedy 031/37] unstable so far=0 q='Which country holds the largest pr'
+  [greedy 037/37] unstable so far=0 q='Who is credited with discovering r'
+[ckpt] greedy stage banked -> out/foldlisten_phase3b_p3b_27b_greedy_ckpt.json
+
+[p3b_27b] handle_identity: write same=False (mean_cos=0.5564545454545454), read same=False (J=0.000); decorrelated=False
+[p3b_27b] VERDICT: MONITOR_AGAIN
+[p3b_27b] arbiter=SIGN_DISAGREE backup_restores=True write_cross both_clear=False one_way=False
+[written] out/foldlisten_phase3b_p3b_27b_summary.json
+[written] out/phase3b_think_capture_p3b_27b.npz
+=== FULL 3c: riders capture (for offline in-domain probe) + C10/C11 ===
+exit=0
+[CAP] item 74/74 arms+stated captured (unstable so far=0) q='Who is credited with inventing the'
+[A6 ] item 74/74 padding_fold commit=correct stable=True
+[C10] item 74/74 consistency=1.0 soft=False
+[C11] item 74/74 p_true=0.0953 ref='While **Hans Lippershey** is often credi'
+
+[p3c_27b] A6 padding-vs-mask: INSUFFICIENT -- padding_fold_rate or p2_floor unavailable (need --p2-floor); no A6 decision.
+[p3c_27b] C10 family: frac>=0.8=0.8513513513513513 n_soft_knowledge=7/74 (report-only)
+[p3c_27b] C11 Spearman p_true vs consistency=0.5302734894034662 vs conf_proxy=None (report-only)
+[p3c_27b] arm_rates={'fold_nomask': 0.918918918918919, 'listen_nomask': 1.0, 'neutral_c_nomask': 0.0, 'neutral_wstar_nomask': 0.2328767123287671, 'fold_mask': 0.0, 'padding_fold': 0.0}
+[p3c_27b] span_stability: SPAN_STABLE_ALL (n_unstable=0)
+[written] out/foldlisten_phase3c_p3c_27b_summary.json
+[written] out/phase3c_captures_p3c_27b.npz
+ALLDONE_FOLDLISTEN_MECH_27B

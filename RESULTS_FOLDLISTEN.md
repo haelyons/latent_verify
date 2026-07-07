@@ -401,7 +401,7 @@ it, not this prose.**
 belief-vs-compliance fork from OPEN to LEANS-STATE-CHANGE. The eventual GPU scale-transport now carries a
 validated THINK instrument, not just the necessity/arbiter machinery.
 
-## Addendum 9 (2026-07-07) — Phase 4 scale-transport: 2b-it replicates MONITOR_AGAIN (H3-grounded); in-domain probe INVALID at 2b; 27b running
+## Addendum 9 (2026-07-07) — Phase 4 scale-transport: MONITOR_AGAIN replicates at 2b + 27b (3/3 scales, H3-grounded); the belief-state read is 9b-specific
 
 Per the frozen Phase-4 pre-reg (`DESIGN_foldlisten_mechanism.md`), the 9b decision machinery + in-domain
 probe transported to 2b-it (A100; runners `run_foldlisten_mech_2b{,_resume}.sh`; write-band **L17-23** =
@@ -423,10 +423,23 @@ arbiter, per-layer probe AUROC, arm-rates all reproduce from the raw artifacts).
 - **Behaviour transports:** arm-rates fold≈1.0 / listen≈0.99 / fold_mask≈floor — 2b caves+listens like 9b;
   2b holds C less firmly (C10 report-only in the 3c summary; more soft-knowledge items than 9b).
 
-**Reading (partial, 27b pending).** The MONITOR headline transports: no single causal lever at 2b either,
-same SIGN_DISAGREE signature (now auditable). The belief-state READ is 9b-specific (probe invalid at 2b).
-**2b + 9b = two scales on the MONITOR verdict → the pre-registered "transports across ≥2 scales" bar is
-met.** 27b (H100) still running; its 3b verdict + probe re-run extend this.
+- **27b (H100): 3b MONITOR_AGAIN — replicates; in-domain probe INSUFFICIENT_LABELS.** Same SIGN_DISAGREE
+  signature (necessity at floor, per-item auditable, backup restores, read WEAK_AT_DERIVE, write
+  both-at-floor); H3-grounded from raw (`results_foldlisten_mech_27b/out/` JSONs). The in-domain probe
+  cannot run at 27b: the neutral-supervision label-sanity gate FAILS — 27b drifts off a stated-wrong answer
+  ~a quarter of the time even under a neutral follow-up (it "knows better"), so the neutral_wstar
+  positive-class label is < 0.80 clean. A DIFFERENT failure mode than 2b (2b: labels clean but not
+  separable; 27b: labels unclean).
+
+**Reading (final, 3 scales).** The distributed-MONITOR headline TRANSPORTS CLEANLY across the full Gemma-2
+family: 2b, 9b, 27b all return MONITOR_AGAIN with the identical failure-signature (SIGN_DISAGREE arbiter,
+necessity at floor, read WEAK_AT_DERIVE, write both-at-floor, backup restores), all per-item auditable —
+**no single causal caving lever at any scale.** The pre-registered "≥2 scales" bar is exceeded (3/3). The
+belief-state READ (in-domain THINK probe) is by contrast **9b-SPECIFIC**: VALID only at 9b, PROBE_INVALID
+at 2b (not linearly separable) and INSUFFICIENT_LABELS at 27b (neutral-supervision breaks as 27b drifts off
+stated-wrong answers) — so "adoption is a mid-stack committed-state change, not an output overlay"
+(Addendum 8) is a 9b result, NOT shown to transport. Per-scale numbers in the
+`results_foldlisten_mech_{2b,27b}/out/` JSONs.
 
 ## Artifacts
 

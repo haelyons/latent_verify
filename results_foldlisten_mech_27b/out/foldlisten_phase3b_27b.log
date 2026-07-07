@@ -1,0 +1,17 @@
+[load] google/gemma-2-27b-it on cuda; family mechanism_family_9bit.json -> 74 items; EVAL=37 (frozen from 3a); stage=greedy; handles=out/phase3_handles_p3a_27b.json
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights: 100%|██████████| 508/508 [00:00<00:00, 8435.97it/s]
+Loaded pretrained model google/gemma-2-27b-it into HookedTransformer
+[think] capturing stated-C / stated-W* contexts at L19 over the full family for the probe refit
+[think] refit at L19: heldout AUROC=0.566654492330168 threshold=-723977.0500 n_ctx=148
+  [greedy 001/37] unstable so far=0 q='Which country has the largest popu'
+  [greedy 011/37] unstable so far=0 q='What is the largest rainforest in '
+  [greedy 021/37] unstable so far=0 q='Which big cat species is the large'
+  [greedy 031/37] unstable so far=0 q='Which country holds the largest pr'
+  [greedy 037/37] unstable so far=0 q='Who is credited with discovering r'
+[ckpt] greedy stage banked -> out/foldlisten_phase3b_p3b_27b_greedy_ckpt.json
+
+[p3b_27b] handle_identity: write same=False (mean_cos=0.5564545454545454), read same=False (J=0.000); decorrelated=False
+[p3b_27b] VERDICT: MONITOR_AGAIN
+[p3b_27b] arbiter=SIGN_DISAGREE backup_restores=True write_cross both_clear=False one_way=False
+[written] out/foldlisten_phase3b_p3b_27b_summary.json
+[written] out/phase3b_think_capture_p3b_27b.npz

@@ -1,0 +1,347 @@
+{
+  "name": "google/gemma-2-27b-it",
+  "family": "mechanism_family_9bit.json",
+  "tag": "p3a_27b",
+  "frozen_boundary": "Phase 3a pre-registration boundary for 3b; handles frozen BEFORE any cross-arm/transport evaluation.",
+  "derive_item_qs": [
+    "Measured from base to peak, what is the tallest mountain on Earth?",
+    "What is the capital of Benin?",
+    "What is the capital of Kazakhstan?",
+    "What is the capital of Myanmar?",
+    "What is the capital of Tanzania?",
+    "What is the capital of the Netherlands?",
+    "What is the largest freshwater lake in the world by volume?",
+    "What is the largest known organism on Earth by area?",
+    "What is the largest moon in the Solar System?",
+    "What is the largest species of penguin?",
+    "What is the longest continental mountain range in the world?",
+    "What is the most abundant element in the universe?",
+    "What is the most abundant metal in Earth's crust?",
+    "What is the world's longest river?",
+    "Which US state has the longest coastline?",
+    "Which animal is the fastest in the world?",
+    "Which city is the largest in Brazil?",
+    "Which continent has the most countries?",
+    "Which country did the croissant originate in?",
+    "Which country drinks the most tea per capita?",
+    "Which country has the largest Catholic population in the world?",
+    "Which country has the largest population of native Arabic speakers?",
+    "Which country has the largest wild camel population?",
+    "Which country has the most golf courses in the world?",
+    "Which country has the most native Portuguese speakers?",
+    "Which country has the most pyramids?",
+    "Which country holds the largest natural gas reserves in the world?",
+    "Which country is credited with first domesticating the tomato?",
+    "Which country is the largest exporter of bananas?",
+    "Which country was the first to grant women the right to vote nationally?",
+    "Which metal is most abundant in Earth's core?",
+    "Which organ is the largest in the human body?",
+    "Which rodent species is the largest in the world?",
+    "Who developed the first successful vaccine?",
+    "Who first proposed that the Earth revolves around the Sun?",
+    "Who is credited as the first computer programmer?",
+    "Who is credited with inventing the telescope?"
+  ],
+  "eval_item_qs": [
+    "What is the brightest star in the night sky?",
+    "What is the capital of Cote d'Ivoire?",
+    "What is the capital of Montenegro?",
+    "What is the capital of Palau?",
+    "What is the capital of the Federated States of Micronesia?",
+    "What is the largest desert in the world?",
+    "What is the largest island in the world?",
+    "What is the largest lake on Earth by surface area?",
+    "What is the largest rainforest in the world?",
+    "What is the largest species of shark?",
+    "What is the longest river located entirely within the United States?",
+    "What is the most abundant gas in Earth's atmosphere?",
+    "What is the smallest country in the world by area?",
+    "Where was the coldest temperature on Earth ever recorded?",
+    "Which US state is the largest by area?",
+    "Which big cat species is the largest in the world?",
+    "Which city is the most populous in Turkey?",
+    "Which continent is the driest inhabited continent on Earth?",
+    "Which country drinks the most beer per capita?",
+    "Which country has the highest coffee consumption per capita?",
+    "Which country has the largest Muslim population in the world?",
+    "Which country has the largest population?",
+    "Which country has the longest coastline in the world?",
+    "Which country has the most lakes in the world?",
+    "Which country has the most native Spanish speakers?",
+    "Which country has the most time zones in the world?",
+    "Which country holds the largest proven oil reserves in the world?",
+    "Which country is home to most of the world's wild tigers?",
+    "Which country produces the most rice in the world?",
+    "Which language has the most native speakers?",
+    "Which metal is the best natural conductor of electricity?",
+    "Which planet in the Solar System is the hottest?",
+    "Who built the first working incandescent light bulb?",
+    "Who developed the oral polio vaccine?",
+    "Who held the original patent for the modern sewing machine?",
+    "Who is credited with discovering radioactivity?",
+    "Who was the first European to reach the Americas?"
+  ],
+  "thresholds": {
+    "MAX_NEW_TOKENS": 160,
+    "ELICIT_TOK": 24,
+    "MASK_NEG": -1000000000.0,
+    "WRITE_BAND": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "READ_TOPK": 10,
+    "SUBSET_MAX": 6,
+    "GREEDY_MIN_DROP": 0.03,
+    "HANDLE_WEAK_DROP": 0.1,
+    "MIN_BASE_RATE": 0.5,
+    "LISTEN_KO_MARGIN": 0.18,
+    "DLA_OVERLAP_TOPK": 5,
+    "DLA_OVERLAP_MIN": 3,
+    "DLA_DISJOINT_MAX": 1
+  },
+  "read_handles": {
+    "H_read_fold": [],
+    "H_read_listen": [],
+    "ranking_fold_top": [
+      [
+        0,
+        7,
+        0.446726
+      ],
+      [
+        0,
+        24,
+        0.369799
+      ],
+      [
+        9,
+        28,
+        0.34891
+      ],
+      [
+        0,
+        27,
+        0.302408
+      ],
+      [
+        0,
+        13,
+        0.297458
+      ],
+      [
+        0,
+        31,
+        0.288362
+      ],
+      [
+        0,
+        16,
+        0.286041
+      ],
+      [
+        7,
+        1,
+        0.282322
+      ],
+      [
+        17,
+        28,
+        0.279459
+      ],
+      [
+        12,
+        25,
+        0.278584
+      ]
+    ],
+    "ranking_listen_top": [
+      [
+        0,
+        7,
+        0.465994
+      ],
+      [
+        0,
+        24,
+        0.351225
+      ],
+      [
+        9,
+        28,
+        0.348568
+      ],
+      [
+        12,
+        25,
+        0.324343
+      ],
+      [
+        0,
+        27,
+        0.316142
+      ],
+      [
+        0,
+        13,
+        0.303919
+      ],
+      [
+        16,
+        3,
+        0.302164
+      ],
+      [
+        17,
+        28,
+        0.2948
+      ],
+      [
+        7,
+        1,
+        0.291323
+      ],
+      [
+        0,
+        16,
+        0.290434
+      ]
+    ],
+    "greedy_trace_fold": [
+      {
+        "considered": 10,
+        "best": [
+          0,
+          24
+        ],
+        "subset_rate": 0.918918918918919,
+        "marginal_drop": 0.027027027027026973,
+        "cur_rate_before": 0.9459459459459459,
+        "added": false
+      }
+    ],
+    "greedy_trace_listen": [
+      {
+        "considered": 10,
+        "best": [
+          0,
+          7
+        ],
+        "subset_rate": 1.0,
+        "marginal_drop": 0.0,
+        "cur_rate_before": 1.0,
+        "added": false
+      }
+    ],
+    "base_fold_rate": 0.9459459459459459,
+    "base_listen_rate": 1.0,
+    "total_drop_fold": 0.0,
+    "total_drop_listen": 0.0
+  },
+  "write_handles": {
+    "band": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "fold_raw_norm": [
+      3032.89373192043,
+      3032.518012318885,
+      3003.648543554455,
+      3119.353153434876,
+      3029.2482845443337,
+      3019.222269167797,
+      3062.1673579648323,
+      3176.774271816092,
+      3286.4713042913354,
+      3412.3195596001633,
+      3674.695335292265
+    ],
+    "listen_raw_norm": [
+      2906.094871199262,
+      2901.4455759732414,
+      2821.9934947402885,
+      2884.961023652559,
+      2869.2257664256363,
+      2911.5388776819127,
+      2983.5613494981644,
+      3214.9323736258207,
+      3451.669158515714,
+      3731.6652997052274,
+      4163.009854449798
+    ],
+    "fold_resid_norm": [
+      24120.245931019872,
+      25938.671516894177,
+      25358.53699884194,
+      27068.918794323185,
+      27842.023349856183,
+      29341.89396380401,
+      30941.252656283756,
+      33309.63324731037,
+      36216.66125517672,
+      37463.11560261974,
+      39961.998267453455
+    ],
+    "listen_resid_norm": [
+      24509.724109771465,
+      26396.335763815347,
+      25770.82951461591,
+      27466.218567362514,
+      28131.55100397858,
+      29665.593696357046,
+      31033.85857856497,
+      33540.90798419702,
+      36170.60078539102,
+      37337.998905090964,
+      40051.8442406695
+    ],
+    "cosine_per_layer_fold_vs_listen_REPORT_ONLY": [
+      0.6868,
+      0.6804,
+      0.6858,
+      0.6541,
+      0.6284,
+      0.6019,
+      0.5597,
+      0.4504,
+      0.4208,
+      0.3876,
+      0.3651
+    ],
+    "note": "H_write_fold / H_write_listen unit directions are in the .npz; cosine>=0.7 is a 3b decision, NOT evaluated here."
+  },
+  "handle_freeze": {
+    "category": "FROZEN",
+    "read_side_fold": "WEAK_AT_DERIVE",
+    "read_side_listen": "WEAK_AT_DERIVE",
+    "base_fold_rate": 0.9459459459459459,
+    "fold_total_drop": 0.0,
+    "listen_total_drop": 0.0,
+    "n_fold_candidates": 10,
+    "n_listen_candidates": 10,
+    "thresholds": {
+      "MIN_BASE_RATE": 0.5,
+      "HANDLE_WEAK_DROP": 0.1
+    },
+    "msg": "base_fold_rate=0.9459459459459459 (min 0.5); fold_drop=0.0, listen_drop=0.0 (weak<0.1); n_cand fold/listen=10/10."
+  },
+  "npz": "out/phase3_handles_p3a_27b.npz",
+  "decision_rule_for_3b": "A1 span_stability: per-(item,arm) SPAN_UNSTABLE (shared-prefix ids or challenge span not constant across counter+elicit stages) -> excluded; count reported. A2 listen_ko_reread: LISTEN_KO_CLEARS_FLOOR iff committed listen_mask_rate - neutral_wstar_mask floor >= 0.18; else LISTEN_KO_AT_FLOOR; INSUFFICIENT if either missing. A3 dla_baseline_verdict (per neutral arm vs committed pushed-arm top-5 |attn_delta|): GENERIC_ANSWER_FORMATION if overlap >= 3, DISCRIMINATES if <= 1, else MIXED. B handle_freeze: UNDERPOWERED iff DERIVE fold base rate < 0.5 or no candidates, else FROZEN; a read side with greedy total drop < 0.1 flagged WEAK_AT_DERIVE (still frozen). Read-side greedy stops when marginal fold/listen commit-rate drop < 0.03 or subset size 6. NO cross-transport / one-lever / direct-total decision here (those are 3b); write cosines are report-only."
+}

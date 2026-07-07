@@ -105,10 +105,13 @@ Standing NULLs (each arbiter- or power-confirmed):
     Instrument debt (H4): per-item arbiter/backup persistence LANDED in
     `controls/foldlisten_phase3b.py`; arm↔direction collinearity broken via neutral-supervision. Still
     owed at scale: a realized-label in-domain probe (needs sampled per-sample captures = GPU) at 2b/27b.
-    **SCALE-TRANSPORT (2026-07-07, `RESULTS_FOLDLISTEN.md` Addendum 9):** 2b-it REPLICATES MONITOR_AGAIN
-    (same SIGN_DISAGREE signature, now per-item auditable) → 2b + 9b = the pre-registered ≥2-scale bar is
-    MET. The in-domain THINK probe is INVALID at 2b (no layer clears the 0.70 gate) → the belief-state read
-    is 9b-scale, not transporting. 27b (H100) running. → `results_foldlisten_mech_2b/out/` JSONs.
+    **SCALE-TRANSPORT DONE + grounded (2026-07-07, `RESULTS_FOLDLISTEN.md` Addendum 9):** MONITOR_AGAIN
+    REPLICATES at 2b AND 27b — all THREE scales (2b/9b/27b) give the identical signature (SIGN_DISAGREE
+    arbiter, necessity at floor, read WEAK_AT_DERIVE, write both-at-floor, backup restores; 2b+27b now
+    per-item auditable). No single causal caving lever at any scale; the ≥2-scale bar is exceeded (3/3).
+    The belief-state READ (in-domain THINK probe) is by contrast **9b-SPECIFIC**: PROBE_INVALID at 2b
+    (not separable), INSUFFICIENT_LABELS at 27b (neutral-supervision breaks — 27b drifts off stated-wrong
+    answers). → `results_foldlisten_mech_{2b,27b}/out/` JSONs.
 
 Direction-level, NOT a circuit (framing-corrected):
 
@@ -287,14 +290,16 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > literal realized-label probe is degenerate at greedy (collinear). See `RESULTS_FOLDLISTEN.md` Addendum 8
 > + verdict JSON `results_foldlisten_p3c/out/foldlisten_phase4_indomain_probe_p4_9bit.json`.
 > Budget cap $950 (2026-07-07 +$300); headroom via audit-log reconstruction in `docs/lambda-gpu-access.md`.
-> GPU SCALE-TRANSPORT IN PROGRESS (2026-07-07): **2b-it DONE + grounded + committed (`bbd94d8`, Addendum 9)**
-> — MONITOR_AGAIN REPLICATES 9b (SIGN_DISAGREE, now per-item auditable) so **2b + 9b meets the ≥2-scale bar**;
-> the in-domain probe is INVALID at 2b (belief-state read is 9b-scale). **27b RUNNING** (H100, id
-> 36d4a464…) — recovery + next steps in task "P0 + GPU" (`bash lambda_reattach.sh results_foldlisten_mech_27b`
-> from THIS workstation once done; then the offline probe + H3-ground + record). Owed-not-lost: a
-> realized-label in-domain probe (needs sampled per-sample captures = GPU); the parked side threads
-> (numeric/salience-copy convergence, social per-cue resample-ablation, method-debt flip-rate). Faithfulness-
-> gate then triage before extending; read source JSONs, not this summary.
+> **GPU SCALE-TRANSPORT DONE + grounded + committed (2026-07-07, Addendum 9):** MONITOR_AGAIN replicates at
+> ALL THREE scales (2b/9b/27b) — identical SIGN_DISAGREE signature, no single causal caving lever anywhere,
+> ≥2-scale bar exceeded (3/3), 2b+27b now per-item auditable. The belief-state READ (in-domain THINK probe)
+> is 9b-SPECIFIC (VALID 9b; PROBE_INVALID 2b = not separable; INSUFFICIENT_LABELS 27b = neutral-supervision
+> breaks as 27b drifts off stated-wrong answers). All GPU boxes torn down. The Phase-4 arc is COMPLETE.
+> Owed-not-lost (all optional, no urgent GPU): a realized-label in-domain probe (needs sampled per-sample
+> captures = GPU) to retest the 9b state-change read robustly + attempt it at 2b/27b; the parked side
+> threads (numeric/salience-copy convergence, social per-cue resample-ablation, method-debt flip-rate).
+> NEXT is genuinely a CHOICE: close/writeup the arc (headline transported + grounded, neighbour sited), or
+> pick an owed thread. Faithfulness-gate then triage before extending; read source JSONs, not this summary.
 >
 > Where we are (2026-07-02): **the verifier's positive control exists and lives at ‑it.** Base does
 > not genuinely cave on the decorrelated entity family (POC v0–v3: decoded caves are ABSTENTION;
