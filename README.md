@@ -7,9 +7,6 @@ and watching behaviour change — "cut the wire, see if the light goes out." Rea
 graph is never accepted as evidence.
 
 ## Start here
-- **`ONBOARDING.md`** — a fresh session (local or cloud) starts here: the minimal init
-  prompt + a discovery self-test. Prerequisite on clone: `git submodule update --init
-  --recursive` (pulls the `latent_skeptic` triage harness).
 - **`RESEARCH_QUESTIONS.md`** — the living steering doc: origin, current claims (as
   pointers into source, *not* restatements — read the source), open questions,
   terminology, and the handoff seed for the next agent.
@@ -19,7 +16,8 @@ graph is never accepted as evidence.
 - **`.claude/agents/latent_skeptic/`** (git submodule) — the adversarial triage harness that
   gates every load-bearing claim (H1: skeptics share no state; H2: a crux is verified by
   running, not reading; H3: grounding reproduces from the raw artifact). Its `triage-*`
-  subagents auto-load from `.claude/agents/`; rules in its `HEURISTICS.md`.
+  subagents auto-load from `.claude/agents/`; rules in its `HEURISTICS.md`. On clone:
+  `git submodule update --init --recursive`.
 
 ## Where things live (the filesystem IS the index — there is no hand-kept list to rot)
 - `controls/*.py`, `job_*.py` — the instruments. Each is self-describing (a `--selftest`
