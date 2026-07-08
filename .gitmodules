@@ -1,0 +1,3 @@
+[submodule ".claude/agents/latent_skeptic"]
+	path = .claude/agents/latent_skeptic
+	url = https://github.com/haelyons/latent_skeptic.git

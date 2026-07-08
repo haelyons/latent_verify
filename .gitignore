@@ -1,16 +1,36 @@
+# ── secrets / env / caches — NEVER commit ──
 .env
 .keys
 .venv/
-out/
+hf_local/
 __pycache__/
 *.pyc
-hf_local/
-latent_skeptic/
-.claude/
-*_driver.log
 
-# large raw-generation / cache artifacts (kept local; derived result JSONs ARE committed)
-results_*/out/cave_multisample_caverate.json
-results_*/out/*_cache.json
-panel_gens.json
+# ── local-only Claude Code state ──
+# SHARED config commits by default: .claude/agents/ (incl. the latent_skeptic submodule),
+# .claude/skills/, .claude/settings.json. Only machine-local state is ignored:
+.claude/settings.local.json
+.claude/*.lock
+
+# ── harness / run scratch ──
+*_driver.log
 .last_lambda_instance
+
+# ── large regenerable tensors → local / LFS / bucket, NOT the git pack (ANY directory) ──
+# Raw activation captures are regenerable via a GPU run; the DERIVED result JSONs are committed.
+*captures*.npz
+think_probe_capture*.npz
+panel_gens.json
+
+# ── transient / derived run scratch (ANY directory) ──
+*smoke*
+*_ckpt.json
+*_greedy_ckpt.json
+*_cache.json
+
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+# CONTRACT: result JSONs, summaries, small metadata npz (phase3_handles_*, phase3b_think_capture_*),
+# run logs and transcripts commit BY DEFAULT wherever they land (out/ or results_*/out/). Fate is
+# decided by file TYPE, not by directory — so a result can't be silently dropped by where --outdir
+# happened to point (the failure mode of the old blanket `out/` ignore). A NEW large artifact type
+# must be added here EXPLICITLY and logged in the run that produces it (never silently truncated).
