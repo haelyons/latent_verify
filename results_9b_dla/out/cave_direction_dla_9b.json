@@ -1,0 +1,523 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "cave_direction_dla",
+  "substrate": "misconception caving items (TruthfulQA-style); rlhf_differential.ITEMS",
+  "measures": "direct logit attribution of each upstream component (per-head W_O write + per-layer MLP out, layers 0..L) onto the diff-of-means cave axis at layer L; exact linear decomposition of the cave coordinate. Reports per component c_base, c_it (own-axis), c_it_onbase, delta_onbase = c_it_onbase - c_base (change along the FIXED base cave-axis), and c_it_ondelta (write along the RLHF-added axis u_delta = normalize(u_it - u_base)); and the concentration of sum(|delta_onbase|) in the top-TOPK components.",
+  "metric_for_fit": "M = logp(C) - logp(W*) first-token margin; |gap| = |M_neutral - M_counter| gate",
+  "decomposition": "resid_post[L][-1] = sum over (attn head W_O writes + MLP outs, layers 0..L) + embed/bias remainder (exact identity, last token, counter condition)",
+  "l_layers": [
+    28,
+    32
+  ],
+  "thresholds": {
+    "topk": 10,
+    "conc_frac": 0.5
+  },
+  "layers": {
+    "28": {
+      "n_ok_base": 9,
+      "n_ok_it": 10,
+      "u_delta_norm": 0.841978,
+      "cos_u_base_u_it": 0.645536,
+      "n_components": 493,
+      "total_abs_delta_onbase": 81.21040397,
+      "conc_frac_at_topk": 0.585041,
+      "top_by_delta_onbase": [
+        {
+          "key": "mlp22",
+          "type": "mlp",
+          "layer": 22,
+          "head": null,
+          "c_base": -6.657336,
+          "c_it": 5.476011,
+          "c_it_onbase": 1.127859,
+          "delta_onbase": 7.785195,
+          "c_it_ondelta": 5.164211
+        },
+        {
+          "key": "mlp23",
+          "type": "mlp",
+          "layer": 23,
+          "head": null,
+          "c_base": 2.387178,
+          "c_it": 13.950852,
+          "c_it_onbase": 9.72397,
+          "delta_onbase": 7.336792,
+          "c_it_ondelta": 5.020184
+        },
+        {
+          "key": "mlp26",
+          "type": "mlp",
+          "layer": 26,
+          "head": null,
+          "c_base": 3.250829,
+          "c_it": 3.395945,
+          "c_it_onbase": -3.791853,
+          "delta_onbase": -7.042682,
+          "c_it_ondelta": 8.536793
+        },
+        {
+          "key": "mlp28",
+          "type": "mlp",
+          "layer": 28,
+          "head": null,
+          "c_base": 14.61626,
+          "c_it": 29.33654,
+          "c_it_onbase": 8.069785,
+          "delta_onbase": -6.546474,
+          "c_it_ondelta": 25.258087
+        },
+        {
+          "key": "mlp24",
+          "type": "mlp",
+          "layer": 24,
+          "head": null,
+          "c_base": -1.925407,
+          "c_it": 8.222977,
+          "c_it_onbase": 2.36988,
+          "delta_onbase": 4.295287,
+          "c_it_ondelta": 6.951604
+        },
+        {
+          "key": "mlp27",
+          "type": "mlp",
+          "layer": 27,
+          "head": null,
+          "c_base": 0.689336,
+          "c_it": 15.752419,
+          "c_it_onbase": 4.571517,
+          "delta_onbase": 3.882181,
+          "c_it_ondelta": 13.279325
+        },
+        {
+          "key": "mlp16",
+          "type": "mlp",
+          "layer": 16,
+          "head": null,
+          "c_base": -2.621698,
+          "c_it": -0.392784,
+          "c_it_onbase": 0.567742,
+          "delta_onbase": 3.18944,
+          "c_it_ondelta": -1.140797
+        },
+        {
+          "key": "mlp19",
+          "type": "mlp",
+          "layer": 19,
+          "head": null,
+          "c_base": -0.217653,
+          "c_it": 2.506868,
+          "c_it_onbase": 2.540996,
+          "delta_onbase": 2.758649,
+          "c_it_ondelta": -0.040533
+        },
+        {
+          "key": "mlp17",
+          "type": "mlp",
+          "layer": 17,
+          "head": null,
+          "c_base": 2.65115,
+          "c_it": 4.639472,
+          "c_it_onbase": 5.067648,
+          "delta_onbase": 2.416498,
+          "c_it_ondelta": -0.508533
+        },
+        {
+          "key": "mlp14",
+          "type": "mlp",
+          "layer": 14,
+          "head": null,
+          "c_base": 0.956465,
+          "c_it": 3.327487,
+          "c_it_onbase": 3.2147,
+          "delta_onbase": 2.258235,
+          "c_it_ondelta": 0.133953
+        }
+      ],
+      "top_by_c_it_ondelta": [
+        {
+          "key": "mlp28",
+          "type": "mlp",
+          "layer": 28,
+          "head": null,
+          "c_base": 14.61626,
+          "c_it": 29.33654,
+          "c_it_onbase": 8.069785,
+          "delta_onbase": -6.546474,
+          "c_it_ondelta": 25.258087
+        },
+        {
+          "key": "mlp27",
+          "type": "mlp",
+          "layer": 27,
+          "head": null,
+          "c_base": 0.689336,
+          "c_it": 15.752419,
+          "c_it_onbase": 4.571517,
+          "delta_onbase": 3.882181,
+          "c_it_ondelta": 13.279325
+        },
+        {
+          "key": "mlp25",
+          "type": "mlp",
+          "layer": 25,
+          "head": null,
+          "c_base": 0.714798,
+          "c_it": 10.044724,
+          "c_it_onbase": 2.852242,
+          "delta_onbase": 2.137444,
+          "c_it_ondelta": 8.542366
+        },
+        {
+          "key": "mlp26",
+          "type": "mlp",
+          "layer": 26,
+          "head": null,
+          "c_base": 3.250829,
+          "c_it": 3.395945,
+          "c_it_onbase": -3.791853,
+          "delta_onbase": -7.042682,
+          "c_it_ondelta": 8.536793
+        },
+        {
+          "key": "mlp24",
+          "type": "mlp",
+          "layer": 24,
+          "head": null,
+          "c_base": -1.925407,
+          "c_it": 8.222977,
+          "c_it_onbase": 2.36988,
+          "delta_onbase": 4.295287,
+          "c_it_ondelta": 6.951604
+        },
+        {
+          "key": "mlp22",
+          "type": "mlp",
+          "layer": 22,
+          "head": null,
+          "c_base": -6.657336,
+          "c_it": 5.476011,
+          "c_it_onbase": 1.127859,
+          "delta_onbase": 7.785195,
+          "c_it_ondelta": 5.164211
+        },
+        {
+          "key": "mlp21",
+          "type": "mlp",
+          "layer": 21,
+          "head": null,
+          "c_base": 0.909997,
+          "c_it": 6.839149,
+          "c_it_onbase": 2.569199,
+          "delta_onbase": 1.659202,
+          "c_it_ondelta": 5.071337
+        },
+        {
+          "key": "mlp23",
+          "type": "mlp",
+          "layer": 23,
+          "head": null,
+          "c_base": 2.387178,
+          "c_it": 13.950852,
+          "c_it_onbase": 9.72397,
+          "delta_onbase": 7.336792,
+          "c_it_ondelta": 5.020184
+        },
+        {
+          "key": "mlp20",
+          "type": "mlp",
+          "layer": 20,
+          "head": null,
+          "c_base": 2.61982,
+          "c_it": 4.33335,
+          "c_it_onbase": 2.302323,
+          "delta_onbase": -0.317497,
+          "c_it_ondelta": 2.412208
+        },
+        {
+          "key": "mlp0",
+          "type": "mlp",
+          "layer": 0,
+          "head": null,
+          "c_base": -5.050128,
+          "c_it": -5.403053,
+          "c_it_onbase": -6.634171,
+          "delta_onbase": -1.584043,
+          "c_it_ondelta": 1.462169
+        }
+      ],
+      "attn_vs_mlp_split_of_abs_delta_onbase": {
+        "attn_abs": 19.39394777,
+        "mlp_abs": 61.8164562,
+        "attn_frac": 0.238811,
+        "mlp_frac": 0.761189
+      },
+      "reshape_layer_band_of_topk": [
+        14,
+        28
+      ],
+      "decision": {
+        "category": "LOCALIZED_RESHAPE",
+        "localized_reshape": true,
+        "conc_frac_at_topk": 0.585041,
+        "total_abs_delta_onbase": 81.21040397,
+        "topk": 10,
+        "conc_thr": 0.5,
+        "msg": "top-10 components carry conc_frac@10=0.5850 >= 0.5 of sum(|delta_onbase|)=81.2104 -> LOCALIZED_RESHAPE."
+      }
+    },
+    "32": {
+      "n_ok_base": 9,
+      "n_ok_it": 10,
+      "u_delta_norm": 0.963061,
+      "cos_u_base_u_it": 0.536257,
+      "n_components": 561,
+      "total_abs_delta_onbase": 165.95131833,
+      "conc_frac_at_topk": 0.681114,
+      "top_by_delta_onbase": [
+        {
+          "key": "mlp31",
+          "type": "mlp",
+          "layer": 31,
+          "head": null,
+          "c_base": 19.668091,
+          "c_it": 15.232372,
+          "c_it_onbase": -3.144358,
+          "delta_onbase": -22.812449,
+          "c_it_ondelta": 19.081589
+        },
+        {
+          "key": "mlp32",
+          "type": "mlp",
+          "layer": 32,
+          "head": null,
+          "c_base": 24.802034,
+          "c_it": 13.083542,
+          "c_it_onbase": 4.455856,
+          "delta_onbase": -20.346179,
+          "c_it_ondelta": 8.958611
+        },
+        {
+          "key": "mlp29",
+          "type": "mlp",
+          "layer": 29,
+          "head": null,
+          "c_base": 15.338881,
+          "c_it": 7.596978,
+          "c_it_onbase": -2.121247,
+          "delta_onbase": -17.460128,
+          "c_it_ondelta": 10.090978
+        },
+        {
+          "key": "mlp30",
+          "type": "mlp",
+          "layer": 30,
+          "head": null,
+          "c_base": 12.445252,
+          "c_it": 16.144493,
+          "c_it_onbase": -1.93332,
+          "delta_onbase": -14.378572,
+          "c_it_ondelta": 18.771204
+        },
+        {
+          "key": "mlp23",
+          "type": "mlp",
+          "layer": 23,
+          "head": null,
+          "c_base": -0.788336,
+          "c_it": 11.491697,
+          "c_it_onbase": 8.815878,
+          "delta_onbase": 9.604214,
+          "c_it_ondelta": 2.778454
+        },
+        {
+          "key": "mlp22",
+          "type": "mlp",
+          "layer": 22,
+          "head": null,
+          "c_base": -5.995988,
+          "c_it": 4.729142,
+          "c_it_onbase": 2.279171,
+          "delta_onbase": 8.275159,
+          "c_it_ondelta": 2.543942
+        },
+        {
+          "key": "mlp26",
+          "type": "mlp",
+          "layer": 26,
+          "head": null,
+          "c_base": -2.653602,
+          "c_it": 1.536007,
+          "c_it_onbase": -8.836188,
+          "delta_onbase": -6.182587,
+          "c_it_ondelta": 10.770039
+        },
+        {
+          "key": "mlp24",
+          "type": "mlp",
+          "layer": 24,
+          "head": null,
+          "c_base": -4.452026,
+          "c_it": 6.525756,
+          "c_it_onbase": 1.010363,
+          "delta_onbase": 5.462389,
+          "c_it_ondelta": 5.726943
+        },
+        {
+          "key": "mlp27",
+          "type": "mlp",
+          "layer": 27,
+          "head": null,
+          "c_base": -2.657812,
+          "c_it": 11.449543,
+          "c_it_onbase": 1.674516,
+          "delta_onbase": 4.332328,
+          "c_it_ondelta": 10.149956
+        },
+        {
+          "key": "mlp28",
+          "type": "mlp",
+          "layer": 28,
+          "head": null,
+          "c_base": 2.821011,
+          "c_it": 13.949541,
+          "c_it_onbase": -1.356726,
+          "delta_onbase": -4.177737,
+          "c_it_ondelta": 15.893352
+        }
+      ],
+      "top_by_c_it_ondelta": [
+        {
+          "key": "mlp31",
+          "type": "mlp",
+          "layer": 31,
+          "head": null,
+          "c_base": 19.668091,
+          "c_it": 15.232372,
+          "c_it_onbase": -3.144358,
+          "delta_onbase": -22.812449,
+          "c_it_ondelta": 19.081589
+        },
+        {
+          "key": "mlp30",
+          "type": "mlp",
+          "layer": 30,
+          "head": null,
+          "c_base": 12.445252,
+          "c_it": 16.144493,
+          "c_it_onbase": -1.93332,
+          "delta_onbase": -14.378572,
+          "c_it_ondelta": 18.771204
+        },
+        {
+          "key": "mlp28",
+          "type": "mlp",
+          "layer": 28,
+          "head": null,
+          "c_base": 2.821011,
+          "c_it": 13.949541,
+          "c_it_onbase": -1.356726,
+          "delta_onbase": -4.177737,
+          "c_it_ondelta": 15.893352
+        },
+        {
+          "key": "mlp26",
+          "type": "mlp",
+          "layer": 26,
+          "head": null,
+          "c_base": -2.653602,
+          "c_it": 1.536007,
+          "c_it_onbase": -8.836188,
+          "delta_onbase": -6.182587,
+          "c_it_ondelta": 10.770039
+        },
+        {
+          "key": "mlp27",
+          "type": "mlp",
+          "layer": 27,
+          "head": null,
+          "c_base": -2.657812,
+          "c_it": 11.449543,
+          "c_it_onbase": 1.674516,
+          "delta_onbase": 4.332328,
+          "c_it_ondelta": 10.149956
+        },
+        {
+          "key": "mlp29",
+          "type": "mlp",
+          "layer": 29,
+          "head": null,
+          "c_base": 15.338881,
+          "c_it": 7.596978,
+          "c_it_onbase": -2.121247,
+          "delta_onbase": -17.460128,
+          "c_it_ondelta": 10.090978
+        },
+        {
+          "key": "mlp32",
+          "type": "mlp",
+          "layer": 32,
+          "head": null,
+          "c_base": 24.802034,
+          "c_it": 13.083542,
+          "c_it_onbase": 4.455856,
+          "delta_onbase": -20.346179,
+          "c_it_ondelta": 8.958611
+        },
+        {
+          "key": "mlp25",
+          "type": "mlp",
+          "layer": 25,
+          "head": null,
+          "c_base": -0.295817,
+          "c_it": 8.499982,
+          "c_it_onbase": 2.968022,
+          "delta_onbase": 3.26384,
+          "c_it_ondelta": 5.744144
+        },
+        {
+          "key": "mlp24",
+          "type": "mlp",
+          "layer": 24,
+          "head": null,
+          "c_base": -4.452026,
+          "c_it": 6.525756,
+          "c_it_onbase": 1.010363,
+          "delta_onbase": 5.462389,
+          "c_it_ondelta": 5.726943
+        },
+        {
+          "key": "mlp21",
+          "type": "mlp",
+          "layer": 21,
+          "head": null,
+          "c_base": -0.621488,
+          "c_it": 6.065914,
+          "c_it_onbase": 3.171003,
+          "delta_onbase": 3.792491,
+          "c_it_ondelta": 3.005946
+        }
+      ],
+      "attn_vs_mlp_split_of_abs_delta_onbase": {
+        "attn_abs": 21.56734036,
+        "mlp_abs": 144.38397796,
+        "attn_frac": 0.129962,
+        "mlp_frac": 0.870038
+      },
+      "reshape_layer_band_of_topk": [
+        22,
+        32
+      ],
+      "decision": {
+        "category": "LOCALIZED_RESHAPE",
+        "localized_reshape": true,
+        "conc_frac_at_topk": 0.681114,
+        "total_abs_delta_onbase": 165.95131833,
+        "topk": 10,
+        "conc_thr": 0.5,
+        "msg": "top-10 components carry conc_frac@10=0.6811 >= 0.5 of sum(|delta_onbase|)=165.951 -> LOCALIZED_RESHAPE."
+      }
+    }
+  }
+}

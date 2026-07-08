@@ -1,0 +1,101 @@
+{
+  "base": "google/gemma-2-9b",
+  "it": "google/gemma-2-9b-it",
+  "cue": "cave_residstate_diff",
+  "read_layer": 28,
+  "pool_size": 891,
+  "big_pool": true,
+  "thresholds": {
+    "READ_LAYER": 28,
+    "AUROC_THR": 0.7,
+    "RESTORE_THR": 0.2,
+    "GAP": 0.15,
+    "TOP_K": 5,
+    "MIN_FAITHFUL": 8
+  },
+  "base_heads": [
+    [
+      25,
+      15
+    ],
+    [
+      2,
+      13
+    ],
+    [
+      26,
+      7
+    ],
+    [
+      23,
+      5
+    ],
+    [
+      25,
+      9
+    ]
+  ],
+  "it_heads": [
+    [
+      25,
+      15
+    ],
+    [
+      9,
+      7
+    ],
+    [
+      14,
+      6
+    ],
+    [
+      15,
+      4
+    ],
+    [
+      26,
+      7
+    ]
+  ],
+  "overlap": 2,
+  "n_intersection": 0,
+  "base_summary": {
+    "n": 47,
+    "n_caved": 14,
+    "axis_auroc": 0.7734,
+    "axis_ok": true,
+    "read": 0.359072,
+    "write": 0.263626,
+    "rand": 0.008587
+  },
+  "it_summary": {
+    "n": 35,
+    "n_caved": 14,
+    "axis_auroc": 0.9181,
+    "axis_ok": true,
+    "read": 0.005409,
+    "write": 0.001165,
+    "rand": 0.003042
+  },
+  "decision": {
+    "category": "INSUFFICIENT",
+    "n_base": 14,
+    "n_it": 14,
+    "n_inter": 0,
+    "overlap": 2,
+    "read_base": 0.359072,
+    "read_it": 0.005409,
+    "write_base": 0.263626,
+    "write_it": 0.001165,
+    "read_diff": -0.353663,
+    "write_diff": -0.262461,
+    "rand_base": 0.008587,
+    "rand_it": 0.003042,
+    "overlap_min": 3,
+    "restore_thr": 0.2,
+    "diff_thr": 0.15,
+    "msg": "both-cave intersection 0 < MIN_FAITHFUL(8); base (14) and -it (14) each faithful but their intersection is too small to contrast.",
+    "base_axis_auroc": 0.7734,
+    "it_axis_auroc": 0.9181
+  }
+}

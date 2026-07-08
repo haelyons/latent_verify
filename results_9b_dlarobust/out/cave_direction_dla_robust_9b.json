@@ -1,0 +1,1078 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "cave_direction_dla_robust",
+  "substrate": "misconception caving items (TruthfulQA-style); rlhf_differential.ITEMS",
+  "measures": "robustness-hardened DLA of the base->it cave-direction change: per readout layer L_READ, the per-component delta_onbase = (it_comp . u_base) - (base_comp . u_base) (change along the FIXED base cave-axis), its RAW conc@TOPK + attn/mlp split, a MAGNITUDE-CONTROLLED ranking (residual of |delta_onbase| regressed on |c_base|) with its normalized conc@TOPK + attn/mlp split, the CROSS-READOUT top-TOPK-by-residual intersection, and item-bootstrap percentile CIs on the raw/residualized conc@TOPK and the residualized attn_frac.",
+  "metric_for_fit": "M = logp(C) - logp(W*) first-token margin; |gap| = |M_neutral - M_counter| gate",
+  "decomposition": "resid_post[L_READ][-1] = sum over (attn head W_O writes + MLP outs, layers 0..L_READ) + embed/bias remainder (exact identity, last token, counter condition)",
+  "l_reads": [
+    28,
+    32,
+    36,
+    40
+  ],
+  "thresholds": {
+    "topk": 10,
+    "conc_frac": 0.5,
+    "stable_min": 3,
+    "n_boot": 200,
+    "seed": 0,
+    "ci_lo": 2.5,
+    "ci_hi": 97.5
+  },
+  "per_lread": {
+    "28": {
+      "n_ok_base": 9,
+      "n_ok_it": 10,
+      "cos_u_base_u_it": 0.645536,
+      "u_delta_norm": 0.841978,
+      "n_components": 493,
+      "raw": {
+        "conc_frac_at_topk": 0.585041,
+        "total_abs_delta_onbase": 81.21040599,
+        "attn_vs_mlp_split_of_abs_delta_onbase": {
+          "attn_abs": 19.39394765,
+          "mlp_abs": 61.81645833,
+          "attn_frac": 0.238811,
+          "mlp_frac": 0.761189
+        },
+        "layer_band_of_topk": [
+          14,
+          28
+        ],
+        "top_keys_by_delta": [
+          "mlp22",
+          "mlp23",
+          "mlp26",
+          "mlp28",
+          "mlp24",
+          "mlp27",
+          "mlp16",
+          "mlp19",
+          "mlp17",
+          "mlp14"
+        ],
+        "top_full_by_delta": [
+          {
+            "key": "mlp22",
+            "type": "mlp",
+            "layer": 22,
+            "head": null,
+            "delta_onbase": 7.785193,
+            "abs_c_base": 6.657335
+          },
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "delta_onbase": 7.336796,
+            "abs_c_base": 2.387177
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "delta_onbase": -7.042681,
+            "abs_c_base": 3.250829
+          },
+          {
+            "key": "mlp28",
+            "type": "mlp",
+            "layer": 28,
+            "head": null,
+            "delta_onbase": -6.546479,
+            "abs_c_base": 14.616263
+          },
+          {
+            "key": "mlp24",
+            "type": "mlp",
+            "layer": 24,
+            "head": null,
+            "delta_onbase": 4.295288,
+            "abs_c_base": 1.925408
+          },
+          {
+            "key": "mlp27",
+            "type": "mlp",
+            "layer": 27,
+            "head": null,
+            "delta_onbase": 3.882178,
+            "abs_c_base": 0.689339
+          },
+          {
+            "key": "mlp16",
+            "type": "mlp",
+            "layer": 16,
+            "head": null,
+            "delta_onbase": 3.189441,
+            "abs_c_base": 2.621698
+          },
+          {
+            "key": "mlp19",
+            "type": "mlp",
+            "layer": 19,
+            "head": null,
+            "delta_onbase": 2.758649,
+            "abs_c_base": 0.217653
+          },
+          {
+            "key": "mlp17",
+            "type": "mlp",
+            "layer": 17,
+            "head": null,
+            "delta_onbase": 2.416496,
+            "abs_c_base": 2.651149
+          },
+          {
+            "key": "mlp14",
+            "type": "mlp",
+            "layer": 14,
+            "head": null,
+            "delta_onbase": 2.258236,
+            "abs_c_base": 0.956465
+          }
+        ]
+      },
+      "residualized": {
+        "conc_frac_at_topk_residual": 0.458355,
+        "total_abs_residual": 67.73911814,
+        "ols_a": 0.03746712,
+        "ols_b": 0.64649759,
+        "residual_sum": -0.0,
+        "residual_dot_abs_cbase": -0.0,
+        "attn_vs_mlp_split_of_abs_residual": {
+          "attn_abs": 23.48087053,
+          "mlp_abs": 44.25824761,
+          "attn_frac": 0.346637,
+          "mlp_frac": 0.653363
+        },
+        "top_keys_by_residual": [
+          "mlp23",
+          "mlp26",
+          "mlp22",
+          "mlp27",
+          "mlp24",
+          "mlp28",
+          "mlp19",
+          "mlp0",
+          "mlp18",
+          "mlp25"
+        ],
+        "top_full_by_residual": [
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "abs_delta_onbase": 7.336796,
+            "abs_c_base": 2.387177,
+            "residual": 5.756025
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "abs_delta_onbase": 7.042681,
+            "abs_c_base": 3.250829,
+            "residual": 4.903561
+          },
+          {
+            "key": "mlp22",
+            "type": "mlp",
+            "layer": 22,
+            "head": null,
+            "abs_delta_onbase": 7.785193,
+            "abs_c_base": 6.657335,
+            "residual": 3.443776
+          },
+          {
+            "key": "mlp27",
+            "type": "mlp",
+            "layer": 27,
+            "head": null,
+            "abs_delta_onbase": 3.882178,
+            "abs_c_base": 0.689339,
+            "residual": 3.399055
+          },
+          {
+            "key": "mlp24",
+            "type": "mlp",
+            "layer": 24,
+            "head": null,
+            "abs_delta_onbase": 4.295288,
+            "abs_c_base": 1.925408,
+            "residual": 3.01305
+          },
+          {
+            "key": "mlp28",
+            "type": "mlp",
+            "layer": 28,
+            "head": null,
+            "abs_delta_onbase": 6.546479,
+            "abs_c_base": 14.616263,
+            "residual": -2.940367
+          },
+          {
+            "key": "mlp19",
+            "type": "mlp",
+            "layer": 19,
+            "head": null,
+            "abs_delta_onbase": 2.758649,
+            "abs_c_base": 0.217653,
+            "residual": 2.58047
+          },
+          {
+            "key": "mlp0",
+            "type": "mlp",
+            "layer": 0,
+            "head": null,
+            "abs_delta_onbase": 1.584044,
+            "abs_c_base": 5.050125,
+            "residual": -1.718317
+          },
+          {
+            "key": "mlp18",
+            "type": "mlp",
+            "layer": 18,
+            "head": null,
+            "abs_delta_onbase": 0.17479,
+            "abs_c_base": 2.774079,
+            "residual": -1.656113
+          },
+          {
+            "key": "mlp25",
+            "type": "mlp",
+            "layer": 25,
+            "head": null,
+            "abs_delta_onbase": 2.137444,
+            "abs_c_base": 0.714798,
+            "residual": 1.637862
+          }
+        ]
+      },
+      "bootstrap": {
+        "raw_conc_at_topk_ci": {
+          "point": 0.584736,
+          "lo": 0.558319,
+          "hi": 0.608625,
+          "n": 200
+        },
+        "residual_conc_at_topk_ci": {
+          "point": 0.465976,
+          "lo": 0.438069,
+          "hi": 0.490244,
+          "n": 200
+        },
+        "residual_attn_frac_ci": {
+          "point": 0.353912,
+          "lo": 0.309129,
+          "hi": 0.396035,
+          "n": 200
+        }
+      }
+    },
+    "32": {
+      "n_ok_base": 9,
+      "n_ok_it": 10,
+      "cos_u_base_u_it": 0.536257,
+      "u_delta_norm": 0.963061,
+      "n_components": 561,
+      "raw": {
+        "conc_frac_at_topk": 0.681114,
+        "total_abs_delta_onbase": 165.95132245,
+        "attn_vs_mlp_split_of_abs_delta_onbase": {
+          "attn_abs": 21.56734067,
+          "mlp_abs": 144.38398179,
+          "attn_frac": 0.129962,
+          "mlp_frac": 0.870038
+        },
+        "layer_band_of_topk": [
+          22,
+          32
+        ],
+        "top_keys_by_delta": [
+          "mlp31",
+          "mlp32",
+          "mlp29",
+          "mlp30",
+          "mlp23",
+          "mlp22",
+          "mlp26",
+          "mlp24",
+          "mlp27",
+          "mlp28"
+        ],
+        "top_full_by_delta": [
+          {
+            "key": "mlp31",
+            "type": "mlp",
+            "layer": 31,
+            "head": null,
+            "delta_onbase": -22.812448,
+            "abs_c_base": 19.66809
+          },
+          {
+            "key": "mlp32",
+            "type": "mlp",
+            "layer": 32,
+            "head": null,
+            "delta_onbase": -20.346177,
+            "abs_c_base": 24.80203
+          },
+          {
+            "key": "mlp29",
+            "type": "mlp",
+            "layer": 29,
+            "head": null,
+            "delta_onbase": -17.460128,
+            "abs_c_base": 15.33888
+          },
+          {
+            "key": "mlp30",
+            "type": "mlp",
+            "layer": 30,
+            "head": null,
+            "delta_onbase": -14.378571,
+            "abs_c_base": 12.445251
+          },
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "delta_onbase": 9.604211,
+            "abs_c_base": 0.788335
+          },
+          {
+            "key": "mlp22",
+            "type": "mlp",
+            "layer": 22,
+            "head": null,
+            "delta_onbase": 8.275157,
+            "abs_c_base": 5.995985
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "delta_onbase": -6.182592,
+            "abs_c_base": 2.6536
+          },
+          {
+            "key": "mlp24",
+            "type": "mlp",
+            "layer": 24,
+            "head": null,
+            "delta_onbase": 5.462391,
+            "abs_c_base": 4.452029
+          },
+          {
+            "key": "mlp27",
+            "type": "mlp",
+            "layer": 27,
+            "head": null,
+            "delta_onbase": 4.332334,
+            "abs_c_base": 2.657817
+          },
+          {
+            "key": "mlp28",
+            "type": "mlp",
+            "layer": 28,
+            "head": null,
+            "delta_onbase": -4.177737,
+            "abs_c_base": 2.821011
+          }
+        ]
+      },
+      "residualized": {
+        "conc_frac_at_topk_residual": 0.430265,
+        "total_abs_residual": 89.77154695,
+        "ols_a": 0.0067857,
+        "ols_b": 0.99202178,
+        "residual_sum": -0.0,
+        "residual_dot_abs_cbase": -0.0,
+        "attn_vs_mlp_split_of_abs_residual": {
+          "attn_abs": 21.41891464,
+          "mlp_abs": 68.35263232,
+          "attn_frac": 0.238594,
+          "mlp_frac": 0.761406
+        },
+        "top_keys_by_residual": [
+          "mlp23",
+          "mlp32",
+          "mlp0",
+          "mlp26",
+          "mlp18",
+          "mlp31",
+          "mlp21",
+          "mlp25",
+          "mlp17",
+          "mlp22"
+        ],
+        "top_full_by_residual": [
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "abs_delta_onbase": 9.604211,
+            "abs_c_base": 0.788335,
+            "residual": 8.815379
+          },
+          {
+            "key": "mlp32",
+            "type": "mlp",
+            "layer": 32,
+            "head": null,
+            "abs_delta_onbase": 20.346177,
+            "abs_c_base": 24.80203,
+            "residual": -4.264763
+          },
+          {
+            "key": "mlp0",
+            "type": "mlp",
+            "layer": 0,
+            "head": null,
+            "abs_delta_onbase": 1.745199,
+            "abs_c_base": 5.763236,
+            "residual": -3.978843
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "abs_delta_onbase": 6.182592,
+            "abs_c_base": 2.6536,
+            "residual": 3.543378
+          },
+          {
+            "key": "mlp18",
+            "type": "mlp",
+            "layer": 18,
+            "head": null,
+            "abs_delta_onbase": 0.101481,
+            "abs_c_base": 3.490398,
+            "residual": -3.367855
+          },
+          {
+            "key": "mlp31",
+            "type": "mlp",
+            "layer": 31,
+            "head": null,
+            "abs_delta_onbase": 22.812448,
+            "abs_c_base": 19.66809,
+            "residual": 3.29449
+          },
+          {
+            "key": "mlp21",
+            "type": "mlp",
+            "layer": 21,
+            "head": null,
+            "abs_delta_onbase": 3.792492,
+            "abs_c_base": 0.621488,
+            "residual": 3.169177
+          },
+          {
+            "key": "mlp25",
+            "type": "mlp",
+            "layer": 25,
+            "head": null,
+            "abs_delta_onbase": 3.263839,
+            "abs_c_base": 0.295818,
+            "residual": 2.963595
+          },
+          {
+            "key": "mlp17",
+            "type": "mlp",
+            "layer": 17,
+            "head": null,
+            "abs_delta_onbase": 4.123443,
+            "abs_c_base": 1.218517,
+            "residual": 2.907862
+          },
+          {
+            "key": "mlp22",
+            "type": "mlp",
+            "layer": 22,
+            "head": null,
+            "abs_delta_onbase": 8.275157,
+            "abs_c_base": 5.995985,
+            "residual": 2.320223
+          }
+        ]
+      },
+      "bootstrap": {
+        "raw_conc_at_topk_ci": {
+          "point": 0.685496,
+          "lo": 0.655973,
+          "hi": 0.706875,
+          "n": 200
+        },
+        "residual_conc_at_topk_ci": {
+          "point": 0.443975,
+          "lo": 0.413005,
+          "hi": 0.47886,
+          "n": 200
+        },
+        "residual_attn_frac_ci": {
+          "point": 0.244312,
+          "lo": 0.226655,
+          "hi": 0.265149,
+          "n": 200
+        }
+      }
+    },
+    "36": {
+      "n_ok_base": 9,
+      "n_ok_it": 10,
+      "cos_u_base_u_it": 0.436196,
+      "u_delta_norm": 1.061889,
+      "n_components": 629,
+      "raw": {
+        "conc_frac_at_topk": 0.624941,
+        "total_abs_delta_onbase": 187.57393586,
+        "attn_vs_mlp_split_of_abs_delta_onbase": {
+          "attn_abs": 22.18333618,
+          "mlp_abs": 165.39059967,
+          "attn_frac": 0.118264,
+          "mlp_frac": 0.881736
+        },
+        "layer_band_of_topk": [
+          22,
+          35
+        ],
+        "top_keys_by_delta": [
+          "mlp31",
+          "mlp32",
+          "mlp29",
+          "mlp34",
+          "mlp30",
+          "mlp35",
+          "mlp23",
+          "mlp26",
+          "mlp22",
+          "mlp33"
+        ],
+        "top_full_by_delta": [
+          {
+            "key": "mlp31",
+            "type": "mlp",
+            "layer": 31,
+            "head": null,
+            "delta_onbase": -20.64697,
+            "abs_c_base": 17.58994
+          },
+          {
+            "key": "mlp32",
+            "type": "mlp",
+            "layer": 32,
+            "head": null,
+            "delta_onbase": -17.351027,
+            "abs_c_base": 20.884596
+          },
+          {
+            "key": "mlp29",
+            "type": "mlp",
+            "layer": 29,
+            "head": null,
+            "delta_onbase": -15.751978,
+            "abs_c_base": 11.441557
+          },
+          {
+            "key": "mlp34",
+            "type": "mlp",
+            "layer": 34,
+            "head": null,
+            "delta_onbase": -15.422427,
+            "abs_c_base": 20.314975
+          },
+          {
+            "key": "mlp30",
+            "type": "mlp",
+            "layer": 30,
+            "head": null,
+            "delta_onbase": -12.771087,
+            "abs_c_base": 13.123234
+          },
+          {
+            "key": "mlp35",
+            "type": "mlp",
+            "layer": 35,
+            "head": null,
+            "delta_onbase": -8.705118,
+            "abs_c_base": 3.74979
+          },
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "delta_onbase": 7.850597,
+            "abs_c_base": 2.002549
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "delta_onbase": -6.458336,
+            "abs_c_base": 3.233388
+          },
+          {
+            "key": "mlp22",
+            "type": "mlp",
+            "layer": 22,
+            "head": null,
+            "delta_onbase": 6.248526,
+            "abs_c_base": 4.568938
+          },
+          {
+            "key": "mlp33",
+            "type": "mlp",
+            "layer": 33,
+            "head": null,
+            "delta_onbase": -6.016556,
+            "abs_c_base": 12.507989
+          }
+        ]
+      },
+      "residualized": {
+        "conc_frac_at_topk_residual": 0.462729,
+        "total_abs_residual": 96.37465417,
+        "ols_a": 0.02046726,
+        "ols_b": 0.90199525,
+        "residual_sum": 0.0,
+        "residual_dot_abs_cbase": 0.0,
+        "attn_vs_mlp_split_of_abs_residual": {
+          "attn_abs": 23.08996273,
+          "mlp_abs": 73.28469144,
+          "attn_frac": 0.239585,
+          "mlp_frac": 0.760415
+        },
+        "top_keys_by_residual": [
+          "mlp23",
+          "mlp29",
+          "mlp35",
+          "mlp33",
+          "mlp31",
+          "mlp36",
+          "mlp26",
+          "mlp25",
+          "mlp21",
+          "mlp34"
+        ],
+        "top_full_by_residual": [
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "abs_delta_onbase": 7.850597,
+            "abs_c_base": 2.002549,
+            "residual": 6.02384
+          },
+          {
+            "key": "mlp29",
+            "type": "mlp",
+            "layer": 29,
+            "head": null,
+            "abs_delta_onbase": 15.751978,
+            "abs_c_base": 11.441557,
+            "residual": 5.411281
+          },
+          {
+            "key": "mlp35",
+            "type": "mlp",
+            "layer": 35,
+            "head": null,
+            "abs_delta_onbase": 8.705118,
+            "abs_c_base": 3.74979,
+            "residual": 5.302358
+          },
+          {
+            "key": "mlp33",
+            "type": "mlp",
+            "layer": 33,
+            "head": null,
+            "abs_delta_onbase": 6.016556,
+            "abs_c_base": 12.507989,
+            "residual": -5.286058
+          },
+          {
+            "key": "mlp31",
+            "type": "mlp",
+            "layer": 31,
+            "head": null,
+            "abs_delta_onbase": 20.64697,
+            "abs_c_base": 17.58994,
+            "residual": 4.760461
+          },
+          {
+            "key": "mlp36",
+            "type": "mlp",
+            "layer": 36,
+            "head": null,
+            "abs_delta_onbase": 3.571931,
+            "abs_c_base": 9.081263,
+            "residual": -4.639792
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "abs_delta_onbase": 6.458336,
+            "abs_c_base": 3.233388,
+            "residual": 3.521368
+          },
+          {
+            "key": "mlp25",
+            "type": "mlp",
+            "layer": 25,
+            "head": null,
+            "abs_delta_onbase": 4.213736,
+            "abs_c_base": 0.883704,
+            "residual": 3.396172
+          },
+          {
+            "key": "mlp21",
+            "type": "mlp",
+            "layer": 21,
+            "head": null,
+            "abs_delta_onbase": 4.0961,
+            "abs_c_base": 0.824512,
+            "residual": 3.331927
+          },
+          {
+            "key": "mlp34",
+            "type": "mlp",
+            "layer": 34,
+            "head": null,
+            "abs_delta_onbase": 15.422427,
+            "abs_c_base": 20.314975,
+            "residual": -2.922051
+          }
+        ]
+      },
+      "bootstrap": {
+        "raw_conc_at_topk_ci": {
+          "point": 0.626467,
+          "lo": 0.589217,
+          "hi": 0.669563,
+          "n": 200
+        },
+        "residual_conc_at_topk_ci": {
+          "point": 0.468368,
+          "lo": 0.430432,
+          "hi": 0.529191,
+          "n": 200
+        },
+        "residual_attn_frac_ci": {
+          "point": 0.239026,
+          "lo": 0.211941,
+          "hi": 0.272998,
+          "n": 200
+        }
+      }
+    },
+    "40": {
+      "n_ok_base": 9,
+      "n_ok_it": 10,
+      "cos_u_base_u_it": 0.380198,
+      "u_delta_norm": 1.113375,
+      "n_components": 697,
+      "raw": {
+        "conc_frac_at_topk": 0.610879,
+        "total_abs_delta_onbase": 127.26724589,
+        "attn_vs_mlp_split_of_abs_delta_onbase": {
+          "attn_abs": 20.62730703,
+          "mlp_abs": 106.63993887,
+          "attn_frac": 0.162079,
+          "mlp_frac": 0.837921
+        },
+        "layer_band_of_topk": [
+          29,
+          40
+        ],
+        "top_keys_by_delta": [
+          "mlp37",
+          "mlp29",
+          "mlp32",
+          "mlp31",
+          "mlp40",
+          "mlp34",
+          "mlp30",
+          "mlp33",
+          "mlp35",
+          "mlp38"
+        ],
+        "top_full_by_delta": [
+          {
+            "key": "mlp37",
+            "type": "mlp",
+            "layer": 37,
+            "head": null,
+            "delta_onbase": -12.296497,
+            "abs_c_base": 18.02108
+          },
+          {
+            "key": "mlp29",
+            "type": "mlp",
+            "layer": 29,
+            "head": null,
+            "delta_onbase": -11.613769,
+            "abs_c_base": 9.934466
+          },
+          {
+            "key": "mlp32",
+            "type": "mlp",
+            "layer": 32,
+            "head": null,
+            "delta_onbase": -10.348511,
+            "abs_c_base": 13.432809
+          },
+          {
+            "key": "mlp31",
+            "type": "mlp",
+            "layer": 31,
+            "head": null,
+            "delta_onbase": -10.184779,
+            "abs_c_base": 10.061485
+          },
+          {
+            "key": "mlp40",
+            "type": "mlp",
+            "layer": 40,
+            "head": null,
+            "delta_onbase": 8.147733,
+            "abs_c_base": 4.004506
+          },
+          {
+            "key": "mlp34",
+            "type": "mlp",
+            "layer": 34,
+            "head": null,
+            "delta_onbase": -7.938862,
+            "abs_c_base": 12.58554
+          },
+          {
+            "key": "mlp30",
+            "type": "mlp",
+            "layer": 30,
+            "head": null,
+            "delta_onbase": -7.373675,
+            "abs_c_base": 11.037241
+          },
+          {
+            "key": "mlp33",
+            "type": "mlp",
+            "layer": 33,
+            "head": null,
+            "delta_onbase": -3.514144,
+            "abs_c_base": 9.130899
+          },
+          {
+            "key": "mlp35",
+            "type": "mlp",
+            "layer": 35,
+            "head": null,
+            "delta_onbase": -3.455327,
+            "abs_c_base": 3.669459
+          },
+          {
+            "key": "mlp38",
+            "type": "mlp",
+            "layer": 38,
+            "head": null,
+            "delta_onbase": -2.871598,
+            "abs_c_base": 5.543511
+          }
+        ]
+      },
+      "residualized": {
+        "conc_frac_at_topk_residual": 0.494326,
+        "total_abs_residual": 64.76391328,
+        "ols_a": 0.0192199,
+        "ols_b": 0.69042605,
+        "residual_sum": 0.0,
+        "residual_dot_abs_cbase": -0.0,
+        "attn_vs_mlp_split_of_abs_residual": {
+          "attn_abs": 17.4887932,
+          "mlp_abs": 47.27512008,
+          "attn_frac": 0.270039,
+          "mlp_frac": 0.729961
+        },
+        "top_keys_by_residual": [
+          "mlp40",
+          "mlp29",
+          "mlp39",
+          "mlp36",
+          "mlp31",
+          "mlp33",
+          "mlp26",
+          "mlp24",
+          "mlp27",
+          "mlp23"
+        ],
+        "top_full_by_residual": [
+          {
+            "key": "mlp40",
+            "type": "mlp",
+            "layer": 40,
+            "head": null,
+            "abs_delta_onbase": 8.147733,
+            "abs_c_base": 4.004506,
+            "residual": 5.363698
+          },
+          {
+            "key": "mlp29",
+            "type": "mlp",
+            "layer": 29,
+            "head": null,
+            "abs_delta_onbase": 11.613769,
+            "abs_c_base": 9.934466,
+            "residual": 4.735535
+          },
+          {
+            "key": "mlp39",
+            "type": "mlp",
+            "layer": 39,
+            "head": null,
+            "abs_delta_onbase": 2.251873,
+            "abs_c_base": 9.391443,
+            "residual": -4.251443
+          },
+          {
+            "key": "mlp36",
+            "type": "mlp",
+            "layer": 36,
+            "head": null,
+            "abs_delta_onbase": 1.149875,
+            "abs_c_base": 7.090625,
+            "residual": -3.764897
+          },
+          {
+            "key": "mlp31",
+            "type": "mlp",
+            "layer": 31,
+            "head": null,
+            "abs_delta_onbase": 10.184779,
+            "abs_c_base": 10.061485,
+            "residual": 3.218847
+          },
+          {
+            "key": "mlp33",
+            "type": "mlp",
+            "layer": 33,
+            "head": null,
+            "abs_delta_onbase": 3.514144,
+            "abs_c_base": 9.130899,
+            "residual": -2.809287
+          },
+          {
+            "key": "mlp26",
+            "type": "mlp",
+            "layer": 26,
+            "head": null,
+            "abs_delta_onbase": 2.656319,
+            "abs_c_base": 0.388571,
+            "residual": 2.36882
+          },
+          {
+            "key": "mlp24",
+            "type": "mlp",
+            "layer": 24,
+            "head": null,
+            "abs_delta_onbase": 2.359853,
+            "abs_c_base": 0.353477,
+            "residual": 2.096584
+          },
+          {
+            "key": "mlp27",
+            "type": "mlp",
+            "layer": 27,
+            "head": null,
+            "abs_delta_onbase": 0.154827,
+            "abs_c_base": 2.7489,
+            "residual": -1.762305
+          },
+          {
+            "key": "mlp23",
+            "type": "mlp",
+            "layer": 23,
+            "head": null,
+            "abs_delta_onbase": 1.907861,
+            "abs_c_base": 0.355653,
+            "residual": 1.643089
+          }
+        ]
+      },
+      "bootstrap": {
+        "raw_conc_at_topk_ci": {
+          "point": 0.614411,
+          "lo": 0.579061,
+          "hi": 0.646977,
+          "n": 200
+        },
+        "residual_conc_at_topk_ci": {
+          "point": 0.494284,
+          "lo": 0.439085,
+          "hi": 0.545002,
+          "n": 200
+        },
+        "residual_attn_frac_ci": {
+          "point": 0.270451,
+          "lo": 0.235851,
+          "hi": 0.31181,
+          "n": 200
+        }
+      }
+    }
+  },
+  "cross_readout": {
+    "intersection": [
+      "mlp23",
+      "mlp26"
+    ],
+    "intersection_size": 2,
+    "only_here": {
+      "28": [
+        "mlp19",
+        "mlp28"
+      ],
+      "32": [
+        "mlp17",
+        "mlp32"
+      ],
+      "36": [
+        "mlp34",
+        "mlp35"
+      ],
+      "40": [
+        "mlp39",
+        "mlp40"
+      ]
+    },
+    "union_size": 21,
+    "n_lreads": 4
+  },
+  "decision": {
+    "split_category": "MLP_DOMINATED",
+    "mlp_majority_count": 4,
+    "attn_majority_count": 0,
+    "n_lreads_usable": 4,
+    "majority_threshold": 3,
+    "position_category": "POSITION_DEPENDENT",
+    "cross_readout_intersection_size": 2,
+    "stable_min": 3,
+    "residual_conc_lo_ge_count": 0,
+    "conc_frac": 0.5,
+    "msg": "cross-readout intersection has only 2 components (< 3) -> the dominant residualized set TURNS OVER with the readout layer (positional, not a stable writer set)."
+  }
+}

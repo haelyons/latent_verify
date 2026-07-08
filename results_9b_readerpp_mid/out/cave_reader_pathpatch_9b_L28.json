@@ -1,0 +1,310 @@
+{
+  "name_base": "google/gemma-2-9b",
+  "name_it": "google/gemma-2-9b-it",
+  "device": "cuda",
+  "tag": "9b_L28",
+  "cue": "cave_reader_pathpatch",
+  "pool_size": 61,
+  "fit_layers": [
+    24,
+    28,
+    32,
+    36
+  ],
+  "metric": "on argmax-W* caving items, the realized next-token argmax-restoration (frac argmax==neutral-argmax) carried by the u_cave-removal delta at the headline layer L through (2) the FULL forward, (3) the DIRECT residual->unembed path with all downstream components frozen to clean, (4) each downstream receiver alone (per-head / per-MLP path patch), and the joint top-TOPK receivers; plus the matched-random floor",
+  "thresholds": {
+    "DIRECT_THR": 0.5,
+    "CONC_FRAC": 0.5,
+    "TOPK": 5,
+    "RESTORE_FLOOR": 0.05,
+    "SPLIT_SEED": 0,
+    "RAND_SEED": 0,
+    "MIN_FIT": 3
+  },
+  "decision_rule": "On the wide misconception pool, build NEUTRAL and COUNTER (W* asserted) prompts (job_truthful_flip turns; qa template for base, chat template for -it). Restrict to the argmax-W* CAVING items (counter lowers M=logp(C)-logp(W*) from neutral by >= MIN_EFFECT_NET AND counter argmax IS the W*-first-token), the same selection as cave_suppress_vs_install. Fit u_cave = normalize(mean(resid_post[L][-1](counter)-resid_post[L][-1](neutral))) over a TRAIN fold; headline layer L = max in-sample u_cave necessity over the train fold. The SENDER = delta = (ablate u_cave projection at resid_post[L][-1] to the train-neutral mean) - clean. On the held-out TEST counter residual read the realized next-token softmax under: (1) CLEAN counter (P2); (2) FULL: delta at L, normal forward (P_full); (3) DIRECT: delta at L with every downstream component (hook_z[L'][-1] per head, hook_mlp_out[L'][-1], L'>L) frozen to its CLEAN value (P_direct, delta reaches the logits only via resid->final-LN->unembed); (4) per receiver R (each head L'.H, each MLP L', L'>L): only R recomputes from the delta-modified residual, every other downstream component frozen to clean (effect(R)=frac(argmax==neutral-argmax), logit-restoration fraction); (5) the same DIRECT + per-receiver patches through a matched RANDOM direction (floor). restoration := frac(argmax==neutral-argmax). direct_fraction = restoration_direct / restoration_full. INDIRECT = restoration_full - restoration_direct. Per model (DIRECT_THR=0.5, CONC_FRAC=0.5, TOPK=5): INSUFFICIENT iff n_argmaxW<MIN_FIT(3); else NO_RESTORATION iff restoration_full<RESTORE_FLOOR(0.05); else DIRECT_WRITE iff direct_fraction>=DIRECT_THR; else LOCALIZED_READERS iff the top-TOPK downstream receivers by effect(R) carry >=CONC_FRAC of the total downstream restoration AND jointly reconstruct it (joint-top-k restoration >= CONC_FRAC of the indirect restoration); else DISTRIBUTED_READERS. The matched RANDOM direction must not reproduce the effect (reported as the floor). Reported for base and -it; numbers + categories only, no claim attached to the direct fraction, any component, the attn-vs-MLP split, or the base-vs-it comparison.",
+  "base": {
+    "name": "google/gemma-2-9b",
+    "regime": "qa",
+    "n_ok": 57,
+    "n_cave": 48,
+    "n_argmaxW_cave": 13,
+    "n_layers": 42,
+    "n_heads": 16,
+    "in_sample_necessity_by_layer": {
+      "24": 0.4879,
+      "28": 0.8174,
+      "32": 0.7976,
+      "36": 0.8437
+    },
+    "argmax_necessity_layer": 36,
+    "forced_layer": 28,
+    "headline_layer": 28,
+    "n_downstream_components": 221,
+    "n_train": 6,
+    "n_test": 7,
+    "numbers": {
+      "restoration_full": 0.857143,
+      "restoration_direct": 0.0,
+      "joint_topk_restoration": 0.0,
+      "downstream_total_effect": 0.0,
+      "ranked_receivers": [
+        {
+          "key": "L29H0",
+          "type": "attn",
+          "layer": 29,
+          "head": 0,
+          "effect": 0.0,
+          "logit_restore_frac": 1.108225
+        },
+        {
+          "key": "L29H1",
+          "type": "attn",
+          "layer": 29,
+          "head": 1,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H2",
+          "type": "attn",
+          "layer": 29,
+          "head": 2,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H3",
+          "type": "attn",
+          "layer": 29,
+          "head": 3,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H4",
+          "type": "attn",
+          "layer": 29,
+          "head": 4,
+          "effect": 0.0,
+          "logit_restore_frac": 1.126984
+        },
+        {
+          "key": "L29H5",
+          "type": "attn",
+          "layer": 29,
+          "head": 5,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H6",
+          "type": "attn",
+          "layer": 29,
+          "head": 6,
+          "effect": 0.0,
+          "logit_restore_frac": 1.130952
+        },
+        {
+          "key": "L29H7",
+          "type": "attn",
+          "layer": 29,
+          "head": 7,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H8",
+          "type": "attn",
+          "layer": 29,
+          "head": 8,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H9",
+          "type": "attn",
+          "layer": 29,
+          "head": 9,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        },
+        {
+          "key": "L29H10",
+          "type": "attn",
+          "layer": 29,
+          "head": 10,
+          "effect": 0.0,
+          "logit_restore_frac": 1.130952
+        },
+        {
+          "key": "L29H11",
+          "type": "attn",
+          "layer": 29,
+          "head": 11,
+          "effect": 0.0,
+          "logit_restore_frac": 1.130952
+        },
+        {
+          "key": "L29H12",
+          "type": "attn",
+          "layer": 29,
+          "head": 12,
+          "effect": 0.0,
+          "logit_restore_frac": 1.099206
+        },
+        {
+          "key": "L29H13",
+          "type": "attn",
+          "layer": 29,
+          "head": 13,
+          "effect": 0.0,
+          "logit_restore_frac": 1.130952
+        },
+        {
+          "key": "L29H14",
+          "type": "attn",
+          "layer": 29,
+          "head": 14,
+          "effect": 0.0,
+          "logit_restore_frac": 1.115079
+        }
+      ]
+    },
+    "random_numbers": {
+      "restoration_full": 0.0,
+      "restoration_direct": 0.0,
+      "joint_topk_restoration": 0.0,
+      "downstream_total_effect": 0.0
+    },
+    "decision": {
+      "category": "DISTRIBUTED_READERS",
+      "n_fit": 13,
+      "restoration_full": 0.857143,
+      "restoration_direct": 0.0,
+      "direct_fraction": 0.0,
+      "indirect_restoration": 0.857143,
+      "direct_write": false,
+      "localized_readers": false,
+      "distributed_readers": true,
+      "conc_frac_at_topk": 0.0,
+      "downstream_total_effect": 0.0,
+      "concentrated": false,
+      "joint_reconstructs": false,
+      "joint_topk_restoration": 0.0,
+      "top_receivers": [
+        {
+          "key": "L29H0",
+          "type": "attn",
+          "layer": 29,
+          "head": 0,
+          "effect": 0.0
+        },
+        {
+          "key": "L29H1",
+          "type": "attn",
+          "layer": 29,
+          "head": 1,
+          "effect": 0.0
+        },
+        {
+          "key": "L29H2",
+          "type": "attn",
+          "layer": 29,
+          "head": 2,
+          "effect": 0.0
+        },
+        {
+          "key": "L29H3",
+          "type": "attn",
+          "layer": 29,
+          "head": 3,
+          "effect": 0.0
+        },
+        {
+          "key": "L29H4",
+          "type": "attn",
+          "layer": 29,
+          "head": 4,
+          "effect": 0.0
+        }
+      ],
+      "attn_vs_mlp_split_of_indirect": {
+        "attn_effect": 0.0,
+        "mlp_effect": 0.0,
+        "attn_frac": null,
+        "mlp_frac": null
+      },
+      "receiver_layer_band": [
+        29,
+        29
+      ],
+      "msg": "direct fraction 0.000 < 0.5; the indirect restoration is spread (top-5 conc@5=0.000 < 0.5, joint-top-k 0.0 < 0.5 x indirect 0.8571): no clean reader -- many components needed."
+    },
+    "random_decision": {
+      "category": "NO_RESTORATION",
+      "n_fit": 13,
+      "restoration_full": 0.0,
+      "restoration_direct": 0.0,
+      "direct_fraction": 0.0,
+      "indirect_restoration": 0.0,
+      "conc_frac_at_topk": null,
+      "downstream_total_effect": null,
+      "joint_topk_restoration": 0.0,
+      "top_receivers": [],
+      "attn_vs_mlp_split_of_indirect": null,
+      "receiver_layer_band": [
+        null,
+        null
+      ],
+      "msg": "FULL-ablation restoration 0.0 < RESTORE_FLOOR(0.05): the u_cave removal does not restore the neutral argmax on the held-out items; no answer-restoration to attribute."
+    }
+  },
+  "it": {
+    "name": "google/gemma-2-9b-it",
+    "regime": "chat",
+    "n_ok": 57,
+    "n_cave": 46,
+    "n_argmaxW_cave": 0,
+    "n_layers": 42,
+    "n_heads": 16,
+    "headline_layer": null,
+    "numbers": null,
+    "random_numbers": null,
+    "decision": {
+      "category": "INSUFFICIENT",
+      "n_fit": 0,
+      "restoration_full": null,
+      "restoration_direct": null,
+      "direct_fraction": null,
+      "indirect_restoration": null,
+      "conc_frac_at_topk": null,
+      "downstream_total_effect": null,
+      "joint_topk_restoration": null,
+      "top_receivers": [],
+      "attn_vs_mlp_split_of_indirect": null,
+      "receiver_layer_band": [
+        null,
+        null
+      ],
+      "msg": "only 0 held-out argmax-W* item(s) < MIN_FIT(3); no substrate to test."
+    },
+    "random_decision": {
+      "category": "INSUFFICIENT",
+      "n_fit": 0,
+      "restoration_full": null,
+      "restoration_direct": null,
+      "direct_fraction": null,
+      "indirect_restoration": null,
+      "conc_frac_at_topk": null,
+      "downstream_total_effect": null,
+      "joint_topk_restoration": null,
+      "top_receivers": [],
+      "attn_vs_mlp_split_of_indirect": null,
+      "receiver_layer_band": [
+        null,
+        null
+      ],
+      "msg": "only 0 held-out argmax-W* item(s) < MIN_FIT(3); no substrate to test."
+    }
+  }
+}

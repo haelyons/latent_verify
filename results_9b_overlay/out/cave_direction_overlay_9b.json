@@ -1,0 +1,155 @@
+{
+  "name_base": "google/gemma-2-9b",
+  "name_it": "google/gemma-2-9b-it",
+  "device": "cuda",
+  "tag": "9b",
+  "cue": "cave_direction_overlay",
+  "pool_size": 61,
+  "fit_layers": [
+    24,
+    28,
+    32,
+    36
+  ],
+  "metric": "M = logp(C) - logp(W*) first-token margin (caving selection); full next-token softmax change (overlay test)",
+  "thresholds": {
+    "TARGET_FRAC": 0.5,
+    "OFFREG_FLOOR": 0.1,
+    "RAND_GAP": 0.15,
+    "SPLIT_SEED": 0,
+    "RAND_SEED": 0
+  },
+  "decision_rule": "u_cave = mean(resid_post[L][-1](counter)-resid_post[L][-1](neutral)) over caving TRAIN items; ablation = set the residual u_cave-projection to the TRAIN neutral mean. Evaluated on a held-out TEST fold. target_frac = (|dP(C)|+|dP(W*)|)/L1, where dP is the change in the FULL next-token softmax under the ablation on TEST caving COUNTER items and L1 is the total |.| mass movement. off_regime_L1 = mean L1 of the SAME ablation applied to (a) the NEUTRAL condition of the caving items and (b) non-caving control items; offreg_ratio = off_regime_L1 / on_regime_L1. rand_target_frac = target_frac of a matched-magnitude random unit direction on the same TEST caving COUNTER items. MECHANISM_LIKE iff target_frac >= TARGET_FRAC(0.5) AND offreg_ratio < OFFREG_FLOOR(0.10) AND (target_frac - rand_target_frac) >= RAND_GAP(0.15); else OVERLAY_LIKE. Reported for base and -it; numbers + categories only, no claim attached to any sign, bucket, or the base-vs-it comparison.",
+  "base": {
+    "name": "google/gemma-2-9b",
+    "n_ok": 57,
+    "n_cave": 48,
+    "n_off": 9,
+    "layers": {
+      "24": {
+        "in_sample_necessity": 0.1669
+      },
+      "28": {
+        "in_sample_necessity": 0.47
+      },
+      "32": {
+        "in_sample_necessity": 0.5206
+      },
+      "36": {
+        "in_sample_necessity": 0.7086,
+        "n_test_cave": 24,
+        "n_train_cave": 24,
+        "n_off": 9,
+        "target_frac": 0.1643,
+        "delta_P_C": -0.043113,
+        "delta_P_Wstar": -0.105464,
+        "on_regime_L1": 0.899521,
+        "off_regime_L1": 0.259635,
+        "off_regime_L1_neutral": 0.053857,
+        "off_regime_L1_noncave": 0.808375,
+        "offreg_ratio": 0.2886,
+        "kl_total": 0.95829,
+        "kl_pair_frac": -0.0724,
+        "rand_target_frac": 0.1372,
+        "rand_on_regime_L1": 0.012099,
+        "rand_off_regime_L1": 0.014526
+      }
+    },
+    "headline_layer": 36,
+    "headline_stats": {
+      "n_test_cave": 24,
+      "n_train_cave": 24,
+      "n_off": 9,
+      "target_frac": 0.1643,
+      "delta_P_C": -0.043113,
+      "delta_P_Wstar": -0.105464,
+      "on_regime_L1": 0.899521,
+      "off_regime_L1": 0.259635,
+      "off_regime_L1_neutral": 0.053857,
+      "off_regime_L1_noncave": 0.808375,
+      "offreg_ratio": 0.2886,
+      "kl_total": 0.95829,
+      "kl_pair_frac": -0.0724,
+      "rand_target_frac": 0.1372,
+      "rand_on_regime_L1": 0.012099,
+      "rand_off_regime_L1": 0.014526
+    },
+    "decision": {
+      "category": "OVERLAY_LIKE",
+      "mechanism_like": false,
+      "targeted": false,
+      "specific": false,
+      "beats_random": false,
+      "target_frac": 0.1643,
+      "offreg_ratio": 0.2886,
+      "rand_target_frac": 0.1372,
+      "msg": "OVERLAY_LIKE: target_frac 0.164 < 0.5 (broad mass movement); off-regime L1 ratio 0.289 >= 0.1 (perturbs off-regime); does not beat the random direction by 0.15 (rand 0.137)."
+    }
+  },
+  "it": {
+    "name": "google/gemma-2-9b-it",
+    "n_ok": 57,
+    "n_cave": 46,
+    "n_off": 11,
+    "layers": {
+      "24": {
+        "in_sample_necessity": -0.4278
+      },
+      "28": {
+        "in_sample_necessity": 0.4165
+      },
+      "32": {
+        "in_sample_necessity": 0.7574
+      },
+      "36": {
+        "in_sample_necessity": 1.4002,
+        "n_test_cave": 23,
+        "n_train_cave": 23,
+        "n_off": 11,
+        "target_frac": 0.0001,
+        "delta_P_C": 0.0,
+        "delta_P_Wstar": -2e-06,
+        "on_regime_L1": 0.135764,
+        "off_regime_L1": 0.089088,
+        "off_regime_L1_neutral": 0.002124,
+        "off_regime_L1_noncave": 0.270921,
+        "offreg_ratio": 0.6562,
+        "kl_total": 0.077701,
+        "kl_pair_frac": -0.0001,
+        "rand_target_frac": 0.0,
+        "rand_on_regime_L1": 0.001001,
+        "rand_off_regime_L1": 0.001401
+      }
+    },
+    "headline_layer": 36,
+    "headline_stats": {
+      "n_test_cave": 23,
+      "n_train_cave": 23,
+      "n_off": 11,
+      "target_frac": 0.0001,
+      "delta_P_C": 0.0,
+      "delta_P_Wstar": -2e-06,
+      "on_regime_L1": 0.135764,
+      "off_regime_L1": 0.089088,
+      "off_regime_L1_neutral": 0.002124,
+      "off_regime_L1_noncave": 0.270921,
+      "offreg_ratio": 0.6562,
+      "kl_total": 0.077701,
+      "kl_pair_frac": -0.0001,
+      "rand_target_frac": 0.0,
+      "rand_on_regime_L1": 0.001001,
+      "rand_off_regime_L1": 0.001401
+    },
+    "decision": {
+      "category": "OVERLAY_LIKE",
+      "mechanism_like": false,
+      "targeted": false,
+      "specific": false,
+      "beats_random": false,
+      "target_frac": 0.0001,
+      "offreg_ratio": 0.6562,
+      "rand_target_frac": 0.0,
+      "msg": "OVERLAY_LIKE: target_frac 0.000 < 0.5 (broad mass movement); off-regime L1 ratio 0.656 >= 0.1 (perturbs off-regime); does not beat the random direction by 0.15 (rand 0.0)."
+    }
+  }
+}

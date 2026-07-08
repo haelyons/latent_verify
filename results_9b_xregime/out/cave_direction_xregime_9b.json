@@ -1,0 +1,446 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "cave_direction_xregime_deconfound",
+  "substrate": "misconception caving items (TruthfulQA-style), wide pool",
+  "metric": "M = logp(C) - logp(W*) first-token margin; necessity = (M_ablate - M_counter)/(M_neutral - M_counter); shift moves the u-projection to a variant-specific target proj_n",
+  "variants": {
+    "within": "host held-out u_host; target = host proj_n",
+    "cross_donor_projn": "donor u_donor; target = donor proj_n (existing cross path)",
+    "cross_host_projn": "donor u_donor; target = host neutral mean along u_donor (scale-corrected)",
+    "matched_item_donor_projn": "donor u_donor fit on shared train fold; target = donor proj_n; host shared test fold",
+    "matched_item_host_projn": "donor u_donor fit on shared train fold; target = host neutral mean along u_donor; host shared test fold"
+  },
+  "fit_layers": [
+    24,
+    28,
+    32,
+    36
+  ],
+  "thresholds": {
+    "dir_thr": 0.2,
+    "xreg_ratio": 0.6,
+    "n_folds": 5,
+    "seed": 0,
+    "min_effect_net": 0.5
+  },
+  "headline_rule": "host layer with the largest within necessity",
+  "pairs": {
+    "base_to_it": {
+      "pair": "base->it",
+      "headline_layer": 36,
+      "decisions": {
+        "cross_donor_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.4221,
+          "within_nec": 0.963,
+          "ratio_cross_over_within": 0.4383,
+          "msg": "cross necessity 0.422 / cross-within ratio 0.44 below (0.2, 0.6)."
+        },
+        "cross_host_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.4659,
+          "within_nec": 0.963,
+          "ratio_cross_over_within": 0.4838,
+          "msg": "cross necessity 0.466 / cross-within ratio 0.48 below (0.2, 0.6)."
+        },
+        "matched_item_donor_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.4474,
+          "within_nec": 1.0578,
+          "ratio_cross_over_within": 0.423,
+          "msg": "cross necessity 0.447 / cross-within ratio 0.42 below (0.2, 0.6)."
+        },
+        "matched_item_host_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.4975,
+          "within_nec": 1.0578,
+          "ratio_cross_over_within": 0.4703,
+          "msg": "cross necessity 0.497 / cross-within ratio 0.47 below (0.2, 0.6)."
+        }
+      },
+      "layers": {
+        "24": {
+          "n_host": 54,
+          "n_donor": 51,
+          "n_shared": 48,
+          "within_nec": -0.2293,
+          "within_ci": {
+            "mean": -0.2293,
+            "lo": -0.7861,
+            "hi": 0.2126,
+            "n": 54
+          },
+          "cross_donor_projn_nec": -0.5005,
+          "cross_donor_projn_ci": {
+            "mean": -0.5005,
+            "lo": -0.987,
+            "hi": -0.049,
+            "n": 54
+          },
+          "cross_host_projn_nec": -0.4892,
+          "cross_host_projn_ci": {
+            "mean": -0.4892,
+            "lo": -0.9405,
+            "hi": -0.0791,
+            "n": 54
+          },
+          "matched_within_nec": -0.343,
+          "matched_item_donor_projn_nec": -0.5563,
+          "matched_item_donor_projn_ci": {
+            "mean": -0.5563,
+            "lo": -1.1044,
+            "hi": -0.0636,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": -0.5454,
+          "matched_item_host_projn_ci": {
+            "mean": -0.5454,
+            "lo": -1.0451,
+            "hi": -0.0902,
+            "n": 48
+          },
+          "rand_nec": -0.0062
+        },
+        "28": {
+          "n_host": 54,
+          "n_donor": 51,
+          "n_shared": 48,
+          "within_nec": 0.4185,
+          "within_ci": {
+            "mean": 0.4185,
+            "lo": 0.2472,
+            "hi": 0.5848,
+            "n": 54
+          },
+          "cross_donor_projn_nec": 0.0153,
+          "cross_donor_projn_ci": {
+            "mean": 0.0153,
+            "lo": -0.2722,
+            "hi": 0.2617,
+            "n": 54
+          },
+          "cross_host_projn_nec": 0.0578,
+          "cross_host_projn_ci": {
+            "mean": 0.0578,
+            "lo": -0.2363,
+            "hi": 0.3054,
+            "n": 54
+          },
+          "matched_within_nec": 0.4139,
+          "matched_item_donor_projn_nec": -0.024,
+          "matched_item_donor_projn_ci": {
+            "mean": -0.024,
+            "lo": -0.3514,
+            "hi": 0.2484,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": 0.0206,
+          "matched_item_host_projn_ci": {
+            "mean": 0.0206,
+            "lo": -0.301,
+            "hi": 0.2884,
+            "n": 48
+          },
+          "rand_nec": -0.0145
+        },
+        "32": {
+          "n_host": 54,
+          "n_donor": 51,
+          "n_shared": 48,
+          "within_nec": 0.5564,
+          "within_ci": {
+            "mean": 0.5564,
+            "lo": 0.2416,
+            "hi": 0.8564,
+            "n": 54
+          },
+          "cross_donor_projn_nec": 0.2136,
+          "cross_donor_projn_ci": {
+            "mean": 0.2136,
+            "lo": -0.0387,
+            "hi": 0.4728,
+            "n": 54
+          },
+          "cross_host_projn_nec": 0.3736,
+          "cross_host_projn_ci": {
+            "mean": 0.3736,
+            "lo": 0.0774,
+            "hi": 0.6902,
+            "n": 54
+          },
+          "matched_within_nec": 0.5845,
+          "matched_item_donor_projn_nec": 0.2148,
+          "matched_item_donor_projn_ci": {
+            "mean": 0.2148,
+            "lo": -0.0652,
+            "hi": 0.4784,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": 0.3817,
+          "matched_item_host_projn_ci": {
+            "mean": 0.3817,
+            "lo": 0.0516,
+            "hi": 0.6941,
+            "n": 48
+          },
+          "rand_nec": 0.0016
+        },
+        "36": {
+          "n_host": 54,
+          "n_donor": 51,
+          "n_shared": 48,
+          "within_nec": 0.963,
+          "within_ci": {
+            "mean": 0.963,
+            "lo": 0.2974,
+            "hi": 1.6442,
+            "n": 54
+          },
+          "cross_donor_projn_nec": 0.4221,
+          "cross_donor_projn_ci": {
+            "mean": 0.4221,
+            "lo": 0.1721,
+            "hi": 0.6694,
+            "n": 54
+          },
+          "cross_host_projn_nec": 0.4659,
+          "cross_host_projn_ci": {
+            "mean": 0.4659,
+            "lo": 0.1929,
+            "hi": 0.7371,
+            "n": 54
+          },
+          "matched_within_nec": 1.0578,
+          "matched_item_donor_projn_nec": 0.4474,
+          "matched_item_donor_projn_ci": {
+            "mean": 0.4474,
+            "lo": 0.1951,
+            "hi": 0.6985,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": 0.4975,
+          "matched_item_host_projn_ci": {
+            "mean": 0.4975,
+            "lo": 0.2218,
+            "hi": 0.7735,
+            "n": 48
+          },
+          "rand_nec": 0.005
+        }
+      }
+    },
+    "it_to_base": {
+      "pair": "it->base",
+      "headline_layer": 36,
+      "decisions": {
+        "cross_donor_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.2289,
+          "within_nec": 0.7026,
+          "ratio_cross_over_within": 0.3258,
+          "msg": "cross necessity 0.229 / cross-within ratio 0.33 below (0.2, 0.6)."
+        },
+        "cross_host_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.0836,
+          "within_nec": 0.7026,
+          "ratio_cross_over_within": 0.119,
+          "msg": "cross necessity 0.084 / cross-within ratio 0.12 below (0.2, 0.6)."
+        },
+        "matched_item_donor_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.2496,
+          "within_nec": 0.7551,
+          "ratio_cross_over_within": 0.3306,
+          "msg": "cross necessity 0.25 / cross-within ratio 0.33 below (0.2, 0.6)."
+        },
+        "matched_item_host_projn": {
+          "category": "REGIME_SPECIFIC",
+          "shared_direction": false,
+          "cross_nec": 0.0933,
+          "within_nec": 0.7551,
+          "ratio_cross_over_within": 0.1236,
+          "msg": "cross necessity 0.093 / cross-within ratio 0.12 below (0.2, 0.6)."
+        }
+      },
+      "layers": {
+        "24": {
+          "n_host": 51,
+          "n_donor": 54,
+          "n_shared": 48,
+          "within_nec": 0.1923,
+          "within_ci": {
+            "mean": 0.1923,
+            "lo": 0.0829,
+            "hi": 0.2774,
+            "n": 51
+          },
+          "cross_donor_projn_nec": -0.6463,
+          "cross_donor_projn_ci": {
+            "mean": -0.6463,
+            "lo": -0.8845,
+            "hi": -0.4143,
+            "n": 51
+          },
+          "cross_host_projn_nec": -0.6429,
+          "cross_host_projn_ci": {
+            "mean": -0.6429,
+            "lo": -0.8619,
+            "hi": -0.4391,
+            "n": 51
+          },
+          "matched_within_nec": 0.162,
+          "matched_item_donor_projn_nec": -0.7147,
+          "matched_item_donor_projn_ci": {
+            "mean": -0.7147,
+            "lo": -0.9831,
+            "hi": -0.4578,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": -0.6915,
+          "matched_item_host_projn_ci": {
+            "mean": -0.6915,
+            "lo": -0.9248,
+            "hi": -0.4812,
+            "n": 48
+          },
+          "rand_nec": -0.012
+        },
+        "28": {
+          "n_host": 51,
+          "n_donor": 54,
+          "n_shared": 48,
+          "within_nec": 0.4937,
+          "within_ci": {
+            "mean": 0.4937,
+            "lo": 0.3059,
+            "hi": 0.6517,
+            "n": 51
+          },
+          "cross_donor_projn_nec": -0.0909,
+          "cross_donor_projn_ci": {
+            "mean": -0.0909,
+            "lo": -0.2494,
+            "hi": 0.0541,
+            "n": 51
+          },
+          "cross_host_projn_nec": -0.2873,
+          "cross_host_projn_ci": {
+            "mean": -0.2873,
+            "lo": -0.4522,
+            "hi": -0.1305,
+            "n": 51
+          },
+          "matched_within_nec": 0.5355,
+          "matched_item_donor_projn_nec": -0.0998,
+          "matched_item_donor_projn_ci": {
+            "mean": -0.0998,
+            "lo": -0.2593,
+            "hi": 0.0511,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": -0.3053,
+          "matched_item_host_projn_ci": {
+            "mean": -0.3053,
+            "lo": -0.4759,
+            "hi": -0.1382,
+            "n": 48
+          },
+          "rand_nec": -0.0029
+        },
+        "32": {
+          "n_host": 51,
+          "n_donor": 54,
+          "n_shared": 48,
+          "within_nec": 0.545,
+          "within_ci": {
+            "mean": 0.545,
+            "lo": 0.3315,
+            "hi": 0.7365,
+            "n": 51
+          },
+          "cross_donor_projn_nec": -0.1634,
+          "cross_donor_projn_ci": {
+            "mean": -0.1634,
+            "lo": -0.3251,
+            "hi": 0.0072,
+            "n": 51
+          },
+          "cross_host_projn_nec": -0.2345,
+          "cross_host_projn_ci": {
+            "mean": -0.2345,
+            "lo": -0.3833,
+            "hi": -0.0782,
+            "n": 51
+          },
+          "matched_within_nec": 0.5923,
+          "matched_item_donor_projn_nec": -0.157,
+          "matched_item_donor_projn_ci": {
+            "mean": -0.157,
+            "lo": -0.3281,
+            "hi": 0.0201,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": -0.2409,
+          "matched_item_host_projn_ci": {
+            "mean": -0.2409,
+            "lo": -0.3997,
+            "hi": -0.0738,
+            "n": 48
+          },
+          "rand_nec": -0.0049
+        },
+        "36": {
+          "n_host": 51,
+          "n_donor": 54,
+          "n_shared": 48,
+          "within_nec": 0.7026,
+          "within_ci": {
+            "mean": 0.7026,
+            "lo": 0.4349,
+            "hi": 0.9794,
+            "n": 51
+          },
+          "cross_donor_projn_nec": 0.2289,
+          "cross_donor_projn_ci": {
+            "mean": 0.2289,
+            "lo": 0.1495,
+            "hi": 0.308,
+            "n": 51
+          },
+          "cross_host_projn_nec": 0.0836,
+          "cross_host_projn_ci": {
+            "mean": 0.0836,
+            "lo": 0.0472,
+            "hi": 0.1218,
+            "n": 51
+          },
+          "matched_within_nec": 0.7551,
+          "matched_item_donor_projn_nec": 0.2496,
+          "matched_item_donor_projn_ci": {
+            "mean": 0.2496,
+            "lo": 0.1852,
+            "hi": 0.319,
+            "n": 48
+          },
+          "matched_item_host_projn_nec": 0.0933,
+          "matched_item_host_projn_ci": {
+            "mean": 0.0933,
+            "lo": 0.0594,
+            "hi": 0.1304,
+            "n": 48
+          },
+          "rand_nec": -0.0094
+        }
+      }
+    }
+  }
+}

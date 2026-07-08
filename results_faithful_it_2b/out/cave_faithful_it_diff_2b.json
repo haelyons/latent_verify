@@ -1,0 +1,94 @@
+{
+  "base": "google/gemma-2-2b",
+  "it": "google/gemma-2-2b-it",
+  "tag": "2b",
+  "device": "cuda",
+  "cue": "cave_faithful_it_diff",
+  "pool_size": 891,
+  "big_pool": true,
+  "stem": "The answer is",
+  "thresholds": {
+    "MIN_FAITHFUL": 8,
+    "RESTORE_THR": 0.2,
+    "GAP": 0.15,
+    "DIFF_THR": 0.15,
+    "OVERLAP_MIN": 3,
+    "BASE_FLOOR": 0.1,
+    "READOUT_THR": 0.5,
+    "AGREE_THR": 0.8,
+    "CAVE_RISE_THR": 0.05,
+    "TOP_K": 5,
+    "RAND_K": 5
+  },
+  "decision_rule": "Prefill the answer stem ('The answer is') so C/W* are decidable at [-1]; read the ANSWER-SET prob; same format for base and -it (weights-only). Matched both-cave intersection. Per model: READ=attn-KO of the span-top-5 doubt heads to the doubt span, WRITE=output-patch counter z[-1]->neutral z[-1], RANDOM=matched-random-5. INSUFFICIENT iff intersection<8 (READOUT_STILL_BLOCKED if -it<8); INSTALL iff it>=RESTORE_THR & base READ&WRITE<BASE_FLOOR; RESHAPE iff overlap<OVERLAP_MIN & both READ>=RESTORE_THR; AMPLIFY iff overlap>=OVERLAP_MIN & (READ or WRITE it-base diff>=DIFF_THR) [AMPLIFY-vs-INPUT unresolved, swap-arm deferred]; else DISTRIBUTED. R2 generation validator gates R1; R3 softening reported. Numbers + categories only.",
+  "base_heads": [
+    [
+      8,
+      1
+    ],
+    [
+      10,
+      4
+    ],
+    [
+      12,
+      5
+    ],
+    [
+      14,
+      3
+    ],
+    [
+      12,
+      4
+    ]
+  ],
+  "it_heads": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ]
+  ],
+  "n_intersection": 0,
+  "decision": {
+    "category": "READOUT_STILL_BLOCKED",
+    "n_base": 66,
+    "n_it": 0,
+    "n_inter": 0,
+    "overlap": 0,
+    "read_base": 0.0,
+    "read_it": 0.0,
+    "write_base": 0.0,
+    "write_it": 0.0,
+    "read_diff": 0.0,
+    "write_diff": 0.0,
+    "rand_base": 0.0,
+    "rand_it": 0.0,
+    "overlap_min": 3,
+    "restore_thr": 0.2,
+    "diff_thr": 0.15,
+    "msg": "both-cave intersection 0 < MIN_FAITHFUL(8); the -it readout itself stays sub-threshold (n_it=0) -> the readout, not the circuit, is the blocker.",
+    "soften_base": null,
+    "soften_it": null,
+    "base_readout_frac": 0.8831,
+    "it_readout_frac": 0.1143,
+    "base_r2_agreement": 0.0,
+    "it_r2_agreement": null
+  }
+}

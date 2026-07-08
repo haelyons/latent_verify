@@ -1,0 +1,113 @@
+{
+  "base": "google/gemma-2-9b",
+  "it": "google/gemma-2-9b-it",
+  "axis_layer": 28,
+  "n_union": 28,
+  "base_aurocs": {
+    "24": 0.8644,
+    "28": 0.7734,
+    "32": 0.7006
+  },
+  "it_aurocs": {
+    "24": 0.9094,
+    "28": 0.9181,
+    "32": 0.9181
+  },
+  "base_self": {
+    "label": "self_caved",
+    "auroc": 0.7734,
+    "axis_ok": true,
+    "attn_read": 0.582691,
+    "attn_write": 0.629785,
+    "mlp_write": 0.392205,
+    "all_attn": 0.629785,
+    "all_attn_ci": [
+      0.510315,
+      0.696452
+    ],
+    "mlp_ci": [
+      0.298308,
+      0.476996
+    ],
+    "n": 47,
+    "ncav": 14
+  },
+  "base_real": {
+    "label": "realized_caved",
+    "auroc": 1.0,
+    "axis_ok": true,
+    "attn_read": 0.060256,
+    "attn_write": 0.092672,
+    "mlp_write": 0.071914,
+    "all_attn": 0.092672,
+    "all_attn_ci": [
+      0.04382,
+      0.1134
+    ],
+    "mlp_ci": [
+      0.032664,
+      0.119072
+    ],
+    "n": 17,
+    "ncav": 14
+  },
+  "it_self": {
+    "label": "self_caved",
+    "auroc": 0.9181,
+    "axis_ok": true,
+    "attn_read": 0.514074,
+    "attn_write": 0.865831,
+    "mlp_write": 0.749796,
+    "all_attn": 0.865831,
+    "all_attn_ci": [
+      0.552485,
+      0.83528
+    ],
+    "mlp_ci": [
+      0.549797,
+      0.933237
+    ],
+    "n": 35,
+    "ncav": 14
+  },
+  "it_real": {
+    "label": "realized_caved",
+    "auroc": null,
+    "axis_ok": false,
+    "n": 15,
+    "ncav": 0
+  },
+  "it_steer_plus": 0.497571,
+  "it_steer_minus": -0.052206,
+  "base_steer_plus": 0.0,
+  "base_steer_minus": -0.044118,
+  "it_gap_steer": 149.789443,
+  "base_gap_steer": 34.998823,
+  "label_match_changes_verdict": true,
+  "decision": {
+    "category": "BOTH_REDUNDANT",
+    "it_all_attn": 0.865831,
+    "it_all_mlp": 0.749796,
+    "it_rand": 0.0,
+    "base_all_attn": 0.629785,
+    "steer_plus_delta": 0.497571,
+    "steer_minus_delta": -0.052206,
+    "channel_live": true,
+    "attn_carry": true,
+    "mlp_carry": true,
+    "msg": "both ALL-attention (0.866) and ALL-MLP (0.750) restore the -it cave-state (vs rand 0.000) -> the cave-state is redundantly written by attention AND MLP at the answer position."
+  },
+  "decision_labelmatch": {
+    "category": "INSUFFICIENT",
+    "it_all_attn": 0.0,
+    "it_all_mlp": 0.0,
+    "it_rand": 0.0,
+    "base_all_attn": 0.092672,
+    "steer_plus_delta": 0.497571,
+    "steer_minus_delta": -0.052206,
+    "channel_live": true,
+    "attn_carry": false,
+    "mlp_carry": false,
+    "msg": "cave-axis AUROC gate failed on a model; no trustworthy readout."
+  }
+}

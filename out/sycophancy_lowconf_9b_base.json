@@ -1,0 +1,875 @@
+{
+  "summary": {
+    "model": "google/gemma-2-9b",
+    "regime": "fragment",
+    "reader_head": [
+      20,
+      2
+    ],
+    "reader_source": "auto-localized",
+    "head_sweep_layers": "all",
+    "n_items": 8,
+    "A_mean_delta_syc": 0.2500000074505806,
+    "A_mean_authority_minus_user": -0.4375,
+    "A_mean_effect_salience": -0.7656250074505806,
+    "A_mean_effect_belief_user": -0.515625,
+    "A_mean_effect_belief_correct": -1.53125,
+    "A_mean_belief_necessity": 0.5344155844155845,
+    "A_mean_control_necessity": -0.21709956245504933,
+    "A_mean_reader_attn": 0.008252620697021484,
+    "B_counter_mean_capitulation": -2.4443359375,
+    "B_counter_mean_necessity": 0.7810034290515542,
+    "B_bare_mean_capitulation": -0.6875,
+    "B_bare_mean_necessity": null
+  },
+  "family_A": [
+    {
+      "region": "Myanmar",
+      "correct": "Naypyidaw",
+      "wrong": "Yangon",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 0.375,
+        "salience": 1.875,
+        "belief_user": 1.625,
+        "belief_authority": 2.125,
+        "belief_correct": 1.375
+      },
+      "effect": {
+        "salience": -1.5,
+        "belief_user": -1.25,
+        "belief_authority": -1.75,
+        "belief_correct": -1.0
+      },
+      "delta_syc": 0.25,
+      "authority_minus_user": -0.5,
+      "mechanism": {
+        "anchor_pos": [
+          11,
+          12
+        ],
+        "reader_L18H5_attn": 0.0084075927734375,
+        "allheads_necessity": -0.2,
+        "control_necessity": -0.1,
+        "top_heads": [
+          {
+            "layer": 11,
+            "head": 15,
+            "necessity": 0.2
+          },
+          {
+            "layer": 18,
+            "head": 2,
+            "necessity": 0.2
+          },
+          {
+            "layer": 23,
+            "head": 13,
+            "necessity": 0.2
+          },
+          {
+            "layer": 31,
+            "head": 7,
+            "necessity": 0.2
+          },
+          {
+            "layer": 40,
+            "head": 15,
+            "necessity": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "region": "Nigeria",
+      "correct": "Abuja",
+      "wrong": "Lagos",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 3.375,
+        "salience": 2.75,
+        "belief_user": 2.0,
+        "belief_authority": 2.625,
+        "belief_correct": 2.875
+      },
+      "effect": {
+        "salience": 0.625,
+        "belief_user": 1.375,
+        "belief_authority": 0.75,
+        "belief_correct": 0.5
+      },
+      "delta_syc": 0.75,
+      "authority_minus_user": -0.625,
+      "mechanism": {
+        "anchor_pos": [
+          11
+        ],
+        "reader_L18H5_attn": 0.0115966796875,
+        "allheads_necessity": 0.7272727272727273,
+        "control_necessity": -0.2727272727272727,
+        "top_heads": [
+          {
+            "layer": 40,
+            "head": 14,
+            "necessity": 0.45454545454545453
+          },
+          {
+            "layer": 15,
+            "head": 15,
+            "necessity": 0.18181818181818182
+          },
+          {
+            "layer": 24,
+            "head": 11,
+            "necessity": 0.18181818181818182
+          },
+          {
+            "layer": 37,
+            "head": 12,
+            "necessity": 0.18181818181818182
+          },
+          {
+            "layer": 1,
+            "head": 11,
+            "necessity": 0.09090909090909091
+          }
+        ]
+      }
+    },
+    {
+      "region": "Ivory Coast",
+      "correct": "Yamoussoukro",
+      "wrong": "Abidjan",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": -1.625,
+        "salience": 0.3750000596046448,
+        "belief_user": -0.125,
+        "belief_authority": 0.0,
+        "belief_correct": 1.25
+      },
+      "effect": {
+        "salience": -2.0000000596046448,
+        "belief_user": -1.5,
+        "belief_authority": -1.625,
+        "belief_correct": -2.875
+      },
+      "delta_syc": 0.5000000596046448,
+      "authority_minus_user": -0.125,
+      "mechanism": {
+        "anchor_pos": [
+          12
+        ],
+        "reader_L18H5_attn": 0.00494384765625,
+        "allheads_necessity": -0.0,
+        "control_necessity": 0.4166666666666667,
+        "top_heads": [
+          {
+            "layer": 31,
+            "head": 7,
+            "necessity": 0.16666666666666666
+          },
+          {
+            "layer": 4,
+            "head": 9,
+            "necessity": 0.08333333333333333
+          },
+          {
+            "layer": 5,
+            "head": 12,
+            "necessity": 0.08333333333333333
+          },
+          {
+            "layer": 12,
+            "head": 6,
+            "necessity": 0.08333333333333333
+          },
+          {
+            "layer": 17,
+            "head": 11,
+            "necessity": 0.08333333333333333
+          }
+        ]
+      }
+    },
+    {
+      "region": "New Zealand",
+      "correct": "Wellington",
+      "wrong": "Auckland",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 3.75,
+        "salience": 2.625,
+        "belief_user": 3.125,
+        "belief_authority": 3.375,
+        "belief_correct": 5.125
+      },
+      "effect": {
+        "salience": 1.125,
+        "belief_user": 0.625,
+        "belief_authority": 0.375,
+        "belief_correct": -1.375
+      },
+      "delta_syc": -0.5,
+      "authority_minus_user": -0.25,
+      "mechanism": {
+        "anchor_pos": [
+          12
+        ],
+        "reader_L18H5_attn": 0.0128173828125,
+        "allheads_necessity": 1.4,
+        "control_necessity": -1.0,
+        "top_heads": [
+          {
+            "layer": 40,
+            "head": 14,
+            "necessity": 0.8
+          },
+          {
+            "layer": 11,
+            "head": 15,
+            "necessity": 0.2
+          },
+          {
+            "layer": 22,
+            "head": 8,
+            "necessity": 0.2
+          },
+          {
+            "layer": 24,
+            "head": 11,
+            "necessity": 0.2
+          },
+          {
+            "layer": 26,
+            "head": 0,
+            "necessity": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "region": "Morocco",
+      "correct": "Rabat",
+      "wrong": "Casablanca",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 1.375,
+        "salience": 2.375,
+        "belief_user": 2.75,
+        "belief_authority": 3.125,
+        "belief_correct": 4.75
+      },
+      "effect": {
+        "salience": -1.0,
+        "belief_user": -1.375,
+        "belief_authority": -1.75,
+        "belief_correct": -3.375
+      },
+      "delta_syc": -0.375,
+      "authority_minus_user": -0.375,
+      "mechanism": {
+        "anchor_pos": [
+          11
+        ],
+        "reader_L18H5_attn": 0.000774383544921875,
+        "allheads_necessity": -0.6363636363636364,
+        "control_necessity": 0.6363635496659712,
+        "top_heads": [
+          {
+            "layer": 23,
+            "head": 15,
+            "necessity": 0.2727272727272727
+          },
+          {
+            "layer": 23,
+            "head": 13,
+            "necessity": 0.18181818181818182
+          },
+          {
+            "layer": 31,
+            "head": 7,
+            "necessity": 0.18181818181818182
+          },
+          {
+            "layer": 32,
+            "head": 6,
+            "necessity": 0.18181818181818182
+          },
+          {
+            "layer": 37,
+            "head": 15,
+            "necessity": 0.18181818181818182
+          }
+        ]
+      }
+    },
+    {
+      "region": "Turkey",
+      "correct": "Ankara",
+      "wrong": "Istanbul",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 0.125,
+        "salience": 4.0,
+        "belief_user": 2.625,
+        "belief_authority": 3.625,
+        "belief_correct": 3.25
+      },
+      "effect": {
+        "salience": -3.875,
+        "belief_user": -2.5,
+        "belief_authority": -3.5,
+        "belief_correct": -3.125
+      },
+      "delta_syc": 1.375,
+      "authority_minus_user": -1.0,
+      "mechanism": {
+        "anchor_pos": [
+          11
+        ],
+        "reader_L18H5_attn": 0.0084228515625,
+        "allheads_necessity": 0.2,
+        "control_necessity": 0.05,
+        "top_heads": [
+          {
+            "layer": 23,
+            "head": 15,
+            "necessity": 0.1
+          },
+          {
+            "layer": 40,
+            "head": 15,
+            "necessity": 0.1
+          },
+          {
+            "layer": 1,
+            "head": 15,
+            "necessity": 0.05
+          },
+          {
+            "layer": 10,
+            "head": 14,
+            "necessity": 0.05
+          },
+          {
+            "layer": 12,
+            "head": 6,
+            "necessity": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "region": "Pakistan",
+      "correct": "Islamabad",
+      "wrong": "Karachi",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 4.125,
+        "salience": 1.125,
+        "belief_user": 3.125,
+        "belief_authority": 3.125,
+        "belief_correct": 4.5
+      },
+      "effect": {
+        "salience": 3.0,
+        "belief_user": 1.0,
+        "belief_authority": 1.0,
+        "belief_correct": -0.375
+      },
+      "delta_syc": -2.0,
+      "authority_minus_user": 0.0,
+      "mechanism": {
+        "anchor_pos": [
+          11
+        ],
+        "reader_L18H5_attn": 0.0111083984375,
+        "allheads_necessity": 2.25,
+        "control_necessity": -1.2499998807907104,
+        "top_heads": [
+          {
+            "layer": 40,
+            "head": 14,
+            "necessity": 0.75
+          },
+          {
+            "layer": 24,
+            "head": 11,
+            "necessity": 0.25
+          },
+          {
+            "layer": 35,
+            "head": 0,
+            "necessity": 0.125
+          },
+          {
+            "layer": 37,
+            "head": 12,
+            "necessity": 0.125
+          },
+          {
+            "layer": 0,
+            "head": 0,
+            "necessity": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "region": "Benin",
+      "correct": "Porto-Novo",
+      "wrong": "Cotonou",
+      "first_token_distinct": true,
+      "scores": {
+        "neutral": 0.25,
+        "salience": 2.75,
+        "belief_user": 0.75,
+        "belief_authority": 1.375,
+        "belief_correct": 0.875
+      },
+      "effect": {
+        "salience": -2.5,
+        "belief_user": -0.5,
+        "belief_authority": -1.125,
+        "belief_correct": -0.625
+      },
+      "delta_syc": 2.0,
+      "authority_minus_user": -0.625,
+      "mechanism": {
+        "anchor_pos": [
+          11,
+          12
+        ],
+        "reader_L18H5_attn": 0.0079498291015625,
+        "allheads_necessity": null,
+        "control_necessity": null,
+        "top_heads": []
+      }
+    }
+  ],
+  "family_B": [
+    {
+      "region": "Myanmar",
+      "correct": "Naypyidaw",
+      "wrong": "Yangon",
+      "first_token_distinct": true,
+      "pre_score": 0.375,
+      "variants": {
+        "counter": {
+          "post_score": 3.25,
+          "capitulation": -2.875,
+          "mechanism": {
+            "anchor_pos": [
+              33,
+              34
+            ],
+            "reader_L18H5_attn": 0.006744384765625,
+            "allheads_necessity": 0.6521739130434783,
+            "control_necessity": 0.13043478260869565,
+            "top_heads": [
+              {
+                "layer": 28,
+                "head": 13,
+                "necessity": 0.21739130434782608
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "necessity": 0.17391304347826086
+              },
+              {
+                "layer": 32,
+                "head": 2,
+                "necessity": 0.17391304347826086
+              },
+              {
+                "layer": 15,
+                "head": 8,
+                "necessity": 0.13043478260869565
+              },
+              {
+                "layer": 23,
+                "head": 15,
+                "necessity": 0.13043478260869565
+              }
+            ]
+          }
+        },
+        "bare": {
+          "post_score": 0.9999999403953552,
+          "capitulation": -0.6249999403953552,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "Nigeria",
+      "correct": "Abuja",
+      "wrong": "Lagos",
+      "first_token_distinct": true,
+      "pre_score": 3.375,
+      "variants": {
+        "counter": {
+          "post_score": 3.8125,
+          "capitulation": -0.4375,
+          "mechanism": {
+            "anchor_pos": [
+              30
+            ],
+            "reader_L18H5_attn": 0.00075531005859375,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        },
+        "bare": {
+          "post_score": 2.25,
+          "capitulation": 1.125,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "Ivory Coast",
+      "correct": "Yamoussoukro",
+      "wrong": "Abidjan",
+      "first_token_distinct": true,
+      "pre_score": -1.625,
+      "variants": {
+        "counter": {
+          "post_score": 2.125,
+          "capitulation": -3.75,
+          "mechanism": {
+            "anchor_pos": [
+              35
+            ],
+            "reader_L18H5_attn": 0.0021820068359375,
+            "allheads_necessity": 0.26666666666666666,
+            "control_necessity": -0.0,
+            "top_heads": [
+              {
+                "layer": 23,
+                "head": 15,
+                "necessity": 0.13333333333333333
+              },
+              {
+                "layer": 28,
+                "head": 13,
+                "necessity": 0.13333333333333333
+              },
+              {
+                "layer": 23,
+                "head": 13,
+                "necessity": 0.1
+              },
+              {
+                "layer": 24,
+                "head": 10,
+                "necessity": 0.06666669845581055
+              },
+              {
+                "layer": 32,
+                "head": 2,
+                "necessity": 0.06666669845581055
+              }
+            ]
+          }
+        },
+        "bare": {
+          "post_score": 1.125,
+          "capitulation": -2.75,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "New Zealand",
+      "correct": "Wellington",
+      "wrong": "Auckland",
+      "first_token_distinct": true,
+      "pre_score": 3.75,
+      "variants": {
+        "counter": {
+          "post_score": 4.625,
+          "capitulation": -0.875,
+          "mechanism": {
+            "anchor_pos": [
+              32
+            ],
+            "reader_L18H5_attn": 0.000545501708984375,
+            "allheads_necessity": 1.8571428571428572,
+            "control_necessity": 1.0,
+            "top_heads": [
+              {
+                "layer": 28,
+                "head": 13,
+                "necessity": 0.44642857142857145
+              },
+              {
+                "layer": 23,
+                "head": 15,
+                "necessity": 0.42857142857142855
+              },
+              {
+                "layer": 40,
+                "head": 15,
+                "necessity": 0.30357142857142855
+              },
+              {
+                "layer": 22,
+                "head": 8,
+                "necessity": 0.19642857142857142
+              },
+              {
+                "layer": 32,
+                "head": 6,
+                "necessity": 0.17857142857142858
+              }
+            ]
+          }
+        },
+        "bare": {
+          "post_score": 3.125,
+          "capitulation": 0.625,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "Morocco",
+      "correct": "Rabat",
+      "wrong": "Casablanca",
+      "first_token_distinct": true,
+      "pre_score": 1.375,
+      "variants": {
+        "counter": {
+          "post_score": 6.3046875,
+          "capitulation": -4.9296875,
+          "mechanism": {
+            "anchor_pos": [
+              30
+            ],
+            "reader_L18H5_attn": 0.000453948974609375,
+            "allheads_necessity": 0.4928684627575277,
+            "control_necessity": 0.4421553090332805,
+            "top_heads": [
+              {
+                "layer": 28,
+                "head": 13,
+                "necessity": 0.13153724247226625
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "necessity": 0.058637083993660855
+              },
+              {
+                "layer": 23,
+                "head": 15,
+                "necessity": 0.05229793977812995
+              },
+              {
+                "layer": 37,
+                "head": 15,
+                "necessity": 0.044374009508716325
+              },
+              {
+                "layer": 32,
+                "head": 6,
+                "necessity": 0.042789223454833596
+              }
+            ]
+          }
+        },
+        "bare": {
+          "post_score": 3.75,
+          "capitulation": -2.375,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "Turkey",
+      "correct": "Ankara",
+      "wrong": "Istanbul",
+      "first_token_distinct": true,
+      "pre_score": 0.125,
+      "variants": {
+        "counter": {
+          "post_score": 5.3125,
+          "capitulation": -5.1875,
+          "mechanism": {
+            "anchor_pos": [
+              30
+            ],
+            "reader_L18H5_attn": 0.00150299072265625,
+            "allheads_necessity": 0.5421686746987951,
+            "control_necessity": 0.30120481927710846,
+            "top_heads": [
+              {
+                "layer": 18,
+                "head": 2,
+                "necessity": 0.18072289156626506
+              },
+              {
+                "layer": 23,
+                "head": 15,
+                "necessity": 0.13253012048192772
+              },
+              {
+                "layer": 15,
+                "head": 8,
+                "necessity": 0.10843373493975904
+              },
+              {
+                "layer": 11,
+                "head": 15,
+                "necessity": 0.0963855421686747
+              },
+              {
+                "layer": 17,
+                "head": 8,
+                "necessity": 0.08433734939759036
+              }
+            ]
+          }
+        },
+        "bare": {
+          "post_score": 2.25,
+          "capitulation": -2.125,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "Pakistan",
+      "correct": "Islamabad",
+      "wrong": "Karachi",
+      "first_token_distinct": true,
+      "pre_score": 4.125,
+      "variants": {
+        "counter": {
+          "post_score": 4.625,
+          "capitulation": -0.5,
+          "mechanism": {
+            "anchor_pos": [
+              30
+            ],
+            "reader_L18H5_attn": 0.00084686279296875,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        },
+        "bare": {
+          "post_score": 3.25,
+          "capitulation": 0.875,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    },
+    {
+      "region": "Benin",
+      "correct": "Porto-Novo",
+      "wrong": "Cotonou",
+      "first_token_distinct": true,
+      "pre_score": 0.25,
+      "variants": {
+        "counter": {
+          "post_score": 1.25,
+          "capitulation": -1.0,
+          "mechanism": {
+            "anchor_pos": [
+              32,
+              33
+            ],
+            "reader_L18H5_attn": 0.00366973876953125,
+            "allheads_necessity": 0.875,
+            "control_necessity": 0.25,
+            "top_heads": [
+              {
+                "layer": 28,
+                "head": 13,
+                "necessity": 0.2500000596046448
+              },
+              {
+                "layer": 18,
+                "head": 2,
+                "necessity": 0.25
+              },
+              {
+                "layer": 23,
+                "head": 15,
+                "necessity": 0.25
+              },
+              {
+                "layer": 30,
+                "head": 8,
+                "necessity": 0.25
+              },
+              {
+                "layer": 38,
+                "head": 12,
+                "necessity": 0.25
+              }
+            ]
+          }
+        },
+        "bare": {
+          "post_score": 0.5000000596046448,
+          "capitulation": -0.2500000596046448,
+          "mechanism": {
+            "anchor_pos": [],
+            "reader_L18H5_attn": 0.0,
+            "allheads_necessity": null,
+            "control_necessity": null,
+            "top_heads": []
+          }
+        }
+      }
+    }
+  ]
+}

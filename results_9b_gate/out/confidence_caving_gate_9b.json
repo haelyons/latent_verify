@@ -1,0 +1,161 @@
+{
+  "name_base": "google/gemma-2-9b",
+  "name_it": "google/gemma-2-9b-it",
+  "device": "cuda",
+  "tag": "9b",
+  "cue": "confidence_caving_gate",
+  "pool_size": 61,
+  "definition": "ENTROPY_QUARTILE",
+  "fit_layers": [
+    24,
+    28,
+    32,
+    36
+  ],
+  "thresholds": {
+    "GATE_THR": 0.2,
+    "BASE_FLOOR": 0.05,
+    "QUANTILE": 0.25,
+    "SPLIT_SEED": 0,
+    "RAND_SEED": 0
+  },
+  "decision_rule": "Fit u_conf = diff-of-means(resid_post[L][-1] over TRAIN high-quantile items - over TRAIN low-quantile items) at the NEUTRAL condition, where the quantile is the top/bottom QUANTILE(0.25) of next-token output entropy at the answer position (ENTROPY_QUARTILE; entropy negated so the high-quantile end is the high-confidence end) -- the same construction as confidence_direction_causal. proj_hi / proj_lo = the TRAIN high-/low-confidence mean u_conf-projections. On the held-out CAVING items in the COUNTER (caved) condition measure the signed cave metric M = logp(C) - logp(W*): M_counter (counter prompt) and M_neutral (neutral prompt); cave gap = M_neutral - M_counter (R-4-controlled). GATE: on the counter residual at L, STEER UP sets the u_conf-projection to proj_hi -> M_steerup; STEER DOWN sets it to proj_lo -> M_steerdown. gate_up = (M_steerup - M_counter)/(M_neutral - M_counter) = fraction of the cave suppressed by raising confidence; gate_down = (M_steerdown - M_counter)/(M_neutral - M_counter). RANDOM: a matched-magnitude random unit direction, identical steer-up edit (set its counter-projection to its own TRAIN high mean) -> gate_rand. Headline layer = the layer maximizing held-out entropy-NECESSITY of u_conf (most causal for confidence) when available, else the layer with the largest |gate_up| (both recorded). CONFIDENCE_GATES_CAVING iff gate_up >= GATE_THR(0.20) AND |gate_rand| < BASE_FLOOR(0.05), else NO_GATE. Reported per model (gate_up, gate_down, random); numbers + categories only, no claim attached to any sign or to the base-vs-it comparison.",
+  "base": {
+    "name": "google/gemma-2-9b",
+    "n_ok": 57,
+    "n_cave": 48,
+    "n_cave_test": 24,
+    "n_train": 28,
+    "n_test": 29,
+    "layers": {
+      "24": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.7864,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.0025,
+        "gate_down": 0.0118,
+        "gate_rand": 0.0003,
+        "n_gate_eval": 24,
+        "proj_hi": 69.5707,
+        "proj_lo": 23.4909
+      },
+      "28": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.7622,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.2535,
+        "gate_down": -0.0987,
+        "gate_rand": 0.0094,
+        "n_gate_eval": 24,
+        "proj_hi": 138.3372,
+        "proj_lo": 86.1172
+      },
+      "32": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.7862,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.2749,
+        "gate_down": -0.102,
+        "gate_rand": -0.0234,
+        "n_gate_eval": 24,
+        "proj_hi": 203.3519,
+        "proj_lo": 141.8832
+      },
+      "36": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.7883,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.1879,
+        "gate_down": -0.0672,
+        "gate_rand": -0.0035,
+        "n_gate_eval": 24,
+        "proj_hi": 208.1786,
+        "proj_lo": 135.6488
+      }
+    },
+    "headline_layer_by_entropy_necessity": 36,
+    "headline_layer_by_abs_gate_up": 32,
+    "decision": {
+      "gate_bucket": "NO_GATE",
+      "gates_caving": false,
+      "gate_up": -0.1879,
+      "gate_down": -0.0672,
+      "gate_rand": -0.0035,
+      "headline_layer": 36,
+      "headline_source": "entropy_necessity"
+    }
+  },
+  "it": {
+    "name": "google/gemma-2-9b-it",
+    "n_ok": 57,
+    "n_cave": 46,
+    "n_cave_test": 23,
+    "n_train": 28,
+    "n_test": 29,
+    "layers": {
+      "24": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.0243,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.1425,
+        "gate_down": 0.0151,
+        "gate_rand": -0.0016,
+        "n_gate_eval": 23,
+        "proj_hi": 84.3644,
+        "proj_lo": 35.9473
+      },
+      "28": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.096,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.1301,
+        "gate_down": 0.0356,
+        "gate_rand": 0.0002,
+        "n_gate_eval": 23,
+        "proj_hi": 95.7729,
+        "proj_lo": 18.5352
+      },
+      "32": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.1511,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.0879,
+        "gate_down": 0.0164,
+        "gate_rand": -0.0124,
+        "n_gate_eval": 23,
+        "proj_hi": 132.6408,
+        "proj_lo": 33.8858
+      },
+      "36": {
+        "n_train_hi": 7,
+        "n_train_lo": 7,
+        "ent_necessity": 0.1805,
+        "n_ent_test_hi": 7,
+        "gate_up": -0.0815,
+        "gate_down": 0.03,
+        "gate_rand": 0.0072,
+        "n_gate_eval": 23,
+        "proj_hi": 123.9509,
+        "proj_lo": -1.8827
+      }
+    },
+    "headline_layer_by_entropy_necessity": 36,
+    "headline_layer_by_abs_gate_up": 24,
+    "decision": {
+      "gate_bucket": "NO_GATE",
+      "gates_caving": false,
+      "gate_up": -0.0815,
+      "gate_down": 0.03,
+      "gate_rand": 0.0072,
+      "headline_layer": 36,
+      "headline_source": "entropy_necessity"
+    }
+  }
+}

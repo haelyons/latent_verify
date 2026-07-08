@@ -1,0 +1,635 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "cave_direction_sae_decomp",
+  "substrate": "misconception caving items (TruthfulQA-style); rlhf_differential.ITEMS",
+  "measures": "decompose the fitted diff-of-means residual cave/defer direction u_cave(L) into GemmaScope SAE decoder features; report per-feature cosines, top-K features, and the least-squares reconstruction fraction of u_cave over the top-k decoder directions",
+  "metric_for_fit": "M = logp(C) - logp(W*) first-token margin; |gap| = |M_neutral - M_counter| gate",
+  "sae_release": "gemma-scope-9b-pt-res-canonical",
+  "sae_width": "width_16k",
+  "sae_layers": [
+    28,
+    32
+  ],
+  "ks": [
+    1,
+    5,
+    10,
+    20,
+    50
+  ],
+  "thresholds": {
+    "topk": 20,
+    "frac_tol": 0.5
+  },
+  "it": {
+    "28": {
+      "n_features": 16384,
+      "d_model": 3584,
+      "top_features": [
+        {
+          "feature": 12999,
+          "cosine": -0.260433
+        },
+        {
+          "feature": 15681,
+          "cosine": 0.23972
+        },
+        {
+          "feature": 3192,
+          "cosine": 0.211012
+        },
+        {
+          "feature": 9701,
+          "cosine": 0.174782
+        },
+        {
+          "feature": 743,
+          "cosine": -0.170844
+        },
+        {
+          "feature": 15267,
+          "cosine": 0.153013
+        },
+        {
+          "feature": 9419,
+          "cosine": -0.151665
+        },
+        {
+          "feature": 15092,
+          "cosine": -0.149246
+        },
+        {
+          "feature": 5225,
+          "cosine": -0.144386
+        },
+        {
+          "feature": 3613,
+          "cosine": -0.136881
+        },
+        {
+          "feature": 1214,
+          "cosine": -0.135447
+        },
+        {
+          "feature": 1249,
+          "cosine": -0.132337
+        },
+        {
+          "feature": 5100,
+          "cosine": 0.12638
+        },
+        {
+          "feature": 10899,
+          "cosine": 0.120186
+        },
+        {
+          "feature": 13462,
+          "cosine": 0.119354
+        },
+        {
+          "feature": 16000,
+          "cosine": 0.118601
+        },
+        {
+          "feature": 7742,
+          "cosine": 0.117584
+        },
+        {
+          "feature": 7368,
+          "cosine": -0.110158
+        },
+        {
+          "feature": 2414,
+          "cosine": -0.11009
+        },
+        {
+          "feature": 12872,
+          "cosine": -0.105761
+        }
+      ],
+      "top_feature_indices": [
+        12999,
+        15681,
+        3192,
+        9701,
+        743,
+        15267,
+        9419,
+        15092,
+        5225,
+        3613,
+        1214,
+        1249,
+        5100,
+        10899,
+        13462,
+        16000,
+        7742,
+        7368,
+        2414,
+        12872
+      ],
+      "recon_frac_by_k": {
+        "1": 0.067825,
+        "5": 0.20092,
+        "10": 0.277726,
+        "20": 0.364607,
+        "50": 0.447426
+      },
+      "decision": {
+        "category": "DISTRIBUTED",
+        "sparse_reconstruction": false,
+        "recon_frac_at_topk": 0.364607,
+        "topk": 20,
+        "frac_tol": 0.5,
+        "msg": "top-20 decoder directions reconstruct recon_frac@20=0.3646 < 0.5 -> DISTRIBUTED."
+      },
+      "sae_loaded": true,
+      "sae_id": "layer_28/width_16k/canonical",
+      "n_ok": 10,
+      "sae_release": "gemma-scope-9b-pt-res-canonical"
+    },
+    "32": {
+      "n_features": 16384,
+      "d_model": 3584,
+      "top_features": [
+        {
+          "feature": 8872,
+          "cosine": -0.166476
+        },
+        {
+          "feature": 14860,
+          "cosine": -0.156586
+        },
+        {
+          "feature": 13756,
+          "cosine": 0.154647
+        },
+        {
+          "feature": 6300,
+          "cosine": 0.138499
+        },
+        {
+          "feature": 1968,
+          "cosine": -0.134675
+        },
+        {
+          "feature": 2169,
+          "cosine": -0.132704
+        },
+        {
+          "feature": 5274,
+          "cosine": -0.125245
+        },
+        {
+          "feature": 5988,
+          "cosine": -0.119764
+        },
+        {
+          "feature": 11252,
+          "cosine": -0.119261
+        },
+        {
+          "feature": 319,
+          "cosine": -0.116814
+        },
+        {
+          "feature": 32,
+          "cosine": 0.11656
+        },
+        {
+          "feature": 11708,
+          "cosine": 0.113678
+        },
+        {
+          "feature": 6675,
+          "cosine": -0.112155
+        },
+        {
+          "feature": 13667,
+          "cosine": 0.110978
+        },
+        {
+          "feature": 2752,
+          "cosine": -0.110781
+        },
+        {
+          "feature": 6360,
+          "cosine": 0.109084
+        },
+        {
+          "feature": 2606,
+          "cosine": 0.108782
+        },
+        {
+          "feature": 14908,
+          "cosine": -0.107336
+        },
+        {
+          "feature": 12386,
+          "cosine": 0.098441
+        },
+        {
+          "feature": 3750,
+          "cosine": -0.098426
+        }
+      ],
+      "top_feature_indices": [
+        8872,
+        14860,
+        13756,
+        6300,
+        1968,
+        2169,
+        5274,
+        5988,
+        11252,
+        319,
+        32,
+        11708,
+        6675,
+        13667,
+        2752,
+        6360,
+        2606,
+        14908,
+        12386,
+        3750
+      ],
+      "recon_frac_by_k": {
+        "1": 0.027714,
+        "5": 0.100361,
+        "10": 0.161999,
+        "20": 0.224259,
+        "50": 0.305086
+      },
+      "decision": {
+        "category": "DISTRIBUTED",
+        "sparse_reconstruction": false,
+        "recon_frac_at_topk": 0.224259,
+        "topk": 20,
+        "frac_tol": 0.5,
+        "msg": "top-20 decoder directions reconstruct recon_frac@20=0.2243 < 0.5 -> DISTRIBUTED."
+      },
+      "sae_loaded": true,
+      "sae_id": "layer_32/width_16k/canonical",
+      "n_ok": 10,
+      "sae_release": "gemma-scope-9b-pt-res-canonical"
+    }
+  },
+  "base": {
+    "28": {
+      "n_features": 16384,
+      "d_model": 3584,
+      "top_features": [
+        {
+          "feature": 12999,
+          "cosine": -0.286382
+        },
+        {
+          "feature": 13462,
+          "cosine": 0.280352
+        },
+        {
+          "feature": 743,
+          "cosine": -0.180946
+        },
+        {
+          "feature": 15267,
+          "cosine": 0.179861
+        },
+        {
+          "feature": 9419,
+          "cosine": -0.174367
+        },
+        {
+          "feature": 3613,
+          "cosine": -0.158605
+        },
+        {
+          "feature": 8129,
+          "cosine": -0.157892
+        },
+        {
+          "feature": 5100,
+          "cosine": 0.151331
+        },
+        {
+          "feature": 6840,
+          "cosine": 0.142127
+        },
+        {
+          "feature": 7742,
+          "cosine": 0.140887
+        },
+        {
+          "feature": 3192,
+          "cosine": 0.135981
+        },
+        {
+          "feature": 9701,
+          "cosine": 0.133971
+        },
+        {
+          "feature": 2414,
+          "cosine": -0.12956
+        },
+        {
+          "feature": 13447,
+          "cosine": 0.12672
+        },
+        {
+          "feature": 15079,
+          "cosine": 0.122038
+        },
+        {
+          "feature": 8560,
+          "cosine": 0.114892
+        },
+        {
+          "feature": 4444,
+          "cosine": 0.11444
+        },
+        {
+          "feature": 5682,
+          "cosine": 0.114065
+        },
+        {
+          "feature": 728,
+          "cosine": 0.113123
+        },
+        {
+          "feature": 3132,
+          "cosine": -0.112348
+        }
+      ],
+      "top_feature_indices": [
+        12999,
+        13462,
+        743,
+        15267,
+        9419,
+        3613,
+        8129,
+        5100,
+        6840,
+        7742,
+        3192,
+        9701,
+        2414,
+        13447,
+        15079,
+        8560,
+        4444,
+        5682,
+        728,
+        3132
+      ],
+      "recon_frac_by_k": {
+        "1": 0.082015,
+        "5": 0.220624,
+        "10": 0.30297,
+        "20": 0.371758,
+        "50": 0.446555
+      },
+      "decision": {
+        "category": "DISTRIBUTED",
+        "sparse_reconstruction": false,
+        "recon_frac_at_topk": 0.371758,
+        "topk": 20,
+        "frac_tol": 0.5,
+        "msg": "top-20 decoder directions reconstruct recon_frac@20=0.3718 < 0.5 -> DISTRIBUTED."
+      },
+      "sae_loaded": true,
+      "sae_id": "layer_28/width_16k/canonical",
+      "n_ok": 9,
+      "sae_release": "gemma-scope-9b-pt-res-canonical"
+    },
+    "32": {
+      "n_features": 16384,
+      "d_model": 3584,
+      "top_features": [
+        {
+          "feature": 16080,
+          "cosine": 0.271674
+        },
+        {
+          "feature": 13901,
+          "cosine": 0.209911
+        },
+        {
+          "feature": 32,
+          "cosine": 0.188557
+        },
+        {
+          "feature": 14704,
+          "cosine": 0.18723
+        },
+        {
+          "feature": 319,
+          "cosine": -0.183715
+        },
+        {
+          "feature": 2606,
+          "cosine": 0.178845
+        },
+        {
+          "feature": 5274,
+          "cosine": -0.167415
+        },
+        {
+          "feature": 13730,
+          "cosine": 0.157129
+        },
+        {
+          "feature": 5338,
+          "cosine": 0.156644
+        },
+        {
+          "feature": 13667,
+          "cosine": 0.15441
+        },
+        {
+          "feature": 2752,
+          "cosine": -0.146387
+        },
+        {
+          "feature": 5764,
+          "cosine": 0.128793
+        },
+        {
+          "feature": 9098,
+          "cosine": 0.127257
+        },
+        {
+          "feature": 6487,
+          "cosine": 0.126135
+        },
+        {
+          "feature": 6202,
+          "cosine": 0.122113
+        },
+        {
+          "feature": 11252,
+          "cosine": -0.113674
+        },
+        {
+          "feature": 11431,
+          "cosine": 0.113506
+        },
+        {
+          "feature": 2443,
+          "cosine": -0.112131
+        },
+        {
+          "feature": 11758,
+          "cosine": -0.111432
+        },
+        {
+          "feature": 14860,
+          "cosine": -0.107776
+        }
+      ],
+      "top_feature_indices": [
+        16080,
+        13901,
+        32,
+        14704,
+        319,
+        2606,
+        5274,
+        13730,
+        5338,
+        13667,
+        2752,
+        5764,
+        9098,
+        6487,
+        6202,
+        11252,
+        11431,
+        2443,
+        11758,
+        14860
+      ],
+      "recon_frac_by_k": {
+        "1": 0.073807,
+        "5": 0.16503,
+        "10": 0.257029,
+        "20": 0.370505,
+        "50": 0.442728
+      },
+      "decision": {
+        "category": "DISTRIBUTED",
+        "sparse_reconstruction": false,
+        "recon_frac_at_topk": 0.370505,
+        "topk": 20,
+        "frac_tol": 0.5,
+        "msg": "top-20 decoder directions reconstruct recon_frac@20=0.3705 < 0.5 -> DISTRIBUTED."
+      },
+      "sae_loaded": true,
+      "sae_id": "layer_32/width_16k/canonical",
+      "n_ok": 9,
+      "sae_release": "gemma-scope-9b-pt-res-canonical"
+    }
+  },
+  "base_vs_it_top_feature_overlap": {
+    "28": {
+      "overlap_count": 11,
+      "topk": 20,
+      "it_top": [
+        12999,
+        15681,
+        3192,
+        9701,
+        743,
+        15267,
+        9419,
+        15092,
+        5225,
+        3613,
+        1214,
+        1249,
+        5100,
+        10899,
+        13462,
+        16000,
+        7742,
+        7368,
+        2414,
+        12872
+      ],
+      "base_top": [
+        12999,
+        13462,
+        743,
+        15267,
+        9419,
+        3613,
+        8129,
+        5100,
+        6840,
+        7742,
+        3192,
+        9701,
+        2414,
+        13447,
+        15079,
+        8560,
+        4444,
+        5682,
+        728,
+        3132
+      ]
+    },
+    "32": {
+      "overlap_count": 8,
+      "topk": 20,
+      "it_top": [
+        8872,
+        14860,
+        13756,
+        6300,
+        1968,
+        2169,
+        5274,
+        5988,
+        11252,
+        319,
+        32,
+        11708,
+        6675,
+        13667,
+        2752,
+        6360,
+        2606,
+        14908,
+        12386,
+        3750
+      ],
+      "base_top": [
+        16080,
+        13901,
+        32,
+        14704,
+        319,
+        2606,
+        5274,
+        13730,
+        5338,
+        13667,
+        2752,
+        5764,
+        9098,
+        6487,
+        6202,
+        11252,
+        11431,
+        2443,
+        11758,
+        14860
+      ]
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "model_base": "google/gemma-2-9b",
+  "model_it": "google/gemma-2-9b-it",
+  "cue": "cave_direction_heldout",
+  "substrate": "misconception caving items (TruthfulQA-style), wide pool",
+  "metric": "M = logp(C) - logp(W*) first-token margin; necessity = (M_ablate - M_counter)/(M_neutral - M_counter)",
+  "fit_layers": [
+    24,
+    28,
+    32,
+    36
+  ],
+  "thresholds": {
+    "dir_thr": 0.2,
+    "base_floor": 0.05,
+    "margin": 0.05,
+    "xreg_ratio": 0.6,
+    "n_perm": 20,
+    "n_folds": 5,
+    "seed": 0
+  },
+  "it": {
+    "headline_layer": 36,
+    "layers": {
+      "24": {
+        "n_ok": 54,
+        "in_sample_nec": -0.2314,
+        "in_sample_ci": {
+          "mean": -0.2314,
+          "lo": -0.7256,
+          "hi": 0.2075,
+          "n": 54
+        },
+        "kfold_heldout_nec": -0.2293,
+        "kfold_heldout_ci": {
+          "mean": -0.2293,
+          "lo": -0.7861,
+          "hi": 0.2126,
+          "n": 54
+        },
+        "loo_heldout_nec": -0.2434,
+        "loo_heldout_ci": {
+          "mean": -0.2434,
+          "lo": -0.7404,
+          "hi": 0.1968,
+          "n": 54
+        },
+        "label_permuted_nec": -0.4448,
+        "rand_nec": -0.0062
+      },
+      "28": {
+        "n_ok": 54,
+        "in_sample_nec": 0.4313,
+        "in_sample_ci": {
+          "mean": 0.4313,
+          "lo": 0.2607,
+          "hi": 0.5887,
+          "n": 54
+        },
+        "kfold_heldout_nec": 0.4185,
+        "kfold_heldout_ci": {
+          "mean": 0.4185,
+          "lo": 0.2472,
+          "hi": 0.5848,
+          "n": 54
+        },
+        "loo_heldout_nec": 0.4294,
+        "loo_heldout_ci": {
+          "mean": 0.4294,
+          "lo": 0.2545,
+          "hi": 0.5891,
+          "n": 54
+        },
+        "label_permuted_nec": -0.2615,
+        "rand_nec": -0.0145
+      },
+      "32": {
+        "n_ok": 54,
+        "in_sample_nec": 0.5788,
+        "in_sample_ci": {
+          "mean": 0.5788,
+          "lo": 0.2917,
+          "hi": 0.8659,
+          "n": 54
+        },
+        "kfold_heldout_nec": 0.5564,
+        "kfold_heldout_ci": {
+          "mean": 0.5564,
+          "lo": 0.2416,
+          "hi": 0.8564,
+          "n": 54
+        },
+        "loo_heldout_nec": 0.5744,
+        "loo_heldout_ci": {
+          "mean": 0.5744,
+          "lo": 0.2822,
+          "hi": 0.8672,
+          "n": 54
+        },
+        "label_permuted_nec": -0.3302,
+        "rand_nec": 0.0016
+      },
+      "36": {
+        "n_ok": 54,
+        "in_sample_nec": 0.9891,
+        "in_sample_ci": {
+          "mean": 0.9891,
+          "lo": 0.3239,
+          "hi": 1.638,
+          "n": 54
+        },
+        "kfold_heldout_nec": 0.963,
+        "kfold_heldout_ci": {
+          "mean": 0.963,
+          "lo": 0.2974,
+          "hi": 1.6442,
+          "n": 54
+        },
+        "loo_heldout_nec": 0.9884,
+        "loo_heldout_ci": {
+          "mean": 0.9884,
+          "lo": 0.3094,
+          "hi": 1.653,
+          "n": 54
+        },
+        "label_permuted_nec": 0.1299,
+        "rand_nec": 0.005
+      }
+    },
+    "heldout_decision": {
+      "category": "HELD_OUT_DIRECTION",
+      "held_out_direction": true,
+      "in_sample_nec": 0.9891,
+      "held_out_nec": 0.9884,
+      "in_sample_ci": {
+        "mean": 0.9891,
+        "lo": 0.3239,
+        "hi": 1.638,
+        "n": 54
+      },
+      "held_out_within_ci": true,
+      "label_permuted_nec": 0.1299,
+      "held_minus_perm": 0.8585,
+      "rand_nec": 0.005,
+      "rand_clean": true,
+      "msg": "held-out necessity 0.988 >= 0.2, within the in-sample CI [0.3239,1.638], and beats the label-permuted null (0.1299) by >= 0.05 -- the cave direction generalizes off its fit items."
+    }
+  },
+  "base": {
+    "headline_layer": 36,
+    "layers": {
+      "24": {
+        "n_ok": 51,
+        "in_sample_nec": 0.1828,
+        "in_sample_ci": {
+          "mean": 0.1828,
+          "lo": 0.0703,
+          "hi": 0.2723,
+          "n": 51
+        },
+        "kfold_heldout_nec": 0.1923,
+        "kfold_heldout_ci": {
+          "mean": 0.1923,
+          "lo": 0.0829,
+          "hi": 0.2774,
+          "n": 51
+        },
+        "loo_heldout_nec": 0.1932,
+        "loo_heldout_ci": {
+          "mean": 0.1932,
+          "lo": 0.0851,
+          "hi": 0.2818,
+          "n": 51
+        },
+        "label_permuted_nec": -0.0215,
+        "rand_nec": -0.012
+      },
+      "28": {
+        "n_ok": 51,
+        "in_sample_nec": 0.4859,
+        "in_sample_ci": {
+          "mean": 0.4859,
+          "lo": 0.2937,
+          "hi": 0.646,
+          "n": 51
+        },
+        "kfold_heldout_nec": 0.4937,
+        "kfold_heldout_ci": {
+          "mean": 0.4937,
+          "lo": 0.3059,
+          "hi": 0.6517,
+          "n": 51
+        },
+        "loo_heldout_nec": 0.4839,
+        "loo_heldout_ci": {
+          "mean": 0.4839,
+          "lo": 0.2965,
+          "hi": 0.6428,
+          "n": 51
+        },
+        "label_permuted_nec": 0.019,
+        "rand_nec": -0.0029
+      },
+      "32": {
+        "n_ok": 51,
+        "in_sample_nec": 0.547,
+        "in_sample_ci": {
+          "mean": 0.547,
+          "lo": 0.3469,
+          "hi": 0.7348,
+          "n": 51
+        },
+        "kfold_heldout_nec": 0.545,
+        "kfold_heldout_ci": {
+          "mean": 0.545,
+          "lo": 0.3315,
+          "hi": 0.7365,
+          "n": 51
+        },
+        "loo_heldout_nec": 0.5516,
+        "loo_heldout_ci": {
+          "mean": 0.5516,
+          "lo": 0.3408,
+          "hi": 0.7478,
+          "n": 51
+        },
+        "label_permuted_nec": -0.001,
+        "rand_nec": -0.0049
+      },
+      "36": {
+        "n_ok": 51,
+        "in_sample_nec": 0.7113,
+        "in_sample_ci": {
+          "mean": 0.7113,
+          "lo": 0.4614,
+          "hi": 0.9753,
+          "n": 51
+        },
+        "kfold_heldout_nec": 0.7026,
+        "kfold_heldout_ci": {
+          "mean": 0.7026,
+          "lo": 0.4349,
+          "hi": 0.9794,
+          "n": 51
+        },
+        "loo_heldout_nec": 0.7095,
+        "loo_heldout_ci": {
+          "mean": 0.7095,
+          "lo": 0.4598,
+          "hi": 0.9748,
+          "n": 51
+        },
+        "label_permuted_nec": 0.1258,
+        "rand_nec": -0.0094
+      }
+    },
+    "heldout_decision": {
+      "category": "HELD_OUT_DIRECTION",
+      "held_out_direction": true,
+      "in_sample_nec": 0.7113,
+      "held_out_nec": 0.7095,
+      "in_sample_ci": {
+        "mean": 0.7113,
+        "lo": 0.4614,
+        "hi": 0.9753,
+        "n": 51
+      },
+      "held_out_within_ci": true,
+      "label_permuted_nec": 0.1258,
+      "held_minus_perm": 0.5837,
+      "rand_nec": -0.0094,
+      "rand_clean": true,
+      "msg": "held-out necessity 0.710 >= 0.2, within the in-sample CI [0.4614,0.9753], and beats the label-permuted null (0.1258) by >= 0.05 -- the cave direction generalizes off its fit items."
+    }
+  },
+  "cross_regime": {
+    "base_to_it": {
+      "pair": "base->it",
+      "headline_layer": 36,
+      "decision": {
+        "category": "REGIME_SPECIFIC",
+        "cross_regime": false,
+        "cross_nec": 0.4221,
+        "within_nec": 0.963,
+        "ratio_cross_over_within": 0.4383,
+        "msg": "cross-regime necessity 0.422 / cross-within ratio 0.44 below (0.2, 0.6) -- the direction is regime-specific."
+      },
+      "layers": {
+        "24": {
+          "n_ok": 54,
+          "within_nec": -0.2293,
+          "within_ci": {
+            "mean": -0.2293,
+            "lo": -0.7861,
+            "hi": 0.2126,
+            "n": 54
+          },
+          "cross_nec": -0.5005,
+          "cross_ci": {
+            "mean": -0.5005,
+            "lo": -0.987,
+            "hi": -0.049,
+            "n": 54
+          }
+        },
+        "28": {
+          "n_ok": 54,
+          "within_nec": 0.4185,
+          "within_ci": {
+            "mean": 0.4185,
+            "lo": 0.2472,
+            "hi": 0.5848,
+            "n": 54
+          },
+          "cross_nec": 0.0153,
+          "cross_ci": {
+            "mean": 0.0153,
+            "lo": -0.2722,
+            "hi": 0.2617,
+            "n": 54
+          }
+        },
+        "32": {
+          "n_ok": 54,
+          "within_nec": 0.5564,
+          "within_ci": {
+            "mean": 0.5564,
+            "lo": 0.2416,
+            "hi": 0.8564,
+            "n": 54
+          },
+          "cross_nec": 0.2136,
+          "cross_ci": {
+            "mean": 0.2136,
+            "lo": -0.0387,
+            "hi": 0.4728,
+            "n": 54
+          }
+        },
+        "36": {
+          "n_ok": 54,
+          "within_nec": 0.963,
+          "within_ci": {
+            "mean": 0.963,
+            "lo": 0.2974,
+            "hi": 1.6442,
+            "n": 54
+          },
+          "cross_nec": 0.4221,
+          "cross_ci": {
+            "mean": 0.4221,
+            "lo": 0.1721,
+            "hi": 0.6694,
+            "n": 54
+          }
+        }
+      }
+    },
+    "it_to_base": {
+      "pair": "it->base",
+      "headline_layer": 36,
+      "decision": {
+        "category": "REGIME_SPECIFIC",
+        "cross_regime": false,
+        "cross_nec": 0.2289,
+        "within_nec": 0.7026,
+        "ratio_cross_over_within": 0.3258,
+        "msg": "cross-regime necessity 0.229 / cross-within ratio 0.33 below (0.2, 0.6) -- the direction is regime-specific."
+      },
+      "layers": {
+        "24": {
+          "n_ok": 51,
+          "within_nec": 0.1923,
+          "within_ci": {
+            "mean": 0.1923,
+            "lo": 0.0829,
+            "hi": 0.2774,
+            "n": 51
+          },
+          "cross_nec": -0.6463,
+          "cross_ci": {
+            "mean": -0.6463,
+            "lo": -0.8845,
+            "hi": -0.4143,
+            "n": 51
+          }
+        },
+        "28": {
+          "n_ok": 51,
+          "within_nec": 0.4937,
+          "within_ci": {
+            "mean": 0.4937,
+            "lo": 0.3059,
+            "hi": 0.6517,
+            "n": 51
+          },
+          "cross_nec": -0.0909,
+          "cross_ci": {
+            "mean": -0.0909,
+            "lo": -0.2494,
+            "hi": 0.0541,
+            "n": 51
+          }
+        },
+        "32": {
+          "n_ok": 51,
+          "within_nec": 0.545,
+          "within_ci": {
+            "mean": 0.545,
+            "lo": 0.3315,
+            "hi": 0.7365,
+            "n": 51
+          },
+          "cross_nec": -0.1634,
+          "cross_ci": {
+            "mean": -0.1634,
+            "lo": -0.3251,
+            "hi": 0.0072,
+            "n": 51
+          }
+        },
+        "36": {
+          "n_ok": 51,
+          "within_nec": 0.7026,
+          "within_ci": {
+            "mean": 0.7026,
+            "lo": 0.4349,
+            "hi": 0.9794,
+            "n": 51
+          },
+          "cross_nec": 0.2289,
+          "cross_ci": {
+            "mean": 0.2289,
+            "lo": 0.1495,
+            "hi": 0.308,
+            "n": 51
+          }
+        }
+      }
+    }
+  }
+}

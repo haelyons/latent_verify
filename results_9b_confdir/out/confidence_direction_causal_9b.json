@@ -1,0 +1,245 @@
+{
+  "name_base": "google/gemma-2-9b",
+  "name_it": "google/gemma-2-9b-it",
+  "device": "cuda",
+  "tag": "9b",
+  "cue": "confidence_direction_causal",
+  "pool_size": 61,
+  "fit_layers": [
+    24,
+    28,
+    32,
+    36
+  ],
+  "definitions": [
+    "MARGIN_QUARTILE",
+    "ENTROPY_QUARTILE"
+  ],
+  "thresholds": {
+    "DIR_THR": 0.2,
+    "BASE_FLOOR": 0.05,
+    "COS_THR": 0.5,
+    "QUANTILE": 0.25,
+    "SPLIT_SEED": 0,
+    "RAND_SEED": 0
+  },
+  "decision_rule": "For each candidate confidence direction definition d in {MARGIN_QUARTILE, ENTROPY_QUARTILE}: fit u_conf = diff-of-means(resid_post[L][-1] over TRAIN high-quantile items - over TRAIN low-quantile items) at the NEUTRAL condition, where the quantile is the top/bottom QUANTILE(0.25) of the signal (|M|=|logp(C)-logp(W*)| for MARGIN_QUARTILE; next-token entropy at the answer position for ENTROPY_QUARTILE). Held-out NECESSITY: on TEST high-quantile items set the u_conf-projection to the TRAIN low-quantile mean -> fraction of the (high-low) signal gap that collapses. SUFFICIENCY: on TEST low-quantile items set the projection to the TRAIN high-quantile mean -> induced fraction. RANDOM: a matched-magnitude random unit direction, same edit. BEST = the (definition,layer) with the largest held-out necessity whose random control < BASE_FLOOR(0.05). CAUSAL_CONFIDENCE_DIRECTION iff best held-out necessity >= DIR_THR(0.20) AND best random necessity < BASE_FLOOR(0.05), else NO_CAUSAL_CONFIDENCE_DIRECTION. u_cave = diff-of-means(counter - neutral) over caving items, fit held-out; cosine(u_cave, u_conf) per layer for the BEST candidate. COS bucket (reported only when a causal confidence direction exists, else N/A): HIGH_COS iff |cos(u_cave,u_conf)| >= COS_THR(0.50) else LOW_COS. Reported per model, per definition, per layer; numbers + categories only, no claim attached to any sign, bucket, or the base-vs-it comparison.",
+  "base": {
+    "name": "google/gemma-2-9b",
+    "n_ok": 57,
+    "n_cave": 48,
+    "definitions": {
+      "MARGIN_QUARTILE": {
+        "layers": {
+          "24": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.0,
+            "frac_suf": 0.0012,
+            "rand_nec": 0.0192,
+            "cos_cave_conf": 0.0608
+          },
+          "28": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": -0.0139,
+            "frac_suf": -0.0051,
+            "rand_nec": 0.0,
+            "cos_cave_conf": 0.0112
+          },
+          "32": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": -0.004,
+            "frac_suf": -0.0297,
+            "rand_nec": -0.0,
+            "cos_cave_conf": 0.0096
+          },
+          "36": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": -0.0139,
+            "frac_suf": -0.0445,
+            "rand_nec": 0.0,
+            "cos_cave_conf": -0.0324
+          }
+        }
+      },
+      "ENTROPY_QUARTILE": {
+        "layers": {
+          "24": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.7864,
+            "frac_suf": 0.3054,
+            "rand_nec": -0.015,
+            "cos_cave_conf": -0.0635
+          },
+          "28": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.7622,
+            "frac_suf": 0.43,
+            "rand_nec": 0.0298,
+            "cos_cave_conf": -0.2286
+          },
+          "32": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.7862,
+            "frac_suf": 0.4924,
+            "rand_nec": 0.0396,
+            "cos_cave_conf": -0.2188
+          },
+          "36": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.7883,
+            "frac_suf": 0.4456,
+            "rand_nec": -0.0018,
+            "cos_cave_conf": -0.1695
+          }
+        }
+      }
+    },
+    "best": {
+      "definition": "ENTROPY_QUARTILE",
+      "layer": 36,
+      "frac_nec": 0.7883,
+      "rand_nec": -0.0018,
+      "cos_cave_conf": -0.1695
+    },
+    "decision": {
+      "causal_bucket": "CAUSAL_CONFIDENCE_DIRECTION",
+      "cos_bucket": "LOW_COS",
+      "best_nec": 0.7883,
+      "best_rand": -0.0018,
+      "best_cos": -0.1695
+    }
+  },
+  "it": {
+    "name": "google/gemma-2-9b-it",
+    "n_ok": 57,
+    "n_cave": 46,
+    "definitions": {
+      "MARGIN_QUARTILE": {
+        "layers": {
+          "24": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.0035,
+            "frac_suf": 0.0021,
+            "rand_nec": 0.0015,
+            "cos_cave_conf": -0.0648
+          },
+          "28": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": -0.007,
+            "frac_suf": 0.0003,
+            "rand_nec": 0.0002,
+            "cos_cave_conf": 0.0362
+          },
+          "32": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": -0.0154,
+            "frac_suf": 0.0055,
+            "rand_nec": -0.0016,
+            "cos_cave_conf": 0.0359
+          },
+          "36": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": -0.0204,
+            "frac_suf": 0.0043,
+            "rand_nec": 0.0017,
+            "cos_cave_conf": 0.0869
+          }
+        }
+      },
+      "ENTROPY_QUARTILE": {
+        "layers": {
+          "24": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.0243,
+            "frac_suf": 0.1893,
+            "rand_nec": -0.0002,
+            "cos_cave_conf": -0.1219
+          },
+          "28": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.096,
+            "frac_suf": 0.3851,
+            "rand_nec": 0.0002,
+            "cos_cave_conf": -0.084
+          },
+          "32": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.1511,
+            "frac_suf": 0.5115,
+            "rand_nec": -0.0003,
+            "cos_cave_conf": -0.1065
+          },
+          "36": {
+            "n_train_hi": 7,
+            "n_train_lo": 7,
+            "n_test_hi": 7,
+            "n_test_lo": 7,
+            "frac_nec": 0.1805,
+            "frac_suf": 0.5794,
+            "rand_nec": -0.0006,
+            "cos_cave_conf": -0.082
+          }
+        }
+      }
+    },
+    "best": {
+      "definition": "ENTROPY_QUARTILE",
+      "layer": 36,
+      "frac_nec": 0.1805,
+      "rand_nec": -0.0006,
+      "cos_cave_conf": -0.082
+    },
+    "decision": {
+      "causal_bucket": "NO_CAUSAL_CONFIDENCE_DIRECTION",
+      "cos_bucket": "N/A",
+      "best_nec": 0.1805,
+      "best_rand": -0.0006,
+      "best_cos": null
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "reader": [
+    18,
+    5
+  ],
+  "thresholds": {
+    "ov_rank_top": 5,
+    "ov_pref_rel_tol": 0.3,
+    "qk_base_min": 0.4,
+    "qk_it_max": 0.1
+  },
+  "base": {
+    "rows": [
+      {
+        "region": "Australia",
+        "anchor": "Sydney",
+        "rank": 0,
+        "pref": 0.9996644258499146,
+        "cos": 0.3206,
+        "reader_attn": 0.8359
+      },
+      {
+        "region": "Texas",
+        "anchor": "Houston",
+        "rank": 0,
+        "pref": 0.9997965693473816,
+        "cos": 0.3586,
+        "reader_attn": 0.3984
+      },
+      {
+        "region": "Canada",
+        "anchor": "Toronto",
+        "rank": 0,
+        "pref": 0.9990888833999634,
+        "cos": 0.3552,
+        "reader_attn": 0.5391
+      },
+      {
+        "region": "Switzerland",
+        "anchor": "Zurich",
+        "rank": 0,
+        "pref": 0.9999997615814209,
+        "cos": 0.2819,
+        "reader_attn": 0.6075
+      },
+      {
+        "region": "Morocco",
+        "anchor": "Casablanca",
+        "rank": 0,
+        "pref": 1.0,
+        "cos": 0.2413,
+        "reader_attn": 0.5105
+      }
+    ],
+    "median_rank": 0,
+    "mean_pref": 0.9997,
+    "mean_reader_attn": 0.5783
+  },
+  "it": {
+    "rows": [
+      {
+        "region": "Australia",
+        "anchor": "Sydney",
+        "rank": 0,
+        "pref": 0.9996645450592041,
+        "cos": 0.321,
+        "reader_attn": 0.0108
+      },
+      {
+        "region": "Texas",
+        "anchor": "Houston",
+        "rank": 0,
+        "pref": 0.9998766183853149,
+        "cos": 0.3587,
+        "reader_attn": 0.0085
+      },
+      {
+        "region": "Canada",
+        "anchor": "Toronto",
+        "rank": 0,
+        "pref": 0.9990890026092529,
+        "cos": 0.3543,
+        "reader_attn": 0.0065
+      },
+      {
+        "region": "Switzerland",
+        "anchor": "Zurich",
+        "rank": 0,
+        "pref": 0.9999997615814209,
+        "cos": 0.2826,
+        "reader_attn": 0.0375
+      },
+      {
+        "region": "Morocco",
+        "anchor": "Casablanca",
+        "rank": 0,
+        "pref": 1.0,
+        "cos": 0.2379,
+        "reader_attn": 0.0147
+      }
+    ],
+    "median_rank": 0,
+    "mean_pref": 0.9997,
+    "mean_reader_attn": 0.0156
+  },
+  "decision": {
+    "ov_preserved": true,
+    "qk_gated": true,
+    "verdict": "GATING (ARC2A): OV copy survives in weights; RLHF gates the QK pattern. FRAMING sec-8 'removed from the weights' is OVERSTATED"
+  }
+}

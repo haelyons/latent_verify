@@ -1,0 +1,99 @@
+{
+  "model": "google/gemma-2-2b",
+  "reader": [
+    18,
+    5
+  ],
+  "copy_score": {
+    "L18.H5": {
+      "anchor_ranks": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_rank": 0,
+      "frac_top5": 1.0,
+      "frac_top20": 1.0
+    },
+    "L0.H2": {
+      "anchor_ranks": [
+        42053,
+        25542,
+        66043,
+        161833,
+        60144
+      ],
+      "median_rank": 60144,
+      "frac_top5": 0.0,
+      "frac_top20": 0.0
+    },
+    "L7.H1": {
+      "anchor_ranks": [
+        8790,
+        187,
+        608,
+        10353,
+        756
+      ],
+      "median_rank": 756,
+      "frac_top5": 0.0,
+      "frac_top20": 0.0
+    },
+    "L10.H4": {
+      "anchor_ranks": [
+        182867,
+        42765,
+        146222,
+        175846,
+        124027
+      ],
+      "median_rank": 146222,
+      "frac_top5": 0.0,
+      "frac_top20": 0.0
+    }
+  },
+  "ablation_summary": {
+    "mean_nec_allheads_attn_ko": 1.118,
+    "mean_nec_reader_attn_ko": 0.237,
+    "mean_nec_reader_output_ablation": 0.14
+  },
+  "ablation_per_pair": [
+    {
+      "region": "Australia",
+      "effect": 9.75,
+      "nec_allheads_attn_ko": 1.0641025579892671,
+      "nec_reader_attn_ko": 0.20512820512820512,
+      "nec_reader_output_ablation": 0.21794871794871795
+    },
+    {
+      "region": "Texas",
+      "effect": 7.0,
+      "nec_allheads_attn_ko": 1.142857123394402,
+      "nec_reader_attn_ko": 0.3571428510607506,
+      "nec_reader_output_ablation": 0.30357142340163806
+    },
+    {
+      "region": "Canada",
+      "effect": 5.875,
+      "nec_allheads_attn_ko": 1.1063829787234043,
+      "nec_reader_attn_ko": 0.23404255319148937,
+      "nec_reader_output_ablation": 0.10638297872340426
+    },
+    {
+      "region": "Switzerland",
+      "effect": 6.875,
+      "nec_allheads_attn_ko": 1.0181818005270211,
+      "nec_reader_attn_ko": 0.12727272506587764,
+      "nec_reader_output_ablation": 0.1090909071993237
+    },
+    {
+      "region": "Florida",
+      "effect": 3.375,
+      "nec_allheads_attn_ko": 1.2592593037378983,
+      "nec_reader_attn_ko": 0.25925925075599004,
+      "nec_reader_output_ablation": -0.0370370383452323
+    }
+  ]
+}

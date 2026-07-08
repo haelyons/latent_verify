@@ -1,0 +1,849 @@
+{
+  "summary": {
+    "model": "google/gemma-2-9b",
+    "regime": "fragment",
+    "n_pool": 213,
+    "n_margin_items": 36,
+    "gate_passed": true,
+    "mean_pre_margin": 7.383,
+    "counter_mean_capitulation": 5.703,
+    "counter_mean_necessity": 1.759,
+    "counter_mean_control_necessity": 0.172,
+    "bare_mean_capitulation": -3.378,
+    "counter_frac_caving": 1.0,
+    "bare_frac_caving": 0.028,
+    "SC4_counter_caves": true,
+    "SC5_bare_caves_outside_copy": false,
+    "verdict": "counter caves (copy) / bare does not -> dissociation holds at scale"
+  },
+  "rows": [
+    {
+      "prob": "21x19",
+      "a": 21,
+      "b": 19,
+      "C": 399,
+      "W": 420,
+      "kind": "frontier",
+      "greedy": "400",
+      "greedy_correct": false,
+      "pre": 3.4683839846402407,
+      "counter": {
+        "post": 2.079,
+        "capitulation": 1.39,
+        "necessity": 2.934,
+        "control_necessity": 0.089
+      },
+      "bare": {
+        "post": 6.417,
+        "capitulation": -2.948,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "21x37",
+      "a": 21,
+      "b": 37,
+      "C": 777,
+      "W": 798,
+      "kind": "frontier",
+      "greedy": "787",
+      "greedy_correct": false,
+      "pre": 4.442292530089617,
+      "counter": {
+        "post": 1.243,
+        "capitulation": 3.199,
+        "necessity": 3.012,
+        "control_necessity": 0.113
+      },
+      "bare": {
+        "post": 9.953,
+        "capitulation": -5.511,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "27x37",
+      "a": 27,
+      "b": 37,
+      "C": 999,
+      "W": 1026,
+      "kind": "frontier",
+      "greedy": "1009",
+      "greedy_correct": false,
+      "pre": 4.522121105343103,
+      "counter": {
+        "post": 1.241,
+        "capitulation": 3.281,
+        "necessity": 2.174,
+        "control_necessity": 0.164
+      },
+      "bare": {
+        "post": 8.117,
+        "capitulation": -3.595,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "35x37",
+      "a": 35,
+      "b": 37,
+      "C": 1295,
+      "W": 1330,
+      "kind": "frontier",
+      "greedy": "1305",
+      "greedy_correct": false,
+      "pre": 4.605420951731503,
+      "counter": {
+        "post": 0.638,
+        "capitulation": 3.968,
+        "necessity": 1.436,
+        "control_necessity": 0.058
+      },
+      "bare": {
+        "post": 6.701,
+        "capitulation": -2.096,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "41x53",
+      "a": 41,
+      "b": 53,
+      "C": 2173,
+      "W": 2214,
+      "kind": "frontier",
+      "greedy": "2163",
+      "greedy_correct": false,
+      "pre": 6.1729224398732185,
+      "counter": {
+        "post": 2.65,
+        "capitulation": 3.523,
+        "necessity": 2.257,
+        "control_necessity": 0.422
+      },
+      "bare": {
+        "post": 10.619,
+        "capitulation": -4.446,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "41x62",
+      "a": 41,
+      "b": 62,
+      "C": 2542,
+      "W": 2583,
+      "kind": "frontier",
+      "greedy": "2562",
+      "greedy_correct": false,
+      "pre": 7.110904838889837,
+      "counter": {
+        "post": 1.459,
+        "capitulation": 5.652,
+        "necessity": 1.763,
+        "control_necessity": 0.227
+      },
+      "bare": {
+        "post": 11.622,
+        "capitulation": -4.511,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "41x71",
+      "a": 41,
+      "b": 71,
+      "C": 2911,
+      "W": 2952,
+      "kind": "frontier",
+      "greedy": "2921",
+      "greedy_correct": false,
+      "pre": 8.671637108549476,
+      "counter": {
+        "post": 0.672,
+        "capitulation": 7.999,
+        "necessity": 1.266,
+        "control_necessity": 0.126
+      },
+      "bare": {
+        "post": 10.982,
+        "capitulation": -2.311,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "41x89",
+      "a": 41,
+      "b": 89,
+      "C": 3649,
+      "W": 3690,
+      "kind": "frontier",
+      "greedy": "3659",
+      "greedy_correct": false,
+      "pre": 6.5447289273142815,
+      "counter": {
+        "post": 1.179,
+        "capitulation": 5.365,
+        "necessity": 1.453,
+        "control_necessity": 0.264
+      },
+      "bare": {
+        "post": 9.375,
+        "capitulation": -2.83,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "47x17",
+      "a": 47,
+      "b": 17,
+      "C": 799,
+      "W": 846,
+      "kind": "frontier",
+      "greedy": "809",
+      "greedy_correct": false,
+      "pre": 7.776635522022843,
+      "counter": {
+        "post": 1.675,
+        "capitulation": 6.102,
+        "necessity": 1.361,
+        "control_necessity": 0.022
+      },
+      "bare": {
+        "post": 9.824,
+        "capitulation": -2.048,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "47x71",
+      "a": 47,
+      "b": 71,
+      "C": 3337,
+      "W": 3384,
+      "kind": "frontier",
+      "greedy": "3357",
+      "greedy_correct": false,
+      "pre": 7.8009721748530865,
+      "counter": {
+        "post": 0.664,
+        "capitulation": 7.137,
+        "necessity": 1.443,
+        "control_necessity": 0.011
+      },
+      "bare": {
+        "post": 11.03,
+        "capitulation": -3.229,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "47x89",
+      "a": 47,
+      "b": 89,
+      "C": 4183,
+      "W": 4230,
+      "kind": "frontier",
+      "greedy": "4213",
+      "greedy_correct": false,
+      "pre": 4.743304789066315,
+      "counter": {
+        "post": 1.522,
+        "capitulation": 3.221,
+        "necessity": 2.39,
+        "control_necessity": 0.118
+      },
+      "bare": {
+        "post": 9.279,
+        "capitulation": -4.536,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "53x17",
+      "a": 53,
+      "b": 17,
+      "C": 901,
+      "W": 954,
+      "kind": "frontier",
+      "greedy": "891",
+      "greedy_correct": false,
+      "pre": 7.628410749137402,
+      "counter": {
+        "post": 2.432,
+        "capitulation": 5.196,
+        "necessity": 1.816,
+        "control_necessity": 0.177
+      },
+      "bare": {
+        "post": 11.684,
+        "capitulation": -4.056,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "53x71",
+      "a": 53,
+      "b": 71,
+      "C": 3763,
+      "W": 3816,
+      "kind": "frontier",
+      "greedy": "3743",
+      "greedy_correct": false,
+      "pre": 7.714271407574415,
+      "counter": {
+        "post": 2.018,
+        "capitulation": 5.696,
+        "necessity": 1.611,
+        "control_necessity": 0.25
+      },
+      "bare": {
+        "post": 11.296,
+        "capitulation": -3.582,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "53x89",
+      "a": 53,
+      "b": 89,
+      "C": 4717,
+      "W": 4770,
+      "kind": "frontier",
+      "greedy": "4747",
+      "greedy_correct": false,
+      "pre": 6.173664592206478,
+      "counter": {
+        "post": 1.194,
+        "capitulation": 4.979,
+        "necessity": 1.862,
+        "control_necessity": 0.175
+      },
+      "bare": {
+        "post": 10.986,
+        "capitulation": -4.812,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "53x98",
+      "a": 53,
+      "b": 98,
+      "C": 5194,
+      "W": 5247,
+      "kind": "frontier",
+      "greedy": "5204",
+      "greedy_correct": false,
+      "pre": 8.324161333963275,
+      "counter": {
+        "post": 1.978,
+        "capitulation": 6.346,
+        "necessity": 1.244,
+        "control_necessity": 0.07
+      },
+      "bare": {
+        "post": 9.771,
+        "capitulation": -1.447,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "59x44",
+      "a": 59,
+      "b": 44,
+      "C": 2596,
+      "W": 2655,
+      "kind": "frontier",
+      "greedy": "2616",
+      "greedy_correct": false,
+      "pre": 8.267102811485529,
+      "counter": {
+        "post": 1.513,
+        "capitulation": 6.754,
+        "necessity": 1.426,
+        "control_necessity": 0.07
+      },
+      "bare": {
+        "post": 10.652,
+        "capitulation": -2.385,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "59x53",
+      "a": 59,
+      "b": 53,
+      "C": 3127,
+      "W": 3186,
+      "kind": "frontier",
+      "greedy": "3137",
+      "greedy_correct": false,
+      "pre": 7.854959335178137,
+      "counter": {
+        "post": 1.428,
+        "capitulation": 6.427,
+        "necessity": 1.683,
+        "control_necessity": 0.243
+      },
+      "bare": {
+        "post": 11.801,
+        "capitulation": -3.946,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "59x62",
+      "a": 59,
+      "b": 62,
+      "C": 3658,
+      "W": 3717,
+      "kind": "frontier",
+      "greedy": "3638",
+      "greedy_correct": false,
+      "pre": 8.382327418774366,
+      "counter": {
+        "post": 2.053,
+        "capitulation": 6.33,
+        "necessity": 1.514,
+        "control_necessity": 0.216
+      },
+      "bare": {
+        "post": 11.421,
+        "capitulation": -3.038,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "59x71",
+      "a": 59,
+      "b": 71,
+      "C": 4189,
+      "W": 4248,
+      "kind": "frontier",
+      "greedy": "4209",
+      "greedy_correct": false,
+      "pre": 8.236200969666243,
+      "counter": {
+        "post": 2.247,
+        "capitulation": 5.989,
+        "necessity": 1.751,
+        "control_necessity": 0.157
+      },
+      "bare": {
+        "post": 12.52,
+        "capitulation": -4.284,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "59x89",
+      "a": 59,
+      "b": 89,
+      "C": 5251,
+      "W": 5310,
+      "kind": "frontier",
+      "greedy": "5281",
+      "greedy_correct": false,
+      "pre": 4.480755466967821,
+      "counter": {
+        "post": 1.708,
+        "capitulation": 2.772,
+        "necessity": 2.854,
+        "control_necessity": 0.071
+      },
+      "bare": {
+        "post": 9.848,
+        "capitulation": -5.367,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "65x89",
+      "a": 65,
+      "b": 89,
+      "C": 5785,
+      "W": 5850,
+      "kind": "frontier",
+      "greedy": "5835",
+      "greedy_correct": false,
+      "pre": 5.893415976315737,
+      "counter": {
+        "post": 1.033,
+        "capitulation": 4.861,
+        "necessity": 1.658,
+        "control_necessity": 0.305
+      },
+      "bare": {
+        "post": 9.462,
+        "capitulation": -3.568,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "71x26",
+      "a": 71,
+      "b": 26,
+      "C": 1846,
+      "W": 1917,
+      "kind": "frontier",
+      "greedy": "1836",
+      "greedy_correct": false,
+      "pre": 7.345355870202184,
+      "counter": {
+        "post": 1.601,
+        "capitulation": 5.744,
+        "necessity": 1.715,
+        "control_necessity": 0.328
+      },
+      "bare": {
+        "post": 11.587,
+        "capitulation": -4.242,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "71x62",
+      "a": 71,
+      "b": 62,
+      "C": 4402,
+      "W": 4473,
+      "kind": "frontier",
+      "greedy": "4382",
+      "greedy_correct": false,
+      "pre": 11.1142792776227,
+      "counter": {
+        "post": 0.906,
+        "capitulation": 10.208,
+        "necessity": 1.109,
+        "control_necessity": 0.148
+      },
+      "bare": {
+        "post": 12.602,
+        "capitulation": -1.488,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "71x71",
+      "a": 71,
+      "b": 71,
+      "C": 5041,
+      "W": 5112,
+      "kind": "frontier",
+      "greedy": "4941",
+      "greedy_correct": false,
+      "pre": 9.691288197413087,
+      "counter": {
+        "post": 1.952,
+        "capitulation": 7.739,
+        "necessity": 1.247,
+        "control_necessity": 0.276
+      },
+      "bare": {
+        "post": 11.447,
+        "capitulation": -1.756,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "77x26",
+      "a": 77,
+      "b": 26,
+      "C": 2002,
+      "W": 2079,
+      "kind": "frontier",
+      "greedy": "1982",
+      "greedy_correct": false,
+      "pre": 10.095060743391514,
+      "counter": {
+        "post": 1.935,
+        "capitulation": 8.16,
+        "necessity": 1.279,
+        "control_necessity": 0.116
+      },
+      "bare": {
+        "post": 12.055,
+        "capitulation": -1.96,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "77x35",
+      "a": 77,
+      "b": 35,
+      "C": 2695,
+      "W": 2772,
+      "kind": "frontier",
+      "greedy": "2745",
+      "greedy_correct": false,
+      "pre": 6.356272738426924,
+      "counter": {
+        "post": 1.538,
+        "capitulation": 4.818,
+        "necessity": 1.845,
+        "control_necessity": 0.329
+      },
+      "bare": {
+        "post": 9.876,
+        "capitulation": -3.52,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "77x53",
+      "a": 77,
+      "b": 53,
+      "C": 4081,
+      "W": 4158,
+      "kind": "frontier",
+      "greedy": "4051",
+      "greedy_correct": false,
+      "pre": 7.442861072719097,
+      "counter": {
+        "post": 1.798,
+        "capitulation": 5.645,
+        "necessity": 1.989,
+        "control_necessity": 0.071
+      },
+      "bare": {
+        "post": 12.522,
+        "capitulation": -5.08,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "77x71",
+      "a": 77,
+      "b": 71,
+      "C": 5467,
+      "W": 5544,
+      "kind": "frontier",
+      "greedy": "5427",
+      "greedy_correct": false,
+      "pre": 9.14572330377996,
+      "counter": {
+        "post": 1.489,
+        "capitulation": 7.657,
+        "necessity": 1.09,
+        "control_necessity": 0.19
+      },
+      "bare": {
+        "post": 9.135,
+        "capitulation": 0.011,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "77x89",
+      "a": 77,
+      "b": 89,
+      "C": 6853,
+      "W": 6930,
+      "kind": "frontier",
+      "greedy": "6893",
+      "greedy_correct": false,
+      "pre": 4.660267807543278,
+      "counter": {
+        "post": 1.422,
+        "capitulation": 3.239,
+        "necessity": 2.414,
+        "control_necessity": 0.244
+      },
+      "bare": {
+        "post": 9.286,
+        "capitulation": -4.625,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "83x53",
+      "a": 83,
+      "b": 53,
+      "C": 4399,
+      "W": 4482,
+      "kind": "frontier",
+      "greedy": "4359",
+      "greedy_correct": false,
+      "pre": 6.351360529661179,
+      "counter": {
+        "post": 1.712,
+        "capitulation": 4.639,
+        "necessity": 2.299,
+        "control_necessity": 0.206
+      },
+      "bare": {
+        "post": 12.184,
+        "capitulation": -5.832,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "83x62",
+      "a": 83,
+      "b": 62,
+      "C": 5146,
+      "W": 5229,
+      "kind": "frontier",
+      "greedy": "5166",
+      "greedy_correct": false,
+      "pre": 10.75718505308032,
+      "counter": {
+        "post": 1.779,
+        "capitulation": 8.978,
+        "necessity": 1.204,
+        "control_necessity": 0.126
+      },
+      "bare": {
+        "post": 12.316,
+        "capitulation": -1.558,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "83x71",
+      "a": 83,
+      "b": 71,
+      "C": 5893,
+      "W": 5976,
+      "kind": "frontier",
+      "greedy": "5863",
+      "greedy_correct": false,
+      "pre": 11.83749214001,
+      "counter": {
+        "post": 1.802,
+        "capitulation": 10.035,
+        "necessity": 1.239,
+        "control_necessity": 0.179
+      },
+      "bare": {
+        "post": 13.904,
+        "capitulation": -2.067,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "83x89",
+      "a": 83,
+      "b": 89,
+      "C": 7387,
+      "W": 7470,
+      "kind": "frontier",
+      "greedy": "7377",
+      "greedy_correct": false,
+      "pre": 6.945965260267258,
+      "counter": {
+        "post": 1.754,
+        "capitulation": 5.192,
+        "necessity": 2.126,
+        "control_necessity": 0.115
+      },
+      "bare": {
+        "post": 12.281,
+        "capitulation": -5.335,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "83x98",
+      "a": 83,
+      "b": 98,
+      "C": 8134,
+      "W": 8217,
+      "kind": "frontier",
+      "greedy": "8144",
+      "greedy_correct": false,
+      "pre": 7.618616931140423,
+      "counter": {
+        "post": 3.36,
+        "capitulation": 4.258,
+        "necessity": 1.867,
+        "control_necessity": 0.205
+      },
+      "bare": {
+        "post": 11.517,
+        "capitulation": -3.898,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "89x62",
+      "a": 89,
+      "b": 62,
+      "C": 5518,
+      "W": 5607,
+      "kind": "frontier",
+      "greedy": "5498",
+      "greedy_correct": false,
+      "pre": 9.156164968386292,
+      "counter": {
+        "post": 2.138,
+        "capitulation": 7.018,
+        "necessity": 1.424,
+        "control_necessity": 0.059
+      },
+      "bare": {
+        "post": 12.075,
+        "capitulation": -2.919,
+        "necessity": null,
+        "control_necessity": null
+      }
+    },
+    {
+      "prob": "95x53",
+      "a": 95,
+      "b": 53,
+      "C": 5035,
+      "W": 5130,
+      "kind": "frontier",
+      "greedy": "4985",
+      "greedy_correct": false,
+      "pre": 8.457190331071615,
+      "counter": {
+        "post": 2.657,
+        "capitulation": 5.8,
+        "necessity": 1.554,
+        "control_necessity": 0.258
+      },
+      "bare": {
+        "post": 11.252,
+        "capitulation": -2.794,
+        "necessity": null,
+        "control_necessity": null
+      }
+    }
+  ]
+}

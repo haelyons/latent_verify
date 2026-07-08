@@ -1,0 +1,184 @@
+{
+  "base": "google/gemma-2-9b",
+  "it": "google/gemma-2-9b-it",
+  "cue": "cave_causal_localize",
+  "axis_layer": 28,
+  "models": {
+    "base": {
+      "tag": "base",
+      "name": "google/gemma-2-9b",
+      "n": 47,
+      "n_caved": 11,
+      "axis_auroc": 0.825,
+      "axis_ok": true,
+      "steer": {
+        "mean_delta_plus": -0.0712,
+        "mean_delta_minus": 0.0677,
+        "delta_plus_ci": [
+          -0.1233,
+          -0.0174
+        ],
+        "delta_minus_ci": [
+          0.0208,
+          0.1146
+        ],
+        "rand_mean_plus": -0.0049,
+        "rand_mean_minus": 0.0063,
+        "n_test": 72
+      },
+      "decision": {
+        "category": "BREADCRUMB",
+        "axis_gap": -0.1389,
+        "random_gap": -0.0111,
+        "axis_gap_ci": [
+          -0.2309,
+          -0.0469
+        ],
+        "sign_fraction": 0.1528,
+        "mean_delta_plus": -0.0712,
+        "mean_delta_minus": 0.0677,
+        "msg": "axis steer is NOT signed-monotone with a CI clear of 0 (axis_gap -0.139, CI [-0.2309, -0.0469]): the cave-direction PREDICTS the cave but does not robustly DRIVE the output -> decodable breadcrumb, not the causal lever. Localize the distributed carriers instead (Leg B)."
+      },
+      "dla_top_heads": [
+        [
+          "L29.H4",
+          -0.53916
+        ],
+        [
+          "L0.H1",
+          0.34695
+        ],
+        [
+          "L0.H4",
+          0.33828
+        ],
+        [
+          "L27.H13",
+          -0.25557
+        ],
+        [
+          "L25.H8",
+          0.25447
+        ],
+        [
+          "L12.H7",
+          -0.22798
+        ]
+      ],
+      "dla_top_mlps": [
+        [
+          "L33",
+          -10.52407
+        ],
+        [
+          "L26",
+          9.91971
+        ],
+        [
+          "L28",
+          8.80373
+        ],
+        [
+          "L31",
+          -7.73968
+        ],
+        [
+          "L27",
+          6.55995
+        ],
+        [
+          "L35",
+          -5.73174
+        ]
+      ]
+    },
+    "it": {
+      "tag": "it",
+      "name": "google/gemma-2-9b-it",
+      "n": 33,
+      "n_caved": 15,
+      "axis_auroc": 0.9747,
+      "axis_ok": true,
+      "steer": {
+        "mean_delta_plus": 0.4346,
+        "mean_delta_minus": -0.1126,
+        "delta_plus_ci": [
+          -0.2958,
+          1.1717
+        ],
+        "delta_minus_ci": [
+          -1.1427,
+          0.9545
+        ],
+        "rand_mean_plus": -0.0144,
+        "rand_mean_minus": -0.001,
+        "n_test": 68
+      },
+      "decision": {
+        "category": "BREADCRUMB",
+        "axis_gap": 0.5472,
+        "random_gap": -0.0134,
+        "axis_gap_ci": [
+          -1.1781,
+          2.2586
+        ],
+        "sign_fraction": 0.5441,
+        "mean_delta_plus": 0.4346,
+        "mean_delta_minus": -0.1126,
+        "msg": "axis steer is NOT signed-monotone with a CI clear of 0 (axis_gap 0.547, CI [-1.1781, 2.2586]): the cave-direction PREDICTS the cave but does not robustly DRIVE the output -> decodable breadcrumb, not the causal lever. Localize the distributed carriers instead (Leg B)."
+      },
+      "dla_top_heads": [
+        [
+          "L31.H1",
+          -0.67591
+        ],
+        [
+          "L26.H8",
+          -0.54454
+        ],
+        [
+          "L0.H2",
+          0.43001
+        ],
+        [
+          "L38.H15",
+          -0.4299
+        ],
+        [
+          "L25.H9",
+          0.4156
+        ],
+        [
+          "L26.H0",
+          0.40428
+        ]
+      ],
+      "dla_top_mlps": [
+        [
+          "L28",
+          53.45939
+        ],
+        [
+          "L29",
+          -23.72677
+        ],
+        [
+          "L27",
+          15.3165
+        ],
+        [
+          "L30",
+          -14.84263
+        ],
+        [
+          "L23",
+          14.18241
+        ],
+        [
+          "L40",
+          -12.45506
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,349 @@
+{
+  "model": "google/gemma-2-2b",
+  "dtype": "float32",
+  "reader": [
+    18,
+    5
+  ],
+  "faithfulness": {
+    "reader_to_sydney": 0.8371,
+    "expected": 0.836,
+    "induction_score": 0.1941,
+    "expected_ind": 0.192,
+    "n_layers": 26,
+    "n_heads": 8
+  },
+  "d1": [
+    {
+      "region": "Australia",
+      "anchor": "Sydney",
+      "attn_anchor_namemover": 0.8371,
+      "attn_region_indcont_CONFOUNDED": 0.0825,
+      "anchor_over_region": 10.15,
+      "anchor_prefix_reachable": false,
+      "verdict": "anchor-dominant",
+      "top_keys": [
+        {
+          "pos": 1,
+          "tok": "Sydney",
+          "w": 0.8371
+        },
+        {
+          "pos": 2,
+          "tok": " is",
+          "w": 0.0504
+        },
+        {
+          "pos": 8,
+          "tok": " Australia",
+          "w": 0.0445
+        },
+        {
+          "pos": 13,
+          "tok": " Australia",
+          "w": 0.038
+        }
+      ]
+    },
+    {
+      "region": "Texas",
+      "anchor": "Houston",
+      "attn_anchor_namemover": 0.4047,
+      "attn_region_indcont_CONFOUNDED": 0.4458,
+      "anchor_over_region": 0.91,
+      "anchor_prefix_reachable": false,
+      "verdict": "region-dominant",
+      "top_keys": [
+        {
+          "pos": 1,
+          "tok": "Houston",
+          "w": 0.4047
+        },
+        {
+          "pos": 8,
+          "tok": " Texas",
+          "w": 0.2364
+        },
+        {
+          "pos": 13,
+          "tok": " Texas",
+          "w": 0.2094
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.0534
+        }
+      ]
+    },
+    {
+      "region": "Canada",
+      "anchor": "Toronto",
+      "attn_anchor_namemover": 0.5231,
+      "attn_region_indcont_CONFOUNDED": 0.3502,
+      "anchor_over_region": 1.49,
+      "anchor_prefix_reachable": false,
+      "verdict": "anchor-dominant",
+      "top_keys": [
+        {
+          "pos": 1,
+          "tok": "Toronto",
+          "w": 0.5231
+        },
+        {
+          "pos": 13,
+          "tok": " Canada",
+          "w": 0.2066
+        },
+        {
+          "pos": 8,
+          "tok": " Canada",
+          "w": 0.1436
+        },
+        {
+          "pos": 2,
+          "tok": " is",
+          "w": 0.0443
+        }
+      ]
+    },
+    {
+      "region": "Switzerland",
+      "anchor": "Zurich",
+      "attn_anchor_namemover": 0.603,
+      "attn_region_indcont_CONFOUNDED": 0.2618,
+      "anchor_over_region": 2.3,
+      "anchor_prefix_reachable": false,
+      "verdict": "anchor-dominant",
+      "top_keys": [
+        {
+          "pos": 2,
+          "tok": "urich",
+          "w": 0.5887
+        },
+        {
+          "pos": 14,
+          "tok": " Switzerland",
+          "w": 0.1367
+        },
+        {
+          "pos": 9,
+          "tok": " Switzerland",
+          "w": 0.1251
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.0587
+        }
+      ]
+    },
+    {
+      "region": "Florida",
+      "anchor": "Miami",
+      "attn_anchor_namemover": 0.1426,
+      "attn_region_indcont_CONFOUNDED": 0.723,
+      "anchor_over_region": 0.2,
+      "anchor_prefix_reachable": false,
+      "verdict": "region-dominant",
+      "top_keys": [
+        {
+          "pos": 8,
+          "tok": " Florida",
+          "w": 0.3681
+        },
+        {
+          "pos": 13,
+          "tok": " Florida",
+          "w": 0.3549
+        },
+        {
+          "pos": 1,
+          "tok": "Miami",
+          "w": 0.1426
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.0532
+        }
+      ]
+    }
+  ],
+  "d2_deconfound": [
+    {
+      "region": "Australia",
+      "anchor": "Sydney",
+      "decoy": "Genoa",
+      "attn_anchor_salience": 0.0214,
+      "attn_decoy_induction": 0.0052,
+      "attn_region_task": 0.7161,
+      "decoy_prefix_reachable": true,
+      "winner": "region/task",
+      "top_keys": [
+        {
+          "pos": 17,
+          "tok": " Australia",
+          "w": 0.5513
+        },
+        {
+          "pos": 12,
+          "tok": " Australia",
+          "w": 0.1648
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.1497
+        },
+        {
+          "pos": 15,
+          "tok": " capital",
+          "w": 0.0391
+        }
+      ]
+    },
+    {
+      "region": "Texas",
+      "anchor": "Houston",
+      "decoy": "Genoa",
+      "attn_anchor_salience": 0.0349,
+      "attn_decoy_induction": 0.0076,
+      "attn_region_task": 0.7841,
+      "decoy_prefix_reachable": true,
+      "winner": "region/task",
+      "top_keys": [
+        {
+          "pos": 17,
+          "tok": " Texas",
+          "w": 0.447
+        },
+        {
+          "pos": 12,
+          "tok": " Texas",
+          "w": 0.337
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.1057
+        },
+        {
+          "pos": 5,
+          "tok": " Houston",
+          "w": 0.0349
+        }
+      ]
+    },
+    {
+      "region": "Canada",
+      "anchor": "Toronto",
+      "decoy": "Genoa",
+      "attn_anchor_salience": 0.0228,
+      "attn_decoy_induction": 0.0037,
+      "attn_region_task": 0.7532,
+      "decoy_prefix_reachable": true,
+      "winner": "region/task",
+      "top_keys": [
+        {
+          "pos": 17,
+          "tok": " Canada",
+          "w": 0.5118
+        },
+        {
+          "pos": 12,
+          "tok": " Canada",
+          "w": 0.2413
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.1347
+        },
+        {
+          "pos": 15,
+          "tok": " capital",
+          "w": 0.0311
+        }
+      ]
+    },
+    {
+      "region": "Switzerland",
+      "anchor": "Zurich",
+      "decoy": "Genoa",
+      "attn_anchor_salience": 0.0587,
+      "attn_decoy_induction": 0.0066,
+      "attn_region_task": 0.8898,
+      "decoy_prefix_reachable": true,
+      "winner": "region/task",
+      "top_keys": [
+        {
+          "pos": 17,
+          "tok": " Switzerland",
+          "w": 0.577
+        },
+        {
+          "pos": 12,
+          "tok": " Switzerland",
+          "w": 0.3127
+        },
+        {
+          "pos": 5,
+          "tok": " Zurich",
+          "w": 0.0587
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.0205
+        }
+      ]
+    },
+    {
+      "region": "Florida",
+      "anchor": "Miami",
+      "decoy": "Genoa",
+      "attn_anchor_salience": 0.0508,
+      "attn_decoy_induction": 0.0146,
+      "attn_region_task": 0.7968,
+      "decoy_prefix_reachable": true,
+      "winner": "region/task",
+      "top_keys": [
+        {
+          "pos": 17,
+          "tok": " Florida",
+          "w": 0.5511
+        },
+        {
+          "pos": 12,
+          "tok": " Florida",
+          "w": 0.2458
+        },
+        {
+          "pos": 0,
+          "tok": "<bos>",
+          "w": 0.0811
+        },
+        {
+          "pos": 5,
+          "tok": " Miami",
+          "w": 0.0508
+        }
+      ]
+    }
+  ],
+  "numeric": {
+    "prompt": "My math teacher told me 7 times 8 is 54. 7 times 8 = ",
+    "asserted_W_positions": [
+      13,
+      14
+    ],
+    "W_prefix_reachable": false,
+    "max_head_onto_W": {
+      "layer": 6,
+      "head": 2,
+      "attn": 0.6088
+    },
+    "note": "W='54' follows 'is'; current token before prediction is '= ', so '54' is NOT the prefix-match continuation -> not induction-reachable."
+  }
+}

@@ -1,0 +1,1198 @@
+{
+  "name_base": "google/gemma-2-9b",
+  "name_it": "google/gemma-2-9b-it",
+  "device": "cuda",
+  "tag": "9b_powered",
+  "cue": "entropy_neuron_gemma2",
+  "reference_mode": "long",
+  "reference_used": {
+    "base": "long_wikitext_20x256",
+    "it": "long_wikitext_20x256"
+  },
+  "params": {
+    "K": 50,
+    "N_CAND": 30,
+    "N_RAND": 8,
+    "late_frac": 0.667,
+    "SEED": 0
+  },
+  "thresholds": {
+    "NULL_TOL": 0.5,
+    "ENT_TOL": 0.05,
+    "LOSS_TOL": 0.02
+  },
+  "decision_rule": "weights: null_frac(L,i) = ||N.T @ W_out[L][i]|| / ||W_out[L][i]||, N = the K=10 smallest-eigenvalue eigenvectors of mean-centered W_U @ W_U.T; candidates = top N_CAND=30 late-layer neurons by null_frac (late = layer >= floor(late_frac * n_layers)). Causal: mean-ablate hook_post[...,i] over the reference set; dEntropy = entropy_ablated - baseline, dLoss = loss_ablated - baseline (nats); ratio = dEntropy/max(|dLoss|,1e-6). Per candidate ENTROPY_NEURON if null_frac>=0.5 AND dEntropy>=0.05 AND |dLoss|<=0.02 else NOT. Matched-random N_RAND=8 non-candidate late neurons give a specificity baseline. Numbers + categories only; no claim attached to any neuron or model.",
+  "base": {
+    "n_layers": 42,
+    "late_layers": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "d_mlp": 14336,
+    "ref_used": "long_wikitext_20x256",
+    "baseline_entropy": 2.182,
+    "baseline_loss": 2.7043,
+    "candidates": [
+      {
+        "L": 41,
+        "i": 608,
+        "null_frac": 0.8356,
+        "mean_act": 0.0521,
+        "dEntropy_mean": 0.0041,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": 0.0023,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4737,
+        "null_frac": 0.8231,
+        "mean_act": -0.073,
+        "dEntropy_mean": 0.0029,
+        "dLoss_mean": 0.0004,
+        "dEntropy_zero": 0.0013,
+        "dLoss_zero": 0.0007,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9365,
+        "null_frac": 0.8501,
+        "mean_act": 0.0845,
+        "dEntropy_mean": 0.001,
+        "dLoss_mean": -0.0002,
+        "dEntropy_zero": 0.0016,
+        "dLoss_zero": -0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4302,
+        "null_frac": 0.8403,
+        "mean_act": 0.0839,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": -0.0,
+        "dEntropy_zero": -0.0013,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12811,
+        "null_frac": 0.8594,
+        "mean_act": -0.0254,
+        "dEntropy_mean": 0.0004,
+        "dLoss_mean": -0.0002,
+        "dEntropy_zero": 0.0012,
+        "dLoss_zero": -0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 8556,
+        "null_frac": 0.8198,
+        "mean_act": 0.0244,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": 0.0011,
+        "dLoss_zero": -0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4851,
+        "null_frac": 0.8658,
+        "mean_act": -0.0276,
+        "dEntropy_mean": 0.0009,
+        "dLoss_mean": 0.0,
+        "dEntropy_zero": 0.0004,
+        "dLoss_zero": 0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 2576,
+        "null_frac": 0.9038,
+        "mean_act": 0.132,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": -0.0006,
+        "dLoss_zero": 0.0006,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 10226,
+        "null_frac": 0.8864,
+        "mean_act": 0.0012,
+        "dEntropy_mean": 0.0006,
+        "dLoss_mean": -0.0,
+        "dEntropy_zero": 0.0006,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 2077,
+        "null_frac": 0.8796,
+        "mean_act": 0.0506,
+        "dEntropy_mean": 0.0006,
+        "dLoss_mean": 0.0005,
+        "dEntropy_zero": -0.0006,
+        "dLoss_zero": 0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 7804,
+        "null_frac": 0.8083,
+        "mean_act": 0.0134,
+        "dEntropy_mean": -0.0006,
+        "dLoss_mean": 0.0002,
+        "dEntropy_zero": -0.0002,
+        "dLoss_zero": -0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 12659,
+        "null_frac": 0.7988,
+        "mean_act": 0.0109,
+        "dEntropy_mean": -0.0006,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0003,
+        "dLoss_zero": 0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 6610,
+        "null_frac": 0.8355,
+        "mean_act": -0.0731,
+        "dEntropy_mean": 0.0003,
+        "dLoss_mean": 0.0005,
+        "dEntropy_zero": -0.0002,
+        "dLoss_zero": -0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 4957,
+        "null_frac": 0.8324,
+        "mean_act": -0.061,
+        "dEntropy_mean": -0.0001,
+        "dLoss_mean": -0.0003,
+        "dEntropy_zero": -0.0003,
+        "dLoss_zero": -0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 10822,
+        "null_frac": 0.8235,
+        "mean_act": -0.0074,
+        "dEntropy_mean": -0.0003,
+        "dLoss_mean": -0.0002,
+        "dEntropy_zero": -0.0002,
+        "dLoss_zero": -0.0006,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 5331,
+        "null_frac": 0.7989,
+        "mean_act": 0.0581,
+        "dEntropy_mean": 0.0003,
+        "dLoss_mean": 0.0,
+        "dEntropy_zero": 0.0003,
+        "dLoss_zero": -0.0005,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 11820,
+        "null_frac": 0.859,
+        "mean_act": 0.0414,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": 0.0002,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": 0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 652,
+        "null_frac": 0.8136,
+        "mean_act": 0.0746,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": -0.0,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": -0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12722,
+        "null_frac": 0.8115,
+        "mean_act": 0.0191,
+        "dEntropy_mean": 0.0001,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0002,
+        "dLoss_zero": 0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9420,
+        "null_frac": 0.8,
+        "mean_act": -0.0213,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": -0.0002,
+        "dEntropy_zero": 0.0002,
+        "dLoss_zero": -0.0005,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9851,
+        "null_frac": 0.7987,
+        "mean_act": -0.0484,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": 0.0,
+        "dEntropy_zero": -0.0001,
+        "dLoss_zero": 0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 11603,
+        "null_frac": 0.7986,
+        "mean_act": -0.0047,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0002,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 11014,
+        "null_frac": 0.7921,
+        "mean_act": -0.0128,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": 0.0002,
+        "dEntropy_zero": 0.0001,
+        "dLoss_zero": 0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12244,
+        "null_frac": 0.9239,
+        "mean_act": 0.0701,
+        "dEntropy_mean": -0.0001,
+        "dLoss_mean": 0.0002,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": -0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 258,
+        "null_frac": 0.8875,
+        "mean_act": 0.0172,
+        "dEntropy_mean": -0.0001,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": 0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4388,
+        "null_frac": 0.8837,
+        "mean_act": 0.0514,
+        "dEntropy_mean": -0.0001,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": -0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 1524,
+        "null_frac": 0.8476,
+        "mean_act": 0.0362,
+        "dEntropy_mean": 0.0,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": 0.0001,
+        "dLoss_zero": -0.0002,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9764,
+        "null_frac": 0.823,
+        "mean_act": -0.0082,
+        "dEntropy_mean": 0.0001,
+        "dLoss_mean": -0.0003,
+        "dEntropy_zero": 0.0001,
+        "dLoss_zero": -0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 8227,
+        "null_frac": 0.8225,
+        "mean_act": 0.0033,
+        "dEntropy_mean": -0.0,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": -0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 9823,
+        "null_frac": 0.7996,
+        "mean_act": -0.0087,
+        "dEntropy_mean": 0.0,
+        "dLoss_mean": 0.0003,
+        "dEntropy_zero": -0.0,
+        "dLoss_zero": 0.0005,
+        "category": "NOT"
+      }
+    ],
+    "matched_random": {
+      "n": 8,
+      "dEntropy_mean_ablation_avg": 0.0005,
+      "dEntropy_zero_ablation_avg": 0.0004,
+      "dEntropy_zero_ablation_max": 0.0039,
+      "neurons": [
+        {
+          "L": 38,
+          "i": 9402,
+          "null_frac": 0.107
+        },
+        {
+          "L": 36,
+          "i": 7938,
+          "null_frac": 0.0742
+        },
+        {
+          "L": 30,
+          "i": 3704,
+          "null_frac": 0.1051
+        },
+        {
+          "L": 39,
+          "i": 13728,
+          "null_frac": 0.1477
+        },
+        {
+          "L": 39,
+          "i": 1719,
+          "null_frac": 0.1141
+        },
+        {
+          "L": 33,
+          "i": 10473,
+          "null_frac": 0.1003
+        },
+        {
+          "L": 41,
+          "i": 1239,
+          "null_frac": 0.1017
+        },
+        {
+          "L": 39,
+          "i": 1210,
+          "null_frac": 0.1059
+        }
+      ]
+    },
+    "entropy_neuron_count": 0
+  },
+  "it": {
+    "n_layers": 42,
+    "late_layers": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "d_mlp": 14336,
+    "ref_used": "long_wikitext_20x256",
+    "baseline_entropy": 1.9118,
+    "baseline_loss": 2.9277,
+    "candidates": [
+      {
+        "L": 41,
+        "i": 608,
+        "null_frac": 0.8188,
+        "mean_act": 0.0107,
+        "dEntropy_mean": -0.0081,
+        "dLoss_mean": 0.0012,
+        "dEntropy_zero": -0.0072,
+        "dLoss_zero": 0.0012,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 10226,
+        "null_frac": 0.8609,
+        "mean_act": 0.0723,
+        "dEntropy_mean": -0.003,
+        "dLoss_mean": 0.0025,
+        "dEntropy_zero": -0.0011,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 8227,
+        "null_frac": 0.8294,
+        "mean_act": -0.0028,
+        "dEntropy_mean": 0.0025,
+        "dLoss_mean": -0.0,
+        "dEntropy_zero": 0.0026,
+        "dLoss_zero": -0.0,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12619,
+        "null_frac": 0.7928,
+        "mean_act": -0.0137,
+        "dEntropy_mean": -0.0025,
+        "dLoss_mean": 0.0003,
+        "dEntropy_zero": -0.0018,
+        "dLoss_zero": 0.0006,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4388,
+        "null_frac": 0.8704,
+        "mean_act": 0.0215,
+        "dEntropy_mean": -0.0017,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0005,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 5169,
+        "null_frac": 0.8052,
+        "mean_act": -0.0207,
+        "dEntropy_mean": -0.0015,
+        "dLoss_mean": 0.0014,
+        "dEntropy_zero": -0.0008,
+        "dLoss_zero": -0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 2077,
+        "null_frac": 0.8659,
+        "mean_act": 0.017,
+        "dEntropy_mean": -0.0003,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0013,
+        "dLoss_zero": 0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 4957,
+        "null_frac": 0.8284,
+        "mean_act": -0.0997,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": -0.0003,
+        "dEntropy_zero": 0.0011,
+        "dLoss_zero": 0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9851,
+        "null_frac": 0.8041,
+        "mean_act": 0.0069,
+        "dEntropy_mean": 0.0011,
+        "dLoss_mean": -0.0006,
+        "dEntropy_zero": 0.0006,
+        "dLoss_zero": -0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 8556,
+        "null_frac": 0.7863,
+        "mean_act": 0.0256,
+        "dEntropy_mean": -0.0004,
+        "dLoss_mean": 0.0006,
+        "dEntropy_zero": 0.001,
+        "dLoss_zero": 0.0008,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4302,
+        "null_frac": 0.8152,
+        "mean_act": 0.0426,
+        "dEntropy_mean": 0.0002,
+        "dLoss_mean": -0.0002,
+        "dEntropy_zero": -0.0009,
+        "dLoss_zero": -0.0003,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 258,
+        "null_frac": 0.8926,
+        "mean_act": 0.0095,
+        "dEntropy_mean": -0.0008,
+        "dLoss_mean": 0.0,
+        "dEntropy_zero": -0.0003,
+        "dLoss_zero": -0.0003,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4737,
+        "null_frac": 0.7981,
+        "mean_act": -0.0189,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": 0.0002,
+        "dEntropy_zero": -0.0008,
+        "dLoss_zero": 0.0003,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 2576,
+        "null_frac": 0.8954,
+        "mean_act": 0.1753,
+        "dEntropy_mean": -0.0007,
+        "dLoss_mean": 0.0002,
+        "dEntropy_zero": 0.0001,
+        "dLoss_zero": -0.0019,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 859,
+        "null_frac": 0.7902,
+        "mean_act": -0.029,
+        "dEntropy_mean": 0.0001,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0007,
+        "dLoss_zero": -0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12244,
+        "null_frac": 0.9237,
+        "mean_act": 0.0489,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": -0.0013,
+        "dEntropy_zero": -0.0006,
+        "dLoss_zero": -0.0016,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 4851,
+        "null_frac": 0.861,
+        "mean_act": 0.0087,
+        "dEntropy_mean": -0.0006,
+        "dLoss_mean": 0.0003,
+        "dEntropy_zero": -0.0004,
+        "dLoss_zero": 0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12811,
+        "null_frac": 0.8129,
+        "mean_act": -0.0059,
+        "dEntropy_mean": -0.0005,
+        "dLoss_mean": 0.0009,
+        "dEntropy_zero": -0.0004,
+        "dLoss_zero": 0.0008,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9420,
+        "null_frac": 0.807,
+        "mean_act": 0.0075,
+        "dEntropy_mean": 0.0005,
+        "dLoss_mean": -0.0015,
+        "dEntropy_zero": 0.0003,
+        "dLoss_zero": -0.0016,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 6610,
+        "null_frac": 0.821,
+        "mean_act": -0.1132,
+        "dEntropy_mean": 0.0004,
+        "dLoss_mean": 0.0007,
+        "dEntropy_zero": -0.0001,
+        "dLoss_zero": 0.0006,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 12722,
+        "null_frac": 0.8057,
+        "mean_act": 0.0058,
+        "dEntropy_mean": -0.0002,
+        "dLoss_mean": 0.0005,
+        "dEntropy_zero": -0.0004,
+        "dLoss_zero": 0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 10822,
+        "null_frac": 0.8003,
+        "mean_act": 0.005,
+        "dEntropy_mean": -0.0004,
+        "dLoss_mean": 0.0003,
+        "dEntropy_zero": -0.0003,
+        "dLoss_zero": 0.0003,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 5331,
+        "null_frac": 0.7977,
+        "mean_act": 0.0614,
+        "dEntropy_mean": 0.0004,
+        "dLoss_mean": 0.0005,
+        "dEntropy_zero": 0.0003,
+        "dLoss_zero": 0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 9823,
+        "null_frac": 0.7956,
+        "mean_act": -0.0139,
+        "dEntropy_mean": -0.0004,
+        "dLoss_mean": 0.0004,
+        "dEntropy_zero": -0.0001,
+        "dLoss_zero": 0.0005,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9365,
+        "null_frac": 0.8385,
+        "mean_act": -0.0036,
+        "dEntropy_mean": 0.0003,
+        "dLoss_mean": -0.0024,
+        "dEntropy_zero": 0.0003,
+        "dLoss_zero": -0.0026,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 652,
+        "null_frac": 0.8216,
+        "mean_act": 0.0309,
+        "dEntropy_mean": 0.0003,
+        "dLoss_mean": -0.0,
+        "dEntropy_zero": 0.0001,
+        "dLoss_zero": -0.0004,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 9764,
+        "null_frac": 0.8213,
+        "mean_act": -0.0085,
+        "dEntropy_mean": 0.0003,
+        "dLoss_mean": -0.0002,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": -0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 11820,
+        "null_frac": 0.8668,
+        "mean_act": 0.0138,
+        "dEntropy_mean": -0.0001,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": -0.0001,
+        "dLoss_zero": -0.0001,
+        "category": "NOT"
+      },
+      {
+        "L": 40,
+        "i": 7804,
+        "null_frac": 0.8137,
+        "mean_act": 0.1412,
+        "dEntropy_mean": 0.0,
+        "dLoss_mean": 0.0001,
+        "dEntropy_zero": -0.0001,
+        "dLoss_zero": -0.0003,
+        "category": "NOT"
+      },
+      {
+        "L": 41,
+        "i": 1524,
+        "null_frac": 0.8576,
+        "mean_act": 0.01,
+        "dEntropy_mean": 0.0,
+        "dLoss_mean": -0.0001,
+        "dEntropy_zero": 0.0,
+        "dLoss_zero": -0.0003,
+        "category": "NOT"
+      }
+    ],
+    "matched_random": {
+      "n": 8,
+      "dEntropy_mean_ablation_avg": 0.0001,
+      "dEntropy_zero_ablation_avg": 0.0002,
+      "dEntropy_zero_ablation_max": 0.0007,
+      "neurons": [
+        {
+          "L": 31,
+          "i": 9060,
+          "null_frac": 0.1073
+        },
+        {
+          "L": 40,
+          "i": 13700,
+          "null_frac": 0.0745
+        },
+        {
+          "L": 38,
+          "i": 5377,
+          "null_frac": 0.1054
+        },
+        {
+          "L": 30,
+          "i": 8816,
+          "null_frac": 0.1494
+        },
+        {
+          "L": 33,
+          "i": 1225,
+          "null_frac": 0.1145
+        },
+        {
+          "L": 33,
+          "i": 13742,
+          "null_frac": 0.1006
+        },
+        {
+          "L": 36,
+          "i": 3516,
+          "null_frac": 0.1019
+        },
+        {
+          "L": 37,
+          "i": 10542,
+          "null_frac": 0.1062
+        }
+      ]
+    },
+    "entropy_neuron_count": 0
+  },
+  "base_vs_it_differential": [
+    {
+      "L": 40,
+      "i": 2576,
+      "base_null_frac": 0.9038,
+      "it_null_frac": 0.8954,
+      "base_dEntropy_zero": -0.0006,
+      "it_dEntropy_zero": 0.0001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 40,
+      "i": 4957,
+      "base_null_frac": 0.8324,
+      "it_null_frac": 0.8284,
+      "base_dEntropy_zero": -0.0003,
+      "it_dEntropy_zero": 0.0011,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 40,
+      "i": 5331,
+      "base_null_frac": 0.7989,
+      "it_null_frac": 0.7977,
+      "base_dEntropy_zero": 0.0003,
+      "it_dEntropy_zero": 0.0003,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 40,
+      "i": 6610,
+      "base_null_frac": 0.8355,
+      "it_null_frac": 0.821,
+      "base_dEntropy_zero": -0.0002,
+      "it_dEntropy_zero": -0.0001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 40,
+      "i": 7804,
+      "base_null_frac": 0.8083,
+      "it_null_frac": 0.8137,
+      "base_dEntropy_zero": -0.0002,
+      "it_dEntropy_zero": -0.0001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 40,
+      "i": 9823,
+      "base_null_frac": 0.7996,
+      "it_null_frac": 0.7956,
+      "base_dEntropy_zero": -0.0,
+      "it_dEntropy_zero": -0.0001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 40,
+      "i": 11014,
+      "base_null_frac": 0.7921,
+      "it_null_frac": null,
+      "base_dEntropy_zero": 0.0001,
+      "it_dEntropy_zero": null,
+      "base_category": "NOT",
+      "it_category": null,
+      "in_both": false
+    },
+    {
+      "L": 40,
+      "i": 12659,
+      "base_null_frac": 0.7988,
+      "it_null_frac": null,
+      "base_dEntropy_zero": -0.0003,
+      "it_dEntropy_zero": null,
+      "base_category": "NOT",
+      "it_category": null,
+      "in_both": false
+    },
+    {
+      "L": 41,
+      "i": 258,
+      "base_null_frac": 0.8875,
+      "it_null_frac": 0.8926,
+      "base_dEntropy_zero": 0.0,
+      "it_dEntropy_zero": -0.0003,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 608,
+      "base_null_frac": 0.8356,
+      "it_null_frac": 0.8188,
+      "base_dEntropy_zero": 0.0023,
+      "it_dEntropy_zero": -0.0072,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 652,
+      "base_null_frac": 0.8136,
+      "it_null_frac": 0.8216,
+      "base_dEntropy_zero": 0.0,
+      "it_dEntropy_zero": 0.0001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 859,
+      "base_null_frac": null,
+      "it_null_frac": 0.7902,
+      "base_dEntropy_zero": null,
+      "it_dEntropy_zero": -0.0007,
+      "base_category": null,
+      "it_category": "NOT",
+      "in_both": false
+    },
+    {
+      "L": 41,
+      "i": 1524,
+      "base_null_frac": 0.8476,
+      "it_null_frac": 0.8576,
+      "base_dEntropy_zero": 0.0001,
+      "it_dEntropy_zero": 0.0,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 2077,
+      "base_null_frac": 0.8796,
+      "it_null_frac": 0.8659,
+      "base_dEntropy_zero": -0.0006,
+      "it_dEntropy_zero": -0.0013,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 4302,
+      "base_null_frac": 0.8403,
+      "it_null_frac": 0.8152,
+      "base_dEntropy_zero": -0.0013,
+      "it_dEntropy_zero": -0.0009,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 4388,
+      "base_null_frac": 0.8837,
+      "it_null_frac": 0.8704,
+      "base_dEntropy_zero": 0.0,
+      "it_dEntropy_zero": -0.0005,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 4737,
+      "base_null_frac": 0.8231,
+      "it_null_frac": 0.7981,
+      "base_dEntropy_zero": 0.0013,
+      "it_dEntropy_zero": -0.0008,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 4851,
+      "base_null_frac": 0.8658,
+      "it_null_frac": 0.861,
+      "base_dEntropy_zero": 0.0004,
+      "it_dEntropy_zero": -0.0004,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 5169,
+      "base_null_frac": null,
+      "it_null_frac": 0.8052,
+      "base_dEntropy_zero": null,
+      "it_dEntropy_zero": -0.0008,
+      "base_category": null,
+      "it_category": "NOT",
+      "in_both": false
+    },
+    {
+      "L": 41,
+      "i": 8227,
+      "base_null_frac": 0.8225,
+      "it_null_frac": 0.8294,
+      "base_dEntropy_zero": 0.0,
+      "it_dEntropy_zero": 0.0026,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 8556,
+      "base_null_frac": 0.8198,
+      "it_null_frac": 0.7863,
+      "base_dEntropy_zero": 0.0011,
+      "it_dEntropy_zero": 0.001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 9365,
+      "base_null_frac": 0.8501,
+      "it_null_frac": 0.8385,
+      "base_dEntropy_zero": 0.0016,
+      "it_dEntropy_zero": 0.0003,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 9420,
+      "base_null_frac": 0.8,
+      "it_null_frac": 0.807,
+      "base_dEntropy_zero": 0.0002,
+      "it_dEntropy_zero": 0.0003,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 9764,
+      "base_null_frac": 0.823,
+      "it_null_frac": 0.8213,
+      "base_dEntropy_zero": 0.0001,
+      "it_dEntropy_zero": 0.0,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 9851,
+      "base_null_frac": 0.7987,
+      "it_null_frac": 0.8041,
+      "base_dEntropy_zero": -0.0001,
+      "it_dEntropy_zero": 0.0006,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 10226,
+      "base_null_frac": 0.8864,
+      "it_null_frac": 0.8609,
+      "base_dEntropy_zero": 0.0006,
+      "it_dEntropy_zero": -0.0011,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 10822,
+      "base_null_frac": 0.8235,
+      "it_null_frac": 0.8003,
+      "base_dEntropy_zero": -0.0002,
+      "it_dEntropy_zero": -0.0003,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 11603,
+      "base_null_frac": 0.7986,
+      "it_null_frac": null,
+      "base_dEntropy_zero": -0.0002,
+      "it_dEntropy_zero": null,
+      "base_category": "NOT",
+      "it_category": null,
+      "in_both": false
+    },
+    {
+      "L": 41,
+      "i": 11820,
+      "base_null_frac": 0.859,
+      "it_null_frac": 0.8668,
+      "base_dEntropy_zero": 0.0,
+      "it_dEntropy_zero": -0.0001,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 12244,
+      "base_null_frac": 0.9239,
+      "it_null_frac": 0.9237,
+      "base_dEntropy_zero": 0.0,
+      "it_dEntropy_zero": -0.0006,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 12619,
+      "base_null_frac": null,
+      "it_null_frac": 0.7928,
+      "base_dEntropy_zero": null,
+      "it_dEntropy_zero": -0.0018,
+      "base_category": null,
+      "it_category": "NOT",
+      "in_both": false
+    },
+    {
+      "L": 41,
+      "i": 12722,
+      "base_null_frac": 0.8115,
+      "it_null_frac": 0.8057,
+      "base_dEntropy_zero": -0.0002,
+      "it_dEntropy_zero": -0.0004,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    },
+    {
+      "L": 41,
+      "i": 12811,
+      "base_null_frac": 0.8594,
+      "it_null_frac": 0.8129,
+      "base_dEntropy_zero": 0.0012,
+      "it_dEntropy_zero": -0.0004,
+      "base_category": "NOT",
+      "it_category": "NOT",
+      "in_both": true
+    }
+  ]
+}

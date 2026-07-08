@@ -1,0 +1,343 @@
+{
+  "base": "google/gemma-2-2b",
+  "it": "google/gemma-2-2b-it",
+  "cue": "cave_fold_vs_listen",
+  "read_layer_rule": "round(0.667*n_layers); per-model value in models[*].read_layer",
+  "pool_size": 891,
+  "big_pool": true,
+  "thresholds": {
+    "READ_LAYER": 28,
+    "AUROC_THR": 0.7,
+    "DIFF_THR": 0.15,
+    "OVERLAP_MIN": 3,
+    "MOVE_TOL": 0.15,
+    "RESTORE_THR": 0.2,
+    "MIN_FAITHFUL": 8,
+    "TOP_K": 5,
+    "GAP": 0.15
+  },
+  "models": {
+    "base": {
+      "tag": "base",
+      "name": "google/gemma-2-2b",
+      "read_layer": 17,
+      "n_fold": 22,
+      "n_listen": 24,
+      "n_against_grain": 22,
+      "ncav_fold": 2,
+      "ncav_listen": 8,
+      "ncav_against_grain": 0,
+      "axis_auroc_fold": null,
+      "axis_auroc_listen": 0.8395,
+      "axis_auroc_against_grain": null,
+      "heads_fold": [
+        [
+          16,
+          7
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "heads_listen": [
+        [
+          16,
+          7
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          13,
+          3
+        ],
+        [
+          8,
+          3
+        ]
+      ],
+      "heads_against_grain": [
+        [
+          16,
+          7
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          14,
+          3
+        ]
+      ],
+      "overlap": 4,
+      "cross_auroc": 0.7812,
+      "cross_auroc_fold_to_listen": 0.7812,
+      "cross_auroc_listen_to_fold": 1.0,
+      "move_gate": {
+        "passed": false,
+        "move_fold": 0.0,
+        "move_listen": 31.336014,
+        "flip_fold": 0.090909,
+        "flip_listen": 0.333333,
+        "delta_move": 31.336014,
+        "delta_flip": 0.242424,
+        "move_tol": 0.15,
+        "note": "gated on delta_flip only; delta_move is per-cell-axis-scaled (diagnostic)"
+      },
+      "label_matched_listen_auroc": 0.8395,
+      "battery": {
+        "FOLD": {
+          "read": null,
+          "write": null,
+          "rand": null,
+          "pos_control": null,
+          "all_attn_read": null,
+          "all_attn_write": null,
+          "all_mlp": null
+        },
+        "LISTEN": {
+          "read": 0.237176,
+          "write": 0.260336,
+          "rand": 0.02632,
+          "pos_control": 1.414458,
+          "all_attn_read": 0.00046,
+          "all_attn_write": 0.079707,
+          "all_mlp": 0.246238
+        },
+        "AGAINST_GRAIN": {
+          "read": null,
+          "write": null,
+          "rand": null,
+          "pos_control": null,
+          "all_attn_read": null,
+          "all_attn_write": null,
+          "all_mlp": null
+        }
+      },
+      "decision": {
+        "category": "MOVE_UNMATCHED",
+        "n_fold": 22,
+        "n_listen": 24,
+        "move_gate": {
+          "passed": false,
+          "move_fold": 0.0,
+          "move_listen": 31.336014,
+          "flip_fold": 0.090909,
+          "flip_listen": 0.333333,
+          "delta_move": 31.336014,
+          "delta_flip": 0.242424,
+          "move_tol": 0.15,
+          "note": "gated on delta_flip only; delta_move is per-cell-axis-scaled (diagnostic)"
+        },
+        "pos_control_restore": null,
+        "auroc_fold": null,
+        "auroc_listen": 0.8395,
+        "overlap": 4,
+        "cross_auroc": 0.7812,
+        "read_fold": null,
+        "read_listen": 0.237176,
+        "write_fold": null,
+        "write_listen": 0.260336,
+        "read_gap": 0.237176,
+        "write_gap": 0.260336,
+        "bracketed": true,
+        "attribution_level": "head-level",
+        "state_level_only": false,
+        "overlap_min": 3,
+        "restore_thr": 0.2,
+        "diff_thr": 0.15,
+        "auroc_thr": 0.7,
+        "top_k": 5,
+        "msg": "matched-move gate FAILED (|cave-axis move FOLD-LISTEN| 31.336014 and/or |flip-rate diff| 0.242424 > MOVE_TOL(0.15)): the realized move magnitude is not equalized across cells, so the SC-S4 headroom confound is NOT cleared -> no verdict."
+      }
+    },
+    "it": {
+      "tag": "it",
+      "name": "google/gemma-2-2b-it",
+      "read_layer": 17,
+      "n_fold": 22,
+      "n_listen": 24,
+      "n_against_grain": 22,
+      "ncav_fold": 9,
+      "ncav_listen": 21,
+      "ncav_against_grain": 3,
+      "axis_auroc_fold": 0.8669,
+      "axis_auroc_listen": null,
+      "axis_auroc_against_grain": 0.6333,
+      "heads_fold": [
+        [
+          16,
+          7
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          7,
+          1
+        ]
+      ],
+      "heads_listen": [
+        [
+          16,
+          7
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          12,
+          4
+        ]
+      ],
+      "heads_against_grain": [
+        [
+          7,
+          0
+        ],
+        [
+          16,
+          7
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          6
+        ]
+      ],
+      "overlap": 5,
+      "cross_auroc": 0.8376,
+      "cross_auroc_fold_to_listen": 1.0,
+      "cross_auroc_listen_to_fold": 0.8376,
+      "move_gate": {
+        "passed": false,
+        "move_fold": 69.864406,
+        "move_listen": 85.058306,
+        "flip_fold": 0.409091,
+        "flip_listen": 0.875,
+        "delta_move": 15.1939,
+        "delta_flip": 0.465909,
+        "move_tol": 0.15,
+        "note": "gated on delta_flip only; delta_move is per-cell-axis-scaled (diagnostic)"
+      },
+      "label_matched_listen_auroc": null,
+      "battery": {
+        "FOLD": {
+          "read": 0.003073,
+          "write": 0.099213,
+          "rand": 0.031059,
+          "pos_control": 0.837516,
+          "all_attn_read": 0.000188,
+          "all_attn_write": 0.098428,
+          "all_mlp": 0.238758
+        },
+        "LISTEN": {
+          "read": null,
+          "write": null,
+          "rand": null,
+          "pos_control": null,
+          "all_attn_read": null,
+          "all_attn_write": null,
+          "all_mlp": null
+        },
+        "AGAINST_GRAIN": {
+          "read": 0.086065,
+          "write": 0.136128,
+          "rand": 0.041053,
+          "pos_control": 0.959548,
+          "all_attn_read": 0.013843,
+          "all_attn_write": 0.155154,
+          "all_mlp": 0.223195
+        }
+      },
+      "decision": {
+        "category": "MOVE_UNMATCHED",
+        "n_fold": 22,
+        "n_listen": 24,
+        "move_gate": {
+          "passed": false,
+          "move_fold": 69.864406,
+          "move_listen": 85.058306,
+          "flip_fold": 0.409091,
+          "flip_listen": 0.875,
+          "delta_move": 15.1939,
+          "delta_flip": 0.465909,
+          "move_tol": 0.15,
+          "note": "gated on delta_flip only; delta_move is per-cell-axis-scaled (diagnostic)"
+        },
+        "pos_control_restore": null,
+        "auroc_fold": 0.8669,
+        "auroc_listen": null,
+        "overlap": 5,
+        "cross_auroc": 0.8376,
+        "read_fold": 0.003073,
+        "read_listen": null,
+        "write_fold": 0.099213,
+        "write_listen": null,
+        "read_gap": 0.003073,
+        "write_gap": 0.099213,
+        "bracketed": false,
+        "attribution_level": "state-level",
+        "state_level_only": true,
+        "overlap_min": 3,
+        "restore_thr": 0.2,
+        "diff_thr": 0.15,
+        "auroc_thr": 0.7,
+        "top_k": 5,
+        "msg": "matched-move gate FAILED (|cave-axis move FOLD-LISTEN| 15.1939 and/or |flip-rate diff| 0.465909 > MOVE_TOL(0.15)): the realized move magnitude is not equalized across cells, so the SC-S4 headroom confound is NOT cleared -> no verdict."
+      }
+    }
+  }
+}

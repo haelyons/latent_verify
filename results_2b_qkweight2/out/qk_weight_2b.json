@@ -1,0 +1,86 @@
+{
+  "name_base": "google/gemma-2-2b",
+  "name_it": "google/gemma-2-2b-it",
+  "device": "cpu",
+  "grp": 2,
+  "pairs": [
+    [
+      "Australia",
+      "Sydney",
+      "Canberra"
+    ],
+    [
+      "Texas",
+      "Houston",
+      "Austin"
+    ],
+    [
+      "Canada",
+      "Toronto",
+      "Ottawa"
+    ],
+    [
+      "Switzerland",
+      "Zurich",
+      "Bern"
+    ],
+    [
+      "Morocco",
+      "Casablanca",
+      "Rabat"
+    ]
+  ],
+  "thresholds": {
+    "WQK_THR": 0.1,
+    "WQK_SMALL": 0.05,
+    "QK_DIR_TOL": 0.95,
+    "QK_RESID_TOL": 0.2,
+    "ATTN_DROP": 0.3,
+    "RECOVER_TOL": 0.5
+  },
+  "decision_rule": "weight_mag CHANGED if |fro_rel|>=0.10, UNCHANGED if <0.05; weight_dir QK_SAME_DIR if dir_cos>=0.95 and resid_frac<=0.20 else QK_ROTATED; pattern COLLAPSED if (attn_base-attn_it)>=0.30; cause (when COLLAPSED): INPUT_DRIVEN if recovery_frac>=0.50 and weight_mag UNCHANGED and weight_dir QK_SAME_DIR; WEIGHT_DRIVEN if recovery_frac<0.50 and (weight_mag CHANGED or weight_dir QK_ROTATED); AMBIGUOUS otherwise.",
+  "heads": {
+    "L18.H5": {
+      "layer": 18,
+      "head": 5,
+      "kv_head": 2,
+      "grp": 2,
+      "fro_base": 6.8070831298828125,
+      "fro_it": 6.772770404815674,
+      "fro_rel": -0.005040738362149161,
+      "qk_alpha": 0.9925689991526333,
+      "qk_resid_frac": 0.06936809420585632,
+      "qk_dir_cos": 0.9979079961776733,
+      "attn_base": 0.578125,
+      "attn_it": 0.01551513671875,
+      "attn_drop": 0.56260986328125,
+      "attn_qswap": 0.253759765625,
+      "recovery_frac": 0.4235,
+      "weight_mag": "UNCHANGED",
+      "weight_dir": "QK_SAME_DIR",
+      "pattern": "COLLAPSED",
+      "cause": "AMBIGUOUS"
+    },
+    "L18.H6": {
+      "layer": 18,
+      "head": 6,
+      "kv_head": 3,
+      "grp": 2,
+      "fro_base": 7.468106746673584,
+      "fro_it": 7.449724197387695,
+      "fro_rel": -0.0024614738258898826,
+      "qk_alpha": 0.9952102706763236,
+      "qk_resid_frac": 0.06817041337490082,
+      "qk_dir_cos": 0.9979504346847534,
+      "attn_base": 0.655859375,
+      "attn_it": 0.05791015625,
+      "attn_drop": 0.5979492187500001,
+      "attn_qswap": 0.25810546875,
+      "recovery_frac": 0.3348,
+      "weight_mag": "UNCHANGED",
+      "weight_dir": "QK_SAME_DIR",
+      "pattern": "COLLAPSED",
+      "cause": "AMBIGUOUS"
+    }
+  }
+}

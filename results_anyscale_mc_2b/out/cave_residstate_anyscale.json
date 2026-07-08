@@ -1,0 +1,15 @@
+{
+  "base": "google/gemma-2-2b",
+  "it": "google/gemma-2-2b-it",
+  "tag": "2b",
+  "axis_layer_rule": "round(0.667*n_layers) clamped to [1,n_layers-1] (== cave_fold_vs_listen.pick_read_layer)",
+  "read_layers_rule": "sorted({axis-4, axis, axis+4}) each clamped to [1,n_layers-1]",
+  "resolved_axis_layer": 17,
+  "resolved_read_layers": [
+    13,
+    17,
+    21
+  ],
+  "reuses": "cave_residstate_decisive.run (battery + decisive_decision) + cave_residstate_close._measure",
+  "decision_in": "out/cave_residstate_decisive.json"
+}
