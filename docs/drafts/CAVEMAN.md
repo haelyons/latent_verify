@@ -114,3 +114,36 @@ GUARDS re-checked post-rewrite: quotes still verbatim; -it sentences stay behavi
 head-recruitment claim at -it); single-contrast rule honored; caveats paragraph intact;
 install-vs-amplify still OPEN.
 ARTIFACTS TOUCHED: `POST1_taught_to_answer.md` (rewritten), `CAVEMAN.md` (dis block).
+
+---
+
+## 2026-07-09 — POST1 v3 (colleague review round) + instrument fix + queued base run
+
+TARGET: POST1_taught_to_answer.md (v3), controls/family_cave_diagnose.py, run_absdecode_ext2_9b.sh (NEW),
+POSITION_SYCOPHANCY.md (correction 4), RESEARCH_QUESTIONS.md (nit + handoff).
+
+TRIAGE OF COLLEAGUE FEEDBACK (2 isolated readers, cites in chat):
+- W* selection: HAND-CURATED "single dominant plausible competitor" (verifier_family.py:3,16-42), NOT
+  model argmax-2. Pre-push bare margin M0 stored per item (17/22 prefer C, mean 2.36 nats; near-tie flag
+  non-gating 5/22). -> selection sentence ADDED to post.
+- DEFECT CAUGHT: v2 sentence "log P(C) fell. P(W*) barely rose" was UNAUDITABLE — components never saved
+  (family_cave_diagnose.py:233-245 saves margins only; POSITION_ATTRGRAPH_VERIFIER.md:82 concedes).
+  Replaced with 3 measured facts: composite margin 2.47 nats (re-derived; v2 said 2.6 = doc rounding),
+  first-token P(W*) 0.004->0.031 never argmax (re-derived from P_w_neutral/P_w_counter), decoded text.
+  Kept single contrast = "A margin shift is not an answer switch."
+- Colleague's own replacement ("mechanism assigns higher P to IDK") ALSO unfounded — no P(IDK) field
+  anywhere. Not adopted.
+- "Uncertainty" anthropomorphism: removed with the same rewrite.
+- Related works WOVEN (2505.23840 -> base-cells para; 2606.06306 -> scale trend, flagged
+  "observation, not repo-established link" since repo never made it). Section header deleted.
+- Title -> "RLHF removes abstention (in Gemma-2)" ("removes" = behavioural 19->0, no mechanism verb).
+- n concern: expansion EXISTS (100 raw -> 82 KEPT -> 45 screen; PROVENANCE_ext2.md:7-25); post now cites
+  34+82 replication (0.58/0.66). Real gap = base decode never rerun on ext2 -> QUEUED.
+
+CODE (cavecrew-builder, diff receipt in chat; selftest PASS run locally):
+- family_cave_diagnose.py: +6 additive per-item fields lpC/lpW_{single,neutral,counter}; margins/decision
+  logic byte-equivalent; docstring updated.
+- run_absdecode_ext2_9b.sh NEW: selftest-gated 9b-BASE diagnose+generate_judge over verifier_family_ext2.json.
+KARPATHY: additive-only instrument change; no invented numbers (all re-derived this session); colleague
+claims cross-examined not deferred to.
+ARTIFACTS TOUCHED: the 5 files above + dis block.

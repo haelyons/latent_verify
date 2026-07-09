@@ -85,7 +85,7 @@ Standing NULLs (each arbiter- or power-confirmed):
     9b‑it on the frozen 74-item family: (3a) the read-side head subset dies at derivation (greedy EMPTY
     both arms, best single-head KO 0.028; total-mask kills folding but no sparse subset does → redundant
     read); (3b) write-direction resample-ablation flips ZERO of 37 realized answers (= random floor), the
-    arbiter SIGN_DISAGREEs (direct −1.81 vs total +2.27), and backup restores → `MONITOR_AGAIN`. Converges
+    arbiter SIGN_DISAGREEs (direct −1.81 vs total +2.24), and backup restores → `MONITOR_AGAIN`. Converges
     with the base cave-DIRECTION MONITOR (§9) and the 2b BROAD_DISTRIBUTED graph. → `RESULTS_FOLDLISTEN.md`
     Addendum 5+6, `results_foldlisten_p3a/`, `controls/foldlisten_phase3{a,b}.py`. **Grounding (isolated
     reader, adversarial):** 3a fully H3-grounded; 3b's LOAD-BEARING leg (necessity = `neither_beats_floor`)
@@ -275,7 +275,25 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> CURRENT (2026-07-05, this session): headline STANDS + grounded — distributed MONITOR at 9b-it, no
+> CURRENT (2026-07-09, this session — $0, no GPU): entry ritual run in offline form — 4 isolated
+> claim-blind triage-readers re-derived the Phase-4 headline artifacts (9b p3b_greedy, 2b/27b transport,
+> p4 in-domain probe): ALL reproduce; two nits found+fixed (arbiter total is +2.24 not +2.27 — corrected
+> in this doc; "necessity leg ALONE forces MONITOR" slightly overstates, backup_restores independently
+> forces it too). latent_skeptic submodule now vendored-workable in the web sandbox (add_repo + file-proto
+> submodule init). WRITE-UP ARC STARTED: first short post drafted v1→v3 (`docs/drafts/POST1_taught_to_answer.md`,
+> receipts in `docs/drafts/CAVEMAN.md`) — single-experiment piece: base decoded abstention (1/22 outputs W\*,
+> `results_verifier/out/family_generate_judge_vfam_9b.json`) vs -it realized fold (0.57–0.81 all scales).
+> Colleague review surfaced a REAL instrument gap: the teacher-forced margin components (lp(C), lp(W\*)
+> separately) were never persisted — the "lp(C) drops, not lp(W\*) rises" reading was prose inference
+> (POSITION_ATTRGRAPH_VERIFIER.md:82 concedes). FIXED forward: `controls/family_cave_diagnose.py` now
+> persists lpC/lpW at single/neutral/counter (additive, selftest PASS, margins unchanged). QUEUED GPU
+> (small): `run_absdecode_ext2_9b.sh` — 9b-BASE diagnose+decode over the 82-item ext2 family, closes
+> (a) abstention-n=22 and (b) the margin decomposition in one run. Also: POSITION_SYCOPHANCY SEQUENCE
+> correction (4) — "deletes the copy at the weights" superseded by claim 5 (input-mediated, weights intact).
+> Copy-arc + Sun-2026 + base-vs-it lit digests done this session (see chat receipts): numeric-copy leg
+> causal 2b+9b, salience leg 2b-only; nobody in lit claims base-abstention (2505.23840/2606.06306 adjacent).
+>
+> CURRENT (2026-07-05, previous session): headline STANDS + grounded — distributed MONITOR at 9b-it, no
 > single causal lever for caving (§10, claim 10). Two advances this session, both $0 / no-GPU: (1) **Yang &
 > Jia arXiv:2505.16170 READ + VERIFIED** (2 convergent claim-blind reads) — COMPATIBLE-not-contradicting
 > (spontaneous self-retraction, not pushback; Llama/Qwen/Olmo not Gemma; their lever fails our G1/G3), so

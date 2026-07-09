@@ -44,7 +44,15 @@ L18.H5's cross-pair consistency survives. (3) The `counter`/`bare` circuit
 dissociation (§4) was **attempted, not delivered**: the two caving items are the two
 the model already got wrong single-turn, so copyable-anchor and prior-lean are not
 separated. The robust result is *no caving from a held correct belief, even at a
-+0.06-nat margin*.
++0.06-nat margin*. (4) [2026-07-09] Every "deletes the copy **at the weights**" /
+"structurally absent" phrasing in this doc (L20, §3, §8-refs, the SFT-vs-RLHF note) is
+**superseded by the weight-level battery** (RESEARCH_QUESTIONS claim 5): QK routing is
+intact at every scale (2b `qk_dir_cos 0.998`, 27b `W_QK` unchanged), the 27b OV write
+direction is preserved with rescaled gain (`dir_cos 0.999`, α 1.33 — latent), and the 2b
+realized-attention collapse (0.578→0.016) is **residual-INPUT-mediated** (swapping the
+base residual input recovers 0.973). Read "deletes the copy" throughout as *functionally
+silences via the head's input; the weights persist* → `results_2b_qkweight*/`,
+`results_27b_qk/`, `results_27b_ovmag/`, `results_27b_realattn/`.
 
 ## TL;DR
 
