@@ -147,3 +147,29 @@ CODE (cavecrew-builder, diff receipt in chat; selftest PASS run locally):
 KARPATHY: additive-only instrument change; no invented numbers (all re-derived this session); colleague
 claims cross-examined not deferred to.
 ARTIFACTS TOUCHED: the 5 files above + dis block.
+
+---
+
+## 2026-07-09 — colleague round 2: W* provenance gap -> new top-K shift instrument
+
+TARGET: controls/family_topk_shift.py (NEW, triage-author claim-blind), run_absdecode_ext2_9b.sh (extended),
+POST1 caveats (+1 clause), RESEARCH_QUESTIONS handoff (+block).
+
+CROSS-EXAM:
+- Point 1 CONCEDED w/ precision: M0 = C-vs-W* margin only; W* rank in bare answer distribution never
+  measured/stored (rho>2 rule exists in job_truthful_flip.py, non-gating here; no top-k field anywhere).
+  Original 22 NOT re-auditable from saved artifacts -> needs run.
+- Point 2: "just output the answer" == existing single(q) builder at base; buildable level = top-K
+  bare/neutral/counter dump + delta table + top_riser (which candidate the push promotes: asserted W*,
+  hedge tokens, or model's own preference). Deeper level (push toward model-derived W*, compare fold
+  rates; endogenizes PART9 plausibility-gating) = family-design job -> PROPOSED in handoff, not built.
+- Analysis hook: PART9 against-grain~0 + numeric copy-of-asserted-token predict non-obvious top_riser at
+  base; " I"-family rising > aid would make round-1's rejected "P(IDK) mechanism" phrasing measurable.
+
+INSTRUMENT: family_topk_shift.py 441 lines, sibling conventions (metric/thresholds/decision_rule embedded,
+every item dumped, collision logged-not-dropped), TOP_K=10, decision TARGETED_SHIFT>=0.5 /
+OTHER_RISER<=0.2 / MIXED, selftest PASS (run locally). Runner now: 3 selftest gates; topk_shift on
+verifier_family(22) + ext2(82); diagnose + generate_judge on ext2; all 9b-base.
+KARPATHY: author claim-blind (spec named no favoured outcome); no numbers invented; follow-up proposed
+not smuggled in.
+ARTIFACTS TOUCHED: the 4 files above + dis block.

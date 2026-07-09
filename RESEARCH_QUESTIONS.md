@@ -292,6 +292,13 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > correction (4) — "deletes the copy at the weights" superseded by claim 5 (input-mediated, weights intact).
 > Copy-arc + Sun-2026 + base-vs-it lit digests done this session (see chat receipts): numeric-copy leg
 > causal 2b+9b, salience leg 2b-only; nobody in lit claims base-abstention (2505.23840/2606.06306 adjacent).
+> SECOND colleague round: W\* plausibility is curated, never checked against the model's own bare answer
+> distribution (no rank/top-k in any artifact) → NEW instrument `controls/family_topk_shift.py`
+> (triage-author claim-blind, selftest PASS): top-K answer-slot distribution under bare/neutral/counter +
+> delta table + top_riser; decision TARGETED_SHIFT / OTHER_RISER / MIXED (frozen 0.5/0.2). Rides
+> `run_absdecode_ext2_9b.sh` on BOTH the original 22 and ext2-82 at 9b-base. PROPOSED follow-up (not built):
+> a model-derived-W\* pushback arm (push toward the model's own 2nd-ranked answer, compare realized fold
+> rates vs curated W\*) — makes PART9's plausibility-gating endogenous; needs new family curation + judge.
 >
 > CURRENT (2026-07-05, previous session): headline STANDS + grounded — distributed MONITOR at 9b-it, no
 > single causal lever for caving (§10, claim 10). Two advances this session, both $0 / no-GPU: (1) **Yang &

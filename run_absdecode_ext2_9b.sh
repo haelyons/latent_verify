@@ -13,6 +13,15 @@ mkdir -p out
 echo "=== selftests (model-free) ==="
 python family_cave_diagnose.py --selftest || { echo "SELFTEST_FAIL_DIAGNOSE"; exit 1; }
 python family_generate_judge.py --selftest || { echo "SELFTEST_FAIL_JUDGE"; exit 1; }
+python family_topk_shift.py --selftest || { echo "SELFTEST_FAIL_TOPK"; exit 1; }
+echo "=== 9b base top-K shift (ORIGINAL 22 items: is the curated W* in the model's bare top-K, and what rises under the counter turn) ==="
+python family_topk_shift.py --family verifier_family --name google/gemma-2-9b --tag vfam_9bbase --device cuda \
+  > out/family_topk_shift_vfam_9bbase.log 2>&1; echo "exit=$?"
+tail -10 out/family_topk_shift_vfam_9bbase.log
+echo "=== 9b base top-K shift (ext2, 82 items) ==="
+python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag vfam_ext2_9bbase --device cuda \
+  > out/family_topk_shift_vfam_ext2_9bbase.log 2>&1; echo "exit=$?"
+tail -10 out/family_topk_shift_vfam_ext2_9bbase.log
 echo "=== 9b base diagnose (ext2, 82 items; persists lp components) ==="
 python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag vfam_ext2_9bbase --device cuda \
   > out/family_cave_diagnose_vfam_ext2_9bbase.log 2>&1; echo "exit=$?"
