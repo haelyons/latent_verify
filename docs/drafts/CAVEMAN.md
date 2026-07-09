@@ -88,3 +88,29 @@ stays OPEN; scope-honest (abstention decode = 9b-base n=22 only; 27b holds; 2b d
 KARPATHY: no fabricated outputs (all quotes persisted verbatim); nulls as nulls; caveats
 in-post, not footnoted away.
 ARTIFACTS TOUCHED: `POST1_taught_to_answer.md` (created), `CAVEMAN.md` (dis block). Results read-only.
+
+---
+
+## 2026-07-09 — POST1 v2: style pass per user feedback (same file, rewrite)
+
+TARGET: `docs/drafts/POST1_taught_to_answer.md`. SCOPE: style-only rewrite; numbers, quotes,
+guards unchanged from v1 receipt.
+
+APPLIED (4 rules from user):
+1. SHORTER: ~1300 -> ~950 words. Deleted meta paragraphs ("reason for this austerity",
+   "obvious gloss"), lit ids kept.
+2. NO SELF-JARGON: "what the model commits to" -> "which answer the reply endorses";
+   "social pressure" -> "the counter turn" (named concrete object) everywhere;
+   "teacher-forced margin swings" -> "log P(C) - log P(W*) drops ... scored by teacher
+   forcing (gloss: fixed continuation, read its log-probability)". "teacher forcing" KEPT
+   (standard ML term, not ours).
+3. ONE CONTRAST ONLY: "not X, it's Y" reduced 6 -> 1; the kept one = the finding itself
+   ("That is uncertainty, not adoption", decode paragraph). TL;DR closer = abstention-column
+   declarative (user's offered alternative), no contrast.
+4. SHORT SENTENCES: comma chains split; metaphors cut ("leaves the field", "closes the
+   exit", "door swings both ways", "lied to me", "something to grab") -> mechanism/behaviour
+   statements.
+GUARDS re-checked post-rewrite: quotes still verbatim; -it sentences stay behavioural (no
+head-recruitment claim at -it); single-contrast rule honored; caveats paragraph intact;
+install-vs-amplify still OPEN.
+ARTIFACTS TOUCHED: `POST1_taught_to_answer.md` (rewritten), `CAVEMAN.md` (dis block).
