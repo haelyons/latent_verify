@@ -114,6 +114,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/cave_ablate_late_mlp.py \
   controls/cave_fold_vs_listen.py \
   controls/foldlisten_judge.py controls/family_generate_judge.py controls/verifier_family.py \
+  controls/family_cave_diagnose.py controls/family_topk_shift.py \
   controls/verifier_family_ext.py controls/think_probe_identity.py \
   verifier_family_ext2.json combined_family.json mechanism_family_9bit.json controls/foldlisten_phase2.py \
   controls/foldlisten_phase3a.py results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json \
@@ -128,6 +129,9 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/cave_residstate_anyscale.py controls/cave_faithful_it_mc.py \
   gen_outputs_table.py \
   remote_run.sh "$RUNNER" ubuntu@$IP:latent_verify/
+# CRLF guard: a Windows-checkout (autocrlf) CRLF script shipped raw kills the on-box run at
+# `set -uo pipefail` (2026-07-11 rc=2). Normalize every shipped .sh on the box, unconditionally.
+ssh $SSHOPT ubuntu@$IP "sed -i 's/\r\$//' latent_verify/*.sh"
 
 # --- ORPHAN BACKSTOP: the box self-terminates after the run cap + grace, even if THIS machine dies mid-run
 # (2026-06-26: a local process exit before teardown orphaned a box). A detached on-box timer terminates THIS

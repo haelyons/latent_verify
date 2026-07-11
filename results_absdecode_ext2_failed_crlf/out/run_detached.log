@@ -1,0 +1,9 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.1 transformers 5.13.1
+[run] bash run_absdecode_ext2_9b.sh
+run_absdecode_ext2_9b.sh: line 7: set: pipefail: invalid option name
+run_absdecode_ext2_9b.sh: line 8: cd: $'/home/ubuntu/latent_verify\r': No such file or directory
+run_absdecode_ext2_9b.sh: line 9: .venv/bin/activate: No such file or directory
+=== selftests (model-free) ===
+run_absdecode_ext2_9b.sh: line 34: syntax error: unexpected end of file

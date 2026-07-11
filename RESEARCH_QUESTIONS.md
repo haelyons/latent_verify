@@ -275,7 +275,40 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> CURRENT (2026-07-09, this session — $0, no GPU): entry ritual run in offline form — 4 isolated
+> CURRENT (2026-07-11, this session — ~$3 GPU): the queued `run_absdecode_ext2_9b.sh` RAN at 9b-base
+> (A100, two launches: first died at 60s to a CRLF-smudged runner — root cause core.autocrlf=true,
+> fixed 3-ways: working-tree normalize + `.gitattributes` `*.sh text eol=lf` + unconditional on-box
+> `sed -i 's/\r$//'` in `lambda_run.sh`; failed attempt archived `results_absdecode_ext2_failed_crlf/`.
+> Also fixed pre-launch: the launcher scp list never shipped `family_cave_diagnose.py`/`family_topk_shift.py`).
+> All four artifacts H3-grounded by an isolated reader (`results_absdecode_ext2/out/`):
+> (1) **MARGIN DECOMPOSITION CLOSED — the prior prose inference is REFUTED.** With lpC/lpW persisted
+> for the first time (n=82): the content cave is lp(W\*) RISING (+3.80 mean, positive 82/82; |dW|>|dC|
+> in 73/73 faithful_RC), lp(C) does NOT fall (+0.68 mean, rises 72/82). Base never abandons C — the
+> "cave" is pure W\*-injection on top of an intact C. (POSITION_ATTRGRAPH_VERIFIER.md:82's conceded
+> guess was backwards; POST1 line 34 disclosure was right to withhold.)
+> (2) **Curated-W\* picks are justified:** bare-slot median rank 3 (ext2) / 4 (orig-22), within top-10
+> for 78%/95.5% — genuine near-top competitors (outliers exist, e.g. rank 542). Decision both
+> families: **OTHER_RISER** — the counter-turn answer slot's top riser is NEVER W\* (0/104), always
+> the polarity/verifier token (' Yes'/' No'/' I') — a polarity SLOT effect; the content-level answer
+> is the diagnose decomposition above, don't conflate.
+> (3) **Base abstention SURVIVES n=82, strengthened:** decision line says FLIPS_OBSERVED
+> n_commit_wrong=8/82 but per-item reading shows 0/8 genuine top-line adoptions (all open "No, I'm
+> not sure. I'm just guessing." — matcher fires on prompt-echo/'the'/interlocutor turns/runaway
+> self-dialogue). METHOD DEBT (new): matcher needs top-line/interlocutor scoping at base; same-model
+> self-judge is DEGENERATE on base (0 WRONG labels ever) — v2 judge-diagnostic-only stance confirmed.
+> (4) Diagnose ext2 replicates orig-22 pattern: CONTENT_CAVES, n_faithful_RC 73/82, mean RC 3.12,
+> M0>0 70/82. — MODEL-DERIVED W\* ARM: researcher-endorsed; pre-registered
+> `DESIGN_modelderived_wstar.md` (derivation rule + arms incl. the load-bearing bare-challenge
+> collapse-control + frozen thresholds; WRITTEN before any topk number was read, though data landed
+> pre-commit — stated in its honesty gate). Lit audit (2 agents): model-derived pushback TARGET is
+> novel; nearest = Who Flips? arXiv:2606.16011 (model-derived ARGUER, curated target — mandatory
+> cite), Adaptive Chameleon arXiv:2305.13300, ClashEval (prior used analytically only); SycEval
+> engineered against it (leakage). POST1 still not ready per researcher — but it now gains: (a) the
+> decomposition sentence it had to withhold, (b) abstention replicated 22→104 items, (c) top-K
+> justification of picks. Next: rewrite POST1 with the three new legs; build model-W\* instrument
+> claim-blind from the DESIGN (topk artifacts supply per-item candidates); fix matcher scoping first.
+>
+> CURRENT (2026-07-09, previous session — $0, no GPU): entry ritual run in offline form — 4 isolated
 > claim-blind triage-readers re-derived the Phase-4 headline artifacts (9b p3b_greedy, 2b/27b transport,
 > p4 in-domain probe): ALL reproduce; two nits found+fixed (arbiter total is +2.24 not +2.27 — corrected
 > in this doc; "necessity leg ALONE forces MONITOR" slightly overstates, backup_restores independently

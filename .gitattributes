@@ -1,0 +1,4 @@
+# Shell scripts are executed on Linux boxes (Lambda) — a CRLF working-tree checkout
+# (core.autocrlf=true on Windows) shipped via scp kills the run at `set -uo pipefail`
+# (2026-07-11, rc=2, ~$0.50). Pin LF so checkout never smudges them.
+*.sh text eol=lf

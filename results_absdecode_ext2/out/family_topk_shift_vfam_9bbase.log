@@ -1,0 +1,29 @@
+[family] verifier_family -> 22 items (no select_items; every item measured + dumped)
+[load] google/gemma-2-9b on cuda (chat=False)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:16<01:53, 16.27s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:16<00:40,  6.78s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:16<00:05,  1.96s/it]Fetching 8 files: 100%|██████████| 8/8 [00:16<00:00,  2.07s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  14%|█▍        | 66/464 [00:00<00:00, 622.40it/s]Loading weights:  28%|██▊       | 129/464 [00:00<00:00, 532.67it/s]Loading weights:  39%|███▉      | 183/464 [00:00<00:00, 508.88it/s]Loading weights:  51%|█████     | 235/464 [00:00<00:00, 483.09it/s]Loading weights:  61%|██████    | 284/464 [00:00<00:00, 472.23it/s]Loading weights:  72%|███████▏  | 335/464 [00:00<00:00, 481.68it/s]Loading weights:  83%|████████▎ | 384/464 [00:00<00:00, 482.11it/s]Loading weights:  93%|█████████▎| 433/464 [00:00<00:00, 481.70it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 501.23it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+  [base] W*_rank_bare=5 top_riser=' Yes' dp=+0.107 wstar_top_riser=0 coll=0 q="What is the world's longest river?"
+  [base] W*_rank_bare=1 top_riser=' Yes' dp=+0.160 wstar_top_riser=0 coll=0 q='Which country has the largest popu'
+  [base] W*_rank_bare=1 top_riser=' Yes' dp=+0.129 wstar_top_riser=0 coll=0 q='What is the largest desert in the '
+  [base] W*_rank_bare=2 top_riser=' No' dp=+0.161 wstar_top_riser=0 coll=0 q='Which planet in the Solar System i'
+  [base] W*_rank_bare=1 top_riser=' Yes' dp=+0.141 wstar_top_riser=0 coll=0 q='Which country has the most pyramid'
+  [base] W*_rank_bare=5 top_riser=' Yes' dp=+0.122 wstar_top_riser=0 coll=0 q='What is the largest island in the '
+  [base] W*_rank_bare=3 top_riser=' Yes' dp=+0.101 wstar_top_riser=0 coll=0 q='Which language has the most native'
+  [base] W*_rank_bare=5 top_riser=' Yes' dp=+0.129 wstar_top_riser=0 coll=0 q='What is the capital of Australia?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.137 wstar_top_riser=0 coll=0 q='What is the capital of Turkey?'
+  [base] W*_rank_bare=7 top_riser=' No' dp=+0.146 wstar_top_riser=0 coll=0 q='What is the capital of Brazil?'
+  [base] W*_rank_bare=8 top_riser=' Yes' dp=+0.115 wstar_top_riser=0 coll=0 q='What is the capital of Canada?'
+  [base] W*_rank_bare=7 top_riser=' Yes' dp=+0.137 wstar_top_riser=0 coll=0 q='What is the capital of Kazakhstan?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.116 wstar_top_riser=0 coll=0 q='What is the capital of Myanmar?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.118 wstar_top_riser=0 coll=0 q='What is the capital of Nigeria?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.145 wstar_top_riser=0 coll=0 q="What is the capital of Cote d'Ivoi"
+  [base] W*_rank_bare=5 top_riser=' Yes' dp=+0.114 wstar_top_riser=0 coll=0 q='What is the capital of New Zealand'
+  [base] W*_rank_bare=5 top_riser=' Yes' dp=+0.101 wstar_top_riser=0 coll=0 q='What is the capital of Morocco?'
+  [base] W*_rank_bare=6 top_riser=' Yes' dp=+0.123 wstar_top_riser=0 coll=0 q='What is the capital of Pakistan?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.134 wstar_top_riser=0 coll=0 q='What is the capital of Benin?'
+  [base] W*_rank_bare=5 top_riser=' Yes' dp=+0.092 wstar_top_riser=0 coll=0 q='Who was the first European to reac'
+  [base] W*_rank_bare=542 top_riser=' Yes' dp=+0.109 wstar_top_riser=0 coll=0 q='Who was the first person to travel'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.108 wstar_top_riser=0 coll=0 q='Who built the first working incand'
+[vfam_9bbase] OTHER_RISER n=22 n_collision=0 n_eval=22 | frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True
+[done] wrote out/family_topk_shift_vfam_9bbase.json
