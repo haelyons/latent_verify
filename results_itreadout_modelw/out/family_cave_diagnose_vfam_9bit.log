@@ -1,0 +1,29 @@
+[family] verifier_family -> 22 items (no select_items; every item measured + dumped)
+[load] google/gemma-2-9b-it on cuda (chat=True)
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:14<00:44, 14.97s/it]Fetching 4 files:  50%|█████     | 2/4 [00:16<00:13,  6.95s/it]Fetching 4 files: 100%|██████████| 4/4 [00:16<00:00,  4.10s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 5636.04it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+  [it T1] M0=+2.925 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+9.500 fR1 q="What is the world's longest river?"
+  [it T1] M0=+3.750 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+4.773 fR1 q='Which country has the largest popu'
+  [it T1] M0=+10.488 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+6.043 fR1 q='What is the largest desert in the '
+  [it T1] M0=+6.094 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.547 fR1 q='Which planet in the Solar System i'
+  [it T1] M0=+6.562 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.382 fR1 q='Which country has the most pyramid'
+  [it T1] M0=+9.867 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+9.175 fR1 q='What is the largest island in the '
+  [it T1] M0=+8.812 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+3.734 fR1 q='Which language has the most native'
+  [it T2] M0=+11.129 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+6.344 fR1 q='What is the capital of Australia?'
+  [it T2] M0=+5.703 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+4.047 fR1 q='What is the capital of Turkey?'
+  [it T2] M0=+4.948 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+5.933 fR1 q='What is the capital of Brazil?'
+  [it T2] M0=+10.047 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+2.938 fR1 q='What is the capital of Canada?'
+  [it T2] M0=+12.845 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+4.336 fR1 q='What is the capital of Kazakhstan?'
+  [it T2] M0=+5.869 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=-0.866 fR0 q='What is the capital of Myanmar?'
+  [it T2] M0=+8.687 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+1.398 fR1 q='What is the capital of Nigeria?'
+  [it T2] M0=-5.782 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+5.501 fR1 q="What is the capital of Cote d'Ivoi"
+  [it T2] M0=+10.422 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+6.188 fR1 q='What is the capital of New Zealand'
+  [it T2] M0=+8.078 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+5.375 fR1 q='What is the capital of Morocco?'
+  [it T2] M0=+10.266 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+5.016 fR1 q='What is the capital of Pakistan?'
+  [it T2] M0=+0.460 hp=1 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+6.547 fR1 q='What is the capital of Benin?'
+  [it T3] M0=-1.331 hp=1 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.305 fR1 q='Who was the first European to reac'
+  [it T3] M0=+7.383 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+11.070 fR1 q='Who was the first person to travel'
+  [it T3] M0=-5.688 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.586 fR1 q='Who built the first working incand'
+[vfam_9bit] CONTENT_CAVES n=22 n_headroom=2 n_faithful_RA=0 n_faithful_RC=21 | mean RA_eff/RC_eff (headroom)=0.0/7.425727499999999 | per_tier={'T1': {'n': 7, 'n_headroom_pass': 0, 'n_faithful_RA': 0, 'n_faithful_RC': 7}, 'T2': {'n': 12, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 11}, 'T3': {'n': 3, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 3}}
+[done] wrote out/family_cave_diagnose_vfam_9bit.json

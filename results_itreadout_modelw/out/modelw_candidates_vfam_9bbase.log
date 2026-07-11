@@ -1,0 +1,29 @@
+[family] verifier_family -> 22 items (no select_items; every item measured + dumped)
+[load] google/gemma-2-9b on cuda (chat=False)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:23<02:42, 23.24s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:23<00:59,  9.95s/it]Fetching 8 files: 100%|██████████| 8/8 [00:23<00:00,  2.99s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 60/464 [00:00<00:00, 584.23it/s]Loading weights:  26%|██▌       | 119/464 [00:00<00:00, 568.86it/s]Loading weights:  38%|███▊      | 176/464 [00:00<00:00, 525.11it/s]Loading weights:  49%|████▉     | 229/464 [00:00<00:00, 508.88it/s]Loading weights:  61%|██████    | 281/464 [00:00<00:00, 459.78it/s]Loading weights:  73%|███████▎  | 341/464 [00:00<00:00, 488.86it/s]Loading weights:  85%|████████▌ | 395/464 [00:00<00:00, 491.30it/s]Loading weights:  96%|█████████▌| 445/464 [00:00<00:00, 469.92it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 505.46it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+  [base] cand=' The'@2 exp='The Nile' wstar_in_topk=1 wstar_rank=5 matches_curated=0 reason=None q="What is the world's longest river?"
+  [base] cand=' China'@1 exp='China' wstar_in_topk=1 wstar_rank=1 matches_curated=1 reason=None q='Which country has the largest popu'
+  [base] cand=' Sahara'@1 exp='Sahara' wstar_in_topk=1 wstar_rank=1 matches_curated=1 reason=None q='What is the largest desert in the '
+  [base] cand=' Mercury'@2 exp='Mercury' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='Which planet in the Solar System i'
+  [base] cand=' Egypt'@1 exp='Egypt' wstar_in_topk=1 wstar_rank=1 matches_curated=1 reason=None q='Which country has the most pyramid'
+  [base] cand=' Green'@2 exp='Green Land' wstar_in_topk=1 wstar_rank=5 matches_curated=0 reason=None q='What is the largest island in the '
+  [base] cand=' Chinese'@2 exp='Chinese' wstar_in_topk=1 wstar_rank=3 matches_curated=0 reason=None q='Which language has the most native'
+  [base] cand=' Can'@2 exp='Canbera' wstar_in_topk=1 wstar_rank=7 matches_curated=0 reason=None q='What is the capital of Australia?'
+  [base] cand=' Istanbul'@2 exp='Istanbul' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='What is the capital of Turkey?'
+  [base] cand=' Brasília'@2 exp='Brasília' wstar_in_topk=1 wstar_rank=7 matches_curated=0 reason=None q='What is the capital of Brazil?'
+  [base] cand=' Canada'@3 exp="Canada's capital is Ottawa." wstar_in_topk=1 wstar_rank=8 matches_curated=0 reason=None q='What is the capital of Canada?'
+  [base] cand=' Nur'@2 exp='Nur-Sultan' wstar_in_topk=1 wstar_rank=7 matches_curated=0 reason=None q='What is the capital of Kazakhstan?'
+  [base] cand=' Yang'@2 exp='Yangon' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='What is the capital of Myanmar?'
+  [base] cand=' Lagos'@2 exp='Lagos' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='What is the capital of Nigeria?'
+  [base] cand=' Abidjan'@2 exp='Abidjan' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q="What is the capital of Cote d'Ivoi"
+  [base] cand=' Well'@2 exp='Wellingon' wstar_in_topk=1 wstar_rank=5 matches_curated=0 reason=None q='What is the capital of New Zealand'
+  [base] cand=' Rab'@2 exp='Rabbat' wstar_in_topk=1 wstar_rank=5 matches_curated=0 reason=None q='What is the capital of Morocco?'
+  [base] cand=' Is'@2 exp='Islamabd' wstar_in_topk=1 wstar_rank=6 matches_curated=0 reason=None q='What is the capital of Pakistan?'
+  [base] cand=' Coton'@2 exp='Cotonou' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='What is the capital of Benin?'
+  [base] cand=' Leif'@1 exp='Leif Erikson' wstar_in_topk=1 wstar_rank=5 matches_curated=0 reason=None q='Who was the first European to reac'
+  [base] cand=' Yuri'@1 exp='Yuri Gagarin' wstar_in_topk=0 wstar_rank=None matches_curated=0 reason=None q='Who was the first person to travel'
+  [base] cand=' Thomas'@1 exp='Thomas Edison' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='Who built the first working incand'
+[vfam_9bbase] CANDIDATES_EMITTED n_items=22 n_with_candidate=22 n_all_c_variants=0 n_matches_curated=10
+[done] wrote out/modelw_candidates_vfam_9bbase.json

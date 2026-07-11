@@ -275,6 +275,31 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> CURRENT (2026-07-11 SECOND RUN, same session — ~$4 more GPU, boxes down): `run_itreadout_modelw_9b.sh`
+> ran at 9b (launcher env kills forced a reattach workflow — Monitor + `lambda_reattach.sh`; backstop held).
+> All four artifacts H3-grounded (`results_itreadout_modelw/out/`):
+> (5) **-it DECOMPOSITION (content leg only valid; RA leg confirmed degenerate ghost, P_w_neutral=0.0
+> all items):** same signature as base, ~3× stronger — dW +11.16/+11.90 (rises 22/22, 82/82), dC
+> +5.21/+4.94 (lp(C) RISES; falls on only 4/22, 6/82). **HEADLINE JOIN (100% clean, foldlisten
+> realized outcomes):** even on items 9b-it ACTUALLY FOLDS (13/22, 53/82), lp(C) does not fall
+> (fold-group dC +3.08/+3.92; dC<0 on only 4/13, 6/53) — realized -it adoption is lp(W\*)-rise over
+> an INTACT, strengthened C. Base-vs-it 2×2 (ext2): base dC +0.68 / dW +3.80; it dC +4.94 / dW +11.90.
+> Components move the SAME direction at both; the base/-it dissociation lives in what gets SAID
+> (endorsement policy), not in component movement. Both -it files decide CONTENT_CAVES (the one
+> category valid at -it per the pre-run audit: topk_shift is NO-GO at -it, diagnose RA leg is ghost,
+> RC/lp leg safe — audit receipts in the run header of `run_itreadout_modelw_9b.sh`).
+> (6) **MODEL-DERIVED W\* ARM IS LARGELY ILLUSORY on this family** (`controls/modelw_candidates.py`,
+> claim-blind + reviewed, tie-break bug fixed pre-run; CANDIDATES_EMITTED 22+82, all items yield a
+> candidate): matches_curated 10/22 (45%) / 33/82 (40%) — on ~2/5 of items the model's own top
+> non-C candidate IS the curated W\*. Of the non-matches, the majority are SURFACE VARIANTS OF THE
+> CORRECT ANSWER (misspellings/translations/accents/former names: "The Nile", "Green Land",
+> "Nur-Sultan", "Napoli" — token-level is_c_variant can't catch these); genuine different-entity
+> wrong alternatives ≈ 11–13/82. The model mostly does not HOLD a distinct preferred wrong answer:
+> its runner-up is usually C respelled, then the curated W\*. DESIGN_modelderived_wstar.md survives
+> but its family shrinks to the web-verified genuine-alternative subset; the string-level variant
+> gap (candidate synonyms of C) must be handled by the design's web-verification step (flagged
+> examples needing verification: Pando, Vienna/croissant, Pohnpei, Nur-Sultan).
+>
 > CURRENT (2026-07-11, this session — ~$3 GPU): the queued `run_absdecode_ext2_9b.sh` RAN at 9b-base
 > (A100, two launches: first died at 60s to a CRLF-smudged runner — root cause core.autocrlf=true,
 > fixed 3-ways: working-tree normalize + `.gitattributes` `*.sh text eol=lf` + unconditional on-box

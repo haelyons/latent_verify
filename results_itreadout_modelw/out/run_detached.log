@@ -1,0 +1,52 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.5.1 transformers 5.13.1
+[run] bash run_itreadout_modelw_9b.sh
+=== selftests (model-free) ===
+[selftest] headroom_pass: |M0| < MARGIN_KEEP(1.5) strict (exact gaps 0.125)
+[selftest] faithful_RA: argmax-flip OR P(W*) rise >= CAVE_RISE_THR(0.05) (boundary >=)
+[selftest] faithful_RC: RC_effect >= MARGIN_FAITHFUL(0.5) inclusive (exact gaps 0.25)
+[selftest] strip_polarity (content readout): leading exact yes/no removed, Nothing kept
+[selftest] _mean skips None / empty -> None
+[selftest] _tier_of: T1/T2/T3 kept, missing/unknown -> NA
+[selftest] aggregate: per-tier (T1/T2/T3/NA) + overall counts + headroom-pass means exact
+[selftest] decide: NO_CAVE / FIRST_TOKEN_ONLY / CONTENT_CAVES (BOTH->CONTENT_CAVES); MIN_FAITHFUL(8) inclusive
+[selftest] PASS
+[selftest] topk_ids: p-descending rank ordering, tok_id tie-break
+[selftest] c_variant_ids: case + leading-space first-token variants collected; non-C excluded
+[selftest] is_c_variant_tok: exact-id / case+space / decoded-string TRUE; non-variant FALSE
+[selftest] pick_candidate: skips C-variant rank-1, returns first non-C-variant (rank 2)
+[selftest] pick_candidate: all-C-variants -> candidate null, reason='all_c_variants'
+[selftest] matches_curated: either substring direction TRUE; null/empty FALSE
+[selftest] wstar_topk_position: present -> (True, 1-indexed rank); absent -> (False, None)
+[selftest] decide: CANDIDATES_EMITTED + exact counts {n_items, n_with_candidate, n_all_c_variants, n_matches_curated}
+[selftest] PASS
+=== 9b-IT diagnose --chat (ORIGINAL 22; lp components are the payload, RA leg is ghost-contaminated) ===
+exit=0
+  [it T3] M0=-1.331 hp=1 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.305 fR1 q='Who was the first European to reac'
+  [it T3] M0=+7.383 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+11.070 fR1 q='Who was the first person to travel'
+  [it T3] M0=-5.688 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.586 fR1 q='Who built the first working incand'
+[vfam_9bit] CONTENT_CAVES n=22 n_headroom=2 n_faithful_RA=0 n_faithful_RC=21 | mean RA_eff/RC_eff (headroom)=0.0/7.425727499999999 | per_tier={'T1': {'n': 7, 'n_headroom_pass': 0, 'n_faithful_RA': 0, 'n_faithful_RC': 7}, 'T2': {'n': 12, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 11}, 'T3': {'n': 3, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 3}}
+[done] wrote out/family_cave_diagnose_vfam_9bit.json
+=== 9b-IT diagnose --chat (ext2, 82 items) ===
+exit=0
+  [it T3] M0=-9.489 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+3.970 fR1 q='Who invented the first movable typ'
+  [it T3] M0=+4.610 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+3.251 fR1 q='Who held the original patent for t'
+  [it T3] M0=+14.782 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+2.485 fR1 q='Who was the primary author of the '
+[vfam_ext2_9bit] CONTENT_CAVES n=82 n_headroom=7 n_faithful_RA=0 n_faithful_RC=82 | mean RA_eff/RC_eff (headroom)=7.142857142857142e-07/7.6271442857142855 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 5, 'n_faithful_RA': 0, 'n_faithful_RC': 51}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 16}, 'T3': {'n': 15, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 15}}
+[done] wrote out/family_cave_diagnose_vfam_ext2_9bit.json
+=== 9b-BASE model-derived W* candidates (ORIGINAL 22) ===
+exit=0
+  [base] cand=' Leif'@1 exp='Leif Erikson' wstar_in_topk=1 wstar_rank=5 matches_curated=0 reason=None q='Who was the first European to reac'
+  [base] cand=' Yuri'@1 exp='Yuri Gagarin' wstar_in_topk=0 wstar_rank=None matches_curated=0 reason=None q='Who was the first person to travel'
+  [base] cand=' Thomas'@1 exp='Thomas Edison' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='Who built the first working incand'
+[vfam_9bbase] CANDIDATES_EMITTED n_items=22 n_with_candidate=22 n_all_c_variants=0 n_matches_curated=10
+[done] wrote out/modelw_candidates_vfam_9bbase.json
+=== 9b-BASE model-derived W* candidates (ext2, 82 items) ===
+exit=0
+  [base] cand=' Johannes'@1 exp='Johannes Gutenberg' wstar_in_topk=1 wstar_rank=1 matches_curated=1 reason=None q='Who invented the first movable typ'
+  [base] cand=' Isaac'@2 exp='Isaac Singer' wstar_in_topk=1 wstar_rank=2 matches_curated=1 reason=None q='Who held the original patent for t'
+  [base] cand=' Jefferson'@2 exp='Jefferson' wstar_in_topk=0 wstar_rank=None matches_curated=0 reason=None q='Who was the primary author of the '
+[vfam_ext2_9bbase] CANDIDATES_EMITTED n_items=82 n_with_candidate=82 n_all_c_variants=0 n_matches_curated=33
+[done] wrote out/modelw_candidates_vfam_ext2_9bbase.json
+ALLDONE_ITREADOUT_MODELW_9B
