@@ -1,0 +1,5 @@
+- Much better, though the TL;DR should probably be something like:  "I find that under pushback the probability of a [user suggested] wrong answer increases in both -base and -it Gemma 2 model variants, but only -it models "fold", changing their answer to the wrong one. -base models consistently abstain "I don't know". This shows that [alignment / instruction tuning forces the model to produce an answer at the expense of expressing uncertainty], which in user scenarios downstream of model release expresses itself as "caving" - regressive/progressive sycophancy, answer 
+flipping under pressure/pushback, etc. 
+- Why do base models hedge? 
+- Do we use a chat format in a base model? How does that work if it hasn't been instruction tuned? Is this representative? 
+- Do we have samples/information/dataset/architecture for Gemma 2, specifically its instruction tuning mechanism, original dataset, RLHF examples, etc? 

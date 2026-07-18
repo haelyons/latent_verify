@@ -275,6 +275,23 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> WRITE-UP ARC STATE (2026-07-14, for the next agent): POST1 v4 draft committed
+> (`docs/drafts/POST1_v4_draft.md`) + 4 figures with grounded-number asserts
+> (`docs/drafts/figs/`, script asserts every plotted value). Reviewer commentary ROUND 1
+> (`POST1_v4_draft_notes.md`) fully resolved in `POST1_v5_review_response.md` (proposed v5 text at
+> its end) — headline catches: literal "I don't know" is 0/82 TOP-LINE (hedge family
+> "No, I'm not sure…" 56/82 is the real reply; IDK lives only in runaway self-dialogue); the first
+> model turn is SCRIPTED (planted answer — must be said in the post); Nile item's -it dC is
+> NEGATIVE (captions stay aggregate-scoped); worked Istanbul/Ankara example resolves the
+> both-probabilities-rise question (two strings, tiny joint mass 0.06→0.09, no shared normalizer;
+> plus the W*-repetition confound to disclose). Reviewer commentary ROUND 2
+> (`POST1_v5_draft_notes.txt`) is UNRESOLVED: TL;DR reframe toward "alignment forces an answer at
+> the expense of expressed uncertainty"; why do base models hedge; is the chat/QA format valid on
+> a base model (representativeness); what is known about Gemma-2's instruction-tuning
+> data/mechanism. PRE-SHIP DEBT: matcher top-line scoping fix (separates 8/82 from 0/82,
+> load-bearing); round-1 34-item family has NO provenance file. Artifacts (private, review):
+> draft v4 …6dbcb0a9, figures …7eb3f6e8, v5 review response …fc2b7a1e.
+>
 > CURRENT (2026-07-11 SECOND RUN, same session — ~$4 more GPU, boxes down): `run_itreadout_modelw_9b.sh`
 > ran at 9b (launcher env kills forced a reattach workflow — Monitor + `lambda_reattach.sh`; backstop held).
 > All four artifacts H3-grounded (`results_itreadout_modelw/out/`):
