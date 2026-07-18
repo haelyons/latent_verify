@@ -275,22 +275,38 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> WRITE-UP ARC STATE (2026-07-14, for the next agent): POST1 v4 draft committed
-> (`docs/drafts/POST1_v4_draft.md`) + 4 figures with grounded-number asserts
-> (`docs/drafts/figs/`, script asserts every plotted value). Reviewer commentary ROUND 1
-> (`POST1_v4_draft_notes.md`) fully resolved in `POST1_v5_review_response.md` (proposed v5 text at
-> its end) — headline catches: literal "I don't know" is 0/82 TOP-LINE (hedge family
-> "No, I'm not sure…" 56/82 is the real reply; IDK lives only in runaway self-dialogue); the first
-> model turn is SCRIPTED (planted answer — must be said in the post); Nile item's -it dC is
-> NEGATIVE (captions stay aggregate-scoped); worked Istanbul/Ankara example resolves the
-> both-probabilities-rise question (two strings, tiny joint mass 0.06→0.09, no shared normalizer;
-> plus the W*-repetition confound to disclose). Reviewer commentary ROUND 2
-> (`POST1_v5_draft_notes.txt`) is UNRESOLVED: TL;DR reframe toward "alignment forces an answer at
-> the expense of expressed uncertainty"; why do base models hedge; is the chat/QA format valid on
-> a base model (representativeness); what is known about Gemma-2's instruction-tuning
-> data/mechanism. PRE-SHIP DEBT: matcher top-line scoping fix (separates 8/82 from 0/82,
-> load-bearing); round-1 34-item family has NO provenance file. Artifacts (private, review):
-> draft v4 …6dbcb0a9, figures …7eb3f6e8, v5 review response …fc2b7a1e.
+> WRITE-UP ARC STATE (2026-07-18, for the next agent): POST1 v5 got a FULL-RIGOR EVALUATION →
+> `docs/drafts/POST1_v5_evaluation.md` (22 ranked findings; ~30 numbers ALL H3-reproduce; 12
+> isolated agents + 2 blind clarity passes; novelty RE-VERIFIED 2026-07-18 by 2 independent
+> sweeps — the two-channel base/it dissociation is UNCLAIMED; scoop risk = De Marez
+> arXiv:2606.06306, logprob-only on 56 base+it pairs, adding a generation arm). Blockers
+> found+fixed in v6: "only tuned say it" FALSE unscoped (27b/2b-base fold adoptions GENUINE,
+> 5/22 each, read-audited at the elicited slot; 9b-base elicited fold 0/3/19 = the zero-adoption
+> scale); "ratio collapse on all 82" receipt-false (dW>0 82/82; RC>0 77/82); 12× was an
+> orig-22-subset figure (now 8×/22× all-items geometric means); Xiong→XIE 2310.02174 +
+> counter-turn provenance conflation (Xie leading-question + Sharma "Are you sure?") + SycEval
+> 2502.08177 credit restored; matcher ENVELOPE BREACH (the 0.982 validation covers the elicited
+> -it slot only — base whole-text scans were outside it). GATES CLOSED this session:
+> `controls/topline_rescore.py` (claim-blind authored + reviewed + selftest 10/10) → base
+> TOP-LINE NAMES NEITHER ENTITY 104/104 (the 8+1 stored 'wrong' AND the 12 stored 'correct' were
+> ALL tail artifacts) → `results_{absdecode_ext2,verifier}/out/topline_rescore_*.json`; manual
+> read persisted `results_absdecode_ext2/out/manual_topline_read_9bbase.md` (3 independent reads
+> agree, 0/9 genuine); ext-1 provenance gap documented `results_foldlisten_ext/PROVENANCE_ext1_GAP.md`.
+> POST1 v6 DRAFTED `docs/drafts/POST1_v6_draft.md`: two-readout split (free-reply vs elicited —
+> fixed a real conflation), 2×3 elicited table (single instrument incl. base listen 8/4/7-of-22),
+> jargon-free TL;DR, deflation-guard + RLHF-practice-fit + format-disclosure paragraphs, AG 0.40
+> flagged small-n/suggestive, magnitude honesty (components ~3× larger at -it, direction matched),
+> verbatim false-positive exhibit (Pancreas/Liver). Researcher round-2 TL;DR DECLINED with
+> receipts (it reinstated the corrected literal-IDK error; "consistently abstain" fails at
+> 27b/2b-base AND on the misconception substrate where base emits W* 23/23; causal "alignment
+> forces" unattributable — no staged checkpoints, format co-varies) — ADOPTED instead re-grounded
+> on the abstention column (-it withheld 0–1/22 vs base 4–19/22; interpretation citation-borne:
+> 2401.06730, 2410.09724 = preference training penalizes hedging). Researcher feedback bullets
+> (deflation risk / RLHF-fit / no-jargon / plain-English / MECE-with-repo) critically evaluated;
+> resolutions baked into v6. REMAINING before ship: human pass on v6 (body ≈1200 words, at cap;
+> the drafting agent died at a session limit mid-final-trim — file verified complete+coherent);
+> OPTIONAL follow-ups: sampled-decode base arm (tests the greedy/argmax-mechanics alternative the
+> post now names), model-derived-W* arm (family shrinks to ~11–13/82 genuine alternatives).
 >
 > CURRENT (2026-07-11 SECOND RUN, same session — ~$4 more GPU, boxes down): `run_itreadout_modelw_9b.sh`
 > ran at 9b (launcher env kills forced a reattach workflow — Monitor + `lambda_reattach.sh`; backstop held).
