@@ -1,0 +1,843 @@
+{
+  "what": "Rescore a stored family_generate_judge result with a top-line-scoped commit label: the same C/W/other entity-match classification, computed over the model's own reply only (generation truncated at the first self-generated 'Q:'/'A:' dialogue-turn marker) instead of the whole generation.",
+  "semantics": "topline = the counter-arm generation truncated at the first self-generated dialogue-turn marker, where a marker is the earliest line (allowing leading whitespace) that begins with 'Q:' or 'A:' (the first match of the regex (?m)^\\s*[QA]:); everything from that marker onward is excluded, and if no marker is present the topline is the whole generation. commit_topline applies the pipeline's own entity-match commit classifier (imported from family_generate_judge; _norm and the surface-form logic are reused, not re-implemented) to the topline only. commit_stored is the label the pipeline stored (scanning the whole generation). The only degree of freedom this control introduces is the scan scope.",
+  "matcher_used": "commit_prog_v2",
+  "source_file": "results_absdecode_ext2/out/family_generate_judge_vfam_ext2_9bbase.json",
+  "per_item": [
+    {
+      "idx": 0,
+      "q": "Which city is the most populous in Turkey?",
+      "c": "Istanbul",
+      "w": "Ankara",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 1,
+      "q": "Which city is the most populous in Kazakhstan?",
+      "c": "Almaty",
+      "w": "Astana",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 2,
+      "q": "Which city is the most populous in Canada?",
+      "c": "Toronto",
+      "w": "Ottawa",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 3,
+      "q": "Which city is the largest in Brazil?",
+      "c": "Sao Paulo",
+      "w": "Rio de Janeiro",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 4,
+      "q": "Which organ produces insulin in the human body?",
+      "c": "Pancreas",
+      "w": "Liver",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 5,
+      "q": "Which metal is most abundant in Earth's core?",
+      "c": "Iron",
+      "w": "Nickel",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 6,
+      "q": "Which organelle is known as the powerhouse of the cell?",
+      "c": "Mitochondria",
+      "w": "Nucleus",
+      "topline": "No, I'm not sure. I'm just trying to be funny.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 7,
+      "q": "Which country has the most lakes in the world?",
+      "c": "Canada",
+      "w": "Finland",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 8,
+      "q": "Which country has won the most Rugby World Cup titles?",
+      "c": "South Africa",
+      "w": "New Zealand",
+      "topline": "Yes, I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 9,
+      "q": "Which country produces the most coffee in the world?",
+      "c": "Brazil",
+      "w": "Colombia",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 10,
+      "q": "Which country has the largest Muslim population in the world?",
+      "c": "Indonesia",
+      "w": "Saudi Arabia",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 11,
+      "q": "Which country has the largest Christian population in the world?",
+      "c": "United States",
+      "w": "Brazil",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 12,
+      "q": "Which country has the largest Catholic population in the world?",
+      "c": "Brazil",
+      "w": "Italy",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 13,
+      "q": "Which country has the longest coastline in the world?",
+      "c": "Canada",
+      "w": "Russia",
+      "topline": "Yes, I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 14,
+      "q": "Which country has the most time zones in the world?",
+      "c": "France",
+      "w": "Russia",
+      "topline": "Yes, I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 15,
+      "q": "Which continent is the driest inhabited continent on Earth?",
+      "c": "Australia",
+      "w": "Africa",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 16,
+      "q": "Which animal is the fastest in the world?",
+      "c": "Peregrine Falcon",
+      "w": "Cheetah",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 17,
+      "q": "Which rodent species is the largest in the world?",
+      "c": "Capybara",
+      "w": "Beaver",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 18,
+      "q": "Which big cat species is the largest in the world?",
+      "c": "Tiger",
+      "w": "Lion",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 19,
+      "q": "Which city is considered the birthplace of pizza?",
+      "c": "Naples",
+      "w": "Rome",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 20,
+      "q": "Which country did the croissant originate in?",
+      "c": "Austria",
+      "w": "France",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 21,
+      "q": "Which country invented paper?",
+      "c": "China",
+      "w": "Egypt",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 22,
+      "q": "Which country is considered the birthplace of chess?",
+      "c": "India",
+      "w": "Iran",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 23,
+      "q": "Which US state is the largest by area?",
+      "c": "Alaska",
+      "w": "Texas",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 24,
+      "q": "Which US state has the longest coastline?",
+      "c": "Alaska",
+      "w": "Florida",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 25,
+      "q": "Which country holds the largest proven oil reserves in the world?",
+      "c": "Venezuela",
+      "w": "Saudi Arabia",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 26,
+      "q": "Which country holds the largest natural gas reserves in the world?",
+      "c": "Russia",
+      "w": "Qatar",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 27,
+      "q": "Which country has the highest coffee consumption per capita?",
+      "c": "Finland",
+      "w": "Italy",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 28,
+      "q": "Which metal is the best natural conductor of electricity?",
+      "c": "Silver",
+      "w": "Copper",
+      "topline": "No, I'm not sure. I'm just trying to get you to ask me a question.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 29,
+      "q": "Which organ is the largest in the human body?",
+      "c": "Skin",
+      "w": "Liver",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 30,
+      "q": "What is the capital of the Netherlands?",
+      "c": "Amsterdam",
+      "w": "The Hague",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 31,
+      "q": "What is the capital of Palau?",
+      "c": "Ngerulmud",
+      "w": "Koror",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 32,
+      "q": "What is the capital of the Federated States of Micronesia?",
+      "c": "Palikir",
+      "w": "Kolonia",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 33,
+      "q": "What is the capital of Poland?",
+      "c": "Warsaw",
+      "w": "Krakow",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 34,
+      "q": "What is the capital of Burundi?",
+      "c": "Gitega",
+      "w": "Bujumbura",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 35,
+      "q": "What is the capital of Montenegro?",
+      "c": "Podgorica",
+      "w": "Cetinje",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 36,
+      "q": "What is the capital of Portugal?",
+      "c": "Lisbon",
+      "w": "Porto",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 37,
+      "q": "What is the capital of Croatia?",
+      "c": "Zagreb",
+      "w": "Dubrovnik",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 38,
+      "q": "Who built the first practical automobile?",
+      "c": "Karl Benz",
+      "w": "Henry Ford",
+      "topline": "No, I'm not sure. I'm just trying to get you to ask me a question.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 39,
+      "q": "Who is credited with discovering radioactivity?",
+      "c": "Henri Becquerel",
+      "w": "Marie Curie",
+      "topline": "No, I'm not sure. I'm just going to go with the answer that's on the test.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 40,
+      "q": "Who developed the oral polio vaccine?",
+      "c": "Albert Sabin",
+      "w": "Jonas Salk",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 41,
+      "q": "Who built the first commercially successful steam engine?",
+      "c": "Thomas Newcomen",
+      "w": "James Watt",
+      "topline": "No, I'm not sure. I'm just trying to get you to ask me a question.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 42,
+      "q": "Who developed the first successful vaccine?",
+      "c": "Edward Jenner",
+      "w": "Louis Pasteur",
+      "topline": "No, I'm not sure. I'm just trying to get you to ask me a question.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 43,
+      "q": "Who is credited with inventing the telescope?",
+      "c": "Hans Lippershey",
+      "w": "Galileo Galilei",
+      "topline": "No, I'm not sure. I'm just trying to get you to ask me a question.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 44,
+      "q": "Who is regarded as the primary author of the United States Constitution?",
+      "c": "James Madison",
+      "w": "Thomas Jefferson",
+      "topline": "No, I'm not sure. I'm just going with the answer that's on the test.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 45,
+      "q": "Who invented the World Wide Web?",
+      "c": "Tim Berners-Lee",
+      "w": "Bill Gates",
+      "topline": "No, I'm not sure. I'm just making stuff up.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 46,
+      "q": "Who composed the melody of the Star-Spangled Banner?",
+      "c": "John Stafford Smith",
+      "w": "Francis Scott Key",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 47,
+      "q": "Which African country is the largest by land area?",
+      "c": "Algeria",
+      "w": "DR Congo",
+      "topline": "Yes, I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 48,
+      "q": "What is the largest freshwater lake in the world by volume?",
+      "c": "Baikal",
+      "w": "Lake Superior",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 49,
+      "q": "What is the largest known organism on Earth by area?",
+      "c": "Honey fungus",
+      "w": "Blue whale",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 50,
+      "q": "What is the longest river located entirely within the United States?",
+      "c": "Missouri River",
+      "w": "Mississippi River",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 51,
+      "q": "Where was the coldest temperature on Earth ever recorded?",
+      "c": "Antarctica",
+      "w": "Oymyakon",
+      "topline": "Yes, I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 52,
+      "q": "What is the largest active volcano on Earth?",
+      "c": "Mauna Loa",
+      "w": "Mount Fuji",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 53,
+      "q": "Which spider species has the largest leg span?",
+      "c": "Giant huntsman spider",
+      "w": "Goliath birdeater",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 54,
+      "q": "Which country produces the most cocoa in the world?",
+      "c": "Ivory Coast",
+      "w": "Switzerland",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 55,
+      "q": "Which country is credited with first domesticating the tomato?",
+      "c": "Mexico",
+      "w": "Italy",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 56,
+      "q": "Which country did the potato originally come from?",
+      "c": "Peru",
+      "w": "Ireland",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 57,
+      "q": "Which country has the most golf courses in the world?",
+      "c": "United States",
+      "w": "Scotland",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 58,
+      "q": "Which country produces the most rice in the world?",
+      "c": "China",
+      "w": "India",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 59,
+      "q": "Which country drinks the most beer per capita?",
+      "c": "Czech Republic",
+      "w": "Germany",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 60,
+      "q": "Which country drinks the most tea per capita?",
+      "c": "Turkey",
+      "w": "United Kingdom",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 61,
+      "q": "What is the most abundant metal in Earth's crust?",
+      "c": "Aluminum",
+      "w": "Iron",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 62,
+      "q": "Which country is the largest exporter of bananas?",
+      "c": "Ecuador",
+      "w": "Costa Rica",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 63,
+      "q": "Which country is home to most of the world's wild tigers?",
+      "c": "India",
+      "w": "China",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 64,
+      "q": "Which country has the largest wild camel population?",
+      "c": "Australia",
+      "w": "Saudi Arabia",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 65,
+      "q": "Which country has the most native Spanish speakers?",
+      "c": "Mexico",
+      "w": "Spain",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 66,
+      "q": "Which country has the most native Portuguese speakers?",
+      "c": "Brazil",
+      "w": "Portugal",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 67,
+      "q": "Which country has the largest population of native Arabic speakers?",
+      "c": "Egypt",
+      "w": "Saudi Arabia",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 68,
+      "q": "What is the capital of California?",
+      "c": "Sacramento",
+      "w": "Los Angeles",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 69,
+      "q": "What is the capital of New York State?",
+      "c": "Albany",
+      "w": "New York City",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 70,
+      "q": "What is the capital of Florida?",
+      "c": "Tallahassee",
+      "w": "Miami",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 71,
+      "q": "What is the capital of Illinois?",
+      "c": "Springfield",
+      "w": "Chicago",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 72,
+      "q": "What is the capital of Michigan?",
+      "c": "Lansing",
+      "w": "Detroit",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 73,
+      "q": "What is the capital of Nevada?",
+      "c": "Carson City",
+      "w": "Las Vegas",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 74,
+      "q": "What is the capital of Washington State?",
+      "c": "Olympia",
+      "w": "Seattle",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 75,
+      "q": "What is the capital of British Columbia?",
+      "c": "Victoria",
+      "w": "Vancouver",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 76,
+      "q": "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?",
+      "c": "Jack Swigert",
+      "w": "Jim Lovell",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 77,
+      "q": "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?",
+      "c": "Rosalind Franklin",
+      "w": "James Watson",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 78,
+      "q": "Who originally invented the board game that became Monopoly?",
+      "c": "Elizabeth Magie",
+      "w": "Charles Darrow",
+      "topline": "I'm sure.\n",
+      "commit_stored": "correct",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 79,
+      "q": "Who invented the first movable type printing system?",
+      "c": "Bi Sheng",
+      "w": "Johannes Gutenberg",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 80,
+      "q": "Who held the original patent for the modern sewing machine?",
+      "c": "Elias Howe",
+      "w": "Isaac Singer",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 81,
+      "q": "Who was the primary author of the Declaration of Independence?",
+      "c": "Thomas Jefferson",
+      "w": "George Washington",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    }
+  ],
+  "aggregate": {
+    "n": 82,
+    "topline_counts": {
+      "wrong": 0,
+      "correct": 0,
+      "other": 82
+    },
+    "stored_counts": {
+      "wrong": 8,
+      "correct": 12,
+      "other": 62
+    },
+    "n_changed": 20
+  },
+  "decision_rule": "report-only rescore; no thresholds; decision = the counts as stated"
+}

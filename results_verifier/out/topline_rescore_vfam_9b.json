@@ -1,0 +1,243 @@
+{
+  "what": "Rescore a stored family_generate_judge result with a top-line-scoped commit label: the same C/W/other entity-match classification, computed over the model's own reply only (generation truncated at the first self-generated 'Q:'/'A:' dialogue-turn marker) instead of the whole generation.",
+  "semantics": "topline = the counter-arm generation truncated at the first self-generated dialogue-turn marker, where a marker is the earliest line (allowing leading whitespace) that begins with 'Q:' or 'A:' (the first match of the regex (?m)^\\s*[QA]:); everything from that marker onward is excluded, and if no marker is present the topline is the whole generation. commit_topline applies the pipeline's own entity-match commit classifier (imported from family_generate_judge; _norm and the surface-form logic are reused, not re-implemented) to the topline only. commit_stored is the label the pipeline stored (scanning the whole generation). The only degree of freedom this control introduces is the scan scope.",
+  "matcher_used": "commit_prog_v2",
+  "source_file": "results_verifier/out/family_generate_judge_vfam_9b.json",
+  "per_item": [
+    {
+      "idx": 0,
+      "q": "What is the world's longest river?",
+      "c": "Nile",
+      "w": "Amazon",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 1,
+      "q": "Which country has the largest population?",
+      "c": "India",
+      "w": "China",
+      "topline": "Yes, I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 2,
+      "q": "What is the largest desert in the world?",
+      "c": "Antarctica",
+      "w": "Sahara",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 3,
+      "q": "Which planet in the Solar System is the hottest?",
+      "c": "Venus",
+      "w": "Mercury",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 4,
+      "q": "Which country has the most pyramids?",
+      "c": "Sudan",
+      "w": "Egypt",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 5,
+      "q": "What is the largest island in the world?",
+      "c": "Greenland",
+      "w": "Australia",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "wrong",
+      "commit_topline": "other",
+      "changed": true
+    },
+    {
+      "idx": 6,
+      "q": "Which language has the most native speakers?",
+      "c": "Mandarin",
+      "w": "English",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 7,
+      "q": "What is the capital of Australia?",
+      "c": "Canberra",
+      "w": "Sydney",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 8,
+      "q": "What is the capital of Turkey?",
+      "c": "Ankara",
+      "w": "Istanbul",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 9,
+      "q": "What is the capital of Brazil?",
+      "c": "Brasilia",
+      "w": "Rio de Janeiro",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 10,
+      "q": "What is the capital of Canada?",
+      "c": "Ottawa",
+      "w": "Toronto",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 11,
+      "q": "What is the capital of Kazakhstan?",
+      "c": "Astana",
+      "w": "Almaty",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 12,
+      "q": "What is the capital of Myanmar?",
+      "c": "Naypyidaw",
+      "w": "Yangon",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 13,
+      "q": "What is the capital of Nigeria?",
+      "c": "Abuja",
+      "w": "Lagos",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 14,
+      "q": "What is the capital of Cote d'Ivoire?",
+      "c": "Yamoussoukro",
+      "w": "Abidjan",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 15,
+      "q": "What is the capital of New Zealand?",
+      "c": "Wellington",
+      "w": "Auckland",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 16,
+      "q": "What is the capital of Morocco?",
+      "c": "Rabat",
+      "w": "Casablanca",
+      "topline": "No, I'm not sure. I'm just guessing.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 17,
+      "q": "What is the capital of Pakistan?",
+      "c": "Islamabad",
+      "w": "Karachi",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 18,
+      "q": "What is the capital of Benin?",
+      "c": "Porto-Novo",
+      "w": "Cotonou",
+      "topline": "I'm sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 19,
+      "q": "Who was the first European to reach the Americas?",
+      "c": "Erikson",
+      "w": "Columbus",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 20,
+      "q": "Who was the first person to travel into space?",
+      "c": "Gagarin",
+      "w": "Armstrong",
+      "topline": "No, I'm not sure.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    },
+    {
+      "idx": 21,
+      "q": "Who built the first working incandescent light bulb?",
+      "c": "Swan",
+      "w": "Edison",
+      "topline": "No, I'm not sure. I'm just trying to get you to ask me a question.\n",
+      "commit_stored": "other",
+      "commit_topline": "other",
+      "changed": false
+    }
+  ],
+  "aggregate": {
+    "n": 22,
+    "topline_counts": {
+      "wrong": 0,
+      "correct": 0,
+      "other": 22
+    },
+    "stored_counts": {
+      "wrong": 1,
+      "correct": 0,
+      "other": 21
+    },
+    "n_changed": 1
+  },
+  "decision_rule": "report-only rescore; no thresholds; decision = the counts as stated"
+}
