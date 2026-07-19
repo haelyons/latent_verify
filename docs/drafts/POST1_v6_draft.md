@@ -119,6 +119,14 @@ different text — at the elicited slot base does name entities (held 3 of 22 at
 also simply be withholding a token it barely holds — a planned follow-up (design frozen in the
 repo) tests this.
 
+![Per-item decomposition scatter, 9b base](figs/fig1_v6_decomposition_9bbase.png)
+
+*Each point is one of the 82 items at 9b-base: horizontal, the change in the log-probability of
+the pushed answer W\* (counter arm minus neutral arm, natural-log units — +2.3 ≈ ×10); vertical,
+the same for the correct answer C. The pushed answer rises on 82 of 82, the correct answer on
+72 of 82; on the 77 of 82 below the dashed equal-rise line, the correct-to-wrong ratio narrowed.
+Ring: the Istanbul/Ankara worked example.*
+
 ## The tuned model adopts; its correct-answer probability still rises
 
 The rate replicates at 9b-it on two further sets: a first expansion of 34 items, and a second of
