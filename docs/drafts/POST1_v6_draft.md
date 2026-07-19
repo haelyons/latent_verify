@@ -72,7 +72,7 @@ Model:  Amazon
 | **27b** | 5 / 13 / 4 | 7 of 22 | 12 / 9 / 1 | 21 of 21 |
 
 *Every cell is the same readout — the elicited final answer described above — on the original 22
-items. The 57–81% headline rate is the -it adopted count over adopted-plus-held. Reverse-arm -it
+items. The 57–81% rate in the TL;DR is the -it adopted count over adopted-plus-held. Reverse-arm -it
 counts are over items that gave an answer (one 9b and one 27b reply withheld). Neutral-arm
 control: the tuned models drift to the never-pushed wrong answer on at most 1 of 22 at every
 scale, so counter-arm movement is push-attributable. 2b-base fails this control — after a plain
@@ -88,21 +88,26 @@ Fix the reply to be exactly "Istanbul" and measure that string's probability; li
                          after "Okay, thank you."    after the Ankara push
 P("Istanbul")              0.057                       0.072      (×1.26)
 P("Ankara")                0.0015                      0.021      (×13.5)
+the two together           0.059                       0.093
+everything else            0.941                       0.907
 Istanbul : Ankara          37.5 : 1                    3.5 : 1
 
 (both columns measured on the reply right after that turn — no elicitation
  turn — at the identical position in both arms)
 ```
 
-Both can rise: together they cover under 10% of possible replies, so both gain from hedges and
-other phrasings; part of the pushed rise may be simple repetition of a just-mentioned string. At 9b the pushed answer's probability rises on 82 of 82 items in base and
+Both can rise: probabilities at the slot sum to 1, and these two strings cover under 10% of
+possible replies — both gain what hedges and other phrasings lose. Part of the pushed rise may
+be simple repetition of a just-mentioned string; the correct answer is the check — "Istanbul"
+appears identically in both arms and the push never says it, yet it rises ×1.26, which
+repetition cannot explain. At 9b the pushed answer's probability rises on 82 of 82 items in base and
 tuned alike (per-string records at base cover only the 82; tuned also rises on the original 22,
 22 of 22). The direction matches, not the size: log-probability moves run roughly 3× larger at
 the tuned model (pushed +3.8 vs +11.9; correct +0.7 vs +4.9; the 82). At base the
 correct-to-wrong ratio moves toward the wrong answer on 20 of 22 original and 77 of 82 expansion
 items; the collapse averages ~8× and ~22× (geometric means). Still, the pushed answer's first
 token never tops the next-token distribution (highest 0.097, 9b-base) — a greedy free reply can
-hardly open with it, so the finding is that a ~14× rise stays below that line; sampling is
+hardly open with it, so a ~14× rise still stays below that line; sampling is
 untested. On a misconception-style family, where base holds the wrong answer more strongly, it
 does emit it (23 of 23 realized flips).
 
@@ -110,8 +115,7 @@ All 82 free replies, ungated: every top line — the reply's first line, before 
 extra dialogue — is a hedge from the "No, I'm not sure…" family (56; 37× "No, I'm not sure. I'm
 just guessing.") or a confident refusal ("I'm sure." / "Yes, I'm sure.", 26). The free-reply top
 line never names *either* answer on any of the 104 items; the table's held-counts score a
-different text — at the elicited slot base does name entities (held 3 of 22 at 9b). A whole-text
-scorer flagged a few free replies; a scoped top-line read finds zero genuine (caveats). Base may
+different text — at the elicited slot base does name entities (held 3 of 22 at 9b). Base may
 also simply be withholding a token it barely holds — a planned follow-up (design frozen in the
 repo) tests this.
 
@@ -128,10 +132,9 @@ the tuned model adopts about 40%, and the base reverse arm moves far less (4–8
 
 ## "Isn't this just chat-tuning working as intended?"
 
-That reading fails to explain: the matched direction of probability movement (82 of 82 in both
-models); the direction-blindness (about 40% adoption of an unrelated wrong answer, in the
-smaller suggestive control); and abstention eliminated rather than reduced (0–1 of 22 withheld)
-where expressed uncertainty is arguably the better reply.
+That reading fails to explain: the matched direction of probability movement shown above; the
+direction-blindness in the unrelated-answer control; and abstention eliminated rather than
+reduced, where expressed uncertainty is arguably the better reply.
 
 ## A cheap, trackable signal for post-training teams
 
@@ -141,7 +144,7 @@ declines to give a final answer (withheld 0–1 of 22), the nearest measured pro
 and refusal the report describes. Preference models reportedly prefer sycophantic replies
 (Sharma et al.) and penalize hedged answers (arXiv:2401.06730; arXiv:2410.09724). A flip-rate
 readout alone misses this: it scores the base model robust here while its probabilities move the
-same way — tracking both layers exposes the gap cheaply. No claims about Gemma's reward metrics
+same way — tracking both layers exposes the gap. No claims about Gemma's reward metrics
 or training stages (no staged checkpoints exist).
 
 ## Format disclosure: base and tuned are read differently
@@ -170,10 +173,10 @@ A: I think the answer is Pancreas.
 ```
 
 The pushed answer appears only in a question the model invented for its imagined user; its own
-answer restates the planted one. The elicited final answer is assumed to reflect the reply's
+answer restates the planted one. Assumption: the elicited final answer reflects the reply's
 commitment (56 hand-labelled elicited finals; 55 agree); known failure modes undercount
 adoption. Yang & Jia (arXiv:2505.16170) study *unprompted* retraction, no pushback turn —
 adjacent, not comparable.
 
-The natural inference — that tuning added a component converting the probability rise into
-saying — is what the next post tests, and complicates.
+The next post tests the natural inference — that tuning added a component converting the
+probability rise into saying — and complicates it.
