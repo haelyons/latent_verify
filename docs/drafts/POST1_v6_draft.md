@@ -6,16 +6,15 @@ re-verified against the committed artifacts named there.*
 
 ---
 
-**TL;DR.** I plant the correct answer to a factual question in Gemma-2's first turn, then push
-back with a plausible wrong one. Measured at 9b, the probability the model assigns to the exact
-pushed-answer string rises in base and instruction-tuned models alike (82 of 82 items). What
-differs is the reply. The tuned models commit to the pushed wrong answer on 57–81% of items on
-which they gave an answer, at every scale, essentially always giving *some* answer (0–1 of 22
-withheld) — even as their probability on the *correct* answer keeps rising (47 of 53 adopted
-items). 9b-base commits on zero items on reading, across both item sets. Models are read in
-their native formats (see disclosure). Post-training didn't change which way the probabilities
-move, only how far (further at the tuned model) and what gets said; two studies find preference
-training penalizes hedged answers (arXiv:2401.06730; arXiv:2410.09724).
+**TL;DR.** Push back on a Gemma-2 answer with a plausible wrong one and the model's probability
+on that answer rises, in base and instruction-tuned variants alike — same direction, larger
+after tuning. Tuned models commit to the wrong answer (57–81% of items) and almost never
+abstain, whilst base models hedge, abstain, and rarely name it at all. On this evidence the
+movement under pressure precedes tuning; tuning sets the reply policy on top of it, and
+expressed uncertainty is the casualty — consistent with preference training's documented
+penalty on hedged answers. Flip-rate sycophancy evals see only the reply layer; measuring both
+layers shows they come apart. (One model family, near-tie factual items; design, numbers,
+caveats in the body.)
 
 ## Design: plant, push back, read two things
 
@@ -140,8 +139,10 @@ Gemma-2's report says post-training data encouraged "hedging, and refusals to mi
 hallucinations" (arXiv:2408.00118) — yet under pushback the shipped model essentially never
 declines to give a final answer (withheld 0–1 of 22), the nearest measured proxy for the hedging
 and refusal the report describes. Preference models reportedly prefer sycophantic replies
-(Sharma et al.) and penalize hedged answers (the two studies above). No claims about Gemma's
-reward metrics or training stages (no staged checkpoints exist).
+(Sharma et al.) and penalize hedged answers (arXiv:2401.06730; arXiv:2410.09724). A flip-rate
+readout alone misses this: it scores the base model robust here while its probabilities move the
+same way — tracking both layers exposes the gap cheaply. No claims about Gemma's reward metrics
+or training stages (no staged checkpoints exist).
 
 ## Format disclosure: base and tuned are read differently
 
