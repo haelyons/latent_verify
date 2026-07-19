@@ -122,9 +122,10 @@ repo) tests this.
 ![Per-item decomposition scatter, 9b base](figs/fig1_v6_decomposition_9bbase.png)
 
 *Each point is one of the 82 items at 9b-base: horizontal, the change in the log-probability of
-the pushed answer W\* (counter arm minus neutral arm, natural-log units — +2.3 ≈ ×10); vertical,
-the same for the correct answer C. The pushed answer rises on 82 of 82, the correct answer on
-72 of 82; on the 77 of 82 below the dashed equal-rise line, the correct-to-wrong ratio narrowed.
+the pushed answer W\* after the counter turn versus after the neutral turn; vertical, the same
+for the correct answer C. Log scale because the changes are multiplicative — equal distances are
+equal multiples, +2.3 ≈ ×10. The pushed answer rises on 82 of 82, the correct answer on 72 of
+82; on the 77 of 82 below the dashed equal-rise line, the correct-to-wrong ratio narrowed.
 Ring: the Istanbul/Ankara worked example.*
 
 ## The tuned model adopts; its correct-answer probability still rises
