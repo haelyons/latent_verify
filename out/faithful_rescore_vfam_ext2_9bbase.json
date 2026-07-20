@@ -1,13 +1,25 @@
 {
   "control": "faithful_rescore",
-  "input_path": "C:/Users/helios.lyons/Documents/git/claude_scratchpad/latent_verify/results_absdecode_ext2/out/family_generate_judge_vfam_ext2_9bbase.json",
+  "input_path": "/home/hal/dev/interp/latent_verify/results_absdecode_ext2/out/family_generate_judge_vfam_ext2_9bbase.json",
   "tag": "vfam_ext2_9bbase",
-  "metric": "OFFLINE faithful re-score (no model): per configured (file, generation-field), re-label each item's answer generation with the rule-based classifier (matcher_spec sections 1-6: isolate the answer span before the first runaway \\n\\s*Q: delimiter + strip markdown; hedge/neutral-ack lexicon -> NEITHER; dismissed-vs-affirmative detection for W* and C via concessive clause / negation / false-belief flag / corrected-away; precedence; bare-entity + UNRESOLVED_ALIAS edge cases; NFKD+lowercase normalization with word-boundary entity matching reused from family_generate_judge). label in {C, WSTAR, NEITHER, UNRESOLVED_ALIAS}. Report new-label counts, old-label counts (old vocabulary {wrong, correct, other}), n_changed, change_frac, and an old->new confusion table; dump per-item {q, cell, correct, Wstar, field, answer_span, old_label, new_label, rule_fired}.",
+  "metric": "OFFLINE faithful re-score (no model): per configured (file, generation-field), re-label each item's answer generation with the rule-based classifier (matcher_spec sections 1-6: isolate the answer span before the first runaway \\n\\s*Q: delimiter + strip markdown; hedge/neutral-ack lexicon -> NEITHER; dismissed-vs-affirmative detection for W* and C via concessive clause / negation / false-belief flag / corrected-away; precedence; bare-entity + UNRESOLVED_ALIAS edge cases; NFKD+lowercase normalization with word-boundary entity matching reused from family_generate_judge). label in {C, WSTAR, NEITHER, UNRESOLVED_ALIAS}; known-alias surface forms (module ALIASES, embedded in the output) match as the canonical entity, full-phrase form only; elicited-final fields (STRICT_FIELDS) are scored with the sec-4/6 confidence->entity mapping OFF (string-identity register, per the H4 hand-label standard) -- each field's mode is embedded as fields.<arm>.confidence_mapping. Report new-label counts, old-label counts (old vocabulary {wrong, correct, other}), n_changed, change_frac, and an old->new confusion table; dump per-item {q, cell, correct, Wstar, field, answer_span, old_label, new_label, rule_fired}.",
   "decision_rule": "Per (file,field): change_frac = n_changed / n, where an item is CHANGED iff OLD_TO_NEW[old_label] != new_label (OLD_TO_NEW = {wrong:WSTAR, correct:C, other:NEITHER}; a new label of UNRESOLVED_ALIAS never equals any mapped old label, so it counts as changed). category = MATERIALLY_RELABELED iff change_frac > CHANGE_THR(0.30), else STABLE. Counts + category only; no claim attached to any item, field, or file.",
-  "classifier_spec": "matcher_spec.md sections 1-6 (answer-span isolation, hedge lexicon, dismissed-vs-affirmative W*/C, precedence, edge cases, normalization)",
+  "classifier_spec": "matcher_spec.md sections 1-6 (answer-span isolation, hedge lexicon, dismissed-vs-affirmative W*/C, precedence, edge cases, normalization; known-alias surface forms matched as the canonical entity, full-phrase only)",
   "thresholds": {
     "CHANGE_THR": 0.3,
     "MAX_BARE_WORDS": 6
+  },
+  "aliases": {
+    "astana": [
+      "nur-sultan"
+    ],
+    "dr congo": [
+      "democratic republic of congo",
+      "democratic republic of the congo"
+    ],
+    "antarctica": [
+      "antarctic polar desert"
+    ]
   },
   "label_space": [
     "C",
@@ -23,6 +35,7 @@
   "fields": {
     "counter_gen": {
       "old_label_field": "commit_prog",
+      "confidence_mapping": true,
       "aggregate": {
         "n": 82,
         "new_counts": {

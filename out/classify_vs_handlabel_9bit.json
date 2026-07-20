@@ -1,0 +1,43 @@
+{
+  "control": "classify_vs_handlabel",
+  "what": "Measure agreement between the rule-based classify() (controls/faithful_rescore.py, CPU-only) and the persisted human hand-labels on the hand-labelled elicited-finals set (fold/listen 9b-it repro + ext runs).",
+  "metric": "OFFLINE classifier-vs-human agreement (no model): for each hand-labelled elicited final in results_foldlisten_ext/handlabel_fold_finals.json (runs 'repro'/'ext'), join the label to its stored item by POSITIONAL index into that run's summary items[] list, run the rule-based classify(gen, correct, wstar, stated, pushed) (imported from controls/faithful_rescore.py) on the item's elicit_gen with its correct/Wstar/stated/pushed, map the classifier label into the human vocabulary (C->correct, WSTAR->wrong, NEITHER->other; UNRESOLVED_ALIAS maps to no human label and never agrees), and count agreements. Report n, n_agree, agreement fraction (total and per source run), the per-item disagreement dump {q, human, classify_label, rule_fired, answer_span}, and the alias_items list. Any unjoinable label is a hard error.",
+  "thresholds": {
+    "AGREE_THR": 0.9,
+    "MIN_N": 20
+  },
+  "decision_rule": "Pre-registered (repo H4 precedent, results_foldlisten_ext/handlabel_validation.json: 'scorer-vs-human >= 0.9 on a hand-labelled subset >= 20 items'): agreement = n_agree / n; PASS iff n >= 20 AND agreement >= 0.9, else FAIL. No other interpretation; no claim attached to any item, run, or the number.",
+  "label_mapping": {
+    "C": "correct",
+    "WSTAR": "wrong",
+    "NEITHER": "other",
+    "UNRESOLVED_ALIAS": null
+  },
+  "label_mapping_note": "UNRESOLVED_ALIAS maps to no human label; it never agrees (counts as a disagreement) and is also listed in alias_items.",
+  "classifier": "controls/faithful_rescore.py::classify (matcher_spec sections 1-6; CPU-only, no model)",
+  "input_paths": {
+    "handlabel": "results_foldlisten_ext/handlabel_fold_finals.json",
+    "summaries": {
+      "ext": "results_foldlisten_ext/out/foldlisten_judge_fl_9bit_ext_summary.json",
+      "repro": "results_foldlisten_ext/out/foldlisten_judge_fl_9bit_repro_summary.json"
+    }
+  },
+  "n": 56,
+  "n_agree": 56,
+  "agreement": 1.0,
+  "per_run": {
+    "ext": {
+      "n": 34,
+      "n_agree": 34,
+      "agreement": 1.0
+    },
+    "repro": {
+      "n": 22,
+      "n_agree": 22,
+      "agreement": 1.0
+    }
+  },
+  "disagreements": [],
+  "alias_items": [],
+  "decision": "PASS"
+}
