@@ -8,7 +8,7 @@ re-verified against the committed artifacts named there.*
 
 **TL;DR.** Push back on a Gemma-2 answer with a plausible wrong one and the model's probability
 on that answer rises, in base and instruction-tuned variants alike — same direction, larger
-after tuning. Tuned models commit to the wrong answer (57–81% of items) and almost never
+after tuning. Tuned models commit to the wrong answer (55–77% of items) and almost never
 abstain, whilst base models hedge, abstain, and rarely name it at all. On this evidence the
 movement under pressure precedes tuning; tuning sets the reply policy on top of it, and
 expressed uncertainty is the casualty — consistent with preference training's documented
@@ -67,16 +67,16 @@ Model:  Amazon
 
 | | base — wrong answer pushed<br>adopted / held / withheld | base — correct answer pushed<br>adopted | -it — wrong answer pushed<br>adopted / held / withheld | -it — correct answer pushed<br>adopted |
 |---|---|---|---|---|
-| **2b** | 5 / 8 / 9 | 8 of 22 | 17 / 4 / 1 | 22 of 22 |
-| **9b** | 0 / 3 / 19 | 4 of 22 | 13 / 9 / 0 | 21 of 21 |
-| **27b** | 5 / 13 / 4 | 7 of 22 | 12 / 9 / 1 | 21 of 21 |
+| **2b** | 5 / 8 / 9 | 8 of 22 | 17 / 5 / 0 | 22 of 22 |
+| **9b** | 0 / 3 / 19 | 4 of 22 | 13 / 9 / 0 | 22 of 22 |
+| **27b** | 5 / 11 / 6 | 7 of 22 | 12 / 10 / 0 | 22 of 22 |
 
-*Every cell is the same readout — the elicited final answer described above — on the original 22
-items. The 57–81% rate in the TL;DR is the -it adopted count over adopted-plus-held. Reverse-arm -it
-counts are over items that gave an answer (one 9b and one 27b reply withheld). Neutral-arm
+*Every cell is the same readout — the elicited final answer described above, scored by an
+accent- and alias-aware string matcher (validation in the caveats) — on the original 22
+items. The 55–77% rate in the TL;DR is the -it adopted count over adopted-plus-held. Neutral-arm
 control: the tuned models drift to the never-pushed wrong answer on at most 1 of 22 at every
 scale, so counter-arm movement is push-attributable. 2b-base fails this control — after a plain
-"Okay, thank you." it keeps its planted answer on only 8 of 22 — so read its row as instability,
+"Okay, thank you." it keeps its planted answer on only 5 of 22 — so read its row as instability,
 not push-response.*
 
 ## Base raises the pushed answer's probability — and says it isn't sure
@@ -131,9 +131,11 @@ Ring: the Istanbul/Ankara worked example.*
 ## The tuned model adopts; its correct-answer probability still rises
 
 The rate replicates at 9b-it on two further sets: a first expansion of 34 items, and a second of
-82 drafted by study-blind LLMs and kept after two independent web verifications (82 of 91).
-Scored on 33 and 80 after exclusions: 19 of 33 and 53 of 80 adopted. The excluded "neither"
-replies on the 82 are spelling variants of the pushed answer — the scorer *undercounts*. Same
+82 drafted by study-blind LLMs and kept after two independent web verifications (82 of 91):
+19 of 34 and 55 of 82 adopted, none withheld — the run-time scorer had excluded three replies
+that were accent or alternate-name variants of an answer ("Yaoundé"; "Nur-Sultan" for Astana;
+"Democratic Republic of Congo" for DR Congo); the rescore published with the post resolves two
+to the pushed answer (adopted) and one to the planted answer (held). Same
 fixed-string scoring: the correct answer's probability still rises on 47 of 53 adopted items
 (Nile falls by about a third; the claim is the aggregate). Reverse-arm near-total revision is
 not truth-recognition: in a smaller, suggestive control (an *unrelated* wrong answer pushed, 9b)
@@ -148,8 +150,8 @@ reduced, where expressed uncertainty is arguably the better reply.
 ## A cheap, trackable signal for post-training teams
 
 Gemma-2's report says post-training data encouraged "hedging, and refusals to minimize
-hallucinations" (arXiv:2408.00118) — yet under pushback the shipped model essentially never
-declines to give a final answer (withheld 0–1 of 22), the nearest measured proxy for the hedging
+hallucinations" (arXiv:2408.00118) — yet under pushback the shipped model never
+declines to give a final answer (withheld 0 of 22 at every scale), the nearest measured proxy for the hedging
 and refusal the report describes. Preference models reportedly prefer sycophantic replies
 (Sharma et al.) and penalize hedged answers (arXiv:2401.06730; arXiv:2410.09724). A flip-rate
 readout alone misses this: it scores the base model robust here while its probabilities move the
@@ -183,7 +185,11 @@ A: I think the answer is Pancreas.
 
 The pushed answer appears only in a question the model invented for its imagined user; its own
 answer restates the planted one. Assumption: the elicited final answer reflects the reply's
-commitment (56 hand-labelled elicited finals; 55 agree); known failure modes undercount
+commitment. The matcher is validated against blind hand-labels: 56 of 56 at 9b-it, and 88
+finals per scale at 2b and 27b read by three independent labellers each (unanimous; zero
+genuine disagreements; scorer artifacts published). One judgment call is disclosed rather than
+scored: a bare deferential "I think you're right." at the 9b-base elicited slot counts as
+withheld under the string-identity readout — read as agreement it would be that model's single
 adoption. Yang & Jia (arXiv:2505.16170) study *unprompted* retraction, no pushback turn —
 adjacent, not comparable.
 

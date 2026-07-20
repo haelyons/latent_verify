@@ -275,6 +275,30 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> PHASE A IRON-OUT CLOSED (2026-07-21, per DESIGN_foldlisten_matrix_scaleout.md gates; evidence in the
+> docs/drafts/NOTE_faithful_matcher.md 2026-07-21 addendum — read that first): entry faithfulness gate
+> re-run by 4 isolated readers, ALL committed numbers reproduce (six n=22 cells + gate_v2, H4 precedent,
+> ext2 anchor, faithful_rescore claims). Gate 1 INSTRUMENT VALID AT EVERY SCALE: blind 3-reader
+> spot-checks, 88 elicited finals/scale, unanimous vectors →
+> `results_foldlisten_{2b,27b}/out/handlabel_spotcheck_fl_*.json` (stored-vs-human 0.989 / 0.955 PASS;
+> faithful-strict ZERO genuine disagreements) + `controls/classify_vs_handlabel.py` →
+> `out/classify_vs_handlabel_9bit.json` (classify-vs-human 56/56 = 1.000; commit_prog 0.982). Gate 2
+> ALIAS MISSES RESOLVED: `ALIASES` in `controls/faithful_rescore.py` (selftested; only-3-move
+> git-diff-proven; ext2 fold 53→55/82; 9b-it listen 22/22). Gate 3 SCORER SETTLED (slot-scoped):
+> `elicit_gen` scored `map_confidence=False` (`STRICT_FIELDS` — the sec-4/6 confidence→entity mapping
+> relabels 15/44 2b-base + 3/44 9b-base elicited finals that unanimous string-identity humans call
+> NEITHER); prose arms keep the mapping. PORT into live judges decided-YES but DEFERRED to a GPU session
+> (claim-blind pass + confirming run); until it lands, EVERY new run's summaries MUST be rescored by
+> `faithful_rescore.py` before any count is used, and new summaries must stamp scorer provenance (the
+> committed ones do not — grounded gap). Gate 4 DIVERGENCE measured at all scales (coverage now includes
+> `out/faithful_rescore_fl_{2bbase,2bit,27bbase,27bit}.json`): elicit ≤0.114 all-STABLE vs CHANGE_THR
+> 0.30; prose arms materially relabeled → carry no claims. POST1 v6 RE-GROUNDED on the faithful-strict
+> readout (table cells incl. 27b-base 5/11/6, -it listen 22/22 all scales; TL;DR 55–77%; withheld 0/22
+> every scale; ext 19/34 + 55/82 none-withheld; deferential "I think you're right." disclosed, 9b-base
+> 0/22 stands). Every new artifact H3-grounded at item level by an isolated reader. NEXT (Phase B, GPU):
+> claim-blind port of classify() into `family_generate_judge.py`/`foldlisten_judge.py` + confirming run,
+> then the absent matrix cells per the design seed. Human pass on v6 still owed.
+>
 > MATCHER FIX (2026-07-20): the load-bearing matcher debt is CLOSED (offline). `controls/faithful_rescore.py`
 > (claim-blind author → clean review → H3-grounded) re-labels every persisted generation by reading the
 > ACTUAL answer (top-line span cut at the `\nQ:` runaway; dismissed-vs-affirmative clause logic; hedge
