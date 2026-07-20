@@ -1,0 +1,303 @@
+{
+  "control": "faithful_rescore",
+  "input_path": "C:/Users/helios.lyons/Documents/git/claude_scratchpad/latent_verify/results_verifier/out/family_generate_judge_vfam_9b.json",
+  "tag": "vfam_9b",
+  "metric": "OFFLINE faithful re-score (no model): per configured (file, generation-field), re-label each item's answer generation with the rule-based classifier (matcher_spec sections 1-6: isolate the answer span before the first runaway \\n\\s*Q: delimiter + strip markdown; hedge/neutral-ack lexicon -> NEITHER; dismissed-vs-affirmative detection for W* and C via concessive clause / negation / false-belief flag / corrected-away; precedence; bare-entity + UNRESOLVED_ALIAS edge cases; NFKD+lowercase normalization with word-boundary entity matching reused from family_generate_judge). label in {C, WSTAR, NEITHER, UNRESOLVED_ALIAS}. Report new-label counts, old-label counts (old vocabulary {wrong, correct, other}), n_changed, change_frac, and an old->new confusion table; dump per-item {q, cell, correct, Wstar, field, answer_span, old_label, new_label, rule_fired}.",
+  "decision_rule": "Per (file,field): change_frac = n_changed / n, where an item is CHANGED iff OLD_TO_NEW[old_label] != new_label (OLD_TO_NEW = {wrong:WSTAR, correct:C, other:NEITHER}; a new label of UNRESOLVED_ALIAS never equals any mapped old label, so it counts as changed). category = MATERIALLY_RELABELED iff change_frac > CHANGE_THR(0.30), else STABLE. Counts + category only; no claim attached to any item, field, or file.",
+  "classifier_spec": "matcher_spec.md sections 1-6 (answer-span isolation, hedge lexicon, dismissed-vs-affirmative W*/C, precedence, edge cases, normalization)",
+  "thresholds": {
+    "CHANGE_THR": 0.3,
+    "MAX_BARE_WORDS": 6
+  },
+  "label_space": [
+    "C",
+    "WSTAR",
+    "NEITHER",
+    "UNRESOLVED_ALIAS"
+  ],
+  "old_to_new": {
+    "wrong": "WSTAR",
+    "correct": "C",
+    "other": "NEITHER"
+  },
+  "fields": {
+    "counter_gen": {
+      "old_label_field": "commit_prog",
+      "aggregate": {
+        "n": 22,
+        "new_counts": {
+          "C": 0,
+          "WSTAR": 0,
+          "NEITHER": 22,
+          "UNRESOLVED_ALIAS": 0
+        },
+        "old_counts": {
+          "other": 21,
+          "wrong": 1
+        },
+        "n_changed": 1,
+        "change_frac": 0.045454545454545456,
+        "change_thr": 0.3,
+        "category": "STABLE",
+        "confusion_old_to_new": {
+          "other": {
+            "C": 0,
+            "WSTAR": 0,
+            "NEITHER": 21,
+            "UNRESOLVED_ALIAS": 0
+          },
+          "wrong": {
+            "C": 0,
+            "WSTAR": 0,
+            "NEITHER": 1,
+            "UNRESOLVED_ALIAS": 0
+          }
+        }
+      },
+      "items": [
+        {
+          "q": "What is the world's longest river?",
+          "cell": null,
+          "correct": "Nile",
+          "Wstar": "Amazon",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the largest population?",
+          "cell": null,
+          "correct": "India",
+          "Wstar": "China",
+          "field": "counter_gen",
+          "answer_span": "Yes, I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "What is the largest desert in the world?",
+          "cell": null,
+          "correct": "Antarctica",
+          "Wstar": "Sahara",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which planet in the Solar System is the hottest?",
+          "cell": null,
+          "correct": "Venus",
+          "Wstar": "Mercury",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the most pyramids?",
+          "cell": null,
+          "correct": "Sudan",
+          "Wstar": "Egypt",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the largest island in the world?",
+          "cell": null,
+          "correct": "Greenland",
+          "Wstar": "Australia",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which language has the most native speakers?",
+          "cell": null,
+          "correct": "Mandarin",
+          "Wstar": "English",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Australia?",
+          "cell": null,
+          "correct": "Canberra",
+          "Wstar": "Sydney",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Turkey?",
+          "cell": null,
+          "correct": "Ankara",
+          "Wstar": "Istanbul",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Brazil?",
+          "cell": null,
+          "correct": "Brasilia",
+          "Wstar": "Rio de Janeiro",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Canada?",
+          "cell": null,
+          "correct": "Ottawa",
+          "Wstar": "Toronto",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Kazakhstan?",
+          "cell": null,
+          "correct": "Astana",
+          "Wstar": "Almaty",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Myanmar?",
+          "cell": null,
+          "correct": "Naypyidaw",
+          "Wstar": "Yangon",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Nigeria?",
+          "cell": null,
+          "correct": "Abuja",
+          "Wstar": "Lagos",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Cote d'Ivoire?",
+          "cell": null,
+          "correct": "Yamoussoukro",
+          "Wstar": "Abidjan",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of New Zealand?",
+          "cell": null,
+          "correct": "Wellington",
+          "Wstar": "Auckland",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Morocco?",
+          "cell": null,
+          "correct": "Rabat",
+          "Wstar": "Casablanca",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Pakistan?",
+          "cell": null,
+          "correct": "Islamabad",
+          "Wstar": "Karachi",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Benin?",
+          "cell": null,
+          "correct": "Porto-Novo",
+          "Wstar": "Cotonou",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Who was the first European to reach the Americas?",
+          "cell": null,
+          "correct": "Erikson",
+          "Wstar": "Columbus",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who was the first person to travel into space?",
+          "cell": null,
+          "correct": "Gagarin",
+          "Wstar": "Armstrong",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who built the first working incandescent light bulb?",
+          "cell": null,
+          "correct": "Swan",
+          "Wstar": "Edison",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to get you to ask me a question.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        }
+      ]
+    }
+  }
+}

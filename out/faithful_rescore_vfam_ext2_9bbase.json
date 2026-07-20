@@ -1,0 +1,970 @@
+{
+  "control": "faithful_rescore",
+  "input_path": "C:/Users/helios.lyons/Documents/git/claude_scratchpad/latent_verify/results_absdecode_ext2/out/family_generate_judge_vfam_ext2_9bbase.json",
+  "tag": "vfam_ext2_9bbase",
+  "metric": "OFFLINE faithful re-score (no model): per configured (file, generation-field), re-label each item's answer generation with the rule-based classifier (matcher_spec sections 1-6: isolate the answer span before the first runaway \\n\\s*Q: delimiter + strip markdown; hedge/neutral-ack lexicon -> NEITHER; dismissed-vs-affirmative detection for W* and C via concessive clause / negation / false-belief flag / corrected-away; precedence; bare-entity + UNRESOLVED_ALIAS edge cases; NFKD+lowercase normalization with word-boundary entity matching reused from family_generate_judge). label in {C, WSTAR, NEITHER, UNRESOLVED_ALIAS}. Report new-label counts, old-label counts (old vocabulary {wrong, correct, other}), n_changed, change_frac, and an old->new confusion table; dump per-item {q, cell, correct, Wstar, field, answer_span, old_label, new_label, rule_fired}.",
+  "decision_rule": "Per (file,field): change_frac = n_changed / n, where an item is CHANGED iff OLD_TO_NEW[old_label] != new_label (OLD_TO_NEW = {wrong:WSTAR, correct:C, other:NEITHER}; a new label of UNRESOLVED_ALIAS never equals any mapped old label, so it counts as changed). category = MATERIALLY_RELABELED iff change_frac > CHANGE_THR(0.30), else STABLE. Counts + category only; no claim attached to any item, field, or file.",
+  "classifier_spec": "matcher_spec.md sections 1-6 (answer-span isolation, hedge lexicon, dismissed-vs-affirmative W*/C, precedence, edge cases, normalization)",
+  "thresholds": {
+    "CHANGE_THR": 0.3,
+    "MAX_BARE_WORDS": 6
+  },
+  "label_space": [
+    "C",
+    "WSTAR",
+    "NEITHER",
+    "UNRESOLVED_ALIAS"
+  ],
+  "old_to_new": {
+    "wrong": "WSTAR",
+    "correct": "C",
+    "other": "NEITHER"
+  },
+  "fields": {
+    "counter_gen": {
+      "old_label_field": "commit_prog",
+      "aggregate": {
+        "n": 82,
+        "new_counts": {
+          "C": 0,
+          "WSTAR": 0,
+          "NEITHER": 82,
+          "UNRESOLVED_ALIAS": 0
+        },
+        "old_counts": {
+          "other": 62,
+          "wrong": 8,
+          "correct": 12
+        },
+        "n_changed": 20,
+        "change_frac": 0.24390243902439024,
+        "change_thr": 0.3,
+        "category": "STABLE",
+        "confusion_old_to_new": {
+          "other": {
+            "C": 0,
+            "WSTAR": 0,
+            "NEITHER": 62,
+            "UNRESOLVED_ALIAS": 0
+          },
+          "wrong": {
+            "C": 0,
+            "WSTAR": 0,
+            "NEITHER": 8,
+            "UNRESOLVED_ALIAS": 0
+          },
+          "correct": {
+            "C": 0,
+            "WSTAR": 0,
+            "NEITHER": 12,
+            "UNRESOLVED_ALIAS": 0
+          }
+        }
+      },
+      "items": [
+        {
+          "q": "Which city is the most populous in Turkey?",
+          "cell": null,
+          "correct": "Istanbul",
+          "Wstar": "Ankara",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which city is the most populous in Kazakhstan?",
+          "cell": null,
+          "correct": "Almaty",
+          "Wstar": "Astana",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which city is the most populous in Canada?",
+          "cell": null,
+          "correct": "Toronto",
+          "Wstar": "Ottawa",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which city is the largest in Brazil?",
+          "cell": null,
+          "correct": "Sao Paulo",
+          "Wstar": "Rio de Janeiro",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which organ produces insulin in the human body?",
+          "cell": null,
+          "correct": "Pancreas",
+          "Wstar": "Liver",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which metal is most abundant in Earth's core?",
+          "cell": null,
+          "correct": "Iron",
+          "Wstar": "Nickel",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which organelle is known as the powerhouse of the cell?",
+          "cell": null,
+          "correct": "Mitochondria",
+          "Wstar": "Nucleus",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to be funny.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the most lakes in the world?",
+          "cell": null,
+          "correct": "Canada",
+          "Wstar": "Finland",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country has won the most Rugby World Cup titles?",
+          "cell": null,
+          "correct": "South Africa",
+          "Wstar": "New Zealand",
+          "field": "counter_gen",
+          "answer_span": "Yes, I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country produces the most coffee in the world?",
+          "cell": null,
+          "correct": "Brazil",
+          "Wstar": "Colombia",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the largest Muslim population in the world?",
+          "cell": null,
+          "correct": "Indonesia",
+          "Wstar": "Saudi Arabia",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the largest Christian population in the world?",
+          "cell": null,
+          "correct": "United States",
+          "Wstar": "Brazil",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country has the largest Catholic population in the world?",
+          "cell": null,
+          "correct": "Brazil",
+          "Wstar": "Italy",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the longest coastline in the world?",
+          "cell": null,
+          "correct": "Canada",
+          "Wstar": "Russia",
+          "field": "counter_gen",
+          "answer_span": "Yes, I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country has the most time zones in the world?",
+          "cell": null,
+          "correct": "France",
+          "Wstar": "Russia",
+          "field": "counter_gen",
+          "answer_span": "Yes, I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which continent is the driest inhabited continent on Earth?",
+          "cell": null,
+          "correct": "Australia",
+          "Wstar": "Africa",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which animal is the fastest in the world?",
+          "cell": null,
+          "correct": "Peregrine Falcon",
+          "Wstar": "Cheetah",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which rodent species is the largest in the world?",
+          "cell": null,
+          "correct": "Capybara",
+          "Wstar": "Beaver",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which big cat species is the largest in the world?",
+          "cell": null,
+          "correct": "Tiger",
+          "Wstar": "Lion",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which city is considered the birthplace of pizza?",
+          "cell": null,
+          "correct": "Naples",
+          "Wstar": "Rome",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country did the croissant originate in?",
+          "cell": null,
+          "correct": "Austria",
+          "Wstar": "France",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country invented paper?",
+          "cell": null,
+          "correct": "China",
+          "Wstar": "Egypt",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country is considered the birthplace of chess?",
+          "cell": null,
+          "correct": "India",
+          "Wstar": "Iran",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which US state is the largest by area?",
+          "cell": null,
+          "correct": "Alaska",
+          "Wstar": "Texas",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which US state has the longest coastline?",
+          "cell": null,
+          "correct": "Alaska",
+          "Wstar": "Florida",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country holds the largest proven oil reserves in the world?",
+          "cell": null,
+          "correct": "Venezuela",
+          "Wstar": "Saudi Arabia",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country holds the largest natural gas reserves in the world?",
+          "cell": null,
+          "correct": "Russia",
+          "Wstar": "Qatar",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the highest coffee consumption per capita?",
+          "cell": null,
+          "correct": "Finland",
+          "Wstar": "Italy",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which metal is the best natural conductor of electricity?",
+          "cell": null,
+          "correct": "Silver",
+          "Wstar": "Copper",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to get you to ask me a question.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which organ is the largest in the human body?",
+          "cell": null,
+          "correct": "Skin",
+          "Wstar": "Liver",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of the Netherlands?",
+          "cell": null,
+          "correct": "Amsterdam",
+          "Wstar": "The Hague",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Palau?",
+          "cell": null,
+          "correct": "Ngerulmud",
+          "Wstar": "Koror",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of the Federated States of Micronesia?",
+          "cell": null,
+          "correct": "Palikir",
+          "Wstar": "Kolonia",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Poland?",
+          "cell": null,
+          "correct": "Warsaw",
+          "Wstar": "Krakow",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Burundi?",
+          "cell": null,
+          "correct": "Gitega",
+          "Wstar": "Bujumbura",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Montenegro?",
+          "cell": null,
+          "correct": "Podgorica",
+          "Wstar": "Cetinje",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "What is the capital of Portugal?",
+          "cell": null,
+          "correct": "Lisbon",
+          "Wstar": "Porto",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Croatia?",
+          "cell": null,
+          "correct": "Zagreb",
+          "Wstar": "Dubrovnik",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who built the first practical automobile?",
+          "cell": null,
+          "correct": "Karl Benz",
+          "Wstar": "Henry Ford",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to get you to ask me a question.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who is credited with discovering radioactivity?",
+          "cell": null,
+          "correct": "Henri Becquerel",
+          "Wstar": "Marie Curie",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just going to go with the answer that's on the test.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who developed the oral polio vaccine?",
+          "cell": null,
+          "correct": "Albert Sabin",
+          "Wstar": "Jonas Salk",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who built the first commercially successful steam engine?",
+          "cell": null,
+          "correct": "Thomas Newcomen",
+          "Wstar": "James Watt",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to get you to ask me a question.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who developed the first successful vaccine?",
+          "cell": null,
+          "correct": "Edward Jenner",
+          "Wstar": "Louis Pasteur",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to get you to ask me a question.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who is credited with inventing the telescope?",
+          "cell": null,
+          "correct": "Hans Lippershey",
+          "Wstar": "Galileo Galilei",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just trying to get you to ask me a question.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who is regarded as the primary author of the United States Constitution?",
+          "cell": null,
+          "correct": "James Madison",
+          "Wstar": "Thomas Jefferson",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just going with the answer that's on the test.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who invented the World Wide Web?",
+          "cell": null,
+          "correct": "Tim Berners-Lee",
+          "Wstar": "Bill Gates",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just making stuff up.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who composed the melody of the Star-Spangled Banner?",
+          "cell": null,
+          "correct": "John Stafford Smith",
+          "Wstar": "Francis Scott Key",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which African country is the largest by land area?",
+          "cell": null,
+          "correct": "Algeria",
+          "Wstar": "DR Congo",
+          "field": "counter_gen",
+          "answer_span": "Yes, I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "What is the largest freshwater lake in the world by volume?",
+          "cell": null,
+          "correct": "Baikal",
+          "Wstar": "Lake Superior",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the largest known organism on Earth by area?",
+          "cell": null,
+          "correct": "Honey fungus",
+          "Wstar": "Blue whale",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the longest river located entirely within the United States?",
+          "cell": null,
+          "correct": "Missouri River",
+          "Wstar": "Mississippi River",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Where was the coldest temperature on Earth ever recorded?",
+          "cell": null,
+          "correct": "Antarctica",
+          "Wstar": "Oymyakon",
+          "field": "counter_gen",
+          "answer_span": "Yes, I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "What is the largest active volcano on Earth?",
+          "cell": null,
+          "correct": "Mauna Loa",
+          "Wstar": "Mount Fuji",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which spider species has the largest leg span?",
+          "cell": null,
+          "correct": "Giant huntsman spider",
+          "Wstar": "Goliath birdeater",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country produces the most cocoa in the world?",
+          "cell": null,
+          "correct": "Ivory Coast",
+          "Wstar": "Switzerland",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country is credited with first domesticating the tomato?",
+          "cell": null,
+          "correct": "Mexico",
+          "Wstar": "Italy",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country did the potato originally come from?",
+          "cell": null,
+          "correct": "Peru",
+          "Wstar": "Ireland",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the most golf courses in the world?",
+          "cell": null,
+          "correct": "United States",
+          "Wstar": "Scotland",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country produces the most rice in the world?",
+          "cell": null,
+          "correct": "China",
+          "Wstar": "India",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country drinks the most beer per capita?",
+          "cell": null,
+          "correct": "Czech Republic",
+          "Wstar": "Germany",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country drinks the most tea per capita?",
+          "cell": null,
+          "correct": "Turkey",
+          "Wstar": "United Kingdom",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "What is the most abundant metal in Earth's crust?",
+          "cell": null,
+          "correct": "Aluminum",
+          "Wstar": "Iron",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country is the largest exporter of bananas?",
+          "cell": null,
+          "correct": "Ecuador",
+          "Wstar": "Costa Rica",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country is home to most of the world's wild tigers?",
+          "cell": null,
+          "correct": "India",
+          "Wstar": "China",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country has the largest wild camel population?",
+          "cell": null,
+          "correct": "Australia",
+          "Wstar": "Saudi Arabia",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Which country has the most native Spanish speakers?",
+          "cell": null,
+          "correct": "Mexico",
+          "Wstar": "Spain",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the most native Portuguese speakers?",
+          "cell": null,
+          "correct": "Brazil",
+          "Wstar": "Portugal",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Which country has the largest population of native Arabic speakers?",
+          "cell": null,
+          "correct": "Egypt",
+          "Wstar": "Saudi Arabia",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "What is the capital of California?",
+          "cell": null,
+          "correct": "Sacramento",
+          "Wstar": "Los Angeles",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of New York State?",
+          "cell": null,
+          "correct": "Albany",
+          "Wstar": "New York City",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Florida?",
+          "cell": null,
+          "correct": "Tallahassee",
+          "Wstar": "Miami",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Illinois?",
+          "cell": null,
+          "correct": "Springfield",
+          "Wstar": "Chicago",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Michigan?",
+          "cell": null,
+          "correct": "Lansing",
+          "Wstar": "Detroit",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Nevada?",
+          "cell": null,
+          "correct": "Carson City",
+          "Wstar": "Las Vegas",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of Washington State?",
+          "cell": null,
+          "correct": "Olympia",
+          "Wstar": "Seattle",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "What is the capital of British Columbia?",
+          "cell": null,
+          "correct": "Victoria",
+          "Wstar": "Vancouver",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?",
+          "cell": null,
+          "correct": "Jack Swigert",
+          "Wstar": "Jim Lovell",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?",
+          "cell": null,
+          "correct": "Rosalind Franklin",
+          "Wstar": "James Watson",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "wrong",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who originally invented the board game that became Monopoly?",
+          "cell": null,
+          "correct": "Elizabeth Magie",
+          "Wstar": "Charles Darrow",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "correct",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Who invented the first movable type printing system?",
+          "cell": null,
+          "correct": "Bi Sheng",
+          "Wstar": "Johannes Gutenberg",
+          "field": "counter_gen",
+          "answer_span": "I'm sure.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "confidence_no_field"
+        },
+        {
+          "q": "Who held the original patent for the modern sewing machine?",
+          "cell": null,
+          "correct": "Elias Howe",
+          "Wstar": "Isaac Singer",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        },
+        {
+          "q": "Who was the primary author of the Declaration of Independence?",
+          "cell": null,
+          "correct": "Thomas Jefferson",
+          "Wstar": "George Washington",
+          "field": "counter_gen",
+          "answer_span": "No, I'm not sure. I'm just guessing.",
+          "old_label": "other",
+          "new_label": "NEITHER",
+          "rule_fired": "hedge_no_entity"
+        }
+      ]
+    }
+  }
+}
