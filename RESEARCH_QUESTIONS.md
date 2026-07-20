@@ -275,6 +275,18 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> MATCHER FIX (2026-07-20): the load-bearing matcher debt is CLOSED (offline). `controls/faithful_rescore.py`
+> (claim-blind author → clean review → H3-grounded) re-labels every persisted generation by reading the
+> ACTUAL answer (top-line span cut at the `\nQ:` runaway; dismissed-vs-affirmative clause logic; hedge
+> lexicon; prefers bare elicit_gen). Corrected FOLD-cell numbers: base W* adoption = 0/82 and **0/22** (the
+> post's "1 of 22" was a runaway false-positive → fix POST to 0); base neutral "says W*" 4→0. -it headline
+> ROBUST: elicit-based fold adoption UNCHANGED (13/22, 53/82) — only the diagnostic counter_gen prose arm was
+> inverted (70%/38% relabel), never the rate. 3 conservative UNRESOLVED_ALIAS (Nur-Sultan=Astana, DRC=DR
+> Congo are true adoptions under-counted → ext2 fold really ~55/82). Outputs: out/faithful_rescore_*.json;
+> provenance docs/drafts/NOTE_faithful_matcher.md. OWED: port classify() into live family_generate_judge.py /
+> foldlisten_judge.py (+alias table) for future runs; Fig B alluvial now unblocked (rebuild from faithful
+> fold labels).
+>
 > WRITE-UP ARC STATE (2026-07-18, for the next agent): POST1 v5 got a FULL-RIGOR EVALUATION →
 > `docs/drafts/POST1_v5_evaluation.md` (22 ranked findings; ~30 numbers ALL H3-reproduce; 12
 > isolated agents + 2 blind clarity passes; novelty RE-VERIFIED 2026-07-18 by 2 independent
