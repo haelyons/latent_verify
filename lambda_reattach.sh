@@ -18,7 +18,7 @@ elif [ $# -eq 1 ]; then
   # <rdir>: look the box up by its launch name (drill_<rdir>) via the API. Robust for CONCURRENT runs
   # (each box is uniquely named), and needs no local record file -- works from any fresh session.
   RDIR=$1
-  read -r ID IP < <(auth $API/instances | python -c "
+  read -r ID IP < <(auth $API/instances | python3 -c "
 import sys,json
 for i in json.load(sys.stdin).get('data',[]):
     if i.get('name')=='drill_$RDIR' and i.get('status')=='active':
@@ -32,7 +32,7 @@ fi
 { [ -n "${ID:-}" ] && [ -n "${IP:-}" ] && [ -n "${RDIR:-}" ]; } || { echo "[reattach] bad instance record"; exit 1; }
 echo "[reattach] id=$ID ip=$IP -> $RDIR"
 
-S=$(auth $API/instances/$ID | python -c 'import sys,json;print((json.load(sys.stdin).get("data") or {}).get("status",""))' 2>/dev/null)
+S=$(auth $API/instances/$ID | python3 -c 'import sys,json;print((json.load(sys.stdin).get("data") or {}).get("status",""))' 2>/dev/null)
 echo "[reattach] instance status=${S:-unknown}"
 [ "$S" = active ] || { echo "[reattach] not active -> box already gone; nothing to fetch (results lost with the box)"; exit 1; }
 
@@ -51,7 +51,7 @@ for f in 1 2 3 4 5; do
   scp $SSHOPT "ubuntu@$IP:latent_verify/out/*.log" "$RDIR/out/" 2>/dev/null
   scp $SSHOPT "ubuntu@$IP:latent_verify/RUN_DONE" "$RDIR/" 2>/dev/null
   if ls "$RDIR"/out/*summary*.json >/dev/null 2>&1 && \
-     python -c "import json,glob;[json.load(open(p)) for p in glob.glob('$RDIR/out/*summary*.json')]" 2>/dev/null; then
+     python3 -c "import json,glob;[json.load(open(p)) for p in glob.glob('$RDIR/out/*summary*.json')]" 2>/dev/null; then
     echo "[reattach] summaries+logs verified (try $f)"; break
   fi
   echo "[reattach] summary try $f not yet valid; retry 10s"; sleep 10
