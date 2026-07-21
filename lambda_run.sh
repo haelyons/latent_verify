@@ -59,7 +59,7 @@ trap on_signal INT TERM HUP  # local kill -> defer to on-box backstop if armed (
 
 echo "[launch] $TYPE @ $REGION"
 ID=$(auth -X POST $API/instance-operations/launch -H 'Content-Type: application/json' \
-  --data "{\"region_name\":\"$REGION\",\"instance_type_name\":\"$TYPE\",\"ssh_key_names\":[\"latent_verify_helios\"],\"name\":\"drill_$RDIR\"}" \
+  --data "{\"region_name\":\"$REGION\",\"instance_type_name\":\"$TYPE\",\"ssh_key_names\":[\"${SSH_KEY_NAME:-latent_verify_helios}\"],\"name\":\"drill_$RDIR\"}" \
   | python -c 'import sys,json;d=json.load(sys.stdin);print((d.get("data") or {}).get("instance_ids",[""])[0])')
 [ -z "$ID" ] && { echo "[launch] FAILED (no id; capacity?)"; exit 1; }
 echo "[launch] id=$ID"
@@ -114,6 +114,7 @@ scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numer
   controls/cave_ablate_late_mlp.py \
   controls/cave_fold_vs_listen.py \
   controls/foldlisten_judge.py controls/family_generate_judge.py controls/verifier_family.py \
+  controls/faithful_rescore.py \
   controls/family_cave_diagnose.py controls/family_topk_shift.py controls/modelw_candidates.py \
   controls/verifier_family_ext.py controls/think_probe_identity.py \
   verifier_family_ext2.json combined_family.json mechanism_family_9bit.json controls/foldlisten_phase2.py \
