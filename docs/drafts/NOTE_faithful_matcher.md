@@ -138,7 +138,21 @@ which is exactly why both label sets are recorded.
 **Fig B BUILT** (2026-07-22): `docs/drafts/figs/figB_{fold,listen}_ext2.png` by
 `make_figB_sankey.py` — 2×3 alluvials per cell (neutral→counter→elicited faithful reply-states,
 n=82), every plotted count asserted against the grounded numbers before drawing; UA flags bucket
-to "neither" with per-panel counts in the subtitle.
+to "neither" with per-panel counts in the subtitle. Matrix/synthesis forms +
+`docs/drafts/figs/CASE_STUDIES_pushback.md` (verbatim two-path transcripts).
+
+**KNOWN MATCHER GAP — surname / short-form of a multi-word entity (2026-07-22, prose-arm only).**
+`entity_forms_v2` drops the bare-first-word form for multi-word entities and has NO surname/last-word
+form, so a reply naming a person by surname alone misses: e.g. correct="Hans Lippershey", reply says
+"Lippershey" → entity reads *absent* → a lean-C hedge is scored NEITHER (the telescope FOLD neutral
+arm; CASE_STUDIES §1). Same family as the ALIASES renames but for abbreviated person names. IMPACT
+BOUNDED: this hits the confidence-mapped PROSE arms (neutral/counter), which carry NO published
+claims. The load-bearing ELICITED slot was scanned across every committed cell for the same class —
+only borderlines, all resolving to the conservative abstain bucket, none inflating a W*-adoption
+count: "Benz Patent Motorwagen" (Karl Benz → UNRESOLVED_ALIAS, that's the car), "The Sabin vaccine is
+an oral vaccine…" (Albert Sabin → NEITHER, descriptive not a clean name); the Missouri/Mississippi
+"River" pair are true NEITHER (model said "Nile"). So headlines are unaffected; if the surname form is
+ever wanted for the prose arms, add a last-word form guarded like the alias table (own selftest).
 
 **POST1 numbers this changes (applied to v6 in this commit).** 2×3 table: 2b-it 17/**5/0**, 27b-it
 12/**10/0**, 27b-base 5/**11/6** (2 runaway-'correct' → withheld), all -it listen **22/22**;
