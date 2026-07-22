@@ -133,8 +133,12 @@ the PASS). Contrast 27b-BASE: there the commit drift 16 was pure runaway false p
 which is exactly why both label sets are recorded.
 
 **Owed next**: tie-break fix for affirmed-correction prose (claim-blind + selftest, then re-gate
-27b-it ext2); "persia"→Iran alias adjudication (would make 27b-it fold 56/82); Fig B alluvial now
-has complete faithful flows for all 12 cells.
+27b-it ext2); "persia"→Iran alias adjudication (would make 27b-it fold 56/82).
+
+**Fig B BUILT** (2026-07-22): `docs/drafts/figs/figB_{fold,listen}_ext2.png` by
+`make_figB_sankey.py` — 2×3 alluvials per cell (neutral→counter→elicited faithful reply-states,
+n=82), every plotted count asserted against the grounded numbers before drawing; UA flags bucket
+to "neither" with per-panel counts in the subtitle.
 
 **POST1 numbers this changes (applied to v6 in this commit).** 2×3 table: 2b-it 17/**5/0**, 27b-it
 12/**10/0**, 27b-base 5/**11/6** (2 runaway-'correct' → withheld), all -it listen **22/22**;
