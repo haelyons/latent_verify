@@ -31,10 +31,33 @@ from matplotlib.path import Path as MPath
 from matplotlib.patches import PathPatch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "controls"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 from make_figB_sankey import PANELS, EXPECT, load_panel, _check_palette as _check_default  # noqa: E402
 import make_figB_sankey as _fb  # noqa: E402
+from faithful_rescore import classify  # noqa: E402
+import json as _json  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[3]
+
+# One-register mode: re-score the COUNTER column strict (map_confidence=False), the same string-identity
+# register as the elicited slot, so the whole figure asks one question — "does this turn NAME C / W* / neither"
+# — and is MECE with the draft's free-reply claim ("the top line never names either answer"). Confidence-
+# mapped counter (the default in figB_*_ext2) answers a different question (did the reply signal assent) and
+# reads base "Yes, I'm sure." as C/W*, which is a second register the draft does not use.
+def _strict_counter_seq(title, cell):
+    """Return per-item (neutral_faithful, counter_STRICT, elicit_faithful) label triples for a panel."""
+    path, src = {t: (p, s) for t, p, s in PANELS}[title]
+    d = _json.loads(Path(path).read_text())
+    items = [it for it in d["items"] if it["cell"] == cell]
+    base_seqs, ua = load_panel(path, src, cell)   # keeps neutral + elicit exactly as the canonical figures
+    out = []
+    for it, s in zip(items, base_seqs):
+        lab = classify(it.get("counter_gen") or "", it["correct"], it["Wstar"],
+                       it.get("stated"), it.get("pushed"), map_confidence=False)[0]
+        lab = "NEITHER" if lab == "UNRESOLVED_ALIAS" else lab
+        out.append((s[0], lab, s[2]))
+    return out, ua
 
 HUE = {"C": "#009E73", "WSTAR": "#CC3311", "NEITHER": "#b0b0ab"}   # hue = correctness (Okabe-Ito)
 SURFACE = "#ffffff"
@@ -58,11 +81,17 @@ def _title(scale, training):
     return f"{scale} base" if training == "base" else f"{scale}-it"
 
 
+STRICT_COUNTER = False   # set by make(); when True the counter column uses the string-identity register
+
+
 def _panel(cell, scale, training):
-    seqs, ua = load_panel(*BY_TITLE[_title(scale, training)], cell)
+    title = _title(scale, training)
+    if STRICT_COUNTER:
+        seqs, ua = _strict_counter_seq(title, cell)
+    else:
+        seqs, ua = load_panel(*BY_TITLE[title], cell)
     final = {c: sum(1 for s in seqs if s[2] == c) for c in CATS}
-    assert final == {c: EXPECT[cell][_title(scale, training)].get(c, 0) for c in CATS}, \
-        (cell, scale, training, final)
+    assert final == {c: EXPECT[cell][title].get(c, 0) for c in CATS}, (cell, scale, training, final)
     return seqs, ua, final
 
 
@@ -156,7 +185,9 @@ def draw_three_stage(ax, cell, scale, training):
     ax.set_xticklabels([])
 
 
-def make(kind, out_png, suptitle):
+def make(kind, out_png, suptitle, strict_counter=False):
+    global STRICT_COUNTER
+    STRICT_COUNTER = strict_counter
     draw = draw_two_stage if kind == "two" else draw_three_stage
     fig, axes = plt.subplots(4, 3, figsize=(11, 13.5) if kind == "two" else (12.5, 14))
     fig.patch.set_facecolor(SURFACE)
@@ -184,7 +215,9 @@ def make(kind, out_png, suptitle):
     fig.suptitle(suptitle, fontsize=13, y=0.995)
     # Full caption lives in figB_synthesis_caption.md (kept out of the figure — it was clutter, too small
     # to read, and left no room for a real explanation). One-line pointer only.
-    note = ("hue = correctness (green C / red W* / gray withhold); muted = base, bold = -it. "
+    reg = "counter = does the free reply NAME the answer (same string-identity register as the slot)" \
+        if strict_counter else "counter = confidence-mapped free-reply state"
+    note = (f"hue = correctness (green C / red W* / gray withhold); muted = base, bold = -it. {reg}. "
             "Full caption: docs/drafts/figs/figB_synthesis_caption.md")
     fig.text(0.5, 0.055, note, ha="center", fontsize=8, color="#6e6e6a")
     fig.tight_layout(rect=(0.02, 0.06, 1, 0.97))
@@ -198,3 +231,6 @@ if __name__ == "__main__":
          "Where each planted answer lands after pushback — 82-item family, faithful labels")
     make("three", figdir / "figB_synthesis_ext2.png",
          "Planted answer → free reply under pushback → elicited final — 82-item family, faithful labels")
+    make("three", figdir / "figB_synthesis_strict_ext2.png",
+         "Planted answer → does the free reply NAME it → elicited final — 82-item family, one register",
+         strict_counter=True)

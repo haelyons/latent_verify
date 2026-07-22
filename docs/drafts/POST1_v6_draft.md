@@ -79,6 +79,24 @@ scale, so counter-arm movement is push-attributable. 2b-base fails this control 
 "Okay, thank you." it keeps its planted answer on only 5 of 22 — so read its row as instability,
 not push-response.*
 
+## Two layers: what the model says, and what it commits to
+
+The same disposition across the 82-item family, with the free-reply layer added, is one picture:
+
+![Reply-state flows across the family](figs/figB_synthesis_strict_ext2.png)
+
+*Each panel is one model; each of 82 items flows planted answer → free reply → elicited final,
+colored by which answer it **names** (green C, red W\*, gray neither), one string-identity register
+throughout. FOLD rows plant C and push W\*; LISTEN rows plant W\* and push C. "drift n/82" is the
+neutral-arm control ("Okay, thank you.", no push). This is the table above generalized to the family
+and split into its two layers; counts are elicited faithful labels, validated as in the caveats.*
+
+The load-bearing contrast is the **middle column**. Base rows are gray there and colored at the ends:
+the free reply names neither answer, yet the elicited slot commits — base moves (or holds) only when
+forced, never in prose. The -it rows are colored through the middle: the tuned model names the pushed
+answer in its reply, then commits to it. The behaviour lives in a different layer by training —
+tuned models *say* it and commit; base models say neither and commit anyway, at the slot.
+
 ## Base raises the pushed answer's probability — and says it isn't sure
 
 Fix the reply to be exactly "Istanbul" and measure that string's probability; likewise
@@ -111,13 +129,11 @@ hardly open with it, so a ~14× rise still stays below that line; sampling is
 untested. On a misconception-style family, where base holds the wrong answer more strongly, it
 does emit it (23 of 23 realized flips).
 
-All 82 free replies, ungated: every top line — the reply's first line, before self-generated
-extra dialogue — is a hedge from the "No, I'm not sure…" family (56; 37× "No, I'm not sure. I'm
-just guessing.") or a confident refusal ("I'm sure." / "Yes, I'm sure.", 26). The free-reply top
-line never names *either* answer on any of the 104 items; the table's held-counts score a
-different text — at the elicited slot base does name entities (held 3 of 22 at 9b). Base may
-also simply be withholding a token it barely holds — a planned follow-up (design frozen in the
-repo) tests this.
+This is the figure's base rows, at the free-reply layer: the top line never names *either* answer
+(the gray middle column) — it is a hedge from the "No, I'm not sure…" family (56 of 82; 37× "No,
+I'm not sure. I'm just guessing.") or a confident refusal ("Yes, I'm sure.", 26) — while the
+elicited slot does name an entity. Base may simply be withholding a token it barely holds; a
+planned follow-up (frozen in the repo) tests this.
 
 ![Per-item decomposition scatter, 9b base](figs/fig1_v6_decomposition_9bbase.png)
 
@@ -130,13 +146,13 @@ Ring: the Istanbul/Ankara worked example.*
 
 ## The tuned model adopts; its correct-answer probability still rises
 
-The rate replicates at 9b-it on two further sets: a first expansion of 34 items, and a second of
-82 drafted by study-blind LLMs and kept after two independent web verifications (82 of 91):
-19 of 34 and 55 of 82 adopted, none withheld — the run-time scorer had excluded three replies
+The -it fold rate replicates on the two expansion sets in the figure — a 34-item first pass and the
+82-item family (drafted by study-blind LLMs, kept after two independent web verifications, 82 of
+91): 19 of 34 and 55 of 82 adopted, none withheld — the run-time scorer had excluded three replies
 that were accent or alternate-name variants of an answer ("Yaoundé"; "Nur-Sultan" for Astana;
 "Democratic Republic of Congo" for DR Congo); the rescore published with the post resolves two
-to the pushed answer (adopted) and one to the planted answer (held). Same
-fixed-string scoring: the correct answer's probability still rises on 47 of 53 adopted items
+to the pushed answer (adopted) and one to the planted answer (held). The base probability signature
+survives the adoption: same fixed-string scoring, the correct answer's probability still rises on 47 of 53 adopted items
 (Nile falls by about a third; the claim is the aggregate). Reverse-arm near-total revision is
 not truth-recognition: in a smaller, suggestive control (an *unrelated* wrong answer pushed, 9b)
 the tuned model adopts about 40%, and the base reverse arm moves far less (4–8 of 22; table).
