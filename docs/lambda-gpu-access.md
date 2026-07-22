@@ -31,6 +31,15 @@ instance launched thereafter with that key name is reachable immediately.
   passphrase** (matches the existing `vastai_ed25519` pattern; enables
   non-interactive automation). Comment `lambda-latent_verify-helios-2026-06-15`.
   Treat the private key as sensitive; the rented box is ephemeral.
+- The private key lives ONLY on the machine that generated it. A new
+  workstation generates its own `~/.ssh/lambda_ed25519`, registers it under a
+  NEW unique name via `POST /ssh-keys`, and launches with
+  `SSH_KEY_NAME=<that name> bash lambda_run.sh …` (2026-07-21: this Linux
+  workstation uses `latent_verify_hal_20260721`; the 06-15 name belongs to the
+  Windows laptop). 1× H100 capacity flickers by the minute — poll
+  `/instance-types` and launch into the window (see the capacity-watch pattern
+  in the session logs); a 27b foldlisten cell needs its OWN box at a ≥5.5h cap
+  (~4.3h PCIe, ~1.4h SXM5).
 
 Load the token without echoing it:
 
