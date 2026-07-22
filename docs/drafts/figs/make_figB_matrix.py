@@ -129,8 +129,8 @@ def draw_three_stage(ax, cell, scale, training):
         _ribbon(ax, NODE_W, used0, 1 - NODE_W, tops1[c], n, HUE[c], a["rib"])
         used0 += n
         if n >= 5:                                   # both blind readers had to pixel-estimate these
-            ax.text(1, tops1[c] + n / 2, str(n), ha="center", va="center", fontsize=7,
-                    color="#ffffff" if training == "it" else "#444444", zorder=5)
+            ax.text(1 + NODE_W + 0.03, tops1[c] + n / 2, str(n), ha="left", va="center",
+                    fontsize=7, color="#666666", zorder=5)
     used_s = {c: 0.0 for c in CATS}
     used_d = {c: 0.0 for c in CATS}
     for cs in CATS:                                  # counter -> elicited, colored by destination
@@ -182,15 +182,11 @@ def make(kind, out_png, suptitle):
     handles = [plt.Rectangle((0, 0), 1, 1, color=HUE[c]) for c in CATS]
     fig.legend(handles, [NICE[c] for c in CATS], loc="lower center", ncol=3, frameon=False, fontsize=10)
     fig.suptitle(suptitle, fontsize=13, y=0.995)
-    note = ("faithful-strict elicited register (alias-aware; validated vs blind hand-labels at every scale); "
-            "muted = base, bold = -it")
-    if kind == "three":
-        note = ("counter column = top-line state of the free reply (prose register; at base, green/red is often a bare\n"
-                "“Yes, I'm sure.”-type reaffirmation mapped to the planted/pushed answer, not the name itself). "
-                "ribbons are colored by DESTINATION state.\n"
-                "drift n/82 = items whose reply moved to the pushed answer in a control arm whose second turn is only "
-                "“Okay, thank you.” (no push)\n" + note)
-    fig.text(0.5, 0.04, note, ha="center", fontsize=7.5, color="#6e6e6a")
+    # Full caption lives in figB_synthesis_caption.md (kept out of the figure — it was clutter, too small
+    # to read, and left no room for a real explanation). One-line pointer only.
+    note = ("hue = correctness (green C / red W* / gray withhold); muted = base, bold = -it. "
+            "Full caption: docs/drafts/figs/figB_synthesis_caption.md")
+    fig.text(0.5, 0.055, note, ha="center", fontsize=8, color="#6e6e6a")
     fig.tight_layout(rect=(0.02, 0.06, 1, 0.97))
     fig.savefig(out_png, dpi=200)
     print("[written]", out_png)
