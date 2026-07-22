@@ -103,7 +103,8 @@ def draw_two_stage(ax, cell, scale, training):
         ax.text(1.09, tops[c] + n / 2, str(n), ha="left", va="center", fontsize=8.5, color="#333333")
     ax.set_xlim(-0.4, 1.55)
     ax.set_ylim(max(h, 82) + GAP, -GAP)
-    ax.set_xticks([0, 1], ["planted", "elicited"], fontsize=8)
+    ax.set_xticks([0, 1])                          # stage labels only on the bottom row (see make())
+    ax.set_xticklabels([])
 
 
 def draw_three_stage(ax, cell, scale, training):
@@ -127,6 +128,9 @@ def draw_three_stage(ax, cell, scale, training):
                                    alpha=a["node"], lw=0, zorder=3))
         _ribbon(ax, NODE_W, used0, 1 - NODE_W, tops1[c], n, HUE[c], a["rib"])
         used0 += n
+        if n >= 5:                                   # both blind readers had to pixel-estimate these
+            ax.text(1, tops1[c] + n / 2, str(n), ha="center", va="center", fontsize=7,
+                    color="#ffffff" if training == "it" else "#444444", zorder=5)
     used_s = {c: 0.0 for c in CATS}
     used_d = {c: 0.0 for c in CATS}
     for cs in CATS:                                  # counter -> elicited, colored by destination
@@ -144,11 +148,12 @@ def draw_three_stage(ax, cell, scale, training):
         ax.add_patch(plt.Rectangle((2 - NODE_W, tops2[c]), 2 * NODE_W, n, facecolor=HUE[c],
                                    alpha=a["node"], lw=0, zorder=3))
         ax.text(2.09, tops2[c] + n / 2, str(n), ha="left", va="center", fontsize=8.5, color="#333333")
-    ax.text(0.0, max(h1, h2, 82) + GAP * 2.4, f"neutral control: drift {drift}/82",
-            fontsize=7, color="#6e6e6a", ha="left")
+    ax.text(2.45, -GAP * 0.2, f"drift {drift}/82", fontsize=7, color="#6e6e6a",
+            ha="right", va="bottom")                 # top-right: a panel property, not a planted-column one
     ax.set_xlim(-0.4, 2.55)
     ax.set_ylim(max(h1, h2, 82) + GAP * 3.2, -GAP)
-    ax.set_xticks([0, 1, 2], ["planted", "counter\nreply", "elicited"], fontsize=8)
+    ax.set_xticks([0, 1, 2])                       # stage labels only on the bottom row (see make())
+    ax.set_xticklabels([])
 
 
 def make(kind, out_png, suptitle):
@@ -166,6 +171,9 @@ def make(kind, out_png, suptitle):
             ax.set_facecolor(SURFACE)
             if i == 0:
                 ax.set_title(scale, fontsize=13, pad=10)
+            if i == len(ROWS) - 1:                 # shared stage axis: label the bottom row only
+                labs = ["planted", "elicited"] if kind == "two" else ["planted", "counter\nreply", "elicited"]
+                ax.set_xticklabels(labs, fontsize=8)
             if j == 0:
                 lab = f"{cell.upper()}\n{'base' if training == 'base' else '-it'}"
                 start = "start: C planted" if cell == "fold" else "start: W* planted"
@@ -177,8 +185,11 @@ def make(kind, out_png, suptitle):
     note = ("faithful-strict elicited register (alias-aware; validated vs blind hand-labels at every scale); "
             "muted = base, bold = -it")
     if kind == "three":
-        note = ("counter column = top-line state of the free reply (prose register); the neutral-arm control "
-                "is the per-panel drift annotation\n" + note)
+        note = ("counter column = top-line state of the free reply (prose register; at base, green/red is often a bare\n"
+                "“Yes, I'm sure.”-type reaffirmation mapped to the planted/pushed answer, not the name itself). "
+                "ribbons are colored by DESTINATION state.\n"
+                "drift n/82 = items whose reply moved to the pushed answer in a control arm whose second turn is only "
+                "“Okay, thank you.” (no push)\n" + note)
     fig.text(0.5, 0.04, note, ha="center", fontsize=7.5, color="#6e6e6a")
     fig.tight_layout(rect=(0.02, 0.06, 1, 0.97))
     fig.savefig(out_png, dpi=200)
