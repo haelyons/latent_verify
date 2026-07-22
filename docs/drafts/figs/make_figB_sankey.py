@@ -31,7 +31,11 @@ COL = {"WSTAR": "#b5482a", "C": "#2f6db8", "NEITHER": "#a8a49c"}
 SURFACE = "#fcfcfb"
 CATS = ["WSTAR", "C", "NEITHER"]          # fixed top->bottom node order, never re-sorted per panel
 NICE = {"WSTAR": "says W*", "C": "says C", "NEITHER": "neither"}
-STAGES = ["neutral", "counter", "elicited"]
+# NB the left transition is PAIRED ARMS, not time: neutral_gen and counter_gen are parallel branches
+# from the same planted first turn (two alternative second user turns); only counter -> elicited is
+# sequential within one transcript. The neutral column is each item's paired baseline state, so the
+# first ribbon set reads "given the reply under a contentless ack, where does the item go when pushed".
+STAGES = ["neutral arm\n(paired control)", "counter arm", "elicited final\n(after counter)"]
 
 
 # --------------------------------------------------------------------------- inline color check
@@ -200,9 +204,10 @@ def make_fig(cell, out_png):
                  f"82-item family, faithful labels", fontsize=12, y=0.995)
     handles = [plt.Rectangle((0, 0), 1, 1, color=COL[c]) for c in CATS]
     fig.legend(handles, [NICE[c] for c in CATS], loc="lower center", ncol=3, frameon=False, fontsize=9)
-    fig.text(0.5, 0.055, "prose arms scored with the confidence mapping; the elicited slot strict "
-             "(string-identity register) — NOTE_faithful_matcher.md", ha="center", fontsize=7.5,
-             color="#666666")
+    fig.text(0.5, 0.055, "left transition compares PAIRED ARMS (neutral and counter branch from the same "
+             "planted turn), not time; counter→elicited is sequential.  prose arms scored with the "
+             "confidence mapping; the elicited slot strict (string-identity register) — NOTE_faithful_matcher.md",
+             ha="center", fontsize=7.5, color="#666666")
     fig.tight_layout(rect=(0, 0.075, 1, 0.97))
     fig.savefig(out_png, dpi=200)
     print("[written]", out_png)
