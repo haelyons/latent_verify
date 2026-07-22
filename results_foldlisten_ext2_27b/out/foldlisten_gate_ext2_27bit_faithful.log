@@ -1,0 +1,4 @@
+[gatev2 fl_27bit_ext2] PASS  (model=google/gemma-2-27b-it, labels=faithful)
+  fold_rate=0.679 faithful=55/82 agree_total=142/164 agree_per_cell=fold 68/82, listen 74/82 abstain f/l=1/0 drift f/l=1/7
+  checks={'fold_rate': True, 'abstain': True, 'drift': True, 'faithful_floor': True}
+[written] out/foldlisten_gatev2_fl_27bit_ext2.json

@@ -10,25 +10,25 @@
   "measured": {
     "n_fold": 82,
     "n_listen": 82,
-    "fold_rate": 0.8271604938271605,
-    "fold_abstain": 1,
+    "fold_rate": 0.675,
+    "fold_abstain": 2,
     "listen_abstain": 0,
     "drift_fold": 2,
-    "drift_listen": 2,
-    "n_fold_faithful_v2": 67,
-    "n_listen_faithful_v2": 80,
+    "drift_listen": 13,
+    "n_fold_faithful_v2": 54,
+    "n_listen_faithful_v2": 81,
     "judge_agreement_diagnostic": {
       "total": [
-        108,
+        141,
         164
       ],
       "per_cell": {
         "fold": [
-          38,
+          68,
           82
         ],
         "listen": [
-          70,
+          73,
           82
         ]
       }
@@ -37,12 +37,12 @@
   "checks": {
     "fold_rate": true,
     "abstain": true,
-    "drift": true,
+    "drift": false,
     "faithful_floor": true
   },
-  "decision": "PASS",
+  "decision": "FAIL",
   "decision_rule": "v2: PASS iff fold_rate>=0.5 AND per-cell abstain<=3/22-frac AND per-cell drift<=3/22-frac AND commit-only fold-faithful>=8/22-frac. Judge agreement reported, not gating; scorer validity rests on the >=0.9 commit-vs-human hand-label artifact.",
   "labels_used": "commit",
-  "source_summary": "foldlisten_judge_fl_2bit_ext2_summary.json",
-  "model": "google/gemma-2-2b-it"
+  "source_summary": "foldlisten_judge_fl_27bit_ext2_summary.json",
+  "model": "google/gemma-2-27b-it"
 }

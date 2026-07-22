@@ -89,6 +89,53 @@ CHANGE_THR=0.30): 0.000–0.114, all STABLE; prose arms exceed it at several cel
 (MATERIALLY_RELABELED) and therefore carry no claims (judge already demoted; counter arm
 diagnostic-only).
 
+---
+
+# Addendum 2 (2026-07-22): Phase B family replay — matrix complete, and one honest gate contest
+
+**The ext2 (n=82) matrix is complete** — five new cells run with the ported dual-label judge
+(`results_foldlisten_ext2_2b9b/out/`, `results_foldlisten_ext2_27b/out/`), each H3-grounded at item
+level by an isolated reader; -it fold cells additionally 3-reader blind-spot-checked (unanimous
+vectors; faithful-strict 82/82 at 2b-it, 81/82 at 27b-it where the single ding is the conservative
+UA-counts-as-disagreement rule on "Persia" — an UNLISTED alias for W* Iran, correctly flagged not
+mapped). Faithful-strict elicited cells, moved/held/withheld:
+
+| | fold (W* pushed) | listen (C pushed) | category |
+|---|---|---|---|
+| 2b-base | 16/15/51 | 25/10/47 | (heavy abstain — instability, matches n=22) |
+| 2b-it | 68/14/0 (.829) | 81/1/0 | MOVEMENT_BOTH, gate PASS both readings |
+| 9b-base | 3/41/38 (.068) | 11/34/37 | NO_MOVEMENT |
+| 9b-it | 55/27/0 (.671) | 82/0/0 | MOVEMENT_BOTH (2026-07-20 rescore of the committed run) |
+| 27b-base | 11/39/32 (.220) | 20/34/28 | MOVEMENT_LISTEN_ONLY |
+| 27b-it | 55/26/1 (.679) | 82/0/0 | MOVEMENT_BOTH; gate CONTESTED (below) |
+
+**Anchor3**: the ported judge reproduced the committed 9b-it n=22 run BYTE-IDENTICALLY (gens +
+labels, vs original AND anchor2) — the port's confirming run passed.
+
+**Zero-adoption scoping (grounded).** 9b-base ext2 fold has **3 genuine** top-line adoptions
+(Bujumbura; Lake Superior; Photo 51→Watson with a QA-context-drift caveat) — the 4th commit 'wrong'
+was the documented 'The Hague'/'the' substring false positive. "9b-base never adopts" is an
+n=22-scoped claim; at n=82 it is 3/82 ≈ 4%, still NO_MOVEMENT by rate.
+
+**GATE CONTEST at 27b-it ext2 (do not paper over).** Commit-labels gate FAILs (listen neutral-drift
+13 > 11.18 = 3/22-frac of 82); faithful-labels gate PASSes (drift 7). Item-level hand-read
+(isolated reader) finds ~15 GENUINE listen-cell neutral self-corrections — 27b-it spontaneously
+reverts a planted wrong answer to the correct one after a mere "Okay, thank you." in ~18% of items,
+often in the form "…is actually **Warsaw**, not Krakow" — and classify's `tiebreak_unresolved`
+swallows ~8 of them into NEITHER (a real matcher weakness on bold-markdown self-correction prose;
+the counter-arm's tie-break shares it). BOTH readings under-count truth; the defensible verdict is
+**drift-check FAIL** — the 27b-it ext2 substrate is NOT certified for mechanism work until the
+tie-break is fixed (own claim-blind pass) or the drift threshold is re-argued. Both gate readings
+now persist as separate artifacts (`foldlisten_gatev2_fl_27bit_ext2{,_labels-faithful}.json`;
+run_gate now suffixes non-commit readings — the first fetch had silently overwritten the FAIL with
+the PASS). Contrast 27b-BASE: there the commit drift 16 was pure runaway false positives (top-line
+"You're welcome."), faithful 0 is right — the two scorers fail in OPPOSITE directions by regime,
+which is exactly why both label sets are recorded.
+
+**Owed next**: tie-break fix for affirmed-correction prose (claim-blind + selftest, then re-gate
+27b-it ext2); "persia"→Iran alias adjudication (would make 27b-it fold 56/82); Fig B alluvial now
+has complete faithful flows for all 12 cells.
+
 **POST1 numbers this changes (applied to v6 in this commit).** 2×3 table: 2b-it 17/**5/0**, 27b-it
 12/**10/0**, 27b-base 5/**11/6** (2 runaway-'correct' → withheld), all -it listen **22/22**;
 TL;DR band 57–81% → **55–77%**; "-it withheld" 0–1 → **0 of 22 at every scale**; ext sets

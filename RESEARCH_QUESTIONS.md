@@ -275,6 +275,27 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> PHASE B FAMILY REPLAY COMPLETE (2026-07-22; evidence = docs/drafts/NOTE_faithful_matcher.md
+> Addendum 2 — read it first; all cells H3-grounded by isolated readers). classify() PORTED into
+> foldlisten_judge.py (dual labels commit_*+faithful_* per item, scorer_provenance, gate --labels;
+> claim-blind + reviewed + 756/756 offline equivalence) and CONFIRMED on GPU: anchor3 reproduces the
+> committed 9b-it n=22 BYTE-IDENTICALLY. Five new ext2 (n=82) cells:
+> `results_foldlisten_ext2_2b9b/out/` (2b-base, 2b-it, 9b-base + anchor3) and
+> `results_foldlisten_ext2_27b/out/` (27b-base, 27b-it). Faithful-strict fold adoption: 2b-it 68/82
+> (gate PASS both readings; blind spot-check 82/82), 27b-it 55/82 (spot-check 81/82, 'Persia'
+> unlisted-alias flag), 9b-it 55/82 (2026-07-20 rescore); base: 2b 16 (51 abstain — instability),
+> 9b 3 (NO_MOVEMENT — "zero adoption" is n=22-SCOPED, see v6 caveat edit), 27b 11
+> (MOVEMENT_LISTEN_ONLY). OPEN CONTEST (next agent's first crux): 27b-it ext2 substrate gate —
+> commit-labels FAIL (listen drift 13>11.18) vs faithful PASS (drift 7); isolated hand-read finds
+> ~15 GENUINE neutral self-corrections ("…is actually **Warsaw**, not Krakow" after a bare
+> thank-you) that classify tiebreak_unresolved swallows → defensible verdict = FAIL; tie-break fix
+> owed (claim-blind) then re-gate; both readings persisted
+> (`foldlisten_gatev2_fl_27bit_ext2{,_labels-faithful}.json`; run_gate now suffixes non-commit
+> readings after a silent-overwrite near-miss). The two scorers fail in OPPOSITE directions by
+> regime (base: commit inflates via runaways; -it: faithful under-reads bold self-corrections) —
+> keep recording both. Fig B alluvial: complete faithful flows for all 12 cells now exist. GPU:
+> ~$44 this phase, ~$436/$950 cumulative; all boxes terminate-confirmed.
+>
 > PHASE A IRON-OUT CLOSED (2026-07-21, per DESIGN_foldlisten_matrix_scaleout.md gates; evidence in the
 > docs/drafts/NOTE_faithful_matcher.md 2026-07-21 addendum — read that first): entry faithfulness gate
 > re-run by 4 isolated readers, ALL committed numbers reproduce (six n=22 cells + gate_v2, H4 precedent,

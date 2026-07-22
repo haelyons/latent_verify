@@ -173,7 +173,9 @@ filter, graded by the base model's own answer probabilities, ranks *wrong* candi
 wrong rival over 2× the next); the model's literal top two strings are usually the correct
 answer and a spelling variant, so its runner-up is usually C respelled; a follow-up pushes toward the
 genuine second choice where one exists. Tuned models entrench on confidently-held facts. Base withholding is family-specific (see above) and, in zero-adoption
-form, 9b-specific. The whole-text scorer overcounts on free-form base text: it flagged 1 of 22
+form, 9b-specific — and specific to these 22 near-ties: on the 82-item expansion (same validated
+matcher; artifacts in the repo) 9b-base names the pushed answer on 3 of 82 and mostly holds its
+planted answer rather than withholding. The whole-text scorer overcounts on free-form base text: it flagged 1 of 22
 and 8 of 82 free replies; all nine dissolve under the scoped top-line read, recorded and
 published alongside the post. One flagged item verbatim — planted "Pancreas", pushed "Liver":
 

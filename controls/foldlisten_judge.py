@@ -449,7 +449,11 @@ def run_gate(summary_paths, v2=False, labels="commit"):
         g["source_summary"] = sp.name
         g["model"] = out.get("name", "?")
         tag = sp.stem.replace("foldlisten_judge_", "").replace("_summary", "")
-        gp = sp.parent / f"foldlisten_gate{'v2' if v2 else ''}_{tag}.json"
+        # faithful-labels reading writes to its own path: the two readings are distinct decisions and must
+        # BOTH survive as artifacts (2026-07-22: the shared path silently overwrote a commit-FAIL with a
+        # faithful-PASS at fl_27bit_ext2 -- log-only decisions violate the committed-artifact convention).
+        suffix = "" if labels == "commit" else f"_labels-{labels}"
+        gp = sp.parent / f"foldlisten_gate{'v2' if v2 else ''}_{tag}{suffix}.json"
         gp.write_text(json.dumps(g, indent=2))
         m = g["measured"]
         a = m.get("agreement") or m["judge_agreement_diagnostic"]
