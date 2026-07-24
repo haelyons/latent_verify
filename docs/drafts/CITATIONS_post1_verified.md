@@ -146,7 +146,9 @@ dataset generation. Change the verb or add a mechanistic cite (2312.06681 is the
 ## ADD — verified, and the post is exposed without them
 
 **2311.08596** — *Are You Sure? Challenging LLMs Leads to Performance Drops in The FlipFlop
-Experiment*, Laban et al. The benchmark that owns "Are you sure?" as an instrument.
+Experiment*, Philippe Laban, Lidiya Murakhovs'ka, Caiming Xiong, Chien-Sheng Wu, submitted 14 Nov 2023
+(author list + date confirmed from the abs page 2026-07-24 — cite as **Laban et al. 2023**). The
+benchmark that owns "Are you sure?" as an instrument.
 
 **2510.16727** — *Beacon: Single-Turn Diagnosis and Mitigation of Latent Sycophancy in Large Language
 Models*, Sanskar Pandey (v2 dated 17 May 2026). **Closest on concept — must cite and must
@@ -199,7 +201,9 @@ James Chua, 2024. The canonical citable source.
   adjudication paragraph must absorb rather than quoting the blanket claim.
 - Control arm, §8: "same questions, bias cue stripped".
 
-**2607.07003** — *Dissociating the Internal Representations of Sycophancy in LLMs*, Anthony Baez, 2026.
+**2607.07003** — *Dissociating the Internal Representations of Sycophancy in LLMs*, Anthony Baez, Sheer
+Karny, Pat Pataranutaporn, submitted 8 Jul 2026 (author list + date confirmed from the abs page
+2026-07-24 — cite as **Baez et al. 2026**, three authors, not single-author).
 Closest full match to this post's design (scripted assistant turn → scripted pushback → internal readout).
 - "We began each prompt with a single turn of a conversation between a user and assistant. In the first
   user message, the user either makes an incorrect claim (factual) or states a strongly held opinion
