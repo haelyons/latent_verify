@@ -39,24 +39,35 @@ PANELS = [
     ("9B-base", "results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_9bbase_ext2_summary.json", "base"),
     ("9B-it",   "results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json", "it"),
 ]
-CELL = "fold"
+# fold: C planted, W* pushed; listen: W* planted, C pushed. Same strict register.
+PLANTED = {"fold": "C", "listen": "WSTAR"}
 EXPECT = {
-    "9B-base": {"neutral": {"NEITHER": 82},
-                "counter": {"NEITHER": 82},
-                "elicit":  {"C": 41, "WSTAR": 3, "NEITHER": 38}},
-    "9B-it":   {"neutral": {"C": 1, "NEITHER": 81},
-                "counter": {"C": 15, "WSTAR": 50, "NEITHER": 17},
-                "elicit":  {"C": 27, "WSTAR": 55}},
+    "fold": {
+        "9B-base": {"neutral": {"NEITHER": 82},
+                    "counter": {"NEITHER": 82},
+                    "elicit":  {"C": 41, "WSTAR": 3, "NEITHER": 38}},
+        "9B-it":   {"neutral": {"C": 1, "NEITHER": 81},
+                    "counter": {"C": 15, "WSTAR": 50, "NEITHER": 17},
+                    "elicit":  {"C": 27, "WSTAR": 55}},
+    },
+    "listen": {
+        "9B-base": {"neutral": {"C": 2, "NEITHER": 80},
+                    "counter": {"NEITHER": 82},
+                    "elicit":  {"C": 11, "WSTAR": 34, "NEITHER": 37}},
+        "9B-it":   {"neutral": {"C": 5, "WSTAR": 1, "NEITHER": 76},
+                    "counter": {"C": 67, "WSTAR": 1, "NEITHER": 14},
+                    "elicit":  {"C": 82}},
+    },
 }
 
 
-def _labels(path):
+def _labels(path, cell):
     d = json.loads(Path(path).read_text())
-    items = [it for it in d["items"] if it["cell"] == CELL]
+    items = [it for it in d["items"] if it["cell"] == cell]
     assert len(items) == 82, (path, len(items))
     out = []
     for it in items:
-        row = {"planted": "C"}
+        row = {"planted": PLANTED[cell]}
         for stage, field in (("neutral", "neutral_gen"), ("counter", "counter_gen"), ("elicit", "elicit_gen")):
             strict = True   # one register throughout
             lab = classify(it.get(field) or "", it["correct"], it["Wstar"],
@@ -108,8 +119,8 @@ def _flow(ax, xs, xd, tops_s, tops_d, seqs, sk, dk, a):
             _ribbon(ax, xs + NODE_W, y0, xd - NODE_W, y1, w, HUE[cd], a["rib"])
 
 
-def draw_control(ax, seqs, exp, a, training):
-    planted = {"C": 82}
+def draw_control(ax, seqs, exp, a, training, planted_cat):
+    planted = {planted_cat: 82}
     tp, tn = _stack(planted), _stack(exp["neutral"])
     _node(ax, 0, tp, planted, a, training)
     _flow(ax, 0, 1, tp, tn, seqs, "planted", "neutral", a)
@@ -117,8 +128,8 @@ def draw_control(ax, seqs, exp, a, training):
     ax.set_xlim(-0.4, 1.4); ax.set_ylim(84 + GAP, -GAP); ax.set_xticks([0, 1])
 
 
-def draw_push(ax, seqs, exp, a, training):
-    planted = {"C": 82}
+def draw_push(ax, seqs, exp, a, training, planted_cat):
+    planted = {planted_cat: 82}
     tp, tc, te = _stack(planted), _stack(exp["counter"]), _stack(exp["elicit"])
     _node(ax, 0, tp, planted, a, training)
     _flow(ax, 0, 1, tp, tc, seqs, "planted", "counter", a)
@@ -128,19 +139,19 @@ def draw_push(ax, seqs, exp, a, training):
     ax.set_xlim(-0.4, 2.4); ax.set_ylim(84 + GAP, -GAP); ax.set_xticks([0, 1, 2])
 
 
-def make(out_png):
+def make(out_png, cell="fold"):
     fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.6), gridspec_kw={"width_ratios": [2, 3]})
     fig.patch.set_facecolor(SURFACE)
     for i, (title, path, shade) in enumerate(PANELS):
-        seqs = _labels(path)
-        exp = EXPECT[title]
+        seqs = _labels(path, cell)
+        exp = EXPECT[cell][title]
         for stage in ("neutral", "counter", "elicit"):
             got = {c: sum(1 for s in seqs if s[stage] == c) for c in CATS if sum(1 for s in seqs if s[stage] == c)}
             assert got == exp[stage], (title, stage, got)
             assert sum(exp[stage].values()) == 82, (title, stage)   # internal MECE
         a = ALPHA[shade]
-        draw_control(axes[i][0], seqs, exp, a, shade)
-        draw_push(axes[i][1], seqs, exp, a, shade)
+        draw_control(axes[i][0], seqs, exp, a, shade, PLANTED[cell])
+        draw_push(axes[i][1], seqs, exp, a, shade, PLANTED[cell])
         axes[i][0].set_ylabel(title, fontsize=12, rotation=0, ha="right", va="center", labelpad=16)
         for ax in axes[i]:
             ax.set_yticks([])
@@ -160,4 +171,5 @@ def make(out_png):
 
 
 if __name__ == "__main__":
-    make(REPO / "docs/drafts/figs/figB_neutral_counterfactual_ext2.png")
+    make(REPO / "docs/drafts/figs/figB_neutral_counterfactual_ext2.png", cell="fold")
+    make(REPO / "docs/drafts/figs/figB_neutral_counterfactual_listen_ext2.png", cell="listen")
