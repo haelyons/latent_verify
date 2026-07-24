@@ -85,29 +85,36 @@ one an eval sees and the one a user experiences — and it is not the whole stat
 
 # The scores, across scale
 
-The figure is 9b. The same readout, across all three scales, on the original 22 items where I first
-tuned the design, reading the elicited final answer:
+The figure is 9b. The same readout, across all three scales, on the same 82-item family, reading the
+elicited final answer:
 
-<!-- grounded orig-22 fold, out/faithful_rescore_fl_{2b,9b,27b}{base,it}.json (elicit_gen), + listen adopt -->
+<!-- grounded ext2 fold, elicit_gen strict (map_confidence=False, UA->NEITHER) over the six
+     foldlisten_judge_fl_*_ext2_summary.json; rederive: figs/make_fig_outcome_alluvial.py --rederive -->
 
-The column that carries the section is **withholding**. Every -it model: zero, at every scale. Every
--base model: it is where most of the mass sits, or close. The -it fold rate (55–77%) is real, but it
-is downstream of the plain fact that the chat model *answers*: forced to choose, it picks a side. The
-base model, asked the same way, mostly declines to pick.
+The column that carries the section is **withholding**. The -it models: 0, 0, and 1 of 82. The -base
+models: 51, 38, and 32 of 82 (2b / 9b / 27b) — the largest or second-largest bucket at every scale.
+The -it fold rate (55–68 of 82, 67–83%) is real, but it is downstream of the plain fact that the chat
+model *answers*: forced to choose, it picks a side. The base model, asked the same way, withholds on
+a third to a half of items — and when it does commit, it mostly returns to its planted answer.
 
 [Figure — the table as a picture (fold arm, all six models):]
 
-![Under pushback, what the elicited final answer names — withholding is the base story, tuning deletes it](figs/fig_outcome_bars_orig22.png)
+![Under pushback, what the elicited final answer names — base withholds, tuning deletes it](figs/fig_outcome_bars_ext2.png)
 
-*Six horizontal bars, out of 22 items, wrong answer pushed. Base block above -it block. Gray
-(withholds) fills the base bars and is absent from every -it bar; the -it bars fill to 22 because the
+*Six horizontal bars, out of 82 items, wrong answer pushed. Base block above -it block. Gray
+(withholds) is a third to a half of every base bar and vanishes from the -it bars (0 / 0 / 1) — the
 tuned model always names an entity. Grounded fold counts; the listen (correction) arm is a companion
 number below, not drawn here.*
 
 The correction direction (LISTEN — I plant the wrong answer and push the correct one) makes the same
-point from the other side: -it adopts the correction on 22 of 22 at every scale; -base on only 8 / 4
-/ 7 of 22 (2b / 9b / 27b). The -it model doesn't discriminate — it takes whatever I push. [Small n on
-listen splits; I only trust the adopt count, so I state that and not a 3-way breakdown.]
+point from the other side: -it adopts the correction on 81–82 of 82 at every scale; -base on only 25 /
+11 / 20 of 82 (2b / 9b / 27b), withholding on 47 / 37 / 28. The -it model doesn't discriminate — it
+takes whatever I push. [The original 22 near-ties, where the design was tuned, show the same shape
+(fold 12–17 of 22, withhold 0 of 22 -it vs 6–19 of 22 base); keep them as the tuning-set footnote, the
+82 is the family number. One open flag on 27b-it: its ext2 neutral-drift gate is contested — the
+commit-label reading FAILs (listen drift 13 > 11.18) while the faithful reading PASSes (7); a hand-read
+found ~15 genuine neutral-arm self-corrections the tie-break swallows. Tie-break fix owed before
+leaning on 27b-it ext2 in print; the 'Persia'/Iran alias would also make its fold 56, not 55.]
 
 Gemma's own report says post-training data encouraged "hedging, and refusals to minimize
 hallucinations" [Gemma Team 2408.00118] — but under pushback the shipped model never once withholds a
@@ -119,8 +126,8 @@ vs released -it, format co-varies with model, no causal "tuning forces" claim �
 last review caught.]
 
 [2b -base fails the neutral control — after a bare "Okay, thank you." it keeps its planted answer on
-only 5 of 22 — so read its row as instability, not push-response. State this the moment the 2b-base
-number appears.]
+only 5 of 22 on the tuning set, and on the 82 its 16 fold-adoptions come with 51 abstentions — so read
+its row as instability, not push-response. State this the moment the 2b-base number appears.]
 
 # The probabilities move without the words
 
@@ -180,8 +187,9 @@ Taking a correction is what a chat model is for. Three things don't fit that rea
 1. The probability movement is already in -base, which was never trained to please anyone.
 2. It isn't tracking truth. Push an answer that is neither the planted one nor the real rival — just
    unrelated — and 9b -it still adopts it 12 of 30 times [small n; call it suggestive, nothing more].
-3. Tuning didn't *reduce* expressed uncertainty on these near-ties, it deleted it: withhold 0 of 22,
-   every scale, on exactly the questions where "I'm not sure" is arguably the best answer.
+3. Tuning didn't *reduce* expressed uncertainty on these near-ties, it deleted it: withhold 0–1 of 82
+   (and 0 of 22 on the tuning set), every scale, on exactly the questions where "I'm not sure" is
+   arguably the best answer.
 
 The failure I'd flag for anyone running evals is the third. A flip-rate eval scores the base model
 robust here — its spoken answer barely moves — while its probabilities slide exactly like the model
@@ -220,28 +228,30 @@ headline reads as refuting mine. Also owed: De Marez as the named nearest neighb
 
 ## Appendix — expressing the outcome table as a flow diagram (options)
 
-Four options, all built and rendered from the grounded orig-22 elicited splits
-(`out/faithful_rescore_fl_*.json`; UNRESOLVED_ALIAS bucketed as names-neither, the
-neutral-counterfactual convention; option 2's build re-derives every cell from the artifacts and
-asserts before drawing).
+Four options, all built and rendered from the grounded elicited splits of the current 82-item family
+(the six `foldlisten_judge_fl_*_ext2_summary.json`, `elicit_gen` scored strict per the Gate-3
+decision, UNRESOLVED_ALIAS bucketed as names-neither — the neutral-counterfactual convention; option
+2's build re-derives every cell from the artifacts and asserts before drawing, `--rederive`). Each
+script also emits an `_orig22` variant for the 22-item tuning set.
 
-**Option 1 — stacked-bar small multiple** (`figs/fig_outcome_bars_orig22.png`,
-`make_fig_outcome_bars.py`). The table as one picture. Six horizontal bars (out of 22), hold / fold /
-withhold, base block above -it. Not a flow, but it makes the load-bearing fact — gray fills base,
-vanishes at -it — visible in one glance, and it holds all six cells at once. The direct table
-replacement.
+**Option 1 — stacked-bar small multiple** (`figs/fig_outcome_bars_ext2.png`,
+`make_fig_outcome_bars.py`). The table as one picture. Six horizontal bars (out of 82), hold / fold /
+withhold, base block above -it. Not a flow, but it makes the load-bearing fact — gray is a third to a
+half of every base bar, vanishes at -it — visible in one glance, and it holds all six cells at once.
+The direct table replacement.
 
-![Option 1 — stacked bars](figs/fig_outcome_bars_orig22.png)
+![Option 1 — stacked bars](figs/fig_outcome_bars_ext2.png)
 
 **Option 2 — fold+listen alluvial, planted → elicited, all six cells**
-(`figs/fig_outcome_alluvial_orig22.png`, `make_fig_outcome_alluvial.py`). Each panel: left, the two
-planted starts (C for the fold arm, W\* for the listen arm, 22 items each); right, what the elicited
+(`figs/fig_outcome_alluvial_ext2.png`, `make_fig_outcome_alluvial.py`). Each panel: left, the two
+planted starts (C for the fold arm, W\* for the listen arm, 82 items each); right, what the elicited
 final names. This is the "flow across the combinations" form, and it earns the ink only because both
 arms share the panel: every -it panel is an X — the fans cross and converge on whichever answer was
-*pushed*, both directions — while the base panels pour into gray. The X *is* "takes whatever you push";
-no base panel has it.
+*pushed*, both directions — while the base panels pour mostly into gray and their thin colored flows
+run *straight* (planted C stays C, planted W\* stays W\*: base commits by returning to what it was
+given, not to what was pushed). The X *is* "takes whatever you push"; no base panel has it.
 
-![Option 2 — fold+listen alluvial](figs/fig_outcome_alluvial_orig22.png)
+![Option 2 — fold+listen alluvial](figs/fig_outcome_alluvial_ext2.png)
 
 **Option 3 — three-column alluvial: planted → reply → elicited** (the researcher's IMG_3868 form —
 `figs/figB_neutral_counterfactual_ext2.png` at 9b, `figs/figB_synthesis_strict_ext2.png` for all
@@ -252,11 +262,11 @@ the prose/reply columns with confidence-mapping ON, contradicting its own "spell
 rebuild in the strict register first.]
 
 **Option 4 — slopegraph, withhold count base → -it, one line per scale**
-(`figs/fig_withhold_slope_orig22.png`, `make_fig_withhold_slope.py`). Sidebar-sized: three lines all
-diving to zero dramatizes "withholding vanishes, at every scale." An inset beside Option 1, not a
-standalone.
+(`figs/fig_withhold_slope_ext2.png`, `make_fig_withhold_slope.py`). Sidebar-sized: three lines all
+diving to (almost) zero dramatizes "withholding vanishes, at every scale." An inset beside Option 1,
+not a standalone.
 
-![Option 4 — withhold slopegraph](figs/fig_withhold_slope_orig22.png)
+![Option 4 — withhold slopegraph](figs/fig_withhold_slope_ext2.png)
 
 Recommendation: **Option 3 as the hero flow (their figure) + Option 1 as the cross-scale scores
 companion.** Complementary — the flow carries the two-layer story at 9b; the small multiple carries the
