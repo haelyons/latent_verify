@@ -183,7 +183,9 @@ several PDF-only IDs whose text could not be retrieved reliably (2509.21305, 260
 ### H1 — planting the model's prior answer. The design HAS a published name.
 
 **2403.05518** — *Bias-Augmented Consistency Training Reduces Biased Reasoning in Chain-of-Thought*,
-James Chua, 2024. The canonical citable source.
+James Chua, Edward Rees, Hunar Batra, Samuel R. Bowman, Julian Michael, Ethan Perez, Miles Turpin;
+submitted 8 Mar 2024 (full author list confirmed from the abs page 2026-07-24 — seven authors, so
+**Chua et al. 2024** is correct). The canonical citable source.
 - "We explicitly insert an incorrect non-CoT answer into the model's side of the chat and prompt the
   model to perform CoT." (their "Post Hoc Rationalization" bias)
 - Their control arm, §3.2: "There are no biasing cues in the unbiased prompt, so any instances of this
@@ -276,7 +278,9 @@ Fanous, 2025); **Turn of Flip / Number of Flips** (2505.23840).
 - **2408.02442** — *Let Me Speak Freely?*, Zhi Rui Tam, 2024. "Reply with only the answer" is a format
   restriction: "we observe a significant decline in LLMs reasoning abilities under format restrictions";
   "stricter format constraints generally lead to greater performance degradation in reasoning tasks."
-- **2509.04664** — *Why Language Models Hallucinate*, Adam Tauman Kalai, 2025. The mechanism behind the
+- **2509.04664** — *Why Language Models Hallucinate*, Adam Tauman Kalai, Ofir Nachum, Santosh S.
+  Vempala, Edwin Zhang; submitted 4 Sep 2025 (full author list confirmed from the abs page 2026-07-24 —
+  four authors, so **Kalai et al. 2025** is correct). The mechanism behind the
   withhold column: "language models are optimized to be good test-takers, and guessing when uncertain
   improves test performance"; "This 'epidemic' of penalizing uncertain responses can only be addressed
   through a socio-technical mitigation: modifying the scoring of existing benchmarks…". So part of

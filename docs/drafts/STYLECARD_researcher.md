@@ -279,8 +279,22 @@ Two modes, and they are chronologically ordered: **the note comes first, the cit
 - Direct quotation of a paper is short, in double quotes, inside their own sentence — never a
   block quote: `reporting that "we knocked out all the Name Mover Heads at once and to our
   surprise, the circuit still worked (only 5% drop in logit difference)"` (CIRCUIT L143).
-- CIRCUIT is the only file with real citations (5 author-year + 3 parenthetical). POST1/V1/V2 are
-  at the `[citation]` stage. So citation density tracks draft maturity, not voice.
+- CIRCUIT is the only file with real citations. POST1/V1/V2 are at the `[citation]` stage. So
+  citation density tracks draft maturity, not voice.
+- **CORRECTION (2026-07-24, second reader + recount).** This section originally said "5 author-year
+  + 3 parenthetical", which undercounts its own corpus. Recount by regex over CIRCUIT: **16
+  parenthetical author-year forms**, of which 5 are bare-year continuations (`(2022)`, `(2023)`) in
+  the narrative form `Wang et al. (2022) call such a head…`. So ~11 are full parenthetical cites, and
+  **two are semicolon-separated multi-cites**: `(the logit-difference projection used in IOI, Wang et
+  al. 2022; the residual-stream-as-sum identity of Elhage et al. 2021; logit lens, nostalgebraist
+  2020)` and `(activation patching, donor = the neutral run; cf. the path patching of Wang et al. 2022
+  and Goldowsky-Dill et al. 2023)`. Others: `(SycEval; Fanous et al. 2025)`, `(Gemma Team, 2024)`,
+  `(Elhage et al., 2021)`, `(Geva et al., 2023)`, `(Geva et al., 2021, 2022)`, `(nostalgebraist,
+  2020)`, `(Ameisen et al., 2025)`, `(McGrath et al. 2023)`, `(attention knockout, Geva et al. 2023)`.
+  POST1 has **zero** parenthetical cites, but it has zero real cites of any kind.
+  **Consequence for drafting: parenthetical and semicolon-separated multi-cites ARE in register and
+  must not be "corrected" to inline form.** The comma before the year is inconsistent in their own
+  usage; either is defensible. What remains forbidden is the arXiv ID, the link, and the block quote.
 
 ### A10. Lists — they do not use markdown bullets
 
