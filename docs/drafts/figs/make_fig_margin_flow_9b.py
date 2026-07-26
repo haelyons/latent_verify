@@ -1,26 +1,31 @@
-"""Fig (margin flow, 9B) companion: where the DISTRIBUTION lands across the three transcript stages.
+"""Fig (margin flow, 9B) companion: which answer the model would GIVE, in the two arms side by side.
 
-This is a different measurement from the body sankeys. The sankeys label the text the model actually
-generates (string-identity register, "does this turn NAME C / W*"). Here nothing is generated: an answer
-slot is teacher-forced onto the transcript and the C span's log-prob is compared against the W* span's.
-The plotted state is the SIGN of that content margin, so the "names neither" category does not exist by
-construction — a distribution always favours one side or is exactly tied. It follows that this figure
-does NOT arbitrate the string-matched figures; the two layers disagree per item (see the caption).
+Layout mirrors make_figB_neutral_counterfactual.py exactly - two arms ("no pushback", "pushback"), rows
+9B-base above 9B-it, same _stack/_ribbon/_flow/_node helpers, same geometry, same palette - because the
+two figures are the same experiment read at two layers.
 
-Three stages, one transcript, FOLD only (C planted, W* pushed):
-  bare question                -> sign(M0)
-  after "Okay, thank you."     -> sign(Mc_neutral)     (the neutral control turn)
-  after the push               -> sign(Mc_counter)
-Positive = C favoured, negative = W* favoured, exactly 0 = tie. Ties are exact zeros in the committed
-artifacts (no epsilon band): base has 1 at the bare stage and 3 after the push. They are drawn as an
-explicit third state, never folded into either side.
+WHY TWO ARMS AND NOT THREE STAGES. Mc_neutral and Mc_counter are measured on two ALTERNATIVE prompts,
+push(q, C, NEUTRAL) and push(q, C, PUSH['counter']): two different second user turns branching from the
+same planted first turn. They are a paired-arm comparison, not successive moments, so drawing them
+left-to-right implied a chronology that does not exist (make_figB_sankey.py flags the same hazard for its
+own first ribbon set). Each arm here is one transcript: the bare question, then that arm's second turn.
+The bare column is shared by both arms by construction - it is the same single-turn prompt.
 
-Rows are base above -it, matching make_figB_neutral_counterfactual.py. Geometry, palette (Okabe-Ito,
-CVD-checked in make_figB_matrix), opacity-encodes-training and node/ribbon construction are that
-script's, unchanged; the gray third slot is reused here as the neutral midpoint of a signed quantity.
-Every column partitions the same 82 items and sums to 82; all counts and the per-item neutral->counter
-transitions are asserted before drawing. Everything not load-bearing lives in
-fig_margin_flow_9b_caption.md, not on the figure.
+WHAT IS PLOTTED. Nothing is generated. At each point an answer slot is scored: the log-probability of the
+correct answer C against the log-probability of the wrong rival W*, and the plotted state is the SIGN of
+that difference (M0, Mc_neutral, Mc_counter in the artifacts). It is the answer the model would give if
+asked for a final answer right there. It is NOT the sankeys' elicited slot: that one comes after the
+model has written a free reply, whereas these come immediately after the user's turn with no reply in the
+context. Because a distribution always favours one side or sits exactly on the fence, "names neither"
+does not exist by construction - the third state is an exact tie (no epsilon band; base has 1 at the bare
+question and 3 under the push). It follows that this figure does NOT arbitrate the string-matched
+figures; the two layers disagree per item (see the caption).
+
+FOLD only (C planted, W* pushed). Positive = C favoured, negative = W* favoured, exactly 0 = tie. The
+gray third slot of the sibling figure is reused as the neutral midpoint of a signed quantity. Every
+column partitions the same 82 items and sums to 82; all counts and all per-item flows are asserted before
+drawing, including the neutral-vs-counter pairing, which is not drawn but is quoted in the caption.
+Everything not load-bearing lives in fig_margin_flow_9b_caption.md, not on the figure.
 
 Usage: python docs/drafts/figs/make_fig_margin_flow_9b.py
 """
@@ -43,7 +48,8 @@ GAP, NODE_W = 2.2, 0.06
 ALPHA = {"base": dict(node=0.60, rib=0.40), "it": dict(node=1.00, rib=0.58)}
 
 STAGES = [("bare", "M0"), ("neutral", "Mc_neutral"), ("counter", "Mc_counter")]
-STAGE_LAB = ["bare question", 'after "Okay, thank you."', "after the push"]
+ARMS = [("neutral", "no pushback", ["bare question", "after the neutral turn"]),
+        ("counter", "pushback", ["bare question", "after the push"])]
 
 # base above -it, matching make_figB_neutral_counterfactual.py
 PANELS = [
@@ -60,10 +66,22 @@ EXPECT = {
                 "neutral": {"C": 75, "WSTAR": 7},
                 "counter": {"C": 27, "WSTAR": 55}},
 }
-# per-item, not marginal
+# per-item, not marginal. bare->neutral and bare->counter are the two drawn arms; neutral->counter is the
+# paired-arm comparison BETWEEN them - not drawn (it is not a transition), asserted because the caption
+# quotes it (base 15 of 82 C->W*, -it 48 of 82 C->W*).
 EXPECT_FLOW = {
-    "9B-base": {("C", "C"): 63, ("C", "WSTAR"): 15, ("C", "TIE"): 3, ("WSTAR", "WSTAR"): 1},
-    "9B-it":   {("C", "WSTAR"): 48, ("WSTAR", "WSTAR"): 7, ("C", "C"): 27},
+    "9B-base": {
+        ("bare", "neutral"): {("C", "C"): 70, ("WSTAR", "C"): 10, ("WSTAR", "WSTAR"): 1, ("TIE", "C"): 1},
+        ("bare", "counter"): {("C", "C"): 57, ("C", "WSTAR"): 10, ("C", "TIE"): 3,
+                              ("WSTAR", "C"): 5, ("WSTAR", "WSTAR"): 6, ("TIE", "C"): 1},
+        ("neutral", "counter"): {("C", "C"): 63, ("C", "WSTAR"): 15, ("C", "TIE"): 3,
+                                 ("WSTAR", "WSTAR"): 1},
+    },
+    "9B-it": {
+        ("bare", "neutral"): {("C", "C"): 69, ("C", "WSTAR"): 3, ("WSTAR", "C"): 6, ("WSTAR", "WSTAR"): 4},
+        ("bare", "counter"): {("C", "C"): 26, ("C", "WSTAR"): 46, ("WSTAR", "C"): 1, ("WSTAR", "WSTAR"): 9},
+        ("neutral", "counter"): {("C", "C"): 27, ("C", "WSTAR"): 48, ("WSTAR", "WSTAR"): 7},
+    },
 }
 
 
@@ -134,29 +152,30 @@ def _verify(title, seqs):
         assert sum(exp[stage].values()) == 82, (title, stage, "column does not sum to 82")
         print(f"  [ok] {title:8s} {stage:8s} " + " / ".join(f"{c} {exp[stage][c]}" for c in CATS
                                                             if exp[stage].get(c)) + "  sum 82")
-    for sk, dk in (("bare", "neutral"), ("neutral", "counter")):
+    for (sk, dk), expf in EXPECT_FLOW[title].items():
         flow = {(cs, cd): n for cs in CATS for cd in CATS
                 if (n := sum(1 for s in seqs if s[sk] == cs and s[dk] == cd))}
+        assert flow == expf, (title, sk, dk, flow, expf)
         assert sum(flow.values()) == 82, (title, sk, dk, "flow does not sum to 82")
         for c in CATS:                               # flow marginals must rebuild both columns
             assert sum(n for (cs, _cd), n in flow.items() if cs == c) == exp[sk].get(c, 0), (title, sk, c)
             assert sum(n for (_cs, cd), n in flow.items() if cd == c) == exp[dk].get(c, 0), (title, dk, c)
-        if sk == "neutral":
-            assert flow == EXPECT_FLOW[title], (title, "neutral->counter", flow, EXPECT_FLOW[title])
-        print(f"  [ok] {title:8s} {sk}->{dk:8s} " +
+        drawn = "drawn " if sk == "bare" else "paired"   # neutral-vs-counter is a pairing, not a flow
+        print(f"  [ok] {title:8s} {drawn} {sk}/{dk:8s} " +
               " / ".join(f"{cs}->{cd} {n}" for (cs, cd), n in sorted(flow.items())) + "  sum 82")
 
 
-def draw(ax, seqs, exp, a, training):
-    tops = [_stack(exp[stage]) for stage, _ in STAGES]
-    _node(ax, 0, tops[0], exp["bare"], a, training)
-    _flow(ax, 0, 1, tops[0], tops[1], seqs, "bare", "neutral", a)
-    _node(ax, 1, tops[1], exp["neutral"], a, training)
-    _flow(ax, 1, 2, tops[1], tops[2], seqs, "neutral", "counter", a)
-    _node(ax, 2, tops[2], exp["counter"], a, training)
-    ax.set_xlim(-0.45, 2.5)
-    ax.set_ylim(84 + GAP, -GAP)
-    ax.set_xticks([0, 1, 2])
+# One vertical scale for every panel, so a bar of 82 is the same height everywhere. Worst case is all
+# three states nonzero in one column: 82 items + a GAP between each adjacent pair.
+YMAX = 82 + (len(CATS) - 1) * GAP
+
+
+def draw_arm(ax, seqs, exp, a, training, dk):
+    tb, td = _stack(exp["bare"]), _stack(exp[dk])
+    _node(ax, 0, tb, exp["bare"], a, training)
+    _flow(ax, 0, 1, tb, td, seqs, "bare", dk, a)
+    _node(ax, 1, td, exp[dk], a, training)
+    ax.set_xlim(-0.4, 1.4); ax.set_ylim(YMAX + GAP, -GAP); ax.set_xticks([0, 1])
 
 
 def make(out_png):
@@ -167,30 +186,37 @@ def make(out_png):
     assert panels[0][1].keys() == panels[1][1].keys(), "9b-base / 9b-it item sets differ"
     print("[verify] 9b-base and 9b-it join on q: 82/82 shared items")
 
-    fig, axes = plt.subplots(2, 1, figsize=(8.4, 7.8))
+    fig, axes = plt.subplots(2, 2, figsize=(9.6, 7.6))
     fig.patch.set_facecolor(SURFACE)
     for i, (title, by_q, shade) in enumerate(panels):
         seqs = [by_q[q] for q in sorted(by_q)]
         _verify(title, seqs)
-        draw(axes[i], seqs, EXPECT[title], ALPHA[shade], shade)
-        ax = axes[i]
-        ax.set_ylabel(title, fontsize=12, rotation=0, ha="right", va="center", labelpad=16)
-        ax.set_yticks([])
-        for sp in ax.spines.values():
-            sp.set_visible(False)
-        ax.tick_params(length=0)
-        ax.set_facecolor(SURFACE)
-        ax.set_xticklabels([])                       # shared stage axis: label the bottom row only
-    axes[1].set_xticklabels(STAGE_LAB, fontsize=9)
-    axes[1].tick_params(length=0, pad=7)             # the -it counter node runs close to the axis
+        for j, (dk, arm_title, _labs) in enumerate(ARMS):
+            draw_arm(axes[i][j], seqs, EXPECT[title], ALPHA[shade], shade, dk)
+            if i == 0:
+                axes[i][j].set_title(arm_title, fontsize=12, pad=8)
+        axes[i][0].set_ylabel(title, fontsize=12, rotation=0, ha="right", va="center", labelpad=16)
+        for ax in axes[i]:
+            ax.set_yticks([])
+            for sp in ax.spines.values():
+                sp.set_visible(False)
+            ax.tick_params(length=0)
+            ax.set_facecolor(SURFACE)
+            ax.set_xticklabels([])                   # shared stage axis: label the bottom row only
+    for j, (_dk, _t, labs) in enumerate(ARMS):
+        axes[1][j].set_xticklabels(labs, fontsize=9)
+        axes[1][j].tick_params(length=0, pad=7)      # the -it push node runs close to the axis
     handles = [plt.Rectangle((0, 0), 1, 1, color=HUE[c]) for c in CATS]
     fig.legend(handles, [NICE[c] for c in CATS], loc="lower center", ncol=3, frameon=False, fontsize=10)
-    fig.suptitle("Which answer the distribution favours in a teacher-forced answer slot "
-                 "(9B, fold cell)", fontsize=12, y=0.985)
-    fig.text(0.5, 0.055, "Not a label on the generated reply. "
+    fig.suptitle("Which answer the model would give if asked for one at that point (9B, fold cell)",
+                 fontsize=12, y=0.99)
+    fig.text(0.5, 0.955, "Two alternative second user turns, not two moments in time. Read from the "
+             "log-probabilities of the two answers, not from a reply.",
+             ha="center", fontsize=9, color="#4a4a46")
+    fig.text(0.5, 0.055, "No reply by the model sits in the context here. "
              "Full caption: docs/drafts/figs/fig_margin_flow_9b_caption.md",
              ha="center", fontsize=8, color="#6e6e6a")
-    fig.tight_layout(rect=(0.03, 0.075, 1, 0.96))
+    fig.tight_layout(rect=(0.03, 0.075, 1, 0.94))
     fig.savefig(out_png, dpi=200)
     print("[written]", out_png)
 
