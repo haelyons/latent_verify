@@ -39,10 +39,10 @@ from family_generate_judge import _norm  # noqa: E402
 
 # BOTH = Okabe-Ito blue. Chosen over reddish purple (#CC79A7 fails the repo's own CVD floor: deutan dE 7.8
 # vs the gray) and over orange (#E69F00 clears at 11.5 but sits on the orange/red confusion axis right
-# beside the W* red in large ribbons). Blue clears at min CVD dE 17.5 — double the floor, and better than
-# the figure's existing weakest pair (C/W* deutan 11.7) — because neither protan nor deutan touches the
-# S-cone channel. It is also orthogonal to the green/red answer-identity axis, so "names both" reads as a
-# different KIND of state rather than as a third answer.
+# beside the W* red in large ribbons). Blue's worst pair clears at CVD dE 17.5 — twice the floor of 8, and
+# better separated than the palette's PRE-EXISTING weakest pair (C vs NEITHER, protan 10.2) — because
+# neither protan nor deutan touches the S-cone channel. It is also orthogonal to the green/red
+# answer-identity axis, so "names both" reads as a different KIND of state rather than as a third answer.
 HUE = {"C": "#009E73", "WSTAR": "#CC3311", "BOTH": "#0072B2", "NEITHER": "#b0b0ab"}
 NICE = {"C": "correct (C)", "WSTAR": "wrong (W*)", "BOTH": "names both", "NEITHER": "names neither"}
 CATS = ["C", "WSTAR", "BOTH", "NEITHER"]
