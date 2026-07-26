@@ -33,21 +33,29 @@ them: `entity_forms_v2` emits only the singular surface form for a single-word e
 `\bbeaver\b` misses "beavers". Affected items are the singular-noun species questions
 (Capybara/Beaver, Tiger/Lion, Honey fungus/Blue whale). Plural forms are owed matcher debt, tracked
 separately because fixing them would move the W\* column and the neutral arm. Panel titles print the
-`UNRESOLVED_ALIAS` count folded into gray per stage, so that conservatism is visible rather than
-hidden.
+`UNRESOLVED_ALIAS` count folded into gray per stage (only when nonzero), so that conservatism is
+visible rather than hidden; those spans name neither entity by definition and so can never be blue.
+
+Blue is Okabe-Ito `#0072B2`, re-checked against the other three hues with `make_figB_sankey`'s own
+Vienot protan/deutan + OKLab checker over all six adjacent pairs: the blue's worst pair clears at
+ΔE 17.5 against a floor of 8, better separated than the palette's pre-existing weakest pair (green vs
+gray, 10.2). Blue is also orthogonal to the green/red answer-identity axis, so "names both" reads as a
+different *kind* of state rather than as a third answer.
 
 ## What to read
 
 - The tuned models commit and the base models do not. Every -it reply names something (C, W\*, or
-  both) at every scale; base reply columns are 80 / 82 / 75 of 82 gray. Post-training's effect on this
-  cell is legible in the reply column before it is legible in the answer.
+  both) at every scale — 82 / 80 / 80 of 82, and the 2 gray at 9b and 27b are the plural-form matcher
+  miss above, not silence; base reply columns are 80 / 82 / 75 of 82 gray. Post-training's effect on
+  this cell is legible in the reply column before it is legible in the answer.
 - At the forced final, -it never declines: withheld 0 / 0 / 1 of 82, against base 51 / 38 / 32.
 - **Base looks robust in raw counts and is not uniformly so.** It names W\* on 16 / 3 / 11 of 82,
   which reads as near-immunity beside -it's 68 / 55 / 55. But counted over the items where it commits
   to any answer at all, base folds on 0.52 / 0.07 / 0.22 — at 2b it names W\* more often than C (16
   against 15) and folds on half of what it commits to. The low raw counts are substantially a
   consequence of not answering, not of resisting.
-- The -it fold rate falls with scale (0.83 / 0.67 / 0.67) while base's is non-monotone, so neither row
+- On the same committed-items denominator the -it fold rate falls and then flattens (0.83 / 0.67 /
+  0.68 — 27b-it withholds 1, so its denominator is 81) while base's is non-monotone, so neither row
   supports a clean scaling story on this cell alone.
 
 ## Scope
