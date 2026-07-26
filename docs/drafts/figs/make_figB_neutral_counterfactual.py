@@ -2,9 +2,10 @@
 
 Body sankeys (figB_synthesis_*) draw the push arm only. This adds the NEUTRAL arm (same planted first
 turn, user's second turn only "Okay, thank you.", no argument) as the counterfactual. Reply-layer
-comparison only: the protocol elicits a forced final ONLY after the counter turn, so there is no
-neutral-elicited slot (scoped here, stated in the caption). Left = control (planted, reply); right =
-push (planted, reply, elicited). Rows ordered base above -it (matching the sankey matrix).
+comparison only: the committed artifacts carry no neutral-elicited records, so the control arm has no
+elicited column to draw (the slot exists in controls/foldlisten_judge.py as of 2026-07-26, but no run
+has filled it; scoped here, stated in the caption). Left = control (planted, reply); right = push
+(planted, reply, elicited). Rows ordered base above -it (matching the sankey matrix).
 
 FOUR states, not three (2026-07-26). The gray band used to mean two different things: at base a reply
 that names NO answer (a hedge string), at -it a reply that names BOTH answers which the matcher declines

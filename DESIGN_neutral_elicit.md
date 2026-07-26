@@ -9,6 +9,12 @@
 > Companions: `DESIGN_foldlisten_matrix_scaleout.md` (Phase A/B ordering this extends), `DESIGN_fold_vs_listen.md`
 > (register), `docs/drafts/NOTE_faithful_matcher.md` Addenda 1–2 (the scorer decision this run MUST respect),
 > `RESULTS_FOLDLISTEN.md` Addenda 5/7 (the neutral-arm precedents and threshold provenance).
+>
+> **Code status (2026-07-26, appended after freezing — no threshold, prediction or decision rule below is
+> touched).** The §1.1 diff has landed in `controls/foldlisten_judge.py`. §0 therefore describes the
+> pre-change instrument: `elicit_prompt` now has a second call site, on the neutral arm. **No run has
+> filled it** — every committed artifact still reads `n_neutral_elicit = 0` / `verdict = ARM_ABSENT`, so
+> every number in §2 remains a prediction and nothing here has been evaluated against data.
 
 ---
 

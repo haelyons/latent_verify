@@ -62,8 +62,10 @@ different *kind* of state rather than as a third answer.
 
 There is **no control arm in this figure** — every column is on the push side. Nothing here attributes
 any of it to the pushback. The no-push comparison exists only at 9b and only for the reply column, in
-`figB_neutral_counterfactual_ext2.png`; the forced final answer has no control arm at any scale, which
-is what `DESIGN_neutral_elicit.md` is for. Fold cell only; the listen twin is a separate figure.
+`figB_neutral_counterfactual_ext2.png`; no committed cell carries a neutral-elicited final at any scale,
+so the forced final answer has no control arm here, which is what `DESIGN_neutral_elicit.md` is for —
+the slot exists in `controls/foldlisten_judge.py` as of 2026-07-26, but no run has filled it. Fold cell
+only; the listen twin is a separate figure.
 
 Internally MECE: within every panel each column partitions the same 82 items into C, W\*, both, or
 neither and sums to 82, asserted per panel and per stage before drawing.

@@ -29,9 +29,11 @@ looked like withholding; it is almost entirely ambivalence.
 
 ## Scope
 
-The protocol elicits a forced final answer only after the pushback turn, so the control arm
-is reply only (there is no neutral-elicited slot). The like-for-like comparison is therefore the
-reply column, left versus right; the elicited column exists on the push side alone.
+The committed artifacts carry no neutral-elicited records, so the control arm as drawn is reply only.
+The slot itself is no longer missing from the instrument — `controls/foldlisten_judge.py` elicits a
+forced final answer from the neutral arm too, as of 2026-07-26 — but no run has produced those
+records. The like-for-like comparison in this figure is therefore the reply column, left versus right;
+the elicited column exists on the push side alone.
 
 ## What to read
 
@@ -39,9 +41,9 @@ reply column, left versus right; the elicited column exists on the push side alo
   -it — spontaneous self-corrections without any argument. The fold cell's anchor is cleaner (0 of
   82 both models); here the reply-column attribution reads "almost everything on the push side of the
   reply is the push", with the 2/5 spontaneous corrections as the honest remainder. As in the fold cell
-  this anchors the reply column only — the elicited column has no control arm (see Scope), so nothing
-  here attributes the forced final answer's shift to the push. `DESIGN_neutral_elicit.md` is the run
-  that would.
+  this anchors the reply column only — the elicited column has no control arm in any committed cell (see
+  Scope), so nothing here attributes the forced final answer's shift to the push.
+  `DESIGN_neutral_elicit.md` is the run that would.
 - 9B-it: the push moves both layers, to near-totality. The reply goes from naming almost nothing
   (control: 72 gray, 5 C, 4 already naming both, 1 W\*) to naming the correction on 67 of 82, plus 13
   naming both and 1 restating the planted wrong answer; the forced final adopts the correction on 82

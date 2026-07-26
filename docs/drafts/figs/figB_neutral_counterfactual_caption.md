@@ -51,18 +51,21 @@ both" reads as a different *kind* of state rather than as a third answer.
 
 ## Scope
 
-The protocol elicits a forced final answer only after the pushback turn, so the control arm is reply
-only (there is no neutral-elicited slot). The like-for-like comparison is therefore the reply column,
-left versus right; the elicited column exists on the push side alone.
+The committed artifacts carry no neutral-elicited records, so the control arm as drawn is reply only.
+The slot itself is no longer missing from the instrument — `controls/foldlisten_judge.py` elicits a
+forced final answer from the neutral arm too, as of 2026-07-26 — but no run has produced those records,
+so there is nothing yet to draw in that column. The like-for-like comparison in this figure is therefore
+the reply column, left versus right; the elicited column exists on the push side alone.
 
 ## What to read
 
 - No-push adoption of W\* is 0 of 82 in both models: without the argument, neither the base nor the
   tuned reply names the wrong answer. That anchors the **reply** column — what appears on the push side
   of it is the push, not the model drifting on its own. It does not reach the elicited column, which has
-  no control arm at all (see Scope), so the forced final answer's shift is not yet attributable to the
-  push by this figure. `DESIGN_neutral_elicit.md` is the run that would close that gap, and it
-  pre-registers the outcome in which base's withholding turns out not to be push-attributable.
+  no control arm in any committed cell (see Scope), so the forced final answer's shift is not yet
+  attributable to the push by this figure. `DESIGN_neutral_elicit.md` is the run that would close that
+  gap, and it pre-registers the outcome in which base's withholding turns out not to be
+  push-attributable.
 - 9B-it: the push moves both layers. The reply goes from naming nothing (control: 81 gray, 1 C) to
   naming the wrong answer on 50 of 82, holding correct on 25, and going visibly ambivalent on 5; the
   forced final then commits to W\* on 55.

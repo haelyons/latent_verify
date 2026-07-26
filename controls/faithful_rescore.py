@@ -23,7 +23,8 @@ opens with a CORRECTION_OPENERS phrase and BOTH sec-5.6 tie-breaks abstain, the 
 still-affirmative mention comes earliest wins ('tiebreak_correction_first_C' / '_W'), where a mention also
 counts as dismissed if it is conceded and then rebutted (_is_rebutted). It is scoped to the correction
 register, so it can only convert a former 'tiebreak_unresolved' NEITHER; it never reorders a span the
-existing tie-breaks resolve. It fires on 18 counter-turn spans corpus-wide, all -it fold cells, and leaves
+existing tie-breaks resolve. It fires on 18 counter-turn spans across the six ext2 cells (23 across the
+whole rescore CONFIG, the extra 5 in the older n=44 families), all -it fold cells, and leaves
 every elicited-final and neutral-arm label byte-identical.
 
   classify(gen, correct, wstar, stated, pushed) -> (label, rule_fired, answer_span)

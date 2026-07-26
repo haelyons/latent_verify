@@ -248,7 +248,8 @@ but both are substring counts and the committed *label* is 1. The distinction is
 these are replies that name W\* in order to reject it. Print 1 if the claim is about adoption; print 11
 if the claim is about the string appearing; never print 10.
 
-### R4. `![[IMG_3868.png]]` is READABLE, and one of its numbers reproduces from nothing.
+### R4. `![[IMG_3868.png]]` is READABLE, and its -it reply column was a REGISTER mismatch, not a missing
+artifact. **CORRECTION OF RECORD (2026-07-26): R4 itself was the error, and is discharged here.**
 
 The figure is at `/home/hal/Documents/Remote/interp/IMG_3868.png`, in the same vault directory the
 patches read for anchors. Two patches called it unseen; it isn't. What it carries:
@@ -257,12 +258,34 @@ patches read for anchors. Two patches called it unseen; it isn't. What it carrie
   no-re-reading-a-figure rule.
 - 9B-base elicited 41 C / 38 names-neither vs 9B-it 27 C / 55 W\* / 0 — the withhold column, likewise
   already drawn.
-- **Its -it REPLY column reads 15 / 50 / 17, and the 50 reproduces from nothing committed.**
-  `faithful_rescore` `counter_gen` fold gives C 15 / WSTAR **52** / NEITHER 15; `commit_counter` gives
-  22 correct / 60 wrong / 0 other. No per-item reply-column label file was saved for that split. So the
-  "50 of 82" that has been circulating in draft prose came from this figure, not from an artifact, and
-  the figure itself prints an unbacked middle column. Either re-derive and redraw, or do not cite the
-  reply column at all.
+- **Its -it REPLY column read `15 / 50 / 17`, and all three numbers were re-derivable the whole time.**
+  That column is the strict register:
+  `faithful_rescore.classify(counter_gen, correct, Wstar, stated, pushed, map_confidence=False)` over the
+  fold cell of `results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json` returns exactly
+  **C 15 / WSTAR 50 / NEITHER 17** on the 82 items. The `52` R4 printed is the SAME field in the
+  confidence-mapped register (`map_confidence=True` → C 15 / WSTAR 52 / NEITHER 15), the register the
+  prose arms are scored in; `commit_counter`'s `22 correct / 60 wrong / 0 other` is the older
+  entity-anywhere-on-the-untruncated-string matcher, from before span isolation. One field, three
+  registers, three answers. What was missing was never the backing, only the register label — and the
+  absence of a saved per-item reply-column label file is not the absence of a derivation. "Do not cite
+  the reply column at all" was the wrong remedy and is withdrawn.
+
+**The column has since changed, for an unrelated reason.** After the sec-5.6b correction-order tie-break
+(`controls/faithful_rescore.py::_tiebreak`, 2026-07-26) 10 of those 17 NEITHER resolve to C, and the
+repo's version of the figure now splits the gray band into BOTH and NEITHER, so the strict reply column is
+**C 25 / W\* 50 / BOTH 5 / NEITHER 2** and the figure draws four states, not three
+(`docs/drafts/figs/figB_neutral_counterfactual_ext2.png` + its caption; the matcher change is recorded in
+`docs/drafts/NOTE_faithful_matcher.md` Addendum 3). **`50` is the one number that did not move** — it is
+50 in the strict register both before and after the tie-break. The circulating figure was right about it;
+its provenance was simply unstated.
+
+**The discipline R4 was defending survives its own correction, and this is the form to keep it in: a
+printed number must name its register.** For this field that means naming three things — the arm
+(`counter_gen`, a prose arm), the confidence mode (`map_confidence=False`, string identity), and whether
+the sec-5.6b tie-break is in — because the same 82 items read out as `15/50/17`, `15/52/15`, `22/60/0`,
+or `25/50/5/2`, and any two of those set side by side look like a contradiction. Cite the reply column
+freely with those three labels attached. This also discharges §D's `NOT RE-DERIVED` note on the same
+`50`.
 
 ### R5. Smaller corrections to §A and §C
 
