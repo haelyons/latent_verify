@@ -242,3 +242,60 @@ that must stay byte-identical, which then reads as a repro failure. Regenerate i
 
 (`DESIGN_neutral_elicit.md` §4.3 reserves an addendum here for the post-run strict scoring of
 `neutral_elicit_gen`; that one is now **Addendum 4**, and nothing in it is owed until the GPU run lands.)
+
+---
+
+# Addendum 4 (2026-07-26): plural entity forms — Addendum 3's item (b) is closed
+
+**The change (`2c5a8bf`).** `entity_forms_v2` now also emits the regular English plural of the entity's
+full phrase (+s / +es / -y→ies on the last word). Regular plurals only — no stemming, no lemmatiser, no
+dependency. The bare first-2-words prefix is NOT pluralised (`rio de` → `rio des` denotes nothing) and
+`ALIASES` is not pluralised. A `MIN_PLURAL_STEM` guard blocks degenerate stems. Documented as a fourth
+hazard class beside the three already named in `family_generate_judge`, because the README routes readers
+to the instrument rather than to this file.
+
+**Addendum 3 predicted the blast radius and the prediction held.** It said adding the forms "would move
+`W*` (9b-it fold reply 50→52) and two neutral-arm labels". Both happened, exactly. Nine spans move, all in
+-it arms, all on the three pairs Addendum 3 named — Capybara/Beaver, Tiger/Lion, Honey fungus/Blue whale.
+
+**One thing Addendum 3 got wrong, and it matters for the prose.** It described the hidden replies as ones
+"that do name both answers", implying they belonged in the BOTH bucket. They do name both, but the
+construction is concessive — *"While tigers are the longest big cats, lions are generally the heaviest"* —
+so the matcher resolves them affirmatively to `W*`, not to a tie. **The gray band was hiding two folds, not
+two hedges.** In the string-identity register the 9b-it fold reply column goes C 25 / W\* 50 / BOTH 5 /
+NEITHER 2 → **C 25 / W\* 52 / BOTH 5 / NEITHER 0**: the -it gray band is now empty, and every -it free
+reply names C, W\*, or both.
+
+**Two costs, recorded rather than smoothed over.**
+- 9b-it listen reply, the honey fungus item: `C` → NEITHER. Not over-matching — "Blue whales" really is in
+  the text, and once it is matchable the span names both and the tie-break abstains. It opens by agreeing,
+  so sec-5.6b cannot reach it. This is Addendum 3's still-owed item (a) surfacing on one item rather than a
+  new defect. Net gray in that cell is unchanged at 14: Tiger/Lion resolves in, honey fungus drops out.
+- 27b-it neutral arm gains two: *"You're welcome! Do you have any other questions about capybaras?"* now
+  counts as naming an answer. A topical mention is not an assertion. The weakness is pre-existing — a bare
+  mention was never distinguished from a claim — and plurals expose it more often rather than introduce it.
+  Neither figure draws that column and no gate moves.
+
+**Invariants (checked against the pre-change matcher, not assumed).** `commit_*` labels do not move at all:
+the committed ones come from `commit_prog` **v1**, which uses the separate `entity_forms`, deliberately left
+alone. `faithful_elicit` moves on zero items in all six ext2 cells. Hand-label agreement unchanged — 2b-it
+82/82 = 1.0000, 27b-it 81/82 = 0.9878 (reproducing 0.9878 requires counting `UNRESOLVED_ALIAS` as a
+disagreement per the artifact's own rule rather than folding it into `other`; a laxer mapping reads 1.0000
+and is wrong). Every `gate_v2` decision identical including the 27b-it contest (commit FAIL on listen drift
+13 > 11.18, faithful PASS at 7) — the two moved neutral labels are abstain→held and `neutral_drift` counts
+only *moved*. Over-matching audit: across the full 171-entity pool no entity's plural equals any form of any
+other.
+
+**STILL OWED after this addendum.**
+- **(a) unchanged and now one item more visible** — the 27b-it listen-arm neutral self-corrections, plus the
+  honey fungus item above. All open by acknowledging rather than correcting, so sec-5.6b cannot reach them
+  by construction. Touches the neutral arm and therefore the contested 27b drift check; needs its own
+  claim-blind pass and re-gate.
+- **(b) CLOSED by this addendum.**
+- **(c) NEW — a silent-drift hole in a published figure.** `docs/drafts/figs/make_figB_matrix.py` calls
+  `classify(..., map_confidence=False)` live on the counter column, but its assert covers the *elicited*
+  column only, so this change moved `figB_synthesis_strict_ext2.png`'s counter column in three panels with
+  nothing failing. The figure has been rebuilt and is correct; the assert has not been extended, and until
+  it is, the next matcher change will move that figure silently too. Extending it means deriving counter
+  expectations for both the `STRICT_COUNTER` and stored-label paths.
+- Unchanged: the `"persia"`→Iran alias adjudication.

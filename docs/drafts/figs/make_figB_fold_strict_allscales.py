@@ -1,22 +1,24 @@
-"""Fig B — FOLD cell, all six model cells, STRICT register throughout, four reply states.
+"""Fig B — FOLD cell, all six model cells, four reply states, one naming rule in every column.
 
 WHY THIS FIGURE EXISTS. figB_fold_ext2.png draws the same fold cell but scores the prose reply columns
 with the sec-4/6 confidence mapping ON, so a base reply of bare "I'm sure." is credited with naming the
-planted answer and base's reply column shows a green band. figB_neutral_counterfactual_ext2.png scores
-the same column STRICT and shows it empty. Both are defensible registers, but on one page they read as a
-contradiction about the same 82 items. This figure is the strict-register version of the fold sankey, so
-the reply column here agrees with the neutral-counterfactual figure by construction; it is the one to
-show alongside it. (The register question itself is settled in NOTE_faithful_matcher.md: strict is the
-H4 hand-label standard for a constrained slot; the mapping was designed for counter-turn reasoning text.)
+planted answer and base's reply column shows a green band. figB_neutral_counterfactual_ext2.png counts an
+answer as named only when the model spells it out (map_confidence=False) and shows the same column empty.
+Both readings are defensible, but on one page they read as a contradiction about the same 82 items. This
+figure applies the spells-it-out rule in every column, so the reply column here agrees with the
+neutral-counterfactual figure by construction; it is the one to show alongside it. (The choice itself is
+settled in NOTE_faithful_matcher.md: string identity is the H4 hand-label standard for a constrained
+slot; the mapping was designed for counter-turn reasoning text.)
 
 FOUR states, not three. The gray band used to conflate two different events: a reply that names NO answer
 (base, a hedge string) and a reply that names BOTH answers which the matcher declines to resolve (-chat).
 BOTH is now its own state — the matcher returns NEITHER/UNRESOLVED_ALIAS *and* the isolated answer span
 contains both the correct and the W* entity, tested with the labeller's own word-boundary entity forms
 (_occurrences / _entity_regexes from faithful_rescore) so alias + accent handling stays identical to the
-label itself. Gray therefore now means only "the matcher resolves neither answer". See
-figB_fold_strict_allscales_caption.md, including the plural-form matcher limitation that leaves 2 spans
-per -chat cell in gray rather than in BOTH.
+label itself. Gray therefore now means only "the matcher resolves neither answer". Those forms include
+the regular English plural as of the entity_forms_v2 fix (2c5a8bf), so "beavers" matches Beaver and the
+-it reply columns no longer strand plural spans in gray — they are empty at every scale. See
+figB_fold_strict_allscales_caption.md.
 
 Stages are planted -> counter reply -> elicited final, all three within one transcript, so BOTH ribbon
 sets are sequential in time (unlike figB_fold_ext2, whose first transition compares paired arms). The
@@ -104,7 +106,8 @@ N = 82
 PLANTED = "C"          # fold cell: the correct answer is planted as the model's own first turn
 
 # Grounded four-state counts derived from the artifacts by this script's own labeller (2026-07-26,
-# strict register, post sec-5.6b tie-break). Zero states omitted. Asserted before drawing.
+# map_confidence=False, post sec-5.6b tie-break, post the entity_forms_v2 regular-plural fix 2c5a8bf).
+# Zero states omitted. Asserted before drawing.
 EXPECT = {
     "2b base":  {"counter": {"C": 2, "NEITHER": 80},
                  "elicit":  {"C": 15, "WSTAR": 16, "NEITHER": 51}},
@@ -114,17 +117,18 @@ EXPECT = {
                  "elicit":  {"C": 39, "WSTAR": 11, "NEITHER": 32}},
     "2b-it":    {"counter": {"C": 6, "WSTAR": 67, "BOTH": 9},
                  "elicit":  {"C": 14, "WSTAR": 68}},
-    "9b-it":    {"counter": {"C": 25, "WSTAR": 50, "BOTH": 5, "NEITHER": 2},
+    "9b-it":    {"counter": {"C": 25, "WSTAR": 52, "BOTH": 5},
                  "elicit":  {"C": 27, "WSTAR": 55}},
-    "27b-it":   {"counter": {"C": 20, "WSTAR": 49, "BOTH": 11, "NEITHER": 2},
+    "27b-it":   {"counter": {"C": 20, "WSTAR": 51, "BOTH": 11},
                  "elicit":  {"C": 26, "WSTAR": 55, "NEITHER": 1}},
 }
 
 
 def _state(gen, correct, wstar, stated, pushed):
-    """Four-state label for one turn, STRICT register (map_confidence=False, so a bare confidence reply
-    names no entity). An unresolved verdict splits on whether the ISOLATED ANSWER SPAN names both
-    entities, using the labeller's own word-boundary forms rather than a substring check. Returns
+    """Four-state label for one turn: an answer counts as named only when the model spells it out
+    (map_confidence=False, so a bare confidence reply names no entity). An unresolved verdict splits on
+    whether the ISOLATED ANSWER SPAN names both entities, using the labeller's own word-boundary forms
+    (regular plurals included, 2c5a8bf) rather than a substring check. Returns
     (state, was_unresolved_alias)."""
     lab, _rule, span = classify(gen or "", correct, wstar, stated, pushed, map_confidence=False)
     ua = lab == "UNRESOLVED_ALIAS"
@@ -201,16 +205,17 @@ def make_fig(out_png):
         check_panel(title, seqs)
         sank.draw_panel(ax, seqs, ua, title)          # reused geometry, four-state palette injected
         ax.set_ylim(YMAX + sank.GAP, -sank.GAP)       # shared scale across panels
-    fig.suptitle("Fold cell under pushback — strict register throughout, 82-item family "
-                 "(planted C, W* pushed)", fontsize=12, y=0.995)
+    fig.suptitle("Fold cell under pushback — an answer counts only when the model spells it out, "
+                 "82-item family (planted C, W* pushed)", fontsize=12, y=0.995)
     handles = [plt.Rectangle((0, 0), 1, 1, color=COL[c]) for c in CATS]
     fig.legend(handles, [NICE[c] for c in CATS], loc="lower center", ncol=4, frameon=False,
                fontsize=9, bbox_to_anchor=(0.5, 0.062))
     fig.text(0.5, 0.006,
              "All three columns come from one transcript, so both ribbon sets are sequential in time.  "
              "gray = the matcher resolves neither answer.\n"
-             "STRICT register in every column (map_confidence=False): a bare \"I'm sure.\" names "
-             "nothing — figB_fold_ext2.png scores that reply column confidence-mapped instead.",
+             "In every column an answer counts as named only when the model spells it out, so a bare "
+             "\"Yes, I'm sure.\" names nothing — figB_fold_ext2.png scores that reply column "
+             "confidence-mapped instead.",
              ha="center", va="bottom", fontsize=7.5, color="#666666", linespacing=1.5)
     fig.tight_layout(rect=(0, 0.115, 1, 0.97))
     fig.savefig(out_png, dpi=200)

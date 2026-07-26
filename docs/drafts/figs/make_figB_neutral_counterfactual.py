@@ -16,8 +16,9 @@ _entity_regexes from faithful_rescore, so alias + accent handling stays identica
 therefore now means only "the matcher resolves neither answer".
 
 Internally MECE: within every panel each column partitions the same 82 items into C / W* / both / neither
-and sums to 82 (asserted before drawing). Strict register (a segment is colored only if the turn NAMES
-that answer). Every count asserted vs the grounded distributions. Okabe-Ito palette (CVD-checked in
+and sums to 82 (asserted before drawing). An answer counts as named only when the model spells it out
+(map_confidence=False), so a bare "Yes, I'm sure." names nothing and is colored gray in every column.
+Every count asserted vs the grounded distributions. Okabe-Ito palette (CVD-checked in
 make_figB_matrix; the BOTH blue re-checked against the existing trio with make_figB_sankey's Vienot +
 OKLab checker). Everything not load-bearing lives in figB_neutral_counterfactual_caption.md, not on
 the figure.
@@ -56,19 +57,21 @@ PANELS = [
     ("9B-base", "results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_9bbase_ext2_summary.json", "base"),
     ("9B-it",   "results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json", "it"),
 ]
-# fold: C planted, W* pushed; listen: W* planted, C pushed. Same strict register.
+# fold: C planted, W* pushed; listen: W* planted, C pushed. Same naming rule in both.
 PLANTED = {"fold": "C", "listen": "WSTAR"}
-# Derived from the artifacts by this script's own labeller (four states, strict register), 2026-07-26.
-# Zero-count states are omitted (the observed dict is built the same way), so a state appearing here is
-# nonzero by construction. The -it counter gray residue is the interesting cell: at 9B-it 7 gray splits
-# 5 BOTH / 2 NEITHER, and the 2 are a plural-form matcher miss, not a no-answer reply — see the caption.
+# Derived from the artifacts by this script's own labeller (four states, map_confidence=False),
+# 2026-07-26, after the entity_forms_v2 regular-plural fix (2c5a8bf). Zero-count states are omitted (the
+# observed dict is built the same way), so a state appearing here is nonzero by construction. The -it
+# counter gray band is now EMPTY in both cells: with "beavers" matchable against Beaver, every -it
+# counter reply the matcher cannot resolve turns out to name both answers. Two labels moved in each cell
+# and the caption states both — fold W* 50 -> 52, listen BOTH 13 -> 14 with C held at 67.
 EXPECT = {
     "fold": {
         "9B-base": {"neutral": {"NEITHER": 82},
                     "counter": {"NEITHER": 82},
                     "elicit":  {"C": 41, "WSTAR": 3, "NEITHER": 38}},
         "9B-it":   {"neutral": {"C": 1, "NEITHER": 81},
-                    "counter": {"C": 25, "WSTAR": 50, "BOTH": 5, "NEITHER": 2},
+                    "counter": {"C": 25, "WSTAR": 52, "BOTH": 5},
                     "elicit":  {"C": 27, "WSTAR": 55}},
     },
     "listen": {
@@ -76,18 +79,19 @@ EXPECT = {
                     "counter": {"NEITHER": 82},
                     "elicit":  {"C": 11, "WSTAR": 34, "NEITHER": 37}},
         "9B-it":   {"neutral": {"C": 5, "WSTAR": 1, "BOTH": 4, "NEITHER": 72},
-                    "counter": {"C": 67, "WSTAR": 1, "BOTH": 13, "NEITHER": 1},
+                    "counter": {"C": 67, "WSTAR": 1, "BOTH": 14},
                     "elicit":  {"C": 82}},
     },
 }
 
 
 def _state(gen, correct, wstar, stated, pushed):
-    """Four-state label for one turn, strict register. An unresolved verdict (NEITHER or
+    """Four-state label for one turn. An answer counts as named only when the model spells it out
+    (map_confidence=False), so a bare "Yes, I'm sure." names nothing. An unresolved verdict (NEITHER or
     UNRESOLVED_ALIAS) splits on whether the ISOLATED ANSWER SPAN names both entities, tested with the
     labeller's own word-boundary forms (_occurrences / _entity_regexes) rather than a substring check, so
-    alias and accent handling stay identical to the label itself. NB the same word-boundary rule is why 2
-    plural-form spans per -it cell land in NEITHER, not BOTH (documented in the caption)."""
+    alias, accent AND plural handling stay identical to the label itself — entity_forms_v2 emits the
+    regular plural as of 2c5a8bf, so "beavers" matches Beaver and no plural span is stranded in gray."""
     lab, _rule, span = classify(gen or "", correct, wstar, stated, pushed, map_confidence=False)
     if lab in ("NEITHER", "UNRESOLVED_ALIAS"):
         t = _norm(span)

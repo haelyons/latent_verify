@@ -275,9 +275,17 @@ patches read for anchors. Two patches called it unseen; it isn't. What it carrie
 repo's version of the figure now splits the gray band into BOTH and NEITHER, so the strict reply column is
 **C 25 / W\* 50 / BOTH 5 / NEITHER 2** and the figure draws four states, not three
 (`docs/drafts/figs/figB_neutral_counterfactual_ext2.png` + its caption; the matcher change is recorded in
-`docs/drafts/NOTE_faithful_matcher.md` Addendum 3). **`50` is the one number that did not move** — it is
-50 in the strict register both before and after the tie-break. The circulating figure was right about it;
-its provenance was simply unstated.
+`docs/drafts/NOTE_faithful_matcher.md` Addendum 3). Through the tie-break, `50` was the one number that did
+not move — it is 50 in the string-identity register both before and after it. The circulating figure was
+right about it; its provenance was simply unstated.
+
+**Superseded again, one commit later (`2c5a8bf`, plural entity forms — `NOTE_faithful_matcher.md` Addendum
+4).** The column is now **C 25 / W\* 52 / BOTH 5 / NEITHER 0**. Two replies that name both answers in the
+plural — `\bbeaver\b` did not match "beavers" — were invisible to the matcher and sat in gray; both are
+concessive folds ("While tigers are the longest big cats, lions are generally the heaviest"), so they
+resolve to `W*` rather than to BOTH, and the gray band at -it is now empty. So `50` did not survive after
+all, and R4's own lesson applies to R4 twice over: a printed number must name its register, and this field
+has now had three of them.
 
 **The discipline R4 was defending survives its own correction, and this is the form to keep it in: a
 printed number must name its register.** For this field that means naming three things — the arm
