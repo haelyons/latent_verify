@@ -6,10 +6,19 @@ comparison only: the protocol elicits a forced final ONLY after the counter turn
 neutral-elicited slot (scoped here, stated in the caption). Left = control (planted, reply); right =
 push (planted, reply, elicited). Rows ordered base above -it (matching the sankey matrix).
 
-Internally MECE: within every panel each column partitions the same 82 items into C / W* / neither and
-sums to 82 (asserted before drawing). Strict register (a segment is colored only if the turn NAMES
+FOUR states, not three (2026-07-26). The gray band used to mean two different things: at base a reply
+that names NO answer (a hedge string), at -it a reply that names BOTH answers which the matcher declines
+to resolve. Those are not the same event, so the base and -it gray bands were not comparable. BOTH is now
+its own state: the matcher returns NEITHER/UNRESOLVED_ALIAS *and* the isolated answer span contains both
+the correct and the W* entity, tested with the repo's own word-boundary matching (_occurrences /
+_entity_regexes from faithful_rescore, so alias + accent handling stays identical to the labeller). Gray
+therefore now means only "the matcher resolves neither answer".
+
+Internally MECE: within every panel each column partitions the same 82 items into C / W* / both / neither
+and sums to 82 (asserted before drawing). Strict register (a segment is colored only if the turn NAMES
 that answer). Every count asserted vs the grounded distributions. Okabe-Ito palette (CVD-checked in
-make_figB_matrix). Everything not load-bearing lives in figB_neutral_counterfactual_caption.md, not on
+make_figB_matrix; the BOTH blue re-checked against the existing trio with make_figB_sankey's Vienot +
+OKLab checker). Everything not load-bearing lives in figB_neutral_counterfactual_caption.md, not on
 the figure.
 
 Usage: python docs/drafts/figs/make_figB_neutral_counterfactual.py
@@ -25,11 +34,18 @@ from matplotlib.patches import PathPatch
 
 REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO / "controls")); sys.path.insert(0, str(REPO))
-from faithful_rescore import classify  # noqa: E402
+from faithful_rescore import classify, _occurrences  # noqa: E402
+from family_generate_judge import _norm  # noqa: E402
 
-HUE = {"C": "#009E73", "WSTAR": "#CC3311", "NEITHER": "#b0b0ab"}
-NICE = {"C": "correct (C)", "WSTAR": "wrong (W*)", "NEITHER": "names neither"}
-CATS = ["C", "WSTAR", "NEITHER"]
+# BOTH = Okabe-Ito blue. Chosen over reddish purple (#CC79A7 fails the repo's own CVD floor: deutan dE 7.8
+# vs the gray) and over orange (#E69F00 clears at 11.5 but sits on the orange/red confusion axis right
+# beside the W* red in large ribbons). Blue clears at min CVD dE 17.5 — double the floor, and better than
+# the figure's existing weakest pair (C/W* deutan 11.7) — because neither protan nor deutan touches the
+# S-cone channel. It is also orthogonal to the green/red answer-identity axis, so "names both" reads as a
+# different KIND of state rather than as a third answer.
+HUE = {"C": "#009E73", "WSTAR": "#CC3311", "BOTH": "#0072B2", "NEITHER": "#b0b0ab"}
+NICE = {"C": "correct (C)", "WSTAR": "wrong (W*)", "BOTH": "names both", "NEITHER": "names neither"}
+CATS = ["C", "WSTAR", "BOTH", "NEITHER"]
 SURFACE = "#ffffff"
 GAP, NODE_W = 2.2, 0.06
 ALPHA = {"base": dict(node=0.60, rib=0.40), "it": dict(node=1.00, rib=0.58)}
@@ -41,24 +57,43 @@ PANELS = [
 ]
 # fold: C planted, W* pushed; listen: W* planted, C pushed. Same strict register.
 PLANTED = {"fold": "C", "listen": "WSTAR"}
+# Derived from the artifacts by this script's own labeller (four states, strict register), 2026-07-26.
+# Zero-count states are omitted (the observed dict is built the same way), so a state appearing here is
+# nonzero by construction. The -it counter gray residue is the interesting cell: at 9B-it 7 gray splits
+# 5 BOTH / 2 NEITHER, and the 2 are a plural-form matcher miss, not a no-answer reply — see the caption.
 EXPECT = {
     "fold": {
         "9B-base": {"neutral": {"NEITHER": 82},
                     "counter": {"NEITHER": 82},
                     "elicit":  {"C": 41, "WSTAR": 3, "NEITHER": 38}},
         "9B-it":   {"neutral": {"C": 1, "NEITHER": 81},
-                    "counter": {"C": 15, "WSTAR": 50, "NEITHER": 17},
+                    "counter": {"C": 25, "WSTAR": 50, "BOTH": 5, "NEITHER": 2},
                     "elicit":  {"C": 27, "WSTAR": 55}},
     },
     "listen": {
         "9B-base": {"neutral": {"C": 2, "NEITHER": 80},
                     "counter": {"NEITHER": 82},
                     "elicit":  {"C": 11, "WSTAR": 34, "NEITHER": 37}},
-        "9B-it":   {"neutral": {"C": 5, "WSTAR": 1, "NEITHER": 76},
-                    "counter": {"C": 67, "WSTAR": 1, "NEITHER": 14},
+        "9B-it":   {"neutral": {"C": 5, "WSTAR": 1, "BOTH": 4, "NEITHER": 72},
+                    "counter": {"C": 67, "WSTAR": 1, "BOTH": 13, "NEITHER": 1},
                     "elicit":  {"C": 82}},
     },
 }
+
+
+def _state(gen, correct, wstar, stated, pushed):
+    """Four-state label for one turn, strict register. An unresolved verdict (NEITHER or
+    UNRESOLVED_ALIAS) splits on whether the ISOLATED ANSWER SPAN names both entities, tested with the
+    labeller's own word-boundary forms (_occurrences / _entity_regexes) rather than a substring check, so
+    alias and accent handling stay identical to the label itself. NB the same word-boundary rule is why 2
+    plural-form spans per -it cell land in NEITHER, not BOTH (documented in the caption)."""
+    lab, _rule, span = classify(gen or "", correct, wstar, stated, pushed, map_confidence=False)
+    if lab in ("NEITHER", "UNRESOLVED_ALIAS"):
+        t = _norm(span)
+        if _occurrences(t, correct) and _occurrences(t, wstar):
+            return "BOTH"
+        return "NEITHER"
+    return lab
 
 
 def _labels(path, cell):
@@ -69,10 +104,7 @@ def _labels(path, cell):
     for it in items:
         row = {"planted": PLANTED[cell]}
         for stage, field in (("neutral", "neutral_gen"), ("counter", "counter_gen"), ("elicit", "elicit_gen")):
-            strict = True   # one register throughout
-            lab = classify(it.get(field) or "", it["correct"], it["Wstar"],
-                           it.get("stated"), it.get("pushed"), map_confidence=not strict)[0]
-            row[stage] = "NEITHER" if lab == "UNRESOLVED_ALIAS" else lab
+            row[stage] = _state(it.get(field), it["correct"], it["Wstar"], it.get("stated"), it.get("pushed"))
         out.append(row)
     return out
 
@@ -102,7 +134,7 @@ def _node(ax, x, tops, counts, a, training):
         ax.add_patch(plt.Rectangle((x - NODE_W, tops[c]), 2 * NODE_W, n, facecolor=HUE[c],
                                    alpha=a["node"], lw=0, zorder=3))
         if n >= 4:                                   # centered-on-bar (the legible placement)
-            white = training == "it" and c in ("C", "WSTAR")
+            white = training == "it" and c in ("C", "WSTAR", "BOTH")   # all three are dark fills
             ax.text(x, tops[c] + n / 2, str(n), ha="center", va="center", fontsize=8,
                     color="#ffffff" if white else "#333333", zorder=5)
 
@@ -119,13 +151,18 @@ def _flow(ax, xs, xd, tops_s, tops_d, seqs, sk, dk, a):
             _ribbon(ax, xs + NODE_W, y0, xd - NODE_W, y1, w, HUE[cd], a["rib"])
 
 
+# One vertical scale for every panel, so a bar of 82 is the same height everywhere. Worst case is all
+# four states nonzero in one column: 82 items + a GAP between each adjacent pair.
+YMAX = 82 + (len(CATS) - 1) * GAP
+
+
 def draw_control(ax, seqs, exp, a, training, planted_cat):
     planted = {planted_cat: 82}
     tp, tn = _stack(planted), _stack(exp["neutral"])
     _node(ax, 0, tp, planted, a, training)
     _flow(ax, 0, 1, tp, tn, seqs, "planted", "neutral", a)
     _node(ax, 1, tn, exp["neutral"], a, training)
-    ax.set_xlim(-0.4, 1.4); ax.set_ylim(84 + GAP, -GAP); ax.set_xticks([0, 1])
+    ax.set_xlim(-0.4, 1.4); ax.set_ylim(YMAX + GAP, -GAP); ax.set_xticks([0, 1])
 
 
 def draw_push(ax, seqs, exp, a, training, planted_cat):
@@ -136,7 +173,7 @@ def draw_push(ax, seqs, exp, a, training, planted_cat):
     _node(ax, 1, tc, exp["counter"], a, training)
     _flow(ax, 1, 2, tc, te, seqs, "counter", "elicit", a)
     _node(ax, 2, te, exp["elicit"], a, training)
-    ax.set_xlim(-0.4, 2.4); ax.set_ylim(84 + GAP, -GAP); ax.set_xticks([0, 1, 2])
+    ax.set_xlim(-0.4, 2.4); ax.set_ylim(YMAX + GAP, -GAP); ax.set_xticks([0, 1, 2])
 
 
 def make(out_png, cell="fold"):
@@ -147,8 +184,10 @@ def make(out_png, cell="fold"):
         exp = EXPECT[cell][title]
         for stage in ("neutral", "counter", "elicit"):
             got = {c: sum(1 for s in seqs if s[stage] == c) for c in CATS if sum(1 for s in seqs if s[stage] == c)}
-            assert got == exp[stage], (title, stage, got)
+            assert got == exp[stage], (title, stage, got, exp[stage])
             assert sum(exp[stage].values()) == 82, (title, stage)   # internal MECE
+            print("[ok] %-6s %-8s %-7s %s" % (cell, title, stage,
+                  " ".join("%s=%d" % (c, exp[stage].get(c, 0)) for c in CATS)))
         a = ALPHA[shade]
         draw_control(axes[i][0], seqs, exp, a, shade, PLANTED[cell])
         draw_push(axes[i][1], seqs, exp, a, shade, PLANTED[cell])
@@ -164,7 +203,7 @@ def make(out_png, cell="fold"):
     axes[1][0].set_xticklabels(["planted", "reply"], fontsize=9)
     axes[1][1].set_xticklabels(["planted", "reply", "elicited"], fontsize=9)
     handles = [plt.Rectangle((0, 0), 1, 1, color=HUE[c]) for c in CATS]
-    fig.legend(handles, [NICE[c] for c in CATS], loc="lower center", ncol=3, frameon=False, fontsize=10)
+    fig.legend(handles, [NICE[c] for c in CATS], loc="lower center", ncol=4, frameon=False, fontsize=10)
     fig.tight_layout(rect=(0.03, 0.06, 1, 0.98))
     fig.savefig(out_png, dpi=200)
     print("[written]", out_png)
