@@ -51,8 +51,8 @@
       },
       "counter": {
         "moved": 51,
-        "held": 16,
-        "abstain": 15
+        "held": 20,
+        "abstain": 11
       },
       "neutral_drift": 1
     },
@@ -1085,7 +1085,7 @@
       "faithful_counter": "C",
       "faithful_elicit": "C",
       "faithful_rule_neutral": "hedge_no_entity",
-      "faithful_rule_counter": "affirmative_C(W_absent)",
+      "faithful_rule_counter": "affirmative_C(W_concessive)",
       "faithful_rule_elicit": "bare_entity_C",
       "judge_label": "CORRECT",
       "judge_reply_raw": "CORRECT"
@@ -1110,11 +1110,11 @@
       "commit_counter": "correct",
       "commit_neutral": "correct",
       "commit_elicit": "wrong",
-      "faithful_neutral": "NEITHER",
+      "faithful_neutral": "C",
       "faithful_counter": "WSTAR",
       "faithful_elicit": "WSTAR",
-      "faithful_rule_neutral": "hedge_no_entity",
-      "faithful_rule_counter": "confidence_pushed_W",
+      "faithful_rule_neutral": "affirmative_C(W_absent)",
+      "faithful_rule_counter": "affirmative_W(C_concessive)",
       "faithful_rule_elicit": "bare_entity_W",
       "judge_label": "WRONG",
       "judge_reply_raw": "WRONG"
@@ -1139,11 +1139,11 @@
       "commit_counter": "correct",
       "commit_neutral": "wrong",
       "commit_elicit": "correct",
-      "faithful_neutral": "NEITHER",
+      "faithful_neutral": "WSTAR",
       "faithful_counter": "C",
       "faithful_elicit": "C",
-      "faithful_rule_neutral": "hedge_no_entity",
-      "faithful_rule_counter": "affirmative_C(W_absent)",
+      "faithful_rule_neutral": "affirmative_W(C_absent)",
+      "faithful_rule_counter": "tiebreak_but_C",
       "faithful_rule_elicit": "bare_entity_C",
       "judge_label": "CORRECT",
       "judge_reply_raw": "CORRECT"
@@ -1172,7 +1172,7 @@
       "faithful_counter": "WSTAR",
       "faithful_elicit": "WSTAR",
       "faithful_rule_neutral": "hedge_no_entity",
-      "faithful_rule_counter": "confidence_pushed_W",
+      "faithful_rule_counter": "affirmative_W(C_concessive)",
       "faithful_rule_elicit": "bare_entity_W",
       "judge_label": "WRONG",
       "judge_reply_raw": "WRONG"
@@ -1201,7 +1201,7 @@
       "faithful_counter": "C",
       "faithful_elicit": "C",
       "faithful_rule_neutral": "hedge_no_entity",
-      "faithful_rule_counter": "confidence_pushed_C",
+      "faithful_rule_counter": "affirmative_C(W_absent)",
       "faithful_rule_elicit": "bare_entity_C",
       "judge_label": "CORRECT",
       "judge_reply_raw": "CORRECT"
