@@ -275,6 +275,38 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> **OPEN LEDGERS — the exhaustiveness work, read these before planning anything (2026-07-28).**
+> Three blind coverage audits plus their reconciliation: `docs/drafts/GAPS_A_instruments.md` (from the
+> instrument code; 311 absences, 68 code-blocked with the blocking line), `GAPS_B_artifacts.md` (from
+> 300 result JSONs; 15 structural absences, 11 inconsistent artifacts), `GAPS_C_claims.md` (from the
+> write-up; 163 claims, 41 ABSENT at the breadth written), and **`GAPS_RECONCILED.md`** — 54 MECE gaps
+> classed FREE/OFFLINE 11 (blocking 42 claims), CODE FIRST 15 (52), GPU RUN 14 (30), PROVENANCE 14 (13),
+> with a minimal set of 11 steps of which 5 need no GPU. Work the reconciled ledger, not the three
+> inputs. Numbers in the drafts: `GROUNDING_neutral_elicit.md`, `TAXONOMY_withholding.md`,
+> `JOIN_withhold_vs_fold.md` (read its CORRECTION), `NOTE_27b_repro_fail.md`,
+> `GROUNDING_notes_numbers.md`. Draft state: `NOTE_B_post1_notes.md` + `PATCHSET_tranche2.md` (14 blocks
+> held, reasons in the reviews).
+>
+> **REGISTRATIONS OWED before the corresponding work — 12, none yet written except where named.**
+> (1) listen-arm distributional readout — a DESIGN change, not a flag: `family_cave_diagnose.py:214-215`
+> plants the literal C in both arms and the margin's sign convention assumes it. (2) A distribution or
+> residual read at the FORCED-FINAL slot — no instrument reads either there, and it is the slot the
+> verdicts are decided on. (3) The base arm of the fold/listen mechanism — `assert is_chat` at
+> `foldlisten_phase2.py:155`, `phase3a.py:317`, `phase3b.py:734`, `phase3c_riders.py:325`; register what
+> would count as the base mechanism before removing them. (4) Per-scale head discovery — the head-set
+> lineage hardwires 9b coordinates (`atp_low_confirm.py:32-34`), so 2b/27b need a discovery procedure
+> registered or the result is post-hoc. (5) Gate thresholds for BASE summaries — no gate has ever run on
+> one, and the existing thresholds were set on -it; register before computing or they get fitted.
+> (6) The blind 3-reader hand-label protocol extended to the cells that lack it (T3n, listen, base, and
+> 9b at ext2 — the headline cell). (7) `DESIGN_elicit_context.md` open decisions D-1..D-10.
+> (8) `DESIGN_distributional_withholding.md` open decisions, including its frozen power tiers.
+> (9) A provenance-stamp rule: instance type, driver and library versions into every summary, plus an
+> activation-retention policy (`.gitignore:21-22` currently discards the captures five results depend on).
+> (10) A retraction register — two claims are permanently unfixable and must be withdrawn, not repaired.
+> (11) Family accounting: the 891-item pool has no committed producer and the 66-item pool is
+> unaccounted for by any audit. (12) A house rule that every printed number names its arm, confidence
+> mode and tie-break state — the same field reads five ways.
+>
 > **RUN IN FLIGHT AT HANDOFF (2026-07-28 ~03:50). READ THIS FIRST.** Two boxes are billing:
 > `63c9e1da58af403685ab7009d1975fff` (A100 SXM4, us-east-1, box 1 = anchor4 + 9b-base + 2b-base,
 > cap 19800 s) and `73a2c8389ee94ec3927839500bddf0c2` (H100 SXM5, us-south-2, box 3 = 27b-base,
