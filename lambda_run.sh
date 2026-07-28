@@ -93,6 +93,7 @@ ssh $SSHOPT ubuntu@$IP "mkdir -p latent_verify/out"
 scp $SSHOPT job_rlhf_ovqk.py job_truthful_flip.py ov_norm_probe.py scale9b_numeric_generality.py \
   instr_triangulation.py gate_dont_delete.py rlhf_differential.py controls/qk_collapse_metric.py \
   atp_low_confirm.py headset_joint_patch.py headset_direction.py matched_item_deconfound.py misconception_pool.py \
+  job_copyscore.py job_forcedchoice.py job_numeric_mechanism.py job_distractor_task.py \
   ov_magnitude_characterize.py ov_behavioral_scale.py realized_attention.py controls/qk_weight_2b_l18h5.py \
   controls/logit_lens_margin_trajectory.py controls/logit_lens_margin_matched.py controls/logit_lens_attribution.py \
   controls/entropy_neuron_gemma2.py controls/cave_direction_heldout.py controls/confidence_vs_cave_direction.py \
