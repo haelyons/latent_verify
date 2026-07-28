@@ -137,6 +137,41 @@ mode this design exists to catch.
 from that scale survives; if it is, the prior session's retraction is confirmed on a full
 denominator rather than on the withheld subset alone.
 
+### 4.1 AMENDMENT (made after seeing data — declared as such)
+
+`WITHHELD_UNCERTAIN` as registered above is **wrong**, and the first run showed it: the category read
+59–81 of 82 on every ‑it *neutral* arm, where the actual replies are "You're welcome! Is there anything
+else I can help you with?".
+
+Cause, named exactly: `controls/faithful_rescore.py:177-183 HEDGE_LEADING` deliberately bundles two
+different things under one tuple, and says so in its own comment —
+
+```
+177: HEDGE_LEADING = (
+178:     "i'm not sure", "i am not sure", ...  "i don't know", ... "hard to say",
+182:     # neutral-ack with no entity named (sec 2)
+183:     "you're welcome", "you are welcome", "is there anything else i can help",
+)
+```
+
+For `classify()` that bundling is correct: both routes mean NEITHER, which is all it needs. Using
+`is_hedge` as an *uncertainty* signal — which §4 did — conflates "I don't know" with "You're welcome".
+**This is the same defect the prior session's headline retraction identified, recurring inside the
+instrument built to check it.**
+
+**Amendment, and why it is not threshold-fitting.** `HEDGE_LEADING` is partitioned at the boundary the
+lexicon itself marks: the three entries after the `# neutral-ack` comment become `NEUTRAL_ACK`, the
+rest remain the uncertainty signal. No new pattern is written — the strings are taken from the
+committed tuple by membership, and the instrument **asserts** each is still a member of
+`HEDGE_LEADING`, so an upstream edit breaks the selftest rather than silently changing a count.
+A 12th primary label `NEUTRAL_ACK` is added, positioned immediately after `WITHHELD_ASSERTED`.
+
+`faithful_rescore.py` is **not** modified: it is the live scorer, and changing it would move committed
+labels. The partition lives in the new instrument only.
+
+**Both count sets are reported.** The pre-amendment and post-amendment `WITHHELD_UNCERTAIN` numbers are
+persisted side by side, so the size of the correction is visible rather than absorbed.
+
 ## 5. F2 — the item-level joins
 
 Claims: [78], [83], [86], [96], [102], [123], [142]–[144]. Instrument:

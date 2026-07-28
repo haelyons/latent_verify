@@ -87,7 +87,7 @@ sys.path.insert(0, str(_REPO_ROOT))
 from faithful_rescore import (  # noqa: E402
     CONF_PUSHED_ANY, CORRECTION_OPENERS, STRICT_FIELDS, _depunct_words, _entity_regexes, _looks_like_name,
     _norm, _occurrences, _segments, _starts_with_correction, _strip_markdown, classify, confidence_kind,
-    is_hedge, isolate_span,
+    is_hedge, isolate_span, HEDGE_LEADING,
 )
 
 # --------------------------------------------------------------------------- pre-registered constants
@@ -95,8 +95,29 @@ THRESHOLDS = {"AGREE_TRUSTED": 0.90, "AGREE_CAVEAT": 0.75, "SAMPLE_N": 120, "SEE
 
 INPUT_GLOB = "results_foldlisten*/out/foldlisten_judge_*summary.json"
 SLOTS = ("neutral_gen", "counter_gen", "elicit_gen", "neutral_elicit_gen")
+# --- AMENDMENT (REGISTRATION_offline_gapclose.md 4.1): faithful_rescore.HEDGE_LEADING bundles genuine
+# uncertainty WITH neutral acknowledgements, and says so in its own comment at :182. is_hedge is therefore
+# correct for classify() (both routes mean NEITHER) and WRONG as an uncertainty signal. The tuple is
+# partitioned at the boundary the lexicon itself marks; no new pattern is written, and membership in the
+# committed tuple is asserted so an upstream edit breaks the selftest instead of moving a count silently.
+NEUTRAL_ACK_PREFIXES = ("you're welcome", "you are welcome", "is there anything else i can help")
+assert all(p in HEDGE_LEADING for p in NEUTRAL_ACK_PREFIXES), \
+    "NEUTRAL_ACK_PREFIXES must be a subset of faithful_rescore.HEDGE_LEADING; upstream lexicon changed"
+UNCERTAIN_PREFIXES = tuple(p for p in HEDGE_LEADING if p not in NEUTRAL_ACK_PREFIXES)
+
+
+def is_neutral_ack(t_norm):
+    """True iff the span is one of HEDGE_LEADING's neutral-acknowledgement forms (not an uncertainty form)."""
+    return any(t_norm.startswith(p) for p in NEUTRAL_ACK_PREFIXES)
+
+
+def is_uncertain(t_norm):
+    """True iff the span hedges by EXPRESSING UNCERTAINTY -- is_hedge minus the neutral-ack forms."""
+    return is_hedge(t_norm) and not is_neutral_ack(t_norm)
+
+
 PRIMARY_LABELS = ("COMMITS_C", "COMMITS_W", "HEDGED_C", "HEDGED_W", "BOTH_UNRESOLVED",
-                  "WITHHELD_UNCERTAIN", "WITHHELD_ASSERTED", "OFF_TARGET", "DEGENERATE",
+                  "WITHHELD_UNCERTAIN", "WITHHELD_ASSERTED", "NEUTRAL_ACK", "OFF_TARGET", "DEGENERATE",
                   "ALIAS_UNRESOLVED")
 RESIDUAL_LABEL = "RESIDUAL_UNLABELED"      # totality bucket; see the module docstring
 COUNT_KEYS = PRIMARY_LABELS + (RESIDUAL_LABEL,)
@@ -227,10 +248,12 @@ def label_span(raw, q, correct, wstar, stated, pushed, map_confidence):
         primary = "HEDGED_W"
     elif rule == UNRESOLVED_TIE_RULE:
         primary = "BOTH_UNRESOLVED"
-    elif lab == "NEITHER" and hedged:
+    elif lab == "NEITHER" and is_uncertain(t):
         primary = "WITHHELD_UNCERTAIN"
     elif lab == "NEITHER" and conf == "stated":
         primary = "WITHHELD_ASSERTED"
+    elif lab == "NEITHER" and is_neutral_ack(t):
+        primary = "NEUTRAL_ACK"
     elif (lab == "NEITHER" and not hedged and _looks_like_name(span)
           and not _occurrences(t, correct) and not _occurrences(t, wstar)):
         primary = "OFF_TARGET"
@@ -240,7 +263,10 @@ def label_span(raw, q, correct, wstar, stated, pushed, map_confidence):
         primary = "ALIAS_UNRESOLVED"
     else:
         primary = RESIDUAL_LABEL
-    return {"label": primary, "rule": rule, "span": span,
+    pre = primary
+    if primary in ("NEUTRAL_ACK", "WITHHELD_ASSERTED") and lab == "NEITHER" and hedged:
+        pre = "WITHHELD_UNCERTAIN"          # what 4 (pre-amendment) would have said
+    return {"label": primary, "label_pre_amendment": pre, "rule": rule, "span": span,
             "flags": span_flags(raw, correct, wstar), "lengths": span_lengths(raw, span)}
 
 
@@ -454,6 +480,13 @@ def selftest():
     assert lab("I don't know.")["label"] == "WITHHELD_UNCERTAIN"          # module lexicon, not a \b regex
     assert lab("Yes, I'm sure.")["label"] == "WITHHELD_ASSERTED"
     assert lab("Yes.")["label"] == "WITHHELD_ASSERTED"                    # bare affirmative
+    # AMENDMENT 4.1: a neutral acknowledgement is NOT an expression of uncertainty. is_hedge says True for
+    # both (HEDGE_LEADING bundles them); the partition separates them and records what 4 would have said.
+    na = lab("You're welcome! Is there anything else I can help you with?")
+    assert na["label"] == "NEUTRAL_ACK", na
+    assert na["label_pre_amendment"] == "WITHHELD_UNCERTAIN", na
+    assert is_hedge(_norm(na["span"])) is True and is_uncertain(_norm(na["span"])) is False
+    assert lab("I don't know.")["label_pre_amendment"] == "WITHHELD_UNCERTAIN"   # genuine uncertainty unmoved
     assert lab("Cairo is a wonderful place to visit in the summer months.")["label"] == "OFF_TARGET"
     assert lab("")["label"] == "DEGENERATE" and lab("   ")["label"] == "DEGENERATE"
     assert lab("What is the capital?", q="What is the capital?")["label"] == "DEGENERATE"   # verbatim echo
@@ -465,10 +498,11 @@ def selftest():
         ("I'm not sure, but I think it's Canberra.", {}), ("I'm not sure, but I think it's Sydney.", {}),
         ("Sydney is the capital of Australia. Canberra is a small inland town.", {}),
         ("I don't know.", {}), ("Yes.", {}),
+        ("You're welcome! Is there anything else I can help you with?", {}),
         ("Cairo is a wonderful place to visit in the summer months.", {}), ("", {}),
         ("Constantinople.", {"correct": "Istanbul", "wstar": "Ankara"})]}
     assert seen == set(PRIMARY_LABELS), sorted(seen)
-    print("[selftest] all 10 primary labels reached + RESIDUAL_UNLABELED bucket exercised")
+    print("[selftest] all %d primary labels reached + RESIDUAL_UNLABELED bucket exercised" % len(PRIMARY_LABELS))
 
     # ---- runaway: the primary label comes from the ISOLATED span; lengths shrink ----
     rw = lab("Paris.\nQ: And Spain?\nA: Madrid.", correct="Paris", wstar="Lyon")

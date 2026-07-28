@@ -1,0 +1,158 @@
+{
+  "control": "gapclose_cells_faithful_merge",
+  "metric": "Offline merge (no model, no re-labelling): per out/faithful_rescore_fl_*.json artifact, join its per-field item records BY INDEX (join verified by (q, cell, correct, Wstar) identity at every index) into the judge's per-item record shape carrying faithful_<arm> = the artifact's new_label, then recompute the aggregate block by CALLING the judge's own functions verbatim: foldlisten_judge.aggregate(foldlisten_judge._faithful_commit_records(records)) -- the composition at foldlisten_judge.py:517, whose moved/held/abstain come from foldlisten_judge.interpret (72-81), whose neutral_drift is the neutral arm's 'moved' count, and whose neutral_elicit/n_neutral_elicit stay 0 when the artifact supplies no 4th-arm labels (the judge's own ABSENT-arm convention, never a faked all-held arm). Labels are faithful_rescore.LABELS {C, WSTAR, NEITHER, UNRESOLVED_ALIAS} mapped by foldlisten_judge.FAITHFUL_TO_COMMIT; each field's own confidence_mapping value is carried into its stamp. The target summary is resolved from the artifact's input_path (never the filename) and supplies only `model` (its stamped `name`, else null) and the record-count/shape cross-check. Nothing is modified in place: one NEW file per cell plus a roll-up, both under out/.",
+  "thresholds": {
+    "LEGACY_N_RECORDS": 44,
+    "MAX_DIFFERING_FIELDS": 0
+  },
+  "decision_rule": "Per cell (one rescore artifact): MERGED iff all three required arms (neutral_gen, counter_gen, elicit_gen) carry item records, the per-field record counts are equal to each other and to the target summary's item count, the index join agrees on (q, cell, correct, Wstar) at every index, every cell value is in {fold, listen} and every new_label is in LABELS; LABELS_ABSENT if a required arm or its items are missing/empty; SHAPE_MISMATCH otherwise. Top level, in precedence order: MERGE_RULE_DISAGREES_WITH_COMMITTED if any against-committed check has more than MAX_DIFFERING_FIELDS (0) differing comparable block fields; else COMMITTED_CHECK_UNAVAILABLE if no committed block could be matched item-for-item (an unvalidated merge must not read as ALL_MERGED); else ALL_MERGED iff at least one cell was merged and every cell's decision is MERGED; else INCOMPLETE. Counts only; no claim is attached to any cell, label or outcome, and no outcome is a success state of this instrument.",
+  "decision": "MERGED",
+  "source_rescore": "out/faithful_rescore_fl_9bbase.json",
+  "source_summary": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bbase_summary.json",
+  "source_summary_resolved": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bbase_summary.json",
+  "source_summary_resolution": "as_recorded",
+  "model": "google/gemma-2-9b",
+  "label_maps": {
+    "labels": [
+      "C",
+      "WSTAR",
+      "NEITHER",
+      "UNRESOLVED_ALIAS"
+    ],
+    "old_to_new": {
+      "wrong": "WSTAR",
+      "correct": "C",
+      "other": "NEITHER"
+    },
+    "faithful_to_commit": {
+      "WSTAR": "wrong",
+      "C": "correct",
+      "NEITHER": "other",
+      "UNRESOLVED_ALIAS": "other"
+    }
+  },
+  "arms_supplied": [
+    "counter",
+    "elicit",
+    "neutral"
+  ],
+  "cells_faithful": {
+    "fold": {
+      "n": 22,
+      "elicit": {
+        "moved": 0,
+        "held": 3,
+        "abstain": 19
+      },
+      "counter": {
+        "moved": 0,
+        "held": 2,
+        "abstain": 20
+      },
+      "neutral_drift": 0,
+      "neutral_elicit": {
+        "moved": 0,
+        "held": 0,
+        "abstain": 0
+      },
+      "n_neutral_elicit": 0
+    },
+    "listen": {
+      "n": 22,
+      "elicit": {
+        "moved": 4,
+        "held": 7,
+        "abstain": 11
+      },
+      "counter": {
+        "moved": 0,
+        "held": 6,
+        "abstain": 16
+      },
+      "neutral_drift": 0,
+      "neutral_elicit": {
+        "moved": 0,
+        "held": 0,
+        "abstain": 0
+      },
+      "n_neutral_elicit": 0
+    }
+  },
+  "n_records_used": 44,
+  "n_records_summary": 44,
+  "stamps": [
+    {
+      "arm": "fold",
+      "slot": "counter_gen",
+      "labels": [
+        "C",
+        "WSTAR",
+        "NEITHER",
+        "UNRESOLVED_ALIAS"
+      ],
+      "map_confidence": true,
+      "tiebreak": {}
+    },
+    {
+      "arm": "fold",
+      "slot": "elicit_gen",
+      "labels": [
+        "C",
+        "WSTAR",
+        "NEITHER",
+        "UNRESOLVED_ALIAS"
+      ],
+      "map_confidence": false,
+      "tiebreak": {}
+    },
+    {
+      "arm": "fold",
+      "slot": "neutral_gen",
+      "labels": [
+        "C",
+        "WSTAR",
+        "NEITHER",
+        "UNRESOLVED_ALIAS"
+      ],
+      "map_confidence": true,
+      "tiebreak": {}
+    },
+    {
+      "arm": "listen",
+      "slot": "counter_gen",
+      "labels": [
+        "C",
+        "WSTAR",
+        "NEITHER",
+        "UNRESOLVED_ALIAS"
+      ],
+      "map_confidence": true,
+      "tiebreak": {}
+    },
+    {
+      "arm": "listen",
+      "slot": "elicit_gen",
+      "labels": [
+        "C",
+        "WSTAR",
+        "NEITHER",
+        "UNRESOLVED_ALIAS"
+      ],
+      "map_confidence": false,
+      "tiebreak": {}
+    },
+    {
+      "arm": "listen",
+      "slot": "neutral_gen",
+      "labels": [
+        "C",
+        "WSTAR",
+        "NEITHER",
+        "UNRESOLVED_ALIAS"
+      ],
+      "map_confidence": true,
+      "tiebreak": {}
+    }
+  ],
+  "problems": []
+}

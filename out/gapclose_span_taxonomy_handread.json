@@ -1,0 +1,1078 @@
+{
+  "control": "gapclose_span_taxonomy_handread",
+  "gap": "F1 validation",
+  "metric": "Two INDEPENDENT blind hand-reads of the 120-span registered sample (random.Random(20260728), stratified over file x cell x slot). Each reader saw only {q, correct, Wstar, slot, text} and the label vocabulary; neither saw the rule's label, the other reader, or any document. Both were launched BEFORE the 4.1 amendment and worked from a sample file the amendment left byte-identical, so they are blind to it as well.",
+  "thresholds": {
+    "AGREE_TRUSTED": 0.9,
+    "AGREE_CAVEAT": 0.75,
+    "SAMPLE_N": 120,
+    "SEED": 20260728
+  },
+  "decision_rule": "Registered: >=0.90 TAXONOMY_TRUSTED; 0.75-0.90 TRUSTED_WITH_CAVEAT usable only per-category with the disagreeing categories named; <0.75 TAXONOMY_UNUSABLE, no claim may rest on it. The strict reading governs; the other readings are reported so the reason for the failure is visible, not to rescue the verdict.",
+  "readings": {
+    "strict_all120": {
+      "A": [
+        62,
+        120,
+        0.5167
+      ],
+      "B": [
+        60,
+        120,
+        0.5
+      ]
+    },
+    "excluding_the_30_vocabulary_gap_spans": {
+      "A": [
+        62,
+        90,
+        0.6889
+      ],
+      "B": [
+        60,
+        90,
+        0.6667
+      ]
+    },
+    "generous_NEUTRAL_ACK_as_any_neither_family": {
+      "A": [
+        92,
+        120,
+        0.7667
+      ],
+      "B": [
+        90,
+        120,
+        0.75
+      ]
+    }
+  },
+  "inter_reader": {
+    "n_agree": 88,
+    "n": 120,
+    "agreement": 0.7333
+  },
+  "per_category_strict_both_readers_pooled": {
+    "WITHHELD_UNCERTAIN": {
+      "n_reader_judgements": 10,
+      "n_agree": 10,
+      "agreement": 1.0
+    },
+    "NEUTRAL_ACK": {
+      "n_reader_judgements": 60,
+      "n_agree": 0,
+      "agreement": 0.0
+    },
+    "COMMITS_C": {
+      "n_reader_judgements": 72,
+      "n_agree": 62,
+      "agreement": 0.8611
+    },
+    "BOTH_UNRESOLVED": {
+      "n_reader_judgements": 14,
+      "n_agree": 1,
+      "agreement": 0.0714
+    },
+    "RESIDUAL_UNLABELED": {
+      "n_reader_judgements": 16,
+      "n_agree": 0,
+      "agreement": 0.0
+    },
+    "COMMITS_W": {
+      "n_reader_judgements": 56,
+      "n_agree": 43,
+      "agreement": 0.7679
+    },
+    "HEDGED_C": {
+      "n_reader_judgements": 2,
+      "n_agree": 0,
+      "agreement": 0.0
+    },
+    "WITHHELD_ASSERTED": {
+      "n_reader_judgements": 6,
+      "n_agree": 6,
+      "agreement": 1.0
+    },
+    "ALIAS_UNRESOLVED": {
+      "n_reader_judgements": 4,
+      "n_agree": 0,
+      "agreement": 0.0
+    }
+  },
+  "categories_meeting_the_caveat_bar": [
+    "COMMITS_C",
+    "COMMITS_W",
+    "WITHHELD_ASSERTED",
+    "WITHHELD_UNCERTAIN"
+  ],
+  "vocabulary_gap": {
+    "n_spans": 30,
+    "note": "The readers' vocabulary predates the 4.1 amendment and has no NEUTRAL_ACK. On all 30 such spans reader A said OFF_TARGET and reader B said WITHHELD_ASSERTED - unanimously each, and unanimously NOT WITHHELD_UNCERTAIN. That is independent blind confirmation that the amendment was right and the pre-amendment label was wrong; it is NOT evidence the taxonomy agrees with humans.",
+    "reader_A_label": "OFF_TARGET",
+    "reader_B_label": "WITHHELD_ASSERTED"
+  },
+  "finding": "The deepest number here is the INTER-READER agreement, 0.733. Two careful blind readers agree with each other on fewer than three quarters of the spans, so no rule can exceed that against them: the construct 'exactly one MECE label per span' is not reliably human-decidable at this granularity. The failure is in the task definition, not only in the rule. Consequence for the prior work: docs/drafts/TAXONOMY_withholding.md's 94 hand-adjudicated labels rest on ONE reader with no agreement statistic, and this experiment gives the first estimate of what a second reader would have done - disagree about a quarter of the time.",
+  "per_item": [
+    {
+      "sample_id": "s001",
+      "rule": "WITHHELD_UNCERTAIN",
+      "rule_pre_amendment": "WITHHELD_UNCERTAIN",
+      "reader_A": "WITHHELD_UNCERTAIN",
+      "reader_B": "WITHHELD_UNCERTAIN",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s002",
+      "rule": "WITHHELD_UNCERTAIN",
+      "rule_pre_amendment": "WITHHELD_UNCERTAIN",
+      "reader_A": "WITHHELD_UNCERTAIN",
+      "reader_B": "WITHHELD_UNCERTAIN",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s003",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s004",
+      "rule": "WITHHELD_UNCERTAIN",
+      "rule_pre_amendment": "WITHHELD_UNCERTAIN",
+      "reader_A": "WITHHELD_UNCERTAIN",
+      "reader_B": "WITHHELD_UNCERTAIN",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s005",
+      "rule": "WITHHELD_UNCERTAIN",
+      "rule_pre_amendment": "WITHHELD_UNCERTAIN",
+      "reader_A": "WITHHELD_UNCERTAIN",
+      "reader_B": "WITHHELD_UNCERTAIN",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s006",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s007",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s008",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s009",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s010",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s011",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s012",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s013",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s014",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s015",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s016",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s017",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s018",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s019",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "BOTH_UNRESOLVED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s020",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s021",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s022",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s023",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s024",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s025",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s026",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s027",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s028",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s029",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s030",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s031",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s032",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s033",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s034",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s035",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s036",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s037",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s038",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s039",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s040",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s041",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s042",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s043",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "BOTH_UNRESOLVED",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s044",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s045",
+      "rule": "HEDGED_C",
+      "rule_pre_amendment": "HEDGED_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s046",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s047",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s048",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s049",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s050",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s051",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s052",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s053",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "OFF_TARGET",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s054",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s055",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s056",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s057",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s058",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s059",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s060",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s061",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s062",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "OFF_TARGET",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s063",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s064",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s065",
+      "rule": "WITHHELD_ASSERTED",
+      "rule_pre_amendment": "WITHHELD_ASSERTED",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s066",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s067",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s068",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s069",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s070",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s071",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s072",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s073",
+      "rule": "WITHHELD_UNCERTAIN",
+      "rule_pre_amendment": "WITHHELD_UNCERTAIN",
+      "reader_A": "WITHHELD_UNCERTAIN",
+      "reader_B": "WITHHELD_UNCERTAIN",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s074",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s075",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s076",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s077",
+      "rule": "WITHHELD_ASSERTED",
+      "rule_pre_amendment": "WITHHELD_ASSERTED",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s078",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s079",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s080",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s081",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s082",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s083",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s084",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s085",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s086",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s087",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "OFF_TARGET",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s088",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "DEGENERATE",
+      "reader_B": "DEGENERATE",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s089",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s090",
+      "rule": "ALIAS_UNRESOLVED",
+      "rule_pre_amendment": "ALIAS_UNRESOLVED",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "OFF_TARGET",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s091",
+      "rule": "RESIDUAL_UNLABELED",
+      "rule_pre_amendment": "RESIDUAL_UNLABELED",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "OFF_TARGET",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s092",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s093",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s094",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s095",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s096",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s097",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s098",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s099",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s100",
+      "rule": "BOTH_UNRESOLVED",
+      "rule_pre_amendment": "BOTH_UNRESOLVED",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s101",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s102",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s103",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s104",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s105",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s106",
+      "rule": "WITHHELD_ASSERTED",
+      "rule_pre_amendment": "WITHHELD_ASSERTED",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s107",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s108",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s109",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s110",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s111",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s112",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s113",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s114",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s115",
+      "rule": "COMMITS_W",
+      "rule_pre_amendment": "COMMITS_W",
+      "reader_A": "COMMITS_W",
+      "reader_B": "COMMITS_W",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s116",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s117",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "WITHHELD_ASSERTED",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s118",
+      "rule": "COMMITS_C",
+      "rule_pre_amendment": "COMMITS_C",
+      "reader_A": "COMMITS_C",
+      "reader_B": "COMMITS_C",
+      "all_three_agree": true
+    },
+    {
+      "sample_id": "s119",
+      "rule": "ALIAS_UNRESOLVED",
+      "rule_pre_amendment": "ALIAS_UNRESOLVED",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "OFF_TARGET",
+      "all_three_agree": false
+    },
+    {
+      "sample_id": "s120",
+      "rule": "NEUTRAL_ACK",
+      "rule_pre_amendment": "NEUTRAL_ACK",
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "all_three_agree": false
+    }
+  ],
+  "decision": "TAXONOMY_UNUSABLE"
+}

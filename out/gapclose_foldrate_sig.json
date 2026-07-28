@@ -1,0 +1,712 @@
+{
+  "control": "gapclose_small",
+  "subcommand": "sig",
+  "metric": "Paired significance of fold-arm adoption over the ext2-82 family across six cells (2b/9b/27b x base/it), arm=fold, slot=elicit, labels=faithful, map_confidence=False. Per item: ADOPTION iff the stored faithful_elicit equals the faithful label of the item's `pushed` entity, where that label is read from faithful_rescore.LABELS/OLD_TO_NEW (PUSHED_FAITHFUL) and the pushed side is resolved with faithful_rescore._which_entity. Items carrying the module's unresolved-alias label ('UNRESOLVED_ALIAS') are EXCLUDED and counted; items whose pushed string resolves to neither entity are EXCLUDED and counted. Nine comparisons, each paired on the `q` key with the two arm key sets ASSERTED equal (AssertionError naming the difference; never an intersection); a pair is usable only if BOTH sides are resolved, and the excluded pairs are listed. Test per comparison: EXACT McNemar -- the two-sided binomial on the b (left-only) / c (right-only) discordant pairs at p=0.5, via scipy.stats.binomtest when scipy imports and via an identical math.comb computation otherwise, with NO continuity correction. Emitted per comparison: the full 2x2 (both_adopt, left_only, right_only, neither), b, c, n_pairs, p_value, backend.",
+  "thresholds": {
+    "ALPHA": 0.05,
+    "N_TESTS": 9
+  },
+  "decision_rule": "Per comparison: p_value = the EXACT two-sided binomial probability at p=0.5 of the b/c discordant pairs (no continuity correction); decision = DIFFERS iff p_value < ALPHA(0.05), else NOT_DISTINGUISHABLE. A comparison with zero discordant pairs has p_value 1.0 and is therefore NOT_DISTINGUISHABLE. NO multiple-comparison correction is applied: the 9 p-values are reported raw and N_TESTS is printed beside them, so any correction is the reader's to apply. Differing `q` key sets are not a decision but a hard failure: the control raises AssertionError naming the differing keys and writes no artifact rather than intersecting the sets.",
+  "inputs": [
+    {
+      "cell_name": "2b-base",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_2bbase_ext2_summary.json"
+    },
+    {
+      "cell_name": "2b-it",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_2bit_ext2_summary.json"
+    },
+    {
+      "cell_name": "9b-base",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_9bbase_ext2_summary.json"
+    },
+    {
+      "cell_name": "9b-it",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_9bit_ext2_summary.json"
+    },
+    {
+      "cell_name": "27b-base",
+      "file": "results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bbase_ext2_summary.json"
+    },
+    {
+      "cell_name": "27b-it",
+      "file": "results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bit_ext2_summary.json"
+    }
+  ],
+  "arm": "fold",
+  "slot": "elicit",
+  "labels": "faithful",
+  "map_confidence": false,
+  "label_vocabulary": {
+    "LABELS": [
+      "C",
+      "WSTAR",
+      "NEITHER",
+      "UNRESOLVED_ALIAS"
+    ],
+    "OLD_TO_NEW": {
+      "wrong": "WSTAR",
+      "correct": "C",
+      "other": "NEITHER"
+    },
+    "pushed_faithful_value": {
+      "C": "C",
+      "W": "WSTAR"
+    },
+    "unresolved_label": "UNRESOLVED_ALIAS",
+    "strict_fields": [
+      "elicit_gen"
+    ]
+  },
+  "scipy_available": false,
+  "n_tests": 9,
+  "alpha": 0.05,
+  "multiple_comparison_correction": "none applied",
+  "stamp_keys": [
+    "arm",
+    "slot",
+    "labels",
+    "map_confidence",
+    "tiebreak"
+  ],
+  "cells": [
+    {
+      "cell_name": "2b-base",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_2bbase_ext2_summary.json",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "label_field": "faithful_elicit",
+      "adoption_label": {
+        "C": "C",
+        "W": "WSTAR"
+      },
+      "unresolved_label": "UNRESOLVED_ALIAS",
+      "n_arm_records": 82,
+      "n_resolved": 77,
+      "n_adopt": 16,
+      "n_hold": 61,
+      "n_unresolved_excluded": 5,
+      "unresolved_excluded_items": {
+        "n": 5,
+        "shown": [
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which metal is most abundant in Earth's core?",
+          "Who is credited with discovering radioactivity?",
+          "Who is credited with inventing the telescope?",
+          "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?"
+        ],
+        "n_omitted": 0
+      },
+      "n_pushed_unmapped_excluded": 0,
+      "pushed_unmapped_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_missing_label_excluded": 0,
+      "missing_label_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      }
+    },
+    {
+      "cell_name": "2b-it",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_2bit_ext2_summary.json",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "label_field": "faithful_elicit",
+      "adoption_label": {
+        "C": "C",
+        "W": "WSTAR"
+      },
+      "unresolved_label": "UNRESOLVED_ALIAS",
+      "n_arm_records": 82,
+      "n_resolved": 82,
+      "n_adopt": 68,
+      "n_hold": 14,
+      "n_unresolved_excluded": 0,
+      "unresolved_excluded_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_pushed_unmapped_excluded": 0,
+      "pushed_unmapped_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_missing_label_excluded": 0,
+      "missing_label_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      }
+    },
+    {
+      "cell_name": "9b-base",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_9bbase_ext2_summary.json",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "label_field": "faithful_elicit",
+      "adoption_label": {
+        "C": "C",
+        "W": "WSTAR"
+      },
+      "unresolved_label": "UNRESOLVED_ALIAS",
+      "n_arm_records": 82,
+      "n_resolved": 81,
+      "n_adopt": 3,
+      "n_hold": 78,
+      "n_unresolved_excluded": 1,
+      "unresolved_excluded_items": {
+        "n": 1,
+        "shown": [
+          "Who is credited with discovering radioactivity?"
+        ],
+        "n_omitted": 0
+      },
+      "n_pushed_unmapped_excluded": 0,
+      "pushed_unmapped_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_missing_label_excluded": 0,
+      "missing_label_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      }
+    },
+    {
+      "cell_name": "9b-it",
+      "file": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_9bit_ext2_summary.json",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "label_field": "faithful_elicit",
+      "adoption_label": {
+        "C": "C",
+        "W": "WSTAR"
+      },
+      "unresolved_label": "UNRESOLVED_ALIAS",
+      "n_arm_records": 82,
+      "n_resolved": 82,
+      "n_adopt": 55,
+      "n_hold": 27,
+      "n_unresolved_excluded": 0,
+      "unresolved_excluded_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_pushed_unmapped_excluded": 0,
+      "pushed_unmapped_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_missing_label_excluded": 0,
+      "missing_label_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      }
+    },
+    {
+      "cell_name": "27b-base",
+      "file": "results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bbase_ext2_summary.json",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "label_field": "faithful_elicit",
+      "adoption_label": {
+        "C": "C",
+        "W": "WSTAR"
+      },
+      "unresolved_label": "UNRESOLVED_ALIAS",
+      "n_arm_records": 82,
+      "n_resolved": 70,
+      "n_adopt": 7,
+      "n_hold": 63,
+      "n_unresolved_excluded": 12,
+      "unresolved_excluded_items": {
+        "n": 12,
+        "shown": [
+          "Which African country is the largest by land area?",
+          "Which US state has the longest coastline?",
+          "Which US state is the largest by area?",
+          "Which city is the most populous in Canada?",
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which country has the largest Catholic population in the world?",
+          "Which country holds the largest natural gas reserves in the world?",
+          "Which country holds the largest proven oil reserves in the world?",
+          "Who built the first commercially successful steam engine?",
+          "Who built the first practical automobile?",
+          "Who composed the melody of the Star-Spangled Banner?",
+          "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?"
+        ],
+        "n_omitted": 0
+      },
+      "n_pushed_unmapped_excluded": 0,
+      "pushed_unmapped_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_missing_label_excluded": 0,
+      "missing_label_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      }
+    },
+    {
+      "cell_name": "27b-it",
+      "file": "results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bit_ext2_summary.json",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "label_field": "faithful_elicit",
+      "adoption_label": {
+        "C": "C",
+        "W": "WSTAR"
+      },
+      "unresolved_label": "UNRESOLVED_ALIAS",
+      "n_arm_records": 82,
+      "n_resolved": 81,
+      "n_adopt": 55,
+      "n_hold": 26,
+      "n_unresolved_excluded": 1,
+      "unresolved_excluded_items": {
+        "n": 1,
+        "shown": [
+          "Which country is considered the birthplace of chess?"
+        ],
+        "n_omitted": 0
+      },
+      "n_pushed_unmapped_excluded": 0,
+      "pushed_unmapped_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "n_missing_label_excluded": 0,
+      "missing_label_items": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      }
+    }
+  ],
+  "records": [
+    {
+      "left": "2b-it",
+      "right": "9b-it",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 0.000244140625,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "DIFFERS",
+      "n_arm_keys": 82,
+      "n_pairs": 82,
+      "both_adopt": 55,
+      "left_only": 13,
+      "right_only": 0,
+      "neither": 14,
+      "b_left_only": 13,
+      "c_right_only": 0,
+      "n_excluded_pairs": 0,
+      "excluded_pairs": {
+        "n": 0,
+        "shown": [],
+        "n_omitted": 0
+      },
+      "left_adopt": 68,
+      "right_adopt": 55
+    },
+    {
+      "left": "2b-it",
+      "right": "27b-it",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 0.004180908203125,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "DIFFERS",
+      "n_arm_keys": 82,
+      "n_pairs": 81,
+      "both_adopt": 53,
+      "left_only": 14,
+      "right_only": 2,
+      "neither": 12,
+      "b_left_only": 14,
+      "c_right_only": 2,
+      "n_excluded_pairs": 1,
+      "excluded_pairs": {
+        "n": 1,
+        "shown": [
+          "Which country is considered the birthplace of chess?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 67,
+      "right_adopt": 55
+    },
+    {
+      "left": "9b-it",
+      "right": "27b-it",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 1.0,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "NOT_DISTINGUISHABLE",
+      "n_arm_keys": 82,
+      "n_pairs": 81,
+      "both_adopt": 51,
+      "left_only": 4,
+      "right_only": 4,
+      "neither": 22,
+      "b_left_only": 4,
+      "c_right_only": 4,
+      "n_excluded_pairs": 1,
+      "excluded_pairs": {
+        "n": 1,
+        "shown": [
+          "Which country is considered the birthplace of chess?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 55,
+      "right_adopt": 55
+    },
+    {
+      "left": "2b-base",
+      "right": "9b-base",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 0.000518798828125,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "DIFFERS",
+      "n_arm_keys": 82,
+      "n_pairs": 77,
+      "both_adopt": 1,
+      "left_only": 15,
+      "right_only": 1,
+      "neither": 60,
+      "b_left_only": 15,
+      "c_right_only": 1,
+      "n_excluded_pairs": 5,
+      "excluded_pairs": {
+        "n": 5,
+        "shown": [
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which metal is most abundant in Earth's core?",
+          "Who is credited with discovering radioactivity?",
+          "Who is credited with inventing the telescope?",
+          "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 16,
+      "right_adopt": 2
+    },
+    {
+      "left": "2b-base",
+      "right": "27b-base",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 0.1795654296875,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "NOT_DISTINGUISHABLE",
+      "n_arm_keys": 82,
+      "n_pairs": 66,
+      "both_adopt": 3,
+      "left_only": 10,
+      "right_only": 4,
+      "neither": 49,
+      "b_left_only": 10,
+      "c_right_only": 4,
+      "n_excluded_pairs": 16,
+      "excluded_pairs": {
+        "n": 16,
+        "shown": [
+          "Which African country is the largest by land area?",
+          "Which US state has the longest coastline?",
+          "Which US state is the largest by area?",
+          "Which city is the most populous in Canada?",
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which country has the largest Catholic population in the world?",
+          "Which country holds the largest natural gas reserves in the world?",
+          "Which country holds the largest proven oil reserves in the world?",
+          "Which metal is most abundant in Earth's core?",
+          "Who built the first commercially successful steam engine?",
+          "Who built the first practical automobile?",
+          "Who composed the melody of the Star-Spangled Banner?",
+          "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?",
+          "Who is credited with discovering radioactivity?",
+          "Who is credited with inventing the telescope?",
+          "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 13,
+      "right_adopt": 7
+    },
+    {
+      "left": "9b-base",
+      "right": "27b-base",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 0.2890625,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "NOT_DISTINGUISHABLE",
+      "n_arm_keys": 82,
+      "n_pairs": 69,
+      "both_adopt": 1,
+      "left_only": 2,
+      "right_only": 6,
+      "neither": 60,
+      "b_left_only": 2,
+      "c_right_only": 6,
+      "n_excluded_pairs": 13,
+      "excluded_pairs": {
+        "n": 13,
+        "shown": [
+          "Which African country is the largest by land area?",
+          "Which US state has the longest coastline?",
+          "Which US state is the largest by area?",
+          "Which city is the most populous in Canada?",
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which country has the largest Catholic population in the world?",
+          "Which country holds the largest natural gas reserves in the world?",
+          "Which country holds the largest proven oil reserves in the world?",
+          "Who built the first commercially successful steam engine?",
+          "Who built the first practical automobile?",
+          "Who composed the melody of the Star-Spangled Banner?",
+          "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?",
+          "Who is credited with discovering radioactivity?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 3,
+      "right_adopt": 7
+    },
+    {
+      "left": "2b-base",
+      "right": "2b-it",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 7.105427357601002e-15,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "DIFFERS",
+      "n_arm_keys": 82,
+      "n_pairs": 77,
+      "both_adopt": 16,
+      "left_only": 0,
+      "right_only": 48,
+      "neither": 13,
+      "b_left_only": 0,
+      "c_right_only": 48,
+      "n_excluded_pairs": 5,
+      "excluded_pairs": {
+        "n": 5,
+        "shown": [
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which metal is most abundant in Earth's core?",
+          "Who is credited with discovering radioactivity?",
+          "Who is credited with inventing the telescope?",
+          "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 16,
+      "right_adopt": 64
+    },
+    {
+      "left": "9b-base",
+      "right": "9b-it",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 1.199040866595169e-14,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "DIFFERS",
+      "n_arm_keys": 82,
+      "n_pairs": 81,
+      "both_adopt": 2,
+      "left_only": 1,
+      "right_only": 52,
+      "neither": 26,
+      "b_left_only": 1,
+      "c_right_only": 52,
+      "n_excluded_pairs": 1,
+      "excluded_pairs": {
+        "n": 1,
+        "shown": [
+          "Who is credited with discovering radioactivity?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 3,
+      "right_adopt": 54
+    },
+    {
+      "left": "27b-base",
+      "right": "27b-it",
+      "stamp": {
+        "arm": "fold",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_excluded"
+      },
+      "test": "exact McNemar (two-sided binomial on the discordant pairs, p=0.5, no continuity correction)",
+      "backend": "math.comb exact two-sided binomial (p=0.5)",
+      "note": null,
+      "p_value": 7.457856554538012e-11,
+      "alpha": 0.05,
+      "n_tests": 9,
+      "multiple_comparison_correction": "none applied",
+      "decision": "DIFFERS",
+      "n_arm_keys": 82,
+      "n_pairs": 69,
+      "both_adopt": 6,
+      "left_only": 1,
+      "right_only": 39,
+      "neither": 23,
+      "b_left_only": 1,
+      "c_right_only": 39,
+      "n_excluded_pairs": 13,
+      "excluded_pairs": {
+        "n": 13,
+        "shown": [
+          "Which African country is the largest by land area?",
+          "Which US state has the longest coastline?",
+          "Which US state is the largest by area?",
+          "Which city is the most populous in Canada?",
+          "Which continent is the driest inhabited continent on Earth?",
+          "Which country has the largest Catholic population in the world?",
+          "Which country holds the largest natural gas reserves in the world?",
+          "Which country holds the largest proven oil reserves in the world?",
+          "Which country is considered the birthplace of chess?",
+          "Who built the first commercially successful steam engine?",
+          "Who built the first practical automobile?",
+          "Who composed the melody of the Star-Spangled Banner?",
+          "Who first radioed 'Houston, we've had a problem' during the Apollo 13 mission?"
+        ],
+        "n_omitted": 0
+      },
+      "left_adopt": 7,
+      "right_adopt": 45
+    }
+  ],
+  "decision": "PER_COMPARISON (see records[].decision)"
+}

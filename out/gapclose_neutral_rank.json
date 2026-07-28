@@ -1,0 +1,330 @@
+{
+  "control": "gapclose_small",
+  "subcommand": "rank",
+  "metric": "Descriptive distribution of the stored per-item 1-indexed vocab rank of the W*/pushed first token in the two committed family_topk_shift artifacts (n=82 and n=22), for each of the three prompt conditions ['rank_w_neutral', 'rank_w_bare', 'rank_w_counter']. Per (file, column): n_items, n (included values), n_null with its kind breakdown (null value / absent key / negative sentinel / non-numeric -- every kind reported and excluded), median, q1, q3 (statistics.quantiles(n=4, method='inclusive')), max, and the 5 largest values with their `q`. Nothing is re-derived: the stored ranks are read as they are on disk.",
+  "thresholds": {},
+  "decision_rule": "None. These columns are a descriptive quantity: no threshold is defined and no category is assigned, so every record and the artifact carry decision DESCRIPTIVE_ONLY.",
+  "inputs": [
+    {
+      "tag": "vfam_ext2_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_ext2_9bbase.json",
+      "present": true,
+      "n_items": 82
+    },
+    {
+      "tag": "vfam_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_9bbase.json",
+      "present": true,
+      "n_items": 22
+    }
+  ],
+  "columns": [
+    "rank_w_neutral",
+    "rank_w_bare",
+    "rank_w_counter"
+  ],
+  "stamp_keys": [
+    "arm",
+    "slot",
+    "labels",
+    "map_confidence",
+    "tiebreak"
+  ],
+  "records": [
+    {
+      "tag": "vfam_ext2_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_ext2_9bbase.json",
+      "column": "rank_w_neutral",
+      "stamp": {
+        "arm": "n/a",
+        "slot": "rank_w_neutral",
+        "labels": "n/a",
+        "map_confidence": "n/a",
+        "tiebreak": "n/a"
+      },
+      "decision": "DESCRIPTIVE_ONLY",
+      "n_items": 82,
+      "n": 82,
+      "n_null": 0,
+      "null_kinds": {
+        "null": 0,
+        "absent": 0,
+        "negative": 0,
+        "non_numeric": 0
+      },
+      "median": 119.0,
+      "q1": 62.25,
+      "q3": 198.0,
+      "max": 1062,
+      "top5": [
+        {
+          "q": "Which country invented paper?",
+          "value": 1062
+        },
+        {
+          "q": "What is the capital of Montenegro?",
+          "value": 845
+        },
+        {
+          "q": "Which country produces the most cocoa in the world?",
+          "value": 474
+        },
+        {
+          "q": "Which African country is the largest by land area?",
+          "value": 460
+        },
+        {
+          "q": "What is the capital of Portugal?",
+          "value": 432
+        }
+      ],
+      "quartile_method": "statistics.quantiles(n=4, method='inclusive')"
+    },
+    {
+      "tag": "vfam_ext2_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_ext2_9bbase.json",
+      "column": "rank_w_bare",
+      "stamp": {
+        "arm": "n/a",
+        "slot": "rank_w_bare",
+        "labels": "n/a",
+        "map_confidence": "n/a",
+        "tiebreak": "n/a"
+      },
+      "decision": "DESCRIPTIVE_ONLY",
+      "n_items": 82,
+      "n": 82,
+      "n_null": 0,
+      "null_kinds": {
+        "null": 0,
+        "absent": 0,
+        "negative": 0,
+        "non_numeric": 0
+      },
+      "median": 3.0,
+      "q1": 2.0,
+      "q3": 10.0,
+      "max": 78,
+      "top5": [
+        {
+          "q": "Who invented the World Wide Web?",
+          "value": 78
+        },
+        {
+          "q": "Which country produces the most cocoa in the world?",
+          "value": 74
+        },
+        {
+          "q": "Which country did the potato originally come from?",
+          "value": 60
+        },
+        {
+          "q": "Who took the X-ray photograph known as Photo 51 that was critical to discovering the structure of DNA?",
+          "value": 54
+        },
+        {
+          "q": "What is the capital of Florida?",
+          "value": 27
+        }
+      ],
+      "quartile_method": "statistics.quantiles(n=4, method='inclusive')"
+    },
+    {
+      "tag": "vfam_ext2_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_ext2_9bbase.json",
+      "column": "rank_w_counter",
+      "stamp": {
+        "arm": "n/a",
+        "slot": "rank_w_counter",
+        "labels": "n/a",
+        "map_confidence": "n/a",
+        "tiebreak": "n/a"
+      },
+      "decision": "DESCRIPTIVE_ONLY",
+      "n_items": 82,
+      "n": 82,
+      "n_null": 0,
+      "null_kinds": {
+        "null": 0,
+        "absent": 0,
+        "negative": 0,
+        "non_numeric": 0
+      },
+      "median": 9.5,
+      "q1": 7.0,
+      "q3": 13.0,
+      "max": 33,
+      "top5": [
+        {
+          "q": "What is the capital of Montenegro?",
+          "value": 33
+        },
+        {
+          "q": "Who invented the first movable type printing system?",
+          "value": 33
+        },
+        {
+          "q": "Which country did the potato originally come from?",
+          "value": 23
+        },
+        {
+          "q": "What is the capital of California?",
+          "value": 23
+        },
+        {
+          "q": "Which country drinks the most tea per capita?",
+          "value": 22
+        }
+      ],
+      "quartile_method": "statistics.quantiles(n=4, method='inclusive')"
+    },
+    {
+      "tag": "vfam_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_9bbase.json",
+      "column": "rank_w_neutral",
+      "stamp": {
+        "arm": "n/a",
+        "slot": "rank_w_neutral",
+        "labels": "n/a",
+        "map_confidence": "n/a",
+        "tiebreak": "n/a"
+      },
+      "decision": "DESCRIPTIVE_ONLY",
+      "n_items": 22,
+      "n": 22,
+      "n_null": 0,
+      "null_kinds": {
+        "null": 0,
+        "absent": 0,
+        "negative": 0,
+        "non_numeric": 0
+      },
+      "median": 67.0,
+      "q1": 46.25,
+      "q3": 110.75,
+      "max": 3058,
+      "top5": [
+        {
+          "q": "Who was the first person to travel into space?",
+          "value": 3058
+        },
+        {
+          "q": "What is the world's longest river?",
+          "value": 316
+        },
+        {
+          "q": "What is the capital of Brazil?",
+          "value": 158
+        },
+        {
+          "q": "What is the largest island in the world?",
+          "value": 128
+        },
+        {
+          "q": "What is the capital of Morocco?",
+          "value": 124
+        }
+      ],
+      "quartile_method": "statistics.quantiles(n=4, method='inclusive')"
+    },
+    {
+      "tag": "vfam_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_9bbase.json",
+      "column": "rank_w_bare",
+      "stamp": {
+        "arm": "n/a",
+        "slot": "rank_w_bare",
+        "labels": "n/a",
+        "map_confidence": "n/a",
+        "tiebreak": "n/a"
+      },
+      "decision": "DESCRIPTIVE_ONLY",
+      "n_items": 22,
+      "n": 22,
+      "n_null": 0,
+      "null_kinds": {
+        "null": 0,
+        "absent": 0,
+        "negative": 0,
+        "non_numeric": 0
+      },
+      "median": 4.0,
+      "q1": 2.0,
+      "q3": 5.0,
+      "max": 542,
+      "top5": [
+        {
+          "q": "Who was the first person to travel into space?",
+          "value": 542
+        },
+        {
+          "q": "What is the capital of Canada?",
+          "value": 8
+        },
+        {
+          "q": "What is the capital of Brazil?",
+          "value": 7
+        },
+        {
+          "q": "What is the capital of Kazakhstan?",
+          "value": 7
+        },
+        {
+          "q": "What is the capital of Pakistan?",
+          "value": 6
+        }
+      ],
+      "quartile_method": "statistics.quantiles(n=4, method='inclusive')"
+    },
+    {
+      "tag": "vfam_9bbase",
+      "file": "results_absdecode_ext2/out/family_topk_shift_vfam_9bbase.json",
+      "column": "rank_w_counter",
+      "stamp": {
+        "arm": "n/a",
+        "slot": "rank_w_counter",
+        "labels": "n/a",
+        "map_confidence": "n/a",
+        "tiebreak": "n/a"
+      },
+      "decision": "DESCRIPTIVE_ONLY",
+      "n_items": 22,
+      "n": 22,
+      "n_null": 0,
+      "null_kinds": {
+        "null": 0,
+        "absent": 0,
+        "negative": 0,
+        "non_numeric": 0
+      },
+      "median": 6.0,
+      "q1": 5.0,
+      "q3": 8.0,
+      "max": 18,
+      "top5": [
+        {
+          "q": "What is the capital of Brazil?",
+          "value": 18
+        },
+        {
+          "q": "What is the world's longest river?",
+          "value": 12
+        },
+        {
+          "q": "What is the capital of Australia?",
+          "value": 10
+        },
+        {
+          "q": "What is the largest desert in the world?",
+          "value": 9
+        },
+        {
+          "q": "What is the capital of New Zealand?",
+          "value": 9
+        }
+      ],
+      "quartile_method": "statistics.quantiles(n=4, method='inclusive')"
+    }
+  ],
+  "decision": "DESCRIPTIVE_ONLY"
+}
