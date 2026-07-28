@@ -8,6 +8,7 @@
 #   usage: bash lambda_run.sh <instance_type> <region> <onbox_runner.sh> <local_result_dir>
 set -uo pipefail
 TYPE=$1; REGION=$2; RUNNER=$3; RDIR=$4
+GITSHA=$(git rev-parse HEAD 2>/dev/null || echo "unknown")   # stamped into the runner's provenance
 API=https://cloud.lambda.ai/api/v1
 KEY=$(grep '^LAMBDA_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
 HF=$(grep '^HF_KEY_ONE=' .keys | cut -d= -f2- | tr -d '\r\n')
@@ -168,7 +169,10 @@ echo "[run] $RUNNER DETACHED on box (cap ${REMOTE_TIMEOUT}s); local marker-poll 
 # single-quoted bash -c body is passed literally to the box.
 STARTED=0
 for s in 1 2 3; do
-  ssh $SSHOPT ubuntu@$IP "cd latent_verify && rm -f RUN_DONE && setsid bash -c 'timeout $REMOTE_TIMEOUT env HF_TOKEN=\"$HF\" bash remote_run.sh bash $RUNNER > out/run_detached.log 2>&1; echo \$? > RUN_DONE' < /dev/null > /dev/null 2>&1 &" 2>/dev/null
+  # LAMBDA_INSTANCE_ID + GIT_COMMIT are exported so a runner's provenance stamp can record them
+  # (REGISTRATION_provenance.md 1). The instance id is half of the audit-log join that R-1 was
+  # retracted for wanting, and the box has no git checkout, so neither is obtainable on-box.
+  ssh $SSHOPT ubuntu@$IP "cd latent_verify && rm -f RUN_DONE && setsid bash -c 'timeout $REMOTE_TIMEOUT env HF_TOKEN=\"$HF\" LAMBDA_INSTANCE_ID=\"$ID\" GIT_COMMIT=\"$GITSHA\" bash remote_run.sh bash $RUNNER > out/run_detached.log 2>&1; echo \$? > RUN_DONE' < /dev/null > /dev/null 2>&1 &" 2>/dev/null
   sleep 8
   if ssh $SSHOPT ubuntu@$IP "test -f latent_verify/out/run_detached.log" 2>/dev/null; then
     echo "[run] confirmed started (try $s)"; STARTED=1; break

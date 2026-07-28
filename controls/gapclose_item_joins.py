@@ -773,8 +773,10 @@ def selftest():
 
     # ---------- join key: NFKD + whitespace collapse ----------
     assert join_key("  Which  city\nis it? ") == "Which city is it?"
-    composed, decomposed = "Brasília?", "Brasília?"        # i-acute vs i + combining acute
-    assert composed != decomposed and join_key(composed) == join_key(decomposed)
+    composed = "Brasília?"          # i-acute as ONE precomposed codepoint
+    decomposed = "Brasília?"       # i + COMBINING ACUTE ACCENT
+    assert composed != decomposed, "the two spellings must differ before normalisation"
+    assert join_key(composed) == join_key(decomposed), (join_key(composed), join_key(decomposed))
     assert join_key(None) == "" and join_key(3) == "3"
     print("[selftest] join_key: NFKD-normalised (composed == decomposed) + whitespace-collapsed")
 
