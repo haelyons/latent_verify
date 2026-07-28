@@ -48,14 +48,22 @@
 # PRE-DATA SCOPE NOTE: this run is 27b-base ONLY. 27b-it is identical between the two existing
 # draws, so it has nothing to reproduce; extending to 27b-it would be a different question.
 #
-# COST. ~4.3 h per 27b foldlisten cell on an H100 PCIe (docs/lambda-gpu-access.md), so ~8.6 h for
-# two passes plus the ~54 GB weight pull. Cap 10 h. Files land FLAT in ~/latent_verify.
+# COST. docs/lambda-gpu-access.md: ~4.3 h per 27b foldlisten cell on H100 PCIe, ~1.4 h on SXM5. 1x
+# PCIe capacity was gone at launch, so this runs on a 2x H100 SXM5 box with ONE GPU visible (see the
+# CUDA_VISIBLE_DEVICES note below - a layer split would confound a determinism test). ~2.8 h for two
+# passes plus the ~54 GB weight pull; cap 5 h. Files land FLAT in ~/latent_verify.
 # ============================================================================================
 set -uo pipefail
 cd ~/latent_verify
 . .venv/bin/activate
 export HUGGING_FACE_HUB_TOKEN="${HF_TOKEN:-}"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+# PINNED TO ONE GPU ON PURPOSE. The box is a 2x H100 SXM5 (1x H100 PCIe capacity was gone at launch
+# time). This is a DETERMINISM test, and a multi-GPU layer split would change reduction order between
+# passes and confound exactly the quantity being measured. One visible device makes the comparison
+# clean, and it is also what every prior single-GPU cell in this repo did.
+export CUDA_VISIBLE_DEVICES=0
+nvidia-smi --query-gpu=index,name --format=csv,noheader
 mkdir -p out
 
 # provenance FIRST, so it survives a dead cell. LAMBDA_INSTANCE_ID and GIT_COMMIT now arrive from
