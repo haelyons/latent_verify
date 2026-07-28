@@ -275,7 +275,59 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> **OPEN LEDGERS — the exhaustiveness work, read these before planning anything (2026-07-28).**
+> **NO GPU IS RUNNING. VERIFIED 2026-07-28 (this session): `GET /api/v1/instances` returns 0
+> instances.** The "RUN IN FLIGHT AT HANDOFF" block further down is RESOLVED and superseded — both
+> boxes are down, the neutral-elicit run landed, and its artifacts are committed under
+> `results_foldlisten_nelicit_{2b9b,27b}/out/`. Do not act on that block's reattach instructions.
+>
+> **THE FREE/OFFLINE GAP CLASS IS WORKED. $0 GPU. Start at `docs/drafts/GAPCLOSE_RESULTS.md`** — the
+> per-gap decision table for `GAPS_RECONCILED.md` §4.1 — then the four documents it points at.
+> Pre-registration first, committed before any value was computed:
+> `docs/drafts/REGISTRATION_offline_gapclose.md` (read its §4.1 amendment and §13 corrections).
+> New instruments, all claim-blind authored → reviewed → selftest → run:
+> `controls/gapclose_{contam_census,span_taxonomy,item_joins,small,cells_faithful_merge}.py`,
+> artifacts `out/gapclose_*.json`.
+>
+> **What the next agent most needs to know, in order.**
+> (1) **F1 FAILED its validation and the failure is the construct, not the rule.** Two independent
+> blind hand-reads of a pre-drawn 120-span sample: reader-vs-rule 0.517 / 0.500, and **reader vs
+> reader 0.733**. No rule can beat 0.733 against readers who disagree that much, so "exactly one MECE
+> label per span" is not reliably human-decidable at that granularity. Four categories DO clear the
+> caveat bar and they are the ones the headline rests on (COMMITS_C 0.861, COMMITS_W 0.768,
+> WITHHELD_UNCERTAIN 10/10, WITHHELD_ASSERTED 6/6). **Consequence: the prior session's
+> `TAXONOMY_withholding.md` fine-grained splits rest on ONE reader with no agreement statistic, and
+> this is the first estimate of what a second reader would have done.** Any F4 protocol must pick a
+> coarser label set or add adjudication, and say which before readers run.
+> (2) **`docs/drafts/RETRACTIONS.md` holds 11 entries** (registration owed #10, now written). R-1 is
+> UNFIXABLE and verified so: a key-level walk over all 323 artifacts finds **zero** hardware, driver
+> or library fields and no launch id, so neither side of the audit-log join exists. R-6/R-7 withdraw
+> three printed figures that are in no revision. R-8 reclassifies a REPRODUCES to UNAUDITABLE.
+> (3) **`docs/drafts/REDERIVE_20260728.md`** — the entry gate. `JOIN`'s arithmetic is CLEAN (every
+> 2×2, χ², Fisher, Wald CI, McNemar re-derives; its join is genuinely keyed with zero symmetric
+> difference). Seven numbers elsewhere do not reproduce. **The 27b-base column is one draw**: 98/164
+> generations and 41/164 labels differ between the two runs against 0/0/0 at 2b and 9b, so every
+> printed 27b-base number must name its decode.
+> (4) **`docs/drafts/CODEBLOCKS_verified.md`** — all K1–K15 lines read. Six understated (K4/K12/K13/K14
+> are multi-line prompt-builder refactors, not argparse; K5 is a recalibration; **K8 needs a re-run and
+> cannot be done offline**). Two move DOWN: K15's four ambiguities all resolve from the code, and one
+> of K11's seventeen already has `--layer`. D14 settled: 16 ⊂ 61 ⊂ 66 ⊂ 891 — **and 817 of the 891 are
+> downloaded at run time while `_build_pool` prints-and-continues on failure, so a networkless re-run
+> silently measures 74 items against 58 artifacts stamping 891.** One line fixes it.
+> (5) **`out/gapclose_scorer_drift.json`** — the first repo-wide scorer-drift audit: 2 of 6704
+> committed `faithful_*` labels disagree with the current scorer (0.03%), both in one file, both the
+> same tie-break, both diagnostic-slot. The port is 99.97% equivalent.
+> (6) **Registrations owed: 12 → 7.** Written this session: **#5** (base gate thresholds, written as a
+> *refusal* to invent one — the ‑it thresholds transport unchanged and are stamped
+> `THRESHOLDS_NOT_CALIBRATED_FOR_THIS_REGIME`), **#9** (`docs/drafts/REGISTRATION_provenance.md` — the
+> load-bearing pair is `lambda_instance_id` + `started_utc`, without which R-1 recurs), **#10**
+> (retraction register), **#12** (the five-part number stamp, asserted by every new selftest). **#11**
+> (family accounting) is settled by measurement. Still owed: **#1, #2, #3, #4, #6, #7, #8.**
+>
+> **Next, if picking up the ledger in cost order:** CODE FIRST is next, and `CODEBLOCKS_verified.md`
+> re-costs it. The cheapest real win there is K3 (one line + argparse, 7 claims). K1/K2/K5/K6/K7/K8 all
+> need a registration written first — #1, #2, #3, #4 in the owed list are exactly those.
+>
+> **OPEN LEDGERS — the three blind audits and their reconciliation (2026-07-28).**
 > Three blind coverage audits plus their reconciliation: `docs/drafts/GAPS_A_instruments.md` (from the
 > instrument code; 311 absences, 68 code-blocked with the blocking line), `GAPS_B_artifacts.md` (from
 > 300 result JSONs; 15 structural absences, 11 inconsistent artifacts), `GAPS_C_claims.md` (from the

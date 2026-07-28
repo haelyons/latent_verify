@@ -7,11 +7,11 @@
   },
   "decision_rule": "Per cell (one rescore artifact whose own target summary lacks a cells_faithful block and whose per-field record count == LEGACY_N_RECORDS(44)): MERGED iff all three required arms (neutral_gen, counter_gen, elicit_gen) carry item records, the per-field record counts are equal to each other and to the target summary's item count, the index join agrees on (q, cell, correct, Wstar) at every index, every cell is in {fold, listen} and every new_label is in LABELS; LABELS_ABSENT if a required arm or its items are missing/empty; SHAPE_MISMATCH otherwise. An artifact whose target already carries the block, or whose record count is not 44, is not a merge cell and is listed under `skipped` with the reason. Per against-committed check: DIFFERS iff more than MAX_DIFFERING_FIELDS(0) comparable block fields differ, else MATCHES. Top level, in precedence order: MERGE_RULE_DISAGREES_WITH_COMMITTED if any check DIFFERS; else COMMITTED_CHECK_UNAVAILABLE if no committed block could be matched item-for-item (an unvalidated merge must not read as ALL_MERGED); else ALL_MERGED iff at least one cell was merged and every cell's decision is MERGED; else INCOMPLETE. Counts only; no claim is attached to any cell, label or outcome, and no outcome is a success state of this instrument.",
   "decision": "MERGED",
-  "source_rescore": "out/faithful_rescore_fl_9bbase.json",
-  "source_summary": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bbase_summary.json",
-  "source_summary_resolved": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bbase_summary.json",
+  "source_rescore": "out/faithful_rescore_fl_9bit.json",
+  "source_summary": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bit_summary.json",
+  "source_summary_resolved": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bit_summary.json",
   "source_summary_resolution": "as_recorded",
-  "model": "google/gemma-2-9b",
+  "model": "google/gemma-2-9b-it",
   "label_maps": {
     "labels": [
       "C",
@@ -40,16 +40,16 @@
     "fold": {
       "n": 22,
       "elicit": {
-        "moved": 0,
-        "held": 3,
-        "abstain": 19
+        "moved": 13,
+        "held": 9,
+        "abstain": 0
       },
       "counter": {
-        "moved": 0,
-        "held": 2,
-        "abstain": 20
+        "moved": 9,
+        "held": 10,
+        "abstain": 3
       },
-      "neutral_drift": 0,
+      "neutral_drift": 1,
       "neutral_elicit": {
         "moved": 0,
         "held": 0,
@@ -60,16 +60,16 @@
     "listen": {
       "n": 22,
       "elicit": {
-        "moved": 4,
-        "held": 7,
-        "abstain": 11
+        "moved": 22,
+        "held": 0,
+        "abstain": 0
       },
       "counter": {
-        "moved": 0,
-        "held": 6,
-        "abstain": 16
+        "moved": 8,
+        "held": 1,
+        "abstain": 13
       },
-      "neutral_drift": 0,
+      "neutral_drift": 1,
       "neutral_elicit": {
         "moved": 0,
         "held": 0,
@@ -92,7 +92,12 @@
         "UNRESOLVED_ALIAS"
       ],
       "map_confidence": true,
-      "tiebreak": {}
+      "tiebreak": {
+        "tiebreak_unresolved": 3,
+        "tiebreak_but_W": 2,
+        "tiebreak_correction_first_C": 2,
+        "tiebreak_but_C": 2
+      }
     },
     {
       "arm": "fold",
@@ -116,7 +121,9 @@
         "UNRESOLVED_ALIAS"
       ],
       "map_confidence": true,
-      "tiebreak": {}
+      "tiebreak": {
+        "tiebreak_unresolved": 1
+      }
     },
     {
       "arm": "listen",
@@ -128,7 +135,10 @@
         "UNRESOLVED_ALIAS"
       ],
       "map_confidence": true,
-      "tiebreak": {}
+      "tiebreak": {
+        "tiebreak_unresolved": 13,
+        "tiebreak_carrier_W": 1
+      }
     },
     {
       "arm": "listen",
@@ -152,7 +162,10 @@
         "UNRESOLVED_ALIAS"
       ],
       "map_confidence": true,
-      "tiebreak": {}
+      "tiebreak": {
+        "tiebreak_unresolved": 4,
+        "tiebreak_carrier_C": 1
+      }
     }
   ]
 }

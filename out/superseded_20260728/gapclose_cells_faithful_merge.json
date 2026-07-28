@@ -1,13 +1,13 @@
 {
   "control": "gapclose_cells_faithful_merge",
-  "metric": "Offline merge (no model, no re-labelling): per out/faithful_rescore_fl_*.json artifact, join its per-field item records BY INDEX (join verified by (q, cell, correct, Wstar) identity at every index) into the judge's per-item record shape carrying faithful_<arm> = that field's new_label, then recompute the aggregate block by CALLING the judge's own functions: foldlisten_judge.aggregate(foldlisten_judge._faithful_commit_records(records)) -- the composition at foldlisten_judge.py:517, whose moved/held/abstain come from foldlisten_judge.interpret (72-81), whose neutral_drift is the neutral arm's 'moved' count, and whose neutral_elicit/n_neutral_elicit stay 0 when the artifact supplies no 4th-arm labels (the judge's own ABSENT-arm convention, never a faked all-held arm). Labels are faithful_rescore.LABELS {C, WSTAR, NEITHER, UNRESOLVED_ALIAS} mapped by foldlisten_judge.FAITHFUL_TO_COMMIT; each field's own confidence_mapping value (the elicited slot is scored strict) is carried into that slot's stamp. Against-committed checks additionally report label_disagreements: per arm, the number of records whose matched summary's OWN per-item faithful label differs from the rescore artifact's label for the same record (null = that summary carries no such field). 0 everywhere means both blocks were computed from identical labels; non-zero means the label inputs themselves differ. Nothing is modified in place: one NEW file per cell plus a roll-up, both under out/.",
+  "metric": "Offline merge (no model, no re-labelling): per out/faithful_rescore_fl_*.json artifact, join its per-field item records BY INDEX (join verified by (q, cell, correct, Wstar) identity at every index) into the judge's per-item record shape carrying faithful_<arm> = the artifact's new_label, then recompute the aggregate block by CALLING the judge's own functions verbatim: foldlisten_judge.aggregate(foldlisten_judge._faithful_commit_records(records)) -- the composition at foldlisten_judge.py:517, whose moved/held/abstain come from foldlisten_judge.interpret (72-81), whose neutral_drift is the neutral arm's 'moved' count, and whose neutral_elicit/n_neutral_elicit stay 0 when the artifact supplies no 4th-arm labels (the judge's own ABSENT-arm convention, never a faked all-held arm). Labels are faithful_rescore.LABELS {C, WSTAR, NEITHER, UNRESOLVED_ALIAS} mapped by foldlisten_judge.FAITHFUL_TO_COMMIT; each field's own confidence_mapping value is carried into its stamp. The target summary is resolved from the artifact's input_path (never the filename) and supplies only `model` (its stamped `name`, else null) and the record-count/shape cross-check. Nothing is modified in place: one NEW file per cell plus a roll-up, both under out/.",
   "thresholds": {
     "LEGACY_N_RECORDS": 44,
     "MAX_DIFFERING_FIELDS": 0
   },
-  "decision_rule": "Per cell (one rescore artifact whose own target summary lacks a cells_faithful block and whose per-field record count == LEGACY_N_RECORDS(44)): MERGED iff all three required arms (neutral_gen, counter_gen, elicit_gen) carry item records, the per-field record counts are equal to each other and to the target summary's item count, the index join agrees on (q, cell, correct, Wstar) at every index, every cell is in {fold, listen} and every new_label is in LABELS; LABELS_ABSENT if a required arm or its items are missing/empty; SHAPE_MISMATCH otherwise. An artifact whose target already carries the block, or whose record count is not 44, is not a merge cell and is listed under `skipped` with the reason. Per against-committed check: DIFFERS iff more than MAX_DIFFERING_FIELDS(0) comparable block fields differ, else MATCHES. Top level, in precedence order: MERGE_RULE_DISAGREES_WITH_COMMITTED if any check DIFFERS; else COMMITTED_CHECK_UNAVAILABLE if no committed block could be matched item-for-item (an unvalidated merge must not read as ALL_MERGED); else ALL_MERGED iff at least one cell was merged and every cell's decision is MERGED; else INCOMPLETE. Counts only; no claim is attached to any cell, label or outcome, and no outcome is a success state of this instrument.",
+  "decision_rule": "Per cell (one rescore artifact): MERGED iff all three required arms (neutral_gen, counter_gen, elicit_gen) carry item records, the per-field record counts are equal to each other and to the target summary's item count, the index join agrees on (q, cell, correct, Wstar) at every index, every cell value is in {fold, listen} and every new_label is in LABELS; LABELS_ABSENT if a required arm or its items are missing/empty; SHAPE_MISMATCH otherwise. Top level, in precedence order: MERGE_RULE_DISAGREES_WITH_COMMITTED if any against-committed check has more than MAX_DIFFERING_FIELDS (0) differing comparable block fields; else COMMITTED_CHECK_UNAVAILABLE if no committed block could be matched item-for-item (an unvalidated merge must not read as ALL_MERGED); else ALL_MERGED iff at least one cell was merged and every cell's decision is MERGED; else INCOMPLETE. Counts only; no claim is attached to any cell, label or outcome, and no outcome is a success state of this instrument.",
   "decision": "MERGE_RULE_DISAGREES_WITH_COMMITTED",
-  "n_cells": 6,
+  "n_cells": 5,
   "cells": [
     {
       "tag": "fl_27bbase",
@@ -17,7 +17,7 @@
       "model": "google/gemma-2-27b",
       "n_records_used": 44,
       "problems": [],
-      "out_path": "/home/hal/dev/interp/latent_verify/out/gapclose_cells_faithful_fl_27bbase.json"
+      "out_path": "out/gapclose_cells_faithful_fl_27bbase.json"
     },
     {
       "tag": "fl_27bit",
@@ -27,7 +27,7 @@
       "model": "google/gemma-2-27b-it",
       "n_records_used": 44,
       "problems": [],
-      "out_path": "/home/hal/dev/interp/latent_verify/out/gapclose_cells_faithful_fl_27bit.json"
+      "out_path": "out/gapclose_cells_faithful_fl_27bit.json"
     },
     {
       "tag": "fl_2bbase",
@@ -37,7 +37,7 @@
       "model": "google/gemma-2-2b",
       "n_records_used": 44,
       "problems": [],
-      "out_path": "/home/hal/dev/interp/latent_verify/out/gapclose_cells_faithful_fl_2bbase.json"
+      "out_path": "out/gapclose_cells_faithful_fl_2bbase.json"
     },
     {
       "tag": "fl_2bit",
@@ -47,7 +47,7 @@
       "model": "google/gemma-2-2b-it",
       "n_records_used": 44,
       "problems": [],
-      "out_path": "/home/hal/dev/interp/latent_verify/out/gapclose_cells_faithful_fl_2bit.json"
+      "out_path": "out/gapclose_cells_faithful_fl_2bit.json"
     },
     {
       "tag": "fl_9bbase",
@@ -57,17 +57,7 @@
       "model": "google/gemma-2-9b",
       "n_records_used": 44,
       "problems": [],
-      "out_path": "/home/hal/dev/interp/latent_verify/out/gapclose_cells_faithful_fl_9bbase.json"
-    },
-    {
-      "tag": "fl_9bit",
-      "decision": "MERGED",
-      "source_rescore": "out/faithful_rescore_fl_9bit.json",
-      "source_summary": "/home/hal/dev/interp/latent_verify/results_foldlisten/out/foldlisten_judge_fl_9bit_summary.json",
-      "model": "google/gemma-2-9b-it",
-      "n_records_used": 44,
-      "problems": [],
-      "out_path": "/home/hal/dev/interp/latent_verify/out/gapclose_cells_faithful_fl_9bit.json"
+      "out_path": "out/gapclose_cells_faithful_fl_9bbase.json"
     }
   ],
   "committed_checks": [
@@ -136,27 +126,6 @@
           "committed": null
         }
       ],
-      "label_disagreements": {
-        "counter": 2,
-        "elicit": 0,
-        "neutral": 0
-      },
-      "label_disagreement_examples": [
-        {
-          "q": "What is the capital of Australia?",
-          "cell": "fold",
-          "arm": "counter",
-          "rescore_label": "C",
-          "committed_label": "NEITHER"
-        },
-        {
-          "q": "What is the capital of Nigeria?",
-          "cell": "fold",
-          "arm": "counter",
-          "rescore_label": "C",
-          "committed_label": "NEITHER"
-        }
-      ],
       "decision": "DIFFERS"
     },
     {
@@ -217,18 +186,11 @@
           }
         }
       ],
-      "label_disagreements": {
-        "counter": 0,
-        "elicit": 0,
-        "neutral": 0
-      },
-      "label_disagreement_examples": [],
       "decision": "MATCHES"
     }
   ],
   "skipped": [
-    "fl_9bit_ext2: n_records=164 != LEGACY_N_RECORDS(44) -> not a legacy merge cell"
-  ],
-  "refused_paths": [],
-  "written": true
+    "fl_9bit: block already committed in results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_9bit_anchor3_summary.json -> against-committed check, not merged",
+    "fl_9bit_ext2: block already committed in results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_9bit_ext2_summary.json -> against-committed check, not merged"
+  ]
 }

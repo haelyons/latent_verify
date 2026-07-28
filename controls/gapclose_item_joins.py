@@ -193,7 +193,8 @@ class FieldAbsent(Exception):
 # --------------------------------------------------------------------------- pure helpers
 def join_key(q):
     """The join key: NFKD-normalised, whitespace-collapsed question string. Case and accents are PRESERVED
-    (the key identifies an item, it does not match text). Pure (str -> str)."""
+    (the key identifies an item, it does not match text), but a composed and a decomposed spelling of the
+    same accented character collapse to one key. Pure (str -> str)."""
     return " ".join(unicodedata.normalize("NFKD", "" if q is None else str(q)).split())
 
 
@@ -542,7 +543,8 @@ def load_judge(path, root):
     return {"path": rel, "model": name, "family": fam, "decode": _decode_label(rel, fam),
             "is_it": (None if name is None else str(name).endswith("-it")),
             "cells": cells, "n_items": sum(len(v) for v in cells.values()),
-            "cell_key_counts": {str(c): len(v) for c, v in sorted(cells.items(), key=lambda kv: str(kv[0]))}}
+            "cell_key_counts": {str(c): len(v)
+                                for c, v in sorted(cells.items(), key=lambda kv: str(kv[0]))}}
 
 
 def load_margin(path, root):
@@ -771,9 +773,10 @@ def selftest():
 
     # ---------- join key: NFKD + whitespace collapse ----------
     assert join_key("  Which  city\nis it? ") == "Which city is it?"
-    assert join_key("Brasilia?") == join_key(unicodedata.normalize("NFD", "Brasilia?"))
+    composed, decomposed = "Brasília?", "Brasília?"        # i-acute vs i + combining acute
+    assert composed != decomposed and join_key(composed) == join_key(decomposed)
     assert join_key(None) == "" and join_key(3) == "3"
-    print("[selftest] join_key: NFKD-normalised + whitespace-collapsed")
+    print("[selftest] join_key: NFKD-normalised (composed == decomposed) + whitespace-collapsed")
 
     # ---------- stamps: all nine complete, all five keys, no None ----------
     for jid in JOIN_IDS:
@@ -983,9 +986,9 @@ def selftest():
     assert neg["excess_on_diagonal"] == -1.0, neg
     assert "L TRUE & R FALSE" in neg["over_represented_cell_in_words"], neg
     empty = _twoxtwo({}, {}, [], "L", "R")
-    assert empty["fisher_p_two_sided"] is None and "no items joined" in \
-        empty["over_represented_cell_in_words"], empty
-    print("[selftest] _twoxtwo: excess is a TIED DIAGONAL (never one arbitrary cell); zero -> 'no cell is "
+    assert empty["fisher_p_two_sided"] is None, empty
+    assert "no items joined" in empty["over_represented_cell_in_words"], empty
+    print("[selftest] _twoxtwo: the excess is a TIED DIAGONAL (never one arbitrary cell); zero -> 'no cell is "
           "over-represented'; empty -> p=None")
 
     # ---------- _run_one + decide: the three entry decisions and the roll-up ----------
