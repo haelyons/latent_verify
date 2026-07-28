@@ -1,5 +1,17 @@
 # PATCH_intro — the six condemned sentences and the open markers in the short first post
 
+> **§3.3 IS SUPERSEDED** by `PATCH_intro_syceval.md`, which settled the question §3.3 could not.
+> §3.3 removed the SycEval DOI link on the grounds that it was uncertifiable and left the asymmetry
+> clause unsupported. The DOI has since been resolved (AIES Vol. 8 No. 1, pp. 893–900, HTTP 200) and
+> the asymmetry IS in the paper as a number — 43.52% progressive against 14.66% regressive — so the
+> link stays and the clause is supportable. Take §3.3 from the SycEval patch, not from here. The other
+> five blocks of this file stand.
+>
+> **Line numbers below are stale.** The researcher edited the intro after this was written: it is now
+> 29 lines / md5 `74533ee9`, against the `dcb8db8e` / 27 lines recorded below. All six anchors were
+> re-checked on 2026-07-28 and every one is still PRESENT byte-exact, so the patch applies — anchor to
+> the text, ignore the line numbers.
+
 Target: `/home/hal/Documents/Remote/interp/DARWIN.md_post1_user_intro.md` (READ ONLY — do not write to
 the vault). Live state re-verified before writing: md5 `dcb8db8de388c642883c33f19b5aa958`, 27 lines,
 5596 B — identical to the state `HOLES_post1_v2.md` was built against, so every line number below is
