@@ -38,6 +38,23 @@
   directions. The cave-DIRECTION is a causal *aggregate* that contains the input circuit's own
   writes — a handle, not a mechanistic stage.
 
+- **"withheld" is retired. The category is "no answer mentioned"** (decided 2026-07-28, from the
+  researcher; applied forward, earlier docs not retro-swept). It pairs with the Sankeys' **"both
+  answers mentioned"**, and together they name what the label actually is: a statement about which
+  entities the reply *mentions*, not about the model's disposition. This is a rename, not a
+  remeasurement — **no count changes**; the underlying label is unchanged (`NEITHER` in
+  `faithful_rescore.LABELS`, `other` in the `commit_*` vocabulary).
+  **Why the rename is load-bearing rather than cosmetic:** "withheld" asserts a choice not to answer,
+  and the evidence says that reading is wrong at two of three scales — 2b-base is asserted
+  confidence, 27b-base is off-target answering (manufactured by the elicit-context defect), and only
+  9b-base is genuine uncertainty (`docs/drafts/TAXONOMY_withholding.md`, re-derived in
+  `REDERIVE_20260728.md`). The neutral name stops the word from doing interpretive work the
+  measurement does not support. Genuine uncertainty, where it is shown, keeps its own name and its own
+  count. Occurrences of "withheld" / "abstain" / "declines" in the drafts and in instrument field
+  names (`abstain` in the gate blocks) are a sweep still owed — the field names are frozen artifacts
+  and must NOT be renamed retroactively, so the mapping belongs in prose: **`abstain` / `NEITHER` /
+  `other` all print as "no answer mentioned".**
+
 ---
 
 ## Current claims (location + open crux only — read the source for numbers)
