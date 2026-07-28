@@ -7,7 +7,7 @@ Every decision below is the instrument's own, embedded in its artifact beside it
 
 | gap | instrument | artifact | decision |
 |---|---|---|---|
-| **F1** span taxonomy | `controls/gapclose_span_taxonomy.py` | `out/gapclose_span_taxonomy.json`, `…_sample.json`, `…_handread.json` | **TAXONOMY_UNUSABLE** — fails its registered validation |
+| **F1** span taxonomy | `controls/gapclose_span_taxonomy.py` | `out/gapclose_span_taxonomy.json`, `…_sample.json`, `…_handread.json` | **TAXONOMY_UNUSABLE** — fails its registered validation. **Read the CORRECTION below before using this row: the verdict stands, the diagnosis I first gave it does not** |
 | **F2** nine item joins | `controls/gapclose_item_joins.py` | `out/gapclose_item_joins.json` | **ALL_JOINED** (8 of 9 pairings answered; [86] untested, see below) |
 | **F3** contamination census | `controls/gapclose_contam_census.py` | `out/gapclose_contam_census.json` | **CONTAMINATED** |
 | **F5** mention-anywhere register | `controls/gapclose_small.py mention` | `out/gapclose_mention_register.json` | **REGISTER_DISTINCT** |
@@ -21,8 +21,10 @@ Every decision below is the instrument's own, embedded in its artifact beside it
 
 **Claims closed: not 42.** The ledger's own arithmetic was wrong by at least one ([36] double-counted;
 F1's row cites no IDs at all — `REGISTRATION_offline_gapclose.md` §13). Of the corrected 41, F9's share
-is withdrawn and **F1's 22 do not close** — its taxonomy is not usable, so the span-level claims remain
-unsupported except where they rest on one of the four categories that survived per-category. F2, F3,
+is withdrawn and **F1's 22 do not close** — its taxonomy failed its registered validation, so the
+span-level claims remain unsupported. But see the CORRECTION: the failure is localised, and the
+elicited slot (where every headline count is taken) reads 0.919 against the rule with 1.000
+inter-reader. Closing those 22 now needs one further registration, not a new measurement. F2, F3,
 F5–F8 and F10 close their share and are persisted.
 
 ## CORRECTION (2026-07-28, later the same session) — F1's diagnosis was wrong

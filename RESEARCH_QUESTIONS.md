@@ -306,15 +306,22 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > artifacts `out/gapclose_*.json`.
 >
 > **What the next agent most needs to know, in order.**
-> (1) **F1 FAILED its validation and the failure is the construct, not the rule.** Two independent
-> blind hand-reads of a pre-drawn 120-span sample: reader-vs-rule 0.517 / 0.500, and **reader vs
-> reader 0.733**. No rule can beat 0.733 against readers who disagree that much, so "exactly one MECE
-> label per span" is not reliably human-decidable at that granularity. Four categories DO clear the
-> caveat bar and they are the ones the headline rests on (COMMITS_C 0.861, COMMITS_W 0.768,
-> WITHHELD_UNCERTAIN 10/10, WITHHELD_ASSERTED 6/6). **Consequence: the prior session's
-> `TAXONOMY_withholding.md` fine-grained splits rest on ONE reader with no agreement statistic, and
-> this is the first estimate of what a second reader would have done.** Any F4 protocol must pick a
-> coarser label set or add adjudication, and say which before readers run.
+> (1) **F1 FAILED its validation — and my first diagnosis of WHY was wrong. Read the CORRECTION in
+> `GAPCLOSE_RESULTS.md`.** The registered verdict `TAXONOMY_UNUSABLE` stands (pooled strict 0.517 /
+> 0.500 against a pre-fixed 0.75 bar). But stratified by slot — **declared post-hoc, so it licenses no
+> usability claim on its own** — inter-reader is **1.000 on `elicit_gen` (37/37) and 1.000 on the T3n
+> slot**, 0.946 on `counter_gen`, and **0.189 on `neutral_gen`**; and **30 of the 32 disagreements are
+> ONE confusion cell** on spans the rule calls `NEUTRAL_ACK` — a label the readers' vocabulary lacked
+> because the §4.1 amendment was made *after* they were launched. Excluding those spans, inter-reader
+> is **88/90 = 0.978**. Reader-vs-rule by slot: `elicit_gen` **0.919 / 0.919**, `counter_gen`
+> 0.541 / 0.486, `neutral_gen` 0.054. So the failure is a vocabulary gap I introduced mid-flight in
+> one slot, NOT an undecidable construct — and the elicited slot, where every headline count is taken,
+> is in good shape. **What that earns is a new registration to test the elicited slot specifically.**
+> Two defects in my own artifacts came out of the same re-read: `label_pre_amendment` is `None` on all
+> 8456 records (so one of the three readings I reported is VACUOUS), and the committed sample file's
+> `label_space` misrepresents the vocabulary the readers were given. Both recorded in the handread
+> artifact. Standing consequence for the prior work: `TAXONOMY_withholding.md`'s fine-grained splits
+> still rest on ONE reader with no agreement statistic.
 > (2) **`docs/drafts/RETRACTIONS.md` holds 11 entries** (registration owed #10, now written). R-1 is
 > UNFIXABLE and verified so: a key-level walk over all 323 artifacts finds **zero** hardware, driver
 > or library fields and no launch id, so neither side of the audit-log join exists. R-6/R-7 withdraw
