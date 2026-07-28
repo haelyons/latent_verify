@@ -275,6 +275,66 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> **RUN IN FLIGHT AT HANDOFF (2026-07-28 ~03:50). READ THIS FIRST.** Two boxes are billing:
+> `63c9e1da58af403685ab7009d1975fff` (A100 SXM4, us-east-1, box 1 = anchor4 + 9b-base + 2b-base,
+> cap 19800 s) and `73a2c8389ee94ec3927839500bddf0c2` (H100 SXM5, us-south-2, box 3 = 27b-base,
+> cap 25200 s). Both detached with the on-box self-destruct **armed and confirmed** at
+> `cap + REATTACH_GRACE(7200)` — 27000 s and 32400 s — so they tear themselves down even if every
+> process here is dead. Boxes 2 and 4 launch sequentially from the same two pollers
+> (`run_poll_launch_nelicit_{2b9b,27b}.sh`, logs in the session scratchpad).
+> **If you inherit this mid-flight:** `bash lambda_reattach.sh <id> <ip> <rdir>` — use the explicit
+> three-arg form, because both boxes in a poller share the `drill_<rdir>` launch name. **Fetch
+> before terminating** — a previous run lost its results to a launcher that died after the box did
+> its work. Then `GET /api/v1/instances` must return 0.
+> **The run is `DESIGN_neutral_elicit.md`** (pre-registered, unrun until now): it adds the elicited
+> final answer to the NEUTRAL arm, so the push-attribution stops being a cross-slot comparison.
+> Its gate is `controls/foldlisten_repro_diff.py` (committed, selftest PASSES, 12 groups) — every
+> cell must clear it before any number from this run is quoted. Pre-data decision on record: the
+> n=22 anchor's 44 neutral-elicited records are **PARKED, not published** (out of scope per §1.6;
+> deciding after seeing them is how a post-hoc scope change disguises itself).
+>
+> **SPEND.** Reconstructed from `GET /api/v1/audit-events` on 2026-07-28: **$585.47 spent since
+> project start, $364.53 of the $950 cap remaining** — the committed ~$436 tally understated by
+> ~$149, so reconstruct, never read. This run is ~$21–26 of that. Two further rounds are registered
+> and costed but NOT launched.
+>
+> **TWO ROUNDS REGISTERED, BUILT-READY, DELIBERATELY NOT RUN** — they need the researcher's open
+> decisions first. `DESIGN_elicit_context.md` fixes a real instrument defect:
+> `foldlisten_judge.py:423` splices `prior_gen` UNTRUNCATED into the elicit prompt, so base contexts
+> are contaminated on 82/82 items at every scale (an invented question on 47/39/69 of 82) while -it
+> is 0/82 — the two variants are not asked the same question at the slot the whole base-vs-it
+> comparison is read from. `DESIGN_distributional_withholding.md` extends the diagnose instrument to
+> the listen arm (which it currently cannot express — `family_cave_diagnose.py:215` builds only the
+> counter push) and to 2b/27b, where no margin artifact exists at all. Its power table, frozen
+> before data, says UNC is n=0 at 2b and n=1 at 27b, so **no outcome can license a scale-general
+> statement about uncertainty**, and the motivating 9b cell (n=20) is per-cell only.
+>
+> **THE SESSION'S RESULT, and it is a retraction.** `docs/drafts/TAXONOMY_withholding.md` read all
+> 234 elicited + 231 free-reply withheld spans individually. The committed counts reproduce (base
+> 51/38/32, -it 0/0/1) but **one label covers three different phenomena**: 2b-base withheld is 76%
+> asserted confidence and **0% uncertainty**; 9b-base is 53% genuine uncertainty; 27b-base is 94%
+> off-target, and those off-target answers are **correct answers to the last question of the model's
+> own runaway**, spliced in by the contamination defect above — so at 27b the bug manufactures the
+> category. Genuine uncertainty is 34/234 and **33 of the 34 are 9b-base**, the scale the drafts
+> generalise from. `docs/drafts/JOIN_withhold_vs_fold.md` separately shows -it's folds are NOT
+> concentrated on items -base withholds (25 vs 25.49 expected, Fisher p=1.0) and that the one strong
+> association runs backwards (-it folds on 92% of items where -base did NOT hedge, p=0.0008).
+> Distributionally, at the one cell with an artifact, withholding is **not fence-sitting**: 9b-base
+> UNC items favour C 17:3, median +0.65, indistinguishable from the items the model commits on.
+>
+> **WRITE-UP STATE.** POST1 is now TWO vault documents (`DARWIN.md_post1_user_intro.md`,
+> `…_notes.md`) — gold, never write to them without the researcher's say-so. 39 patch blocks applied
+> across two reviewed tranches; snapshots at `docs/drafts/DARWIN_post1_user_*_snapshot_280726.md`,
+> so `git diff d9a48f2 f403686` and `git diff f403686 598de5e` are exactly what changed. 14 tranche-2
+> blocks are HELD with reasons in `docs/drafts/REVIEW_patches_v2.md` and the tranche-2 review.
+> **Four decisions are the researcher's alone** and block the rest: which of L319/L321 survives,
+> figure renumbering, the lost head clause near L250, and the L60 speaker tag. **A measured warning
+> for whoever writes next:** the second tranche would have inverted their bracket signature — short
+> slots (≤5 words) 52% in the predecessor draft, 47% live, 34% if all of tranche 2 landed — so the
+> apparatus was starting to outweigh the prose in two sections. Trade bracket load down as a set.
+> **Obsidian was open on the vault during these edits** (PID 2952503); a stale editor buffer could
+> overwrite them, so reopen rather than save over.
+>
 > PHASE B FAMILY REPLAY COMPLETE (2026-07-22; evidence = docs/drafts/NOTE_faithful_matcher.md
 > Addendum 2 — read it first; all cells H3-grounded by isolated readers). classify() PORTED into
 > foldlisten_judge.py (dual labels commit_*+faithful_* per item, scorer_provenance, gate --labels;
