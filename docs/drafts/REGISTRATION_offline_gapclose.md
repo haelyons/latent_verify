@@ -147,6 +147,28 @@ instrument runs, once each claim's verbatim text is on the table (the claim text
 cells, which two slots and which label family are being paired, and guessing that would be the
 post-hoc move this document exists to prevent).
 
+### 5.1 The nine pairings, fixed before the instrument runs
+
+Each row names the two sides, the join key, and the quantity. `q` is the key throughout.
+
+| claim | left side | right side | quantity |
+|---|---|---|---|
+| [78] | `-it` items whose `counter_gen` names C or W\* (faithful) | the same items' `elicit_gen` label | carry-through rate: of those that name either, how many name **the same** one at the elicited slot |
+| [83] | base items withheld at `elicit` | the same items' content margin in `family_cave_diagnose` (`Mc_neutral`) | sign split of the margin on withheld items: n favouring C vs n favouring W\* |
+| [86] | label at `slot=counter` | label at `slot=elicit`, same item, same label family | agree / disagree counts, and the disagreement's direction split (C→W\* vs W\*→C) |
+| [96] | `mentions_pushed` at `elicit`, `arm=fold` (push is wrong) | the same at `arm=listen` (push is right) | paired 2×2 on the same items; the discordant pair counts b and c |
+| [102] | base items withheld at `elicit` | `Mc_neutral` on those items **vs** on the committed items | are the two distributions distinguishable — median of each, and the count favouring each side |
+| [123] | `-it` items whose `counter_gen` names neither entity | the same items' `elicit_gen` label | of the withheld replies, how many resolve to C at the forced final. Both arms, all three `-it` scales |
+| [142] | base withheld at `elicit` (yes/no) | `-it` fold at `elicit` (yes/no), same item, same scale | 2×2 + Fisher two-sided + expected count under independence |
+| [143] | `-it` fold items | base's own label on those items, three-way: correct / wrong / withheld | the three-way breakdown |
+| [144] | base hedged in its **prose** reply (`counter_gen` label = a hedge) | `-it` fold at `elicit`, same item | 2×2 + Fisher two-sided, with the over-represented cell named in words |
+
+**The 27b decode is reported twice, never once.** The committed ext2 decode and the neutral-elicit
+re-run disagree at 27b-base (the prior drafts read the committed one; the newest reads the re-run,
+and no document flags the switch — this is P1 reappearing inside the new drafts). Every row above
+that touches 27b-base emits **two columns**, labelled `decode=committed` and `decode=rerun`. A join
+that quotes one 27b-base number without saying which decode it came from is not quotable.
+
 **Rules already frozen, applicable to all nine.**
 - Every join asserts `q`-key-set equality and reports `n_joined`, `n_left_only`, `n_right_only`.
 - Every 2×2 association is reported as the full contingency table, with **both** Fisher exact
@@ -244,7 +266,24 @@ the repo has one truncated-superseded-in-place artifact already (P12) and that i
 
 ---
 
-## 13. What this registration does not cover
+## 13. Two corrections to the ledger's own accounting of this class
+
+Recorded here because they change what "42 claims" means, and a registration that quietly inherits a
+wrong denominator is not a registration.
+
+1. **F1's row cites no claim IDs.** Its 22 is recoverable only by subtracting F3's [65]–[68] from the
+   26-ID span-level list in `GAPS_C_claims.md` §G4 — an inference the ledger never states. This
+   registration adopts that reading and names the 22 IDs explicitly in the instrument's output.
+2. **[36] is counted twice**, once under F4 and once under F9. The class total of 42 is therefore
+   inflated by at least one, and F4's "2" and F9's "1" overlap. Corrected class total: **41 distinct
+   claims.**
+
+Also on the record, because it is the reason this whole class needed doing rather than citing:
+**none of the six existing helper scripts in `docs/drafts/` persists anything.** They are print-only
+(no `json.dump`, no `open(...,'w')`), so every number in the FREE class currently exists solely as
+stdout transcribed into a markdown file. The instruments registered above write JSON.
+
+## 14. What this registration does not cover
 
 F4 (hand-labels for the uncovered cells: 9b×ext2, any base ext2 cell, any listen cell, the T3n
 slot) is human work, not a computation, and its protocol is registration owed #6 — the blind
