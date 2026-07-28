@@ -1,0 +1,30 @@
+
+# Characterizing base vs chat model behaviours under pushback in Gemma 2
+
+Language models sometimes abandon their answer and adopt the user’s when challenged. This is usually studied as sycophancy: the model begins correct, the user suggests something false, and the model "folds". I tested this and the opposite, where a model starts incorrect and "listens" to a correction [, in -base and -chat model variants of Gemma 2. Models are “chat tuned” using various techniques to make them more able to act like helpful assistants, and provide good answers - which it turns out, also makes them worse in some ways.]
+
+> **TL;DR** Gemma 2 -chat answers directly under user pushback whilst -base abstains and hedges. The -chat model corrects itself when pushed toward truth, and also more consistently is led astray by falsehood. It never abstains. 
+
+These initial results are derived across -base and -chat Gemma 2 at 2, 9, and 27 billion parameters with 82 correct/plausibly incorrect fact pairs. Each model variant/size is prompted with one of the pair items, then pushed with the other one, and lastly forced to provide a final answer. 
+
+The results are presented in the below sankey. Green is a correct fact, red is its plausibly incorrect counterpart, and grey means neither of the pair was mentioned in the response. Rows compare -base and -chat Gemma 2 variants, and columns show increasing model scale from left to right.
+
+![[figB_synthesis_strict_ext2.png]]
+*Figure 1:* *Answer flows across Gemma 2*. Each cell shows the 82 examples run for a model, and an experiment type, either "fold" or "listen", starting with the correct fact $C$ and plausibly incorrect fact $W*$ respectively, and getting pushed with their counterparts. 
+
+What we can read from these is that:
+1. -base Gemma 2 often abstains. Under the same challenge, it frequently replies with “I don’t know,” “I’m not sure,” or otherwise names neither answer, even when explicitly asked for an answer.
+2. -chat Gemma 2 almost always takes a correct push. Starting with a wrong answer and pushed with the correct fact, -chat gives the correct answer. Visible abstention nearly disappears.
+3. -chat Gemma 2 still folds to plausible falsehood - in fact it folds significantly more than -base. Planted on the correct answer and offered a plausible wrong one, it commits to the false answer in a large share of cases.
+
+This behavioural pattern has been studied extensively. What we call folding and listening is what [SycEval](https://doi.org/10.1609/aies.v8i1.36598) calls _regressive_ and _progressive_ sycophancy, and they also find that -chat models [?] revise toward truth more readily than toward falsehood. In the sankey, we can see that -chat almost always "listens", and ALSO "folds" often. At -base the models hedge or abstain, and when pushed, they roughly carry whatever answer was provided at the beginning (excepting 2b -base) - so really they don't seem to fold OR listen (that's a big claim, its more complicated, see the notes). 
+
+[De Marez et al.](https://arxiv.org/abs/2606.06306) argue that flip rates mix how strongly the model already prefers the truth, and how far pressure can move that preference. To measure this in our context I measured the probability of our correct/plausibly incorrect $C$ and $W*$ answers, finding that Gemma 2 *_usually* assigns a higher probability to our selected $C$ than to $W*$. Interestingly, the model's output distribution shifts to the pushed answer even when the planted answer remains highest probability. This is not shown in the sankey, and adding another one to this page wasd vetoed by Fable, so its going in the lab notes.
+
+The abstention gap sits next to a broader pattern that [SYCON](https://arxiv.org/abs/2505.23840) and [Gupta et al.](https://arxiv.org/abs/2607.18114) report from the outside: alignment tuning amplifies revisability under user pressure, while base models look more resistant. Here, much of that “resistance” is refusal to commit. A flip-rate eval that treats “I don’t know” as robustness will score -base as steadier than -chat. Chat training deletes the grey band. That sits awkwardly against the Gemma 2 report’s claim that post-training encouraged hedging to reduce hallucinations ([Gemma Team, 2024](https://arxiv.org/abs/2408.00118)), and more comfortably next to evidence that preference models penalize hedged answers ([Zhou et al., 2024](https://arxiv.org/abs/2401.06730)). [this paragraph wasn't edited from the model - all of the others ones were. can you see what reads differently? from the first sentence [the abstention gap sits] we can tell this isn't clear, and invents terminology like "abstention gap", rather than naming results and inferences clearly, in the style of the rest of this post]
+
+The full lab notes go into further detail. This investigation started by trying to paraphrase prompts, freeze attention to make attribution graphs, and adversarially perturb those graphs (like the prompts) to find common circuitry/mechanisms. "Folding" was one of the mechanisms looked at, and I found that at -base, fold and listen share the same most influential attention heads, whilst at -chat, this mechanism is distributed. This roughly fits our behavioural evals in the sankey, where -base often holds the planted answer (or withholds) and -chat revises freely in both directions, more so toward truth. **Chat training does not appear to install a dedicated truth circuit.** It makes Gemma 2 less "willing" to say it does not know, and more to revise.
+
+[Full lab notes pending write-up]
+
+*Compute kindly provided by Apart Research via Lambda.ai and Vast.ai. I'm running out though, so if you want to send me more money for compute or talk to me about my slowly perplexifying CV from all of this AI safety work please reach out, helioslyons.com*
