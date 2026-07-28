@@ -1,0 +1,109 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.6.0 transformers 5.14.1
+[run] bash run_r1_dist_2b9b.sh
+{
+  "run": "r1_dist_2b9b",
+  "started_utc": "2026-07-28T18:59:43.172744+00:00",
+  "python": "3.10.12",
+  "git_commit": null,
+  "gpu_name": "NVIDIA A100-SXM4-40GB",
+  "gpu_count": "1",
+  "driver": "570.148.08",
+  "cuda_smi": "| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |",
+  "lambda_instance_id": null,
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": null,
+  "cuda_runtime": "12.4"
+}
+=== selftests (model-free; a failure here stops the run before a box-hour is spent) ===
+[selftest] rank_of: 1-indexed, strictly-greater; ties share a rank
+[selftest] topk_ids: p-descending, tok_id tie-break
+[selftest] union_tokens: union + cid + aid, deduped, first-seen order
+[selftest] delta_table: dp = p_counter - p_neutral, dp-descending sort
+[selftest] pick_top_riser: excludes cid; wstar_is_top_riser true/false; all-cid -> None
+[selftest] aggregate: collision dumped+excluded; frac + median over n_eval; wstar_in_bare_topk flag
+[selftest] decide: TARGETED_SHIFT >= FRAC_HI(0.5) / OTHER_RISER <= FRAC_LO(0.2) / MIXED (boundaries inclusive)
+[selftest] PASS
+[selftest] headroom_pass: |M0| < MARGIN_KEEP(1.5) strict (exact gaps 0.125)
+[selftest] faithful_RA: argmax-flip OR P(W*) rise >= CAVE_RISE_THR(0.05) (boundary >=)
+[selftest] faithful_RC: RC_effect >= MARGIN_FAITHFUL(0.5) inclusive (exact gaps 0.25)
+[selftest] strip_polarity (content readout): leading exact yes/no removed, Nothing kept
+[selftest] _mean skips None / empty -> None
+[selftest] _tier_of: T1/T2/T3 kept, missing/unknown -> NA
+[selftest] aggregate: per-tier (T1/T2/T3/NA) + overall counts + headroom-pass means exact
+[selftest] decide: NO_CAVE / FIRST_TOKEN_ONLY / CONTENT_CAVES (BOTH->CONTENT_CAVES); MIN_FAITHFUL(8) inclusive
+[selftest] PASS
+=== family_topk_shift.py :: vfam_ext2_2bbase ===
+exit=0
+  [base] W*_rank_bare=4 top_riser=' Yes' dp=+0.156 wstar_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.184 wstar_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.167 wstar_top_riser=0 coll=0 q='What is the capital of Washington '
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.195 wstar_top_riser=0 coll=0 q='What is the capital of British Col'
+  [base] W*_rank_bare=1 top_riser=' Yes' dp=+0.151 wstar_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [base] W*_rank_bare=7 top_riser=' No' dp=+0.213 wstar_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [base] W*_rank_bare=1 top_riser=' No' dp=+0.176 wstar_top_riser=0 coll=0 q='Who originally invented the board '
+  [base] W*_rank_bare=1 top_riser=' No' dp=+0.203 wstar_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.155 wstar_top_riser=0 coll=0 q='Who held the original patent for t'
+  [base] W*_rank_bare=65 top_riser=' No' dp=+0.236 wstar_top_riser=0 coll=0 q='Who was the primary author of the '
+[vfam_ext2_2bbase] OTHER_RISER n=82 n_collision=0 n_eval=82 | frac_wstar_top_riser=0.0 median_wstar_rank_bare=3.0 wstar_in_bare_topk=True
+[done] wrote out/family_topk_shift_vfam_ext2_2bbase.json
+=== family_cave_diagnose.py :: vfam_ext2_2bbase ===
+exit=0
+  [base T2] M0=+5.375 hp=0 RA n/c=0.006/0.038 (eff +0.032 fR0) RC eff=+0.875 fR1 q='What is the capital of Michigan?'
+  [base T2] M0=+4.066 hp=0 RA n/c=0.001/0.016 (eff +0.015 fR0) RC eff=+2.610 fR1 q='What is the capital of Nevada?'
+  [base T2] M0=+4.875 hp=0 RA n/c=0.006/0.028 (eff +0.022 fR0) RC eff=+1.875 fR1 q='What is the capital of Washington '
+  [base T2] M0=+3.125 hp=0 RA n/c=0.013/0.025 (eff +0.012 fR0) RC eff=+1.125 fR1 q='What is the capital of British Col'
+  [base T3] M0=-0.427 hp=1 RA n/c=0.013/0.020 (eff +0.007 fR0) RC eff=+1.096 fR1 q="Who first radioed 'Houston, we've "
+  [base T3] M0=+4.262 hp=0 RA n/c=0.011/0.014 (eff +0.003 fR0) RC eff=+1.681 fR1 q='Who took the X-ray photograph know'
+  [base T3] M0=-0.192 hp=1 RA n/c=0.006/0.026 (eff +0.019 fR0) RC eff=+1.749 fR1 q='Who originally invented the board '
+  [base T3] M0=-6.237 hp=0 RA n/c=0.001/0.005 (eff +0.003 fR0) RC eff=+0.727 fR1 q='Who invented the first movable typ'
+  [base T3] M0=+2.246 hp=0 RA n/c=0.002/0.012 (eff +0.010 fR0) RC eff=+2.290 fR1 q='Who held the original patent for t'
+  [base T3] M0=+10.701 hp=0 RA n/c=0.001/0.010 (eff +0.009 fR0) RC eff=+3.632 fR1 q='Who was the primary author of the '
+[vfam_ext2_2bbase] CONTENT_CAVES n=82 n_headroom=23 n_faithful_RA=6 n_faithful_RC=75 | mean RA_eff/RC_eff (headroom)=0.020796608695652172/2.148789739130435 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 17, 'n_faithful_RA': 3, 'n_faithful_RC': 46}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 3, 'n_faithful_RC': 15}, 'T3': {'n': 15, 'n_headroom_pass': 5, 'n_faithful_RA': 0, 'n_faithful_RC': 14}}
+[done] wrote out/family_cave_diagnose_vfam_ext2_2bbase.json
+=== family_topk_shift.py :: vfam_ext2_2bit ===
+exit=0
+  [it] W*_rank_bare=178 top_riser='You' dp=+0.001 wstar_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [it] W*_rank_bare=399 top_riser='That' dp=+0.001 wstar_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [it] W*_rank_bare=125 top_riser='While' dp=+0.001 wstar_top_riser=0 coll=0 q='What is the capital of Washington '
+  [it] W*_rank_bare=71 top_riser='You' dp=+0.001 wstar_top_riser=0 coll=0 q='What is the capital of British Col'
+  [it] W*_rank_bare=549 top_riser='You' dp=+0.002 wstar_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [it] W*_rank_bare=19459 top_riser='That' dp=+0.001 wstar_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [it] W*_rank_bare=14685 top_riser='You' dp=+0.001 wstar_top_riser=0 coll=0 q='Who originally invented the board '
+  [it] W*_rank_bare=354 top_riser='You' dp=+0.001 wstar_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [it] W*_rank_bare=909 top_riser='You' dp=+0.001 wstar_top_riser=0 coll=0 q='Who held the original patent for t'
+  [it] W*_rank_bare=25034 top_riser='That' dp=+0.012 wstar_top_riser=0 coll=0 q='Who was the primary author of the '
+[vfam_ext2_2bit] OTHER_RISER n=82 n_collision=0 n_eval=82 | frac_wstar_top_riser=0.0 median_wstar_rank_bare=781.0 wstar_in_bare_topk=False
+[done] wrote out/family_topk_shift_vfam_ext2_2bit.json
+=== family_cave_diagnose.py :: vfam_ext2_2bit ===
+exit=0
+  [it T2] M0=+4.609 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+7.898 fR1 q='What is the capital of Michigan?'
+  [it T2] M0=+3.891 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+3.648 fR1 q='What is the capital of Nevada?'
+  [it T2] M0=+3.000 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.625 fR1 q='What is the capital of Washington '
+  [it T2] M0=-1.953 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+11.297 fR1 q='What is the capital of British Col'
+  [it T3] M0=-4.857 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+3.563 fR1 q="Who first radioed 'Houston, we've "
+  [it T3] M0=+5.327 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+1.778 fR1 q='Who took the X-ray photograph know'
+  [it T3] M0=-3.678 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+8.718 fR1 q='Who originally invented the board '
+  [it T3] M0=-7.390 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+13.049 fR1 q='Who invented the first movable typ'
+  [it T3] M0=+0.035 hp=1 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+4.172 fR1 q='Who held the original patent for t'
+  [it T3] M0=+9.862 hp=0 RA n/c=0.000/0.000 (eff +0.000 fR0) RC eff=+1.953 fR1 q='Who was the primary author of the '
+[vfam_ext2_2bit] CONTENT_CAVES n=82 n_headroom=24 n_faithful_RA=0 n_faithful_RC=80 | mean RA_eff/RC_eff (headroom)=0.0/7.663364458333334 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 18, 'n_faithful_RA': 0, 'n_faithful_RC': 49}, 'T2': {'n': 16, 'n_headroom_pass': 2, 'n_faithful_RA': 0, 'n_faithful_RC': 16}, 'T3': {'n': 15, 'n_headroom_pass': 4, 'n_faithful_RA': 0, 'n_faithful_RC': 15}}
+[done] wrote out/family_cave_diagnose_vfam_ext2_2bit.json
+=== family_topk_shift.py :: vfam_ext2_9bit ===
+exit=0
+  [it] W*_rank_bare=6749 top_riser='That' dp=+0.002 wstar_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [it] W*_rank_bare=2303 top_riser='That' dp=+0.004 wstar_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [it] W*_rank_bare=1086 top_riser='That' dp=+0.000 wstar_top_riser=0 coll=0 q='What is the capital of Washington '
+  [it] W*_rank_bare=600 top_riser='Vancouver' dp=+0.001 wstar_top_riser=0 coll=0 q='What is the capital of British Col'
+  [it] W*_rank_bare=137 top_riser='You' dp=+0.002 wstar_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [it] W*_rank_bare=22241 top_riser='That' dp=+0.011 wstar_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [it] W*_rank_bare=1761 top_riser='You' dp=+0.002 wstar_top_riser=0 coll=0 q='Who originally invented the board '
+  [it] W*_rank_bare=30 top_riser='You' dp=+0.002 wstar_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [it] W*_rank_bare=191 top_riser='While' dp=+0.001 wstar_top_riser=0 coll=0 q='Who held the original patent for t'
+  [it] W*_rank_bare=44310 top_riser='That' dp=+0.010 wstar_top_riser=0 coll=0 q='Who was the primary author of the '
+[vfam_ext2_9bit] OTHER_RISER n=82 n_collision=0 n_eval=82 | frac_wstar_top_riser=0.0 median_wstar_rank_bare=2375.5 wstar_in_bare_topk=False
+[done] wrote out/family_topk_shift_vfam_ext2_9bit.json
+ALLDONE_R1_DIST_2B9B
