@@ -97,11 +97,24 @@ the asymmetry is visible rather than inferred from a surviving-item count.
 
 ## 5. Acceptance gates — the change is rejected unless all three pass
 
-1. **BYTE-IDENTITY ON THE FOLD ARM.** Re-running `--arm fold` must reproduce every existing fold
-   artifact byte-for-byte: `results_absdecode_ext2/out/family_cave_diagnose_vfam_{ext2_,}9bbase.json`,
+1. **FOLD-ARM IDENTITY.** Re-running the fold arm must reproduce every existing fold artifact:
+   `results_absdecode_ext2/out/family_cave_diagnose_vfam_{ext2_,}9bbase.json`,
    `results_itreadout_modelw/out/family_cave_diagnose_vfam_{ext2_,}9bit.json`, and the four new cells
    from `results_r1_dist_{2b9b,27b}/out/`. Any diff means the re-parameterisation is not algebraically
    neutral and the change is wrong. This is the load-bearing gate.
+
+   **AMENDED before the run, and the reason is that the gate as first written was impossible.** It
+   said "byte-for-byte", while §3(b) of the same registration *requires* new `arm` and `stamp` fields
+   on every record. Those two demands cannot both hold: the additive fields change the bytes of every
+   fold record. That is an internal inconsistency in this document, not a discovered inconvenience, and
+   the author flagged it rather than quietly satisfying the weaker reading.
+
+   The gate is therefore: **every pre-existing field's value is identical, item for item, and the
+   pre-existing keys serialise in the shipped order** (the additive keys are appended after, so the
+   old prefix is byte-comparable). The *content* of the gate is unchanged — the claim being tested is
+   algebraic neutrality of the fold arithmetic, and that is still checked in full, on every field. Only
+   its *form* is weakened, from whole-file bytes to the pre-existing field set. Recorded as an
+   amendment because a gate relaxed after the fact, for any reason, has to be visible.
 2. **Model-free selftest** covering: fold and listen roles assigned correctly from `(C, W*)`;
    `RC_effect` sign correct in both arms on synthetic logprobs; `faithful_cave` receiving the
    *target*'s token id and not always `aid`; a first-token collision (`cid == aid`) still recorded and
