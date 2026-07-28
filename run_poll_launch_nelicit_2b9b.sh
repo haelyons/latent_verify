@@ -64,7 +64,11 @@ if cands:
     echo "[poll $i] capacity: $TYPE @ $REGION (${GB}GB, ${PR}c/hr) -> launching BOX 1 (anchor4 + 9b-base + 2b-base)"
     # lambda_run exits 1 ONLY on launch/poll/ssh failure (no box, or unreachable) -> a capacity race; keep
     # polling. It exits 0 once the box ran (even if the on-box job itself failed) -> results are fetched.
-    if REMOTE_TIMEOUT=16200 bash lambda_run.sh "$TYPE" "$REGION" run_foldlisten_nelicit_9b2b.sh "$RDIR"; then
+    # 16200 is the design's frozen value; parameterised so a launch can raise it without editing the
+    # script. Box 1 carries 372 records against a Phase-B datapoint of 328 fitting the same 4.5h,
+    # plus ~7% for the new decode - a cap kill here costs the cell in flight, which in the frozen
+    # order is fl_2bbase_ext2, the highest-withhold base cell. Launched at 19800 on 2026-07-28.
+    if REMOTE_TIMEOUT="${BOX1_TIMEOUT:-16200}" bash lambda_run.sh "$TYPE" "$REGION" run_foldlisten_nelicit_9b2b.sh "$RDIR"; then
       echo "[poll] BOX 1 completed (results fetched); moving to box 2"; BOX1=1; break
     fi
     echo "[poll $i] launch/run failed (capacity race?); continue polling in 180s"
