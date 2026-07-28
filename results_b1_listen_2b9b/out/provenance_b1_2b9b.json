@@ -1,0 +1,16 @@
+{
+  "run": "b1_listen_arm_2b9b",
+  "started_utc": "2026-07-28T22:39:30.845836+00:00",
+  "python": "3.10.12",
+  "lambda_instance_id": "528bdffdd17d4b50b5283e55a6d2c592",
+  "git_commit": "9797c0a0b3650dd10bdd4320694d49716735ecac",
+  "gpu_name": "NVIDIA A100-SXM4-40GB",
+  "gpu_count": "1",
+  "driver": "570.148.08",
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": "3.6.0",
+  "cuda_runtime": "12.4",
+  "finished_utc": "2026-07-28T22:54:22.828579+00:00"
+}

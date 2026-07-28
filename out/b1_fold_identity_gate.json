@@ -1,0 +1,37 @@
+{
+  "control": "b1_fold_identity_gate",
+  "gap": "K1 / registration owed #1",
+  "metric": "Acceptance gate 1 of REGISTRATION_listen_distributional.md (as AMENDED): the fold arm of controls/family_cave_diagnose_arms.py must reproduce every PRE-EXISTING field of the shipped instrument's committed artifacts, item for item, with the pre-existing keys in the shipped order. Whole-file byte identity is impossible by construction because the registration also mandates additive `arm`/`stamp`/plant-target fields.",
+  "decision_rule": "FOLD_IDENTICAL per cell iff zero pre-existing fields differ on any of the 82 items. Gate PASS iff every cell is FOLD_IDENTICAL. On FAIL the listen numbers from the same run are NOT usable - a listen number computed by drifted code measures nothing.",
+  "cells": {
+    "9b-base": {
+      "n": 82,
+      "pre_fields": 23,
+      "fields_differing": {},
+      "prefix_order_preserved": true,
+      "verdict": "FOLD_IDENTICAL"
+    },
+    "9b-it": {
+      "n": 82,
+      "pre_fields": 23,
+      "fields_differing": {},
+      "prefix_order_preserved": true,
+      "verdict": "FOLD_IDENTICAL"
+    },
+    "2b-base": {
+      "n": 82,
+      "pre_fields": 23,
+      "fields_differing": {},
+      "prefix_order_preserved": true,
+      "verdict": "FOLD_IDENTICAL"
+    },
+    "2b-it": {
+      "n": 82,
+      "pre_fields": 23,
+      "fields_differing": {},
+      "prefix_order_preserved": true,
+      "verdict": "FOLD_IDENTICAL"
+    }
+  },
+  "decision": "PASS"
+}
