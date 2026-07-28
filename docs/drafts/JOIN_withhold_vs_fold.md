@@ -507,3 +507,26 @@ for sc in ('2b','9b','27b'):
           f' | ELICITED strict fold={o["fold"][3]} listen={o["listen"][3]} gap={o["listen"][3]-o["fold"][3]}')
     print(f'          paired on A: listen-only={b} fold-only={c} McNemar exact p={mcnemar(b,c):.4f}')
 ```
+
+---
+
+## CORRECTION (2026-07-28, adversarial re-review) — this file's `0 / 14 / 1` is wrong; it is `0 / 20 / 1`
+
+The uncertainty lexicon in §(1b) compiles `\b(not sure|n't know|do not know|…)\b`. **`\b` cannot match
+inside `don't know`** — the boundary test fails between `o` and `n` — so every `I don't know.` span was
+classified `NAMED_OTHER` instead of uncertainty. Checked directly: `"I don't know."` → `False`,
+`"I do not know."` → `True`.
+
+Reading all 38 withheld spans at 9b-base fold gives **UNC = 20**, not 14 — items 10, 18, 20, 32, 34, 46,
+50, 60, 66, 80, 92, 100, 108, 112, 124, 136, 142, 144, 160, 162. This matches
+`TAXONOMY_withholding.md`, which read the spans rather than regexing them, and which is therefore the
+authority on this number. The elicited-slot series is **0 / 20 / 1**, not 0/14/1.
+
+**Nothing downstream flips.** The direction is unchanged — P(fold | UNC-at-elicit) 0.550 against 0.710
+for the rest — and the corrected figure never reached a fill or a draft sentence; it appears only as
+corroboration inside `PATCHSET_tranche2.md` D07's EVIDENCE and D01's RESIDUAL, both of which are patch
+apparatus rather than prose. Anything citing this file's uncertainty count should cite the taxonomy's.
+
+The lesson is narrower than "regexes are risky": a lexicon built from contractions needs its boundaries
+tested against the contracted form, and this one was never exercised against the single most common
+uncertainty string in the corpus.
