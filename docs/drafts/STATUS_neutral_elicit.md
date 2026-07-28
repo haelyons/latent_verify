@@ -269,3 +269,31 @@ Method note for whoever repeats this: the reconstruction is `event_time` deltas 
 `price_cents_per_hour`. It counts wall-clock between launch and terminate, so it is an upper bound on
 billed time if Lambda rounds down, and it attributes the whole account — the project-start filter is
 the only thing separating this work from earlier unrelated usage.
+
+---
+
+## Pre-data decisions, recorded 2026-07-28 BEFORE any cell has run
+
+**The n=22 anchor's neutral-elicited arm: PARK, do not publish.** Box 1 re-runs the n=22 anchor
+(`fl_9bit_anchor4`) as a byte-identity check on the pushed arm, and the patched judge will emit 44
+neutral-elicited records as a side effect. `DESIGN_neutral_elicit.md` §1.6 puts n=22 out of scope, and
+the honest reason to record this now is that deciding after seeing the numbers is exactly how a
+post-hoc scope change disguises itself. Those 44 records are a by-product of an identity check, on the
+tuning set the design was developed against, and they are not part of the pre-registered family. They
+get archived with the run and cited nowhere. If they later look interesting, that is a new question
+needing its own registration.
+
+**Box 1's cap is raised at launch, not in the script.** 372 records against a 16200 s (4.5 h) cap,
+where the Phase-B datapoint is 328 records fitting the same window, plus ~7% for the new decode. Only
+box 3's cap was authorised for change, so the script stays frozen and the override goes on the command
+line: `REMOTE_TIMEOUT=19800`. Worst case ~$2 more at the A100 rate. A cap kill on box 1 would cost the
+cell in flight, which in the frozen order is `fl_2bbase_ext2` — the highest-withhold base cell (51/82),
+i.e. the most informative one for the abstention result.
+
+**`REATTACH_GRACE` raised to 7200 s from the 1800 s default.** This may finish outside a working
+session, and a 30-minute recovery window is too short to survive a network drop overnight. The cost is
+that it moves the orphan-billing bound with it: on box 3 the self-destruct then fires at
+25200 + 7200 = 32400 s, so a dead launcher nobody reattaches bills at most ~9 h × $4.29 ≈ $39 there.
+Acceptable against $364 headroom, and the audit log shows every one of 202 prior instances did
+terminate.
+
