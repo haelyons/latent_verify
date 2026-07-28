@@ -1,0 +1,162 @@
+{
+  "control": "foldlisten_repro_diff",
+  "metric": "Offline reproduction diff between two foldlisten_judge summaries of the SAME cell (committed vs re-run), restricted to the LEGACY key set: count disagreeing fields item-for-item and IN ORDER over the per-item VALUE fields (prompts, generations, judge_reply_raw, conf_proxy, item identity) and the per-item LABEL fields (commit_*, faithful_*, faithful_rule_*, judge_label, read as stored; baseline faithful labels optionally read from a faithful_rescore_<tag>.json side-channel for a pre-port summary), plus the stored aggregate buckets cells/cells_faithful (legacy sub-keys only), the top-level decision/decision_faithful blocks, and gate()/gate_v2() recomputed from each summary's own records under both label readings (minus the one measured key the change adds). The five new neutral-elicited per-item fields, the two new cells sub-keys, the two push_attribution blocks and scorer_provenance are out of scope by construction. Nothing is re-generated and nothing is re-labelled.",
+  "decision_rule": "Counts only, over the LEGACY key set defined by the committed baseline. n_value_mismatch = per-item non-label fields that differ; n_label_mismatch = per-item label fields that differ; n_derived_mismatch = differing stored cells/cells_faithful legacy buckets + decision/decision_faithful blocks + recomputed gate()/gate_v2() results under both label readings. Frozen threshold MAX_FIELD_MISMATCH = 0 with FLOAT_EQ_TOL = 0.0 (exact equality; NaN never matches). Resolution order: (1) NOT_COMPARABLE if the pair cannot be aligned or a compared field is missing -- differing item counts, differing item identity keys at any index, a legacy field absent from the new summary, a differing top-level name/regime, an unalignable faithful side-channel, a gate that cannot be computed, or a new summary carrying NONE of the neutral-elicited fields (it is then indistinguishable from a pre-change artifact, so an identity statement about it would certify nothing about the change under test); (2) else DIFF if n_value_mismatch > MAX_FIELD_MISMATCH; (3) else LABELS_ONLY_DIFF if n_label_mismatch > MAX_FIELD_MISMATCH; (4) else DIFF if n_derived_mismatch > MAX_FIELD_MISMATCH (an aggregate or gate moved with no per-item label difference to explain it); (5) else BYTE_IDENTICAL. NOT_COMPARABLE is never a match and is reported separately from DIFF. The new-arm presence verdict (ARM_PRESENT_COMPLETE / ARM_PARTIAL / ARM_ABSENT) is REPORTED alongside; only ARM_ABSENT enters the decision, via NOT_COMPARABLE. No claim is attached to any outcome and no outcome is an error state of this instrument; the counts fall where they fall.",
+  "decision_space": [
+    "BYTE_IDENTICAL",
+    "LABELS_ONLY_DIFF",
+    "DIFF",
+    "NOT_COMPARABLE"
+  ],
+  "thresholds": {
+    "max_field_mismatch": 0,
+    "float_eq_tol": 0.0,
+    "max_examples_dumped": 20
+  },
+  "scope": {
+    "legacy_key_set": "every per-item key the COMMITTED baseline record carries, minus the five new-arm keys; plus the legacy cells sub-keys, decision/decision_faithful, and gate()/gate_v2() under both label readings",
+    "excluded_item_keys": [
+      "neutral_elicit_prompt",
+      "neutral_elicit_gen",
+      "commit_neutral_elicit",
+      "faithful_neutral_elicit",
+      "faithful_rule_neutral_elicit"
+    ],
+    "excluded_cell_keys": [
+      "neutral_elicit",
+      "n_neutral_elicit"
+    ],
+    "excluded_top_level_keys": [
+      "scorer_provenance",
+      "push_attribution",
+      "push_attribution_faithful"
+    ],
+    "excluded_gate_measured_keys": [
+      "neutral_elicit_diagnostic"
+    ],
+    "label_item_keys": [
+      "commit_counter",
+      "commit_neutral",
+      "commit_elicit",
+      "faithful_neutral",
+      "faithful_counter",
+      "faithful_elicit",
+      "faithful_rule_neutral",
+      "faithful_rule_counter",
+      "faithful_rule_elicit",
+      "judge_label"
+    ],
+    "item_identity_keys": [
+      "q",
+      "correct",
+      "Wstar",
+      "tier",
+      "cell"
+    ],
+    "faithful_sidechannel_map": {
+      "neutral_gen": [
+        "faithful_neutral",
+        "faithful_rule_neutral"
+      ],
+      "counter_gen": [
+        "faithful_counter",
+        "faithful_rule_counter"
+      ],
+      "elicit_gen": [
+        "faithful_elicit",
+        "faithful_rule_elicit"
+      ]
+    }
+  },
+  "measured": {
+    "n_items_baseline": 164,
+    "n_items_new": 164,
+    "n_item_fields_compared": 4428,
+    "n_derived_fields_compared": 22,
+    "n_value_mismatch": 0,
+    "n_label_mismatch": 0,
+    "n_derived_mismatch": 0,
+    "n_items_with_any_mismatch": 0,
+    "items_with_mismatch": [],
+    "frac_item_fields_identical": 1.0,
+    "mismatch_counts_by_key": {},
+    "unexpected_new_item_fields": {}
+  },
+  "new_arm_presence": {
+    "verdict": "ARM_PRESENT_COMPLETE",
+    "n_items": 164,
+    "n_records_with_all_five": 164,
+    "n_records_with_none": 0,
+    "missing_counts": {}
+  },
+  "aggregate_blocks": {
+    "cells": {
+      "mismatches": [],
+      "structural": [],
+      "n_compared": 8,
+      "not_compared": []
+    },
+    "cells_faithful": {
+      "mismatches": [],
+      "structural": [],
+      "n_compared": 8,
+      "not_compared": []
+    },
+    "top_level": {
+      "mismatches": [],
+      "structural": [],
+      "n_compared": 2,
+      "not_compared": []
+    }
+  },
+  "gates": [
+    {
+      "gate": "gate",
+      "labels": "commit",
+      "status": "COMPARED",
+      "reason": null,
+      "baseline_decision": "FAIL",
+      "new_decision": "FAIL",
+      "mismatches": []
+    },
+    {
+      "gate": "gate",
+      "labels": "faithful",
+      "status": "COMPARED",
+      "reason": null,
+      "baseline_decision": "FAIL",
+      "new_decision": "FAIL",
+      "mismatches": []
+    },
+    {
+      "gate": "gate_v2",
+      "labels": "commit",
+      "status": "COMPARED",
+      "reason": null,
+      "baseline_decision": "PASS",
+      "new_decision": "PASS",
+      "mismatches": []
+    },
+    {
+      "gate": "gate_v2",
+      "labels": "faithful",
+      "status": "COMPARED",
+      "reason": null,
+      "baseline_decision": "PASS",
+      "new_decision": "PASS",
+      "mismatches": []
+    }
+  ],
+  "derived_mismatches": [],
+  "examples": [],
+  "n_examples_omitted": 0,
+  "not_comparable_reasons": [],
+  "not_compared": [],
+  "decision": "BYTE_IDENTICAL",
+  "tag": "fl_2bit",
+  "inputs": {
+    "committed_summary": "results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_2bit_ext2_summary.json",
+    "new_summary": "results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_2bit_ext2_summary.json",
+    "faithful_committed": null
+  }
+}
