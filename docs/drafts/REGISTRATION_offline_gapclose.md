@@ -198,6 +198,14 @@ Each row names the two sides, the join key, and the quantity. `q` is the key thr
 | [143] | `-it` fold items | base's own label on those items, three-way: correct / wrong / withheld | the three-way breakdown |
 | [144] | base hedged in its **prose** reply (`counter_gen` label = a hedge) | `-it` fold at `elicit`, same item | 2×2 + Fisher two-sided, with the over-represented cell named in words |
 
+**AMENDED 2026-07-28: 27b-`it` needs two columns as well.** This section originally said 27b-`it` was
+"unaffected — identical between the two runs", inherited from an aggregate-count comparison. Verified
+item by item, that is FALSE: between the two committed 27b-`it` copies, `elicit_gen` differs on
+**4/164**, `commit_elicit` and `faithful_elicit` on **4/164**, `faithful_counter` on **11/164**,
+`neutral_gen` on **34/164** and `counter_gen` on **82/164**. The *aggregate* counts match while
+individual items swap — the identical-totals-different-items trap. Every 27b row, base **and** `-it`,
+emits both decodes.
+
 **The 27b decode is reported twice, never once.** The committed ext2 decode and the neutral-elicit
 re-run disagree at 27b-base (the prior drafts read the committed one; the newest reads the re-run,
 and no document flags the switch — this is P1 reappearing inside the new drafts). Every row above

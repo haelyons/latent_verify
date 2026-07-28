@@ -25,6 +25,46 @@ is withdrawn and **F1's 22 do not close** — its taxonomy is not usable, so the
 unsupported except where they rest on one of the four categories that survived per-category. F2, F3,
 F5–F8 and F10 close their share and are persisted.
 
+## CORRECTION (2026-07-28, later the same session) — F1's diagnosis was wrong
+
+The registered verdict `TAXONOMY_UNUSABLE` **stands**: it is the pooled strict number against a
+threshold fixed before the data, and it is not revised. But the *diagnosis* I attached to it — "the
+construct is not reliably human-decidable at this granularity" — is **refuted by this session's own
+numbers**, found by an independent agent re-reading the artifact and verified in the main thread.
+
+Stratifying by slot (**declared post-hoc; not registered, so it licenses no usability claim of its own**):
+
+| slot | n | inter-reader | reader A vs rule | reader B vs rule |
+|---|---|---|---|---|
+| `elicit_gen` | 37 | **1.000** | **0.919** | **0.919** |
+| `neutral_elicit_gen` | 9 | **1.000** | 0.667 | 0.667 |
+| `counter_gen` | 37 | 0.946 | 0.541 | 0.486 |
+| `neutral_gen` | 37 | **0.189** | 0.054 | 0.054 |
+
+**30 of the 32 disagreements are one confusion cell** — A `OFF_TARGET` / B `WITHHELD_ASSERTED`, every
+one in `neutral_gen`, every one on a span the rule calls `NEUTRAL_ACK`: the label the readers'
+vocabulary did not contain, because the §4.1 amendment was made *after* they were launched. Excluding
+those spans, inter-reader is **88/90 = 0.978**, above the TRUSTED bar.
+
+So the failure is a **vocabulary gap I introduced by amending mid-flight**, concentrated in the one
+slot where neutral acknowledgements live — not an undecidable construct. And the elicited slot, which
+is where every headline count in this project is taken, reads 1.000 inter-reader and 0.919 against the
+rule. What that earns is **a new registration to test the elicited slot specifically**, not a
+retroactive pass.
+
+Two defects in my own artifacts, found the same way and recorded in
+`out/gapclose_span_taxonomy_handread.json`:
+
+1. `label_pre_amendment` is `None` on all 8456 `per_item` records — the writer never copied it out of
+   `label_span`. So §4.1's promise that "both count sets are reported" is **not delivered**, and the
+   "vs PRE-amendment rule" reading was computed against a fallback: it is identical to the strict
+   reading *by construction, not by measurement*. That reading is withdrawn as vacuous.
+2. The committed sample file's `label_space` lists 12 labels **including** `NEUTRAL_ACK`, because the
+   taxonomy was re-run after the amendment and regenerated the sample. The readers received the
+   11-label pre-amendment vocabulary. The committed artifact therefore misrepresents what they saw;
+   the vocabulary as actually given is now recorded in the handread artifact, because it was not
+   otherwise recoverable from the repo.
+
 ## The three results that were not on the ledger
 
 Each came out of an instrument refusing to do the convenient thing.

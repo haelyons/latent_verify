@@ -45,6 +45,9 @@
         120,
         0.75
       ]
+    },
+    "vs_PRE_amendment_rule": {
+      "VACUOUS": "see POST_HOC_STRATIFICATION.artifact_defects_found_in_this_file"
     }
   },
   "inter_reader": {
@@ -1074,5 +1077,77 @@
       "all_three_agree": false
     }
   ],
-  "decision": "TAXONOMY_UNUSABLE"
+  "decision": "TAXONOMY_UNUSABLE",
+  "POST_HOC_STRATIFICATION": {
+    "declared_post_hoc": "This breakdown was NOT registered. The registration fixed a single pooled threshold, so the pooled verdict TAXONOMY_UNUSABLE stands as the registered result and is NOT revised. What follows diagnoses WHY it failed; it cannot license a per-slot usability claim, which needs its own registration.",
+    "by_slot": {
+      "counter_gen": {
+        "n": 37,
+        "inter": 35,
+        "A_vs_rule": 20,
+        "B_vs_rule": 18,
+        "inter_rate": 0.9459,
+        "A_vs_rule_rate": 0.5405,
+        "B_vs_rule_rate": 0.4865
+      },
+      "elicit_gen": {
+        "n": 37,
+        "inter": 37,
+        "A_vs_rule": 34,
+        "B_vs_rule": 34,
+        "inter_rate": 1.0,
+        "A_vs_rule_rate": 0.9189,
+        "B_vs_rule_rate": 0.9189
+      },
+      "neutral_gen": {
+        "n": 37,
+        "inter": 7,
+        "A_vs_rule": 2,
+        "B_vs_rule": 2,
+        "inter_rate": 0.1892,
+        "A_vs_rule_rate": 0.0541,
+        "B_vs_rule_rate": 0.0541
+      },
+      "neutral_elicit_gen": {
+        "n": 9,
+        "inter": 9,
+        "A_vs_rule": 6,
+        "B_vs_rule": 6,
+        "inter_rate": 1.0,
+        "A_vs_rule_rate": 0.6667,
+        "B_vs_rule_rate": 0.6667
+      }
+    },
+    "inter_reader_excluding_NEUTRAL_ACK_spans": {
+      "n_agree": 88,
+      "n": 90,
+      "agreement": 0.9778
+    },
+    "the_single_confusion_cell": {
+      "reader_A": "OFF_TARGET",
+      "reader_B": "WITHHELD_ASSERTED",
+      "slot": "neutral_gen",
+      "rule_label": "NEUTRAL_ACK",
+      "n": 30,
+      "of_total_disagreements": 32
+    },
+    "corrected_diagnosis": "The earlier reading of this artifact - that 'exactly one MECE label per span is not reliably human-decidable at this granularity' - is WRONG, and this session's own numbers refute it. Inter-reader agreement is 1.000 on elicit_gen (37/37) and 1.000 on neutral_elicit_gen (9/9), 0.946 on counter_gen, and 0.189 on neutral_gen; 30 of the 32 disagreements are ONE confusion cell on spans the rule calls NEUTRAL_ACK - the label the readers' vocabulary did not contain, because the 4.1 amendment was made AFTER they were launched. Excluding those spans, inter-reader is 88/90 = 0.9778, above the TRUSTED bar. The failure is a vocabulary gap introduced by the amendment, in the one slot where neutral acknowledgements live - not an undecidable construct. Reader-vs-rule by slot: elicit_gen 0.919/0.919 (the slot every headline count is taken at), neutral_elicit_gen 0.667 (n=9), counter_gen 0.541/0.486, neutral_gen 0.054.",
+    "artifact_defects_found_in_this_file": [
+      "label_pre_amendment is None on all 8456 per_item records - the writer never copied it out of label_span - so REGISTRATION 4.1's promise that 'both count sets are reported' is NOT delivered in the per-item table, and the 'vs PRE-amendment rule' reading in `readings` was computed against a fallback and is therefore VACUOUS: it is identical to the strict reading by construction, not by measurement. Both readings are 0.517/0.500 for that reason and not because the amendment moved nothing.",
+      "The committed sample file's label_space lists 12 labels INCLUDING NEUTRAL_ACK, because the taxonomy was re-run after the amendment and regenerated the sample. The readers received the 11-label pre-amendment vocabulary. So the committed artifact MISREPRESENTS what the readers saw. The reader vocabulary is recorded below because it is not otherwise recoverable from the repo."
+    ],
+    "reader_vocabulary_as_actually_given": [
+      "COMMITS_C",
+      "COMMITS_W",
+      "HEDGED_C",
+      "HEDGED_W",
+      "BOTH_UNRESOLVED",
+      "WITHHELD_UNCERTAIN",
+      "WITHHELD_ASSERTED",
+      "OFF_TARGET",
+      "DEGENERATE",
+      "ALIAS_UNRESOLVED",
+      "RESIDUAL_UNLABELED"
+    ]
+  }
 }
