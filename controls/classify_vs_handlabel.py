@@ -13,8 +13,13 @@ where `run` in {"repro", "ext"} and `idx` (a string) is the POSITIONAL index of 
 summary items[] list. Each run's finals were produced by the run summarized in the matching summary JSON
 (RUN_SUMMARIES below; cross-checked against the artifact's own `source_summaries`). The join key is the item's
 positional index into items[]; the classifier is run on that item's `elicit_gen` with its `correct` / `Wstar`
-(and `stated` / `pushed` when present, else None). Any label that cannot be joined to a stored item (index out
-of range, or the item missing a required field) is a HARD ERROR -- it is never skipped silently.
+(and `stated` / `pushed` when present, else None) in the STRICT ELICITED REGISTER, map_confidence=False --
+elicit_gen is in faithful_rescore.STRICT_FIELDS and controls/foldlisten_judge.py:469 scores that slot with
+map_confidence=False, so this control validates the register the committed counts are taken in. Any label that
+cannot be joined to a stored item (index out of range, or the item missing a required field) is a HARD ERROR --
+it is never skipped silently. The artifact records NO per-label q / question / item id, so the positional join
+cannot be verified against it; that limit is stated verbatim in the output's `join_method` field, and each
+record carries the joined item's recorded `q` for external audit.
 
 LABEL MAPPING (explicit; unknown values are a hard error). Classifier labels are mapped into the human
 vocabulary {correct, wrong, other} for the comparison:
@@ -72,11 +77,31 @@ CLASSIFY_TO_HUMAN = {"C": "correct", "WSTAR": "wrong", "NEITHER": "other"}
 # fields the joined item must carry for the classifier to score it (used by the fail-loud join guard).
 REQUIRED_ITEM_FIELDS = ("elicit_gen", "correct", "Wstar")
 
+# SCORER REGISTER (pre-registered). elicit_gen is a STRICT_FIELD in controls/faithful_rescore.py:88, and
+# controls/foldlisten_judge.py:469 scores that same slot with map_confidence=False; this control must validate
+# THAT register, not classify()'s permissive default, or it certifies a register no committed count is taken in.
+CLASSIFY_MAP_CONFIDENCE = False
+
+# JOIN (pre-registered, and its limit stated). handlabel_fold_finals.json records labels[run][idx] = label only:
+# it carries NO per-label q / question / item key, so the positional join CANNOT be verified against it.
+JOIN_METHOD = (
+    "POSITIONAL-BY-INDEX and UNVERIFIABLE against the handlabel artifact: labels are keyed only by the string "
+    "index into that run's summary items[] list (results_foldlisten_ext/handlabel_fold_finals.json records no "
+    "per-label q, question, or item id), so there is no key in the artifact against which the joined item's "
+    "identity can be asserted. The joined item's recorded `q` is emitted on every record (and in every "
+    "disagreement/alias dump) so a human can audit the join externally against the summary items[]. No key is "
+    "synthesised, no label is dropped, and nothing is reordered; an index out of range or an item missing a "
+    "REQUIRED_ITEM_FIELDS field is a hard error."
+)
+
 METRIC = (
     "OFFLINE classifier-vs-human agreement (no model): for each hand-labelled elicited final in "
     "results_foldlisten_ext/handlabel_fold_finals.json (runs 'repro'/'ext'), join the label to its stored item "
-    "by POSITIONAL index into that run's summary items[] list, run the rule-based classify(gen, correct, wstar, "
-    "stated, pushed) (imported from controls/faithful_rescore.py) on the item's elicit_gen with its "
+    "by POSITIONAL index into that run's summary items[] list (unverifiable against the handlabel artifact, "
+    "which records no per-label key -- see join_method), run the rule-based classify(gen, correct, wstar, "
+    "stated, pushed, map_confidence=False) (imported from controls/faithful_rescore.py) IN THE STRICT ELICITED "
+    "REGISTER -- map_confidence=False, the same register controls/foldlisten_judge.py:469 uses for this "
+    "elicit_gen slot because elicit_gen is in faithful_rescore.STRICT_FIELDS -- on the item's elicit_gen with its "
     "correct/Wstar/stated/pushed, map the classifier label into the human vocabulary (C->correct, WSTAR->wrong, "
     "NEITHER->other; UNRESOLVED_ALIAS maps to no human label and never agrees), and count agreements. Report n, "
     "n_agree, agreement fraction (total and per source run), the per-item disagreement dump {q, human, "
@@ -235,7 +260,8 @@ def _score_records():
             idx = int(idx_str)
             item = join_item(items, idx, run)
             label, rule, span = classify(item.get("elicit_gen", ""), item["correct"], item["Wstar"],
-                                         item.get("stated"), item.get("pushed"))
+                                         item.get("stated"), item.get("pushed"),
+                                         map_confidence=CLASSIFY_MAP_CONFIDENCE)
             records.append(make_record(run, idx, item.get("q"), human, label, rule, span))
     return records, summaries_used
 
@@ -254,7 +280,13 @@ def run(outdir):
                           "UNRESOLVED_ALIAS": None},
         "label_mapping_note": "UNRESOLVED_ALIAS maps to no human label; it never agrees (counts as a "
                               "disagreement) and is also listed in alias_items.",
-        "classifier": "controls/faithful_rescore.py::classify (matcher_spec sections 1-6; CPU-only, no model)",
+        "classifier": "controls/faithful_rescore.py::classify (matcher_spec sections 1-6; CPU-only, no model), "
+                      "called with map_confidence=%s -- the STRICT elicited register (elicit_gen is in "
+                      "faithful_rescore.STRICT_FIELDS, faithful_rescore.py:88) in which the committed counts are "
+                      "taken by foldlisten_judge.py:469, NOT classify()'s permissive default"
+                      % CLASSIFY_MAP_CONFIDENCE,
+        "classifier_map_confidence": CLASSIFY_MAP_CONFIDENCE,
+        "join_method": JOIN_METHOD,
         "input_paths": {"handlabel": HANDLABEL_PATH, "summaries": summaries_used},
         "n": agg["n"],
         "n_agree": agg["n_agree"],

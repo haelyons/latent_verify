@@ -62,8 +62,13 @@ threshold assumes 891 — and the only trace is the `pool_size` stamp, which not
 `pool_size: 891` artifact in the repo (58 of them) is a claim about an external download that no
 committed file pins.
 
-That is a one-line fix with a real payoff: raise instead of print, or assert `pool_size == 891`
-before measuring.
+**FIXED 2026-07-28** (`controls/cave_copy_confidence_conditional.py:328-333`): the silent-continue branch
+now raises, naming the item count it would otherwise have measured and the 58 artifacts that stamp 891.
+The `big_pool=False` path is untouched — 66 items is a legitimate, self-consistent pool. 29 call sites
+were checked; none wraps `_build_pool` in a `try`, so the raise propagates rather than being swallowed.
+**Not verified by execution:** this file imports torch at module level, so its `--selftest` cannot run on
+a CPU-only workstation — syntax is verified by `py_compile` and the selftest is owed on the next box that
+loads this lineage.
 
 ## 3. What this changes about the ledger's cost ordering
 

@@ -326,7 +326,11 @@ def _build_pool(extra_path=None, big_pool=False):
                     pool.append({"q": r["question"], "correct": r["best_answer"], "wrong": wrong})
             print(f"[pool] TruthfulQA generation merged: +{len(pool) - n0} items (pool now {len(pool)})", flush=True)
         else:
-            print("[pool] TruthfulQA unavailable; proceeding without it", flush=True)
+            raise RuntimeError(
+                "[pool] the big pool REQUIRES the TruthfulQA `generation` validation split (817 of its 891 "
+                "items) and it could not be loaded (see the repo-id ladder diagnostics above). Continuing "
+                f"would silently measure a ~{len(pool)}-item substrate against thresholds calibrated on 891 "
+                "(58 committed artifacts stamp pool_size: 891). Fix the download/network or drop --big-pool.")
     return pool
 
 

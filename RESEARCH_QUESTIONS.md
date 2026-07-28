@@ -328,8 +328,8 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > are multi-line prompt-builder refactors, not argparse; K5 is a recalibration; **K8 needs a re-run and
 > cannot be done offline**). Two move DOWN: K15's four ambiguities all resolve from the code, and one
 > of K11's seventeen already has `--layer`. D14 settled: 16 ⊂ 61 ⊂ 66 ⊂ 891 — **and 817 of the 891 are
-> downloaded at run time while `_build_pool` prints-and-continues on failure, so a networkless re-run
-> silently measures 74 items against 58 artifacts stamping 891.** One line fixes it.
+> downloaded at run time while `_build_pool` printed-and-continued on failure, so a networkless re-run
+> silently measured 74 items against 58 artifacts stamping 891.** FIXED 2026-07-28 — it now raises.
 > (5) **`out/gapclose_scorer_drift.json`** — the first repo-wide scorer-drift audit: 2 of 6704
 > committed `faithful_*` labels disagree with the current scorer (0.03%), both in one file, both the
 > same tie-break, both diagnostic-slot. The port is 99.97% equivalent.
