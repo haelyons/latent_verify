@@ -34,3 +34,6 @@ panel_gens.json
 # decided by file TYPE, not by directory — so a result can't be silently dropped by where --outdir
 # happened to point (the failure mode of the old blanket `out/` ignore). A NEW large artifact type
 # must be added here EXPLICITLY and logged in the run that produces it (never silently truncated).
+
+# per-launch immutable launcher copies (editing lambda_run.sh mid-run corrupts a live launcher)
+.launcher_*.sh

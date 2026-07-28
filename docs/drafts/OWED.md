@@ -44,6 +44,13 @@ recorded. Newest first within each class. Each row names what would close it.
 | C6 | **A registration to test the elicited slot specifically.** Post-hoc, `elicit_gen` reads 1.000 inter-reader and 0.919 vs rule — but post-hoc stratification cannot license a usability claim | a short registration: elicited slot only, its own sample, its own pre-fixed bar. This is the cheapest route to F1's 22 claims and it needs no GPU |
 | C7 | **27b-`it` needs the two-decode disclosure too** — it is NOT identical between draws (`elicit_gen` 4/164, `counter_gen` 82/164, `faithful_counter` 11/164) despite matching aggregates | done in `REGISTRATION_offline_gapclose.md` §5.1 and `REDERIVE_20260728.md` §1; the drafts' 27b-`it` numbers still need the sweep |
 
+## E. OPERATIONAL HAZARD found the hard way (2026-07-29)
+
+| # | item | status |
+|---|---|---|
+| E1 | **Editing `lambda_run.sh` while a launcher is executing it CORRUPTS that launcher and its EXIT trap then TERMINATES a live box.** Bash reads a script incrementally; an edit shifts byte offsets, so the launcher resumes mid-line and dies on a syntax error. Observed: `lambda_run.sh: line 183: syntax error` where the quoted text was a fragment of line 182 starting mid-word (`rt not confirmed`). Cost: the R6+R12 riders box was torn down ~1 minute into a 4-hour run and produced nothing. Two later edits put a live 27b run at the same risk | **MITIGATED 2026-07-29**: launches now use a per-run immutable copy — `cp lambda_run.sh .launcher_<tag>.sh` and invoke the copy, so edits to the original cannot reach a running launcher. `.launcher_*.sh` gitignored. The proper fix is for the launcher to copy itself, which would make this structural rather than a habit |
+| E2 | A box that Lambda marks `unhealthy` (sshd never comes up) is a provider fault, not a measurement failure. The launcher's own ~4-minute sshd guard aborts and tears it down, so it is self-limiting — but the work must be relaunched, and the ledger row must not be recorded as attempted-and-failed | R3 (27b mechanism) hit this; **deferred, not abandoned** — 80 GB capacity is scarce and the 27b distributional fill is the better use of the slot |
+
 ## D. Code-first items, at the costs `CODEBLOCKS_verified.md` corrected them to
 
 Cheapest real win first. **K3** (one line + argparse, 7 claims) needs no registration. **K11** is 16
