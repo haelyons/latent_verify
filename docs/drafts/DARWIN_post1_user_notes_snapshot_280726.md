@@ -73,7 +73,7 @@ Koneru (2026) is the nearest, and the difference is the point: their neutral con
 
 I [classify the responses based on if the incorrect fact $W*$, the correct fact $C$, or neither $K$ is expressed by the model. Note that under greedy decoding (temp=0) only the most probable next token is selected, ensuring determinism. Part of the following analysis looks at distribution shifts in non-decoded tokens]. 
 
-[I initially used other language models to judge the responses, and they mistakenly rated the « Yes, I am sure » as a flip. In the end we do both with a human review of a subset from each run. [correction]]
+[I initially used other language models to judge the responses, and they mistakenly rated the « Yes, I am sure » as a flip. In the end we do both with a human review of a subset from each run. [correction]] [no persisted run holds this - the two judges pointed at a free reply returned no flip at all, and the stored failure runs the other way, « Yes, I'm sure. » scored as holding]
 # Whole example [relegate for now]
 We start with the constant, scripted section:
 ```
@@ -126,11 +126,11 @@ User: What is your final answer?
 [-base] Model: [??]
 [-chat] Model: [??]
 ```
-The neutral path establishes the non-pushback probability distribution on our target token [spans] $C$ and $W*$, such that any change must be attributable to the pushback. In the example above, $C$ and $W*$ are not expressed (highest probability) in the large majority of the 82 completions [and looking at the model's output probability distribution, we can see minimal change in the probability of either C or W*]. 
+The neutral path establishes the non-pushback probability distribution on our target token [spans] $C$ and $W*$, such that any change must be attributable to the pushback. In the example above, $C$ and $W*$ are not expressed (highest probability) in the large majority of the 82 completions [and looking at the model's output probability distribution, we can see minimal change in the probability of either C or W*]. [on the log-probability margin it holds at 9b -base, 0.19 from the bare question against 2.75 under the push] [on the raw probabilities it does not - both fall by more than an order of magnitude at the neutral slot] 
 
 This is the only example where $C$ is measured in the free reply. This means that if we observe movement in the probability of the $W*$ token [span?], we can be attribute it to our pushback. [old formulation but asking for good grounding -- we can say from comparing the neutral and pushed replies / probability distributions [what are our metrics, did we do this, can we do it?] that this control has established that further changes in distributions can be attributed to our push].
 ### Gemma Report [relegate for now]
-Gemma's report says post-training data encouraged "hedging, and refusals to minimize hallucinations" [Gemma Team 2408.00118]. Under pushback in this experiment - counter to their claims - the shipped model never once withholds a final answer. I don't have Gemma's reward model or staged checkpoints, so I can't say which stage did this or attribute it to a training objective; only that the released pair exhibits behavior, and that preference models are reported to penalize hedged answers (Zhou et al. 2024). Their reward model scores plain statements 4.03 on average, strengtheners 0.82 and weakeners -1.86 [Leng et al. is not a second cite for this - it scores an appended "Confidence: 8", not hedging language]. [Keep this descriptive: released base vs released -it, format co-varies with model, no causal "tuning forces" claim — that was the error the last review caught.]
+Gemma's report says post-training data encouraged "hedging, and refusals to minimize hallucinations" [Gemma Team 2408.00118]. Under pushback in this experiment - counter to their claims - the shipped model never once withholds a final answer. [at the final answer; 0 / 0 / 1 of 82 across scales, and the one 27b case is an alias miss] I don't have Gemma's reward model or staged checkpoints, so I can't say which stage did this or attribute it to a training objective; only that the released pair exhibits behavior, and that preference models are reported to penalize hedged answers (Zhou et al. 2024). Their reward model scores plain statements 4.03 on average, strengtheners 0.82 and weakeners -1.86 [Leng et al. is not a second cite for this - it scores an appended "Confidence: 8", not hedging language]. [Keep this descriptive: released base vs released -it, format co-varies with model, no causal "tuning forces" claim — that was the error the last review caught.]
 # Chat models flip more than base models
 The full set of 82 pairs run through neutral (no pushback) and pushback paths are plotted in Figure 1. 
 
@@ -199,7 +199,7 @@ We can plot the top level of $C$ vs. $W*$ in the underlying distribution (rather
 ### Mechanistic look at folding [relegated (for now)]
 [Naming an answer at all turns out not to be attention to the user. Mask -chat's attention to the challenge turn so the pushed answer is unreadable and it still names an answer on 67 of 74 items - it just names its own previous one, and answers as though we had agreed. Whether it answers is a property of the format. Which answer it gives is where the user's turn gets in.
 
-And when it takes the user's answer it takes the user's string: 75 of 82 replies reproduce the pushed entity byte for byte, none substitute a synonym, and the only variation is capitalisation and three plurals. What varies with content is the choice, not the wording - the same model names the pushed entity on 50 of 82 when the push is wrong and 67 of 82 when it is right, and on the paired items the disagreement runs 21 to 4. [52 and 20 to 5 once the matcher takes plurals; 67 holds either way] At 2b that selectivity is nearly absent, so restating the user is close to unconditional in the smallest tuned model and gets gated by content as the model grows. [the obvious foil - that this is the base copy circuit surviving tuning - is the wrong one, and the next section is about -base repeating its own previous turn rather than copying ours]]
+And when it takes the user's answer it takes the user's string: 75 of 82 replies reproduce the pushed entity byte for byte, none substitute a synonym, and the only variation is capitalisation and three plurals. [six capitalisations and one plural - a second plural is a substring of the 75 and the third is in the listen arm] What varies with content is the choice, not the wording - the same model names the pushed entity on 50 of 82 when the push is wrong and 67 of 82 when it is right, and on the paired items the disagreement runs 21 to 4. [52 and 20 to 5 once the matcher takes plurals; 67 holds either way] At 2b that selectivity is nearly absent, so restating the user is close to unconditional in the smallest tuned model and gets gated by content as the model grows. [the obvious foil - that this is the base copy circuit surviving tuning - is the wrong one, and the next section is about -base repeating its own previous turn rather than copying ours]]
 
 
 ### Raw notes and observations analysis 1[relegated]
@@ -292,7 +292,7 @@ Figure 3a
 
 A distribution shift may be insufficient to change the expressed token. For example, the model rating for the pushed incorrect fact $W*$ may increase, but not sufficiently for it to be more probable than $C$. This is a core part of model "flipping", where even though the model outputs the correct answer $C$, a simple "are you sure?" push may "flip" this into $W*$ if it is [closely] probable.
 
-When I say a _plausible_ wrong answer $W*$ I’m referring to a wrong answer that is ALREADY near the top of the model’s predicted outputs for our question. [This is the case for most of our plausible selections. For example in the Turkey (Istanbul vs. Ankara), Ankara is the next most likely Turkish city, and next most likely « appropriate » answer, see Figure 3b]. 
+When I say a _plausible_ wrong answer $W*$ I’m referring to a wrong answer that is ALREADY near the top of the model’s predicted outputs for our question. [This is the case for most of our plausible selections. For example in the Turkey (Istanbul vs. Ankara), Ankara is the next most likely Turkish city, and next most likely « appropriate » answer, see Figure 3b]. [on the question alone it is rank 4, or rank 2 once the two Istanbul respellings are collapsed; 9b -base only] 
 
 [why do we need to pick an alternative that exists in the distribution? doesn’t the attention copy mechanism in base work irrespective of that? what about in -chat?]
 
@@ -304,14 +304,13 @@ Figure 4 listen and fold, 2/9/27b
 ![[figB_synthesis_strict_ext2.png]]
 
 A few things pop out immediately from this experiment:
-- Base models "hedge" or withhold answers: "I'm not sure". it models do this less, and consistently provide a final answer during the elicitation
+- Base models "hedge" or withhold answers: "I'm not sure". it models do this less, and consistently provide a final answer during the elicitation [the hedge is a 9b reading - 33 of the 34 genuinely uncertain withholds are 9b -base] [at 2b the same label is « I'm sure. » and at 27b an answer to a question the model invented]
 - Whilst -it models commit more to the answer, this doesn't correlate with the answer actually being correct. Pushed from the correct $C$ to the injected wrong but plausible $W*$, all -it models (across scales) prefer the user pushed wrong one [72% at the elicited answer - 0.83 / 0.67 / 0.67 at 2/9/27 billion]. 
 - -base models overwhelmingly abstain from the user push, or maintain the correct fact into the final elicitation. 
 - base models ALSO carry an INCORRECT scripted fact through to the answer. 
-	- we know that the model's highest probability output for our question is the correct $C$ - so here we show that the previous result is not about the model knowing its the correct answer, its about the model copying this token from the previous answer, and using it in the next one. 
+	- we know that the model's highest probability output for our question is the correct $C$ - so here we show that the previous result is not about the model knowing its the correct answer, its about the model copying this token from the previous answer, and using it in the next one. [on the question alone at 9b -base, $C$ is top on 66 of 82 and outranks $W*$ on 70; there is no top-k run for the other five models] 
 - -it models OVERWHELMINGLY "pushback" with the correct "$C$" when seeded with the incorrect $W*$. 
 	- this is plausibly the assigning a higher probability to $C$ than $W*$, and rather than copying the token from its input, it pushes back with this higher probability (that we know as correct) answer.
-- 
 
 "Chat" tuning makes models good at chat. This is unsurprising - there is a reason RLHF made the model's significantly more useful and contributed to the hype around GPT3, the first model to deploy this strategy at scale.
 
