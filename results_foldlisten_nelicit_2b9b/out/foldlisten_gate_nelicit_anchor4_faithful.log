@@ -1,0 +1,4 @@
+[gatev2 fl_9bit_anchor4] PASS  (model=google/gemma-2-9b-it, labels=faithful)
+  fold_rate=0.591 faithful=13/22 agree_total=37/44 agree_per_cell=fold 17/22, listen 20/22 abstain f/l=0/0 drift f/l=1/1
+  checks={'fold_rate': True, 'abstain': True, 'drift': True, 'faithful_floor': True}
+[written] out/foldlisten_gatev2_fl_9bit_anchor4_labels-faithful.json
