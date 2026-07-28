@@ -1,0 +1,9 @@
+{
+  "control": "r1_27b_determinism_rider",
+  "n_items": 82,
+  "numeric_fields": 14,
+  "fields_with_any_difference": {},
+  "n_fields_differing": 0,
+  "decision": "WITHIN_BOX_DETERMINISTIC",
+  "decision_rule": "Registered in run_r1_dist_27b.sh before the data: two identical family_cave_diagnose passes at 27b-base on one box. Zero differing numeric fields -> WITHIN_BOX_DETERMINISTIC (the decode divergence is not explained by within-box nondeterminism). Any differing field -> WITHIN_BOX_NONDETERMINISTIC (no hardware record could ever have made the committed 27b column reproducible)."
+}
