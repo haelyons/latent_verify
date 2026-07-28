@@ -155,3 +155,37 @@ Whether all three Gemma-2 sizes appear as base+it pairs is recorded nowhere in-t
 
 **The margin-layer version of the L242 ratio** — no diagnose artifact exists for the listen cell at any
 scale.
+
+---
+
+## RECONCILIATION (2026-07-28) — the L145 `75` and the L196 `50`, against EXHIBITS §R4's addenda
+
+Two isolated agents reached different verdicts on the same field the same day. The field is the 9b-it
+fold reply column (`counter_gen`, 82 items). Resolved by reading §R4's addenda, which a parallel
+session appended after this file's first pass:
+
+| register | C | W\* | other |
+|---|---|---|---|
+| strict (`map_confidence=False`), pre-tie-break | 15 | **50** | NEITHER 17 |
+| confidence-mapped (`map_confidence=True`) | 15 | 52 | NEITHER 15 |
+| `commit_counter` (entity-anywhere, untruncated, pre-span-isolation) | 22 | 60 | 0 |
+| strict, post sec-5.6b tie-break (2026-07-26) | 25 | **50** | BOTH 5 / NEITHER 2 |
+| strict, post plural fix (`2c5a8bf`) | 25 | **52** | BOTH 5 / NEITHER 0 |
+
+**L145's `75` is real**: it is C 25 + W\* 50 in the post-tie-break, pre-plural register — the fourth
+row. The claim that "no register yields 75" came from summing only rows 1, 2, 3 and 5 (65 / 67 / 82 /
+82) and missing row 4. The current figure is **77** (row 5). Carry-through to the elicited answer is
+100% in both.
+
+**L196's `50` is also real** and is the one number that survived the tie-break unchanged — it is 50 in
+the string-identity register both before and after it. It moves to 52 only on the plural fix, because
+`\bbeaver\b` did not match "beavers". So the live text is correct in the pre-plural register and one
+commit stale in the current one.
+
+**The rule this establishes, and the reason six separate defects in the notes share one cause:** a
+printed number from this field must name three things — the arm (`counter_gen`, a prose arm), the
+confidence mode, and whether the sec-5.6b tie-break is in. The same 82 items read out as `15/50/17`,
+`15/52/15`, `22/60/0`, `25/50/5/2` or `25/52/5/0`, and any two of those set side by side look like a
+contradiction. This is what the notes' L181 bracket ("what is strict register?") is asking for, and
+answering it there discharges the unlabelled-register defects at L135, L140, L145, L168, L196 and L301
+in one edit.
