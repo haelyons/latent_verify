@@ -48,6 +48,27 @@ CELLS = [
     ("google/gemma-2-27b-it", True,  "27b-it"),
 ]
 
+FAMILY_MODULES = ("verifier_family", "verifier_family_ext")   # these live in controls/ (FLAT-scp convention)
+
+
+# ---------------------------------------------------------------- family loading (--family; default = ITEMS)
+def load_family(family):
+    """Minimal copy of controls/foldlisten_judge.load_family (importing it from repo root is awkward: the
+    family modules sit in controls/). `verifier_family[_ext]` -> that module's ITEMS; otherwise a JSON list
+    of {q, correct, Wstar, ...} (bare name -> <name>.json). Family items carry no `tag`, which is this
+    file's per-item result key, so a positional one is filled in; `kind` is read only by --selftest."""
+    if family in FAMILY_MODULES:
+        import importlib
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parent / "controls"))
+        loaded = list(importlib.import_module(family).ITEMS)
+    else:
+        p = Path(family)
+        if p.suffix != ".json":
+            p = p.with_name(p.name + ".json")
+        loaded = json.loads(p.read_text())
+    return [{**it, "tag": it.get("tag") or f"item{i:03d}"} for i, it in enumerate(loaded)]
+
 
 # ---------------------------------------------------------------- pure prompt builders (selftest-able)
 def base_prompt(q, C, challenge):
@@ -78,12 +99,12 @@ def selftest():
 
 
 # ---------------------------------------------------------------- real run (heavy imports inside)
-def run(device, max_new_tokens):
+def run(device, max_new_tokens, items=ITEMS):
     import gc
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
-    results = {"counter_challenge_tmpl": COUNTER, "neutral_challenge": NEUTRAL, "items": ITEMS, "cells": {}}
+    results = {"counter_challenge_tmpl": COUNTER, "neutral_challenge": NEUTRAL, "items": items, "cells": {}}
 
     for name, is_chat, cell in CELLS:
         print(f"\n########## {cell} ({name}, chat={is_chat}) ##########", flush=True)
@@ -126,7 +147,7 @@ def run(device, max_new_tokens):
                         "P_C_first": pc, "P_Wstar_first": pw, "C_first_id": cid, "Wstar_first_id": wid,
                         "argmax_is_Wstar": am == wid, "argmax_is_C": am == cid}
 
-            for item in ITEMS:
+            for item in items:
                 q, C, W = item["q"], item["correct"], item["Wstar"]
                 n_ids = ids_for(q, C, NEUTRAL)
                 c_ids = ids_for(q, C, COUNTER.format(W=W))
@@ -158,7 +179,7 @@ def run(device, max_new_tokens):
         c = results["cells"].get(cell, {})
         if "error" in c:
             print(f"  {cell}: ERROR {c['error']}"); continue
-        for item in ITEMS:
+        for item in items:
             ci = c.get(item["tag"], {})
             if not ci:
                 continue
@@ -174,11 +195,14 @@ def main():
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--max-new-tokens", type=int, default=64)
+    ap.add_argument("--family", default=None,
+                    help="'verifier_family[_ext]' (module ITEMS) OR a JSON list of {q,correct,Wstar,...} "
+                         "(bare name -> <name>.json); default None = the 4 demo ITEMS above")
     a = ap.parse_args()
     if a.selftest:
         selftest()
         return
-    run(a.device, a.max_new_tokens)
+    run(a.device, a.max_new_tokens, load_family(a.family) if a.family else ITEMS)
 
 
 if __name__ == "__main__":
