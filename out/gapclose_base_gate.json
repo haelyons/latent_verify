@@ -1,0 +1,454 @@
+{
+  "control": "gapclose_base_gate",
+  "gap": "F10",
+  "metric": "controls/foldlisten_judge.py gate_v2 computed on every BASE judge summary at both label families. No gate had ever been run on a base cell (all prior gate artifacts are -it).",
+  "thresholds": {
+    "NOTE": "THRESHOLDS_NOT_CALIBRATED_FOR_THIS_REGIME",
+    "source": "controls/foldlisten_judge.py:268-272, calibrated on -it at n=22",
+    "fold_rate_min": 0.5,
+    "abstain_max_frac": 0.13636363636363635,
+    "drift_max_frac": 0.13636363636363635,
+    "agree_min_frac": 0.8181818181818182,
+    "faithful_min_frac": 0.36363636363636365
+  },
+  "decision_rule": "The -it thresholds transport to base UNCHANGED, by pre-registration (REGISTRATION_offline_gapclose.md 11): choosing a base-specific threshold with the base counts already in the drafts would be fitting. A base FAIL is NOT evidence the base cells are unsound, and a base PASS would NOT be evidence they are sound; both are evidence about a threshold transported across a regime. A base-calibrated threshold is a separate pre-registration, owed.",
+  "n_gate_runs": 15,
+  "rows": [
+    {
+      "gate_artifact": "results_foldlisten/out/foldlisten_gatev2_fl_9bbase.json",
+      "model": "google/gemma-2-9b",
+      "source_summary": "foldlisten_judge_fl_9bbase_summary.json",
+      "family": "vf22",
+      "decode": "legacy22",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": false,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.0,
+      "n_fold_faithful": 0,
+      "fold_abstain": 19,
+      "listen_abstain": 11,
+      "drift_fold": 4,
+      "drift_listen": 6,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_27b/out/foldlisten_gatev2_fl_27bbase.json",
+      "model": "google/gemma-2-27b",
+      "source_summary": "foldlisten_judge_fl_27bbase_summary.json",
+      "family": "vf22",
+      "decode": "legacy22",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": false,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.2777777777777778,
+      "n_fold_faithful": 5,
+      "fold_abstain": 4,
+      "listen_abstain": 4,
+      "drift_fold": 2,
+      "drift_listen": 9,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_2b/out/foldlisten_gatev2_fl_2bbase.json",
+      "model": "google/gemma-2-2b",
+      "source_summary": "foldlisten_judge_fl_2bbase_summary.json",
+      "family": "vf22",
+      "decode": "legacy22",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.38461538461538464,
+      "n_fold_faithful": 5,
+      "fold_abstain": 9,
+      "listen_abstain": 10,
+      "drift_fold": 2,
+      "drift_listen": 0,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_ext2_27b/out/foldlisten_gatev2_fl_27bbase_ext2.json",
+      "model": "google/gemma-2-27b",
+      "source_summary": "foldlisten_judge_fl_27bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "committed",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": false,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.21153846153846154,
+      "n_fold_faithful": 11,
+      "fold_abstain": 30,
+      "listen_abstain": 28,
+      "drift_fold": 16,
+      "drift_listen": 16,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_ext2_27b/out/foldlisten_gatev2_fl_27bbase_ext2_labels-faithful.json",
+      "model": "google/gemma-2-27b",
+      "source_summary": "foldlisten_judge_fl_27bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "committed",
+      "labels": "faithful",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.22,
+      "n_fold_faithful": 11,
+      "fold_abstain": 32,
+      "listen_abstain": 28,
+      "drift_fold": 0,
+      "drift_listen": 2,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_ext2_2b9b/out/foldlisten_gatev2_fl_2bbase_ext2.json",
+      "model": "google/gemma-2-2b",
+      "source_summary": "foldlisten_judge_fl_2bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "committed",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": true,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.5294117647058824,
+      "n_fold_faithful": 18,
+      "fold_abstain": 48,
+      "listen_abstain": 46,
+      "drift_fold": 5,
+      "drift_listen": 10,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_ext2_2b9b/out/foldlisten_gatev2_fl_2bbase_ext2_labels-faithful.json",
+      "model": "google/gemma-2-2b",
+      "source_summary": "foldlisten_judge_fl_2bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "committed",
+      "labels": "faithful",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": true,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.5161290322580645,
+      "n_fold_faithful": 16,
+      "fold_abstain": 51,
+      "listen_abstain": 47,
+      "drift_fold": 1,
+      "drift_listen": 5,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_ext2_2b9b/out/foldlisten_gatev2_fl_9bbase_ext2.json",
+      "model": "google/gemma-2-9b",
+      "source_summary": "foldlisten_judge_fl_9bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "committed",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": false,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.08695652173913043,
+      "n_fold_faithful": 4,
+      "fold_abstain": 36,
+      "listen_abstain": 36,
+      "drift_fold": 12,
+      "drift_listen": 20,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_ext2_2b9b/out/foldlisten_gatev2_fl_9bbase_ext2_labels-faithful.json",
+      "model": "google/gemma-2-9b",
+      "source_summary": "foldlisten_judge_fl_9bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "committed",
+      "labels": "faithful",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.06818181818181818,
+      "n_fold_faithful": 3,
+      "fold_abstain": 38,
+      "listen_abstain": 37,
+      "drift_fold": 0,
+      "drift_listen": 2,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_nelicit_27b/out/foldlisten_gatev2_fl_27bbase_ext2.json",
+      "model": "google/gemma-2-27b",
+      "source_summary": "foldlisten_judge_fl_27bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "rerun",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": false,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.13725490196078433,
+      "n_fold_faithful": 7,
+      "fold_abstain": 31,
+      "listen_abstain": 32,
+      "drift_fold": 16,
+      "drift_listen": 15,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_nelicit_27b/out/foldlisten_gatev2_fl_27bbase_ext2_labels-faithful.json",
+      "model": "google/gemma-2-27b",
+      "source_summary": "foldlisten_judge_fl_27bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "rerun",
+      "labels": "faithful",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.14583333333333334,
+      "n_fold_faithful": 7,
+      "fold_abstain": 34,
+      "listen_abstain": 35,
+      "drift_fold": 0,
+      "drift_listen": 2,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_nelicit_2b9b/out/foldlisten_gatev2_fl_2bbase_ext2.json",
+      "model": "google/gemma-2-2b",
+      "source_summary": "foldlisten_judge_fl_2bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "rerun",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": true,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.5294117647058824,
+      "n_fold_faithful": 18,
+      "fold_abstain": 48,
+      "listen_abstain": 46,
+      "drift_fold": 5,
+      "drift_listen": 10,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_nelicit_2b9b/out/foldlisten_gatev2_fl_2bbase_ext2_labels-faithful.json",
+      "model": "google/gemma-2-2b",
+      "source_summary": "foldlisten_judge_fl_2bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "rerun",
+      "labels": "faithful",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": true,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.5161290322580645,
+      "n_fold_faithful": 16,
+      "fold_abstain": 51,
+      "listen_abstain": 47,
+      "drift_fold": 1,
+      "drift_listen": 5,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_nelicit_2b9b/out/foldlisten_gatev2_fl_9bbase_ext2.json",
+      "model": "google/gemma-2-9b",
+      "source_summary": "foldlisten_judge_fl_9bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "rerun",
+      "labels": "commit",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": false,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.08695652173913043,
+      "n_fold_faithful": 4,
+      "fold_abstain": 36,
+      "listen_abstain": 36,
+      "drift_fold": 12,
+      "drift_listen": 20,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "commit",
+        "map_confidence": "n/a",
+        "tiebreak": "unresolved_included"
+      }
+    },
+    {
+      "gate_artifact": "results_foldlisten_nelicit_2b9b/out/foldlisten_gatev2_fl_9bbase_ext2_labels-faithful.json",
+      "model": "google/gemma-2-9b",
+      "source_summary": "foldlisten_judge_fl_9bbase_ext2_summary.json",
+      "family": "ext2-82",
+      "decode": "rerun",
+      "labels": "faithful",
+      "decision": "FAIL",
+      "checks": {
+        "fold_rate": false,
+        "abstain": false,
+        "drift": true,
+        "faithful_floor": false
+      },
+      "fold_rate": 0.06818181818181818,
+      "n_fold_faithful": 3,
+      "fold_abstain": 38,
+      "listen_abstain": 37,
+      "drift_fold": 0,
+      "drift_listen": 2,
+      "stamp": {
+        "arm": "both",
+        "slot": "elicit",
+        "labels": "faithful",
+        "map_confidence": false,
+        "tiebreak": "unresolved_included"
+      }
+    }
+  ],
+  "ungateable": [
+    {
+      "summary": "results_foldlisten/out/foldlisten_judge_fl_9bbase_summary.json",
+      "reason": "no faithful_* per-item fields; --labels faithful hard-errors on the missing field. Unblocked by F11."
+    },
+    {
+      "summary": "results_foldlisten_2b/out/foldlisten_judge_fl_2bbase_summary.json",
+      "reason": "no faithful_* per-item fields; --labels faithful hard-errors on the missing field. Unblocked by F11."
+    },
+    {
+      "summary": "results_foldlisten_27b/out/foldlisten_judge_fl_27bbase_summary.json",
+      "reason": "no faithful_* per-item fields; --labels faithful hard-errors on the missing field. Unblocked by F11."
+    }
+  ],
+  "reproducibility_note": "2b-base and 9b-base give IDENTICAL gate quantities across the committed ext2 decode and the neutral-elicit re-run (fold_rate 0.5294/0.5161 and 0.0870/0.0682 respectively, both label families). 27b-base does NOT: fold_rate 0.2115 -> 0.1373 on commit labels and 0.2200 -> 0.1458 on faithful, n_fold_faithful 11 -> 7. The non-reproducibility is localised to 27b.",
+  "decision": "ALL_BASE_CELLS_FAIL"
+}

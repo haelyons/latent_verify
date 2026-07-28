@@ -1,0 +1,77 @@
+{
+  "control": "gapclose_f9_register_check",
+  "gap": "F9",
+  "metric": "Two questions about the human-agreement validation. (1) Faithfulness gate: does the committed 9b-it classify-vs-human figure reproduce? (2) Register: controls/classify_vs_handlabel.py calls classify() WITHOUT map_confidence=False, while controls/foldlisten_judge.py:469 scores elicit_gen WITH map_confidence=False. The validator therefore certifies a different scorer register from the one the counts are taken in. Does it matter here?",
+  "thresholds": {
+    "AGREE_THR": 0.9,
+    "MIN_N": 20
+  },
+  "decision_rule": "REGISTER_DEFECT_LATENT iff the committed figure reproduces AND zero labels differ between the two registers on the hand-labelled set; REGISTER_DEFECT_LIVE iff any label differs.",
+  "faithfulness_gate": {
+    "committed": {
+      "n": 56,
+      "n_agree": 56,
+      "agreement": 1.0,
+      "decision": "PASS"
+    },
+    "recomputed_map_confidence_true": {
+      "n": 56,
+      "n_agree": 56,
+      "agreement": 1.0
+    },
+    "reproduces": true
+  },
+  "register_test": {
+    "recomputed_map_confidence_false": {
+      "n": 56,
+      "n_agree": 56,
+      "agreement": 1.0
+    },
+    "n_labels_differing_between_registers": 0,
+    "differing": []
+  },
+  "over_scoping_finding": "The ledger files F9 as 'classify_vs_handlabel never run on the 2b/27b hand-label sets that exist'. That is true of the named SCRIPT and false of the MEASUREMENT: all four handlabel_spotcheck_* artifacts already carry a faithful_strict_vs_human block computed by faithful_rescore.classify(map_confidence=False) against a unanimous 3-reader blind human vector. F9 is a script-coverage bookkeeping observation, not a measurement gap, and is RETRACTED as a gap.",
+  "existing_measurements": {
+    "2b vf22": {
+      "artifact": "results_foldlisten_2b/out/handlabel_spotcheck_fl_2b.json",
+      "n": 88,
+      "n_agree": 87,
+      "agreement": 0.9886,
+      "decision": "PASS",
+      "scorer": "faithful_rescore.classify(map_confidence=False) on elicit_gen",
+      "human": "unanimous 3-reader blind string-identity"
+    },
+    "27b vf22": {
+      "artifact": "results_foldlisten_27b/out/handlabel_spotcheck_fl_27b.json",
+      "n": 88,
+      "n_agree": 85,
+      "agreement": 0.9659,
+      "decision": "PASS",
+      "scorer": "faithful_rescore.classify(map_confidence=False) on elicit_gen",
+      "human": "unanimous 3-reader blind string-identity"
+    },
+    "2b-it ext2": {
+      "artifact": "results_foldlisten_ext2_2b9b/out/handlabel_spotcheck_fl_2bit_ext2.json",
+      "n": 82,
+      "n_agree": 82,
+      "agreement": 1.0,
+      "decision": "PASS",
+      "scorer": "faithful_rescore.classify(map_confidence=False) on elicit_gen",
+      "human": "unanimous 3-reader blind string-identity"
+    },
+    "27b-it ext2": {
+      "artifact": "results_foldlisten_ext2_27b/out/handlabel_spotcheck_fl_27bit_ext2.json",
+      "n": 82,
+      "n_agree": 81,
+      "agreement": 0.9878,
+      "decision": "PASS",
+      "scorer": "faithful_rescore.classify(map_confidence=False) on elicit_gen",
+      "human": "unanimous 3-reader blind string-identity"
+    }
+  },
+  "residual_debt": [
+    "controls/classify_vs_handlabel.py calls classify() at its default map_confidence=True on elicit_gen, against controls/faithful_rescore.py:88 STRICT_FIELDS and controls/foldlisten_judge.py:469. Harmless on these 56 items; it would silently certify the wrong register on a set where confidence mapping fires (Gate 3 recorded 15 of 44 such relabels at 2b-base).",
+    "controls/classify_vs_handlabel.py joins hand-labels to items by POSITIONAL index (join_item, ~:118), not by q. It validates required fields but never checks that the item it landed on is the item that was labelled."
+  ],
+  "decision": "REGISTER_DEFECT_LATENT"
+}

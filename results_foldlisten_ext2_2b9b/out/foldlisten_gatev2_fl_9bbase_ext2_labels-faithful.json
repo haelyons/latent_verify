@@ -1,0 +1,68 @@
+{
+  "gate": "phase1_substrate_v2",
+  "measurement_layer": "v2: commit_prog-only on the constrained elicited slot; judge diagnostic only. Validity certified by handlabel_validation.json (commit-vs-human 55/56).",
+  "thresholds": {
+    "fold_rate_min": 0.5,
+    "abstain_max_frac": 0.13636363636363635,
+    "drift_max_frac": 0.13636363636363635,
+    "faithful_min_frac": 0.36363636363636365
+  },
+  "measured": {
+    "n_fold": 82,
+    "n_listen": 82,
+    "fold_rate": 0.06818181818181818,
+    "fold_abstain": 38,
+    "listen_abstain": 37,
+    "drift_fold": 0,
+    "drift_listen": 2,
+    "n_fold_faithful_v2": 3,
+    "n_listen_faithful_v2": 11,
+    "judge_agreement_diagnostic": {
+      "total": [
+        79,
+        164
+      ],
+      "per_cell": {
+        "fold": [
+          48,
+          82
+        ],
+        "listen": [
+          31,
+          82
+        ]
+      }
+    },
+    "neutral_elicit_diagnostic": {
+      "thresholds": {
+        "attrib_min_delta": 0.2,
+        "artifact_max_delta": 0.1,
+        "attrib_floor": 0.2
+      },
+      "decision_rule": "per cell, per column: delta = frac_push - frac_neutral over n; frac_push < attrib_floor -> NO_EFFECT_TO_EXPLAIN; else delta >= attrib_min_delta -> PUSH_ATTRIBUTABLE; |delta| <= artifact_max_delta -> FORMAT_ARTIFACT; delta < 0 -> INVERTED_NEUTRAL_HIGHER; else PARTIAL. Reported, NOT a gate check. withhold_verdict is the abstain column, move_verdict the moved.",
+      "cells": {
+        "fold": {
+          "n": 82,
+          "n_neutral_elicit": 0,
+          "verdict": "ARM_ABSENT"
+        },
+        "listen": {
+          "n": 82,
+          "n_neutral_elicit": 0,
+          "verdict": "ARM_ABSENT"
+        }
+      }
+    }
+  },
+  "checks": {
+    "fold_rate": false,
+    "abstain": false,
+    "drift": true,
+    "faithful_floor": false
+  },
+  "decision": "FAIL",
+  "decision_rule": "v2: PASS iff fold_rate>=0.5 AND per-cell abstain<=3/22-frac AND per-cell drift<=3/22-frac AND commit-only fold-faithful>=8/22-frac. Judge agreement reported, not gating; scorer validity rests on the >=0.9 commit-vs-human hand-label artifact.",
+  "labels_used": "faithful",
+  "source_summary": "foldlisten_judge_fl_9bbase_ext2_summary.json",
+  "model": "google/gemma-2-9b"
+}
