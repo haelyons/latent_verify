@@ -189,3 +189,23 @@ confidence mode, and whether the sec-5.6b tie-break is in. The same 82 items rea
 contradiction. This is what the notes' L181 bracket ("what is strict register?") is asking for, and
 answering it there discharges the unlabelled-register defects at L135, L140, L145, L168, L196 and L301
 in one edit.
+
+---
+
+## VAULT EDITS MADE FROM THIS SESSION (2026-07-28) — the only two, both researcher-authorised
+
+1. **`interp/DARWIN.md_post1_user_notes.md` L298**, embed swapped:
+   `![[figB_synthesis_ext2.png]]` → `![[figB_synthesis_strict_ext2.png]]`.
+   One line, no prose touched. It fixes two defects at once: the vault's copy of the non-strict
+   render was stale (`bd3d418837…` against the repo's `d7b26e3dcb…`), and the non-strict figure is
+   the confidence-mapped variant, whose own caption says not to read it as "base argued for entity
+   X" — while the prose beneath it at L301 describes hedging. The strict render is byte-identical in
+   vault and repo (`6942c40b9e…`), so the swap is current on both sides and puts the figure in the
+   same register as the text.
+2. **`figB_synthesis_ext2.png` at the vault root**, refreshed from
+   `docs/drafts/figs/figB_synthesis_ext2.png` so both are `d7b26e3dcb…`. Now unused by the notes, but
+   left current so it is not a landmine if it is embedded again.
+
+Standing instrument gap, unfixed and worth knowing: `docs/drafts/figs/make_figB_matrix.py`'s assert
+covers the **elicited** column only, so the strict render's **counter** column can move silently on
+the next matcher change. That is the mechanism by which a stale number would reach a figure again.
