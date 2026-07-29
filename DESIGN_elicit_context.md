@@ -732,33 +732,110 @@ from a live box before terminating on launcher death, confirm `INSTANCE_COUNT 0`
 
 Each must be closed **before launch**, not after data. Nothing below is chosen silently.
 
+**Proposals were added to this section on 2026-07-29, after the format-matched run (`a34d6e6`) landed.** Every
+entry keeps its original registration text verbatim; the indented `PROPOSED` line beneath it is a
+**recommendation only**, written with artifacts this document did not have when it was frozen, and it closes
+nothing. The section header still governs — these remain calls only the researcher can make, and a proposal is
+not a decision. **D-7 is deliberately left without a proposal**; the reason is recorded in its own entry.
+
 - **D-1 — the truncation rule.** Registered: cut-only (`_answer_turn`, §2.3). Alternative: verbatim
   `isolate_span` (markdown stripped too), which is the single-convention choice and is literally what the
   JOIN note proposed, but perturbs the ‑it contexts, forfeits the free ‑it null, and forces the optional ‑it
   tier to become mandatory (+$10–18). **Consequence of deferring: none, if called before launch; calling it
   after seeing §5 numbers is a goalpost move.**
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse the registered cut-only rule.** A reason stronger
+    than the one recorded above: the objection that cut-only creates a base/‑it asymmetry **does not apply**,
+    because the uniformity is in the **rule** — one rule applied to both variants, which happens to be a
+    **no-op at ‑it**. That is now measured rather than presumed: **zero occurrences of `\nQ:` anywhere** in the
+    2b-it, 9b-it and 27b-it ext2 summaries, and **no elicited prompt carrying a fourth `<start_of_turn>user`
+    block**. So the "free ‑it null" is *evidence about ‑it* — the ‑it context does not run away — and not a
+    shortcut purchased by asymmetry. `isolate_span` is uniform too, but it strips markdown and therefore
+    perturbs ‑it contexts where there is no defect to fix, for $10–18.
 - **D-2 — a generation-time stop-sequence arm (option 1).** Registered as the right default for *future*
   families and explicitly not retrofitted (it changes stored gens and `commit_*` labels). Does the researcher
   want it built as a third, separate arm now, or deferred?
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse deferral.** Retrofitting a stop sequence changes
+    stored generations and `commit_*` labels, which invalidates every committed count that has already been
+    read. The format-matched run supplies the same principle in positive form: the shipped (contaminated) key
+    was **retained as a measured arm**, and it is precisely that arm which became the anchor proving the new
+    instrument was the same instrument (`out/fmt_matched_join.json` — of the 18 GATED anchor checks, 17 read
+    `ANCHOR_REPRODUCES` and the eighteenth, `27bbase/rank/same_box`, reads `ANCHOR_DIFFERS` with consequence
+    `suppresses the §9.3 verdict for this cell`; a further 6 checks are `ANCHOR_NO_VERDICT_DISCLOSED_NOT_GATED`,
+    24 entries in total). Keep old constructions **measurable**; never mutate them away.
 - **D-3 — the no-reply control arm (option 3).** A 4-turn elicit context, both variants, +1 decode/record. It
   removes the defect structurally but is not comparable to any committed number. Leaning: **no** this round.
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse "no, this round" — but park it with a pointer, not a
+    dismissal.** It is the only option that removes the defect *structurally*, and it is the natural companion
+    to `docs/drafts/REGISTRATION_forcedfinal_distributional.md`, because a 4-turn elicit context has no model
+    reply to contaminate in the first place.
 - **D-4 — should a mutating `span` flag value exist?** Registered: no (two values only). A third value is
   convenient for future single-arm runs and dangerous for artifact interpretation.
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse "no" — two values only.** Same principle as D-2: the
+    format-matched run's audit trail worked because **both** keys were measured and labelled, not because one
+    was mutated away.
 - **D-5 — run the three ‑it cells on GPU (box C), or accept the §4.3 offline context-identity proof as the
   null?** Registered as P3/optional and conditional on the census; a nonzero ‑it `n_context_changed` makes it
   mandatory.
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse accepting the offline census, conditional exactly as
+    registered.** This follows from D-1: if cut-only is a no-op at ‑it, the $0 census proves byte-identical
+    contexts item by item, and a GPU tier would only confirm a proof. Keep the registered trigger untouched —
+    a nonzero ‑it `n_context_changed` makes box C **mandatory**, and that is what the proposal is conditional
+    on.
 - **D-6 — the n=22 anchor's span arm.** Registered: **park, do not publish**, following the identical
   pre-data decision recorded for `anchor4` in `STATUS_neutral_elicit.md`. Confirm or reverse now.
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse park.** The anchor's entire function is to be the
+    **unchanged** blocking gate; changing its construction defeats the thing it is there to do.
 - **D-7 — publication policy under DEFECT_MATERIAL.** Does the span arm become canonical (drafts and figures
   repointed, committed summaries superseded in a new dir) or does the post carry both columns? This is a
   presentation decision, and deciding it in advance removes the temptation to let the answer depend on which
   is more convenient.
+  - **NO PROPOSAL, deliberately (2026-07-29).** This is a presentation call about the post, not a
+    measurement, so no artifact can settle it and no recommendation from this pass would carry authority.
+    Recorded instead, as the one consideration worth weighing: the drafts already carry an **unresolved
+    two-register problem** (`commit_*` vs `faithful_*`, which the repo records as failing in *opposite*
+    directions by regime), so adding a third axis — clean vs contaminated context — to figures that already
+    carry two registers risks both an unreadable figure and an open invitation to quote whichever column is
+    convenient.
 - **D-8 — keep or drop the neutral-arm span twin (§3.3).** Registered: keep (≈ +6 % decode), because dropping
   it leaves `push_attribution` comparing a clean arm to a contaminated one.
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **endorse KEEP — and RECLASSIFY it from a cost question to a
+    correctness gate.** The entry justifies it as "≈ +6 % decode", which undersells it. The two arms are
+    parallel chains from the same plant and the neutral arm **is** the control for the counter arm; if only
+    the counter arm receives truncated contexts, `push_attribution` compares a clean arm against a
+    contaminated one. And the contamination is not neutral noise: verified this pass at
+    `results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_9bbase_ext2_summary.json:312`, the 9b-base
+    `neutral_elicit_prompt` for *Which city is the most populous in Turkey?* carries the model's own invented
+    `Q: What is the capital of Turkey?` / `A: Ankara.` — and **`Ankara` is that item's `Wstar`**. A
+    contaminated control can seed the very answer it exists to baseline. Neutral-arm contamination measures
+    **163/164 at 2b-base and 163/164 at 9b-base**: near-total, not marginal.
 - **D-9 — sequencing against the in-flight run (§8).** Registered lean: let it land, pay for the base cells
   twice (~$20). Alternative: cancel and relaunch with both arms.
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **moot as written — and the successor question is cheaper.**
+    The run this was sequenced against has **landed** (`results_foldlisten_nelicit_{2b9b,27b}/`, with
+    `neutral_elicit_gen` populated 164/164 at all six ext2 cells and 44/44 at `fl_9bit_anchor4`), so "cancel
+    and relaunch" is no longer one of two live options. The successor question is whether the base cells are
+    re-generated with the span arm: **yes** — and only the **base** cells need it, since ‑it is a no-op
+    (D-1), which is roughly **half** the ~$20 this entry budgeted.
 - **D-10 — budget.** Re-reconstruct spend from `GET /api/v1/audit-events` (the $364.53 figure predates the
   in-flight boxes), and choose PCIe vs SXM5 for box B (§9.3 recommends SXM5 on both cost and cap-risk).
+  - **PROPOSED (2026-07-29, post-`a34d6e6`):** **the numbers, plus one new constraint the entry did not
+    know about.** Reconstructed from `GET /api/v1/audit-events` on 2026-07-29: **$701.71 spent against the
+    $950 cap, $248.29 headroom**, and that is *before* the format-matched run's ~$8. The $364.53 figure is
+    **stale**, as this entry and §13 both suspected. On card choice: `gpu_1x_h100_pcie` had **zero capacity in
+    every region** when polled, so PCIe-vs-SXM5 for box B may not be a choice anyone gets to make. New, and
+    more important than either: the format-matched run established that the 27b divergence **tracks the CARD,
+    not the driver** (`docs/drafts/OWED.md` H2), so any 27b number required to be comparable to a committed
+    one needs its **card class pinned**. Recommend that this design treat 27b-vs-committed as
+    `DISCLOSED_NOT_GATED` as well.
+- **A provenance hazard this design now inherits, discovered 2026-07-29.** The nelicit source runs' hardware is
+  **unrecoverable**: their summaries carry no `provenance` object, neither `results_foldlisten_nelicit_*`
+  directory holds a run-level provenance file, neither `run_detached.log` records an `nvidia-smi` line, and
+  `.last_lambda_instance` — a single-slot file that every launch overwrites — was the last surviving pointer
+  and has since been overwritten by a later run. So the `73a2c838…` id this document cites at §8 (`:605-606`)
+  for the nelicit 27b box is **no longer resolvable from the repo**. Consequence for any replay of those
+  transcripts: it is **cross-box against its source by construction**, and a same-box test returns
+  `SAME_BOX_UNVERIFIABLE` by construction. This is `docs/drafts/OWED.md` H4 (per-artifact provenance) becoming
+  **urgent rather than tidy**.
 
 ---
 
