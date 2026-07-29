@@ -297,8 +297,46 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> **SEED 2026-07-29 — newest. STACKED above the previous seed, not overwriting it: parallel sessions
-> both count as latest, so the convention here is to stack and let the reader diff.**
+> **SEED 2026-07-29 (later session, post-Sun drafting viii) — newest. STACKED above the previous
+> seed per the standing convention.**
+>
+> **NO GPU RAN THIS SESSION. $0. Everything below is offline reads + two commits.**
+>
+> **WHAT LANDED.** (1) `1853e27` — `docs/drafts/JOIN_post1_crossvariant_scale.md`, the join of five
+> isolated read-only investigations over the POST1 cross-variant/scale axis: gold-draft extraction
+> (53 fill-slots), ledger re-derivation, RUN-vs-ABSENT inventory, residual-numbers pass (12 items),
+> citation vetting (7 slots). Same commit flags four stale ledger lines as DATED ADDENDA, not silent
+> fixes: `RESEARCH_QUESTIONS.md` doubt-at-27b gate DISCHARGED (see below), `RETRACTIONS.md` R-3
+> three corrections (27b-it NOT identical between draws; the driver attribution refuted — OWED H2:
+> the divergence tracks the CARD; NO_MOVEMENT is the commit register, faithful reads
+> MOVEMENT_LISTEN_ONLY), `DESIGN_neutral_elicit.md` run-landed status, and five self-corrections
+> appended to `GROUNDING_crossvariant_scale.md` (incl. its unauditable "~59×" pair and the
+> mixed-provenance 27b row). (2) `d9d884b` — `docs/drafts/PATCHSET_tranche3.md`: 24 hand-apply
+> blocks resolving the gold's cross-variant/scale brackets, net −23 brackets, drafted claim-blind
+> then held to a two-round adversarial review (round 1: 11 PASS / 13 HOLD; all fixes re-verified,
+> 31/31 anchors byte-exact, every new number re-derived). **The vault was never written.**
+> (3) The reviewer caught the tranche-2 NBSP anchor defect RECURRING byte-for-byte — the lesson is
+> now in the patchset preamble: slice anchors from file bytes, never retype; and the live gold is
+> MIXED on guillemet spacing, so blanket NBSP conversion is a drive-by edit.
+>
+> **DISCIPLINES any future number must obey (all receipts in the JOIN):** every 27b-base figure
+> names its decode draw (committed ext2 = anomaly, nelicit re-run = reproducible) AND its register;
+> 27b-it is ALSO draw-dependent (82/164 counter_gen differ — per-field check, no blanket exemption;
+> 2b/9b are 0/164 clean); scale ordering within a variant is mostly NOT distinguishable
+> (`out/gapclose_foldrate_sig.json`: 9b-it vs 27b-it p=1.0) — the cross-variant gap is the decisive
+> axis, not scale; the fmt triple is quotable whole or not at all.
+>
+> **FOR THE RESEARCHER (blocks their own decisions):** T3-03 (the intro-L25 mechanism sentence —
+> no run supports it as written; the block offers the honest replacement) is NEEDS-RESEARCHER-
+> DECISION; T3-16 depends on T3-09; T3-01/T3-21 apply together or not at all. Application order and
+> shared-line notes are in the patchset preamble.
+>
+> **CORE RESULTS STILL UNRUN (ranked, JOIN §D):** OWED B2 (forced-final-slot distribution/residual
+> read — the slot verdicts are decided on); the listen distributional column (withdrawn + 27b
+> three-cluster instability); the base mechanism arm + 27b `cave_fold_vs_listen` (the only path to
+> intro-L25 at strength); hand-labels for the headline cells (9b VF22, 9b ext2, all base ext2, all
+> listen, T3n — the post's central cell has no human agreement statistic); -it top-k with a
+> regime-aware key (K4 + §4.1 key fix).
 >
 > **NO GPU IS RUNNING. VERIFIED 2026-07-29 (this session): `GET /api/v1/instances` returns 0
 > instances.** Both boxes of the run below are down.
