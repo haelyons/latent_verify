@@ -1,0 +1,134 @@
+{
+  "model": "google/gemma-2-9b",
+  "regime": "fragment",
+  "n_pairs": 5,
+  "summary": {
+    "distractor": {
+      "mean_boost": 0.329,
+      "mean_reader_attn": 0.032,
+      "mean_max_head_attn": 0.421
+    },
+    "taskrel": {
+      "mean_boost": 0.09,
+      "mean_reader_attn": 0.177,
+      "mean_max_head_attn": 0.827
+    }
+  },
+  "per_pair": [
+    {
+      "region": "Australia",
+      "distractor": {
+        "entity": "Sydney",
+        "boost": 1.323,
+        "reader_L18H5_attn": 0.035,
+        "max_head_attn": 0.469,
+        "max_head": [
+          20,
+          2
+        ]
+      },
+      "taskrel": {
+        "entity": "Canberra",
+        "boost": 0.055,
+        "reader_L18H5_attn": 0.208,
+        "max_head_attn": 0.867,
+        "max_head": [
+          28,
+          12
+        ]
+      }
+    },
+    {
+      "region": "Texas",
+      "distractor": {
+        "entity": "Houston",
+        "boost": 0.657,
+        "reader_L18H5_attn": 0.02,
+        "max_head_attn": 0.412,
+        "max_head": [
+          21,
+          10
+        ]
+      },
+      "taskrel": {
+        "entity": "Austin",
+        "boost": 0.019,
+        "reader_L18H5_attn": 0.121,
+        "max_head_attn": 0.699,
+        "max_head": [
+          30,
+          9
+        ]
+      }
+    },
+    {
+      "region": "Canada",
+      "distractor": {
+        "entity": "Toronto",
+        "boost": 0.623,
+        "reader_L18H5_attn": 0.026,
+        "max_head_attn": 0.365,
+        "max_head": [
+          21,
+          10
+        ]
+      },
+      "taskrel": {
+        "entity": "Ottawa",
+        "boost": 0.024,
+        "reader_L18H5_attn": 0.219,
+        "max_head_attn": 0.875,
+        "max_head": [
+          28,
+          12
+        ]
+      }
+    },
+    {
+      "region": "Switzerland",
+      "distractor": {
+        "entity": "Zurich",
+        "boost": -1.232,
+        "reader_L18H5_attn": 0.052,
+        "max_head_attn": 0.459,
+        "max_head": [
+          20,
+          2
+        ]
+      },
+      "taskrel": {
+        "entity": "Bern",
+        "boost": 0.313,
+        "reader_L18H5_attn": 0.151,
+        "max_head_attn": 0.855,
+        "max_head": [
+          28,
+          12
+        ]
+      }
+    },
+    {
+      "region": "Florida",
+      "distractor": {
+        "entity": "Miami",
+        "boost": 0.272,
+        "reader_L18H5_attn": 0.027,
+        "max_head_attn": 0.398,
+        "max_head": [
+          21,
+          10
+        ]
+      },
+      "taskrel": {
+        "entity": "Tallahassee",
+        "boost": 0.041,
+        "reader_L18H5_attn": 0.185,
+        "max_head_attn": 0.84,
+        "max_head": [
+          28,
+          12
+        ]
+      }
+    }
+  ]
+}

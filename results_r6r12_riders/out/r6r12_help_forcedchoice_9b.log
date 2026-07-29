@@ -1,0 +1,6 @@
+usage: job_forcedchoice.py [-h] --name NAME --tag TAG
+
+options:
+  -h, --help   show this help message and exit
+  --name NAME
+  --tag TAG

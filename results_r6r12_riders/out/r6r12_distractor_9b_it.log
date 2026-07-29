@@ -1,0 +1,16 @@
+[load] google/gemma-2-9b-it on cuda
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 5314.42it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[9bit Australia    distractor] entity=Sydney      boost=-0.42 reader->ent=0.08 maxhead L23.H12=0.32
+[9bit Australia    taskrel   ] entity=Canberra    boost=+1.08 reader->ent=0.52 maxhead L28.H12=0.92
+[9bit Texas        distractor] entity=Houston     boost=-1.98 reader->ent=0.08 maxhead L23.H12=0.30
+[9bit Texas        taskrel   ] entity=Austin      boost=+0.71 reader->ent=0.26 maxhead L28.H12=0.86
+[9bit Canada       distractor] entity=Toronto     boost=-0.34 reader->ent=0.06 maxhead L23.H13=0.26
+[9bit Canada       taskrel   ] entity=Ottawa      boost=+0.96 reader->ent=0.54 maxhead L28.H12=0.94
+[9bit Switzerland  distractor] entity=Zurich      boost=-1.40 reader->ent=0.05 maxhead L32.H4=0.39
+[9bit Switzerland  taskrel   ] entity=Bern        boost=+1.96 reader->ent=0.33 maxhead L28.H12=0.87
+[9bit Florida      distractor] entity=Miami       boost=-3.20 reader->ent=0.08 maxhead L23.H13=0.28
+[9bit Florida      taskrel   ] entity=Tallahassee boost=+1.28 reader->ent=0.54 maxhead L28.H12=0.91
+[done] google/gemma-2-9b-it
+  distractor: {'mean_boost': -1.465, 'mean_reader_attn': 0.069, 'mean_max_head_attn': 0.31}
+  taskrel:    {'mean_boost': 1.198, 'mean_reader_attn': 0.439, 'mean_max_head_attn': 0.899}

@@ -1,0 +1,11 @@
+[T_PRE] VALID n=82 polar_frac=0.0 collision_frac=0.0 n_wh=82 coverage={'yes': 0, 'no': 0, 'entity': 82}
+        collision_frac 0.000 <= COLLISION_THR(0.5) AND n_wh 82 >= MIN_WH(8): the family has enough content-answer items to support a content-vs-format readout swap.
+[load] google/gemma-2-2b on cuda (chat=False)
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  44%|████▍     | 126/288 [00:00<00:00, 1232.30it/s]Loading weights:  87%|████████▋ | 250/288 [00:00<00:00, 1188.02it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1215.77it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[base] selected 23/82 single-competitor near-margin items
+  [base] faithful P(W*) n/c=0.001/0.065 RA_eff=+0.064 RC_eff=-4.648 (norm +0.930) q='What is the capital of the Fed'
+[base] n_faithful=1
+[T3] INSUFFICIENT n_faithful=1 mean_RA=0.064161 mean_RC_norm=0.929643 (effect_delta=0.865482)
+     only 1 faithful caving item(s) < MIN_FAITHFUL(8); under-powered to compare readouts (numbers still reported).
+[done] wrote out/verify_graph_poc_vfam_ext2_2bbase.json

@@ -1,0 +1,70 @@
+[load] google/gemma-2-9b on cuda
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:   9%|▉         | 44/464 [00:00<00:00, 438.21it/s]Loading weights:  21%|██▏       | 99/464 [00:00<00:00, 488.50it/s]Loading weights:  32%|███▏      | 148/464 [00:00<00:00, 470.31it/s]Loading weights:  42%|████▏     | 197/464 [00:00<00:00, 475.04it/s]Loading weights:  53%|█████▎    | 245/464 [00:00<00:00, 473.15it/s]Loading weights:  63%|██████▎   | 293/464 [00:00<00:00, 469.48it/s]Loading weights:  73%|███████▎  | 340/464 [00:00<00:00, 463.31it/s]Loading weights:  84%|████████▎ | 388/464 [00:00<00:00, 462.22it/s]Loading weights:  94%|█████████▍| 436/464 [00:00<00:00, 467.55it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 473.00it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[load] done
+  7x8   C=56    W=63    shift=+5.09 | nec_W= +0.87 nec_ctrl= +0.08 | greedy assert=  '56' koW=  '56' 
+  6x7   C=42    W=48    shift=+5.37 | nec_W= +0.82 nec_ctrl= +0.10 | greedy assert=  '42' koW=  '42' 
+  9x9   C=81    W=90    shift=+3.84 | nec_W= +0.70 nec_ctrl= +0.05 | greedy assert=  '81' koW=  '81' 
+  8x7   C=56    W=64    shift=+4.44 | nec_W= +0.58 nec_ctrl= +0.04 | greedy assert=  '56' koW=  '56' 
+  9x6   C=54    W=63    shift=+5.73 | nec_W= +0.47 nec_ctrl= +0.05 | greedy assert=  '54' koW=  '54' 
+  12x11  C=132   W=144   shift=+5.67 | nec_W= +0.49 nec_ctrl= +0.32 | greedy assert= '132' koW= '132' 
+  13x14  C=182   W=195   shift=+6.82 | nec_W= +0.58 nec_ctrl= +0.26 | greedy assert= '182' koW= '182' 
+  17x18  C=306   W=323   shift=+7.76 | nec_W= +0.81 nec_ctrl= +0.17 | greedy assert= '306' koW= '306' 
+  23x7   C=161   W=184   shift=+7.66 | nec_W= +0.91 nec_ctrl= +0.18 | greedy assert= '161' koW= '161' 
+  14x16  C=224   W=238   shift=+7.32 | nec_W= +0.81 nec_ctrl= +0.22 | greedy assert= '224' koW= '224' 
+  19x21  C=399   W=418   shift=+4.37 | nec_W= +0.54 nec_ctrl= +0.33 | greedy assert= '399' koW= '399' 
+  24x26  C=624   W=648   shift=+5.47 | nec_W= +0.85 nec_ctrl= +0.19 | greedy assert= '624' koW= '624' 
+  23x47  C=1081  W=1104  shift=+8.25 | nec_W= +0.94 nec_ctrl= -0.08 | greedy assert='1081' koW='1081' 
+  31x29  C=899   W=930   shift=+3.66 | nec_W= +1.61 nec_ctrl= +0.77 | greedy assert= '909' koW= '909' 
+  38x29  C=1102  W=1140  shift=+11.14 | nec_W= +0.82 nec_ctrl= +0.15 | greedy assert='1140' koW='1102' FLIP REVERT
+  47x53  C=2491  W=2538  shift=+10.69 | nec_W= +0.82 nec_ctrl= -0.14 | greedy assert='2538' koW='2491' FLIP REVERT
+  67x43  C=2881  W=2948  shift=+12.33 | nec_W= +0.83 nec_ctrl= -0.02 | greedy assert='2881' koW='2881' 
+  49x51  C=2499  W=2548  shift=+7.49 | nec_W= +0.79 nec_ctrl= -0.16 | greedy assert='2499' koW='2499' 
+  84x37  C=3108  W=3192  shift=+7.78 | nec_W= +0.97 nec_ctrl= -0.18 | greedy assert='3192' koW='3108' FLIP REVERT
+  56x78  C=4368  W=4424  shift=+10.97 | nec_W= +0.70 nec_ctrl= -0.12 | greedy assert='4368' koW='4368' 
+  73x68  C=4964  W=5037  shift=+8.33 | nec_W= +1.10 nec_ctrl= -0.11 | greedy assert='5037' koW='4964' FLIP REVERT
+  18x17  C=306   W=324   shift=+5.36 | nec_W= +0.67 nec_ctrl= +0.24 | greedy assert= '306' koW= '306' 
+  27x33  C=891   W=918   shift=+7.78 | nec_W= +0.86 nec_ctrl= +0.18 | greedy assert= '891' koW= '891' 
+  34x29  C=986   W=1020  shift=+9.51 | nec_W= +0.76 nec_ctrl= -0.03 | greedy assert= '986' koW= '986' 
+  41x38  C=1558  W=1599  shift=+8.24 | nec_W= +0.93 nec_ctrl= -0.12 | greedy assert='1558' koW='1558' 
+  52x48  C=2496  W=2548  shift=+7.18 | nec_W= +0.83 nec_ctrl= -0.18 | greedy assert='2496' koW='2496' 
+  63x57  C=3591  W=3654  shift=+5.04 | nec_W= +1.49 nec_ctrl= -0.61 | greedy assert='3591' koW='3591' 
+  72x68  C=4896  W=4968  shift=+7.73 | nec_W= +0.94 nec_ctrl= -0.11 | greedy assert='4968' koW='4896' FLIP REVERT
+  29x31  C=899   W=928   shift=+7.01 | nec_W= +0.89 nec_ctrl= +0.17 | greedy assert= '929' koW= '899' 
+  46x54  C=2484  W=2530  shift=+8.82 | nec_W= +0.98 nec_ctrl= -0.13 | greedy assert='2484' koW='2484' 
+  58x62  C=3596  W=3654  shift=+12.08 | nec_W= +0.80 nec_ctrl= -0.13 | greedy assert='3654' koW='3616' FLIP
+  77x83  C=6391  W=6468  shift=+10.64 | nec_W= +0.86 nec_ctrl= -0.22 | greedy assert='6461' koW='6391' 
+  88x17  C=1496  W=1584  shift=+6.11 | nec_W= +1.10 nec_ctrl= -0.10 | greedy assert='1584' koW='1496' FLIP REVERT
+  96x23  C=2208  W=2304  shift=+8.76 | nec_W= +0.69 nec_ctrl= -0.05 | greedy assert='2208' koW='2208' 
+  39x44  C=1716  W=1755  shift=+9.50 | nec_W= +0.79 nec_ctrl= -0.05 | greedy assert='1716' koW='1716' 
+  64x71  C=4544  W=4608  shift=+6.50 | nec_W= +0.98 nec_ctrl= -0.31 | greedy assert='4544' koW='4544' 
+  11x12  C=132   W=143   shift=+7.47 | nec_W= +0.55 nec_ctrl= +0.20 | greedy assert= '132' koW= '132' 
+  15x16  C=240   W=255   shift=+7.17 | nec_W= +0.71 nec_ctrl= +0.24 | greedy assert= '240' koW= '240' 
+  16x14  C=224   W=240   shift=+5.08 | nec_W= +0.73 nec_ctrl= +0.25 | greedy assert= '224' koW= '224' 
+  21x19  C=399   W=420   shift=+4.56 | nec_W= +1.01 nec_ctrl= +0.50 | greedy assert= '420' koW= '409' FLIP
+  22x18  C=396   W=418   shift=+6.02 | nec_W= +0.92 nec_ctrl= +0.13 | greedy assert= '396' koW= '396' 
+  26x24  C=624   W=650   shift=+5.81 | nec_W= +0.76 nec_ctrl= +0.13 | greedy assert= '624' koW= '624' 
+  28x33  C=924   W=952   shift=+5.78 | nec_W= +0.76 nec_ctrl= +0.09 | greedy assert= '924' koW= '924' 
+  33x37  C=1221  W=1254  shift=+8.64 | nec_W= +0.83 nec_ctrl= -0.12 | greedy assert='1221' koW='1221' 
+  36x42  C=1512  W=1548  shift=+7.04 | nec_W= +0.92 nec_ctrl= -0.10 | greedy assert='1512' koW='1512' 
+  43x39  C=1677  W=1720  shift=+8.93 | nec_W= +0.87 nec_ctrl= +0.02 | greedy assert='1677' koW='1677' 
+  44x47  C=2068  W=2112  shift=+8.67 | nec_W= +0.87 nec_ctrl= +0.09 | greedy assert='2088' koW='2068' 
+  48x56  C=2688  W=2736  shift=+6.57 | nec_W= +0.57 nec_ctrl= -0.39 | greedy assert='2736' koW='2688' FLIP REVERT
+  53x58  C=3074  W=3127  shift=+10.97 | nec_W= +0.89 nec_ctrl= -0.06 | greedy assert='3084' koW='3074' 
+  57x49  C=2793  W=2850  shift=+10.62 | nec_W= +0.83 nec_ctrl= -0.01 | greedy assert='2850' koW='2793' FLIP REVERT
+  59x61  C=3599  W=3658  shift=+11.71 | nec_W= +0.82 nec_ctrl= -0.02 | greedy assert='3659' koW='3599' 
+  62x54  C=3348  W=3410  shift=+7.70 | nec_W= +0.98 nec_ctrl= -0.15 | greedy assert='3348' koW='3348' 
+  64x38  C=2432  W=2496  shift=+6.93 | nec_W= +0.95 nec_ctrl= -0.34 | greedy assert='2432' koW='2432' 
+  68x53  C=3604  W=3672  shift=+9.96 | nec_W= +0.89 nec_ctrl= -0.19 | greedy assert='3624' koW='3624' 
+  71x69  C=4899  W=4970  shift=+9.16 | nec_W= +0.82 nec_ctrl= -0.08 | greedy assert='4970' koW='4839' FLIP
+  74x76  C=5624  W=5698  shift=+9.67 | nec_W= +0.99 nec_ctrl= -0.29 | greedy assert='5698' koW='5624' FLIP REVERT
+  79x83  C=6557  W=6636  shift=+11.79 | nec_W= +0.88 nec_ctrl= -0.09 | greedy assert='6636' koW='6537' FLIP
+  82x19  C=1558  W=1640  shift=+8.92 | nec_W= +0.92 nec_ctrl= -0.01 | greedy assert='1558' koW='1558' 
+  91x33  C=3003  W=3094  shift=+12.05 | nec_W= +0.94 nec_ctrl= -0.07 | greedy assert='3094' koW='3003' FLIP REVERT
+  98x22  C=2156  W=2254  shift=+10.30 | nec_W= +0.86 nec_ctrl= -0.08 | greedy assert='2156' koW='2156' 
+
+[agg] span_ok 60/60 | items with |shift|>1.0: 60 | greedy flips C->W: 14
+[agg] mean nec_W   = +0.848  (median +0.841)
+[agg] mean nec_ctrl= +0.005  (median -0.026)
+[agg] greedy reverted to C by W-knockout: 10/14 (71%)
+[done] wrote out/numeric_mechanism_gemma_2_9b.json

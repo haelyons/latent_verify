@@ -1,0 +1,2 @@
+usage: job_forcedchoice.py [-h] --name NAME --tag TAG
+job_forcedchoice.py: error: the following arguments are required: --name, --tag

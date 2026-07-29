@@ -1,0 +1,44 @@
+[load] google/gemma-2-9b on cuda
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  10%|▉         | 45/464 [00:00<00:00, 437.32it/s]Loading weights:  21%|██        | 98/464 [00:00<00:00, 485.39it/s]Loading weights:  32%|███▏      | 147/464 [00:00<00:00, 438.26it/s]Loading weights:  44%|████▍     | 203/464 [00:00<00:00, 464.05it/s]Loading weights:  54%|█████▍    | 250/464 [00:00<00:00, 461.90it/s]Loading weights:  65%|██████▍   | 301/464 [00:00<00:00, 451.57it/s]Loading weights:  77%|███████▋  | 357/464 [00:00<00:00, 476.38it/s]Loading weights:  87%|████████▋ | 405/464 [00:00<00:00, 474.32it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 479.07it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[load] done (n_layers=42, n_heads=16)
+[Australia   ] flip=False chose Sydney    eff=+2.25 | allheads_nec=+0.78 L18.H5_nec=-0.06 revert=True | attn->opts=0.85@L23.H15 top=L18.H1 (+0.06)
+[Texas       ] flip=False chose Houston   eff=+3.63 | allheads_nec=+0.93 L18.H5_nec=-0.03 revert=True | attn->opts=0.82@L23.H15 top=L0.H2 (+0.03)
+[Canada      ] flip=False chose Toronto   eff=+2.38 | allheads_nec=+0.84 L18.H5_nec=+0.00 revert=True | attn->opts=0.81@L23.H15 top=L18.H1 (+0.11)
+[Switzerland ] flip=False chose Zurich    eff=+2.38 | allheads_nec=+0.89 L18.H5_nec=+0.00 revert=True | attn->opts=0.77@L21.H4 top=L0.H2 (+0.05)
+[Florida     ] flip=False chose Miami     eff=+4.25 | allheads_nec=+0.88 L18.H5_nec=+0.03 revert=True | attn->opts=0.81@L21.H4 top=L0.H2 (+0.03)
+
+[summary] {
+  "model": "google/gemma-2-9b",
+  "n_flipped": 0,
+  "n_pairs": 5,
+  "mean_necessity_allheads": 0.8656014783320576,
+  "mean_necessity_L18H5": -0.012125304267589048,
+  "modal_reader_head": [
+    23,
+    15
+  ],
+  "top_heads": [
+    [
+      18,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      18,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      2
+    ]
+  ]
+}
+[done] wrote out/forcedchoice_9bbase.json

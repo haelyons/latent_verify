@@ -1,0 +1,8 @@
+[selftest] AtP == exact activation-patch Delta-M for a locally-linear metric (all heads)
+[selftest] planted reader ranks top (rank 0); control rank 1
+[selftest] sign_agreement OK
+[selftest] decision CONCORDANT: CONCORDANT: AtP and activation-patch rep...
+[selftest] decision DISCORDANT: DISCORDANT: the on-distribution instrume...
+[selftest] bootstrap rank CI reader={'rank_lo': 0, 'rank_med': 0, 'rank_hi': 0, 'frac_top5': 1.0} diffuse={'rank_lo': 1, 'rank_med': 4, 'rank_hi': 6, 'frac_top5': 0.52}
+[selftest] null_floor above=True below=False
+[selftest] PASS

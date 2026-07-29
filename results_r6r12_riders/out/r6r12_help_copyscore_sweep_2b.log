@@ -1,0 +1,10 @@
+usage: job_copyscore.py [-h] [--name NAME] [--tag TAG]
+                        [--reader READER [READER ...]] [--sweep]
+
+options:
+  -h, --help            show this help message and exit
+  --name NAME
+  --tag TAG
+  --reader READER [READER ...]
+                        'auto' or 'L H' (default 18 5 = 2b)
+  --sweep               copy-score ALL heads, find any OV-copy reader

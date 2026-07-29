@@ -1,0 +1,8 @@
+usage: job_distractor_task.py [-h] [--model {base,it}] [--name NAME]
+                              [--tag TAG]
+
+options:
+  -h, --help         show this help message and exit
+  --model {base,it}
+  --name NAME
+  --tag TAG

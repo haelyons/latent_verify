@@ -1,0 +1,18 @@
+[load] google/gemma-2-9b on cuda
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  11%|█         | 49/464 [00:00<00:00, 474.62it/s]Loading weights:  22%|██▏       | 103/464 [00:00<00:00, 495.38it/s]Loading weights:  34%|███▍      | 158/464 [00:00<00:00, 479.55it/s]Loading weights:  46%|████▌     | 213/464 [00:00<00:00, 471.38it/s]Loading weights:  58%|█████▊    | 268/464 [00:00<00:00, 473.94it/s]Loading weights:  71%|███████   | 329/464 [00:00<00:00, 509.96it/s]Loading weights:  82%|████████▏ | 381/464 [00:00<00:00, 494.64it/s]Loading weights:  93%|█████████▎| 431/464 [00:00<00:00, 492.39it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 490.99it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[load] done (L=42 H=16)
+Traceback (most recent call last):
+  File "/home/ubuntu/latent_verify/instr_triangulation.py", line 486, in <module>
+    run(a.topk, not a.no_knockout_sweep, a.name, a.pairs, a.seed, a.n_boot, a.n_null)
+  File "/home/ubuntu/latent_verify/instr_triangulation.py", line 283, in run
+    M_sal, z_sal, grad = atp_and_zsal(sal, cid, aid)
+  File "/home/ubuntu/latent_verify/instr_triangulation.py", line 245, in atp_and_zsal
+    M.backward()
+  File "/home/ubuntu/latent_verify/.venv/lib/python3.10/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/home/ubuntu/latent_verify/.venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/home/ubuntu/latent_verify/.venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.71 GiB. GPU 0 has a total capacity of 39.49 GiB of which 903.56 MiB is free. Including non-PyTorch memory, this process has 38.60 GiB memory in use. Of the allocated memory 37.97 GiB is allocated by PyTorch, and 132.75 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

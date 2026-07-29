@@ -1,0 +1,11 @@
+[T_PRE] VALID n=82 polar_frac=0.0 collision_frac=0.0 n_wh=82 coverage={'yes': 0, 'no': 0, 'entity': 82}
+        collision_frac 0.000 <= COLLISION_THR(0.5) AND n_wh 82 >= MIN_WH(8): the family has enough content-answer items to support a content-vs-format readout swap.
+[load] google/gemma-2-9b on cuda (chat=False)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:37<04:25, 37.88s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:44<01:58, 19.73s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:46<00:56, 11.39s/it]Fetching 8 files:  50%|█████     | 4/8 [00:47<00:29,  7.41s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:47<00:14,  4.84s/it]Fetching 8 files:  75%|███████▌  | 6/8 [00:49<00:07,  3.56s/it]Fetching 8 files:  88%|████████▊ | 7/8 [00:49<00:02,  2.47s/it]Fetching 8 files: 100%|██████████| 8/8 [00:49<00:00,  1.72s/it]Fetching 8 files: 100%|██████████| 8/8 [00:49<00:00,  6.17s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 55/464 [00:00<00:00, 516.74it/s]Loading weights:  23%|██▎       | 107/464 [00:00<00:00, 501.21it/s]Loading weights:  34%|███▍      | 158/464 [00:00<00:00, 475.04it/s]Loading weights:  44%|████▍     | 206/464 [00:00<00:00, 471.22it/s]Loading weights:  56%|█████▌    | 258/464 [00:00<00:00, 485.38it/s]Loading weights:  66%|██████▋   | 308/464 [00:00<00:00, 480.53it/s]Loading weights:  77%|███████▋  | 357/464 [00:00<00:00, 455.49it/s]Loading weights:  88%|████████▊ | 408/464 [00:00<00:00, 471.04it/s]Loading weights:  99%|█████████▉| 461/464 [00:00<00:00, 487.62it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 483.85it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[base] selected 13/82 single-competitor near-margin items
+[base] n_faithful=0
+[T3] INSUFFICIENT n_faithful=0 mean_RA=None mean_RC_norm=None (effect_delta=0.0)
+     only 0 faithful caving item(s) < MIN_FAITHFUL(8); under-powered to compare readouts (numbers still reported).
+[done] wrote out/verify_graph_poc_vfam_ext2_9bbase.json

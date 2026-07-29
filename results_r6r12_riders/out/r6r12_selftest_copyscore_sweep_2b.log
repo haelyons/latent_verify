@@ -1,0 +1,3 @@
+usage: job_copyscore.py [-h] [--name NAME] [--tag TAG]
+                        [--reader READER [READER ...]] [--sweep]
+job_copyscore.py: error: unrecognized arguments: --selftest

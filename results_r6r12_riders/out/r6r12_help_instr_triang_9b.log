@@ -1,0 +1,18 @@
+usage: instr_triangulation.py [-h] [--selftest] [--topk TOPK]
+                              [--no-knockout-sweep]
+                              [--pairs {curated,heldout}] [--seed SEED]
+                              [--n-boot N_BOOT] [--n-null N_NULL]
+                              [--name NAME]
+
+options:
+  -h, --help            show this help message and exit
+  --selftest            model-free: AtP==patch, ranking, decision
+  --topk TOPK           #AtP-top heads to confirm with activation-patch
+  --no-knockout-sweep   skip the heavy incumbent full per-head sweep
+  --pairs {curated,heldout}
+                        curated = the sec-3.x 5 pairs; heldout = disjoint
+                        pairs (single-case-overfit test)
+  --seed SEED           RNG for the bootstrap rank-CI and random-label null
+  --n-boot N_BOOT
+  --n-null N_NULL
+  --name NAME

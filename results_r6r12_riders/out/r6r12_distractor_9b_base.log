@@ -1,0 +1,16 @@
+[load] google/gemma-2-9b on cuda
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  11%|█▏        | 53/464 [00:00<00:00, 523.15it/s]Loading weights:  23%|██▎       | 106/464 [00:00<00:00, 447.91it/s]Loading weights:  34%|███▍      | 157/464 [00:00<00:00, 458.84it/s]Loading weights:  44%|████▍     | 204/464 [00:00<00:00, 442.75it/s]Loading weights:  55%|█████▍    | 253/464 [00:00<00:00, 458.30it/s]Loading weights:  65%|██████▌   | 302/464 [00:00<00:00, 462.40it/s]Loading weights:  75%|███████▌  | 349/464 [00:00<00:00, 460.23it/s]Loading weights:  85%|████████▌ | 396/464 [00:00<00:00, 457.57it/s]Loading weights:  95%|█████████▌| 443/464 [00:00<00:00, 454.78it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 464.33it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[9bbase Australia    distractor] entity=Sydney      boost=+1.32 reader->ent=0.04 maxhead L20.H2=0.47
+[9bbase Australia    taskrel   ] entity=Canberra    boost=+0.06 reader->ent=0.21 maxhead L28.H12=0.87
+[9bbase Texas        distractor] entity=Houston     boost=+0.66 reader->ent=0.02 maxhead L21.H10=0.41
+[9bbase Texas        taskrel   ] entity=Austin      boost=+0.02 reader->ent=0.12 maxhead L30.H9=0.70
+[9bbase Canada       distractor] entity=Toronto     boost=+0.62 reader->ent=0.03 maxhead L21.H10=0.37
+[9bbase Canada       taskrel   ] entity=Ottawa      boost=+0.02 reader->ent=0.22 maxhead L28.H12=0.88
+[9bbase Switzerland  distractor] entity=Zurich      boost=-1.23 reader->ent=0.05 maxhead L20.H2=0.46
+[9bbase Switzerland  taskrel   ] entity=Bern        boost=+0.31 reader->ent=0.15 maxhead L28.H12=0.86
+[9bbase Florida      distractor] entity=Miami       boost=+0.27 reader->ent=0.03 maxhead L21.H10=0.40
+[9bbase Florida      taskrel   ] entity=Tallahassee boost=+0.04 reader->ent=0.18 maxhead L28.H12=0.84
+[done] google/gemma-2-9b
+  distractor: {'mean_boost': 0.329, 'mean_reader_attn': 0.032, 'mean_max_head_attn': 0.421}
+  taskrel:    {'mean_boost': 0.09, 'mean_reader_attn': 0.177, 'mean_max_head_attn': 0.827}

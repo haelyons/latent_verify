@@ -1,0 +1,69 @@
+[load] google/gemma-2-9b on cuda
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:20<02:20, 20.00s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:25<01:09, 11.58s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:26<00:32,  6.44s/it]Fetching 8 files:  50%|█████     | 4/8 [00:27<00:18,  4.61s/it]Fetching 8 files:  75%|███████▌  | 6/8 [00:28<00:04,  2.23s/it]Fetching 8 files: 100%|██████████| 8/8 [00:28<00:00,  1.30s/it]Fetching 8 files: 100%|██████████| 8/8 [00:28<00:00,  3.52s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  14%|█▍        | 65/464 [00:00<00:00, 625.27it/s]Loading weights:  28%|██▊       | 128/464 [00:00<00:00, 477.48it/s]Loading weights:  39%|███▉      | 181/464 [00:00<00:00, 478.54it/s]Loading weights:  51%|█████     | 235/464 [00:00<00:00, 470.66it/s]Loading weights:  62%|██████▎   | 290/464 [00:00<00:00, 492.96it/s]Loading weights:  73%|███████▎  | 340/464 [00:00<00:00, 488.35it/s]Loading weights:  84%|████████▍ | 390/464 [00:00<00:00, 456.42it/s]Loading weights:  96%|█████████▌| 445/464 [00:00<00:00, 467.23it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 489.71it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+  [select-copy] scanned layer 0
+  [select-copy] scanned layer 1
+  [select-copy] scanned layer 2
+  [select-copy] scanned layer 3
+  [select-copy] scanned layer 4
+  [select-copy] scanned layer 5
+  [select-copy] scanned layer 6
+  [select-copy] scanned layer 7
+  [select-copy] scanned layer 8
+  [select-copy] scanned layer 9
+  [select-copy] scanned layer 10
+  [select-copy] scanned layer 11
+  [select-copy] scanned layer 12
+  [select-copy] scanned layer 13
+  [select-copy] scanned layer 14
+  [select-copy] scanned layer 15
+  [select-copy] scanned layer 16
+  [select-copy] scanned layer 17
+  [select-copy] scanned layer 18
+  [select-copy] scanned layer 19
+  [select-copy] scanned layer 20
+  [select-copy] scanned layer 21
+  [select-copy] scanned layer 22
+  [select-copy] scanned layer 23
+  [select-copy] scanned layer 24
+  [select-copy] scanned layer 25
+  [select-copy] scanned layer 26
+  [select-copy] scanned layer 27
+  [select-copy] scanned layer 28
+  [select-copy] scanned layer 29
+  [select-copy] scanned layer 30
+  [select-copy] scanned layer 31
+  [select-copy] scanned layer 32
+  [select-copy] scanned layer 33
+  [select-copy] scanned layer 34
+  [select-copy] scanned layer 35
+  [select-copy] scanned layer 36
+  [select-copy] scanned layer 37
+  [select-copy] scanned layer 38
+  [select-copy] scanned layer 39
+  [select-copy] scanned layer 40
+  [select-copy] scanned layer 41
+[basket] 10 OV-copy heads (frac_rank0>=0.1, excl [(18, 5)]): [(8, 8), (10, 8), (14, 6), (24, 5), (25, 1), (25, 7), (25, 10), (29, 6), (40, 3), (40, 10)]
+[load] google/gemma-2-9b-it on cuda
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:09<00:27,  9.16s/it]Fetching 4 files:  50%|█████     | 2/4 [00:11<00:10,  5.22s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:11<00:02,  2.93s/it]Fetching 4 files: 100%|██████████| 4/4 [00:12<00:00,  2.09s/it]Fetching 4 files: 100%|██████████| 4/4 [00:12<00:00,  3.16s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 4737.10it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+  [ 8.8] induction 0.018->0.023 (rel +0.31) copy_rank 9.8->9.7 W_OV_fro rel +0.03 -> other
+  [10.8] induction 0.001->0.002 (rel +0.61) copy_rank 18.2->14.6 W_OV_fro rel +0.03 -> other
+  [14.6] induction 0.009->0.020 (rel +1.25) copy_rank 2.6->8.5 W_OV_fro rel +0.05 -> other
+  [24.5] induction 0.097->0.182 (rel +0.87) copy_rank 23.1->21.8 W_OV_fro rel +0.03 -> other
+  [25.1] induction 0.138->0.153 (rel +0.11) copy_rank 25.7->29.1 W_OV_fro rel +0.04 -> other
+  [25.7] induction 0.015->0.026 (rel +0.70) copy_rank 29.2->33.7 W_OV_fro rel +0.03 -> other
+  [25.10] induction 0.072->0.078 (rel +0.08) copy_rank 60.4->55.8 W_OV_fro rel +0.04 -> other
+  [29.6] induction 0.106->0.106 (rel +0.00) copy_rank 17.4->22.1 W_OV_fro rel +0.05 -> other
+  [40.3] induction 0.051->0.047 (rel -0.07) copy_rank 35.5->45.0 W_OV_fro rel +0.03 -> other
+  [40.10] induction 0.010->0.013 (rel +0.30) copy_rank 5.6->6.2 W_OV_fro rel +0.03 -> other
+
+[decision] {
+  "n": 10,
+  "n_gate_dont_delete": 0,
+  "frac_gate_dont_delete": 0.0,
+  "verdict": "SPECIFIC/MIXED: not a majority pattern (the L18.H5 signature is head-specific or heterogeneous)"
+}
+[done] wrote out/gate_dont_delete_2b_copy.json

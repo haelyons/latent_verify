@@ -1,0 +1,16 @@
+[load] google/gemma-2-2b on cuda
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:07<00:15,  7.76s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:14<00:07,  7.13s/it]Fetching 3 files: 100%|██████████| 3/3 [00:15<00:00,  4.43s/it]Fetching 3 files: 100%|██████████| 3/3 [00:15<00:00,  5.22s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:  43%|████▎     | 125/288 [00:00<00:00, 1230.53it/s]Loading weights:  86%|████████▋ | 249/288 [00:00<00:00, 1136.78it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 1175.16it/s]
+Loaded pretrained model google/gemma-2-2b into HookedTransformer
+[copyscore L18.H5] ranks=[0, 0, 0, 0, 0] median=0 top5=1.0
+[copyscore L0.H2] ranks=[42077, 25706, 66041, 161698, 60129] median=60129 top5=0.0
+[copyscore L7.H1] ranks=[8557, 185, 611, 10363, 748] median=748 top5=0.0
+[copyscore L10.H4] ranks=[183148, 43069, 145597, 175389, 123952] median=145597 top5=0.0
+[sweep] copy-score over all 208 heads ...
+[sweep] best OV-copy head L4.H6 median_rank=0 top5=1.0; #heads median<5=35; reader L18.H5 sweep-rank=11
+[abl Australia   ] eff=+10.13 allheads=1.0617283888114624 readerAttnKO=0.19753081593966298 readerOutAbl=0.22222222091402702
+[abl Texas       ] eff=+7.00 allheads=1.142857123394402 readerAttnKO=0.37499999361378816 readerOutAbl=0.32142856595467556
+[abl Canada      ] eff=+5.88 allheads=1.1063829787234043 readerAttnKO=0.27659576497179394 readerOutAbl=0.10638297872340426
+[abl Switzerland ] eff=+6.88 allheads=1.018181818181818 readerAttnKO=0.14545454545454545 readerOutAbl=0.10909090909090909
+[abl Florida     ] eff=+3.38 allheads=1.2592592592592593 readerAttnKO=0.2592592415986238 readerOutAbl=-0.07407407407407407
+[done] reader L18.H5 copy-score median_rank=0; ablation {'mean_nec_allheads_attn_ko': 1.118, 'mean_nec_reader_attn_ko': 0.251, 'mean_nec_reader_output_ablation': 0.137}

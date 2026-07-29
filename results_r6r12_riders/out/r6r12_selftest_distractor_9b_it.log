@@ -1,0 +1,3 @@
+usage: job_distractor_task.py [-h] [--model {base,it}] [--name NAME]
+                              [--tag TAG]
+job_distractor_task.py: error: unrecognized arguments: --selftest

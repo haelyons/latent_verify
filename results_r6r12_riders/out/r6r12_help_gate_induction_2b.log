@@ -1,0 +1,17 @@
+usage: gate_dont_delete.py [-h] [--selftest] [--select {copy,induction}]
+                           [--n-basket N_BASKET] [--seq-len SEQ_LEN]
+                           [--seed SEED] [--name-base NAME_BASE]
+                           [--name-it NAME_IT]
+
+options:
+  -h, --help            show this help message and exit
+  --selftest            model-free measurement + decision check
+  --select {copy,induction}
+                        basket selection: 'copy' = base OV-copy heads (the
+                        clean motif test); 'induction' = base induction-
+                        pattern heads (original, triage-confounded)
+  --n-basket N_BASKET
+  --seq-len SEQ_LEN     repeated-token probe half-length
+  --seed SEED
+  --name-base NAME_BASE
+  --name-it NAME_IT

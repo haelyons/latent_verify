@@ -1,0 +1,5 @@
+[selftest] induction_score: planted=1.000 uniform=0.091
+[selftest] copy_metrics: identity={'mean_copy_rank': 0, 'frac_rank0': 1.0, 'mean_copy_pref': 0.344981} random_rank=35.4
+[selftest] classify OK (gate_dont_delete / deleted_or_ov_changed / untouched)
+[selftest] verdict majority=0.6 -> MOTIF; mixed=0.3 -> SPECIFIC
+[selftest] PASS
