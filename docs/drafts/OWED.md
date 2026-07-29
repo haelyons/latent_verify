@@ -44,6 +44,20 @@ recorded. Newest first within each class. Each row names what would close it.
 | C6 | **A registration to test the elicited slot specifically.** Post-hoc, `elicit_gen` reads 1.000 inter-reader and 0.919 vs rule — but post-hoc stratification cannot license a usability claim | a short registration: elicited slot only, its own sample, its own pre-fixed bar. This is the cheapest route to F1's 22 claims and it needs no GPU |
 | C7 | **27b-`it` needs the two-decode disclosure too** — it is NOT identical between draws (`elicit_gen` 4/164, `counter_gen` 82/164, `faithful_counter` 11/164) despite matching aggregates | done in `REGISTRATION_offline_gapclose.md` §5.1 and `REDERIVE_20260728.md` §1; the drafts' 27b-`it` numbers still need the sweep |
 
+## G. B1's listen numbers are WITHDRAWN (2026-07-29)
+
+The clean same-box test fired and went against the change. `out/cleangate_same_box_result.json`:
+`family_topk_shift_arms` is **ALGEBRAICALLY_NEUTRAL** (25/25 pre-existing fields identical, same box) but
+`family_cave_diagnose_arms` is **NOT** — every logprob field differs on all 82 items, median non-zero
+0.009–0.13, max 0.44. The runner header had already stated the consequence before the data: any field
+differing means the 2b/9b passes were luck and **B1's listen numbers are withdrawn at every scale.**
+Applied. Six cells' listen numbers are withdrawn, including the four whose gate passed.
+
+| # | item | closes with |
+|---|---|---|
+| G1 | Find the **op-order** difference between `family_cave_diagnose` and `..._arms` — a diff of the forward-call sequence, not of the arithmetic. The topk twin is the existence proof that a neutral re-parameterisation of this shape is achievable | fix, then re-run the same-box test; on neutral, the listen numbers are restored |
+| G2 | `family_topk_shift_arms`' listen numbers at 27b **are** usable and unreported: 27b-base `median_target_rank_bare` **4.0 fold / 1.0 listen**; 27b-it **3077 fold / 25 listen**. `OTHER_RISER` in all four arm-blocks | write them up against C1's format caveat, which still applies |
+
 ## E. OPERATIONAL HAZARD found the hard way (2026-07-29)
 
 | # | item | status |

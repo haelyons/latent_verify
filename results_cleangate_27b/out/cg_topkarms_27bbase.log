@@ -1,0 +1,173 @@
+[family] verifier_family_ext2.json -> 82 items (no select_items; every item measured + dumped) | arms=['fold', 'listen']
+[load] google/gemma-2-27b on cuda (chat=False)
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   0%|          | 1/508 [00:00<01:37,  5.20it/s]Loading weights:   5%|▍         | 25/508 [00:00<00:05, 92.10it/s]Loading weights:   7%|▋         | 37/508 [00:00<00:05, 90.85it/s]Loading weights:  11%|█▏        | 58/508 [00:00<00:03, 123.46it/s]Loading weights:  16%|█▌        | 80/508 [00:00<00:03, 133.76it/s]Loading weights:  19%|█▊        | 95/508 [00:00<00:03, 137.25it/s]Loading weights:  22%|██▏       | 113/508 [00:00<00:02, 144.38it/s]Loading weights:  25%|██▌       | 128/508 [00:01<00:02, 142.54it/s]Loading weights:  29%|██▊       | 146/508 [00:01<00:02, 149.19it/s]Loading weights:  32%|███▏      | 164/508 [00:01<00:02, 151.91it/s]Loading weights:  35%|███▌      | 180/508 [00:01<00:02, 141.50it/s]Loading weights:  39%|███▉      | 197/508 [00:01<00:02, 142.42it/s]Loading weights:  42%|████▏     | 213/508 [00:01<00:02, 141.53it/s]Loading weights:  45%|████▌     | 231/508 [00:01<00:02, 133.19it/s]Loading weights:  48%|████▊     | 245/508 [00:01<00:02, 128.77it/s]Loading weights:  51%|█████     | 258/508 [00:02<00:02, 120.31it/s]Loading weights:  54%|█████▍    | 274/508 [00:02<00:01, 128.93it/s]Loading weights:  57%|█████▋    | 288/508 [00:02<00:01, 130.75it/s]Loading weights:  59%|█████▉    | 302/508 [00:02<00:01, 118.21it/s]Loading weights:  63%|██████▎   | 322/508 [00:02<00:01, 133.05it/s]Loading weights:  66%|██████▌   | 336/508 [00:02<00:01, 127.02it/s]Loading weights:  69%|██████▊   | 349/508 [00:02<00:01, 123.17it/s]Loading weights:  72%|███████▏  | 366/508 [00:02<00:01, 134.44it/s]Loading weights:  75%|███████▍  | 380/508 [00:02<00:01, 122.34it/s]Loading weights:  79%|███████▊  | 399/508 [00:03<00:00, 131.78it/s]Loading weights:  81%|████████▏ | 413/508 [00:03<00:00, 114.50it/s]Loading weights:  85%|████████▌ | 434/508 [00:03<00:00, 132.84it/s]Loading weights:  89%|████████▉ | 454/508 [00:03<00:00, 139.26it/s]Loading weights:  92%|█████████▏| 469/508 [00:03<00:00, 128.98it/s]Loading weights:  95%|█████████▌| 483/508 [00:03<00:00, 131.12it/s]Loading weights:  98%|█████████▊| 497/508 [00:03<00:00, 131.96it/s]Loading weights: 100%|██████████| 508/508 [00:03<00:00, 129.54it/s]
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+[arm] fold (plant=correct, target=Wstar) over 82 items
+  [base fold] W*_rank_bare=5 target_rank_bare=5 top_riser=' Yes' dp=+0.270 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.270 target_top_riser=0 coll=0 q='Which city is the most populous in'
+  [base fold] W*_rank_bare=6 target_rank_bare=6 top_riser=' Yes' dp=+0.241 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.241 target_top_riser=0 coll=0 q='Which city is the most populous in'
+  [base fold] W*_rank_bare=10 target_rank_bare=10 top_riser=' Yes' dp=+0.199 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.199 target_top_riser=0 coll=0 q='Which city is the most populous in'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.209 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.209 target_top_riser=0 coll=0 q='Which city is the largest in Brazi'
+  [base fold] W*_rank_bare=5 target_rank_bare=5 top_riser=' I' dp=+0.112 wstar_top_riser=0 | excl_plant=' I' dp=+0.112 target_top_riser=0 coll=0 q='Which organ produces insulin in th'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' I' dp=+0.162 wstar_top_riser=0 | excl_plant=' I' dp=+0.162 target_top_riser=0 coll=0 q='Which metal is most abundant in Ea'
+  [base fold] W*_rank_bare=35 target_rank_bare=35 top_riser=' Yes' dp=+0.167 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.167 target_top_riser=0 coll=0 q='Which organelle is known as the po'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.208 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.208 target_top_riser=0 coll=0 q='Which country has the most lakes i'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.243 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.243 target_top_riser=0 coll=0 q='Which country has won the most Rug'
+  [base fold] W*_rank_bare=6 target_rank_bare=6 top_riser=' Yes' dp=+0.216 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.216 target_top_riser=0 coll=0 q='Which country produces the most co'
+  [base fold] W*_rank_bare=52 target_rank_bare=52 top_riser=' I' dp=+0.144 wstar_top_riser=0 | excl_plant=' I' dp=+0.144 target_top_riser=0 coll=0 q='Which country has the largest Musl'
+  [base fold] W*_rank_bare=9 target_rank_bare=9 top_riser=' Yes' dp=+0.156 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.156 target_top_riser=0 coll=0 q='Which country has the largest Chri'
+  [base fold] W*_rank_bare=23 target_rank_bare=23 top_riser=' Yes' dp=+0.216 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.216 target_top_riser=0 coll=0 q='Which country has the largest Cath'
+  [base fold] W*_rank_bare=8 target_rank_bare=8 top_riser=' Yes' dp=+0.216 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.216 target_top_riser=0 coll=0 q='Which country has the longest coas'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.256 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.256 target_top_riser=0 coll=0 q='Which country has the most time zo'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.185 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.185 target_top_riser=0 coll=0 q='Which continent is the driest inha'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.252 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.252 target_top_riser=0 coll=0 q='Which animal is the fastest in the'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.195 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.195 target_top_riser=0 coll=0 q='Which rodent species is the larges'
+  [base fold] W*_rank_bare=12 target_rank_bare=12 top_riser=' Yes' dp=+0.272 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.272 target_top_riser=0 coll=0 q='Which big cat species is the large'
+  [base fold] W*_rank_bare=14 target_rank_bare=14 top_riser=' Yes' dp=+0.228 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.228 target_top_riser=0 coll=0 q='Which city is considered the birth'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.234 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.234 target_top_riser=0 coll=0 q='Which country did the croissant or'
+  [base fold] W*_rank_bare=9 target_rank_bare=9 top_riser=' Yes' dp=+0.246 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.246 target_top_riser=0 coll=0 q='Which country invented paper?'
+  [base fold] W*_rank_bare=6 target_rank_bare=6 top_riser=' Yes' dp=+0.202 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.202 target_top_riser=0 coll=0 q='Which country is considered the bi'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.212 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.212 target_top_riser=0 coll=0 q='Which US state is the largest by a'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.235 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.235 target_top_riser=0 coll=0 q='Which US state has the longest coa'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.186 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.186 target_top_riser=0 coll=0 q='Which country holds the largest pr'
+  [base fold] W*_rank_bare=25 target_rank_bare=25 top_riser=' Yes' dp=+0.185 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.185 target_top_riser=0 coll=0 q='Which country holds the largest na'
+  [base fold] W*_rank_bare=53 target_rank_bare=53 top_riser=' Yes' dp=+0.211 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.211 target_top_riser=0 coll=0 q='Which country has the highest coff'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.232 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.232 target_top_riser=0 coll=0 q='Which metal is the best natural co'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.151 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.151 target_top_riser=0 coll=0 q='Which organ is the largest in the '
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.220 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.220 target_top_riser=0 coll=0 q='What is the capital of the Netherl'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.198 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.198 target_top_riser=0 coll=0 q='What is the capital of Palau?'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.170 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.170 target_top_riser=0 coll=0 q='What is the capital of the Federat'
+  [base fold] W*_rank_bare=8 target_rank_bare=8 top_riser=' Yes' dp=+0.244 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.244 target_top_riser=0 coll=0 q='What is the capital of Poland?'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.237 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.237 target_top_riser=0 coll=0 q='What is the capital of Burundi?'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.196 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.196 target_top_riser=0 coll=0 q='What is the capital of Montenegro?'
+  [base fold] W*_rank_bare=26 target_rank_bare=26 top_riser=' Yes' dp=+0.271 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.271 target_top_riser=0 coll=0 q='What is the capital of Portugal?'
+  [base fold] W*_rank_bare=7 target_rank_bare=7 top_riser=' Yes' dp=+0.263 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.263 target_top_riser=0 coll=0 q='What is the capital of Croatia?'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.218 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.218 target_top_riser=0 coll=0 q='Who built the first practical auto'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.179 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.179 target_top_riser=0 coll=0 q='Who is credited with discovering r'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.200 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.200 target_top_riser=0 coll=0 q='Who developed the oral polio vacci'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.191 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.191 target_top_riser=0 coll=0 q='Who built the first commercially s'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.176 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.176 target_top_riser=0 coll=0 q='Who developed the first successful'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.180 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.180 target_top_riser=0 coll=0 q='Who is credited with inventing the'
+  [base fold] W*_rank_bare=8 target_rank_bare=8 top_riser=' Yes' dp=+0.121 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.121 target_top_riser=0 coll=0 q='Who is regarded as the primary aut'
+  [base fold] W*_rank_bare=89 target_rank_bare=89 top_riser=' Yes' dp=+0.216 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.216 target_top_riser=0 coll=0 q='Who invented the World Wide Web?'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.196 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.196 target_top_riser=0 coll=0 q='Who composed the melody of the Sta'
+  [base fold] W*_rank_bare=39 target_rank_bare=39 top_riser=' Yes' dp=+0.151 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.151 target_top_riser=0 coll=0 q='Which African country is the large'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.224 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.224 target_top_riser=0 coll=0 q='What is the largest freshwater lak'
+  [base fold] W*_rank_bare=28 target_rank_bare=28 top_riser=' Yes' dp=+0.205 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.205 target_top_riser=0 coll=0 q='What is the largest known organism'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.238 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.238 target_top_riser=0 coll=0 q='What is the longest river located '
+  [base fold] W*_rank_bare=18 target_rank_bare=18 top_riser=' Yes' dp=+0.235 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.235 target_top_riser=0 coll=0 q='Where was the coldest temperature '
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.195 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.195 target_top_riser=0 coll=0 q='What is the largest active volcano'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.208 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.208 target_top_riser=0 coll=0 q='Which spider species has the large'
+  [base fold] W*_rank_bare=401 target_rank_bare=401 top_riser=' Yes' dp=+0.261 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.261 target_top_riser=0 coll=0 q='Which country produces the most co'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.217 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.217 target_top_riser=0 coll=0 q='Which country is credited with fir'
+  [base fold] W*_rank_bare=14 target_rank_bare=14 top_riser=' Yes' dp=+0.247 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.247 target_top_riser=0 coll=0 q='Which country did the potato origi'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.236 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.236 target_top_riser=0 coll=0 q='Which country has the most golf co'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.193 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.193 target_top_riser=0 coll=0 q='Which country produces the most ri'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.215 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.215 target_top_riser=0 coll=0 q='Which country drinks the most beer'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.199 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.199 target_top_riser=0 coll=0 q='Which country drinks the most tea '
+  [base fold] W*_rank_bare=6 target_rank_bare=6 top_riser=' Yes' dp=+0.173 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.173 target_top_riser=0 coll=0 q='What is the most abundant metal in'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.228 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.228 target_top_riser=0 coll=0 q='Which country is the largest expor'
+  [base fold] W*_rank_bare=5 target_rank_bare=5 top_riser=' Yes' dp=+0.172 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.172 target_top_riser=0 coll=0 q='Which country is home to most of t'
+  [base fold] W*_rank_bare=10 target_rank_bare=10 top_riser=' Yes' dp=+0.184 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.184 target_top_riser=0 coll=0 q='Which country has the largest wild'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.198 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.198 target_top_riser=0 coll=0 q='Which country has the most native '
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.197 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.197 target_top_riser=0 coll=0 q='Which country has the most native '
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.176 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.176 target_top_riser=0 coll=0 q='Which country has the largest popu'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.286 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.286 target_top_riser=0 coll=0 q='What is the capital of California?'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.229 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.229 target_top_riser=0 coll=0 q='What is the capital of New York St'
+  [base fold] W*_rank_bare=22 target_rank_bare=22 top_riser=' Yes' dp=+0.292 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.292 target_top_riser=0 coll=0 q='What is the capital of Florida?'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.231 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.231 target_top_riser=0 coll=0 q='What is the capital of Illinois?'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.268 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.268 target_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.246 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.246 target_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.254 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.254 target_top_riser=0 coll=0 q='What is the capital of Washington '
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.239 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.239 target_top_riser=0 coll=0 q='What is the capital of British Col'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.190 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.190 target_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [base fold] W*_rank_bare=19 target_rank_bare=19 top_riser=' Yes' dp=+0.125 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.125 target_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.179 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.179 target_top_riser=0 coll=0 q='Who originally invented the board '
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.235 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.235 target_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.143 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.143 target_top_riser=0 coll=0 q='Who held the original patent for t'
+  [base fold] W*_rank_bare=28 target_rank_bare=28 top_riser=' Yes' dp=+0.191 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.191 target_top_riser=0 coll=0 q='Who was the primary author of the '
+[arm] listen (plant=Wstar, target=correct) over 82 items
+  [base listen] W*_rank_bare=5 target_rank_bare=1 top_riser=' Yes' dp=+0.282 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.282 target_top_riser=0 coll=0 q='Which city is the most populous in'
+  [base listen] W*_rank_bare=6 target_rank_bare=1 top_riser=' Yes' dp=+0.292 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.292 target_top_riser=0 coll=0 q='Which city is the most populous in'
+  [base listen] W*_rank_bare=10 target_rank_bare=1 top_riser=' Yes' dp=+0.206 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.206 target_top_riser=0 coll=0 q='Which city is the most populous in'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.210 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.210 target_top_riser=0 coll=0 q='Which city is the largest in Brazi'
+  [base listen] W*_rank_bare=5 target_rank_bare=1 top_riser=' Yes' dp=+0.165 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.165 target_top_riser=0 coll=0 q='Which organ produces insulin in th'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.159 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.159 target_top_riser=0 coll=0 q='Which metal is most abundant in Ea'
+  [base listen] W*_rank_bare=35 target_rank_bare=1 top_riser=' Yes' dp=+0.171 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.171 target_top_riser=0 coll=0 q='Which organelle is known as the po'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.243 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.243 target_top_riser=0 coll=0 q='Which country has the most lakes i'
+  [base listen] W*_rank_bare=1 target_rank_bare=3 top_riser=' Yes' dp=+0.226 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.226 target_top_riser=0 coll=0 q='Which country has won the most Rug'
+  [base listen] W*_rank_bare=6 target_rank_bare=1 top_riser=' Yes' dp=+0.209 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.209 target_top_riser=0 coll=0 q='Which country produces the most co'
+  [base listen] W*_rank_bare=52 target_rank_bare=1 top_riser=' Yes' dp=+0.188 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.188 target_top_riser=0 coll=0 q='Which country has the largest Musl'
+  [base listen] W*_rank_bare=9 target_rank_bare=1 top_riser=' Yes' dp=+0.160 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.160 target_top_riser=0 coll=0 q='Which country has the largest Chri'
+  [base listen] W*_rank_bare=23 target_rank_bare=1 top_riser=' Yes' dp=+0.195 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.195 target_top_riser=0 coll=0 q='Which country has the largest Cath'
+  [base listen] W*_rank_bare=8 target_rank_bare=1 top_riser=' Yes' dp=+0.235 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.235 target_top_riser=0 coll=0 q='Which country has the longest coas'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.263 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.263 target_top_riser=0 coll=0 q='Which country has the most time zo'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.185 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.185 target_top_riser=0 coll=0 q='Which continent is the driest inha'
+  [base listen] W*_rank_bare=1 target_rank_bare=4 top_riser=' Yes' dp=+0.205 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.205 target_top_riser=0 coll=0 q='Which animal is the fastest in the'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.168 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.168 target_top_riser=0 coll=0 q='Which rodent species is the larges'
+  [base listen] W*_rank_bare=12 target_rank_bare=1 top_riser=' Yes' dp=+0.233 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.233 target_top_riser=0 coll=0 q='Which big cat species is the large'
+  [base listen] W*_rank_bare=14 target_rank_bare=1 top_riser=' Yes' dp=+0.198 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.198 target_top_riser=0 coll=0 q='Which city is considered the birth'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.213 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.213 target_top_riser=0 coll=0 q='Which country did the croissant or'
+  [base listen] W*_rank_bare=9 target_rank_bare=1 top_riser=' Yes' dp=+0.207 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.207 target_top_riser=0 coll=0 q='Which country invented paper?'
+  [base listen] W*_rank_bare=6 target_rank_bare=1 top_riser=' Yes' dp=+0.224 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.224 target_top_riser=0 coll=0 q='Which country is considered the bi'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.209 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.209 target_top_riser=0 coll=0 q='Which US state is the largest by a'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.230 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.230 target_top_riser=0 coll=0 q='Which US state has the longest coa'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.201 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.201 target_top_riser=0 coll=0 q='Which country holds the largest pr'
+  [base listen] W*_rank_bare=25 target_rank_bare=1 top_riser=' Yes' dp=+0.188 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.188 target_top_riser=0 coll=0 q='Which country holds the largest na'
+  [base listen] W*_rank_bare=53 target_rank_bare=1 top_riser=' Yes' dp=+0.192 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.192 target_top_riser=0 coll=0 q='Which country has the highest coff'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.241 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.241 target_top_riser=0 coll=0 q='Which metal is the best natural co'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.167 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.167 target_top_riser=0 coll=0 q='Which organ is the largest in the '
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.277 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.277 target_top_riser=0 coll=0 q='What is the capital of the Netherl'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.187 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.187 target_top_riser=0 coll=0 q='What is the capital of Palau?'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.196 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.196 target_top_riser=0 coll=0 q='What is the capital of the Federat'
+  [base listen] W*_rank_bare=8 target_rank_bare=1 top_riser=' Yes' dp=+0.231 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.231 target_top_riser=0 coll=0 q='What is the capital of Poland?'
+  [base listen] W*_rank_bare=1 target_rank_bare=2 top_riser=' Yes' dp=+0.197 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.197 target_top_riser=0 coll=0 q='What is the capital of Burundi?'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.188 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.188 target_top_riser=0 coll=0 q='What is the capital of Montenegro?'
+  [base listen] W*_rank_bare=26 target_rank_bare=1 top_riser=' Yes' dp=+0.286 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.286 target_top_riser=0 coll=0 q='What is the capital of Portugal?'
+  [base listen] W*_rank_bare=7 target_rank_bare=1 top_riser=' Yes' dp=+0.228 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.228 target_top_riser=0 coll=0 q='What is the capital of Croatia?'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.192 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.192 target_top_riser=0 coll=0 q='Who built the first practical auto'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.198 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.198 target_top_riser=0 coll=0 q='Who is credited with discovering r'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.202 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.202 target_top_riser=0 coll=0 q='Who developed the oral polio vacci'
+  [base listen] W*_rank_bare=1 target_rank_bare=2 top_riser=' Yes' dp=+0.141 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.141 target_top_riser=0 coll=0 q='Who built the first commercially s'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.146 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.146 target_top_riser=0 coll=0 q='Who developed the first successful'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.171 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.171 target_top_riser=0 coll=0 q='Who is credited with inventing the'
+  [base listen] W*_rank_bare=8 target_rank_bare=1 top_riser=' Yes' dp=+0.197 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.197 target_top_riser=0 coll=0 q='Who is regarded as the primary aut'
+  [base listen] W*_rank_bare=89 target_rank_bare=1 top_riser=' Yes' dp=+0.158 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.158 target_top_riser=0 coll=0 q='Who invented the World Wide Web?'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.209 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.209 target_top_riser=0 coll=0 q='Who composed the melody of the Sta'
+  [base listen] W*_rank_bare=39 target_rank_bare=1 top_riser=' Yes' dp=+0.188 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.188 target_top_riser=0 coll=0 q='Which African country is the large'
+  [base listen] W*_rank_bare=1 target_rank_bare=3 top_riser=' Yes' dp=+0.229 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.229 target_top_riser=0 coll=0 q='What is the largest freshwater lak'
+  [base listen] W*_rank_bare=28 target_rank_bare=3 top_riser=' Yes' dp=+0.182 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.182 target_top_riser=0 coll=0 q='What is the largest known organism'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.218 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.218 target_top_riser=0 coll=0 q='What is the longest river located '
+  [base listen] W*_rank_bare=18 target_rank_bare=2 top_riser=' Yes' dp=+0.229 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.229 target_top_riser=0 coll=0 q='Where was the coldest temperature '
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.234 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.234 target_top_riser=0 coll=0 q='What is the largest active volcano'
+  [base listen] W*_rank_bare=1 target_rank_bare=2 top_riser=' Yes' dp=+0.170 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.170 target_top_riser=0 coll=0 q='Which spider species has the large'
+  [base listen] W*_rank_bare=401 target_rank_bare=1 top_riser=' Yes' dp=+0.222 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.222 target_top_riser=0 coll=0 q='Which country produces the most co'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.207 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.207 target_top_riser=0 coll=0 q='Which country is credited with fir'
+  [base listen] W*_rank_bare=14 target_rank_bare=1 top_riser=' Yes' dp=+0.202 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.202 target_top_riser=0 coll=0 q='Which country did the potato origi'
+  [base listen] W*_rank_bare=1 target_rank_bare=2 top_riser=' Yes' dp=+0.246 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.246 target_top_riser=0 coll=0 q='Which country has the most golf co'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.204 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.204 target_top_riser=0 coll=0 q='Which country produces the most ri'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.212 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.212 target_top_riser=0 coll=0 q='Which country drinks the most beer'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.175 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.175 target_top_riser=0 coll=0 q='Which country drinks the most tea '
+  [base listen] W*_rank_bare=6 target_rank_bare=1 top_riser=' Yes' dp=+0.200 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.200 target_top_riser=0 coll=0 q='What is the most abundant metal in'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.196 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.196 target_top_riser=0 coll=0 q='Which country is the largest expor'
+  [base listen] W*_rank_bare=5 target_rank_bare=1 top_riser=' Yes' dp=+0.209 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.209 target_top_riser=0 coll=0 q='Which country is home to most of t'
+  [base listen] W*_rank_bare=10 target_rank_bare=3 top_riser=' Yes' dp=+0.205 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.205 target_top_riser=0 coll=0 q='Which country has the largest wild'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.186 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.186 target_top_riser=0 coll=0 q='Which country has the most native '
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.178 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.178 target_top_riser=0 coll=0 q='Which country has the most native '
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.186 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.186 target_top_riser=0 coll=0 q='Which country has the largest popu'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.188 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.188 target_top_riser=0 coll=0 q='What is the capital of California?'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.189 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.189 target_top_riser=0 coll=0 q='What is the capital of New York St'
+  [base listen] W*_rank_bare=22 target_rank_bare=1 top_riser=' Yes' dp=+0.199 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.199 target_top_riser=0 coll=0 q='What is the capital of Florida?'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.245 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.245 target_top_riser=0 coll=0 q='What is the capital of Illinois?'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.239 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.239 target_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.155 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.155 target_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.192 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.192 target_top_riser=0 coll=0 q='What is the capital of Washington '
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.193 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.193 target_top_riser=0 coll=0 q='What is the capital of British Col'
+  [base listen] W*_rank_bare=1 target_rank_bare=2 top_riser=' Yes' dp=+0.179 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.179 target_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [base listen] W*_rank_bare=19 target_rank_bare=1 top_riser=' Yes' dp=+0.115 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.115 target_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.195 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.195 target_top_riser=0 coll=0 q='Who originally invented the board '
+  [base listen] W*_rank_bare=1 target_rank_bare=3 top_riser=' Yes' dp=+0.141 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.141 target_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.137 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.137 target_top_riser=0 coll=0 q='Who held the original patent for t'
+  [base listen] W*_rank_bare=28 target_rank_bare=1 top_riser=' Yes' dp=+0.168 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.168 target_top_riser=0 coll=0 q='Who was the primary author of the '
+[vfam_ext2_27bbase|fold] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=4.0 target_in_bare_topk=True
+[vfam_ext2_27bbase|listen] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=1.0 target_in_bare_topk=True | THRESHOLDS_NOT_CALIBRATED_FOR_THIS_ARM
+[done] wrote out/family_topk_shift_arms_vfam_ext2_27bbase.json

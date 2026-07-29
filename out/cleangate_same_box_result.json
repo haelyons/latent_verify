@@ -1,0 +1,57 @@
+{
+  "control": "cleangate_same_box_result",
+  "registration": "run_cleangate_topk_27b.sh header (outcomes frozen before the data)",
+  "box": {
+    "gpu": "NVIDIA H100 PCIe",
+    "driver": "570.148.08",
+    "instance": "bb0aa8d8bff84327a2560aff811506bc",
+    "note": "shipped and re-parameterised instruments ran on THIS ONE box, one process order, same weights and driver, so hardware is removed from the comparison"
+  },
+  "topk_shift": {
+    "verdict": "ALGEBRAICALLY_NEUTRAL",
+    "pre_existing_fields": 25,
+    "differing": 0,
+    "consequence": "family_topk_shift_arms is clean. Its listen numbers ARE usable."
+  },
+  "diagnose": {
+    "verdict": "NOT_NEUTRAL",
+    "pre_existing_fields": 23,
+    "differing_all_82": [
+      "lpC_single",
+      "lpW_single",
+      "lpC_neutral",
+      "lpW_neutral",
+      "lpC_counter",
+      "lpW_counter",
+      "P_w_counter",
+      "RA_effect"
+    ],
+    "magnitude": {
+      "lpC_single": {
+        "n": 82,
+        "max": 0.142184,
+        "median_nonzero": 0.00929
+      },
+      "M0": {
+        "n": 65,
+        "max": 0.368378,
+        "median_nonzero": 0.125
+      },
+      "RC_effect": {
+        "n": 77,
+        "max": 0.442499,
+        "median_nonzero": 0.126193
+      }
+    },
+    "thresholded": {
+      "faithful_RC_differ": 4,
+      "headroom_pass_differ": 0,
+      "category_both": "CONTENT_CAVES"
+    }
+  },
+  "REGISTERED_CONSEQUENCE_APPLIED": "The runner header stated, before the data: 'Any field differing -> the code is at fault, the 2b/9b passes were luck, and B1's listen numbers are WITHDRAWN AT EVERY SCALE.' Fields differ. THE LISTEN NUMBERS FROM family_cave_diagnose_arms ARE WITHDRAWN AT ALL SIX CELLS, including the 2b and 9b cells whose gate passed. I am honouring the registered consequence rather than renegotiating it now that it is inconvenient.",
+  "what_the_evidence_actually_supports": "Two candidate causes and this comparison cannot separate them. (a) family_cave_diagnose_arms perturbs the op sequence somewhere that family_topk_shift_arms does not - the topk twin is bit-identical on the same box, so the pattern itself is not the problem. (b) 27b diagnose is numerically fragile to ANY op-order perturbation. Magnitudes support this: median non-zero delta on lpC_single is 0.0093, and bf16 at |lp| ~ 5-10 has ulp ~ 0.02, so the typical difference is SUB-ULP accumulation noise, not a logic error - though M0 and RC_effect reach 0.37-0.44, which is many ulp. Note the earlier CROSS-BOX 27b divergence was the same magnitude (median 0.012 on lpC_single), so same-box-different-script and different-box-same-script are indistinguishable in size.",
+  "why_the_rider_does_not_contradict_this": "out/../r1_27b_determinism_rider = WITHIN_BOX_DETERMINISTIC compared family_cave_diagnose against ITSELF twice on one box: 0 of 14 fields. So two invocations of the SAME code are bit-identical, and two invocations of DIFFERENT code are not. That is consistent with an op-order sensitivity and inconsistent with process-level nondeterminism.",
+  "route_to_restoring_the_listen_numbers": "Find the op-order difference between family_cave_diagnose and family_cave_diagnose_arms - a diff of the forward-call sequence, not of the arithmetic - fix it, and re-run this same-box test. The topk twin is the existence proof that a neutral re-parameterisation of this shape is achievable.",
+  "decision": "TOPK_NEUTRAL__DIAGNOSE_NOT_NEUTRAL__B1_LISTEN_WITHDRAWN"
+}

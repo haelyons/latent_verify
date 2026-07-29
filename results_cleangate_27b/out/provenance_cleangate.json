@@ -1,0 +1,15 @@
+{
+  "run": "cleangate_topk_27b",
+  "started_utc": "2026-07-29T00:46:07.287776+00:00",
+  "python": "3.10.12",
+  "lambda_instance_id": "bb0aa8d8bff84327a2560aff811506bc",
+  "git_commit": "fef121ac274cdc810593b88be48c111315c28a1d",
+  "gpu_name": "NVIDIA H100 PCIe",
+  "driver": "570.148.08",
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": "3.6.0",
+  "cuda_runtime": "12.4",
+  "finished_utc": "2026-07-29T01:19:23.808478+00:00"
+}

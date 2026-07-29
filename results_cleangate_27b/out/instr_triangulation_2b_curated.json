@@ -1,0 +1,358 @@
+{
+  "model": "google/gemma-2-9b",
+  "case": "salience_flip_2b",
+  "pairs_set": "curated",
+  "seed": 0,
+  "reader": [
+    18,
+    5
+  ],
+  "ctrl": [
+    18,
+    6
+  ],
+  "n_layers": 42,
+  "n_heads": 16,
+  "n_pairs_used": 5,
+  "pairs": [
+    {
+      "pair": "Australia->Canberra",
+      "effect": 1.125,
+      "M_neutral": 3.875,
+      "M_salience": 2.75
+    },
+    {
+      "pair": "Texas->Austin",
+      "effect": 0.75,
+      "M_neutral": 6.125,
+      "M_salience": 5.375
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "effect": 0.625,
+      "M_neutral": 4.625,
+      "M_salience": 4.0
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "effect": -1.125,
+      "M_neutral": 2.0,
+      "M_salience": 3.125
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "effect": -1.125,
+      "M_neutral": 1.25,
+      "M_salience": 2.375
+    }
+  ],
+  "skipped_below_min_effect": [],
+  "thresholds": {
+    "min_effect": 0.5,
+    "sc1_topk": 5,
+    "sc1_ctrl_out": 20,
+    "sc1_ctrl_frac": 0.05,
+    "min_frac": 0.1,
+    "sign_agree": 0.8
+  },
+  "atp_top8": [
+    {
+      "L": 37,
+      "H": 12,
+      "score": 0.4296
+    },
+    {
+      "L": 39,
+      "H": 7,
+      "score": 0.3058
+    },
+    {
+      "L": 32,
+      "H": 10,
+      "score": 0.2184
+    },
+    {
+      "L": 40,
+      "H": 14,
+      "score": 0.157
+    },
+    {
+      "L": 27,
+      "H": 14,
+      "score": 0.1301
+    },
+    {
+      "L": 40,
+      "H": 3,
+      "score": 0.1037
+    },
+    {
+      "L": 41,
+      "H": 10,
+      "score": 0.0939
+    },
+    {
+      "L": 39,
+      "H": 13,
+      "score": 0.0872
+    }
+  ],
+  "knockout_top8": [
+    {
+      "L": 37,
+      "H": 12,
+      "score": 0.1644
+    },
+    {
+      "L": 16,
+      "H": 14,
+      "score": 0.0911
+    },
+    {
+      "L": 15,
+      "H": 14,
+      "score": 0.08
+    },
+    {
+      "L": 3,
+      "H": 11,
+      "score": 0.0733
+    },
+    {
+      "L": 3,
+      "H": 12,
+      "score": 0.0733
+    },
+    {
+      "L": 36,
+      "H": 15,
+      "score": 0.0733
+    },
+    {
+      "L": 16,
+      "H": 10,
+      "score": 0.0678
+    },
+    {
+      "L": 2,
+      "H": 0,
+      "score": 0.0622
+    }
+  ],
+  "activation_patch_confirm": [
+    {
+      "L": 40,
+      "H": 14,
+      "frac": 0.9
+    },
+    {
+      "L": 37,
+      "H": 12,
+      "frac": 0.7481
+    },
+    {
+      "L": 40,
+      "H": 15,
+      "frac": 0.4444
+    },
+    {
+      "L": 39,
+      "H": 7,
+      "frac": 0.4296
+    },
+    {
+      "L": 32,
+      "H": 10,
+      "frac": 0.4037
+    },
+    {
+      "L": 27,
+      "H": 15,
+      "frac": 0.3889
+    },
+    {
+      "L": 41,
+      "H": 6,
+      "frac": 0.3333
+    },
+    {
+      "L": 40,
+      "H": 3,
+      "frac": 0.3185
+    },
+    {
+      "L": 27,
+      "H": 14,
+      "frac": 0.2815
+    },
+    {
+      "L": 32,
+      "H": 6,
+      "frac": 0.2778
+    },
+    {
+      "L": 27,
+      "H": 12,
+      "frac": 0.2667
+    },
+    {
+      "L": 31,
+      "H": 7,
+      "frac": 0.2222
+    },
+    {
+      "L": 32,
+      "H": 11,
+      "frac": 0.2222
+    },
+    {
+      "L": 17,
+      "H": 12,
+      "frac": 0.2
+    },
+    {
+      "L": 26,
+      "H": 11,
+      "frac": 0.1667
+    },
+    {
+      "L": 29,
+      "H": 0,
+      "frac": 0.1667
+    },
+    {
+      "L": 38,
+      "H": 12,
+      "frac": 0.1667
+    },
+    {
+      "L": 26,
+      "H": 10,
+      "frac": 0.1111
+    },
+    {
+      "L": 27,
+      "H": 3,
+      "frac": 0.1111
+    },
+    {
+      "L": 27,
+      "H": 13,
+      "frac": 0.1111
+    },
+    {
+      "L": 32,
+      "H": 4,
+      "frac": 0.1111
+    },
+    {
+      "L": 40,
+      "H": 10,
+      "frac": 0.1111
+    },
+    {
+      "L": 25,
+      "H": 1,
+      "frac": 0.1
+    },
+    {
+      "L": 40,
+      "H": 11,
+      "frac": 0.1
+    },
+    {
+      "L": 17,
+      "H": 2,
+      "frac": 0.0
+    },
+    {
+      "L": 25,
+      "H": 2,
+      "frac": 0.0
+    },
+    {
+      "L": 26,
+      "H": 8,
+      "frac": 0.0
+    },
+    {
+      "L": 18,
+      "H": 5,
+      "frac": -0.0044
+    },
+    {
+      "L": 18,
+      "H": 6,
+      "frac": -0.0111
+    },
+    {
+      "L": 37,
+      "H": 5,
+      "frac": -0.0833
+    }
+  ],
+  "qa_small_effect": [
+    {
+      "pair": "Australia->Canberra",
+      "effect": 1.3984,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.03892
+    },
+    {
+      "pair": "Texas->Austin",
+      "effect": 0.6299,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.03803
+    },
+    {
+      "pair": "Canada->Ottawa",
+      "effect": 0.5703,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.03087
+    },
+    {
+      "pair": "Switzerland->Bern",
+      "effect": 0.9336,
+      "knockout_na_below_floor": false,
+      "atp_finite": true,
+      "atp_std": 0.05589
+    },
+    {
+      "pair": "Morocco->Rabat",
+      "effect": 0.1875,
+      "knockout_na_below_floor": true,
+      "atp_finite": true,
+      "atp_std": 0.04844
+    }
+  ],
+  "robustness": {
+    "bootstrap_reader_rank_ci": {
+      "rank_lo": 118,
+      "rank_med": 540,
+      "rank_hi": 623,
+      "frac_top5": 0.0
+    },
+    "null_floor": {
+      "reader_real": -0.0091,
+      "null_pctl": 0.0494,
+      "n_null": 10,
+      "above_floor": false
+    }
+  },
+  "decision": {
+    "SC_INSTR_1_concordance": false,
+    "SC_INSTR_2_small_effect": true,
+    "SC_INSTR_3_specificity_linear": false,
+    "reader_atp_rank": 572,
+    "reader_patch_rank": 27,
+    "reader_knockout_rank": 189,
+    "ctrl_atp_rank": 607,
+    "ctrl_patch_frac": -0.0111,
+    "reader_patch_frac": -0.0044,
+    "sign_agreement": 0.533,
+    "verdict": "INCONCLUSIVE: faithfulness/criteria not met as pre-registered; inspect per-pair rows"
+  }
+}

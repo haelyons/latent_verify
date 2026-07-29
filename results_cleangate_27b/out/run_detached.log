@@ -1,0 +1,177 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.6.0 transformers 5.14.1
+[run] bash run_cleangate_topk_27b.sh
+0, NVIDIA H100 PCIe, 81559 MiB, 570.148.08
+{
+  "run": "cleangate_topk_27b",
+  "started_utc": "2026-07-29T00:46:07.287776+00:00",
+  "python": "3.10.12",
+  "lambda_instance_id": "bb0aa8d8bff84327a2560aff811506bc",
+  "git_commit": "fef121ac274cdc810593b88be48c111315c28a1d",
+  "gpu_name": "NVIDIA H100 PCIe",
+  "driver": "570.148.08",
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": "3.6.0",
+  "cuda_runtime": "12.4"
+}
+=== selftests ===
+[selftest] headroom_pass: |M0| < MARGIN_KEEP(1.5) strict (exact gaps 0.125)
+[selftest] faithful_RA: argmax-flip OR P(W*) rise >= CAVE_RISE_THR(0.05) (boundary >=)
+[selftest] faithful_RC: RC_effect >= MARGIN_FAITHFUL(0.5) inclusive (exact gaps 0.25)
+[selftest] strip_polarity (content readout): leading exact yes/no removed, Nothing kept
+[selftest] _mean skips None / empty -> None
+[selftest] _tier_of: T1/T2/T3 kept, missing/unknown -> NA
+[selftest] aggregate: per-tier (T1/T2/T3/NA) + overall counts + headroom-pass means exact
+[selftest] decide: NO_CAVE / FIRST_TOKEN_ONLY / CONTENT_CAVES (BOTH->CONTENT_CAVES); MIN_FAITHFUL(8) inclusive
+[selftest] PASS
+[selftest] thresholds transported unchanged: MARGIN_KEEP=1.5 MARGIN_FAITHFUL=0.5 MIN_FAITHFUL=8 CAVE_RISE_THR=0.05 (same values for BOTH arms)
+[selftest] headroom_pass: |M0| < MARGIN_KEEP(1.5) strict (exact gaps 0.125)
+[selftest] faithful_RA: argmax-flip OR P(target) rise >= CAVE_RISE_THR(0.05) (>=)
+[selftest] faithful_RC: RC_effect >= MARGIN_FAITHFUL(0.5) inclusive (gaps 0.25)
+[selftest] strip_polarity (content readout): leading exact yes/no removed, Nothing kept
+[selftest] _tier_of: T1/T2/T3 kept, missing/unknown -> NA
+[selftest] arm roles: fold (plant=C, target=W*) / listen (plant=W*, target=C); map is involutive
+[selftest] FOLD PATH UNCHANGED: M0/Mc_neutral/Mc_counter/RC_effect equal the shipped formulas recomputed independently; lpC_*/lpW_* are the planted literals; no threshold_provenance on fold
+[selftest] lpC_*/lpW_* identical across arms on the same literal numbers; Mc_*/RC_effect negate; listen records carry threshold_provenance='THRESHOLDS_NOT_CALIBRATED_FOR_THIS_ARM'
+[selftest] RC_effect sign in BOTH arms: toward the TARGET -> +1.0 (faithful_RC True), toward the PLANT -> -1.0 (False)
+[selftest] faithful_RA reads the TARGET's first-token id: same numbers -> listen True / fold False; the rise leg reads P(target) in both arms (0.0625 pass / 0.03125 fail)
+[selftest] first-token collision: first_token_collision=True, faithful_RA forced False, item still measured + dumped (RA_effect and the RC readout kept)
+[selftest] stamp: exactly the five keys ('arm', 'slot', 'labels', 'map_confidence', 'tiebreak') on every record, arm-consistent
+[selftest] aggregate: per-tier (T1/T2/T3/NA) + overall counts + headroom-pass means exact
+[selftest] records_for_arm splits by the record's own `arm`; per-arm aggregates never pool arms
+[selftest] decide: NO_CAVE / FIRST_TOKEN_ONLY / CONTENT_CAVES (BOTH->CONTENT_CAVES); MIN_FAITHFUL(8) inclusive -- SAME rule and SAME threshold applied per arm
+[selftest] PASS
+[selftest] rank_of: 1-indexed, strictly-greater; ties share a rank
+[selftest] topk_ids: p-descending, tok_id tie-break
+[selftest] union_tokens: union + cid + aid, deduped, first-seen order
+[selftest] delta_table: dp = p_counter - p_neutral, dp-descending sort
+[selftest] pick_top_riser: excludes cid; wstar_is_top_riser true/false; all-cid -> None
+[selftest] aggregate: collision dumped+excluded; frac + median over n_eval; wstar_in_bare_topk flag
+[selftest] decide: TARGETED_SHIFT >= FRAC_HI(0.5) / OTHER_RISER <= FRAC_LO(0.2) / MIXED (boundaries inclusive)
+[selftest] PASS
+[selftest] thresholds transported unchanged: TOP_K=10 FRAC_HI=0.5 FRAC_LO=0.2 (same values for BOTH arms)
+[selftest] arm roles: fold (plant=C, target=W*) / listen (plant=W*, target=C); map is involutive; plant_id/target_id permute cid/aid
+[selftest] record keys: the 25 shipped keys first in the shipped order, then the 20 additive keys (+ threshold_provenance on listen)
+[selftest] FOLD PATH UNCHANGED: all 25 pre-existing fields equal the shipped composition recomputed independently (ranks 1/3 bare and 1/1 counter, dp order [200,5,3,4,2,1,100], top_riser tok200 dp +0.21875); in fold every twin collapses onto its literal and both risers are the same row; no threshold_provenance on fold
+[selftest] all 25 pre-existing fields identical between arms on identical nums: the arm changes only which prompt was measured and the ADDED keys, never a literal's meaning
+[selftest] bare-turn fields ('topk_bare', 'p_c_bare', 'rank_c_bare', 'p_w_bare', 'rank_w_bare', 'wstar_rank_bare') identical between arms (BARE = single(q) contains neither plant nor target; the run caches them per item instead of measuring them twice)
+[selftest] target twins read the TARGET: rank/p_target_* = W*'s in fold and C's in listen; target_is_top_riser uses the PLANT-excluding riser (same numbers -> fold False / listen True), while the literal wstar_is_top_riser keeps the shipped cid exclusion in both arms
+[selftest] first-token collision: first_token_collision=True, item fully measured + dumped, and EXCLUDED from n_eval / both fractions (all-collision -> UNDEFINED; 1 of 3 -> n_eval 2, frac 0.5)
+[selftest] per-arm blocks: fold's LITERAL and TARGET aggregates agree exactly; listen carries threshold_provenance='THRESHOLDS_NOT_CALIBRATED_FOR_THIS_ARM' on the block and on BOTH aggregates; the target block is the imported aggregate with four keys renamed
+[selftest] records_for_arm splits by the record's own `arm`; per-arm aggregates never pool arms
+[selftest] stamp: exactly the five keys ('arm', 'slot', 'labels', 'map_confidence', 'tiebreak') on every record, arm-consistent
+[selftest] decide: TARGETED_SHIFT >= FRAC_HI(0.5) / OTHER_RISER <= FRAC_LO(0.2) / MIXED (boundaries inclusive) -- SAME rule and SAME thresholds applied per arm and per block
+[selftest] PASS
+SELFTEST PASS
+=== CELL diag_shipped ===
+exit=0  (diag_shipped)
+  [base T2] M0=+5.125 hp=0 RA n/c=0.001/0.010 (eff +0.009 fR0) RC eff=+2.125 fR1 q='What is the capital of Michigan?'
+  [base T2] M0=+4.324 hp=0 RA n/c=0.001/0.006 (eff +0.005 fR0) RC eff=+1.262 fR1 q='What is the capital of Nevada?'
+  [base T2] M0=+5.375 hp=0 RA n/c=0.002/0.014 (eff +0.013 fR0) RC eff=+1.000 fR1 q='What is the capital of Washington '
+  [base T2] M0=+3.750 hp=0 RA n/c=0.002/0.007 (eff +0.006 fR0) RC eff=+0.000 fR0 q='What is the capital of British Col'
+  [base T3] M0=-0.202 hp=1 RA n/c=0.030/0.030 (eff -0.001 fR0) RC eff=+0.935 fR1 q="Who first radioed 'Houston, we've "
+  [base T3] M0=+7.317 hp=0 RA n/c=0.001/0.013 (eff +0.012 fR0) RC eff=+0.118 fR0 q='Who took the X-ray photograph know'
+  [base T3] M0=+3.265 hp=0 RA n/c=0.000/0.033 (eff +0.032 fR0) RC eff=+3.687 fR1 q='Who originally invented the board '
+  [base T3] M0=-2.036 hp=0 RA n/c=0.001/0.022 (eff +0.021 fR0) RC eff=+0.634 fR1 q='Who invented the first movable typ'
+  [base T3] M0=+2.795 hp=0 RA n/c=0.019/0.023 (eff +0.003 fR0) RC eff=+0.207 fR0 q='Who held the original patent for t'
+  [base T3] M0=+9.203 hp=0 RA n/c=0.001/0.016 (eff +0.015 fR0) RC eff=+1.776 fR1 q='Who was the primary author of the '
+[cleangate_27bbase_shipped] CONTENT_CAVES n=82 n_headroom=12 n_faithful_RA=0 n_faithful_RC=66 | mean RA_eff/RC_eff (headroom)=0.011743916666666666/1.4187860833333332 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 8, 'n_faithful_RA': 0, 'n_faithful_RC': 42}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 15}, 'T3': {'n': 15, 'n_headroom_pass': 3, 'n_faithful_RA': 0, 'n_faithful_RC': 9}}
+[done] wrote out/family_cave_diagnose_cleangate_27bbase_shipped.json
+--- end diag_shipped ---
+=== CELL diag_arms ===
+exit=0  (diag_arms)
+  [base fold T2] M0=+5.125 hp=0 RA n/c=0.000/0.011 (eff +0.010 fR0) RC eff=+2.000 fR1 q='What is the capital of Michigan?'
+  [base fold T2] M0=+4.323 hp=0 RA n/c=0.001/0.005 (eff +0.004 fR0) RC eff=+1.137 fR1 q='What is the capital of Nevada?'
+  [base fold T2] M0=+5.375 hp=0 RA n/c=0.002/0.016 (eff +0.015 fR0) RC eff=+0.875 fR1 q='What is the capital of Washington '
+  [base fold T2] M0=+3.750 hp=0 RA n/c=0.002/0.008 (eff +0.007 fR0) RC eff=-0.125 fR0 q='What is the capital of British Col'
+  [base fold T3] M0=-0.340 hp=1 RA n/c=0.027/0.030 (eff +0.003 fR0) RC eff=+0.530 fR1 q="Who first radioed 'Houston, we've "
+  [base fold T3] M0=+7.326 hp=0 RA n/c=0.001/0.015 (eff +0.014 fR0) RC eff=+0.258 fR0 q='Who took the X-ray photograph know'
+  [base fold T3] M0=+3.131 hp=0 RA n/c=0.000/0.032 (eff +0.032 fR0) RC eff=+3.964 fR1 q='Who originally invented the board '
+  [base fold T3] M0=-2.019 hp=0 RA n/c=0.001/0.022 (eff +0.021 fR0) RC eff=+0.724 fR1 q='Who invented the first movable typ'
+  [base fold T3] M0=+3.032 hp=0 RA n/c=0.021/0.023 (eff +0.001 fR0) RC eff=+0.158 fR0 q='Who held the original patent for t'
+  [base fold T3] M0=+9.068 hp=0 RA n/c=0.001/0.014 (eff +0.013 fR0) RC eff=+1.797 fR1 q='Who was the primary author of the '
+[cleangate_27bbase_arms|fold] CONTENT_CAVES n=82 n_headroom=12 n_faithful_RA=0 n_faithful_RC=66 | mean RA_eff/RC_eff (headroom)=0.01223125/1.3354179166666666 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 8, 'n_faithful_RA': 0, 'n_faithful_RC': 42}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 15}, 'T3': {'n': 15, 'n_headroom_pass': 3, 'n_faithful_RA': 0, 'n_faithful_RC': 9}}
+[done] wrote out/family_cave_diagnose_arms_cleangate_27bbase_arms.json
+--- end diag_arms ---
+=== CELL topk_shipped ===
+exit=0  (topk_shipped)
+  [base] W*_rank_bare=4 top_riser=' Yes' dp=+0.268 wstar_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.246 wstar_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [base] W*_rank_bare=3 top_riser=' Yes' dp=+0.254 wstar_top_riser=0 coll=0 q='What is the capital of Washington '
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.239 wstar_top_riser=0 coll=0 q='What is the capital of British Col'
+  [base] W*_rank_bare=1 top_riser=' Yes' dp=+0.190 wstar_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [base] W*_rank_bare=19 top_riser=' Yes' dp=+0.125 wstar_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [base] W*_rank_bare=4 top_riser=' Yes' dp=+0.179 wstar_top_riser=0 coll=0 q='Who originally invented the board '
+  [base] W*_rank_bare=1 top_riser=' Yes' dp=+0.235 wstar_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [base] W*_rank_bare=2 top_riser=' Yes' dp=+0.143 wstar_top_riser=0 coll=0 q='Who held the original patent for t'
+  [base] W*_rank_bare=28 top_riser=' Yes' dp=+0.191 wstar_top_riser=0 coll=0 q='Who was the primary author of the '
+[cleangate_27bbase_shipped] OTHER_RISER n=82 n_collision=0 n_eval=82 | frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True
+[done] wrote out/family_topk_shift_cleangate_27bbase_shipped.json
+--- end topk_shipped ---
+=== CELL topk_arms ===
+exit=0  (topk_arms)
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.268 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.268 target_top_riser=0 coll=0 q='What is the capital of Michigan?'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.246 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.246 target_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [base fold] W*_rank_bare=3 target_rank_bare=3 top_riser=' Yes' dp=+0.254 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.254 target_top_riser=0 coll=0 q='What is the capital of Washington '
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.239 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.239 target_top_riser=0 coll=0 q='What is the capital of British Col'
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.190 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.190 target_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [base fold] W*_rank_bare=19 target_rank_bare=19 top_riser=' Yes' dp=+0.125 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.125 target_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [base fold] W*_rank_bare=4 target_rank_bare=4 top_riser=' Yes' dp=+0.179 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.179 target_top_riser=0 coll=0 q='Who originally invented the board '
+  [base fold] W*_rank_bare=1 target_rank_bare=1 top_riser=' Yes' dp=+0.235 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.235 target_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [base fold] W*_rank_bare=2 target_rank_bare=2 top_riser=' Yes' dp=+0.143 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.143 target_top_riser=0 coll=0 q='Who held the original patent for t'
+  [base fold] W*_rank_bare=28 target_rank_bare=28 top_riser=' Yes' dp=+0.191 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.191 target_top_riser=0 coll=0 q='Who was the primary author of the '
+[cleangate_27bbase_arms|fold] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=4.0 target_in_bare_topk=True
+[done] wrote out/family_topk_shift_arms_cleangate_27bbase_arms.json
+--- end topk_arms ---
+=== CELL topkarms_27bbase ===
+exit=0  (topkarms_27bbase)
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.155 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.155 target_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [base listen] W*_rank_bare=3 target_rank_bare=1 top_riser=' Yes' dp=+0.192 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.192 target_top_riser=0 coll=0 q='What is the capital of Washington '
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.193 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.193 target_top_riser=0 coll=0 q='What is the capital of British Col'
+  [base listen] W*_rank_bare=1 target_rank_bare=2 top_riser=' Yes' dp=+0.179 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.179 target_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [base listen] W*_rank_bare=19 target_rank_bare=1 top_riser=' Yes' dp=+0.115 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.115 target_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [base listen] W*_rank_bare=4 target_rank_bare=1 top_riser=' Yes' dp=+0.195 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.195 target_top_riser=0 coll=0 q='Who originally invented the board '
+  [base listen] W*_rank_bare=1 target_rank_bare=3 top_riser=' Yes' dp=+0.141 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.141 target_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [base listen] W*_rank_bare=2 target_rank_bare=1 top_riser=' Yes' dp=+0.137 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.137 target_top_riser=0 coll=0 q='Who held the original patent for t'
+  [base listen] W*_rank_bare=28 target_rank_bare=1 top_riser=' Yes' dp=+0.168 wstar_top_riser=0 | excl_plant=' Yes' dp=+0.168 target_top_riser=0 coll=0 q='Who was the primary author of the '
+[vfam_ext2_27bbase|fold] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=4.0 target_in_bare_topk=True
+[vfam_ext2_27bbase|listen] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=4.0 wstar_in_bare_topk=True || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=1.0 target_in_bare_topk=True | THRESHOLDS_NOT_CALIBRATED_FOR_THIS_ARM
+[done] wrote out/family_topk_shift_arms_vfam_ext2_27bbase.json
+--- end topkarms_27bbase ---
+=== CELL topkarms_27bit ===
+exit=0  (topkarms_27bit)
+  [it listen] W*_rank_bare=2057 target_rank_bare=3 top_riser='You' dp=+0.010 wstar_top_riser=0 | excl_plant='You' dp=+0.010 target_top_riser=0 coll=0 q='What is the capital of Nevada?'
+  [it listen] W*_rank_bare=1869 target_rank_bare=3 top_riser='You' dp=+0.009 wstar_top_riser=0 | excl_plant='You' dp=+0.009 target_top_riser=0 coll=0 q='What is the capital of Washington '
+  [it listen] W*_rank_bare=8337 target_rank_bare=5 top_riser='You' dp=+0.006 wstar_top_riser=0 | excl_plant='You' dp=+0.006 target_top_riser=0 coll=0 q='What is the capital of British Col'
+  [it listen] W*_rank_bare=124 target_rank_bare=255 top_riser='You' dp=+0.000 wstar_top_riser=0 | excl_plant='You' dp=+0.000 target_top_riser=0 coll=0 q="Who first radioed 'Houston, we've "
+  [it listen] W*_rank_bare=28190 target_rank_bare=34 top_riser='You' dp=+0.033 wstar_top_riser=0 | excl_plant='You' dp=+0.033 target_top_riser=0 coll=0 q='Who took the X-ray photograph know'
+  [it listen] W*_rank_bare=173 target_rank_bare=50 top_riser='You' dp=+0.002 wstar_top_riser=0 | excl_plant='You' dp=+0.002 target_top_riser=0 coll=0 q='Who originally invented the board '
+  [it listen] W*_rank_bare=93 target_rank_bare=280 top_riser='You' dp=+0.000 wstar_top_riser=0 | excl_plant='You' dp=+0.000 target_top_riser=0 coll=0 q='Who invented the first movable typ'
+  [it listen] W*_rank_bare=196 target_rank_bare=37 top_riser='You' dp=+0.000 wstar_top_riser=0 | excl_plant='You' dp=+0.000 target_top_riser=0 coll=0 q='Who held the original patent for t'
+  [it listen] W*_rank_bare=182643 target_rank_bare=23 top_riser='You' dp=+0.031 wstar_top_riser=0 | excl_plant='You' dp=+0.031 target_top_riser=0 coll=0 q='Who was the primary author of the '
+[vfam_ext2_27bit|fold] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=3077.0 wstar_in_bare_topk=False || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=3077.0 target_in_bare_topk=False
+[vfam_ext2_27bit|listen] LITERAL OTHER_RISER n=82 n_collision=0 n_eval=82 frac_wstar_top_riser=0.0 median_wstar_rank_bare=3077.0 wstar_in_bare_topk=False || TARGET OTHER_RISER frac_target_top_riser=0.0 median_target_rank_bare=25.0 target_in_bare_topk=False | THRESHOLDS_NOT_CALIBRATED_FOR_THIS_ARM
+[done] wrote out/family_topk_shift_arms_vfam_ext2_27bit.json
+--- end topkarms_27bit ---
+=== CELL instr_triang_9b ===
+exit=0  (instr_triang_9b)
+  "SC_INSTR_3_specificity_linear": false,
+  "reader_atp_rank": 572,
+  "reader_patch_rank": 27,
+  "reader_knockout_rank": 189,
+  "ctrl_atp_rank": 607,
+  "ctrl_patch_frac": -0.0111,
+  "reader_patch_frac": -0.0044,
+  "sign_agreement": 0.533,
+  "verdict": "INCONCLUSIVE: faithfulness/criteria not met as pre-registered; inspect per-pair rows"
+}
+[robustness] bootstrap_rank_ci= {'rank_lo': 118, 'rank_med': 540, 'rank_hi': 623, 'frac_top5': 0.0}  null_floor= {'reader_real': -0.0091, 'null_pctl': 0.0494, 'n_null': 10, 'above_floor': False}
+[done] wrote out/instr_triangulation_2b_curated.json
+--- end instr_triang_9b ---
+=== the clean test, computed ON THE BOX so the verdict survives a failed fetch ===
+[cleangate diagnose] n=82 pre_fields=23 differing={'lpC_single': 82, 'lpW_single': 82, 'P_w_neutral': 80, 'P_w_counter': 82, 'RA_effect': 82, 'lpC_neutral': 82, 'lpW_neutral': 82, 'lpC_counter': 82, 'lpW_counter': 82, 'M0': 65, 'abs_M0': 65, 'Mc_neutral': 69, 'Mc_counter': 67, 'RC_effect': 77, 'faithful_RC': 4}
+[cleangate topk_shift] n=82 pre_fields=25 differing={} -> ALGEBRAICALLY NEUTRAL
+ALLDONE_CLEANGATE_TOPK_27B

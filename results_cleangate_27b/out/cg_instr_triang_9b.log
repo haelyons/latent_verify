@@ -1,0 +1,241 @@
+[load] google/gemma-2-9b on cuda
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:35<04:08, 35.46s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:49<02:15, 22.64s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:50<01:05, 13.03s/it]Fetching 8 files:  50%|█████     | 4/8 [00:51<00:32,  8.02s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:51<00:15,  5.32s/it]Fetching 8 files:  88%|████████▊ | 7/8 [00:53<00:03,  3.20s/it]Fetching 8 files: 100%|██████████| 8/8 [00:58<00:00,  3.56s/it]Fetching 8 files: 100%|██████████| 8/8 [00:58<00:00,  7.31s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:   0%|          | 1/464 [00:00<00:58,  7.87it/s]Loading weights:  15%|█▍        | 69/464 [00:00<00:01, 340.86it/s]Loading weights:  23%|██▎       | 105/464 [00:00<00:01, 321.65it/s]Loading weights:  31%|███▏      | 146/464 [00:00<00:00, 347.26it/s]Loading weights:  39%|███▉      | 182/464 [00:00<00:00, 329.45it/s]Loading weights:  47%|████▋     | 216/464 [00:00<00:00, 326.71it/s]Loading weights:  56%|█████▌    | 258/464 [00:00<00:00, 351.74it/s]Loading weights:  64%|██████▎   | 295/464 [00:00<00:00, 343.74it/s]Loading weights:  71%|███████   | 330/464 [00:01<00:00, 341.73it/s]Loading weights:  79%|███████▊  | 365/464 [00:01<00:00, 344.13it/s]Loading weights:  86%|████████▌ | 400/464 [00:01<00:00, 311.80it/s]Loading weights:  95%|█████████▌| 443/464 [00:01<00:00, 344.08it/s]Loading weights: 100%|██████████| 464/464 [00:01<00:00, 332.90it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+[load] done (L=42 H=16)
+[pair] Australia    effect=+1.125
+  [knockout] Australia swept layer 0
+  [knockout] Australia swept layer 1
+  [knockout] Australia swept layer 2
+  [knockout] Australia swept layer 3
+  [knockout] Australia swept layer 4
+  [knockout] Australia swept layer 5
+  [knockout] Australia swept layer 6
+  [knockout] Australia swept layer 7
+  [knockout] Australia swept layer 8
+  [knockout] Australia swept layer 9
+  [knockout] Australia swept layer 10
+  [knockout] Australia swept layer 11
+  [knockout] Australia swept layer 12
+  [knockout] Australia swept layer 13
+  [knockout] Australia swept layer 14
+  [knockout] Australia swept layer 15
+  [knockout] Australia swept layer 16
+  [knockout] Australia swept layer 17
+  [knockout] Australia swept layer 18
+  [knockout] Australia swept layer 19
+  [knockout] Australia swept layer 20
+  [knockout] Australia swept layer 21
+  [knockout] Australia swept layer 22
+  [knockout] Australia swept layer 23
+  [knockout] Australia swept layer 24
+  [knockout] Australia swept layer 25
+  [knockout] Australia swept layer 26
+  [knockout] Australia swept layer 27
+  [knockout] Australia swept layer 28
+  [knockout] Australia swept layer 29
+  [knockout] Australia swept layer 30
+  [knockout] Australia swept layer 31
+  [knockout] Australia swept layer 32
+  [knockout] Australia swept layer 33
+  [knockout] Australia swept layer 34
+  [knockout] Australia swept layer 35
+  [knockout] Australia swept layer 36
+  [knockout] Australia swept layer 37
+  [knockout] Australia swept layer 38
+  [knockout] Australia swept layer 39
+  [knockout] Australia swept layer 40
+  [knockout] Australia swept layer 41
+[pair] Texas        effect=+0.750
+  [knockout] Texas swept layer 0
+  [knockout] Texas swept layer 1
+  [knockout] Texas swept layer 2
+  [knockout] Texas swept layer 3
+  [knockout] Texas swept layer 4
+  [knockout] Texas swept layer 5
+  [knockout] Texas swept layer 6
+  [knockout] Texas swept layer 7
+  [knockout] Texas swept layer 8
+  [knockout] Texas swept layer 9
+  [knockout] Texas swept layer 10
+  [knockout] Texas swept layer 11
+  [knockout] Texas swept layer 12
+  [knockout] Texas swept layer 13
+  [knockout] Texas swept layer 14
+  [knockout] Texas swept layer 15
+  [knockout] Texas swept layer 16
+  [knockout] Texas swept layer 17
+  [knockout] Texas swept layer 18
+  [knockout] Texas swept layer 19
+  [knockout] Texas swept layer 20
+  [knockout] Texas swept layer 21
+  [knockout] Texas swept layer 22
+  [knockout] Texas swept layer 23
+  [knockout] Texas swept layer 24
+  [knockout] Texas swept layer 25
+  [knockout] Texas swept layer 26
+  [knockout] Texas swept layer 27
+  [knockout] Texas swept layer 28
+  [knockout] Texas swept layer 29
+  [knockout] Texas swept layer 30
+  [knockout] Texas swept layer 31
+  [knockout] Texas swept layer 32
+  [knockout] Texas swept layer 33
+  [knockout] Texas swept layer 34
+  [knockout] Texas swept layer 35
+  [knockout] Texas swept layer 36
+  [knockout] Texas swept layer 37
+  [knockout] Texas swept layer 38
+  [knockout] Texas swept layer 39
+  [knockout] Texas swept layer 40
+  [knockout] Texas swept layer 41
+[pair] Canada       effect=+0.625
+  [knockout] Canada swept layer 0
+  [knockout] Canada swept layer 1
+  [knockout] Canada swept layer 2
+  [knockout] Canada swept layer 3
+  [knockout] Canada swept layer 4
+  [knockout] Canada swept layer 5
+  [knockout] Canada swept layer 6
+  [knockout] Canada swept layer 7
+  [knockout] Canada swept layer 8
+  [knockout] Canada swept layer 9
+  [knockout] Canada swept layer 10
+  [knockout] Canada swept layer 11
+  [knockout] Canada swept layer 12
+  [knockout] Canada swept layer 13
+  [knockout] Canada swept layer 14
+  [knockout] Canada swept layer 15
+  [knockout] Canada swept layer 16
+  [knockout] Canada swept layer 17
+  [knockout] Canada swept layer 18
+  [knockout] Canada swept layer 19
+  [knockout] Canada swept layer 20
+  [knockout] Canada swept layer 21
+  [knockout] Canada swept layer 22
+  [knockout] Canada swept layer 23
+  [knockout] Canada swept layer 24
+  [knockout] Canada swept layer 25
+  [knockout] Canada swept layer 26
+  [knockout] Canada swept layer 27
+  [knockout] Canada swept layer 28
+  [knockout] Canada swept layer 29
+  [knockout] Canada swept layer 30
+  [knockout] Canada swept layer 31
+  [knockout] Canada swept layer 32
+  [knockout] Canada swept layer 33
+  [knockout] Canada swept layer 34
+  [knockout] Canada swept layer 35
+  [knockout] Canada swept layer 36
+  [knockout] Canada swept layer 37
+  [knockout] Canada swept layer 38
+  [knockout] Canada swept layer 39
+  [knockout] Canada swept layer 40
+  [knockout] Canada swept layer 41
+[pair] Switzerland  effect=-1.125
+  [knockout] Switzerland swept layer 0
+  [knockout] Switzerland swept layer 1
+  [knockout] Switzerland swept layer 2
+  [knockout] Switzerland swept layer 3
+  [knockout] Switzerland swept layer 4
+  [knockout] Switzerland swept layer 5
+  [knockout] Switzerland swept layer 6
+  [knockout] Switzerland swept layer 7
+  [knockout] Switzerland swept layer 8
+  [knockout] Switzerland swept layer 9
+  [knockout] Switzerland swept layer 10
+  [knockout] Switzerland swept layer 11
+  [knockout] Switzerland swept layer 12
+  [knockout] Switzerland swept layer 13
+  [knockout] Switzerland swept layer 14
+  [knockout] Switzerland swept layer 15
+  [knockout] Switzerland swept layer 16
+  [knockout] Switzerland swept layer 17
+  [knockout] Switzerland swept layer 18
+  [knockout] Switzerland swept layer 19
+  [knockout] Switzerland swept layer 20
+  [knockout] Switzerland swept layer 21
+  [knockout] Switzerland swept layer 22
+  [knockout] Switzerland swept layer 23
+  [knockout] Switzerland swept layer 24
+  [knockout] Switzerland swept layer 25
+  [knockout] Switzerland swept layer 26
+  [knockout] Switzerland swept layer 27
+  [knockout] Switzerland swept layer 28
+  [knockout] Switzerland swept layer 29
+  [knockout] Switzerland swept layer 30
+  [knockout] Switzerland swept layer 31
+  [knockout] Switzerland swept layer 32
+  [knockout] Switzerland swept layer 33
+  [knockout] Switzerland swept layer 34
+  [knockout] Switzerland swept layer 35
+  [knockout] Switzerland swept layer 36
+  [knockout] Switzerland swept layer 37
+  [knockout] Switzerland swept layer 38
+  [knockout] Switzerland swept layer 39
+  [knockout] Switzerland swept layer 40
+  [knockout] Switzerland swept layer 41
+[pair] Morocco      effect=-1.125
+  [knockout] Morocco swept layer 0
+  [knockout] Morocco swept layer 1
+  [knockout] Morocco swept layer 2
+  [knockout] Morocco swept layer 3
+  [knockout] Morocco swept layer 4
+  [knockout] Morocco swept layer 5
+  [knockout] Morocco swept layer 6
+  [knockout] Morocco swept layer 7
+  [knockout] Morocco swept layer 8
+  [knockout] Morocco swept layer 9
+  [knockout] Morocco swept layer 10
+  [knockout] Morocco swept layer 11
+  [knockout] Morocco swept layer 12
+  [knockout] Morocco swept layer 13
+  [knockout] Morocco swept layer 14
+  [knockout] Morocco swept layer 15
+  [knockout] Morocco swept layer 16
+  [knockout] Morocco swept layer 17
+  [knockout] Morocco swept layer 18
+  [knockout] Morocco swept layer 19
+  [knockout] Morocco swept layer 20
+  [knockout] Morocco swept layer 21
+  [knockout] Morocco swept layer 22
+  [knockout] Morocco swept layer 23
+  [knockout] Morocco swept layer 24
+  [knockout] Morocco swept layer 25
+  [knockout] Morocco swept layer 26
+  [knockout] Morocco swept layer 27
+  [knockout] Morocco swept layer 28
+  [knockout] Morocco swept layer 29
+  [knockout] Morocco swept layer 30
+  [knockout] Morocco swept layer 31
+  [knockout] Morocco swept layer 32
+  [knockout] Morocco swept layer 33
+  [knockout] Morocco swept layer 34
+  [knockout] Morocco swept layer 35
+  [knockout] Morocco swept layer 36
+  [knockout] Morocco swept layer 37
+  [knockout] Morocco swept layer 38
+  [knockout] Morocco swept layer 39
+  [knockout] Morocco swept layer 40
+  [knockout] Morocco swept layer 41
+[qa] Australia    effect=+1.398 below_floor=False atp_finite=True
+[qa] Texas        effect=+0.630 below_floor=False atp_finite=True
+[qa] Canada       effect=+0.570 below_floor=False atp_finite=True
+[qa] Switzerland  effect=+0.934 below_floor=False atp_finite=True
+[qa] Morocco      effect=+0.188 below_floor=True atp_finite=True
+
+[decision] {
+  "SC_INSTR_1_concordance": false,
+  "SC_INSTR_2_small_effect": true,
+  "SC_INSTR_3_specificity_linear": false,
+  "reader_atp_rank": 572,
+  "reader_patch_rank": 27,
+  "reader_knockout_rank": 189,
+  "ctrl_atp_rank": 607,
+  "ctrl_patch_frac": -0.0111,
+  "reader_patch_frac": -0.0044,
+  "sign_agreement": 0.533,
+  "verdict": "INCONCLUSIVE: faithfulness/criteria not met as pre-registered; inspect per-pair rows"
+}
+[robustness] bootstrap_rank_ci= {'rank_lo': 118, 'rank_med': 540, 'rank_hi': 623, 'frac_top5': 0.0}  null_floor= {'reader_real': -0.0091, 'null_pctl': 0.0494, 'n_null': 10, 'above_floor': False}
+[done] wrote out/instr_triangulation_2b_curated.json
