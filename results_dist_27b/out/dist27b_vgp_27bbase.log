@@ -1,0 +1,10 @@
+[T_PRE] VALID n=82 polar_frac=0.0 collision_frac=0.0 n_wh=82 coverage={'yes': 0, 'no': 0, 'entity': 82}
+        collision_frac 0.000 <= COLLISION_THR(0.5) AND n_wh 82 >= MIN_WH(8): the family has enough content-answer items to support a content-vs-format readout swap.
+[load] google/gemma-2-27b on cuda (chat=False)
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   5%|▍         | 25/508 [00:00<00:02, 221.51it/s]Loading weights:  11%|█▏        | 58/508 [00:00<00:01, 260.47it/s]Loading weights:  18%|█▊        | 91/508 [00:00<00:01, 275.80it/s]Loading weights:  24%|██▍       | 124/508 [00:00<00:01, 281.91it/s]Loading weights:  31%|███       | 157/508 [00:00<00:01, 290.54it/s]Loading weights:  37%|███▋      | 190/508 [00:00<00:01, 299.73it/s]Loading weights:  44%|████▍     | 223/508 [00:00<00:00, 294.47it/s]Loading weights:  50%|█████     | 256/508 [00:00<00:00, 275.01it/s]Loading weights:  59%|█████▉    | 300/508 [00:01<00:00, 303.38it/s]Loading weights:  66%|██████▌   | 333/508 [00:01<00:00, 291.42it/s]Loading weights:  72%|███████▏  | 367/508 [00:01<00:00, 286.29it/s]Loading weights:  79%|███████▊  | 400/508 [00:01<00:00, 294.16it/s]Loading weights:  85%|████████▌ | 432/508 [00:01<00:00, 298.50it/s]Loading weights:  92%|█████████▏| 465/508 [00:01<00:00, 302.72it/s]Loading weights:  98%|█████████▊| 498/508 [00:01<00:00, 300.97it/s]Loading weights: 100%|██████████| 508/508 [00:01<00:00, 295.96it/s]
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+[base] selected 13/82 single-competitor near-margin items
+[base] n_faithful=0
+[T3] INSUFFICIENT n_faithful=0 mean_RA=None mean_RC_norm=None (effect_delta=0.0)
+     only 0 faithful caving item(s) < MIN_FAITHFUL(8); under-powered to compare readouts (numbers still reported).
+[done] wrote out/verify_graph_poc_vfam_ext2_27bbase.json

@@ -1,0 +1,147 @@
+{
+  "control": "b1_fold_identity_gate_27b",
+  "cells": {
+    "27b-base": {
+      "n": 82,
+      "pre_fields": 23,
+      "differing": {
+        "P_w_neutral": 79,
+        "RA_effect": 79,
+        "Mc_counter": 50,
+        "lpC_neutral": 72,
+        "lpW_neutral": 76,
+        "lpC_counter": 45,
+        "lpW_counter": 52,
+        "RC_effect": 66,
+        "M0": 53,
+        "abs_M0": 53,
+        "lpC_single": 58,
+        "lpW_single": 61,
+        "Mc_neutral": 61,
+        "P_w_counter": 43,
+        "headroom_pass": 1,
+        "faithful_RC": 1
+      },
+      "verdict": "FOLD_DIFFERS"
+    },
+    "27b-it": {
+      "n": 82,
+      "pre_fields": 23,
+      "differing": {
+        "M0": 81,
+        "abs_M0": 81,
+        "lpC_single": 80,
+        "lpW_single": 81,
+        "P_w_counter": 3,
+        "RA_effect": 3,
+        "Mc_counter": 56,
+        "lpC_counter": 49,
+        "lpW_counter": 44,
+        "RC_effect": 61,
+        "Mc_neutral": 51,
+        "lpC_neutral": 44,
+        "lpW_neutral": 47,
+        "headroom_pass": 1
+      },
+      "verdict": "FOLD_DIFFERS"
+    }
+  },
+  "cross_box_note": "The reference artifacts were produced on a 1x H100 PCIe box and these on a 2x H100 SXM5 box (one GPU visible), same driver and library stack. So a FOLD_IDENTICAL verdict here is simultaneously the registered algebraic-neutrality gate AND an unplanned CROSS-BOX reproduction of 27b teacher-forced numerics.",
+  "decision": "GATE_UNEVALUABLE_AT_27B_CONFOUNDED",
+  "magnitude": {
+    "27b-base": {
+      "lpC_single": {
+        "n_differing": 58,
+        "max_abs_delta": 0.158787,
+        "median_nonzero_delta": 0.012352
+      },
+      "lpW_single": {
+        "n_differing": 61,
+        "max_abs_delta": 0.245903,
+        "median_nonzero_delta": 0.039827
+      },
+      "M0": {
+        "n_differing": 53,
+        "max_abs_delta": 0.251563,
+        "median_nonzero_delta": 0.0922
+      },
+      "Mc_neutral": {
+        "n_differing": 61,
+        "max_abs_delta": 0.343312,
+        "median_nonzero_delta": 0.125
+      },
+      "Mc_counter": {
+        "n_differing": 50,
+        "max_abs_delta": 0.354093,
+        "median_nonzero_delta": 0.125
+      },
+      "RC_effect": {
+        "n_differing": 66,
+        "max_abs_delta": 0.401015,
+        "median_nonzero_delta": 0.125
+      },
+      "thresholded_flips": {
+        "headroom_pass": 1,
+        "faithful_RC": 1,
+        "faithful_RA": 0
+      },
+      "category_this_run": "CONTENT_CAVES",
+      "category_reference": "CONTENT_CAVES"
+    },
+    "27b-it": {
+      "lpC_single": {
+        "n_differing": 80,
+        "max_abs_delta": 0.37289,
+        "median_nonzero_delta": 0.062494
+      },
+      "lpW_single": {
+        "n_differing": 81,
+        "max_abs_delta": 0.440371,
+        "median_nonzero_delta": 0.086907
+      },
+      "M0": {
+        "n_differing": 81,
+        "max_abs_delta": 0.469487,
+        "median_nonzero_delta": 0.09375
+      },
+      "Mc_neutral": {
+        "n_differing": 51,
+        "max_abs_delta": 0.437489,
+        "median_nonzero_delta": 0.09375
+      },
+      "Mc_counter": {
+        "n_differing": 56,
+        "max_abs_delta": 0.59375,
+        "median_nonzero_delta": 0.164064
+      },
+      "RC_effect": {
+        "n_differing": 61,
+        "max_abs_delta": 0.5,
+        "median_nonzero_delta": 0.203126
+      },
+      "thresholded_flips": {
+        "headroom_pass": 1,
+        "faithful_RC": 0,
+        "faithful_RA": 0
+      },
+      "category_this_run": "CONTENT_CAVES",
+      "category_reference": "CONTENT_CAVES"
+    }
+  },
+  "hardware": {
+    "reference": {
+      "gpu": "NVIDIA H100 PCIe",
+      "driver": "570.148.08",
+      "instance": null
+    },
+    "this_run": {
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "driver": "580.105.08",
+      "instance": "748937f95b8d41d9907189b7994414a3"
+    }
+  },
+  "verdict_interpretation": "THE GATE CANNOT BE EVALUATED AT 27b, and that is the honest verdict - not 'the code drifted' and not 'the code is fine'. The comparison is CONFOUNDED: the reference ran on an H100 PCIe at driver 570.148.08 and this run on an H100 80GB HBM3 at driver 580.105.08, so a difference could be code or hardware and this comparison cannot separate them. Evidence strongly favours HARDWARE: (1) the identical gate PASSED on all 23 fields at 2b-base, 2b-it, 9b-base and 9b-it, where reference and re-run shared card type AND driver; (2) the instrument's selftest asserts the fold path reproduces the shipped arithmetic on synthetic inputs; (3) the divergence is diffuse across every logprob field with no systematic sign, whereas a swapped plant/target role would flip signs systematically.",
+  "consequence": "Per the registration, the 27b LISTEN numbers are HELD and NOT quotable until the confound is resolved. The 2b and 9b listen numbers are gated clean and ARE usable. Nothing about the 27b listen arm is claimed here.",
+  "clean_test_owed": "The decisive test is cheap and I should have designed it: run the SHIPPED family_cave_diagnose.py and the new family_cave_diagnose_arms.py --arm fold on the SAME box in the SAME process order, and diff. That removes hardware from the comparison entirely. One 27b box, two forward passes.",
+  "independent_finding": "Set aside the gate: this is a CROSS-BOX REPRODUCTION FAILURE of 27b teacher-forced numerics, and it is the first time the repo has measured one with both boxes' hardware recorded. Magnitude is far above bf16 last-bit rounding - median non-zero delta 0.09-0.20 nats and max 0.44-0.50 nats on lp components. Combined with the within-box rider (out/../results_r1_dist_27b r1_27b_determinism_rider.json = WITHIN_BOX_DETERMINISTIC, 0 of 14 numeric fields over 82 items), 27b forward numerics are within-box deterministic and across-box divergent. That is exactly the mechanism that would produce the committed 27b DECODE divergence, and it makes RETRACTIONS.md R-1 correct in substance while the committed run itself stays unattributable, because it recorded no driver. THE REASSURING HALF: the VERDICTS are robust where the numbers are not - thresholded flips are at most 1 of 82 on any gate, and both cells decide CONTENT_CAVES on both boxes. 27b conclusions survive the numeric instability; 27b digits do not."
+}
