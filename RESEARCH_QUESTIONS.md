@@ -322,9 +322,10 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > **DISCIPLINES any future number must obey (all receipts in the JOIN):** every 27b-base figure
 > names its decode draw (committed ext2 = anomaly, nelicit re-run = reproducible) AND its register;
 > 27b-it is ALSO draw-dependent (82/164 counter_gen differ — per-field check, no blanket exemption;
-> 2b/9b are 0/164 clean); scale ordering within a variant is mostly NOT distinguishable
-> (`out/gapclose_foldrate_sig.json`: 9b-it vs 27b-it p=1.0) — the cross-variant gap is the decisive
-> axis, not scale; the fmt triple is quotable whole or not at all.
+> 2b/9b are 0/164 clean); on scale ordering within a variant, 9b and 27b NEVER separate (p=1.0 -it,
+> 0.289 base) and 2b separates except from 27b-base — 3 of 6 comparisons null
+> (`out/gapclose_foldrate_sig.json`) — the cross-variant gap is the decisive axis, not scale; the
+> fmt triple is quotable whole or not at all.
 >
 > **FOR THE RESEARCHER (blocks their own decisions):** T3-03 (the intro-L25 mechanism sentence —
 > no run supports it as written; the block offers the honest replacement) is NEEDS-RESEARCHER-

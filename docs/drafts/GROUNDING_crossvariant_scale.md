@@ -684,6 +684,7 @@ The sections above are left as written; these are corrections to them, not to th
 5. **§1's significance paragraph under-reports its own source.** `out/gapclose_foldrate_sig.json`
    also runs six within-variant scale comparisons: 2b-it vs 9b-it p=0.000244 DIFFERS, 2b-it vs
    27b-it p=0.004181 DIFFERS, 9b-it vs 27b-it p=1.0, 2b-base vs 9b-base p=0.000519 DIFFERS,
-   2b-base vs 27b-base p=0.1796, 9b-base vs 27b-base p=0.2891 — **4 of 6 NOT_DISTINGUISHABLE**. No
-   scale-monotonicity claim is licensed by this test; any "scaling" framing in the write-up must
-   carry this.
+   2b-base vs 27b-base p=0.1796, 9b-base vs 27b-base p=0.2891 — **3 of 6 NOT_DISTINGUISHABLE**
+   (this item's first printing said 4 of 6 against its own list of three DIFFERS; corrected the
+   same session). 9b and 27b never separate in either variant. No scale-monotonicity claim is
+   licensed by this test; any "scaling" framing in the write-up must carry this.

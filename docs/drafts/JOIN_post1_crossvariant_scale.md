@@ -20,7 +20,7 @@
 | # | Family | Run? | State |
 |---|---|---|---|
 | A1 | Fold/listen faithful matrix (12 cells, ext2 n=82) | RUN, all 12 | Reproduces exactly, all fold + listen cells (`cells_faithful.*.elicit`, six `foldlisten_judge_*_ext2_summary.json`; 9b-it faithful labels live in `out/faithful_rescore_fl_9bit_ext2.json`, NOT in the r2 summary). Cross-variant exact McNemar decisive at every scale: p = 7.1e-15 / 1.2e-14 / 7.5e-11 (`out/gapclose_foldrate_sig.json`). |
-| A2 | Scale as an axis | RUN, weak | Same sig file, within-variant scale comparisons: 9b-it vs 27b-it p=1.0; 2b-base vs 27b-base p=0.180; 9b-base vs 27b-base p=0.289 — **4 of 6 NOT_DISTINGUISHABLE** (only 2b-vs-9b pairs differ). No monotonicity or "law" claim is licensed at n=82. |
+| A2 | Scale as an axis | RUN, weak | Same sig file, within-variant scale comparisons: 9b-it vs 27b-it p=1.0; 2b-base vs 27b-base p=0.180; 9b-base vs 27b-base p=0.289 — **3 of 6 NOT_DISTINGUISHABLE** (2b separates from 9b in both variants and from 27b at -it; 9b and 27b never separate). No monotonicity or "law" claim is licensed; n_pairs are 66–82, not a flat 82. *(Count corrected same session — first printing said 4 of 6 against its own list of three DIFFERS.)* |
 | A3 | Format-matched readout (OWED C1) | RUN 31/31 | Bare-rank base-vs-it gap is a FORMAT artifact (L_old 2.416/2.899/2.886 → L_new 0.125/0.196/0.079); primary triple `(RANK_RESOLUTION_INSUFFICIENT, RANK_RESOLUTION_INSUFFICIENT, ANCHOR_DIFFERS)` quotable whole or not at all; **no residual gap band at any scale**. `out/fmt_matched_join.json`; L_new re-derived to full float precision by an isolated reader. |
 | A4 | Probability / "under the hood" | RUN, partly confounded | The ~3× -it component magnitude SURVIVES the key fix (RC residual 4.58/2.93/2.04 nats vs MARGIN_FAITHFUL 0.5) — not a tokenisation artifact. Top-k now exists at ALL six cells (`results_r1_dist_{2b9b,27b}/`, 9b-base in `results_absdecode_ext2/`) — the three gold brackets saying otherwise are stale. -it top-k NOT usable for absolute/"top" claims (leading-space key confound, `GROUNDING_crossvariant_scale.md` §4.1). |
 | A5 | Neutral-elicit (`DESIGN_neutral_elicit.md`) | RUN, 6 ext2 cells + anchor4 | Fills the Fig-1 missing neutral-elicited column (notes L137 bracket resolvable). Repro gate BYTE_IDENTICAL at 2b/9b; base push-attribution reads INVERTED_NEUTRAL_HIGHER at 9b/27b-base — the format-artifact branch fires under both label readings. |
@@ -141,7 +141,7 @@ All REPRODUCE unless flagged. Receipts in the residual-numbers pass; primary art
   `cells_faithful` (the labels live in `out/faithful_rescore_fl_9bit_ext2.json`); §8's "0 of 3
   base cells PUSH_ATTRIBUTABLE" is the withhold column (2b-base listen `move_verdict` reads
   PUSH_ATTRIBUTABLE); §1's significance paragraph omits the six within-variant scale McNemars
-  (4/6 NOT_DISTINGUISHABLE — see A2).
+  (3/6 NOT_DISTINGUISHABLE — see A2).
 
 ## G. Session receipts
 
