@@ -5,7 +5,10 @@ neither entity (withholding). All three lines dive to (almost) zero on the -it s
 Sidebar-sized on purpose; companion to the stacked bars, not a standalone.
 
 Two families, one PNG each: ext2 (n=82, current) and orig22 (n=22, the near-tie tuning
-set). Counts grounded per make_fig_outcome_alluvial.py (elicit_gen strict, NEITHER + UA).
+set). Counts grounded per make_fig_outcome_alluvial.py (elicit_gen strict, faithful
+register, NEITHER + UA). The ext2 27b point is the REPRODUCIBLE nelicit decode draw (draw
+disclosure in make_fig_outcome_alluvial.py's docstring); updated 2026-07-29, base withhold
+32 -> 34.
 
 Usage: python docs/drafts/figs/make_fig_withhold_slope.py
 """
@@ -19,7 +22,7 @@ GRAY = "#b0b0ab"
 INK = "#333333"
 
 FAMILIES = {
-    "ext2":   {"n": 82, "withhold": {"2b": (51, 0), "9b": (38, 0), "27b": (32, 1)}},
+    "ext2":   {"n": 82, "withhold": {"2b": (51, 0), "9b": (38, 0), "27b": (34, 1)}},
     "orig22": {"n": 22, "withhold": {"2b": (9, 0), "9b": (19, 0), "27b": (6, 0)}},
 }
 

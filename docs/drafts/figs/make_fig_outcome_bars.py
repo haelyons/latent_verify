@@ -3,10 +3,12 @@ One horizontal bar per model, three segments hold C / fold W* / withhold. Base b
 -it block so the withhold segment visibly vanishes across training. Same Okabe-Ito hues +
 base/it alpha as make_figB_neutral_counterfactual.py.
 
-Two families, one PNG each: ext2 (n=82, the current family — all six cells landed Phase B
-2026-07-22, faithful-strict) and orig22 (n=22, the near-tie tuning set). Counts hardcoded
-with a per-row MECE assert; the ext2 cells re-derive from the committed summaries via
-make_fig_outcome_alluvial.rederive (same artifacts, elicit_gen strict, UA bucketed NEITHER).
+Two families, one PNG each: ext2 (n=82, the current family; the 27b row is the REPRODUCIBLE
+nelicit decode draw, not the committed ext2 one — draw disclosure and the moved digits in
+make_fig_outcome_alluvial.py's docstring) and orig22 (n=22, the near-tie tuning set). Counts
+hardcoded with a per-row MECE assert; the ext2 cells re-derive from the summaries via
+make_fig_outcome_alluvial.rederive (same artifacts, elicit_gen strict, faithful register,
+UA bucketed NEITHER). 27b-base updated 2026-07-29: (39, 11, 32) -> (41, 7, 34).
 
 Usage: python docs/drafts/figs/make_fig_outcome_bars.py
 """
@@ -27,7 +29,7 @@ FAMILIES = {
         "rows": [
             ("2b-base",  (15, 16, 51), "base"),
             ("9b-base",  (41, 3, 38),  "base"),
-            ("27b-base", (39, 11, 32), "base"),
+            ("27b-base", (41, 7, 34), "base"),
             ("2b-it",    (14, 68, 0),  "it"),
             ("9b-it",    (27, 55, 0),  "it"),
             ("27b-it",   (26, 55, 1),  "it"),

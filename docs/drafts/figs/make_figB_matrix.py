@@ -15,9 +15,15 @@ neutral column of figB_*_ext2, which is a paired control arm), so no paired-arms
 the neutral control appears instead as a per-panel annotation "neutral drift n/82" (faithful
 register), which is the item-aggregated form of the gate's push-attributability check.
 
-Every plotted elicited count asserted against the H3-grounded registers (EXPECT in
-make_figB_sankey.py) before drawing. Palette = the archived session's Okabe-Ito trio, revalidated
-here by the same inline Vienot+OKLab check (all pairs pass; identity also carried by labels).
+Every plotted count asserted before drawing: the elicited column against the H3-grounded registers
+(EXPECT in make_figB_sankey.py) and — since 2026-07-29 — the COUNTER column against COUNTER_EXPECT
+below, in whichever of the two registers that build uses. That second assert closes
+NOTE_faithful_matcher.md Addendum 4 item (c): the counter column is classified live at draw time, so
+before it was frozen the entity_forms_v2 change moved this figure in three panels with nothing failing.
+The 27b panels are drawn from the reproducible decode draw (make_figB_sankey.D2, repointed the same day);
+every 27b count here belongs to that draw, not to the committed ext2 one. Palette = the archived
+session's Okabe-Ito trio, revalidated here by the same inline Vienot+OKLab check (all pairs pass;
+identity also carried by labels).
 
 Usage: python docs/drafts/figs/make_figB_matrix.py
 """
@@ -83,6 +89,49 @@ def _title(scale, training):
 
 STRICT_COUNTER = False   # set by make(); when True the counter column uses the string-identity register
 
+# Frozen COUNTER-column expectations, one block per register, because the two registers disagree on the
+# base cells by construction (mapped credits a bare "Yes, I'm sure." to the stated/pushed entity; strict
+# requires the model to spell the entity out). Derived 2026-07-29 by this script's own two code paths
+# over the sources in make_figB_sankey.PANELS (27b = the reproducible nelicit draw), UNRESOLVED_ALIAS
+# folded into NEITHER exactly as load_panel/_strict_counter_seq do. Zero states written out, so a
+# state going from 0 to nonzero also fails the assert.
+#
+# WHY THIS EXISTS: the counter column is classified LIVE at draw time (load_panel reads the stored
+# faithful_counter label; _strict_counter_seq calls classify directly), whereas the elicited column was
+# already frozen. Addendum 4 (2c5a8bf, plural entity forms) therefore moved figB_synthesis_strict_ext2's
+# counter column in three panels with every assert still green. Freezing both registers means the next
+# matcher change fails loudly here instead.
+COUNTER_EXPECT = {
+    "mapped": {   # confidence->entity mapping ON (figB_matrix_redrive_ext2, figB_synthesis_ext2)
+        "fold": {"2b base": {"C": 60, "WSTAR": 0, "NEITHER": 22},
+                 "9b base": {"C": 26, "WSTAR": 0, "NEITHER": 56},
+                 "27b base": {"C": 55, "WSTAR": 0, "NEITHER": 27},
+                 "2b-it": {"C": 6, "WSTAR": 67, "NEITHER": 9},
+                 "9b-it": {"C": 25, "WSTAR": 52, "NEITHER": 5},
+                 "27b-it": {"C": 20, "WSTAR": 51, "NEITHER": 11}},
+        "listen": {"2b base": {"C": 0, "WSTAR": 69, "NEITHER": 13},
+                   "9b base": {"C": 0, "WSTAR": 56, "NEITHER": 26},
+                   "27b base": {"C": 0, "WSTAR": 56, "NEITHER": 26},
+                   "2b-it": {"C": 75, "WSTAR": 0, "NEITHER": 7},
+                   "9b-it": {"C": 67, "WSTAR": 1, "NEITHER": 14},
+                   "27b-it": {"C": 67, "WSTAR": 0, "NEITHER": 15}},
+    },
+    "strict": {   # map_confidence=False, the slot's own register (figB_synthesis_strict_ext2)
+        "fold": {"2b base": {"C": 2, "WSTAR": 0, "NEITHER": 80},
+                 "9b base": {"C": 0, "WSTAR": 0, "NEITHER": 82},
+                 "27b base": {"C": 9, "WSTAR": 0, "NEITHER": 73},
+                 "2b-it": {"C": 6, "WSTAR": 67, "NEITHER": 9},
+                 "9b-it": {"C": 25, "WSTAR": 52, "NEITHER": 5},
+                 "27b-it": {"C": 20, "WSTAR": 51, "NEITHER": 11}},
+        "listen": {"2b base": {"C": 0, "WSTAR": 2, "NEITHER": 80},
+                   "9b base": {"C": 0, "WSTAR": 0, "NEITHER": 82},
+                   "27b base": {"C": 0, "WSTAR": 5, "NEITHER": 77},
+                   "2b-it": {"C": 75, "WSTAR": 0, "NEITHER": 7},
+                   "9b-it": {"C": 67, "WSTAR": 1, "NEITHER": 14},
+                   "27b-it": {"C": 67, "WSTAR": 0, "NEITHER": 15}},
+    },
+}
+
 
 def _panel(cell, scale, training):
     title = _title(scale, training)
@@ -92,6 +141,14 @@ def _panel(cell, scale, training):
         seqs, ua = load_panel(*BY_TITLE[title], cell)
     final = {c: sum(1 for s in seqs if s[2] == c) for c in CATS}
     assert final == {c: EXPECT[cell][title].get(c, 0) for c in CATS}, (cell, scale, training, final)
+    reg = "strict" if STRICT_COUNTER else "mapped"
+    counter = {c: sum(1 for s in seqs if s[1] == c) for c in CATS}
+    exp_counter = {c: COUNTER_EXPECT[reg][cell][title].get(c, 0) for c in CATS}
+    assert counter == exp_counter, (reg, cell, scale, training, counter, exp_counter)
+    assert sum(counter.values()) == 82, (reg, cell, title, counter)
+    print("[ok] %-6s %-9s counter(%s) " % (cell, title, reg)
+          + " ".join("%s=%2d" % (c, counter[c]) for c in CATS)
+          + " | elicit " + " ".join("%s=%2d" % (c, final[c]) for c in CATS))
     return seqs, ua, final
 
 

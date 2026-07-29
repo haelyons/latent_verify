@@ -376,11 +376,11 @@ it still names an answer on 67 of 74 items - it just names its own previous one,
 PROPOSED:
 
 ````
-it still names an answer on 73 of 74 items (the 74-item mechanism family, not the 82 this post counts over) - its own previous one on 70, the pushed one on 3 - and answers as though we had agreed.
+it still names an answer on 73 of 74 items (the 74-item mechanism family, not the 82 this post counts over) - its own previous one on 71, the pushed one on 2 on the v2/hand-read register (the commit register prints 70/3, but one of its 3 is a documented v1 'lake' matcher artifact, not a fold) - and answers as though we had agreed.
 ````
 
 RECEIPT:
-  `RETRACTIONS.md` R-6 withdraws 67/74 as sourceless. The reproducible figure is `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json` `arm_counts.fold_mask`: commit register C 70 / W* 3 / NEITHER 1 over the n=74 family (`mechanism_family_9bit.json`), so 73 of 74 name an answer and 70 of the 73 are the model's own previous one - their reading survives, on the corrected count. Re-verified this session (C3).
+  `RETRACTIONS.md` R-6 withdraws 67/74 as sourceless. The reproducible figure is `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json` `arm_counts.fold_mask`: commit register C 70 / W* 3 / NEITHER 1 over the n=74 family (`mechanism_family_9bit.json`), so 73 of 74 name an answer and 70 of the 73 (on that commit register) are the model's own previous one - their reading survives, on the corrected count. One of the commit-register "3" is the documented v1 'lake' substring artifact (Lake Baikal, `family_generate_judge.py:150`); the v2/hand-read register is C 71 / W* 2 / NEITHER 1 (`results_foldlisten_p2/matcher_v2_rescore.json`). Both registers persisted. Re-verified this session (C3).
 
 STATUS: READY - RELEGATED, do not apply if the block is cut.
 
@@ -743,11 +743,11 @@ it still names an answer on 67 of 74 items - it just names its own previous one,
 PROPOSED:
 
 ````
-it still names an answer on 73 of 74 items (the 74-item mechanism family, not the 82 this post counts over) - its own previous one on 70, the pushed one on 3 - and answers as though we had agreed.
+it still names an answer on 73 of 74 items (the 74-item mechanism family, not the 82 this post counts over) - its own previous one on 71, the pushed one on 2 on the v2/hand-read register (the commit register prints 70/3, but one of its 3 is a documented v1 'lake' matcher artifact, not a fold) - and answers as though we had agreed.
 ````
 
 RECEIPT:
-  `RETRACTIONS.md` R-6 withdraws 67/74 as sourceless. The reproducible figure is `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json` `arm_counts.fold_mask`: commit register C 70 / W* 3 / NEITHER 1 over the n=74 family (`mechanism_family_9bit.json`), so 73 of 74 name an answer and 70 of the 73 are the model's own previous one - their reading survives, on the corrected count. Re-verified this session (C3).
+  `RETRACTIONS.md` R-6 withdraws 67/74 as sourceless. The reproducible figure is `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json` `arm_counts.fold_mask`: commit register C 70 / W* 3 / NEITHER 1 over the n=74 family (`mechanism_family_9bit.json`), so 73 of 74 name an answer and 70 of the 73 (on that commit register) are the model's own previous one - their reading survives, on the corrected count. One of the commit-register "3" is the documented v1 'lake' substring artifact (Lake Baikal, `family_generate_judge.py:150`); the v2/hand-read register is C 71 / W* 2 / NEITHER 1 (`results_foldlisten_p2/matcher_v2_rescore.json`). Both registers persisted. Re-verified this session (C3).
 
 STATUS: READY - RELEGATED, do not apply if the block is cut.
 

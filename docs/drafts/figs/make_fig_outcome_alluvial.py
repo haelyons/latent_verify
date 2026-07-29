@@ -6,13 +6,22 @@ Ribbons colored by destination. The fold fan and the listen fan share the panel,
 "takes whatever you push" -it signature (both fans crossing to converge on the pushed side)
 and the base withhold mass are visible together.
 
-Two families, one PNG each: ext2 (n=82 per arm, the current family — all six cells landed
-Phase B 2026-07-22, faithful-strict) and orig22 (n=22, the near-tie tuning set). Counts are
-the grounded elicited splits (elicit_gen via faithful_rescore.classify, map_confidence=False
-per the Gate-3 STRICT_FIELDS decision; UNRESOLVED_ALIAS bucketed as NEITHER — the
-make_figB_neutral_counterfactual.py convention); hardcoded with a per-arm MECE assert and
-re-derivable from the committed summaries via --rederive. Same Okabe-Ito hues + base/-it
-alpha as the house sankeys.
+Two families, one PNG each: ext2 (n=82 per arm, the current family — 2b/9b landed Phase B
+2026-07-22; the two 27b cells are the REPRODUCIBLE nelicit decode draw, see below) and orig22
+(n=22, the near-tie tuning set). Counts are the grounded elicited splits (elicit_gen via
+faithful_rescore.classify, map_confidence=False per the Gate-3 STRICT_FIELDS decision;
+UNRESOLVED_ALIAS bucketed as NEITHER — the make_figB_neutral_counterfactual.py convention);
+hardcoded with a per-arm MECE assert and re-derivable from the committed summaries via
+--rederive. Same Okabe-Ito hues + base/-it alpha as the house sankeys.
+
+27b DECODE DRAW (2026-07-29): the 27b sources moved off results_foldlisten_ext2_27b/out, which
+out/27b_decode_determinism_result.json identifies as the ANOMALY (an independent pass is
+byte-identical to the nelicit re-run over 164 items / 4428 item-fields / 22 derived
+quantities, and DIFFs from the committed draw on 654 values and 216 labels). What moved here,
+faithful register: 27b-base fold C 39->41 / W* 11->7 / neither 32->34, listen C 20->16 /
+W* 34->31 / neither 28->35; 27b-it identical in both draws. FIGURES THIS MODULE'S NUMBERS
+FEED: make_fig_outcome_bars.py and make_fig_withhold_slope.py carry the same frozen counts
+(updated in lockstep; their docstrings point back here).
 
 Usage: python docs/drafts/figs/make_fig_outcome_alluvial.py [--rederive]
 """
@@ -43,8 +52,8 @@ FAMILIES = {
                               "listen": {"C": 25, "WSTAR": 10, "NEITHER": 47}},
             ("9b", "base"):  {"fold": {"C": 41, "WSTAR": 3, "NEITHER": 38},
                               "listen": {"C": 11, "WSTAR": 34, "NEITHER": 37}},
-            ("27b", "base"): {"fold": {"C": 39, "WSTAR": 11, "NEITHER": 32},
-                              "listen": {"C": 20, "WSTAR": 34, "NEITHER": 28}},
+            ("27b", "base"): {"fold": {"C": 41, "WSTAR": 7, "NEITHER": 34},
+                              "listen": {"C": 16, "WSTAR": 31, "NEITHER": 35}},
             ("2b", "it"):    {"fold": {"C": 14, "WSTAR": 68, "NEITHER": 0},
                               "listen": {"C": 81, "WSTAR": 1, "NEITHER": 0}},
             ("9b", "it"):    {"fold": {"C": 27, "WSTAR": 55, "NEITHER": 0},
@@ -57,8 +66,9 @@ FAMILIES = {
             ("2b", "it"):    "results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_2bit_ext2_summary.json",
             ("9b", "base"):  "results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_9bbase_ext2_summary.json",
             ("9b", "it"):    "results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json",
-            ("27b", "base"): "results_foldlisten_ext2_27b/out/foldlisten_judge_fl_27bbase_ext2_summary.json",
-            ("27b", "it"):   "results_foldlisten_ext2_27b/out/foldlisten_judge_fl_27bit_ext2_summary.json",
+            # 27b = the reproducible nelicit decode draw, not the committed ext2 one (see docstring)
+            ("27b", "base"): "results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bbase_ext2_summary.json",
+            ("27b", "it"):   "results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bit_ext2_summary.json",
         },
     },
     "orig22": {

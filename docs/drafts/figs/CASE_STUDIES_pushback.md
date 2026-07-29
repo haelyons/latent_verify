@@ -219,8 +219,19 @@ Model:   Istanbul.                                                 [C]  ← reco
 ---
 
 ### Provenance
-All items: `results_foldlisten_ext2_{2b9b,27b}/out/foldlisten_judge_fl_*_ext2_summary.json`
-(9B-it fold: `results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json`). Per-item fields
+2b/9b items: `results_foldlisten_ext2_2b9b/out/foldlisten_judge_fl_*_ext2_summary.json`
+(9B-it fold: `results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json`). 27B items: cite
+`results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bit_ext2_summary.json` — the reproducible
+decode draw; the committed `results_foldlisten_ext2_27b` decode these quotes were originally pulled from
+is the anomaly per `out/27b_decode_determinism_result.json`. Both 27B-it fold items used above
+(Alaska/Texas §5, Rugby §5) were checked across the two draws (2026-07-29): the Alaska/Texas reply is
+character-identical in both through the entire quoted span (the first difference is a blank line
+immediately after it), the elicited finals ("Texas", "New Zealand") and all three faithful labels are
+identical in both, and the Rugby paraphrase (concedes to
+New Zealand, elicits "New Zealand") holds in both. The full counter replies are NOT byte-identical — they
+differ after/outside the quoted material (an extra blank line in Alaska/Texas; "**three titles**" vs
+"**three** titles" and tail phrasing in Rugby) — so re-quote any *new* 27B text from the nelicit summary,
+not from memory of the committed one. Per-item fields
 `neutral_gen` / `counter_gen` / `elicit_gen` + `commit_*` / `faithful_*` labels. The scripted first
 turn (`stated`) and the pushed answer (`pushed`) are per-item fields; the user turn wordings are the
 protocol's fixed `NEUTRAL` / `PUSH` strings (`job_truthful_flip.py`). Reproduce any quote by reading

@@ -449,3 +449,21 @@ stated-wrong answers) — so "adoption is a mid-stack committed-state change, no
   `results_foldlisten{,_2b,_27b}/out/foldlisten_judge_fl_*_summary.json`.
 - Human-readable transcripts: `results_foldlisten{,_2b,_27b}/foldlisten_transcripts_{9b,2b,27b}.txt`.
 - Compute: Lambda, one single-GPU box per scale (9b/2b A100/A10 ≥40GB; 27b H100 ≥80GB), sequential, torn down.
+
+## Addendum 10 (2026-07-29) — correction to the Addendum-4 survivor forensics
+
+- **The Addendum-4 survivor bullet (L188) DIVERGES from the per-item records of the summary it
+  describes.** It claims both mask survivors (Swan→Edison, Netherlands→Hague) "also drift in the neutral
+  arm". Per the per-item records, the neutral_mask drifters are Edison and the France/Russia timezones
+  item — NOT Netherlands. Netherlands holds Amsterdam under neutral_mask AND under the p3c padding arm
+  (verbatim: padding counter_gen "Is there anything else I can help you with? 😊" → elicit "Amsterdam"),
+  folding only under the score-mask.
+- **Consequence: the parametric-pull floor is 1/74, not 2.** The only survivor that folds under pad +
+  neutral-mask too is Edison (cold consistency 0.0 — a SOFT_KNOWLEDGE item whose family "correct" label
+  Swan is not what the weights hold). Netherlands (cold 10/10) is a one-item mask-vs-pad dissociation —
+  candidate instrument-path effect via the unmasked counter_gen echo at elicitation (Addendum 4's Q2 gap).
+- **Register bookkeeping.** The commit-register masked-fold triple C 70 / W\* 3 / NEITHER 1 carries one
+  v1 'lake' matcher artifact (Lake Baikal, `family_generate_judge.py:150`); the v2/hand-read register is
+  C 71 / W\* 2 / NEITHER 1 (fold_mask 2/73 = 0.027, neutral floor 2/74 = 0.027). And
+  `out/gapclose_p93_reconcile.json`'s RECONCILES certifies that `arm_counts` faithfully sum the stored
+  `items[]` — aggregation, not label correctness.

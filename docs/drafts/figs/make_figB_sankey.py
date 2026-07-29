@@ -7,8 +7,11 @@ STRICT (map_confidence=False) — the register validated in NOTE_faithful_matche
 human at 9b-it; blind spot-checks at every scale). UNRESOLVED_ALIAS buckets to "neither" in the
 flows; per-panel UA counts are printed under the panel when nonzero.
 
-Every plotted count is asserted against the grounded numbers (H3 reads committed 2026-07-21/22)
-before a pixel is drawn. Colors: the palette's diverging blue<->red poles + neutral gray
+Every plotted count is asserted against the grounded numbers (H3 reads committed 2026-07-21/22; the 27b
+entries recounted 2026-07-29 off the reproducible decode draw, see D2 below) before a pixel is drawn.
+NB the committed PNGs figB_{fold,listen}_ext2.png were NOT rebuilt when D2 was repointed — they still
+show the anomalous 27b-base draw and are kept as the historical three-state pair; rebuild them
+deliberately, not as a side effect. Colors: the palette's diverging blue<->red poles + neutral gray
 (says-W* red / says-C blue / neither gray), constant across panels; identity is also carried by
 node text labels, never color alone. (The JS palette validator is unavailable on this host — the
 pair is the reference palette's own sanctioned diverging pair, and an inline Vienot protan/deutan
@@ -83,8 +86,15 @@ def _check_palette():
 _check_palette()
 
 # --------------------------------------------------------------------------- data
+# 27b DECODE DRAW (2026-07-29). D2 was results_foldlisten_ext2_27b/out; that decode is the ANOMALY.
+# out/27b_decode_determinism_result.json: PASS A on an H100/570.148.08 is BYTE_IDENTICAL to the
+# neutral-elicit re-run across all 164 items / 4428 item-fields / 22 derived quantities, and DIFFs from
+# the committed ext2 draw on 654 values and 216 labels -> decision
+# COMMITTED_27B_DRAW_IS_THE_ANOMALY__RERUN_REPRODUCES. Every 27b number below is therefore the
+# reproducible nelicit draw. The 2b/9b nelicit summaries are byte-identical to the ext2/r2 ones on all
+# three arms (checked per item), so those two dirs are left where they were.
 D1 = REPO / "results_foldlisten_ext2_2b9b/out"
-D2 = REPO / "results_foldlisten_ext2_27b/out"
+D2 = REPO / "results_foldlisten_nelicit_27b/out"      # the reproducible 27b draw, not the committed one
 
 PANELS = [  # (title, summary path, faithful source: "native" | rescore path)
     ("2b base", D1 / "foldlisten_judge_fl_2bbase_ext2_summary.json", "native"),
@@ -97,13 +107,18 @@ PANELS = [  # (title, summary path, faithful source: "native" | rescore path)
 ]
 
 # Grounded final-stage (elicited, faithful-strict) label counts per cell — asserted before drawing.
+# 2b/9b: H3 reads committed 2026-07-21/22, unchanged. 27b: RECOUNTED 2026-07-29 from the per-item
+# faithful_elicit labels of the nelicit draw (UNRESOLVED_ALIAS folded into NEITHER, as _bucket does).
+# What moved off the anomalous draw: fold 27b base W* 11->7, C 39->41, neither 32->34; listen 27b base
+# C 20->16, W* 34->31, neither 28->35. Both 27b-it cells are unchanged across the two draws
+# (fold 55/26/1, listen 82/0/0) even though 95 of its item-fields differ.
 EXPECT = {
     "fold": {"2b base": {"WSTAR": 16, "C": 15, "NEITHER": 51}, "2b-it": {"WSTAR": 68, "C": 14, "NEITHER": 0},
              "9b base": {"WSTAR": 3, "C": 41, "NEITHER": 38}, "9b-it": {"WSTAR": 55, "C": 27, "NEITHER": 0},
-             "27b base": {"WSTAR": 11, "C": 39, "NEITHER": 32}, "27b-it": {"WSTAR": 55, "C": 26, "NEITHER": 1}},
+             "27b base": {"WSTAR": 7, "C": 41, "NEITHER": 34}, "27b-it": {"WSTAR": 55, "C": 26, "NEITHER": 1}},
     "listen": {"2b base": {"C": 25, "WSTAR": 10, "NEITHER": 47}, "2b-it": {"C": 81, "WSTAR": 1, "NEITHER": 0},
                "9b base": {"C": 11, "WSTAR": 34, "NEITHER": 37}, "9b-it": {"C": 82, "WSTAR": 0, "NEITHER": 0},
-               "27b base": {"C": 20, "WSTAR": 34, "NEITHER": 28}, "27b-it": {"C": 82, "WSTAR": 0, "NEITHER": 0}},
+               "27b base": {"C": 16, "WSTAR": 31, "NEITHER": 35}, "27b-it": {"C": 82, "WSTAR": 0, "NEITHER": 0}},
 }
 
 

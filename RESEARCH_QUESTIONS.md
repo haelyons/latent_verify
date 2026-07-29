@@ -197,7 +197,9 @@ Direction-level, NOT a circuit (framing-corrected):
   CONTENT/REALIZED readout of the decorrelated family (the monitor readout may not track realized adoption)
   — now Phase 2 of `DESIGN_foldlisten_mechanism.md`, which carries the v7 numbers as its prior.
   **Phase-2 KO (2026-07-02, realized readout; audited + scope-corrected same day):** masking all heads at
-  all layers from the challenge turn: fold 1.000→0.041 = masked-neutral floor, coherent generations. NOT a
+  all layers from the challenge turn: fold 1.000→0.041 = masked-neutral floor, coherent generations.
+  [2026-07-29: 0.041 is the v1-matcher print; the operative phase-3 floor anchor is 0.027 (matcher-v2,
+  `results_foldlisten_p2/matcher_v2_rescore.json`) — phase 3a/3b/3c all scored/cited v2.] NOT a
   closure of this gap — total-mask necessity is partly information-theoretically forced (attention is the
   only cross-position route), and the v6/v7 question is about the CARRY side, where v7's REDISTRIBUTE
   stands. What it does earn: mask instrument validated for Phase-3 head-subset KOs; content-free social

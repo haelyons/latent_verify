@@ -90,8 +90,13 @@ def _check_palette():
 _check_palette()
 
 # --------------------------------------------------------------------------- data
+# 27b DECODE DRAW (2026-07-29): D2 moved off results_foldlisten_ext2_27b/out, which
+# out/27b_decode_determinism_result.json identifies as the ANOMALY (PASS A on an H100/570.148.08 is
+# BYTE_IDENTICAL to the nelicit re-run over 164 items / 4428 item-fields / 22 derived quantities, and
+# DIFFs from the committed draw on 654 values and 216 labels). The 2b/9b nelicit summaries are
+# byte-identical to these on all three arms, so D1 and the 9b-it path stay put.
 D1 = REPO / "results_foldlisten_ext2_2b9b/out"
-D2 = REPO / "results_foldlisten_ext2_27b/out"
+D2 = REPO / "results_foldlisten_nelicit_27b/out"     # the reproducible 27b draw
 ORDER = ["2b base", "9b base", "27b base", "2b-it", "9b-it", "27b-it"]
 SRC = {
     "2b base":  D1 / "foldlisten_judge_fl_2bbase_ext2_summary.json",
@@ -103,18 +108,22 @@ SRC = {
 }
 
 N = 82
+CELL = "fold"
 PLANTED = "C"          # fold cell: the correct answer is planted as the model's own first turn
 
 # Grounded four-state counts derived from the artifacts by this script's own labeller (2026-07-26,
 # map_confidence=False, post sec-5.6b tie-break, post the entity_forms_v2 regular-plural fix 2c5a8bf).
+# The two 27b rows RECOUNTED 2026-07-29 off the reproducible decode draw (D2 above). What moved at
+# 27b base: counter C 6->9, BOTH 1->1, neither 75->72; elicit C 39->41, W* 11->7, neither 32->34.
+# 27b-it is unchanged in both columns across the two draws even though 95 item-fields differ.
 # Zero states omitted. Asserted before drawing.
 EXPECT = {
     "2b base":  {"counter": {"C": 2, "NEITHER": 80},
                  "elicit":  {"C": 15, "WSTAR": 16, "NEITHER": 51}},
     "9b base":  {"counter": {"NEITHER": 82},
                  "elicit":  {"C": 41, "WSTAR": 3, "NEITHER": 38}},
-    "27b base": {"counter": {"C": 6, "BOTH": 1, "NEITHER": 75},
-                 "elicit":  {"C": 39, "WSTAR": 11, "NEITHER": 32}},
+    "27b base": {"counter": {"C": 9, "BOTH": 1, "NEITHER": 72},
+                 "elicit":  {"C": 41, "WSTAR": 7, "NEITHER": 34}},
     "2b-it":    {"counter": {"C": 6, "WSTAR": 67, "BOTH": 9},
                  "elicit":  {"C": 14, "WSTAR": 68}},
     "9b-it":    {"counter": {"C": 25, "WSTAR": 52, "BOTH": 5},
@@ -139,16 +148,18 @@ def _state(gen, correct, wstar, stated, pushed):
     return lab, ua
 
 
-def load_panel(title):
+def load_panel(title, cell=CELL, planted=PLANTED):
     """Per-item (planted, counter, elicited) four-state sequences for one model cell, plus the per-stage
     UNRESOLVED_ALIAS counts (all of which necessarily land in NEITHER: an alias-miss span names neither
-    entity by definition, so it can never be BOTH)."""
+    entity by definition, so it can never be BOTH). cell/planted are parameters only so the listen twin
+    (make_figB_listen_strict_allscales.py) can reuse this loader unchanged; the defaults are this
+    figure's own fold cell."""
     d = json.loads(SRC[title].read_text())
-    items = [it for it in d["items"] if it["cell"] == "fold"]
+    items = [it for it in d["items"] if it["cell"] == cell]
     assert len(items) == N, (title, len(items))
     seqs, ua = [], [0, 0, 0]
     for it in items:
-        row = [PLANTED]
+        row = [planted]
         for k, field in ((1, "counter_gen"), (2, "elicit_gen")):
             st, was_ua = _state(it.get(field), it["correct"], it["Wstar"],
                                 it.get("stated"), it.get("pushed"))
@@ -158,18 +169,20 @@ def load_panel(title):
     return seqs, ua
 
 
-def check_panel(title, seqs):
+def check_panel(title, seqs, expect=None, planted=PLANTED):
     """Assert the three invariants: every column partitions the 82 items, every transition's flows sum
     to 82 (per-item ribbons — nothing dropped, nothing double-counted), and every count matches the
-    grounded distribution. Prints the verified table."""
+    grounded distribution. Prints the verified table. expect/planted are parameters only so the listen
+    twin can reuse this checker against its own frozen table; the defaults are this figure's."""
+    expect = EXPECT if expect is None else expect
     cols = []
     for k, stage in enumerate(("planted", "counter", "elicit")):
         got = {c: sum(1 for s in seqs if s[k] == c) for c in CATS}
         assert sum(got.values()) == N, (title, stage, got)            # column sums to 82
         if stage == "planted":
-            assert got == {c: (N if c == PLANTED else 0) for c in CATS}, (title, got)
+            assert got == {c: (N if c == planted else 0) for c in CATS}, (title, got)
         else:
-            exp = {c: EXPECT[title][stage].get(c, 0) for c in CATS}
+            exp = {c: expect[title][stage].get(c, 0) for c in CATS}
             assert got == exp, (title, stage, got, exp)
             assert sum(exp.values()) == N, (title, stage)
         cols.append(got)

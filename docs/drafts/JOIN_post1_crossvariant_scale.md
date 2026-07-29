@@ -71,6 +71,8 @@ All REPRODUCE unless flagged. Receipts in the residual-numbers pass; primary art
    bracket corrects was right. The bracket's other two corrections stand.
 3. **L200 "67 of 74"** — withdrawn (R-6); replace, not annotate: **73 of 74** name an answer,
    commit register C 70 / W\* 3 / NEITHER 1 (`results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json`);
+   v2/hand-read register C 71 / W\* 2 / NEITHER 1 — one of the commit-register 3 is the v1 'lake'
+   matcher artifact (`family_generate_judge.py:150`), not a fold;
    n=74 is `mechanism_family_9bit.json`, not the ext2 82.
 4. **L149 "carry-through is 100% either way"** — 9b-it only (2b-it 0.945, 27b-it 0.958).
 5. **L308 "0.67 at 27b"** — 0.6790, denominator 81 (`n_fold_eval`; one UNRESOLVED_ALIAS excluded).
