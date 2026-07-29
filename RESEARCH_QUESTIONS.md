@@ -320,11 +320,6 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > boxes are down, the neutral-elicit run landed, and its artifacts are committed under
 > `results_foldlisten_nelicit_{2b9b,27b}/out/`. Do not act on that block's reattach instructions.
 >
-> **NEXT AGENT: start at `docs/drafts/HANDOFF_skeptic_review_battery.md`.** It carries the exact
-> `latent_skeptic` invocation, an eleven-claim pre-drafted triage array with bounded evidence slices,
-> the seven errors this session made and who caught them, and how the battery lands on the draft.
-> The battery has NOT been through triage and was designed by the session that ran it.
->
 > **THE FREE/OFFLINE GAP CLASS IS WORKED. $0 GPU. Start at `docs/drafts/GAPCLOSE_RESULTS.md`** — the
 > per-gap decision table for `GAPS_RECONCILED.md` §4.1 — then the four documents it points at.
 > Pre-registration first, committed before any value was computed:
