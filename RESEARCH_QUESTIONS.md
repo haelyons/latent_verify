@@ -227,7 +227,12 @@ Direction-level, NOT a circuit (framing-corrected):
   (T1 56 / T2 9 / T3 9 — superlative-dominant; content-category robustness owed at Phase 3). **Phase 0.5
   THINK probe DONE = PROBE_VALID** (answer-identity heldout AUROC 0.84 @ L19, floors ~0.50;
   `controls/think_probe_identity.py`; distinct from the 0.92 cave-STATE axis per C4). Next: Phases 2-4.
-- **[GATED on capacity] The doubt circuit at 27b** (re-localized) — h100.
+- **[DISCHARGED 2026-07-29 — was: GATED on capacity] The doubt circuit at 27b** ran, re-localized
+  per scale (own span-ranked head selection over 46 layers × 32 heads): decision BOTH at 27b-base.
+  → `results_doubt_27b/out/cave_doubt_write_vs_read_27b_base.json`. The base doubt-circuit result
+  now stands at ALL THREE scales. The `-it` twins remain INSUFFICIENT by power, not by choice
+  (9b-it n_faithful 5; 27b-it headset n_faithful 0, and its pool is 66 not 891 — a different
+  substrate from the 9b twin). → `results_doubt_27b/out/cave_headset_specificity_doubt_27b.json`.
 - **[INFRA-BLOCKED] Finer write-content of the doubt heads** — DLA-link / direct-logit write
   (6× ssh-abort 255 on teardown; the behavioural output-patch already answered the WRITE
   question, this is the finer decomposition). → `controls/cave_doubt_writes_cavedir.py`.

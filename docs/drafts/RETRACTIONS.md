@@ -68,6 +68,23 @@ recorded no hardware. What *is* now attributable: the divergence tracks the **dr
 card — same H100 80GB HBM3 model at driver 570.148.08 reproduces byte-identically, at 580.105.08 diverges
 by up to 0.5 nats on teacher-forced logprobs.
 
+**ADDENDUM 2026-07-29 — three corrections to R-3's own text (the entry above is left as written; this
+register does not silently rewrite itself).**
+(a) "27b-`it` is unaffected — it is identical between the two runs" is **false at the item level**:
+`out/foldlisten_repro_diff_fl_27bit.json` = `DIFF`, 373 value / 55 label / 10 derived mismatches,
+164/164 items differing. Only the aggregate push column matches — compensating flips
+(`GROUNDING_neutral_elicit.md`). The two-decode disclosure rule extends to 27b-`it` (`OWED.md` C7).
+(b) The final paragraph's attribution ("tracks the **driver version**, not the card") is **refuted**
+by the fuller cluster table from the format-matched run (`OWED.md` H2): this run's box was H100 80GB
+HBM3 @ 570.148.08 and matched cluster 3 (H100 80GB HBM3 @ 580.105.08) — same card + different driver
+= same cluster; different card (H100 PCIe) + same driver = different cluster. The divergence tracks
+the **card**. Cluster 2 remains a singleton on cluster 1's own card AND driver, explained by neither
+axis. The same wrong attribution is frozen in `out/27b_decode_determinism_result.json` under the key
+`the_divergence_TRACKS_THE_DRIVER_not_the_card` — the key is data; the attribution is withdrawn.
+(c) The published column "fold 7/44/31 … `NO_MOVEMENT`" is the **commit register**; the faithful
+register of the same draw reads `decision_faithful.category = MOVEMENT_LISTEN_ONLY` (both draws). A
+quoted 27b-base verdict must name its register as well as its draw.
+
 ## R-4 — F9 as a gap. RETRACT THE GAP (not a claim).
 
 The ledger files F9 as "`classify_vs_handlabel` never run on the 2b/27b hand-label sets that exist",

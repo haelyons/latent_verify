@@ -657,3 +657,33 @@ Caveats the reader raises against itself: "identical" in this family means ident
 diagnose deltas are ~5 orders above that floor — and instance non-identity between the r1 and cleangate
 boxes is inferred from `started_utc` and the launcher lifecycle, because `provenance_r1_27b.json` has a
 null `lambda_instance_id`.
+
+---
+
+## ADDENDUM 2026-07-29 — five defects in THIS document, found by an isolated re-derivation pass
+
+The sections above are left as written; these are corrections to them, not to the artifacts.
+
+1. **§12's "`P_w_neutral` at 9b-it rises 7.69e-10 → 4.54e-08, a ~59× gain" is UNAUDITABLE as
+   printed.** No `P_*` field in the three 9b-it fmt/sbref artifacts yields either value under mean,
+   median, max or geometric mean. Measured: mean 3.146e-11 → 2.302e-08 (≈732×), median 6.612e-13 →
+   2.106e-09, max 8.063e-10 → 3.042e-07. The conclusion the pair supports survives via the counts
+   this document DID verify (neutral mass above the 1e-6 floor 0/0/1 of 82 vs counter 68/77/48).
+2. **§4.2's 27b row is mixed-provenance within one table.** `Mc_neutral` 1.861 and `RC_effect`
+   2.547 are the fmt run's space-key values; `Mc_counter` −0.71 is the committed value (fmt reads
+   −0.6857). §13's "treat unannotated §4.2 figures as pre-`a34d6e6`" is therefore wrong for two of
+   the three. Gaps (0.009–0.011 nats) sit inside the disclosed 27b spread — a provenance defect,
+   not a numerical one.
+3. **§1's citation for the 9b-it faithful cells points at the wrong file.**
+   `results_foldlisten_r2/out/foldlisten_judge_fl_9bit_ext2_summary.json` has no `cells_faithful` /
+   `decision_faithful` block; the faithful 55/27/0 lives in `out/faithful_rescore_fl_9bit_ext2.json`
+   (`fields.elicit_gen.items`) and reproduces there.
+4. **§8's "0 of 3 base cells are `PUSH_ATTRIBUTABLE`" must name its column.** True on the
+   withhold/abstain column (the one the claim needs); the 2b-base **listen** `move_verdict` reads
+   `PUSH_ATTRIBUTABLE`.
+5. **§1's significance paragraph under-reports its own source.** `out/gapclose_foldrate_sig.json`
+   also runs six within-variant scale comparisons: 2b-it vs 9b-it p=0.000244 DIFFERS, 2b-it vs
+   27b-it p=0.004181 DIFFERS, 9b-it vs 27b-it p=1.0, 2b-base vs 9b-base p=0.000519 DIFFERS,
+   2b-base vs 27b-base p=0.1796, 9b-base vs 27b-base p=0.2891 — **4 of 6 NOT_DISTINGUISHABLE**. No
+   scale-monotonicity claim is licensed by this test; any "scaling" framing in the write-up must
+   carry this.

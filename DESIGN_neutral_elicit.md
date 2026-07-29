@@ -15,6 +15,12 @@
 > pre-change instrument: `elicit_prompt` now has a second call site, on the neutral arm. **No run has
 > filled it** — every committed artifact still reads `n_neutral_elicit = 0` / `verdict = ARM_ABSENT`, so
 > every number in §2 remains a prediction and nothing here has been evaluated against data.
+>
+> **Run status (2026-07-29, appended — the paragraph above describes the pre-run state only).** The run
+> landed 2026-07-28: all 12 ext2 cell-directions read `n_neutral_elicit = 82`
+> (`results_foldlisten_nelicit_{2b9b,27b}/out/`), repro-gate verdicts in
+> `out/foldlisten_repro_diff_fl_*.json` (BYTE_IDENTICAL ×4 at 2b/9b; DIFF at both 27b cells — see
+> `RETRACTIONS.md` R-3 + its 2026-07-29 addendum for which draw is publishable).
 
 ---
 
