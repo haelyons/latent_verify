@@ -1,0 +1,15 @@
+{
+  "run": "27b_decode_determinism",
+  "started_utc": "2026-07-28T19:48:46.448610+00:00",
+  "python": "3.10.12",
+  "lambda_instance_id": "53d8d227a0ef4e9484114867cd4a733f",
+  "git_commit": "c67d3dde7adf67c9ab51aefa9b17570f007036fc",
+  "gpu_name": "NVIDIA H100 80GB HBM3\nNVIDIA H100 80GB HBM3",
+  "gpu_count": "2",
+  "driver": "570.148.08\n570.148.08",
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": "3.6.0",
+  "cuda_runtime": "12.4"
+}

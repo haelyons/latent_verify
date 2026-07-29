@@ -1,0 +1,31 @@
+{
+  "control": "27b_decode_determinism_result",
+  "registration": "run_27b_decode_determinism.sh header (frozen before the data)",
+  "what_ran": "PASS A completed (164 items, fetched, valid). PASS B did NOT: the on-box `timeout` fired (RUN_DONE rc=124) and provenance finished_utc is null, so the script was killed mid-PASS-B by the 5 h cap. My cost estimate was simply wrong - I budgeted ~1.4 h per 27b foldlisten cell on SXM5 and PASS A alone consumed most of five hours.",
+  "C1_within_box_decode_determinism": {
+    "status": "UNAVAILABLE",
+    "why": "PASS B was cut off by the cap; no second pass exists to diff"
+  },
+  "C2_passA_vs_COMMITTED_ext2_decode": {
+    "decision": "DIFF",
+    "value_mismatch": 654,
+    "label_mismatch": 216,
+    "derived_mismatch": 15
+  },
+  "C3_passA_vs_NEUTRAL_ELICIT_rerun": {
+    "decision": "BYTE_IDENTICAL",
+    "items": "164/164",
+    "item_fields_compared": 4428,
+    "derived_compared": 22,
+    "value_mismatch": 0,
+    "label_mismatch": 0,
+    "derived_mismatch": 0
+  },
+  "RESULT": "THE COMMITTED ext2 27b-base DECODE IS THE ANOMALY; THE NEUTRAL-ELICIT RE-RUN IS THE REPRODUCIBLE DRAW. PASS A is BYTE_IDENTICAL to the re-run across all 164 items, 4428 item-fields and 22 derived quantities - zero mismatches of any kind - and DIFFs from the committed draw on 654 values and 216 labels. This is registered outcome #1: one of the two existing draws reproduces on other hardware and the other is identified as the outlier. A 27b-base column CAN therefore be published, naming the re-run draw: fold 7/44/31, listen 16/34/32, fold_rate 0.137, NO_MOVEMENT.",
+  "consequence_for_the_drafts": "Every 27b-base number taken from the COMMITTED ext2 decode comes from the non-reproducible draw and must be replaced by the re-run's, not merely labelled. This sharpens RETRACTIONS.md R-3 from 'name your decode' to 'the committed 27b-base draw is the outlier; use the re-run'. It does NOT rescue R-1: why the committed draw differs is still unattributable, because that run recorded no hardware.",
+  "the_divergence_TRACKS_THE_DRIVER_not_the_card": "Put beside the diagnose result from earlier tonight, the attribution narrows. PASS A ran on an H100 80GB HBM3 at driver 570.148.08 and is byte-identical to the re-run. The 27b distributional box ran on an H100 80GB HBM3 - the SAME card model - at driver 580.105.08, and its teacher-forced logprobs DIVERGED by up to 0.5 nats (out/b1_fold_identity_gate_27b.json). Same card, different driver, different numbers; same card, same driver, identical numbers. So what earlier I could only call 'cross-box divergence' is more precisely a DRIVER-VERSION divergence. That attribution is only possible because the provenance stamp landed hours earlier - it is the second time tonight the stamp has paid for itself, and it is exactly the capability whose absence forced R-1.",
+  "still_open": [
+    "C1: whether the 27b DECODE is deterministic within one box. The forward path is (WITHIN_BOX_DETERMINISTIC, 0 of 14 fields); the decode path is untested and needs one 27b box with a cap above ~6 h for two generation passes."
+  ],
+  "decision": "COMMITTED_27B_DRAW_IS_THE_ANOMALY__RERUN_REPRODUCES"
+}

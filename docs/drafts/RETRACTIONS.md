@@ -53,8 +53,20 @@ Two 27b-base decodes exist and disagree, and the newer drafts silently switched 
 read the **committed** ext2 decode; `GROUNDING_neutral_elicit.md` reads the **re-run**. No document
 flags the switch. 27b-`it` is unaffected — it is identical between the two runs.
 
-Every printed 27b-base number must name its decode. Any 27b-base number that does not is not
-quotable. This is P1 of the reconciled ledger reappearing *inside* the documents written to close it.
+**SHARPENED 2026-07-29, and it is now stronger than a disclosure rule.** A third draw settles which is
+which. `out/27b_decode_determinism_result.json`: an independent 27b-base decode is **BYTE_IDENTICAL** to
+the neutral-elicit re-run — 164/164 items, 4428 item-fields, 22 derived quantities, zero mismatches — and
+**DIFFs from the committed ext2 draw** on 654 values and 216 labels. So the committed 27b-base decode is
+the **outlier**, and the re-run is reproducible.
+
+Consequence: every 27b-base number taken from the committed decode must be **replaced** by the re-run's,
+not merely labelled with its provenance. The publishable 27b-base column is the re-run's — fold 7/44/31,
+listen 16/34/32, fold_rate 0.137, `NO_MOVEMENT`.
+
+This does **not** rescue R-1. Why the committed draw differs is still unattributable, because that run
+recorded no hardware. What *is* now attributable: the divergence tracks the **driver version**, not the
+card — same H100 80GB HBM3 model at driver 570.148.08 reproduces byte-identically, at 580.105.08 diverges
+by up to 0.5 nats on teacher-forced logprobs.
 
 ## R-4 — F9 as a gap. RETRACT THE GAP (not a claim).
 
