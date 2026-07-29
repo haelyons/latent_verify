@@ -292,6 +292,29 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> **SEED 2026-07-29 — newest. STACKED above the previous seed, not overwriting it: parallel sessions
+> both count as latest, so the convention here is to stack and let the reader diff.**
+>
+> **NO GPU IS RUNNING. VERIFIED 2026-07-29 (this session): `GET /api/v1/instances` returns 0
+> instances.** Both boxes of the run below are down.
+>
+> **WHAT LANDED: `a34d6e6` — the format-matched readout. 31/31 registered cells across two boxes, and
+> the first run in this project with provenance fully stamped.** Registration
+> `docs/drafts/REGISTRATION_format_matched_readout.md`; verdicts `out/fmt_matched_join.json`. The
+> primary triple is `(RANK_RESOLUTION_INSUFFICIENT, RANK_RESOLUTION_INSUFFICIENT, ANCHOR_DIFFERS)` and
+> it is **quotable as a triple or not at all** — no member of it reads as a result alone. It CLOSES
+> `docs/drafts/OWED.md` C1: the base-vs-`-it` W\* bare-rank gap is a FORMAT artifact.
+> **Two disputed thresholds were WITHDRAWN, not re-guessed** — read the registration knowing its
+> amendments SHRANK what it can decide; a bar invented after the dispute would have been a fitted one.
+> **Three prior commits are corrected (`OWED.md` §H):** `a4a2ae0`'s listen-arm withdrawal rests on a
+> premise that does NOT reproduce (§10 = `SHIPPED_SELF_IDENTICAL + ARMS_MATCHES_SHIPPED`); `2dd19b8`
+> blamed the DRIVER for the 27b divergence when it tracks the CARD; and 16 of 18 anchors reproduce,
+> with only 27b-base differing.
+> **WHAT IT DOES NOT SETTLE: anything about the COMMITTED 27b digits.** It speaks for its own box only
+> — every 27b-vs-committed comparison is `DISCLOSED_NOT_GATED`.
+> **NEXT: read `docs/drafts/GROUNDING_crossvariant_scale.md`** (the cross-variant / scale grounding
+> pass) **and `out/fmt_matched_join.json`** for the verdicts — not any prose summary, this one included.
+>
 > **NO GPU IS RUNNING. VERIFIED 2026-07-28 (this session): `GET /api/v1/instances` returns 0
 > instances.** The "RUN IN FLIGHT AT HANDOFF" block further down is RESOLVED and superseded — both
 > boxes are down, the neutral-elicit run landed, and its artifacts are committed under
