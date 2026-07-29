@@ -49,7 +49,25 @@ recorded. Newest first within each class. Each row names what would close it.
 | # | item | status |
 |---|---|---|
 | E1 | **Editing `lambda_run.sh` while a launcher is executing it CORRUPTS that launcher and its EXIT trap then TERMINATES a live box.** Bash reads a script incrementally; an edit shifts byte offsets, so the launcher resumes mid-line and dies on a syntax error. Observed: `lambda_run.sh: line 183: syntax error` where the quoted text was a fragment of line 182 starting mid-word (`rt not confirmed`). Cost: the R6+R12 riders box was torn down ~1 minute into a 4-hour run and produced nothing. Two later edits put a live 27b run at the same risk | **MITIGATED 2026-07-29**: launches now use a per-run immutable copy — `cp lambda_run.sh .launcher_<tag>.sh` and invoke the copy, so edits to the original cannot reach a running launcher. `.launcher_*.sh` gitignored. The proper fix is for the launcher to copy itself, which would make this structural rather than a habit |
+| E3 | **The launcher's billing safety net has a hole AFTER first SSH contact.** Its sshd guard only covers the pre-contact window (`[ssh] sshd NEVER came up -> aborting`). A box that answers SSH, then dies during `scp`, leaves the launcher hung on a timing-out transfer with **no timeout and no backstop** — the on-box self-destruct is armed only *after* scp succeeds. Observed 2026-07-29: the R3 box billed at \$4.29/h doing nothing until I terminated it by API | OPEN. Fix: a timeout on the scp/arm phase that tears down on expiry, or arm the on-box backstop BEFORE shipping code |
+| E4 | **`instr_triangulation` at 9b needs >40 GB** — it OOM'd holding 38.60 of 39.49 GiB alone (sequential cells, no sharing) because it calls `.backward()`. No flag shrinks it without changing scope: `--no-knockout-sweep` removes a whole leg | OPEN. Run at full scope on an 80 GB card, as a rider on a box already up — it is 1 claim and 80 GB capacity is scarce |
 | E2 | A box that Lambda marks `unhealthy` (sshd never comes up) is a provider fault, not a measurement failure. The launcher's own ~4-minute sshd guard aborts and tears it down, so it is self-limiting — but the work must be relaunched, and the ledger row must not be recorded as attempted-and-failed | R3 (27b mechanism) hit this; **deferred, not abandoned** — 80 GB capacity is scarce and the 27b distributional fill is the better use of the slot |
+
+## F. The distributional grid
+
+Coverage is measured, not asserted, in **`docs/drafts/DIST_COVERAGE.md`** — 31 of 72
+(instrument × cell × family), 4 with a listen arm. That file carries the remaining gaps in dependency
+order; the two that need a registration before anything can run are **B2** (the T3 forced-final
+readout — no instrument reads a distribution or residual there, and it is the slot the verdicts are
+decided on) and **C1** (the format control, without which the base-vs-`-it` rank gap is
+format-confounded and uninterpretable).
+
+One honest note on provenance of effort: `copyscore --sweep` at 2b was run because ledger row R6
+listed it as an absent cell, **not** because a question demanded it. Its value emerged after the fact
+and is real but narrow — the 2b reader `L18.H5` is a hardwired default that had never been checked
+against all 208 heads, so the sweep is both the per-scale discovery procedure K7/K10 require and
+evidence that the canonical coordinate is one of ~35 heads scoring median rank < 5 rather than a
+unique object. It adds nothing to the *causal* copy claims.
 
 ## D. Code-first items, at the costs `CODEBLOCKS_verified.md` corrected them to
 
