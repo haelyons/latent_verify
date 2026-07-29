@@ -183,6 +183,13 @@ residuals with self-judge labels. The one `-it` number that does consume the inh
 `first(" " + C)`, and corrected `-it` ranks are **unauditable from what is persisted** (only TOP_K=10
 and 6dp are saved). Any fix is a re-run.
 
+**That re-run has since landed (`a34d6e6`), and the rank column is still refused — on a new ground.**
+Format-matched, the base-vs-`-it` rank comparison is **suppressed at all three scales**:
+`(RANK_RESOLUTION_INSUFFICIENT, RANK_RESOLUTION_INSUFFICIENT, ANCHOR_DIFFERS)` at 2b/9b/27b, with
+`L_new` 0.125 / 0.196 / 0.079 against `L_old` 2.416 / 2.899 / 2.886. The refusal reason therefore
+changes from "unmeasurable" to **"measured, and unresolvable at the instrument's own tie resolution"**
+(`out/fmt_matched_join.json`).
+
 ### 4.2 The same key inside `num_lp`, i.e. the probability layer
 
 `rlhf_differential.py:175-182` sums the log-probs of every token of `" " + text.strip()`; the leading
@@ -204,8 +211,12 @@ nats is one forbidden token.
 | `P_w_*`, `P_plant_*`, `P_target_*` | absolute | **fully** — at the **NEUTRAL slot** 0.000000 on 82/82 at 2b-it and 27b-it (`P_plant_neutral` 81/82 at 27b-it). At the **COUNTER slot** it is 78/82 (2b-it), 65/82 (9b-it), 72/82 (27b-it) |
 | `RA_effect`, `faithful_RA` | diff of same id | **dead, not biased** — +0.00000 at all three; `n_faithful_RA` 0/0/0 vs 6/1/0 at base. `FIRST_TOKEN_ONLY` is unreachable at `-it` by construction |
 | `M0`, `abs_M0`, `headroom_pass` | diff, same prompt | **partly** — C and W\* are different token sequences, so the two penalties are unequal |
-| `Mc_neutral`, `Mc_counter` | diff, same prompt | **partly** — the ≈1.4–1.9-nat mean residual is `Mc_neutral` **only** (1.40 / 1.51 / 1.85). On `Mc_counter` the `-it`−base gap is **−3.54 / −2.44 / −0.71** |
-| `RC_effect`, `faithful_RC` | double diff | **partly** — residual 2.558 / 3.837 / 5.051 nats, i.e. **5–10× `MARGIN_FAITHFUL`=0.5** |
+| `Mc_neutral`, `Mc_counter` | diff, same prompt | **partly** — the ≈1.4–1.9-nat mean residual is `Mc_neutral` **only**, **1.511 / 1.402 / 1.861 at 2b/9b/27b**. On `Mc_counter` the `-it`−base gap is **−3.54 / −2.44 / −0.71 at 2b/9b/27b** |
+| `RC_effect`, `faithful_RC` | double diff | **partly** — residual **5.051 / 3.837 / 2.547 nats at 2b/9b/27b**, i.e. **5–10× `MARGIN_FAITHFUL`=0.5** |
+
+**Scale order, stated because it was wrong.** Every triple in this section reads **2b / 9b / 27b**.
+Earlier revisions printed these three in mixed orders — `Mc_neutral` as 9b/2b/27b, `RC_effect` as
+27b/9b/2b — so any citation lifted from a pre-`a34d6e6` copy mis-attributes values to scales.
 
 **Instrument caveat on the Plant/Target rows.** `lpPlant_*`, `lpTarget_*`, `P_plant_*` and `P_target_*`
 exist **only** in `family_cave_diagnose_arms` — the instrument `a4a2ae0` found NOT NEUTRAL, see §14 —
@@ -220,13 +231,24 @@ fields) but not exact: it would require the penalty to be prompt-invariant per a
 **A competing mechanism for the residual.** The counter prompt has just typed the target string in
 the user turn, making the otherwise-forbidden `▁target` retrievable by copying. Both terms balloon at
 `-it` — fold `dTarget` +13.47/+11.90/+6.60 with `dPlant` +5.65/+4.94/+2.07, against base
-+2.22/+3.80/+2.77 and −0.55/+0.68/+0.79. That is the signature of tail recovery, so **"components are
-~3× larger at ‑it" cannot be separated from a tokenisation artifact with what was saved.**
++2.22/+3.80/+2.77 and −0.55/+0.68/+0.79. That is the signature of tail recovery — and the
+format-matched run **settles the question against it**: with the corrected key, `RC_effect` (`-it`−base)
+falls only **5.05→4.58 (2b), 3.84→2.93 (9b), 2.55→2.04 (27b)**, still **4–9× `MARGIN_FAITHFUL`=0.5**. So
+"components are ~3× larger at ‑it" is **mostly not a tokenisation artifact**; the key accounts for a
+modest part of the magnitude and no more
+(`results_fmt_{2b9b,27b}/out/family_cave_diagnose_fmt_fmt_ext2_*.json`, joined at
+`out/fmt_matched_join.json`; settled by commit `a34d6e6`).
 
-Not recoverable without a re-run: every cross-variant statement about absolute probability mass at
-`-it`; any base-vs-`-it` comparison of `M0`/`Mc`/headroom (the `n_headroom` counts 23/13/12 base vs
-24/7/10 `-it` are gated on a contaminated `M0`); the `-it` `RA` column; the base-vs-`-it` *magnitude*
-of `RC_effect`. The **base** column is entirely sound — after `A:` the leading space is correct.
+Not recoverable without a re-run — as this section stood before `a34d6e6`: every cross-variant
+statement about absolute probability mass at `-it`; any base-vs-`-it` comparison of `M0`/`Mc`/headroom
+(the `n_headroom` counts 23/13/12 base vs 24/7/10 `-it` are gated on a contaminated `M0`); the `-it`
+`RA` column; the base-vs-`-it` *magnitude* of `RC_effect`. The **base** column is entirely sound —
+after `A:` the leading space is correct.
+
+**The re-run happened, so the last of those is now RECOVERED and settled** (see the paragraph above):
+the base-vs-`-it` `RC_effect` magnitude is measured format-matched and survives the key fix. The other
+three remain as stated — the corrected run measures only the `bare` and `elicit` slots, so the `-it`
+absolute-mass, `M0`/`Mc`/headroom and `RA` columns at the neutral and counter slots are untouched by it.
 
 Precision floor on all of the above: `rest` is occasionally *positive* (fold-arm maximum **+0.4984**,
 9b-it — the larger +0.5518 sits only in the 27b-it listen arm withdrawn by `a4a2ae0`), impossible in
@@ -305,10 +327,22 @@ Base column, recomputed from per-item `rank_w_bare` — this is what transports:
 |---|---|---|---|---|
 | 2b-base | 3 | 66/82 | 54/82 | 55/82 |
 | 9b-base | 3 | 64/82 | 66/82 | 70/82 |
-| 27b-base | 4 | 65/82 | 70/82 | 73/82 |
+| 27b-base | 4 · 3.5 † | 65/82 | 70/82 | 73/82 |
+
+† **The 27b-base median W\* rank is two values, not one.** The same-box shipped draw and the committed
+artifact both read **4.0**; the format-matched run's same-box measurement reads **3.5**. Neither is
+silently preferred here — the disagreement is exactly why `out/fmt_matched_join.json` records
+`anchor['27bbase/rank/same_box'] = ANCHOR_DIFFERS` (17 of 164 rank fields, 160 of 164 `p` fields, max
+Δp 0.039). 2b and 9b reproduce exactly (781, 2375.5, 268, 33.5).
 
 `C_is_top` and `C_outranks_W*` are monotone in scale — a cross-scale fact the draft does not have.
-The `-it` column is not usable per §4.1.
+
+The `-it` column is not usable per §4.1 — and since `a34d6e6` the reason is no longer that it is
+unmeasured. Measured format-matched, the base-vs-`-it` rank comparison is **suppressed at all three
+scales**, `(RANK_RESOLUTION_INSUFFICIENT, RANK_RESOLUTION_INSUFFICIENT, ANCHOR_DIFFERS)`, `L_new`
+0.125 / 0.196 / 0.079 against `L_old` 2.416 / 2.899 / 2.886: measured and unresolvable at the
+instrument's own tie resolution, not unmeasurable. The committed 27b-it **3077** (§14) is also
+**hardware-dependent** — identical shipped code on a different box reads **3170**.
 
 **Two corrections to the metal-item exhibit.** It is a 9b/27b-base case only: at 2b-base the item
 inverts — `' Oxygen' .334 / ' Iron' .168 / ' oxygen' .131 / ' Aluminum' .123` — so W\*=Iron outranks
@@ -492,9 +526,16 @@ Independently fetched and quoted; agreement with `CITATIONS_post1_verified.md` n
 
 ## 12. Missing facts, and what each would take
 
-- **No format-matched `-it` rank readout exists anywhere.** Needs a re-run with an `is_chat` branch on
-  the continuation key *and* a slot where the answer is the next token; corrected ranks cannot be
-  recovered from the persisted TOP_K=10 / 6dp artifacts.
+- **No format-matched `-it` rank readout exists anywhere.** — **CLOSED by `a34d6e6`.** As stated when
+  written this was true: it needed a re-run with an `is_chat` branch on the continuation key *and* a
+  slot where the answer is the next token, and corrected ranks could not be recovered from the
+  persisted TOP_K=10 / 6dp artifacts. That re-run exists; the readout it produced suppresses the
+  comparison at all three scales rather than licensing it (§4.1, §6).
+- **The `-chat` NEUTRAL-slot probability panel is floored, not mis-keyed** — notes L291's Figure 3b.
+  With the corrected key `P_w_neutral` at 9b-it rises 7.69e-10 → 4.54e-08, a ~59× gain that still sits
+  **below the 1e-6 dump floor**; mass above the floor at the neutral slot stays **0/0/1 of 82** at
+  2b/9b/27b-it while the counter slot rises to **68/77/48**. So the key was not what emptied that
+  panel, and re-keying does not recover it: the panel needs a dump with a lower floor.
 - **No distributional or residual readout at the forced-final slot at any cell** — the slot the
   verdicts are decided on. Both grounded joins in §2 (L176-181) are cross-slot: label at the elicited
   slot, margin at the counter slot. Unregistered; `OWED.md` B2.
@@ -544,11 +585,16 @@ Known limits of the pass itself, stated so they are not mistaken for coverage:
   provenance file at all** — no instance id, git commit, hardware or library stack for the run those
   digits come from.
 - Two strings quoted from the intro, at §2 and §8 ("only then use them half the time", "some indication
-  that ‑base is responding to the push"), appear in **neither** the committed snapshot nor anywhere in
-  the repo, so they are presumably a 2026-07-29 vault edit and **their exact wording is unverified** —
-  only their grounded values were checked. Vault line numbers were checked against
-  `docs/drafts/DARWIN_post1_user_{notes,intro}_snapshot_280726.md`: notes line numbers align exactly,
-  intro numbering is offset by one.
+  that ‑base is responding to the push"), appeared in **neither** the committed snapshot nor anywhere in
+  the repo, so their exact wording was carried as unverified — **DISCHARGED.** Both are present
+  **verbatim** in the current vault file, and an independent re-read found **zero citation drift** across
+  all **31** of this document's vault citations (current line counts: intro 29, notes 346). Vault line
+  numbers were checked against `docs/drafts/DARWIN_post1_user_{notes,intro}_snapshot_280726.md`: notes
+  line numbers align exactly, intro numbering is offset by one.
+- **§4.2 and §6 predate commit `a34d6e6`.** Both sections were computed before the format-matched run.
+  Where that run supersedes a number printed here, **the newer artifact governs** — see the corrected
+  triples and the `ANCHOR_DIFFERS` footnote in place, and treat any unannotated §4.2/§6 figure as
+  pre-`a34d6e6`.
 - **SYCON (2505.23840) is UNFETCHED** — PDF-only, no HTML render on arXiv or ar5iv — so its three
   quoted facts in §11 are unverified. And the Panickssery "two of seven target behaviours" count could
   not be confirmed: the v1 render names **six** behaviours, and the seven presumably comes from v4,
