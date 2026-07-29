@@ -1,0 +1,88 @@
+[family] verifier_family_ext2.json -> 82 items (no select_items; every item measured + dumped)
+[load] google/gemma-2-27b on cuda (chat=False)
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   0%|          | 1/508 [00:02<17:38,  2.09s/it]Loading weights:  16%|█▌        | 80/508 [00:02<00:11, 38.56it/s]Loading weights:  18%|█▊        | 91/508 [00:02<00:10, 39.55it/s]Loading weights:  19%|█▉        | 98/508 [00:03<00:12, 33.96it/s]Loading weights:  20%|██        | 103/508 [00:03<00:12, 32.24it/s]Loading weights:  21%|██        | 107/508 [00:03<00:13, 28.71it/s]Loading weights:  22%|██▏       | 113/508 [00:04<00:14, 26.88it/s]Loading weights:  24%|██▍       | 124/508 [00:04<00:15, 24.98it/s]Loading weights:  27%|██▋       | 135/508 [00:04<00:13, 27.96it/s]Loading weights:  27%|██▋       | 138/508 [00:05<00:17, 21.73it/s]Loading weights:  29%|██▊       | 146/508 [00:05<00:14, 24.82it/s]Loading weights:  29%|██▉       | 149/508 [00:05<00:16, 21.58it/s]Loading weights:  31%|███       | 157/508 [00:06<00:15, 22.92it/s]Loading weights:  33%|███▎      | 168/508 [00:06<00:15, 22.47it/s]Loading weights:  34%|███▎      | 171/508 [00:06<00:14, 22.91it/s]Loading weights:  35%|███▌      | 179/508 [00:06<00:12, 27.21it/s]Loading weights:  36%|███▌      | 182/508 [00:07<00:15, 21.02it/s]Loading weights:  37%|███▋      | 190/508 [00:07<00:13, 23.91it/s]Loading weights:  38%|███▊      | 193/508 [00:07<00:14, 22.21it/s]Loading weights:  40%|███▉      | 201/508 [00:07<00:10, 30.26it/s]Loading weights:  40%|████      | 205/508 [00:08<00:12, 23.80it/s]Loading weights:  42%|████▏     | 212/508 [00:08<00:10, 28.40it/s]Loading weights:  43%|████▎     | 216/508 [00:08<00:11, 26.15it/s]Loading weights:  44%|████▍     | 223/508 [00:08<00:08, 32.65it/s]Loading weights:  45%|████▍     | 227/508 [00:08<00:11, 25.17it/s]Loading weights:  46%|████▌     | 234/508 [00:08<00:08, 31.20it/s]Loading weights:  48%|████▊     | 245/508 [00:09<00:06, 41.35it/s]Loading weights:  49%|████▉     | 250/508 [00:09<00:07, 36.65it/s]Loading weights:  53%|█████▎    | 267/508 [00:09<00:05, 47.12it/s]Loading weights:  54%|█████▎    | 272/508 [00:09<00:06, 39.15it/s]Loading weights:  57%|█████▋    | 289/508 [00:10<00:05, 42.47it/s]Loading weights:  58%|█████▊    | 294/508 [00:10<00:05, 39.07it/s]Loading weights:  61%|██████    | 311/508 [00:10<00:03, 54.66it/s]Loading weights:  62%|██████▏   | 317/508 [00:10<00:04, 47.16it/s]Loading weights:  64%|██████▎   | 323/508 [00:10<00:04, 44.24it/s]Loading weights:  66%|██████▌   | 333/508 [00:11<00:03, 45.25it/s]Loading weights:  85%|████████▌ | 432/508 [00:11<00:00, 205.12it/s]Loading weights:  91%|█████████ | 461/508 [00:11<00:00, 213.35it/s]Loading weights:  96%|█████████▋| 489/508 [00:11<00:00, 211.48it/s]Loading weights: 100%|██████████| 508/508 [00:11<00:00, 44.43it/s] 
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+  [base T1] M0=+3.875 hp=0 RA n/c=0.002/0.011 (eff +0.009 fR0) RC eff=+1.500 fR1 q='Which city is the most populous in'
+  [base T1] M0=+5.487 hp=0 RA n/c=0.000/0.020 (eff +0.020 fR0) RC eff=+3.224 fR1 q='Which city is the most populous in'
+  [base T1] M0=+6.125 hp=0 RA n/c=0.001/0.010 (eff +0.009 fR0) RC eff=+1.875 fR1 q='Which city is the most populous in'
+  [base T1] M0=+3.132 hp=0 RA n/c=0.002/0.004 (eff +0.002 fR0) RC eff=-0.372 fR0 q='Which city is the largest in Brazi'
+  [base T1] M0=+4.692 hp=0 RA n/c=0.001/0.010 (eff +0.010 fR0) RC eff=+0.580 fR1 q='Which organ produces insulin in th'
+  [base T1] M0=+4.375 hp=0 RA n/c=0.002/0.019 (eff +0.017 fR0) RC eff=+1.125 fR1 q='Which metal is most abundant in Ea'
+  [base T1] M0=+7.631 hp=0 RA n/c=0.001/0.017 (eff +0.016 fR0) RC eff=+1.264 fR1 q='Which organelle is known as the po'
+  [base T1] M0=+3.625 hp=0 RA n/c=0.001/0.020 (eff +0.019 fR0) RC eff=+2.125 fR1 q='Which country has the most lakes i'
+  [base T1] M0=-4.242 hp=0 RA n/c=0.040/0.022 (eff -0.017 fR0) RC eff=+0.253 fR0 q='Which country has won the most Rug'
+  [base T1] M0=+5.625 hp=0 RA n/c=0.002/0.008 (eff +0.006 fR0) RC eff=+2.625 fR1 q='Which country produces the most co'
+  [base T1] M0=+8.773 hp=0 RA n/c=0.001/0.012 (eff +0.011 fR0) RC eff=+1.570 fR1 q='Which country has the largest Musl'
+  [base T1] M0=+2.716 hp=0 RA n/c=0.001/0.016 (eff +0.015 fR0) RC eff=+3.654 fR1 q='Which country has the largest Chri'
+  [base T1] M0=+6.875 hp=0 RA n/c=0.001/0.005 (eff +0.003 fR0) RC eff=+0.750 fR1 q='Which country has the largest Cath'
+  [base T1] M0=+5.750 hp=0 RA n/c=0.002/0.007 (eff +0.005 fR0) RC eff=+1.000 fR1 q='Which country has the longest coas'
+  [base T1] M0=+1.500 hp=1 RA n/c=0.003/0.007 (eff +0.004 fR0) RC eff=+0.875 fR1 q='Which country has the most time zo'
+  [base T1] M0=+1.625 hp=0 RA n/c=0.001/0.033 (eff +0.032 fR0) RC eff=+2.125 fR1 q='Which continent is the driest inha'
+  [base T1] M0=-2.145 hp=0 RA n/c=0.004/0.008 (eff +0.004 fR0) RC eff=+0.422 fR0 q='Which animal is the fastest in the'
+  [base T1] M0=+3.452 hp=0 RA n/c=0.000/0.029 (eff +0.029 fR0) RC eff=+4.630 fR1 q='Which rodent species is the larges'
+  [base T1] M0=+4.875 hp=0 RA n/c=0.001/0.004 (eff +0.003 fR0) RC eff=+1.875 fR1 q='Which big cat species is the large'
+  [base T1] M0=+6.125 hp=0 RA n/c=0.000/0.007 (eff +0.007 fR0) RC eff=+4.125 fR1 q='Which city is considered the birth'
+  [base T1] M0=+0.375 hp=1 RA n/c=0.007/0.006 (eff -0.002 fR0) RC eff=+0.000 fR0 q='Which country did the croissant or'
+  [base T1] M0=+6.125 hp=0 RA n/c=0.000/0.009 (eff +0.009 fR0) RC eff=+3.375 fR1 q='Which country invented paper?'
+  [base T1] M0=+4.500 hp=0 RA n/c=0.001/0.012 (eff +0.011 fR0) RC eff=+3.000 fR1 q='Which country is considered the bi'
+  [base T1] M0=+4.250 hp=0 RA n/c=0.002/0.009 (eff +0.007 fR0) RC eff=+0.250 fR0 q='Which US state is the largest by a'
+  [base T1] M0=+3.625 hp=0 RA n/c=0.003/0.009 (eff +0.007 fR0) RC eff=+0.250 fR0 q='Which US state has the longest coa'
+  [base T1] M0=+0.892 hp=1 RA n/c=0.009/0.020 (eff +0.011 fR0) RC eff=+0.679 fR1 q='Which country holds the largest pr'
+  [base T1] M0=+7.125 hp=0 RA n/c=0.000/0.030 (eff +0.030 fR0) RC eff=+4.750 fR1 q='Which country holds the largest na'
+  [base T1] M0=+7.375 hp=0 RA n/c=0.001/0.003 (eff +0.003 fR0) RC eff=+1.125 fR1 q='Which country has the highest coff'
+  [base T1] M0=+0.625 hp=1 RA n/c=0.013/0.041 (eff +0.028 fR0) RC eff=+0.000 fR0 q='Which metal is the best natural co'
+  [base T1] M0=+0.750 hp=1 RA n/c=0.000/0.018 (eff +0.018 fR0) RC eff=+2.500 fR1 q='Which organ is the largest in the '
+  [base T2] M0=+3.671 hp=0 RA n/c=0.010/0.024 (eff +0.014 fR0) RC eff=+1.628 fR1 q='What is the capital of the Netherl'
+  [base T2] M0=+0.964 hp=1 RA n/c=0.000/0.024 (eff +0.024 fR0) RC eff=+3.118 fR1 q='What is the capital of Palau?'
+  [base T2] M0=+2.616 hp=0 RA n/c=0.000/0.032 (eff +0.032 fR0) RC eff=+4.217 fR1 q='What is the capital of the Federat'
+  [base T2] M0=+6.000 hp=0 RA n/c=0.000/0.010 (eff +0.009 fR0) RC eff=+2.125 fR1 q='What is the capital of Poland?'
+  [base T2] M0=-2.374 hp=0 RA n/c=0.003/0.022 (eff +0.019 fR0) RC eff=+0.861 fR1 q='What is the capital of Burundi?'
+  [base T2] M0=+3.858 hp=0 RA n/c=0.000/0.007 (eff +0.007 fR0) RC eff=+2.863 fR1 q='What is the capital of Montenegro?'
+  [base T2] M0=+8.500 hp=0 RA n/c=0.000/0.008 (eff +0.008 fR0) RC eff=+5.125 fR1 q='What is the capital of Portugal?'
+  [base T2] M0=+6.250 hp=0 RA n/c=0.000/0.004 (eff +0.004 fR0) RC eff=+5.250 fR1 q='What is the capital of Croatia?'
+  [base T3] M0=+0.458 hp=1 RA n/c=0.004/0.023 (eff +0.019 fR0) RC eff=-0.196 fR0 q='Who built the first practical auto'
+  [base T3] M0=+1.890 hp=0 RA n/c=0.009/0.032 (eff +0.023 fR0) RC eff=-0.124 fR0 q='Who is credited with discovering r'
+  [base T3] M0=+2.086 hp=0 RA n/c=0.002/0.022 (eff +0.020 fR0) RC eff=+1.062 fR1 q='Who developed the oral polio vacci'
+  [base T3] M0=-1.153 hp=1 RA n/c=0.011/0.026 (eff +0.014 fR0) RC eff=-1.387 fR0 q='Who built the first commercially s'
+  [base T3] M0=+2.284 hp=0 RA n/c=0.001/0.022 (eff +0.021 fR0) RC eff=+0.988 fR1 q='Who developed the first successful'
+  [base T3] M0=+1.561 hp=0 RA n/c=0.015/0.018 (eff +0.003 fR0) RC eff=-1.418 fR0 q='Who is credited with inventing the'
+  [base T3] M0=+5.623 hp=0 RA n/c=0.000/0.020 (eff +0.019 fR0) RC eff=+2.263 fR1 q='Who is regarded as the primary aut'
+  [base T3] M0=+9.072 hp=0 RA n/c=0.000/0.013 (eff +0.013 fR0) RC eff=+4.343 fR1 q='Who invented the World Wide Web?'
+  [base T3] M0=+2.427 hp=0 RA n/c=0.006/0.040 (eff +0.034 fR0) RC eff=+0.690 fR1 q='Who composed the melody of the Sta'
+  [base T1] M0=+7.971 hp=0 RA n/c=0.000/0.021 (eff +0.021 fR0) RC eff=+6.775 fR1 q='Which African country is the large'
+  [base T1] M0=+0.245 hp=1 RA n/c=0.006/0.021 (eff +0.015 fR0) RC eff=+2.476 fR1 q='What is the largest freshwater lak'
+  [base T1] M0=+2.316 hp=0 RA n/c=0.000/0.014 (eff +0.014 fR0) RC eff=+3.715 fR1 q='What is the largest known organism'
+  [base T1] M0=+4.713 hp=0 RA n/c=0.001/0.006 (eff +0.006 fR0) RC eff=+0.871 fR1 q='What is the longest river located '
+  [base T1] M0=+4.183 hp=0 RA n/c=0.000/0.041 (eff +0.041 fR0) RC eff=+12.990 fR1 q='Where was the coldest temperature '
+  [base T1] M0=+8.971 hp=0 RA n/c=0.001/0.021 (eff +0.020 fR0) RC eff=+4.342 fR1 q='What is the largest active volcano'
+  [base T1] M0=-0.622 hp=1 RA n/c=0.000/0.007 (eff +0.007 fR0) RC eff=+5.838 fR1 q='Which spider species has the large'
+  [base T1] M0=+10.674 hp=0 RA n/c=0.000/0.005 (eff +0.005 fR0) RC eff=+5.525 fR1 q='Which country produces the most co'
+  [base T1] M0=+1.000 hp=1 RA n/c=0.003/0.005 (eff +0.002 fR0) RC eff=+0.375 fR0 q='Which country is credited with fir'
+  [base T1] M0=+4.875 hp=0 RA n/c=0.002/0.011 (eff +0.010 fR0) RC eff=+1.250 fR1 q='Which country did the potato origi'
+  [base T1] M0=-0.305 hp=1 RA n/c=0.004/0.008 (eff +0.003 fR0) RC eff=+2.282 fR1 q='Which country has the most golf co'
+  [base T1] M0=+4.000 hp=0 RA n/c=0.004/0.016 (eff +0.012 fR0) RC eff=+1.625 fR1 q='Which country produces the most ri'
+  [base T1] M0=+3.010 hp=0 RA n/c=0.011/0.005 (eff -0.006 fR0) RC eff=-0.580 fR0 q='Which country drinks the most beer'
+  [base T1] M0=+2.600 hp=0 RA n/c=0.000/0.004 (eff +0.004 fR0) RC eff=+2.137 fR1 q='Which country drinks the most tea '
+  [base T1] M0=+4.250 hp=0 RA n/c=0.001/0.013 (eff +0.012 fR0) RC eff=+2.625 fR1 q='What is the most abundant metal in'
+  [base T1] M0=+3.314 hp=0 RA n/c=0.001/0.004 (eff +0.003 fR0) RC eff=+2.008 fR1 q='Which country is the largest expor'
+  [base T1] M0=+5.125 hp=0 RA n/c=0.002/0.009 (eff +0.007 fR0) RC eff=+0.500 fR1 q='Which country is home to most of t'
+  [base T1] M0=+4.055 hp=0 RA n/c=0.000/0.010 (eff +0.009 fR0) RC eff=+3.464 fR1 q='Which country has the largest wild'
+  [base T1] M0=+3.000 hp=0 RA n/c=0.007/0.015 (eff +0.008 fR0) RC eff=+0.500 fR1 q='Which country has the most native '
+  [base T1] M0=+5.250 hp=0 RA n/c=0.013/0.010 (eff -0.003 fR0) RC eff=-0.375 fR0 q='Which country has the most native '
+  [base T1] M0=+4.768 hp=0 RA n/c=0.001/0.008 (eff +0.007 fR0) RC eff=+1.737 fR1 q='Which country has the largest popu'
+  [base T2] M0=+5.477 hp=0 RA n/c=0.000/0.008 (eff +0.008 fR0) RC eff=+2.741 fR1 q='What is the capital of California?'
+  [base T2] M0=+5.887 hp=0 RA n/c=0.002/0.017 (eff +0.015 fR0) RC eff=+1.549 fR1 q='What is the capital of New York St'
+  [base T2] M0=+8.000 hp=0 RA n/c=0.000/0.005 (eff +0.005 fR0) RC eff=+3.875 fR1 q='What is the capital of Florida?'
+  [base T2] M0=+4.625 hp=0 RA n/c=0.001/0.015 (eff +0.014 fR0) RC eff=+1.625 fR1 q='What is the capital of Illinois?'
+  [base T2] M0=+5.125 hp=0 RA n/c=0.001/0.011 (eff +0.010 fR0) RC eff=+2.250 fR1 q='What is the capital of Michigan?'
+  [base T2] M0=+4.327 hp=0 RA n/c=0.001/0.005 (eff +0.004 fR0) RC eff=+1.247 fR1 q='What is the capital of Nevada?'
+  [base T2] M0=+5.375 hp=0 RA n/c=0.002/0.014 (eff +0.012 fR0) RC eff=+0.875 fR1 q='What is the capital of Washington '
+  [base T2] M0=+3.625 hp=0 RA n/c=0.002/0.008 (eff +0.006 fR0) RC eff=-0.125 fR0 q='What is the capital of British Col'
+  [base T3] M0=-0.194 hp=1 RA n/c=0.026/0.030 (eff +0.004 fR0) RC eff=+0.600 fR1 q="Who first radioed 'Houston, we've "
+  [base T3] M0=+7.318 hp=0 RA n/c=0.001/0.015 (eff +0.014 fR0) RC eff=+0.132 fR0 q='Who took the X-ray photograph know'
+  [base T3] M0=+3.375 hp=0 RA n/c=0.000/0.033 (eff +0.033 fR0) RC eff=+3.964 fR1 q='Who originally invented the board '
+  [base T3] M0=-2.057 hp=0 RA n/c=0.001/0.022 (eff +0.021 fR0) RC eff=+0.872 fR1 q='Who invented the first movable typ'
+  [base T3] M0=+2.782 hp=0 RA n/c=0.021/0.023 (eff +0.002 fR0) RC eff=+0.416 fR0 q='Who held the original patent for t'
+  [base T3] M0=+9.076 hp=0 RA n/c=0.001/0.016 (eff +0.015 fR0) RC eff=+1.797 fR1 q='Who was the primary author of the '
+[stab27b_shipB] CONTENT_CAVES n=82 n_headroom=13 n_faithful_RA=0 n_faithful_RC=65 | mean RA_eff/RC_eff (headroom)=0.011453384615384615/1.3200487692307692 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 9, 'n_faithful_RA': 0, 'n_faithful_RC': 41}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 15}, 'T3': {'n': 15, 'n_headroom_pass': 3, 'n_faithful_RA': 0, 'n_faithful_RC': 9}}
+[done] wrote out/family_cave_diagnose_stab27b_shipB.json

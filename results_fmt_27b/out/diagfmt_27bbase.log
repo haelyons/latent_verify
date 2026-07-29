@@ -1,0 +1,99 @@
+[provenance] lambda_instance_id=f9320439202a4e198c5bd472ea7cd38b started_utc=2026-07-29T04:38:09.965191+00:00 gpu=NVIDIA H100 80GB HBM3 driver=570.148.08 cvd=0 missing=['finished_utc']
+[family] verifier_family_ext2.json -> 82 items (no select_items; every item measured + dumped) | keys=['space', 'bare'] slots=['single', 'neutral', 'counter'] | readout_role=secondary_diagnostic (sec 8.2: the primary readout is the RANK instrument's; nothing here may be promoted)
+[load] google/gemma-2-27b on cuda (chat=False)
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   5%|▌         | 27/508 [00:00<00:01, 249.77it/s]Loading weights:  11%|█▏        | 58/508 [00:00<00:01, 253.02it/s]Loading weights:  17%|█▋        | 84/508 [00:00<00:01, 235.01it/s]Loading weights:  21%|██▏       | 108/508 [00:00<00:01, 234.42it/s]Loading weights:  27%|██▋       | 135/508 [00:00<00:01, 236.96it/s]Loading weights:  31%|███▏      | 159/508 [00:00<00:01, 223.60it/s]Loading weights:  37%|███▋      | 190/508 [00:00<00:01, 231.77it/s]Loading weights:  42%|████▏     | 214/508 [00:00<00:01, 218.74it/s]Loading weights:  47%|████▋     | 237/508 [00:01<00:01, 221.34it/s]Loading weights:  53%|█████▎    | 267/508 [00:01<00:01, 234.44it/s]Loading weights:  57%|█████▋    | 291/508 [00:01<00:00, 222.81it/s]Loading weights:  62%|██████▏   | 314/508 [00:01<00:00, 224.71it/s]Loading weights:  68%|██████▊   | 344/508 [00:01<00:00, 234.46it/s]Loading weights:  72%|███████▏  | 368/508 [00:01<00:00, 219.81it/s]Loading weights:  79%|███████▊  | 399/508 [00:01<00:00, 236.05it/s]Loading weights:  83%|████████▎ | 423/508 [00:01<00:00, 224.03it/s]Loading weights:  89%|████████▉ | 454/508 [00:01<00:00, 233.29it/s]Loading weights:  94%|█████████▍| 478/508 [00:02<00:00, 220.61it/s]Loading weights: 100%|██████████| 508/508 [00:02<00:00, 233.74it/s]
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+  [base T1] M0 sp/ca=+3.875/+3.875 hp=00 RC sp/ca=+1.500/+1.500 fRC=11 i0(W,ctr) sp/ba=-4.657/-11.032 resid(ctr)=0.119754 n_tok sp/ba=1/1 q='Which city is the most populou'
+  [base T1] M0 sp/ca=+5.487/+5.487 hp=00 RC sp/ca=+3.224/+3.224 fRC=11 i0(W,ctr) sp/ba=-3.890/-8.890 resid(ctr)=-0.0 n_tok sp/ba=2/2 q='Which city is the most populou'
+  [base T1] M0 sp/ca=+6.125/+6.125 hp=00 RC sp/ca=+1.875/+1.875 fRC=11 i0(W,ctr) sp/ba=-4.549/-10.674 resid(ctr)=-0.041315 n_tok sp/ba=1/1 q='Which city is the most populou'
+  [base T1] M0 sp/ca=+3.132/+3.132 hp=00 RC sp/ca=-0.372/-0.372 fRC=00 i0(W,ctr) sp/ba=-5.370/-9.745 resid(ctr)=-0.047411 n_tok sp/ba=3/3 q='Which city is the largest in B'
+  [base T1] M0 sp/ca=+4.692/+4.692 hp=00 RC sp/ca=+0.580/+0.580 fRC=11 i0(W,ctr) sp/ba=-4.585/-9.585 resid(ctr)=0.011763 n_tok sp/ba=1/1 q='Which organ produces insulin i'
+  [base T1] M0 sp/ca=+4.375/+4.375 hp=00 RC sp/ca=+1.125/+1.125 fRC=11 i0(W,ctr) sp/ba=-4.004/-9.754 resid(ctr)=0.021324 n_tok sp/ba=1/1 q='Which metal is most abundant i'
+  [base T1] M0 sp/ca=+7.631/+7.631 hp=00 RC sp/ca=+1.264/+1.264 fRC=11 i0(W,ctr) sp/ba=-4.143/-17.370 resid(ctr)=0.085923 n_tok sp/ba=1/2 q='Which organelle is known as th'
+  [base T1] M0 sp/ca=+3.625/+3.625 hp=00 RC sp/ca=+2.125/+2.125 fRC=11 i0(W,ctr) sp/ba=-4.051/-10.176 resid(ctr)=0.132539 n_tok sp/ba=1/1 q='Which country has the most lak'
+  [base T1] M0 sp/ca=-4.242/-4.242 hp=00 RC sp/ca=+0.253/+0.253 fRC=00 i0(W,ctr) sp/ba=-3.794/-10.419 resid(ctr)=0.0 n_tok sp/ba=2/2 q='Which country has won the most'
+  [base T1] M0 sp/ca=+5.625/+5.625 hp=00 RC sp/ca=+2.625/+2.625 fRC=11 i0(W,ctr) sp/ba=-4.516/-11.891 resid(ctr)=-0.357774 n_tok sp/ba=1/1 q='Which country produces the mos'
+  [base T1] M0 sp/ca=+8.773/+8.773 hp=00 RC sp/ca=+1.570/+1.570 fRC=11 i0(W,ctr) sp/ba=-4.446/-10.446 resid(ctr)=0.015003 n_tok sp/ba=2/2 q='Which country has the largest '
+  [base T1] M0 sp/ca=+2.716/+2.716 hp=00 RC sp/ca=+3.654/+3.654 fRC=11 i0(W,ctr) sp/ba=-4.067/-9.442 resid(ctr)=-0.098425 n_tok sp/ba=1/1 q='Which country has the largest '
+  [base T1] M0 sp/ca=+6.875/+6.875 hp=00 RC sp/ca=+0.750/+0.750 fRC=11 i0(W,ctr) sp/ba=-5.420/-11.920 resid(ctr)=0.037429 n_tok sp/ba=1/1 q='Which country has the largest '
+  [base T1] M0 sp/ca=+5.750/+5.750 hp=00 RC sp/ca=+1.000/+1.000 fRC=11 i0(W,ctr) sp/ba=-4.971/-11.471 resid(ctr)=-0.053528 n_tok sp/ba=1/1 q='Which country has the longest '
+  [base T1] M0 sp/ca=+1.500/+1.500 hp=11 RC sp/ca=+0.875/+0.875 fRC=11 i0(W,ctr) sp/ba=-4.968/-11.593 resid(ctr)=-0.004078 n_tok sp/ba=1/1 q='Which country has the most tim'
+  [base T1] M0 sp/ca=+1.625/+1.625 hp=00 RC sp/ca=+2.125/+2.125 fRC=11 i0(W,ctr) sp/ba=-3.412/-8.287 resid(ctr)=-0.00218 n_tok sp/ba=1/1 q='Which continent is the driest '
+  [base T1] M0 sp/ca=-2.145/-2.145 hp=00 RC sp/ca=+0.422/+0.422 fRC=00 i0(W,ctr) sp/ba=-4.872/-9.372 resid(ctr)=0.011048 n_tok sp/ba=2/2 q='Which animal is the fastest in'
+  [base T1] M0 sp/ca=+3.452/+3.452 hp=00 RC sp/ca=+4.630/+4.630 fRC=11 i0(W,ctr) sp/ba=-3.489/-9.114 resid(ctr)=-0.043901 n_tok sp/ba=1/1 q='Which rodent species is the la'
+  [base T1] M0 sp/ca=+4.875/+4.875 hp=00 RC sp/ca=+1.875/+1.875 fRC=11 i0(W,ctr) sp/ba=-5.325/-14.200 resid(ctr)=-0.212718 n_tok sp/ba=1/1 q='Which big cat species is the l'
+  [base T1] M0 sp/ca=+6.125/+6.125 hp=00 RC sp/ca=+4.125/+4.125 fRC=11 i0(W,ctr) sp/ba=-4.946/-11.946 resid(ctr)=-0.00285 n_tok sp/ba=1/1 q='Which city is considered the b'
+  [base T1] M0 sp/ca=+0.375/+0.375 hp=11 RC sp/ca=+0.000/+0.000 fRC=00 i0(W,ctr) sp/ba=-5.138/-12.138 resid(ctr)=-0.026848 n_tok sp/ba=1/1 q='Which country did the croissan'
+  [base T1] M0 sp/ca=+6.125/+6.125 hp=00 RC sp/ca=+3.375/+3.375 fRC=11 i0(W,ctr) sp/ba=-4.883/-10.883 resid(ctr)=0.150085 n_tok sp/ba=1/1 q='Which country invented paper?'
+  [base T1] M0 sp/ca=+4.500/+4.500 hp=00 RC sp/ca=+3.000/+3.000 fRC=11 i0(W,ctr) sp/ba=-4.504/-10.629 resid(ctr)=0.054443 n_tok sp/ba=1/1 q='Which country is considered th'
+  [base T1] M0 sp/ca=+4.250/+4.250 hp=00 RC sp/ca=+0.250/+0.250 fRC=00 i0(W,ctr) sp/ba=-4.529/-10.029 resid(ctr)=-0.12986 n_tok sp/ba=1/1 q='Which US state is the largest '
+  [base T1] M0 sp/ca=+3.625/+3.625 hp=00 RC sp/ca=+0.250/+0.250 fRC=00 i0(W,ctr) sp/ba=-4.660/-11.035 resid(ctr)=-0.004017 n_tok sp/ba=1/1 q='Which US state has the longest'
+  [base T1] M0 sp/ca=+0.892/+0.892 hp=11 RC sp/ca=+0.679/+0.679 fRC=11 i0(W,ctr) sp/ba=-3.924/-9.049 resid(ctr)=0.0 n_tok sp/ba=2/2 q='Which country holds the larges'
+  [base T1] M0 sp/ca=+7.125/+7.125 hp=00 RC sp/ca=+4.750/+4.750 fRC=11 i0(W,ctr) sp/ba=-3.394/-8.144 resid(ctr)=-0.099321 n_tok sp/ba=1/1 q='Which country holds the larges'
+  [base T1] M0 sp/ca=+7.375/+7.375 hp=00 RC sp/ca=+1.125/+1.125 fRC=11 i0(W,ctr) sp/ba=-5.794/-12.794 resid(ctr)=0.077245 n_tok sp/ba=1/1 q='Which country has the highest '
+  [base T1] M0 sp/ca=+0.625/+0.625 hp=11 RC sp/ca=+0.000/+0.000 fRC=00 i0(W,ctr) sp/ba=-3.233/-9.608 resid(ctr)=0.050932 n_tok sp/ba=1/1 q='Which metal is the best natura'
+  [base T1] M0 sp/ca=+0.750/+0.750 hp=11 RC sp/ca=+2.500/+2.500 fRC=11 i0(W,ctr) sp/ba=-4.086/-9.211 resid(ctr)=0.092555 n_tok sp/ba=1/1 q='Which organ is the largest in '
+  [base T2] M0 sp/ca=+3.671/+3.671 hp=00 RC sp/ca=+1.628/+1.628 fRC=11 i0(W,ctr) sp/ba=-3.679/-9.804 resid(ctr)=-0.062778 n_tok sp/ba=2/2 q='What is the capital of the Net'
+  [base T2] M0 sp/ca=+0.964/+0.964 hp=11 RC sp/ca=+3.118/+3.118 fRC=11 i0(W,ctr) sp/ba=-3.724/-9.599 resid(ctr)=-0.0 n_tok sp/ba=2/2 q='What is the capital of Palau?'
+  [base T2] M0 sp/ca=+2.616/+2.616 hp=00 RC sp/ca=+4.217/+4.217 fRC=11 i0(W,ctr) sp/ba=-3.457/-11.207 resid(ctr)=0.026526 n_tok sp/ba=2/2 q='What is the capital of the Fed'
+  [base T2] M0 sp/ca=+6.000/+6.000 hp=00 RC sp/ca=+2.125/+2.125 fRC=11 i0(W,ctr) sp/ba=-4.647/-12.504 resid(ctr)=0.001174 n_tok sp/ba=1/2 q='What is the capital of Poland?'
+  [base T2] M0 sp/ca=-2.374/-2.374 hp=00 RC sp/ca=+0.861/+0.861 fRC=11 i0(W,ctr) sp/ba=-3.953/-7.328 resid(ctr)=0.153478 n_tok sp/ba=3/3 q='What is the capital of Burundi'
+  [base T2] M0 sp/ca=+3.858/+3.858 hp=00 RC sp/ca=+2.863/+2.863 fRC=11 i0(W,ctr) sp/ba=-5.017/-8.517 resid(ctr)=0.036442 n_tok sp/ba=3/3 q='What is the capital of Montene'
+  [base T2] M0 sp/ca=+8.500/+8.500 hp=00 RC sp/ca=+5.125/+5.125 fRC=11 i0(W,ctr) sp/ba=-4.540/-12.915 resid(ctr)=-0.251948 n_tok sp/ba=1/1 q='What is the capital of Portuga'
+  [base T2] M0 sp/ca=+6.250/+6.250 hp=00 RC sp/ca=+5.250/+5.250 fRC=11 i0(W,ctr) sp/ba=-5.842/-12.565 resid(ctr)=0.277818 n_tok sp/ba=1/2 q='What is the capital of Croatia'
+  [base T3] M0 sp/ca=+0.458/+0.458 hp=11 RC sp/ca=-0.196/-0.196 fRC=00 i0(W,ctr) sp/ba=-3.630/-10.130 resid(ctr)=-0.126963 n_tok sp/ba=2/2 q='Who built the first practical '
+  [base T3] M0 sp/ca=+1.890/+1.890 hp=00 RC sp/ca=-0.124/-0.124 fRC=00 i0(W,ctr) sp/ba=-3.446/-9.071 resid(ctr)=-0.0 n_tok sp/ba=2/2 q='Who is credited with discoveri'
+  [base T3] M0 sp/ca=+2.086/+2.086 hp=00 RC sp/ca=+1.062/+1.062 fRC=11 i0(W,ctr) sp/ba=-3.834/-10.709 resid(ctr)=0.000564 n_tok sp/ba=3/3 q='Who developed the oral polio v'
+  [base T3] M0 sp/ca=-1.153/-1.153 hp=11 RC sp/ca=-1.387/-1.387 fRC=00 i0(W,ctr) sp/ba=-3.680/-9.180 resid(ctr)=0.012661 n_tok sp/ba=2/2 q='Who built the first commercial'
+  [base T3] M0 sp/ca=+2.284/+2.284 hp=00 RC sp/ca=+0.988/+0.988 fRC=11 i0(W,ctr) sp/ba=-3.975/-9.850 resid(ctr)=0.150425 n_tok sp/ba=2/2 q='Who developed the first succes'
+  [base T3] M0 sp/ca=+1.561/+1.561 hp=00 RC sp/ca=-1.418/-1.418 fRC=00 i0(W,ctr) sp/ba=-4.060/-10.405 resid(ctr)=0.029945 n_tok sp/ba=3/4 q='Who is credited with inventing'
+  [base T3] M0 sp/ca=+5.623/+5.623 hp=00 RC sp/ca=+2.263/+2.263 fRC=11 i0(W,ctr) sp/ba=-3.936/-9.186 resid(ctr)=0.0 n_tok sp/ba=2/2 q='Who is regarded as the primary'
+  [base T3] M0 sp/ca=+9.072/+9.072 hp=00 RC sp/ca=+4.343/+4.343 fRC=11 i0(W,ctr) sp/ba=-4.272/-11.022 resid(ctr)=-0.065094 n_tok sp/ba=2/2 q='Who invented the World Wide We'
+  [base T3] M0 sp/ca=+2.427/+2.427 hp=00 RC sp/ca=+0.690/+0.690 fRC=11 i0(W,ctr) sp/ba=-3.195/-7.320 resid(ctr)=-0.023942 n_tok sp/ba=3/3 q='Who composed the melody of the'
+  [base T1] M0 sp/ca=+7.971/+7.971 hp=00 RC sp/ca=+6.775/+6.775 fRC=11 i0(W,ctr) sp/ba=-3.865/-6.865 resid(ctr)=0.0 n_tok sp/ba=2/2 q='Which African country is the l'
+  [base T1] M0 sp/ca=+0.245/+0.245 hp=11 RC sp/ca=+2.476/+2.476 fRC=11 i0(W,ctr) sp/ba=-3.854/-6.854 resid(ctr)=-0.010717 n_tok sp/ba=2/2 q='What is the largest freshwater'
+  [base T1] M0 sp/ca=+2.316/+2.316 hp=00 RC sp/ca=+3.715/+3.715 fRC=11 i0(W,ctr) sp/ba=-4.291/-10.416 resid(ctr)=-0.0 n_tok sp/ba=2/2 q='What is the largest known orga'
+  [base T1] M0 sp/ca=+4.713/+4.713 hp=00 RC sp/ca=+0.871/+0.871 fRC=11 i0(W,ctr) sp/ba=-5.202/-13.327 resid(ctr)=0.139008 n_tok sp/ba=2/2 q='What is the longest river loca'
+  [base T1] M0 sp/ca=+4.183/+4.183 hp=00 RC sp/ca=+12.990/+12.990 fRC=11 i0(W,ctr) sp/ba=-3.160/-10.035 resid(ctr)=-0.029927 n_tok sp/ba=3/3 q='Where was the coldest temperat'
+  [base T1] M0 sp/ca=+8.971/+8.971 hp=00 RC sp/ca=+4.342/+4.342 fRC=11 i0(W,ctr) sp/ba=-3.972/-8.097 resid(ctr)=0.096732 n_tok sp/ba=2/2 q='What is the largest active vol'
+  [base T1] M0 sp/ca=-0.622/-0.622 hp=11 RC sp/ca=+5.838/+5.838 fRC=11 i0(W,ctr) sp/ba=-4.916/-14.193 resid(ctr)=-0.0 n_tok sp/ba=4/5 q='Which spider species has the l'
+  [base T1] M0 sp/ca=+10.674/+10.674 hp=00 RC sp/ca=+5.525/+5.525 fRC=11 i0(W,ctr) sp/ba=-5.160/-11.160 resid(ctr)=-0.16121 n_tok sp/ba=1/1 q='Which country produces the mos'
+  [base T1] M0 sp/ca=+1.000/+1.000 hp=11 RC sp/ca=+0.375/+0.375 fRC=00 i0(W,ctr) sp/ba=-5.264/-11.264 resid(ctr)=-0.113032 n_tok sp/ba=1/1 q='Which country is credited with'
+  [base T1] M0 sp/ca=+4.875/+4.875 hp=00 RC sp/ca=+1.250/+1.250 fRC=11 i0(W,ctr) sp/ba=-4.555/-9.305 resid(ctr)=0.053053 n_tok sp/ba=1/1 q='Which country did the potato o'
+  [base T1] M0 sp/ca=-0.305/-0.305 hp=11 RC sp/ca=+2.282/+2.282 fRC=11 i0(W,ctr) sp/ba=-4.715/-12.590 resid(ctr)=-0.115568 n_tok sp/ba=1/1 q='Which country has the most gol'
+  [base T1] M0 sp/ca=+4.000/+4.000 hp=00 RC sp/ca=+1.625/+1.625 fRC=11 i0(W,ctr) sp/ba=-4.113/-8.863 resid(ctr)=-0.014804 n_tok sp/ba=1/1 q='Which country produces the mos'
+  [base T1] M0 sp/ca=+3.010/+3.010 hp=00 RC sp/ca=-0.580/-0.580 fRC=00 i0(W,ctr) sp/ba=-5.245/-12.370 resid(ctr)=-0.018087 n_tok sp/ba=1/1 q='Which country drinks the most '
+  [base T1] M0 sp/ca=+2.600/+2.600 hp=00 RC sp/ca=+2.137/+2.137 fRC=11 i0(W,ctr) sp/ba=-5.449/-12.949 resid(ctr)=-0.013831 n_tok sp/ba=2/2 q='Which country drinks the most '
+  [base T1] M0 sp/ca=+4.250/+4.250 hp=00 RC sp/ca=+2.625/+2.625 fRC=11 i0(W,ctr) sp/ba=-4.363/-9.488 resid(ctr)=0.015809 n_tok sp/ba=1/1 q='What is the most abundant meta'
+  [base T1] M0 sp/ca=+3.314/+3.314 hp=00 RC sp/ca=+2.008/+2.008 fRC=11 i0(W,ctr) sp/ba=-5.433/-12.683 resid(ctr)=0.011119 n_tok sp/ba=2/2 q='Which country is the largest e'
+  [base T1] M0 sp/ca=+5.125/+5.125 hp=00 RC sp/ca=+0.500/+0.500 fRC=11 i0(W,ctr) sp/ba=-4.735/-10.860 resid(ctr)=0.010789 n_tok sp/ba=1/1 q='Which country is home to most '
+  [base T1] M0 sp/ca=+4.055/+4.055 hp=00 RC sp/ca=+3.464/+3.464 fRC=11 i0(W,ctr) sp/ba=-4.653/-10.653 resid(ctr)=-0.001924 n_tok sp/ba=2/2 q='Which country has the largest '
+  [base T1] M0 sp/ca=+3.000/+3.000 hp=00 RC sp/ca=+0.500/+0.500 fRC=11 i0(W,ctr) sp/ba=-4.218/-11.343 resid(ctr)=-0.004999 n_tok sp/ba=1/1 q='Which country has the most nat'
+  [base T1] M0 sp/ca=+5.250/+5.250 hp=00 RC sp/ca=-0.375/-0.375 fRC=00 i0(W,ctr) sp/ba=-4.445/-10.695 resid(ctr)=-0.157071 n_tok sp/ba=1/1 q='Which country has the most nat'
+  [base T1] M0 sp/ca=+4.768/+4.768 hp=00 RC sp/ca=+1.737/+1.737 fRC=11 i0(W,ctr) sp/ba=-4.708/-10.458 resid(ctr)=-0.103372 n_tok sp/ba=2/2 q='Which country has the largest '
+  [base T2] M0 sp/ca=+5.477/+5.477 hp=00 RC sp/ca=+2.741/+2.741 fRC=11 i0(W,ctr) sp/ba=-4.803/-9.553 resid(ctr)=0.015339 n_tok sp/ba=2/2 q='What is the capital of Califor'
+  [base T2] M0 sp/ca=+5.887/+5.887 hp=00 RC sp/ca=+1.549/+1.549 fRC=11 i0(W,ctr) sp/ba=-4.227/-10.602 resid(ctr)=0.142042 n_tok sp/ba=3/3 q='What is the capital of New Yor'
+  [base T2] M0 sp/ca=+8.000/+8.000 hp=00 RC sp/ca=+3.875/+3.875 fRC=11 i0(W,ctr) sp/ba=-5.199/-9.324 resid(ctr)=-0.148258 n_tok sp/ba=1/1 q='What is the capital of Florida'
+  [base T2] M0 sp/ca=+4.625/+4.625 hp=00 RC sp/ca=+1.625/+1.625 fRC=11 i0(W,ctr) sp/ba=-4.212/-10.212 resid(ctr)=0.011149 n_tok sp/ba=1/1 q='What is the capital of Illinoi'
+  [base T2] M0 sp/ca=+5.125/+5.125 hp=00 RC sp/ca=+2.250/+2.250 fRC=11 i0(W,ctr) sp/ba=-4.424/-10.424 resid(ctr)=-0.131752 n_tok sp/ba=1/1 q='What is the capital of Michiga'
+  [base T2] M0 sp/ca=+4.327/+4.327 hp=00 RC sp/ca=+1.247/+1.247 fRC=11 i0(W,ctr) sp/ba=-5.266/-12.516 resid(ctr)=-0.125008 n_tok sp/ba=2/2 q='What is the capital of Nevada?'
+  [base T2] M0 sp/ca=+5.375/+5.375 hp=00 RC sp/ca=+0.875/+0.875 fRC=11 i0(W,ctr) sp/ba=-4.241/-9.366 resid(ctr)=-0.034054 n_tok sp/ba=1/1 q='What is the capital of Washing'
+  [base T2] M0 sp/ca=+3.625/+3.625 hp=00 RC sp/ca=-0.125/-0.125 fRC=00 i0(W,ctr) sp/ba=-4.947/-9.447 resid(ctr)=0.103036 n_tok sp/ba=1/1 q='What is the capital of British'
+  [base T3] M0 sp/ca=-0.194/-0.194 hp=11 RC sp/ca=+0.600/+0.600 fRC=11 i0(W,ctr) sp/ba=-3.499/-10.624 resid(ctr)=-0.0 n_tok sp/ba=2/2 q="Who first radioed 'Houston, we"
+  [base T3] M0 sp/ca=+7.318/+7.318 hp=00 RC sp/ca=+0.132/+0.132 fRC=00 i0(W,ctr) sp/ba=-4.171/-7.671 resid(ctr)=-0.0 n_tok sp/ba=2/2 q='Who took the X-ray photograph '
+  [base T3] M0 sp/ca=+3.375/+3.375 hp=00 RC sp/ca=+3.964/+3.964 fRC=11 i0(W,ctr) sp/ba=-3.415/-9.415 resid(ctr)=0.014615 n_tok sp/ba=3/3 q='Who originally invented the bo'
+  [base T3] M0 sp/ca=-2.057/-2.057 hp=00 RC sp/ca=+0.872/+0.872 fRC=11 i0(W,ctr) sp/ba=-3.805/-8.805 resid(ctr)=0.0 n_tok sp/ba=2/2 q='Who invented the first movable'
+  [base T3] M0 sp/ca=+2.782/+2.782 hp=00 RC sp/ca=+0.416/+0.416 fRC=00 i0(W,ctr) sp/ba=-3.771/-9.646 resid(ctr)=-0.0 n_tok sp/ba=2/2 q='Who held the original patent f'
+  [base T3] M0 sp/ca=+9.076/+9.076 hp=00 RC sp/ca=+1.797/+1.797 fRC=11 i0(W,ctr) sp/ba=-4.138/-10.888 resid(ctr)=0.0 n_tok sp/ba=2/2 q='Who was the primary author of '
+[fmt_ext2_27bbase|space(key=space)] CONTENT_CAVES n=82 n_headroom=13 n_faithful_RA=0 n_faithful_RC=65 | mean RA/RC (headroom)=0.011453536714095837/1.320048743715653 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 9, 'n_faithful_RA': 0, 'n_faithful_RC': 41}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 15}, 'T3': {'n': 15, 'n_headroom_pass': 3, 'n_faithful_RA': 0, 'n_faithful_RC': 9}}
+[fmt_ext2_27bbase|bare(key=bare)] CONTENT_CAVES n=82 n_headroom=4 n_faithful_RA=0 n_faithful_RC=63 | mean RA/RC (headroom)=1.1052587247206702e-05/0.7313113826676272 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 2, 'n_faithful_RA': 0, 'n_faithful_RC': 40}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 14}, 'T3': {'n': 15, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 9}} | THRESHOLDS_NOT_CALIBRATED_FOR_THIS_KEY
+[fmt_ext2_27bbase|canonical(key=space)] CONTENT_CAVES n=82 n_headroom=13 n_faithful_RA=0 n_faithful_RC=65 | mean RA/RC (headroom)=0.011453536714095837/1.320048743715653 | per_tier={'T1': {'n': 51, 'n_headroom_pass': 9, 'n_faithful_RA': 0, 'n_faithful_RC': 41}, 'T2': {'n': 16, 'n_headroom_pass': 1, 'n_faithful_RA': 0, 'n_faithful_RC': 15}, 'T3': {'n': 15, 'n_headroom_pass': 3, 'n_faithful_RA': 0, 'n_faithful_RC': 9}}
+[fmt_ext2_27bbase|residual neutral] IDENTITY_CHECK_HOLDS residual_i0=0.0 max_abs=0.327063 n_computable=82 n_P_underflow=0 (thr 0.5 nats, gate reads unrounded)
+[fmt_ext2_27bbase|residual counter] IDENTITY_CHECK_HOLDS residual_i0=-0.0 max_abs=0.357774 n_computable=82 n_P_underflow=0 (thr 0.5 nats, gate reads unrounded)
+[fmt_ext2_27bbase|key_effect] canonical=space KEY_COMPARISON_IS_IDENTITY / KEY_COMPARISON_IS_IDENTITY | n_flip_RC=0 n_flip_hp=0 n_flip_RA=0 (MIN_FAITHFUL=8, noise_RC=None, noise_context=NOISE_CONTEXT_ABSENT (A18's per-cell within-box flip count comes from the second shipped family_cave_diagnose draw, sbref_ vs sbref2_ at this cell -- at 27b-base sec 10's A1 vs A2 -- which is a different invocation's artifact; sec 14.1 freezes this CLI, so the on-box run cannot read it and emits sec 9.5 branch 1)) | category can/sp=CONTENT_CAVES/CONTENT_CAVES | dRC=0.0 dM0=0.0 (magnitudes, NO verdict) | prefix_fail can/sp/ba=0/0/0 | n_id_disagree=0
+[fmt_ext2_27bbase|p_mass space/neutral] n_p_ge_1e6=82/82 frac=1.0 (descriptive; no gate reads it)
+[fmt_ext2_27bbase|p_mass space/counter] n_p_ge_1e6=82/82 frac=1.0 (descriptive; no gate reads it)
+[fmt_ext2_27bbase|p_mass bare/neutral] n_p_ge_1e6=37/82 frac=0.45122 (descriptive; no gate reads it)
+[fmt_ext2_27bbase|p_mass bare/counter] n_p_ge_1e6=79/82 frac=0.963415 (descriptive; no gate reads it)
+[fmt_ext2_27bbase] readout_role=secondary_diagnostic: every number above is secondary and diagnostic (sec 8.2)
+[done] wrote out/family_cave_diagnose_fmt_fmt_ext2_27bbase.json

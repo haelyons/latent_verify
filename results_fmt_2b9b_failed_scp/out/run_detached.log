@@ -1,0 +1,56 @@
+[setup] venv + stack
+[setup] torch 2.6.0+cu124 cuda True
+[setup] transformer_lens 3.6.0 transformers 5.14.1
+[run] bash run_fmt_matched_2b9b.sh
+0, NVIDIA A100-SXM4-40GB, 40960 MiB, 570.148.08
+[env] CUDA_VISIBLE_DEVICES=0 LAMBDA_INSTANCE_ID=896e334ca3ec4f9e9c335064206edcb8 GIT_COMMIT=a4a2ae0085703e718252bc21c061ad31da1b5308
+{
+  "run": "fmt_matched_2b9b",
+  "registration": "docs/drafts/REGISTRATION_format_matched_readout.md (frozen, pre-data; \u00a712 + \u00a710.1)",
+  "box": "A of 2 -- the 2b and 9b cells (\u00a714.4)",
+  "started_utc": "2026-07-29T04:05:12.817398+00:00",
+  "finished_utc": null,
+  "python": "3.10.12",
+  "lambda_instance_id": "896e334ca3ec4f9e9c335064206edcb8",
+  "git_commit": "a4a2ae0085703e718252bc21c061ad31da1b5308",
+  "gpu_name": "NVIDIA A100-SXM4-40GB",
+  "gpu_count": "1",
+  "driver": "570.148.08",
+  "cuda_visible_devices": "0",
+  "device_index": 0,
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": "3.6.0",
+  "cuda_runtime": "12.4"
+}
+=== selftests (model-free, CPU; a failure here stops the run before a box-hour is spent) ===
+[selftest] gapclose_item_joins not importable (No module named 'gapclose_item_joins') -> transcription check SKIPPED (expected on a box)
+[selftest] imports: _full_softmax/_tensor_rank/rank_of/load_family from family_topk_shift; ELICIT frozen
+[selftest] frozen: ONSET_DELTA=0.10 == ARTIFACT_MAX_DELTA (A2 value, A20 stamp), DUMP_FLOOR=1e-6 descriptor, TOP_K=10, N_ITEMS=82, TOP_N_NON_ONSET=5, L_old adopted (A7); ONSET_FLOOR (A15) and KEY_LIVE_FRAC (A16) exist ONLY as non-numeric withdrawal notes with no module-level name
+[selftest] §8.2: primary iff (entity=Wstar, slot=elicit, key canonical, statistic=L_new); every one-axis perturbation is secondary_diagnostic; count_role walks nested objects
+[selftest] precision: <field> is 6dp (lossy at a threshold BY the format), <field>_full round-trips exactly; the A13 M0=1.5/headroom_pass=true flip is reproduced and caught, at 1.5 and at the 1e-6 dump floor
+[selftest] rule K: 'Q: ...\nA:' -> sep ' ' -> key `space`; '...model\n' -> sep '' -> key `bare`; whitespace/tab/newline endings -> `bare`; empty -> `space` (pinned)
+[selftest] slot `elicit`: base 'Q: {q} ELICIT\nA:' and -it chat(user='{q}\n\nELICIT') via the SHIPPED single(); the ELICIT literal is byte-identical at both variants
+[selftest] §3.1 flags: (skip_special_tokens=False, add_special_tokens=False) is the ONLY holding combination at the -it template; at a BOS-only base template skip=True + add=True cancel, which is why the pair is pinned on the -it shape. NOTE: add_special_tokens=True also breaks the prompt re-encode, so the strict test's EARLIEST violated condition is DECODE_NOT_ROUNDTRIP and the literal prefix failure is recorded as ok_spec_literal=False
+[selftest] prefix test STRICT_EXACT_ID_PREFIX_PLUS_ROUNDTRIP: all four failure reasons in registered order; ok_spec_literal beside ok; joint ids persisted on failure only; tok_id_joint read from the joint tokenisation alone
+[selftest] V(A): the frozen 2x2 in its registered order; an already-lower-case answer collides 1==3 and 2==4
+[selftest] A16: tie_plateau = (P == p).sum() is the EXACT complement of 1 + (P > p).sum() -- a 3-wide plateau shares rank 2 and the next lower token sits at rank 2 + 3 = 5; rank_resolved iff plateau == 1
+[selftest] median_rank_plateau: exact at odd n; at even n the MAX of the two defining items' plateaus -- the widest interval, the suppressing direction (ambiguity H)
+[selftest] §9.2 interval rule: disjoint / touching (counted as overlapping, the suppressing direction) / overlapping / undecidable
+[selftest] build_record: rule K flips the canonical key between regimes on IDENTICAL numbers; both keys measured; rank_canonical/tie_plateau/rank_best_set/variant dedup/argmax membership/anchor fields exact
+[selftest] first_token_collision is recorded PER KEY and the canonical flag follows rule K
+[selftest] stamp: exactly ('arm', 'slot', 'labels', 'map_confidence', 'tiebreak'), len 5, all non-empty PROSE strings (map_confidence and labels start 'n/a' and carry their reason, per the arms lineage's all-string contract) with the A16 plateau rule in `tiebreak`; the five A9/A17 axes present, non-null and typed
+[selftest] rank_summary: median/q1/q3/iqr/max on statistics.quantiles(n=4, inclusive); nulls counted by reason
+[selftest] aggregate: onset union + four-way decomposition summing to 1; A19 composition on both denominators, and at onset ZERO the onset side is empty while the composition is fully populated (ambiguity I); n_p_ge_1e6 inclusive exactly at 1e-6 and exclusive just below; median_rank_canonical == the canonical key's own median; W*/elicit is the primary INPUT and still secondary_diagnostic; C and W* never pooled
+[selftest] §9.2: KEY_UNLOCATABLE -> RANK_RESOLUTION_INSUFFICIENT -> RANK_RESOLVED; disjoint resolves, touching and overlapping suppress, an unusable median suppresses, a missing arm is the named non-emission, and a two-branch input resolves to KEY_UNLOCATABLE
+[selftest] §9.1: SLOT_DEGENERATE -> SLOT_UNMATCHED -> SLOT_MATCHED; degeneracy fires at exactly 0 (from one arm too) and NOT at 1/82; low-but-matched licenses and high-but-mismatched does not; ONSET_DELTA inclusive at the boundary and failing just inside; the A20 stamp on both ONSET_DELTA branches only
+[selftest] decide(): one named verdict per (slot, entity) plus the per-slot slot-gate row; §9.1/§9.2 pair branches, §9.3 (the PRIMARY), §9.5, §7 and §10 named as NOT emitted here with their reasons; exactly ONE readout_role='primary' in the whole envelope and it is the designation block
+[selftest] provenance: all 15 fields required; a null/empty lambda_instance_id or started_utc RAISES ProvenanceIncomplete (the run aborts before any model load)
+[selftest] PASS
+SELFTEST PASS
+Traceback (most recent call last):
+  File "/home/ubuntu/latent_verify/family_cave_diagnose_fmt.py", line 200, in <module>
+    from gapclose_item_joins import STAMP_KEYS, join_key
+ModuleNotFoundError: No module named 'gapclose_item_joins'
+SELFTEST_FAIL_DIAGNOSE_FMT (missing from the launcher copy's scp list?)

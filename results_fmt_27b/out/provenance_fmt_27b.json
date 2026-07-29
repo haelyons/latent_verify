@@ -1,0 +1,20 @@
+{
+  "run": "fmt_matched_27b",
+  "registration": "docs/drafts/REGISTRATION_format_matched_readout.md (frozen, pre-data; \u00a712 + \u00a710.1)",
+  "box": "B of 2 -- the 27b cells + \u00a710's stability control (\u00a714.4)",
+  "started_utc": "2026-07-29T04:34:10.963379+00:00",
+  "finished_utc": "2026-07-29T05:26:08.424716+00:00",
+  "python": "3.10.12",
+  "lambda_instance_id": "f9320439202a4e198c5bd472ea7cd38b",
+  "git_commit": "a4a2ae0085703e718252bc21c061ad31da1b5308",
+  "gpu_name": "NVIDIA H100 80GB HBM3",
+  "gpu_count": "1",
+  "driver": "570.148.08",
+  "cuda_visible_devices": "0",
+  "device_index": 0,
+  "dtype": "bfloat16",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "transformer_lens": "3.6.0",
+  "cuda_runtime": "12.4"
+}

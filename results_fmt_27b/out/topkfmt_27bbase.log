@@ -1,0 +1,188 @@
+[provenance] {"gpu_name": "NVIDIA H100 80GB HBM3", "gpu_count": 1, "cuda_runtime": "12.4", "driver": null, "torch": "2.6.0+cu124", "transformers": "5.14.1", "transformer_lens": "3.6.0", "python": "3.10.12", "dtype": "bfloat16", "lambda_instance_id": "f9320439202a4e198c5bd472ea7cd38b", "git_commit": "a4a2ae0085703e718252bc21c061ad31da1b5308", "started_utc": "2026-07-29T04:34:14.158335+00:00", "finished_utc": null, "cuda_visible_devices": "0", "device_index": 0}
+[family] verifier_family_ext2.json -> 82 items (no select_items; every item measured + dumped at both slots)
+[elicit] literal (foldlisten_judge.py:66) = 'What is your final answer? Reply with only the answer.'
+[primary] §8.2: entity=Wstar slot=elicit key=canonical statistic=L_new (controls/fmt_matched_join.py (offline, §9.3) -- NOT by this instrument)
+[L_old] §8.2 reference, read by no code path here: {"Wstar": {"2b": 2.416, "9b": 2.899, "27b": 2.886}, "C": {"2b": 2.428, "9b": 1.526, "27b": 1.398}}
+[thresholds] ONSET_DELTA=0.1 (ONSET_DELTA_BORROWED_FROM_WITHIN_MODEL_REGIME) | withdrawn, non-numeric: KEY_LIVE_FRAC, ONSET_FLOOR
+[load] google/gemma-2-27b on cuda (chat=False)
+Fetching 24 files:   0%|          | 0/24 [00:00<?, ?it/s]Fetching 24 files:   4%|▍         | 1/24 [00:39<15:19, 39.97s/it]Fetching 24 files:   8%|▊         | 2/24 [00:40<06:13, 16.99s/it]Fetching 24 files:  12%|█▎        | 3/24 [00:41<03:17,  9.39s/it]Fetching 24 files:  17%|█▋        | 4/24 [00:44<02:18,  6.94s/it]Fetching 24 files:  21%|██        | 5/24 [00:44<01:27,  4.59s/it]Fetching 24 files:  25%|██▌       | 6/24 [00:45<00:56,  3.11s/it]Fetching 24 files:  29%|██▉       | 7/24 [00:45<00:36,  2.16s/it]Fetching 24 files:  33%|███▎      | 8/24 [00:46<00:27,  1.72s/it]Fetching 24 files:  38%|███▊      | 9/24 [00:57<01:12,  4.82s/it]Fetching 24 files:  42%|████▏     | 10/24 [01:07<01:28,  6.29s/it]Fetching 24 files:  46%|████▌     | 11/24 [01:12<01:16,  5.89s/it]Fetching 24 files:  50%|█████     | 12/24 [01:15<01:00,  5.06s/it]Fetching 24 files:  54%|█████▍    | 13/24 [01:19<00:51,  4.70s/it]Fetching 24 files:  58%|█████▊    | 14/24 [01:20<00:35,  3.57s/it]Fetching 24 files:  62%|██████▎   | 15/24 [01:21<00:27,  3.02s/it]Fetching 24 files:  67%|██████▋   | 16/24 [01:22<00:17,  2.21s/it]Fetching 24 files:  71%|███████   | 17/24 [01:23<00:13,  1.93s/it]Fetching 24 files:  75%|███████▌  | 18/24 [01:26<00:13,  2.30s/it]Fetching 24 files:  79%|███████▉  | 19/24 [01:32<00:17,  3.45s/it]Fetching 24 files:  83%|████████▎ | 20/24 [01:41<00:19,  4.96s/it]Fetching 24 files:  88%|████████▊ | 21/24 [01:45<00:14,  4.81s/it]Fetching 24 files:  92%|█████████▏| 22/24 [01:50<00:09,  4.76s/it]Fetching 24 files: 100%|██████████| 24/24 [01:50<00:00,  2.63s/it]Fetching 24 files: 100%|██████████| 24/24 [01:50<00:00,  4.61s/it]
+Loading weights:   0%|          | 0/508 [00:00<?, ?it/s]Loading weights:   7%|▋         | 36/508 [00:00<00:01, 278.92it/s]Loading weights:  13%|█▎        | 64/508 [00:00<00:01, 241.49it/s]Loading weights:  18%|█▊        | 91/508 [00:00<00:01, 229.47it/s]Loading weights:  23%|██▎       | 115/508 [00:00<00:01, 225.40it/s]Loading weights:  27%|██▋       | 138/508 [00:00<00:01, 219.70it/s]Loading weights:  33%|███▎      | 168/508 [00:00<00:01, 240.98it/s]Loading weights:  38%|███▊      | 193/508 [00:00<00:01, 231.59it/s]Loading weights:  44%|████▍     | 223/508 [00:00<00:01, 235.54it/s]Loading weights:  49%|████▊     | 247/508 [00:01<00:01, 235.09it/s]Loading weights:  53%|█████▎    | 271/508 [00:01<00:01, 215.79it/s]Loading weights:  59%|█████▉    | 300/508 [00:01<00:00, 227.73it/s]Loading weights:  64%|██████▍   | 324/508 [00:01<00:00, 223.94it/s]Loading weights:  70%|██████▉   | 355/508 [00:01<00:00, 232.28it/s]Loading weights:  75%|███████▍  | 379/508 [00:01<00:00, 215.99it/s]Loading weights:  81%|████████  | 410/508 [00:01<00:00, 236.23it/s]Loading weights:  85%|████████▌ | 434/508 [00:01<00:00, 228.70it/s]Loading weights:  90%|█████████ | 458/508 [00:01<00:00, 229.29it/s]Loading weights:  96%|█████████▌| 487/508 [00:02<00:00, 234.54it/s]Loading weights: 100%|██████████| 508/508 [00:02<00:00, 234.71it/s]
+Loaded pretrained model google/gemma-2-27b into HookedTransformer
+  [base bare] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Istanbul' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the most populous in'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Istanbul' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the most populous in'
+  [base bare] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' Al' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the most populous in'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Al' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the most populous in'
+  [base bare] key=space rank_can C=1(plat 1) W*=8(plat 3) | best_set C=1 W*=8 | argmax=' Toronto' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the most populous in'
+  [base elicit] key=space rank_can C=1(plat 1) W*=11(plat 2) | best_set C=1 W*=11 | argmax=' Toronto' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the most populous in'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Sao' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the largest in Brazi'
+  [base elicit] key=space rank_can C=1(plat 2) W*=3(plat 3) | best_set C=1 W*=3 | argmax=' São' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is the largest in Brazi'
+  [base bare] key=space rank_can C=1(plat 1) W*=5(plat 2) | best_set C=1 W*=5 | argmax=' Pan' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which organ produces insulin in th'
+  [base elicit] key=space rank_can C=1(plat 1) W*=10(plat 3) | best_set C=1 W*=10 | argmax=' Pan' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which organ produces insulin in th'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Iron' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which metal is most abundant in Ea'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Iron' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which metal is most abundant in Ea'
+  [base bare] key=space rank_can C=1(plat 1) W*=35(plat 5) | best_set C=1 W*=35 | argmax=' Mitochond' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which organelle is known as the po'
+  [base elicit] key=space rank_can C=1(plat 1) W*=38(plat 5) | best_set C=1 W*=38 | argmax=' Mitochond' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which organelle is known as the po'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Canada' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most lakes i'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Canada' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most lakes i'
+  [base bare] key=space rank_can C=3(plat 1) W*=1(plat 1) | best_set C=3 W*=1 | argmax=' New' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has won the most Rug'
+  [base elicit] key=space rank_can C=4(plat 1) W*=1(plat 1) | best_set C=4 W*=1 | argmax=' New' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has won the most Rug'
+  [base bare] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' Brazil' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country produces the most co'
+  [base elicit] key=space rank_can C=1(plat 1) W*=10(plat 2) | best_set C=1 W*=10 | argmax=' Brazil' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country produces the most co'
+  [base bare] key=space rank_can C=1(plat 1) W*=52(plat 5) | best_set C=1 W*=52 | argmax=' Indonesia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest Musl'
+  [base elicit] key=space rank_can C=1(plat 1) W*=56(plat 6) | best_set C=1 W*=56 | argmax=' Indonesia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest Musl'
+  [base bare] key=space rank_can C=1(plat 1) W*=8(plat 2) | best_set C=1 W*=8 | argmax=' United' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest Chri'
+  [base elicit] key=space rank_can C=1(plat 1) W*=8(plat 2) | best_set C=1 W*=8 | argmax=' United' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest Chri'
+  [base bare] key=space rank_can C=1(plat 1) W*=23(plat 3) | best_set C=1 W*=23 | argmax=' Brazil' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest Cath'
+  [base elicit] key=space rank_can C=1(plat 1) W*=20(plat 1) | best_set C=1 W*=20 | argmax=' Brazil' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest Cath'
+  [base bare] key=space rank_can C=1(plat 1) W*=8(plat 2) | best_set C=1 W*=8 | argmax=' Canada' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the longest coas'
+  [base elicit] key=space rank_can C=1(plat 1) W*=7(plat 5) | best_set C=1 W*=7 | argmax=' Canada' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the longest coas'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' France' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most time zo'
+  [base elicit] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' France' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most time zo'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Australia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which continent is the driest inha'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Australia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which continent is the driest inha'
+  [base bare] key=space rank_can C=5(plat 1) W*=1(plat 1) | best_set C=5 W*=1 | argmax=' Che' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which animal is the fastest in the'
+  [base elicit] key=space rank_can C=21(plat 5) W*=2(plat 1) | best_set C=21 W*=2 | argmax=' The' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Which animal is the fastest in the'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Cap' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which rodent species is the larges'
+  [base elicit] key=space rank_can C=1(plat 1) W*=16(plat 1) | best_set C=1 W*=16 | argmax=' Cap' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which rodent species is the larges'
+  [base bare] key=space rank_can C=1(plat 1) W*=13(plat 2) | best_set C=1 W*=13 | argmax=' Tiger' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which big cat species is the large'
+  [base elicit] key=space rank_can C=1(plat 1) W*=11(plat 2) | best_set C=1 W*=11 | argmax=' Tiger' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which big cat species is the large'
+  [base bare] key=space rank_can C=1(plat 1) W*=13(plat 3) | best_set C=1 W*=13 | argmax=' Naples' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is considered the birth'
+  [base elicit] key=space rank_can C=1(plat 1) W*=11(plat 1) | best_set C=1 W*=11 | argmax=' Naples' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which city is considered the birth'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Austria' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country did the croissant or'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Austria' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country did the croissant or'
+  [base bare] key=space rank_can C=1(plat 1) W*=10(plat 1) | best_set C=1 W*=10 | argmax=' China' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country invented paper?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=16(plat 2) | best_set C=1 W*=16 | argmax=' China' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country invented paper?'
+  [base bare] key=space rank_can C=1(plat 1) W*=5(plat 2) | best_set C=1 W*=5 | argmax=' India' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is considered the bi'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' India' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is considered the bi'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Alaska' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which US state is the largest by a'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Alaska' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which US state is the largest by a'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Alaska' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which US state has the longest coa'
+  [base elicit] key=space rank_can C=1(plat 2) W*=1(plat 2) | best_set C=1 W*=1 | argmax=' Florida' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which US state has the longest coa'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Venezuela' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country holds the largest pr'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Venezuela' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country holds the largest pr'
+  [base bare] key=space rank_can C=1(plat 1) W*=23(plat 3) | best_set C=1 W*=23 | argmax=' Russia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country holds the largest na'
+  [base elicit] key=space rank_can C=1(plat 1) W*=9(plat 1) | best_set C=1 W*=9 | argmax=' Russia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country holds the largest na'
+  [base bare] key=space rank_can C=1(plat 1) W*=53(plat 3) | best_set C=1 W*=53 | argmax=' Finland' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the highest coff'
+  [base elicit] key=space rank_can C=1(plat 1) W*=40(plat 10) | best_set C=1 W*=40 | argmax=' Finland' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the highest coff'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Silver' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which metal is the best natural co'
+  [base elicit] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Silver' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which metal is the best natural co'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Skin' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which organ is the largest in the '
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Skin' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which organ is the largest in the '
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Amsterdam' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of the Netherl'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Amsterdam' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of the Netherl'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' N' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Palau?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' N' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Palau?'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Pal' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of the Federat'
+  [base elicit] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' Pal' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of the Federat'
+  [base bare] key=space rank_can C=1(plat 1) W*=8(plat 1) | best_set C=1 W*=8 | argmax=' Warsaw' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Poland?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=19(plat 2) | best_set C=1 W*=19 | argmax=' Warsaw' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Poland?'
+  [base bare] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Bu' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Burundi?'
+  [base elicit] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Bu' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Burundi?'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Pod' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Montenegro?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Pod' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Montenegro?'
+  [base bare] key=space rank_can C=1(plat 1) W*=26(plat 4) | best_set C=1 W*=26 | argmax=' Lisbon' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Portugal?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=35(plat 6) | best_set C=1 W*=35 | argmax=' Lisbon' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Portugal?'
+  [base bare] key=space rank_can C=1(plat 1) W*=7(plat 2) | best_set C=1 W*=7 | argmax=' Zagreb' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Croatia?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=24(plat 6) | best_set C=1 W*=24 | argmax=' Zagreb' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Croatia?'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Karl' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who built the first practical auto'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Karl' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who built the first practical auto'
+  [base bare] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Henri' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who is credited with discovering r'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Henri' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who is credited with discovering r'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 2) | best_set C=1 W*=3 | argmax=' Albert' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who developed the oral polio vacci'
+  [base elicit] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Albert' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who developed the oral polio vacci'
+  [base bare] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' James' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who built the first commercially s'
+  [base elicit] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' James' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who built the first commercially s'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Edward' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who developed the first successful'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Edward' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who developed the first successful'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Hans' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who is credited with inventing the'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Hans' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who is credited with inventing the'
+  [base bare] key=space rank_can C=1(plat 1) W*=7(plat 1) | best_set C=1 W*=7 | argmax=' James' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who is regarded as the primary aut'
+  [base elicit] key=space rank_can C=1(plat 1) W*=19(plat 2) | best_set C=1 W*=19 | argmax=' James' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who is regarded as the primary aut'
+  [base bare] key=space rank_can C=1(plat 1) W*=90(plat 13) | best_set C=1 W*=90 | argmax=' Tim' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who invented the World Wide Web?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=58(plat 5) | best_set C=1 W*=58 | argmax=' Tim' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who invented the World Wide Web?'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' John' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who composed the melody of the Sta'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' John' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who composed the melody of the Sta'
+  [base bare] key=space rank_can C=1(plat 1) W*=39(plat 2) | best_set C=1 W*=39 | argmax=' Algeria' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which African country is the large'
+  [base elicit] key=space rank_can C=1(plat 1) W*=59(plat 7) | best_set C=1 W*=59 | argmax=' Algeria' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which African country is the large'
+  [base bare] key=space rank_can C=3(plat 1) W*=1(plat 1) | best_set C=3 W*=1 | argmax=' Lake' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the largest freshwater lak'
+  [base elicit] key=space rank_can C=4(plat 1) W*=1(plat 1) | best_set C=4 W*=1 | argmax=' Lake' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the largest freshwater lak'
+  [base bare] key=space rank_can C=3(plat 1) W*=28(plat 1) | best_set C=3 W*=28 | argmax=' P' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='What is the largest known organism'
+  [base elicit] key=space rank_can C=1(plat 2) W*=30(plat 1) | best_set C=1 W*=30 | argmax=' P' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='What is the largest known organism'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Missouri' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the longest river located '
+  [base elicit] key=space rank_can C=1(plat 1) W*=8(plat 1) | best_set C=1 W*=4 | argmax=' Missouri' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the longest river located '
+  [base bare] key=space rank_can C=2(plat 1) W*=18(plat 1) | best_set C=2 W*=18 | argmax=' V' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Where was the coldest temperature '
+  [base elicit] key=space rank_can C=4(plat 1) W*=15(plat 3) | best_set C=4 W*=15 | argmax=' ' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Where was the coldest temperature '
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Ma' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the largest active volcano'
+  [base elicit] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' Ma' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the largest active volcano'
+  [base bare] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Goliath' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which spider species has the large'
+  [base elicit] key=space rank_can C=6(plat 1) W*=5(plat 1) | best_set C=6 W*=5 | argmax=' ' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Which spider species has the large'
+  [base bare] key=space rank_can C=1(plat 1) W*=401(plat 44) | best_set C=1 W*=401 | argmax=' Ivory' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country produces the most co'
+  [base elicit] key=space rank_can C=1(plat 1) W*=459(plat 44) | best_set C=1 W*=459 | argmax=' Ivory' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country produces the most co'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Mexico' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is credited with fir'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Mexico' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is credited with fir'
+  [base bare] key=space rank_can C=1(plat 1) W*=16(plat 2) | best_set C=1 W*=16 | argmax=' Peru' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country did the potato origi'
+  [base elicit] key=space rank_can C=1(plat 1) W*=52(plat 4) | best_set C=1 W*=52 | argmax=' Peru' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country did the potato origi'
+  [base bare] key=space rank_can C=2(plat 2) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Scotland' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most golf co'
+  [base elicit] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Scotland' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most golf co'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' China' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country produces the most ri'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' China' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country produces the most ri'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Czech' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country drinks the most beer'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Czech' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country drinks the most beer'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Turkey' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country drinks the most tea '
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 3) | best_set C=1 W*=4 | argmax=' Turkey' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country drinks the most tea '
+  [base bare] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' Aluminum' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the most abundant metal in'
+  [base elicit] key=space rank_can C=1(plat 1) W*=9(plat 4) | best_set C=1 W*=9 | argmax=' Aluminum' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the most abundant metal in'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Ecuador' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is the largest expor'
+  [base elicit] key=space rank_can C=1(plat 1) W*=8(plat 2) | best_set C=1 W*=8 | argmax=' Ecuador' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is the largest expor'
+  [base bare] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' India' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is home to most of t'
+  [base elicit] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' India' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country is home to most of t'
+  [base bare] key=space rank_can C=3(plat 1) W*=12(plat 3) | best_set C=3 W*=12 | argmax=' Mongolia' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest wild'
+  [base elicit] key=space rank_can C=3(plat 1) W*=33(plat 2) | best_set C=3 W*=33 | argmax=' Mongolia' onset=0 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest wild'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Mexico' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most native '
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Mexico' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most native '
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Brazil' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most native '
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Brazil' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the most native '
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 3) | best_set C=1 W*=3 | argmax=' Egypt' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest popu'
+  [base elicit] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Egypt' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Which country has the largest popu'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Sacramento' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of California?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=10(plat 1) | best_set C=1 W*=10 | argmax=' Sacramento' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of California?'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Albany' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of New York St'
+  [base elicit] key=space rank_can C=1(plat 1) W*=5(plat 1) | best_set C=1 W*=5 | argmax=' Albany' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of New York St'
+  [base bare] key=space rank_can C=1(plat 1) W*=22(plat 1) | best_set C=1 W*=22 | argmax=' Tallahassee' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Florida?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=19(plat 3) | best_set C=1 W*=19 | argmax=' Tallahassee' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Florida?'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Springfield' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Illinois?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=4(plat 2) | best_set C=1 W*=4 | argmax=' Springfield' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Illinois?'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 1) | best_set C=1 W*=4 | argmax=' Lansing' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Michigan?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=6(plat 1) | best_set C=1 W*=6 | argmax=' Lansing' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Michigan?'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Carson' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Nevada?'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Carson' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Nevada?'
+  [base bare] key=space rank_can C=1(plat 1) W*=3(plat 2) | best_set C=1 W*=3 | argmax=' Olympia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Washington '
+  [base elicit] key=space rank_can C=1(plat 1) W*=9(plat 2) | best_set C=1 W*=9 | argmax=' Olympia' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of Washington '
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Victoria' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of British Col'
+  [base elicit] key=space rank_can C=1(plat 1) W*=3(plat 2) | best_set C=1 W*=3 | argmax=' Victoria' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='What is the capital of British Col'
+  [base bare] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Jim' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q="Who first radioed 'Houston, we've "
+  [base elicit] key=space rank_can C=4(plat 1) W*=1(plat 1) | best_set C=4 W*=1 | argmax=' Jim' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q="Who first radioed 'Houston, we've "
+  [base bare] key=space rank_can C=1(plat 1) W*=22(plat 2) | best_set C=1 W*=22 | argmax=' Rosalind' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who took the X-ray photograph know'
+  [base elicit] key=space rank_can C=1(plat 1) W*=73(plat 7) | best_set C=1 W*=73 | argmax=' Rosalind' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who took the X-ray photograph know'
+  [base bare] key=space rank_can C=1(plat 1) W*=4(plat 3) | best_set C=1 W*=4 | argmax=' Elizabeth' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who originally invented the board '
+  [base elicit] key=space rank_can C=1(plat 1) W*=3(plat 1) | best_set C=1 W*=3 | argmax=' Elizabeth' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who originally invented the board '
+  [base bare] key=space rank_can C=3(plat 1) W*=1(plat 1) | best_set C=3 W*=1 | argmax=' Johannes' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who invented the first movable typ'
+  [base elicit] key=space rank_can C=2(plat 1) W*=1(plat 1) | best_set C=2 W*=1 | argmax=' Johannes' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who invented the first movable typ'
+  [base bare] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Elias' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who held the original patent for t'
+  [base elicit] key=space rank_can C=1(plat 1) W*=2(plat 1) | best_set C=1 W*=2 | argmax=' Elias' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who held the original patent for t'
+  [base bare] key=space rank_can C=1(plat 1) W*=28(plat 1) | best_set C=1 W*=28 | argmax=' Thomas' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who was the primary author of the '
+  [base elicit] key=space rank_can C=1(plat 1) W*=36(plat 12) | best_set C=1 W*=36 | argmax=' Thomas' onset=1 coll(sp/bare)=0/0 prefix_ok=1 q='Who was the primary author of the '
+[fmt_ext2_27bbase|bare] frac_slot_answer_onset=0.963415 (n=79/82) onset_side_empty=False | decomposition C_only=0.853659 W_only=0.109756 both=0.0 neither=0.036585  [LEVEL: no threshold, A15]
+[fmt_ext2_27bbase|bare] A19 non-onset composition: n_non_onset=3 distinct=3 modal=' P' x1 (tied=True) | top5=[(' P', 1, 0.333333), (' V', 1, 0.333333), (' Mongolia', 1, 0.333333)]
+[fmt_ext2_27bbase|bare] rule_k n_by_canonical_key={'space': 82, 'bare': 0} off_regime_derivation=0 | prefix_fail=0 (spec_literal=0) reasons={'OK': 164}
+[fmt_ext2_27bbase|bare|C] RANK_GATE_PAIR_ABSENT key=space median_rank_canonical=1.0 (plateau=1 IQR=0.0 max=5) median_rank_best_set=1.0 | n_rank_resolved=81/82 median_tie_plateau=1.0 | n_rank_le_10=82 n_is_top=70 n_p_ge_1e6=82 | canonical_better_than_cross=82/82 (cross_better=0 tied=0) n_id_disagree=0 | primary_input=False role=secondary_diagnostic
+[fmt_ext2_27bbase|bare|Wstar] RANK_GATE_PAIR_ABSENT key=space median_rank_canonical=3.5 (plateau=3 IQR=6.0 max=401) median_rank_best_set=3.5 | n_rank_resolved=58/82 median_tie_plateau=1.0 | n_rank_le_10=64 n_is_top=9 n_p_ge_1e6=82 | canonical_better_than_cross=82/82 (cross_better=0 tied=0) n_id_disagree=0 | primary_input=False role=secondary_diagnostic
+[fmt_ext2_27bbase|bare] SLOT_GATE_PAIR_ABSENT (not_emitted) -- frac_slot_answer_onset is absent for one arm (base=0.9634146341463414, -it=None) and the known arm is not zero: abs(f_base - f_it) needs both cells and one invocation measures ONE cell (§14.1, A8), so no matching verdict is emitted here. The pair resolves offline (§14.2).
+[fmt_ext2_27bbase|elicit] frac_slot_answer_onset=0.926829 (n=76/82) onset_side_empty=False | decomposition C_only=0.829268 W_only=0.097561 both=0.0 neither=0.073171  [LEVEL: no threshold, A15]
+[fmt_ext2_27bbase|elicit] A19 non-onset composition: n_non_onset=6 distinct=5 modal=' ' x2 (tied=False) | top5=[(' ', 2, 0.333333), (' P', 1, 0.166667), (' The', 1, 0.166667), (' São', 1, 0.166667), (' Mongolia', 1, 0.166667)]
+[fmt_ext2_27bbase|elicit] rule_k n_by_canonical_key={'space': 82, 'bare': 0} off_regime_derivation=0 | prefix_fail=0 (spec_literal=0) reasons={'OK': 164}
+[fmt_ext2_27bbase|elicit|C] RANK_GATE_PAIR_ABSENT key=space median_rank_canonical=1.0 (plateau=1 IQR=0.0 max=21) median_rank_best_set=1.0 | n_rank_resolved=78/82 median_tie_plateau=1.0 | n_rank_le_10=81 n_is_top=71 n_p_ge_1e6=82 | canonical_better_than_cross=82/82 (cross_better=0 tied=0) n_id_disagree=0 | primary_input=False role=secondary_diagnostic
+[fmt_ext2_27bbase|elicit|Wstar] RANK_GATE_PAIR_ABSENT key=space median_rank_canonical=5.0 (plateau=1 IQR=8.0 max=459) median_rank_best_set=5.0 | n_rank_resolved=51/82 median_tie_plateau=1.0 | n_rank_le_10=59 n_is_top=8 n_p_ge_1e6=82 | canonical_better_than_cross=82/82 (cross_better=0 tied=0) n_id_disagree=0 | primary_input=True role=secondary_diagnostic
+[fmt_ext2_27bbase|elicit] SLOT_GATE_PAIR_ABSENT (not_emitted) -- frac_slot_answer_onset is absent for one arm (base=0.926829268292683, -it=None) and the known arm is not zero: abs(f_base - f_it) needs both cells and one invocation measures ONE cell (§14.1, A8), so no matching verdict is emitted here. The pair resolves offline (§14.2).
+[primary] n_primary_role_fields=1 (§13: exactly 1, the designation block; this instrument emits no primary number)
+[done] wrote out/family_topk_shift_fmt_fmt_ext2_27bbase.json

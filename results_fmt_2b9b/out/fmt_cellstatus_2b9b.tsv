@@ -1,0 +1,20 @@
+topkfmt_2bbase	0	python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag fmt_ext2_2bbase --device cuda
+diagfmt_2bbase	0	python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag fmt_ext2_2bbase --device cuda
+topkref_2bbase	0	python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag sbref_ext2_2bbase --device cuda
+diagref_2bbase	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag sbref_ext2_2bbase --device cuda
+diagref2_2bbase	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag sbref2_ext2_2bbase --device cuda
+topkfmt_2bit	0	python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag fmt_ext2_2bit --device cuda --chat
+diagfmt_2bit	0	python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag fmt_ext2_2bit --device cuda --chat
+topkref_2bit	0	python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag sbref_ext2_2bit --device cuda --chat
+diagref_2bit	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag sbref_ext2_2bit --device cuda --chat
+diagref2_2bit	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag sbref2_ext2_2bit --device cuda --chat
+topkfmt_9bbase	0	python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag fmt_ext2_9bbase --device cuda
+diagfmt_9bbase	0	python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag fmt_ext2_9bbase --device cuda
+topkref_9bbase	0	python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag sbref_ext2_9bbase --device cuda
+diagref_9bbase	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag sbref_ext2_9bbase --device cuda
+diagref2_9bbase	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag sbref2_ext2_9bbase --device cuda
+topkfmt_9bit	0	python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag fmt_ext2_9bit --device cuda --chat
+diagfmt_9bit	0	python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag fmt_ext2_9bit --device cuda --chat
+topkref_9bit	0	python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag sbref_ext2_9bit --device cuda --chat
+diagref_9bit	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag sbref_ext2_9bit --device cuda --chat
+diagref2_9bit	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag sbref2_ext2_9bit --device cuda --chat

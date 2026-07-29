@@ -1,0 +1,11 @@
+topkfmt_27bbase	0	python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag fmt_ext2_27bbase --device cuda
+diagfmt_27bbase	0	python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag fmt_ext2_27bbase --device cuda
+topkfmt_27bit	0	python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag fmt_ext2_27bit --device cuda --chat
+diagfmt_27bit	0	python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag fmt_ext2_27bit --device cuda --chat
+topkref_27bbase	0	python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag sbref_ext2_27bbase --device cuda
+topkref_27bit	0	python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag sbref_ext2_27bit --device cuda --chat
+diagref_27bit	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag sbref_ext2_27bit --device cuda --chat
+diagref2_27bit	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag sbref2_ext2_27bit --device cuda --chat
+stab_shipA	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag stab27b_shipA --device cuda
+stab_shipB	0	python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag stab27b_shipB --device cuda
+stab_arms	0	python family_cave_diagnose_arms.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag stab27b_arms --device cuda --arm fold

@@ -1,0 +1,301 @@
+{
+  "run": "fmt_matched_2b9b",
+  "box": "A of 2 (2b + 9b cells)",
+  "registration": "docs/drafts/REGISTRATION_format_matched_readout.md (frozen, pre-data, A1-A20)",
+  "no_verdicts_on_box": "RAW DIFF COUNTS ONLY. NO VERDICT IS EMITTED ON BOX (registration section 14.2 / A10). Every section 9 and section 10 verdict is offline-only, from controls/fmt_matched_join.py, which also does every comparison against a committed artifact.",
+  "written_utc": "2026-07-29T04:58:05.301935+00:00",
+  "provenance": {
+    "run": "fmt_matched_2b9b",
+    "registration": "docs/drafts/REGISTRATION_format_matched_readout.md (frozen, pre-data; \u00a712 + \u00a710.1)",
+    "box": "A of 2 -- the 2b and 9b cells (\u00a714.4)",
+    "started_utc": "2026-07-29T04:20:21.493425+00:00",
+    "finished_utc": null,
+    "python": "3.10.12",
+    "lambda_instance_id": "eed0b6f9b9184bdaaeb32eee417370f2",
+    "git_commit": "a4a2ae0085703e718252bc21c061ad31da1b5308",
+    "gpu_name": "NVIDIA A100-SXM4-40GB",
+    "gpu_count": "1",
+    "driver": "570.148.08",
+    "cuda_visible_devices": "0",
+    "device_index": 0,
+    "dtype": "bfloat16",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.14.1",
+    "transformer_lens": "3.6.0",
+    "cuda_runtime": "12.4"
+  },
+  "cells": [
+    {
+      "label": "topkfmt_2bbase",
+      "exit": 0,
+      "cmd": "python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag fmt_ext2_2bbase --device cuda"
+    },
+    {
+      "label": "diagfmt_2bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag fmt_ext2_2bbase --device cuda"
+    },
+    {
+      "label": "topkref_2bbase",
+      "exit": 0,
+      "cmd": "python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag sbref_ext2_2bbase --device cuda"
+    },
+    {
+      "label": "diagref_2bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag sbref_ext2_2bbase --device cuda"
+    },
+    {
+      "label": "diagref2_2bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b --tag sbref2_ext2_2bbase --device cuda"
+    },
+    {
+      "label": "topkfmt_2bit",
+      "exit": 0,
+      "cmd": "python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag fmt_ext2_2bit --device cuda --chat"
+    },
+    {
+      "label": "diagfmt_2bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag fmt_ext2_2bit --device cuda --chat"
+    },
+    {
+      "label": "topkref_2bit",
+      "exit": 0,
+      "cmd": "python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag sbref_ext2_2bit --device cuda --chat"
+    },
+    {
+      "label": "diagref_2bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag sbref_ext2_2bit --device cuda --chat"
+    },
+    {
+      "label": "diagref2_2bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-2b-it --tag sbref2_ext2_2bit --device cuda --chat"
+    },
+    {
+      "label": "topkfmt_9bbase",
+      "exit": 0,
+      "cmd": "python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag fmt_ext2_9bbase --device cuda"
+    },
+    {
+      "label": "diagfmt_9bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag fmt_ext2_9bbase --device cuda"
+    },
+    {
+      "label": "topkref_9bbase",
+      "exit": 0,
+      "cmd": "python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag sbref_ext2_9bbase --device cuda"
+    },
+    {
+      "label": "diagref_9bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag sbref_ext2_9bbase --device cuda"
+    },
+    {
+      "label": "diagref2_9bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b --tag sbref2_ext2_9bbase --device cuda"
+    },
+    {
+      "label": "topkfmt_9bit",
+      "exit": 0,
+      "cmd": "python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag fmt_ext2_9bit --device cuda --chat"
+    },
+    {
+      "label": "diagfmt_9bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag fmt_ext2_9bit --device cuda --chat"
+    },
+    {
+      "label": "topkref_9bit",
+      "exit": 0,
+      "cmd": "python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag sbref_ext2_9bit --device cuda --chat"
+    },
+    {
+      "label": "diagref_9bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag sbref_ext2_9bit --device cuda --chat"
+    },
+    {
+      "label": "diagref2_9bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-9b-it --tag sbref2_ext2_9bit --device cuda --chat"
+    }
+  ],
+  "n_cells": 20,
+  "n_cells_nonzero_exit": 0,
+  "onbox_raw_diff_counts": {
+    "2bbase :: A18 NOISE CONTEXT -- shipped diagnose sbref_ vs sbref2_ (same code, same box)": {
+      "a": "out/family_cave_diagnose_sbref_ext2_2bbase.json",
+      "b": "out/family_cave_diagnose_sbref2_ext2_2bbase.json",
+      "kind": "same",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "2bbase :: section 7b anchor, RANKS -- topk_fmt(anchor_shipped) vs shipped topk sbref_": {
+      "a": "out/family_topk_shift_fmt_fmt_ext2_2bbase.json",
+      "b": "out/family_topk_shift_sbref_ext2_2bbase.json",
+      "kind": "topk",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 10,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "2bbase :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose sbref_": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_2bbase.json",
+      "b": "out/family_cave_diagnose_sbref_ext2_2bbase.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "2bit :: A18 NOISE CONTEXT -- shipped diagnose sbref_ vs sbref2_ (same code, same box)": {
+      "a": "out/family_cave_diagnose_sbref_ext2_2bit.json",
+      "b": "out/family_cave_diagnose_sbref2_ext2_2bit.json",
+      "kind": "same",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "2bit :: section 7b anchor, RANKS -- topk_fmt(anchor_shipped) vs shipped topk sbref_": {
+      "a": "out/family_topk_shift_fmt_fmt_ext2_2bit.json",
+      "b": "out/family_topk_shift_sbref_ext2_2bit.json",
+      "kind": "topk",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 10,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "2bit :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose sbref_": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_2bit.json",
+      "b": "out/family_cave_diagnose_sbref_ext2_2bit.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "9bbase :: A18 NOISE CONTEXT -- shipped diagnose sbref_ vs sbref2_ (same code, same box)": {
+      "a": "out/family_cave_diagnose_sbref_ext2_9bbase.json",
+      "b": "out/family_cave_diagnose_sbref2_ext2_9bbase.json",
+      "kind": "same",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "9bbase :: section 7b anchor, RANKS -- topk_fmt(anchor_shipped) vs shipped topk sbref_": {
+      "a": "out/family_topk_shift_fmt_fmt_ext2_9bbase.json",
+      "b": "out/family_topk_shift_sbref_ext2_9bbase.json",
+      "kind": "topk",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 10,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "9bbase :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose sbref_": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_9bbase.json",
+      "b": "out/family_cave_diagnose_sbref_ext2_9bbase.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "9bit :: A18 NOISE CONTEXT -- shipped diagnose sbref_ vs sbref2_ (same code, same box)": {
+      "a": "out/family_cave_diagnose_sbref_ext2_9bit.json",
+      "b": "out/family_cave_diagnose_sbref2_ext2_9bit.json",
+      "kind": "same",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "9bit :: section 7b anchor, RANKS -- topk_fmt(anchor_shipped) vs shipped topk sbref_": {
+      "a": "out/family_topk_shift_fmt_fmt_ext2_9bit.json",
+      "b": "out/family_topk_shift_sbref_ext2_9bit.json",
+      "kind": "topk",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 10,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "9bit :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose sbref_": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_9bit.json",
+      "b": "out/family_cave_diagnose_sbref_ext2_9bit.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    }
+  }
+}

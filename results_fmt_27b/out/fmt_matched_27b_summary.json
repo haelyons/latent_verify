@@ -1,0 +1,331 @@
+{
+  "run": "fmt_matched_27b",
+  "box": "B of 2 (27b cells + section 10)",
+  "registration": "docs/drafts/REGISTRATION_format_matched_readout.md (frozen, pre-data, A1-A20)",
+  "no_verdicts_on_box": "RAW DIFF COUNTS ONLY. NO VERDICT IS EMITTED ON BOX (registration section 14.2 / A10). Every section 9 and section 10 verdict is offline-only, from controls/fmt_matched_join.py, which also does every comparison against a committed artifact and section 10.2's cluster fingerprinting. In particular NO section 10.3 stability verdict is emitted here.",
+  "written_utc": "2026-07-29T05:26:08.403880+00:00",
+  "provenance": {
+    "run": "fmt_matched_27b",
+    "registration": "docs/drafts/REGISTRATION_format_matched_readout.md (frozen, pre-data; \u00a712 + \u00a710.1)",
+    "box": "B of 2 -- the 27b cells + \u00a710's stability control (\u00a714.4)",
+    "started_utc": "2026-07-29T04:34:10.963379+00:00",
+    "finished_utc": null,
+    "python": "3.10.12",
+    "lambda_instance_id": "f9320439202a4e198c5bd472ea7cd38b",
+    "git_commit": "a4a2ae0085703e718252bc21c061ad31da1b5308",
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "gpu_count": "1",
+    "driver": "570.148.08",
+    "cuda_visible_devices": "0",
+    "device_index": 0,
+    "dtype": "bfloat16",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.14.1",
+    "transformer_lens": "3.6.0",
+    "cuda_runtime": "12.4"
+  },
+  "disclosure_27b_section11": {
+    "i_provenance_pair": {
+      "lambda_instance_id": "f9320439202a4e198c5bd472ea7cd38b",
+      "started_utc": "2026-07-29T04:34:10.963379+00:00",
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "driver": "570.148.08",
+      "cuda_visible_devices": "0",
+      "device_index": 0
+    },
+    "ii_section10_verdict": "NOT EMITTED ON BOX (section 14.2). Section 10 ran on THIS box, in this session, at 27b-base: draws stab27b_shipA / stab27b_shipB / stab27b_arms. The section 10.3 verdict is computed offline by controls/fmt_matched_join.py stab27b, which also does section 10.2's cluster fingerprinting.",
+    "iii_card_class": "this run's 27b box is gpu_1x_h100_sxm5, while EVERY committed 27b artifact is H100 PCIe / driver 570.148.08 -- so NO 27b comparison against a committed artifact separates code from hardware (section 7.2; A4). Every 27b-vs-committed row is DISCLOSED_NOT_GATED and emits no reproduction verdict at all.",
+    "iv_known_spread": "27b teacher-forced lp digits have a measured ACROSS-BOX spread of median 0.009-0.13 and max 0.44-0.59 nats, and THREE value-clusters exist at 27b-base (section 10.2's table). A 27b digit printed without parts (i)-(iv) is not quotable (section 11)."
+  },
+  "cells": [
+    {
+      "label": "topkfmt_27bbase",
+      "exit": 0,
+      "cmd": "python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag fmt_ext2_27bbase --device cuda"
+    },
+    {
+      "label": "diagfmt_27bbase",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag fmt_ext2_27bbase --device cuda"
+    },
+    {
+      "label": "topkfmt_27bit",
+      "exit": 0,
+      "cmd": "python family_topk_shift_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag fmt_ext2_27bit --device cuda --chat"
+    },
+    {
+      "label": "diagfmt_27bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_fmt.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag fmt_ext2_27bit --device cuda --chat"
+    },
+    {
+      "label": "topkref_27bbase",
+      "exit": 0,
+      "cmd": "python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag sbref_ext2_27bbase --device cuda"
+    },
+    {
+      "label": "topkref_27bit",
+      "exit": 0,
+      "cmd": "python family_topk_shift.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag sbref_ext2_27bit --device cuda --chat"
+    },
+    {
+      "label": "diagref_27bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag sbref_ext2_27bit --device cuda --chat"
+    },
+    {
+      "label": "diagref2_27bit",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b-it --tag sbref2_ext2_27bit --device cuda --chat"
+    },
+    {
+      "label": "stab_shipA",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag stab27b_shipA --device cuda"
+    },
+    {
+      "label": "stab_shipB",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag stab27b_shipB --device cuda"
+    },
+    {
+      "label": "stab_arms",
+      "exit": 0,
+      "cmd": "python family_cave_diagnose_arms.py --family verifier_family_ext2.json --name google/gemma-2-27b --tag stab27b_arms --device cuda --arm fold"
+    }
+  ],
+  "n_cells": 11,
+  "n_cells_nonzero_exit": 0,
+  "onbox_raw_diff_counts": {
+    "27b-base :: section 10 A1 vs A2 -- SHIPPED vs ITSELF, within box, same code (the rider's design; ALSO A18's 27b-base noise context)": {
+      "a": "out/family_cave_diagnose_stab27b_shipA.json",
+      "b": "out/family_cave_diagnose_stab27b_shipB.json",
+      "kind": "same",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-base :: section 10 A1 vs B1 -- shipped vs arms fold (the cleangate comparison, ref draw 1)": {
+      "a": "out/family_cave_diagnose_stab27b_shipA.json",
+      "b": "out/family_cave_diagnose_arms_stab27b_arms.json",
+      "kind": "same_arms",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-base :: section 10 A2 vs B1 -- shipped vs arms fold (the cleangate comparison, ref draw 2)": {
+      "a": "out/family_cave_diagnose_stab27b_shipB.json",
+      "b": "out/family_cave_diagnose_arms_stab27b_arms.json",
+      "kind": "same_arms",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-it   :: A18 NOISE CONTEXT -- shipped diagnose sbref_ vs sbref2_ (same code, same box)": {
+      "a": "out/family_cave_diagnose_sbref_ext2_27bit.json",
+      "b": "out/family_cave_diagnose_sbref2_ext2_27bit.json",
+      "kind": "same",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 23,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-base :: section 7b anchor, RANKS -- topk_fmt(anchor_shipped) vs shipped topk sbref_ [the ONLY exact-gated 27b rank comparison, A4 -- gated OFFLINE]": {
+      "a": "out/family_topk_shift_fmt_fmt_ext2_27bbase.json",
+      "b": "out/family_topk_shift_sbref_ext2_27bbase.json",
+      "kind": "topk",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 10,
+      "fields_with_any_difference": {
+        "p_c_bare": 82,
+        "p_w_bare": 80,
+        "rank_w_bare": 17,
+        "topk_bare_ids": 59,
+        "topk_bare_p": 82,
+        "topk_bare_strs": 59
+      },
+      "n_fields_differing": 6,
+      "first_divergent_cell_per_field": {
+        "p_c_bare": {
+          "item": 0,
+          "a": 0.831454,
+          "b": 0.82927
+        },
+        "p_w_bare": {
+          "item": 0,
+          "a": 0.017256,
+          "b": 0.017211
+        },
+        "rank_w_bare": {
+          "item": 10,
+          "a": 52,
+          "b": 54
+        },
+        "topk_bare_ids": {
+          "item": 1,
+          "a": [
+            1414,
+            74755,
+            54521,
+            586,
+            235248,
+            29867,
+            22321,
+            109,
+            7159,
+            728
+          ],
+          "b": [
+            1414,
+            74755,
+            54521,
+            586,
+            235248,
+            29867,
+            109,
+            22321,
+            728,
+            7159
+          ]
+        },
+        "topk_bare_p": {
+          "item": 0,
+          "a": [
+            0.831454,
+            0.053153,
+            0.022157,
+            0.019554,
+            0.017256,
+            0.009237,
+            0.003398,
+            0.002999,
+            0.002646,
+            0.001819
+          ],
+          "b": [
+            0.82927,
+            0.053013,
+            0.025042,
+            0.019503,
+            0.017211,
+            0.009212,
+            0.003389,
+            0.002991,
+            0.002329,
+            0.001814
+          ]
+        },
+        "topk_bare_strs": {
+          "item": 1,
+          "a": [
+            " Al",
+            " \u0410\u043b",
+            " Alma",
+            " A",
+            " ",
+            " Ast",
+            " Nur",
+            "\n\n",
+            " Kar",
+            " -"
+          ],
+          "b": [
+            " Al",
+            " \u0410\u043b",
+            " Alma",
+            " A",
+            " ",
+            " Ast",
+            "\n\n",
+            " Nur",
+            " -",
+            " Kar"
+          ]
+        }
+      }
+    },
+    "27b-it   :: section 7b anchor, RANKS -- topk_fmt(anchor_shipped) vs shipped topk sbref_ [the ONLY exact-gated 27b rank comparison, A4 -- gated OFFLINE]": {
+      "a": "out/family_topk_shift_fmt_fmt_ext2_27bit.json",
+      "b": "out/family_topk_shift_sbref_ext2_27bit.json",
+      "kind": "topk",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 10,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-base :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose A1 [27b lp is DISCLOSED_NOT_GATED, section 7.2 -- counts only, no gate anywhere]": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_27bbase.json",
+      "b": "out/family_cave_diagnose_stab27b_shipA.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-base :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose A2 [DISCLOSED_NOT_GATED; section 10.3 branch 2 evaluates the anchor against the PAIR]": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_27bbase.json",
+      "b": "out/family_cave_diagnose_stab27b_shipB.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    },
+    "27b-it   :: section 7b anchor, LP -- diagnose_fmt(space column) vs shipped diagnose sbref_ [DISCLOSED_NOT_GATED, section 7.2]": {
+      "a": "out/family_cave_diagnose_fmt_fmt_ext2_27bit.json",
+      "b": "out/family_cave_diagnose_sbref_ext2_27bit.json",
+      "kind": "diag",
+      "n_items": {
+        "a": 82,
+        "b": 82
+      },
+      "status": "OK",
+      "n_fields_compared": 18,
+      "fields_with_any_difference": {},
+      "n_fields_differing": 0,
+      "first_divergent_cell_per_field": {}
+    }
+  }
+}
