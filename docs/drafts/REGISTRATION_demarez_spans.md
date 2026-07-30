@@ -142,6 +142,31 @@ Per the re-review's explicit instructions, two things were **not** changed: §0.
 author packet (it contains item names — blinding), and the §0.1 S-row citations stay as-is (the
 load-bearing numbers are inline).
 
+**Round 3 — 2026-07-30, PRE-DATA, PRE-LAUNCH**, from an isolated pre-launch audit of the three
+instruments against this document (`docs/drafts/AUDIT_demarez_prelaunch.md`, verdict NO-GO, four
+blockers). The instruments existed but had never been run; no model had been loaded and no number
+under any registered construction existed when these were applied. **Every item below is plumbing —
+a writer that did not persist a field, a reader that expected a different container shape, and one
+selftest assertion that contradicted itself. No threshold, floor, arm string, span rule, decision
+rule, resolution order or verdict name changed value.** Applied at `0105d18`.
+
+| # | what changed | from → to | why | direction |
+|---|---|---|---|---|
+| R3-1 | `foldlisten_demarez_mask.py:1654` (selftest only) | asserted the entity token ∈ `frame_tokens`, while `:1656` asserted entity ∩ frame = ∅ → asserts it ∈ `content_tokens` | the two assertions were mutually contradictory, so the model-free selftest could never pass and `run_demarez_9b.sh` would have exited at the §13.4 gate: one box billed, zero data. §3.3's frame = turn − entity is what the locator implements; the locator was right | neutral (a wrong test corrected; no rule moved) |
+| R3-2 | mask writer, non-excluded record | `span_located` never persisted → persisted from the arm's own span record | the join's `common_located` requires it on B2/B3/B4, so §6.7 V-B SPAN and §6.8 resolved UNEVALUABLE **unconditionally** — the registration's whole Run-B question, unanswerable in the best case. Harness: `n_common` 0 → 7 | tightening (a registered deliverable becomes computable) |
+| R3-3 | join `audit_rows` | read `mask_totality_audit.arms` as a list only → also accepts the writer's `audits` object keyed by arm class | §6.6 always resolved `MASK_TOTALITY_UNEVALUABLE_AUDIT_ABSENT` with the numbers on disk, losing one of §2.4's four registered debt closures. The join's own selftest fixture was hand-built as a list, which is why review missed it; the fixture now carries the writer's real shape | tightening |
+| R3-4 | join `read_run` | raised `MISSING_REQUIRED_FIELD` on any `commit_v2` outside the vocabulary → records the writer marks `excluded` (or `span_stable: false`) are **skipped and counted**, with the reason persisted; a record that claims to be scored still raises | §3.3 makes `SPAN_UNLOCATABLE` a registered, expected, handled case that runs no forward, and §6.7's common-subset rule (R1-4) exists to absorb it — yet one such item out of 74 demoted all of Run B to `MASK_JOIN_FAILURE`, suppressing §6.6–§6.11. **This resolves the §4.3-vs-§3.3 tension the audit raised as N5 in favour of §3.3**: a distribution record is required of every arm that ran a forward, not of an arm that by construction did not | tightening (the failure mode is now scoped to the case it was written for) |
+| R3-5 | `mask.py:1449` | `r_off` denominator `N_ITEMS_REGISTERED if N == N_ITEMS_REGISTERED else N` → always `N_ITEMS_REGISTERED` | §4.1 fixes the denominator at 74 unconditionally; on the `--n 6` smoke the two instruments computed different statistics under one name | tightening |
+| R3-6 | `mask.py` dist contract | a null `tok_id` / `rank_first_tok` / `tie_plateau` persisted silently on an unencodable entity key → rejected outside the underflow branch, as `foldlisten_demarez_subst.py` already did | §4.3's `ENTKEY_FIELDS` contract was enforced asymmetrically across the two runs; a null rank is an unauditable field in a registered deliverable. Note the run order makes a late abort near-impossible: Run A pre-flights the same four key ids on the same family and must exit 0 before Run B starts | tightening |
+| R3-7 | `mask.py:1519`, join selftest | an undeclared `1e-12` → the imported `EPS_F`; the join's sibling `__import__`s wrapped in `try/except ImportError` | §7 asserts "total count of numbers chosen by this document: zero", and the offline workstation has no numpy, so the only verdict source could not be selftested there | disclosure + tightening |
+| R3-8 | `run_demarez_9b.sh` | step [e] now gated on the smoke's `span_locatability.category == "SPAN_LOCATED_ALL"`; step [f] tests for its summary file as [c][d][e] do; `--p3c` marked offline-only in the mask help | the §3.3 locator requires an exact decode→re-encode id match on the gemma-2 chat prompt and **cannot be tested off-box** (§15.4's sibling risk): one divergence makes every item `SPAN_UNLOCATABLE` while the smoke still exits 0. The gate spends the smoke to protect the full run | tightening |
+
+Not changed, and named: the audit's S3 (`subst` raises a traceback where `mask` exits with a named
+code) is cosmetic under a runner that tests only `rc`, and §11's "named non-zero exit" is satisfied
+in substance by the abort classes themselves. The join's `FLOORS` table remains a second independent
+copy of §5's six floors (audit N4) — all seven runner literals were re-derived from their cited
+artifacts this pass and agree.
+
 ---
 
 ## 1. Scope, fixed before the run
