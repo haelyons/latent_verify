@@ -531,7 +531,7 @@ def read_run(summary, path, run, arms):
     prov = summary.get("provenance")
     out["provenance"] = prov if isinstance(prov, dict) else None
     out["provenance_check"] = validate_gpu_provenance(prov, where)
-    viol, disc, pending, shapes = [], [], [], set()
+    viol, disc, pending, shapes, skipped = [], [], [], set(), []
     rows, src = iter_raw_records(summary, where)
     for rec, parent, shape in rows:
         shapes.add(shape)
@@ -551,6 +551,11 @@ def read_run(summary, path, run, arms):
         viol.extend(check_stamp(rec, w2))
         cv2 = rec.get("commit_v2")
         if cv2 not in COMMIT_VOCAB:
+            if bool(rec.get("excluded")) or rec.get("span_stable") is False:
+                skipped.append({"where": w2, "turn_id": tid, "join_key": jk, "commit_v2": cv2,
+                                "reason": rec.get("reason"),
+                                "span_unlocatable_reason": rec.get("span_unlocatable_reason")})
+                continue                       # §3.3 exclusion: no forward ran, so nothing claims to be scored
             raise JoinFailure("MISSING_REQUIRED_FIELD", "%s: commit_v2=%r not in %s" % (w2, cv2, COMMIT_VOCAB))
         cell = rec.get("cell", ARM_CELL[tid])
         if cell != ARM_CELL[tid]:
@@ -631,6 +636,12 @@ def read_run(summary, path, run, arms):
         "provenance_status": out["provenance_check"]["status"], "n_violations": len(viol),
         "violation_kinds": kinds, "violations_first_20": viol[:20], "n_disclosures": len(disc),
         "disclosure_kinds": dkinds, "n_records": out["n_records"], "n_dist_records": out["n_dist_records"],
+        "n_excluded_records_skipped": len(skipped), "excluded_records_skipped_first_20": skipped[:20],
+        "excluded_skip_rule": ("§3.3 / §6.7's common-subset rule (R1-4): a record the writer marks excluded "
+                               "(SPAN_UNLOCATABLE, degenerate turn lengths, span-unstable) ran no forward and "
+                               "carries no scored label or distribution -- it is SKIPPED and COUNTED here, and "
+                               "drops from every §6.7/§6.8 term identically. A record that CLAIMS to be scored "
+                               "with an unusable commit_v2 is still a hard join failure."),
         "record_shapes": sorted(shapes), "records_key": src,
         "arms_present": sorted(a for a in arms if out["arms"][a]),
         "arms_absent": sorted(a for a in arms if not out["arms"][a]),
@@ -642,9 +653,14 @@ def read_run(summary, path, run, arms):
 
 
 def audit_rows(summary):
-    """§6.6's persisted on-box audit rows, normalised over the candidate field names. Pure -> list."""
+    """§6.6's persisted on-box audit rows, normalised over the candidate field names AND the two candidate
+    container shapes: a list of rows carrying `arm_class`, or the writer's object keyed BY arm class (the
+    shape foldlisten_demarez_mask.py:1560 actually persists under `audits`). Pure -> list."""
     raw = (summary or {}).get("mask_totality_audit")
-    rows = raw.get("arms") if isinstance(raw, dict) else raw
+    rows = raw if not isinstance(raw, dict) else (raw.get("arms") or raw.get("audits"))
+    if isinstance(rows, dict):                    # keyed BY arm class -> rows carrying it as a field
+        rows = [dict(v, arm_class=v.get("arm_class", k)) for k, v in sorted(rows.items())
+                if isinstance(v, dict)]
     out = []
     for r in (rows or []):
         if not isinstance(r, dict):
@@ -1375,17 +1391,36 @@ def _labels(n, n_wrong, n_other=0):
     return ["wrong"] * n_wrong + ["other"] * n_other + ["correct"] * (n - n_wrong - n_other)
 
 
-def _summary(arms, spec, n=8, prov=None, under_item=None, drop=None):
+def _rec_excluded(tid, i, reason="SPAN_UNLOCATABLE", unlocatable="ENTITY_OCCURRENCE_ANOMALY"):
+    """A §3.3-excluded arm record in the writer's OWN shape (foldlisten_demarez_mask.py:1373-1376): the arm
+    ran no forward for this item, so commit_v2/commit_v1/faithful_strict/the gens are null and `dist` is null
+    -- there is no `distributions` object and no `span_located`."""
+    r = _rec(tid, i, "correct")
+    r.pop("distributions")
+    r.pop("span_located")
+    r.update({"excluded": True, "reason": reason, "span_stable": False, "commit_v2": None, "commit_v1": None,
+              "faithful_strict": None, "counter_gen": None, "elicit_gen": None, "dist": None,
+              "span_unlocatable_reason": unlocatable})
+    return r
+
+
+def _summary(arms, spec, n=8, prov=None, under_item=None, drop=None, excluded=()):
     items = []
     for a in arms:
         labs = spec.get(a, _labels(n, 0))
         for i in range(n):
-            items.append(_rec(a, i, labs[i], under=(under_item == (a, i)),
+            items.append(_rec_excluded(a, i) if (a, i) in excluded else
+                         _rec(a, i, labs[i], under=(under_item == (a, i)),
                               drop=(drop if (a, i) == (arms[0], 0) else None)))
     return {"tag": "syn", "name": "google/gemma-2-9b-it", "family": "mechanism_family_9bit.json",
             "provenance": prov or _prov(), "items": items,
-            "mask_totality_audit": [{"arm_class": "full_turn", "max_masked_pattern": 0.0, "n_layers": 42,
-                                     "item": 0}]}
+            # the mask writer's OWN container shape (foldlisten_demarez_mask.py:1560): keyed BY arm class,
+            # the row itself carrying mask_span_id/turn_id/item, NOT arm_class.
+            "mask_totality_audit": {"decision": {"verdict": "MASK_TOTAL"},
+                                    "audits": {"full_turn": {"max_masked_pattern": 0.0, "n_layers": 42,
+                                                             "item": 0, "turn_id": "B1",
+                                                             "mask_span_id": "full_turn"}},
+                                    "n_forwards": 1, "max_forwards": 6}}
 
 
 def selftest():
@@ -1397,7 +1432,11 @@ def selftest():
     assert len(DIST_FIELDS) == 11 and len(ENTKEY_FIELDS) == 7
     for m in ("foldlisten_demarez_subst", "foldlisten_demarez_mask"):
         if importlib.util.find_spec(m) is not None:                        # pragma: no cover (post-write)
-            mod = __import__(m)
+            try:
+                mod = __import__(m)
+            except ImportError as e:      # their chains import numpy, absent in this offline env (ambiguity A)
+                print("[selftest] sibling %s NOT_IMPORTABLE (%s) -- tuple cross-check UNVERIFIED here" % (m, e))
+                continue
             assert tuple(mod.DIST_FIELDS) == DIST_FIELDS and tuple(mod.ENTKEY_FIELDS) == ENTKEY_FIELDS
     print("[selftest] thresholds/tuples/stamp keys asserted against their sources; siblings=%s" % SIBLINGS)
 

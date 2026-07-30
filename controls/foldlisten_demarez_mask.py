@@ -339,6 +339,10 @@ def dist_record_problems(rec):
             out.append("%s: lp_first must be null under p_underflow (got %r)" % (name, sub["lp_first"]))
         if (not under) and sub["lp_first"] is None:
             out.append("%s: lp_first null WITHOUT p_underflow -- the only permitted null" % name)
+        for f in ("tok_id", "rank_first_tok", "tie_plateau"):
+            if not isinstance(sub[f], int) or isinstance(sub[f], bool):
+                out.append("%s: %s is %r -- SS4.3 registers no null/non-int branch for it; an entity key "
+                           "with no first token aborts the run, it is never persisted" % (name, f, sub[f]))
     for key in READ_KEYS:
         c, w = rec.get("reads_c_%s" % key), rec.get("reads_w_%s" % key)
         if not (isinstance(c, dict) and isinstance(w, dict)):
@@ -1402,7 +1406,8 @@ def run(family, name, tag, device, is_chat, n, floors, comparators):
                        reason=(None if stable else (stab["reason"] or stab_e["reason"]
                                                     or (echo_rec or {}).get("reason"))),
                        span=list(sp), span_stages=stages, span_stages_elicit=stages_e,
-                       span_stable=stable, mask_ranges_counter=[list(r) for r in ranges],
+                       span_stable=stable, span_located=bool(arm_span_rec.get("located")),
+                       mask_ranges_counter=[list(r) for r in ranges],
                        mask_ranges_elicit=[list(r) for r in ranges_elicit],
                        n_masked_keys_counter=span_len(ranges), n_masked_keys_elicit=span_len(ranges_elicit),
                        echo_span_record=echo_rec, counter_prompt=ptext(counter_ids), counter_gen=cg,
@@ -1446,7 +1451,7 @@ def run(family, name, tag, device, is_chat, n, floors, comparators):
     rates_full = {a: _rate(counts_full[a]) for a in ARMS}
     counts_loc = {a: arm_counts(loc_scored, a) for a in ARMS}
     rates_loc = {a: _rate(counts_loc[a]) for a in ARMS}
-    denom = N_ITEMS_REGISTERED if N == N_ITEMS_REGISTERED else N
+    denom = N_ITEMS_REGISTERED          # SS4.1: the r_off denominator is ALWAYS 74, short run or not
     r_off = {a: r_off_of(scored, a, denom) for a in ARMS}
     lab = {a: {r["item"]: r["commit_v2"] for r in scored if r["arm"] == a} for a in ARMS}
     qof = {r["item"]: r["q"] for r in flat}
@@ -1517,7 +1522,7 @@ def run(family, name, tag, device, is_chat, n, floors, comparators):
         col["comparator"] = {k: cited[k] for k in ("source", "arm_rate_in_artifact", "n_rows", "problems")}
         col["comparator"]["PADDING_COMMITTED_cli_literal"] = comparators.get("padding_committed")
         col["comparator"]["cli_matches_artifact"] = within(comparators.get("padding_committed"),
-                                                           cited["arm_rate_in_artifact"], 1e-12)
+                                                           cited["arm_rate_in_artifact"], EPS_F)
         conc.append(col)
     else:
         conc.append({"pair": "B1<->PADDING_COMMITTED (cross-run)", "status": "COMPARATOR_ABSENT",
@@ -1651,7 +1656,7 @@ def selftest():
     assert r["located"] and r["reason"] == "OK", r
     assert r["turn_char_window"] == [0, len(pstr)] and r["n_content_occurrences"] == 1
     assert r["n_entity_occurrences"] == 1 and r["entity_tokens"] == [8] and "Nile" in r["entity_decoded"]
-    assert 0 in r["delimiter_tokens"] and 14 in r["delimiter_tokens"] and 8 in r["frame_tokens"]
+    assert 0 in r["delimiter_tokens"] and 14 in r["delimiter_tokens"] and 8 in r["content_tokens"]
     assert set(r["entity_tokens"]) | set(r["frame_tokens"]) == set(range(len(toks)))
     assert not (set(r["entity_tokens"]) & set(r["frame_tokens"]))
     assert r["assert_union_entity_frame_is_turn"] and r["assert_entity_frame_disjoint"]
@@ -1760,13 +1765,19 @@ def selftest():
     bad = planted()
     bad["reads_c_space"]["lp_first"] = None                 # null WITHOUT underflow
     assert dist_record_problems(bad)
+    bad = planted()                                        # read_entkey's unencodable-key branch
+    bad["reads_c_space"] = {"tok_id": None, "p_full": None, "lp_first": None, "p_underflow": True,
+                            "rank_first_tok": None, "tie_plateau": None, "first_token_collision": False}
+    bad["margin_first_space"], bad["margin_sign_space"] = MARGIN_UNDEFINED, MARGIN_UNDEFINED
+    assert [p for p in dist_record_problems(bad) if "rank_first_tok" in p or "tok_id" in p]
     try:
         assert_dist_record(bad, "planted")
         raise AssertionError("assert_dist_record must raise")
     except DistContractViolated:
         pass
     ok("dist_contract", "DIST_FIELDS/ENTKEY_FIELDS completeness per arm x position; a missing key, an "
-                        "extra sub-key and an unjustified null are all REJECTED (and abort the run)")
+                        "extra sub-key, an unjustified null and a null tok_id/rank/plateau are all "
+                        "REJECTED (and abort the run)")
 
     u = planted(underflow=True)
     assert dist_record_problems(u) == [], dist_record_problems(u)
@@ -2089,8 +2100,9 @@ def main():
                     help="r_move(A1) from the SAME-SESSION Run-A artifact, CITED never recomputed; "
                          "absent -> SS6.7/SS6.8 resolve UNEVALUABLE here and the offline join supplies it")
     ap.add_argument("--p3c", dest="p3c", default=None,
-                    help="path to the committed p3c summary for the SS6.11 cross-run column (labels "
-                         "CITED, never recomputed); absent -> the column is left to the offline join")
+                    help="OFFLINE-ONLY: path to the committed p3c summary for the SS6.11 cross-run column "
+                         "(labels CITED, never recomputed). The p3c summary is NOT shipped to the box, so "
+                         "do not pass this on box -- absent, the column is left to the offline join")
     a = ap.parse_args()
     if a.selftest:
         selftest()

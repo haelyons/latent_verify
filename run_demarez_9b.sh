@@ -46,6 +46,17 @@ if [ $rc -ne 0 ] || [ ! -f out/foldlisten_demarez_mask_dmz_9bit_b_smoke_summary.
 fi
 echo "mask smoke OK"
 
+# AUDIT N3: the SS3.3 span locator round-trips decode->re-encode on the gemma-2 chat prompt and cannot be
+# tested off-box. One divergence makes EVERY item SPAN_UNLOCATABLE, which guts SS6.7/SS6.8 -- and the smoke
+# still exits 0, so rc alone will not catch it. Gate the full runs on the smoke's own locatability category.
+LOC=$(python -c "import json;print(json.load(open('out/foldlisten_demarez_mask_dmz_9bit_b_smoke_summary.json'))['span_locatability']['category'])" 2>/dev/null)
+echo "[d] smoke span_locatability.category=$LOC"
+if [ "$LOC" != "SPAN_LOCATED_ALL" ]; then
+  echo "SPAN_LOCATOR_FAIL category=$LOC -- the SS3.3 locator does not hold on this tokenizer; NOT starting the full runs"
+  python -c "import json;d=json.load(open('out/foldlisten_demarez_mask_dmz_9bit_b_smoke_summary.json'))['span_locatability'];print('n_located=%s/%s'%(d['n_located'],d['n_items']));print(json.dumps(d['unlocatable_log'][:5],indent=1))" 2>/dev/null
+  exit 1
+fi
+
 echo "=== [e] Run A FULL: substitution arms A1-A8 on the frozen 74, tag dmz_9bit_a ==="
 python foldlisten_demarez_subst.py --run --family mechanism_family_9bit.json \
   --name google/gemma-2-9b-it --tag dmz_9bit_a --device cuda --chat \
@@ -66,6 +77,11 @@ python foldlisten_demarez_mask.py --run --family mechanism_family_9bit.json \
   > out/foldlisten_demarez_mask_dmz_9bit_b.log 2>&1
 rc=$?; echo "[f] rc=$rc"
 tail -12 out/foldlisten_demarez_mask_dmz_9bit_b.log
+# AUDIT S5: steps [c][d][e] all test for their summary; [f] tested rc only, so a writer that exited 0
+# without writing would have been reported as success. Run A's verdicts survive a lost Run B (SS1).
+if [ $rc -ne 0 ] || [ ! -f out/foldlisten_demarez_mask_dmz_9bit_b_summary.json ]; then
+  echo "RUN_B_FAIL rc=$rc -- Run A stands (SS1: a cap-hit that loses Run B voids SS6.7-SS6.9 only)"
+fi
 
 echo "ALLDONE_DEMAREZ_9B"
 exit $rc
