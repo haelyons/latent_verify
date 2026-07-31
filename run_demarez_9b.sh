@@ -11,6 +11,12 @@
 set -uo pipefail
 cd ~/latent_verify
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+# SS1.1 LAUNCH CONDITION (added 2026-07-31, AFTER the first run): the same-session test requires
+# cuda_visible_devices, and the 2026-07-30 run left it unset, so both artifacts stamped it null, the
+# pair read NOT_SAME_BOX and SS6.7/SS6.8/SS6.9 returned UNEVALUABLE on complete data (n_common=74,
+# n_span_located=74). This exports it so a re-run satisfies the test. It is a LAUNCH CONDITION only:
+# no threshold, arm, span rule or decision rule is touched, and the rule itself was NOT relaxed.
+export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
 mkdir -p out
 
 echo "=== [a] subst selftest (model-free, CPU) ==="
