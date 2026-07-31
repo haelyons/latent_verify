@@ -304,8 +304,8 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > **GPU RAN AND IS DOWN. `GET /api/v1/instances` returns 0, verified after teardown.** One
 > A100-SXM4-40GB, us-east-1, 3h32m inside a 7h cap, ~$8–9. **Spend reconstructed before launch as
 > §11 requires: the audit log spans 2026-02-22 → now and $830.50 of it is PRE-PROJECT; project
-> -attributable since 2026-06-10 is $711.75, so headroom against the $950 cap was ~$238, NOT the
-> previous seed's $364.53.** Reconstruct, never read a committed tally — including this one.
+> -attributable since 2026-06-10 was $711.75 at launch and is **$727.75 after both De Marez runs
+> (headroom $222.25)**, NOT the previous seed's $364.53.** Reconstruct, never read a committed tally — including this one.
 >
 > **1. THE DE MAREZ SPAN RUNS LANDED (`8b83151`), and the pickup was not the run, it was the audit.**
 > The prior session (`d969872`, killed by a rate limit) left three never-run instruments. An isolated
@@ -319,6 +319,17 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > **quotable as the triple or not at all**), §6.3 `DOSE_NONMONOTONE`, §6.4 `GRADE_ANCHOR_DIVERGENT`,
 > §6.5 `PUSH_TOWARD_STATED_INERT`, §6.6 `MASK_TOTAL`, §6.10 both floors `FLOOR_CONSISTENT`,
 > §6.11 concordance 73/74 and 72/74. Both artifacts `RUN_UNDER_THIS_REGISTRATION`, 0 violations.
+>
+> **[RESOLVED 2026-07-31 — the re-run ran, `c833263`.** Second box `a1a2d202`, the only change being
+> `export CUDA_VISIBLE_DEVICES=0`. §1.1 now reads **`SAME_BOX`, "every §1.1 condition holds"**, and
+> the three blocked verdicts are decided: **§6.7 `SPAN_PARTIAL`, §6.8 `DELIMITER_INERT`, §6.9
+> `ECHO_UNEVALUABLE` with `cause=S_EMPTY`** — the registered empty-set branch (R1-5), i.e. the design
+> cannot decide echo on this data, which is a result and not a loss. Every other verdict is identical
+> to draw 1 and the primary triple reproduces to the float. Both draws are kept separable (draw 1 in
+> `out/`, draw 2 in `results_dmz_9bit_r2/out/`); a claim-blind field-level comparison of the two is
+> the last owed piece. **The De Marez registration is now fully discharged: every registered verdict
+> has a value.** The paragraph below is kept because it is the diagnosis, and because the lesson —
+> a launch condition can cost three verdicts on perfect data — is the reusable part.]**
 >
 > **THE ONE THING TO FIX NEXT, and it is one line.** §6.7 SPAN / §6.8 DELIMITER / §6.9 ECHO are
 > `UNEVALUABLE`, `cause=PAIR_NOT_SAME_BOX` — **not a data failure**: `n_common=74,
