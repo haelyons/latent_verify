@@ -56,6 +56,10 @@ Interactions that are not byte collisions:
 | `### Raw notes and observations analysis 2 [relegated]`, L269-279 | 9 | 5 | **−4** |
 | T4-M08, unplaced | - | 0 added wherever it lands | **0** |
 
+Counts are `PATCHMAP_live.md` §5.4's, i.e. prose brackets; §5.4 excludes L199's `[relegated (for now)]`
+heading tag from the folding section and includes L269's `[relegated]` in the other. Counting heading tags
+in both, the two sections read 5 → 5 and 9 → 5.
+
 Four resolved into prose, none added: `[is that the behaviour we found?]` and `[how can we cite our own
 results here, thoroughly and briefly]` (L274), `[is that right? or is this better said as …]` (L276),
 `[seems to still exist?]` (L279). Net **−4**, and every removal takes a matched pair, so whole-file bracket
@@ -72,8 +76,9 @@ is theirs), `[across what?]` and `[why?]` (L277-278, not in this brief), and the
 - Every number is cited to a committed doc's `path#field` or to the artifact that doc names. No number was
   re-derived from an artifact for this file; the two isolated readers' work is cited, not repeated.
 - Every 27b-base count names its decode draw, per tranche 3's discipline and commit `1f28ea6`. This is
-  load-bearing exactly once: T4-M03 prints 34 and 35 off the re-run rather than 32 and 28 off the committed
-  ext2 draw, and says so.
+  load-bearing twice: T4-M03 prints 34 and 35 off the re-run rather than 32 and 28 off the committed ext2
+  draw, and says so; T4-M05 names the committed decode in its own sentence because the split it rests on
+  has no re-run counterpart.
 - Register per `PATCHMAP_live.md` §5: their `I`/`we` split (every sentence written here is `we` - setup,
   intervention mechanics, walk-through), spaced hyphen rather than em-dash, no bullets added, British
   spelling, lowercase in-flow brackets, author-year with no arXiv IDs, and typos outside the sliced spans
@@ -89,7 +94,9 @@ count with its register; that one is my own reading of a 15-against-16 split in 
 82 items, with no instrument that tested directionality at 2b and no interval around it. It is true of the
 committed table and it may be nothing but noise, and it is doing rhetorical work - it is the clause that
 makes their "single mechanism" story fail at the smallest scale. The rest of T4-M05 stands without it, so
-the RESIDUAL says to lift it if they would rather not carry it. The second-weakest is T4-M06's "partly
+the RESIDUAL says to lift it if they would rather not carry it. Its 27b sibling is weak for a different
+reason and is labelled rather than dropped - the split it rests on exists only on the anomalous decode.
+The second-weakest is T4-M06's "partly
 forced in a decoder-only model", which is `SNAPSHOT` §7.1 S5's own words and is an argument rather than a
 measurement; it is flagged as scope, not as a result.
 
@@ -108,7 +115,7 @@ is NOT present in chat models. Our results show that whilst the mechanism [seems
 PROPOSED:
 
 ````
-is not used in chat models under the same conditions - which is not the same as its not being there. The routing weights are intact: at 27b the query-key part of ten copy heads comes through tuning unchanged on all ten whilst the output-value part moves on five, and at 2b the copy survives in the weights whilst the pattern that uses it collapses, the reader head's mean attention to the target falling from 0.58 to 0.02 with the copied token still ranked first in both models. We have not measured the weights at 9b, and both cells are hand-listed head sets, so this is a statement about weights at two scales and not about behaviour.
+is not used in chat models under the same conditions - which is not the same as not being there. The routing weights are intact: at 27b the query-key part of ten copy heads comes through tuning unchanged on all ten whilst the output-value part moves on five, and at 2b the copy survives in the weights whilst the pattern that uses it collapses, the reader head's mean attention to the target falling from 0.58 to 0.02 with the copied token still ranked first in both models. We have not measured the weights at 9b, and both cells are hand-listed head sets, so this is a statement about weights at two scales and not about behaviour.
 ````
 
 ANSWER (their bracket, in their own idiom):
@@ -190,7 +197,7 @@ The results indicate that there IS an isolated set of attention heads which are 
 PROPOSED:
 
 ````
-That is not the behaviour we found. Ablating the heads that attend to the target span does not stop the base model producing $W*$ - at 2b, jointly knocking out even the top twenty of them gives a restoration of 0.12 against a matched-random floor of 0.02 on 33 faithful items, which the control decides as no restoration at all, and at 9b the same ablation moves the margin (0.442) whilst leaving the answer the model actually gives untouched (0.000 on both output measures, 8 caving items), where the neutral-span control has a larger effect than the $W*$-span itself. So we have a null on the necessity half and no measurement at all on the sufficiency half. What the same hunt does find at base is a different set - five heads that read the challenge span, whose attention-KO and whose output-patch each restore the un-pushed answer far above a matched-random-five floor at 2b, 9b and 27b, ranked inside each run rather than carried over from 9b - and that result is a property of the first-token readout, since under a stripped content margin the same interventions on the same items fall back to within two to six times the floor.
+The results do not show an isolated set of attention heads that is both sufficient and necessary for copying a token from the input to the output. Ablating the heads that attend to the target span does not stop the base model producing $W*$ - at 2b, jointly knocking out even the top twenty of them gives a restoration of 0.12 against a matched-random floor of 0.02 on 33 faithful items, which the control decides as no restoration at all, and at 9b the same ablation moves the margin (0.442) whilst leaving the answer the model actually gives untouched (0.000 on both output measures, 8 caving items), where the neutral-span control has a larger effect than the $W*$-span itself. So we have a null on the necessity half and no measurement at all on the sufficiency half. What the same hunt does find at base is a different set - five heads that read the challenge span, whose attention-KO and whose output-patch each restore the un-pushed answer far above a matched-random-five floor at 2b, 9b and 27b, ranked inside each run rather than carried over from 9b - and that result is a property of the first-token readout, since under a stripped content margin the same interventions on the same items fall back to within two to six times the floor.
 ````
 
 ANSWER (their bracket, in their own idiom):
@@ -249,7 +256,7 @@ This could plausibly indicate a single mechanism that governs which answer the b
 PROPOSED:
 
 ````
-This is a pattern across the two arms rather than a mechanism we have isolated. At 9b the base model expresses whichever answer the transcript seeded first - $C$ on 41 of 82 in fold, $W*$ on 34 of 82 in listen - and 27b runs the same way, whilst 2b leans the other way, toward the answer we push, on the 31 fold items where it names anything at all. The instrument that ranks heads on both arms puts four of the same five at base and five of five at -chat, so the overlap is no smaller in the tuned model, and it issues no verdict on any of its four cells because the size of the move is not matched across them - which leaves the shared heads correlational. Whether the seeded token is copied is a separate claim, and the copy ablations in the sub-bullet below do not support it.
+This is a pattern across the two arms rather than a mechanism we have isolated. At 9b the base model expresses whichever answer the transcript seeded first - $C$ on 41 of 82 in fold, $W*$ on 34 of 82 in listen - and 27b runs the same way on the committed decode, whilst 2b leans the other way, toward the answer we push, on the 31 fold items where it names anything at all. The instrument that ranks heads on both arms puts four of the same five at base and five of five at -chat, so the overlap is no smaller in the tuned model, and it issues no verdict on any of its four cells because the size of the move is not matched across them - which leaves the shared heads correlational. Whether the seeded token is copied is a separate claim, and the copy ablations in the sub-bullet below do not support it.
 ````
 
 RECEIPT:
@@ -257,6 +264,11 @@ RECEIPT:
   fold C 15 / 41 / 39 and $W*$ 16 / 3 / 11; listen C 25 / 11 / 20 and $W*$ 10 / 34 / 34, at 2b / 9b / 27b.
   So 9b and 27b express the seeded answer more often than the pushed one in both arms; 2b does not (fold
   15 C against 16 $W*$ on the 31 items it names anything on, listen 25 C against 10 $W*$).
+  **Draw**: JOIN reads the committed ext2 summaries, so the 27b rows are the identified 27b-base anomalous
+  decode - which is why the prose names that draw and prints no 27b count. The re-run family
+  (`GROUNDING_neutral_elicit.md` §2) reports the withheld and moved columns for that slot but not this
+  C-against-$W*$ split, so the 27b direction is **not** re-checked off the reproducible decode. 2b and 9b
+  are draw-invariant.
   Head overlap: `SNAPSHOT_circuit_groundtruth.md` §4 - `results_fold_vs_listen/out/cave_fold_vs_listen.json#models.base.overlap`
   = **4** and `#models.it.overlap` = **5** at 9b, same at 2b (`results_fold_vs_listen_2b/…`); `-it` fold and
   listen rank the *same five heads*, reordered. All four cells `#models.{base,it}.decision.category` =
@@ -289,7 +301,7 @@ The base model is wrong ~half the time
 (a) PROPOSED:
 
 ````
-The base model names neither answer about half the time - 51, 38 and 34 of 82 at 2b, 9b and 27b, the 27b count on the re-decoded draw
+The base model names neither answer about half the time (51, 38 and 34 of 82 at 2b, 9b and 27b, the 27b count off the re-decoded draw)
 ````
 
 (b) CURRENT:
@@ -346,7 +358,7 @@ Naming an answer at all turns out not to be attention to the user.
 PROPOSED:
 
 ````
-Naming an answer at all is not gated on reading the user's turn - a total mask is the only handle we have on this, so what it establishes is that the answer is redundantly available rather than that attention plays no part, and the same mask collapses folding at all three scales, which is partly forced in a decoder-only model that cannot fold to an answer it cannot read.
+Naming an answer at all is not gated on reading the user's turn, and the handle we have on that is a total mask, so what it establishes is that the answer is redundantly available rather than that attention plays no part - the same mask collapses folding at all three scales, which is partly forced in a decoder-only model that cannot fold to an answer it cannot read.
 ````
 
 RECEIPT:
@@ -383,7 +395,7 @@ and observations analysis 2 [relegated]` (L269) - both inside blocks whose keep/
 PROPOSED (an offer, not a fill - see STATUS):
 
 ````
-At base the same hunt finds a five-head set that reads the challenge span and writes toward the pushed answer - knocking out its attention to that span and replacing its output each restore the un-pushed answer far above a matched-random-five floor, at 2b, 9b and 27b, with the heads ranked inside each run rather than carried between scales - and that result is a property of the first-token readout, since under a stripped content margin the same interventions on the same items fall back to within two to six times the floor. Downstream of that write there is no bottleneck: at 9b an attribution screen over all 714 components leaves less than a third of its effect in the top fifteen of the 27 items it ranks them from, the two components that confirm are MLPs rather than heads, and freezing the top five MLP carriers does not block the restoration. At -chat we find no single causal lever for taking the user's answer - the read side is empty at derivation, resample-ablating the write direction flips none of the 37 answers at 9b or 2b and moves one the wrong way at 27b, and the arbiter disagrees on sign - so on that one 74-item family the verdict is monitor, not lever, at all three scales, and on the necessity half only, since the sufficiency arm was never run. Masking every head's read of the challenge turn does collapse folding at all three scales, which says the read is necessary and redundant rather than localisable. What we do not have is an installed component: on matched items at 9b no deference head or head set survives at n=41, there is no entropy or confidence neuron and no confidence gate on caving at that scale, and copying the pushed answer is not the driver on the four to fourteen items each of those cells carries.
+At base the same hunt finds a five-head set that reads the challenge span and writes toward the pushed answer - knocking out its attention to that span and replacing its output each restore the un-pushed answer far above a matched-random-five floor, at 2b, 9b and 27b, with the heads ranked inside each run rather than carried between scales - and that result is a property of the first-token readout, since under a stripped content margin the same interventions on the same items fall back to within two to six times the floor. Downstream of that write there is no bottleneck: at 9b an attribution screen over all 714 components leaves less than a third of its effect in its top fifteen, on the same 27 items it ranks them from, the two components that confirm are MLPs rather than heads, and freezing the top five MLP carriers does not block the restoration. At -chat we find no single causal lever for taking the user's answer - the read side is empty at derivation, resample-ablating the write direction flips none of the 37 answers at 9b or 2b and moves one the wrong way at 27b, and the arbiter disagrees on sign - so on that one 74-item family the verdict is monitor, not lever, at all three scales, and on the necessity half only, since the sufficiency arm was never run. Masking every head's read of the challenge turn does collapse folding at all three scales, which says the read is necessary and redundant rather than localisable. What we do not have is an installed component: on matched items at 9b no deference head or head set survives at n=41, there is no entropy or confidence neuron and no confidence gate on caving at that scale, and copying the pushed answer is not the driver on the four to fourteen items each of those cells carries.
 ````
 
 RECEIPT:
