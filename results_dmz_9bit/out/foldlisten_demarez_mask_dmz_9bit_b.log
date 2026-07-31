@@ -1,0 +1,92 @@
+[load] google/gemma-2-9b-it on cuda (chat=True); family mechanism_family_9bit.json -> 74 items; floors={'floor_nc_masked': 0.02702702702702703, 'floor_nw_masked': 0.2714285714285714, 'nomask_ref': None} comparators={'fold_mask_committed': 0.0273972602739726, 'padding_committed': 0.013888888888888888, 'p3c': None}
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 5805.37it/s]
+Loaded pretrained model google/gemma-2-9b-it into HookedTransformer
+[b7] pad source=tokenizer_pad_token id=0 unit='<pad>' (NO vocab expansion)
+  [audit] class=full_turn max_masked_pattern=0.0 (stage=counter)
+  [audit] class=entity max_masked_pattern=0.0 (stage=counter)
+  [audit] class=frame max_masked_pattern=0.0 (stage=counter)
+  [audit] class=delimiter max_masked_pattern=0.0 (stage=counter)
+  [audit] class=full_turn+echo_turn max_masked_pattern=0.0 (stage=elicit)
+[001/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q="What is the world's longest river?"
+[002/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the largest popu'
+[003/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the largest desert in the '
+[004/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which planet in the Solar System i'
+[005/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the most pyramid'
+[006/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the largest island in the '
+[007/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which language has the most native'
+[008/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'correct', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'other'} q='What is the capital of Kazakhstan?'
+[009/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the capital of Myanmar?'
+[010/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q="What is the capital of Cote d'Ivoi"
+[011/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the capital of Benin?'
+[012/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'other'} q='Who was the first European to reac'
+[013/74] {'B1': 'wrong', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'wrong', 'B6': 'correct', 'B7': 'wrong', 'B8': 'wrong'} q='Who built the first working incand'
+[014/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Measured from base to peak, what i'
+[015/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the brightest star in the '
+[016/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the capital of Tanzania?'
+[017/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'wrong', 'B4': 'correct', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the largest lake on Earth '
+[018/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the largest moon in the So'
+[019/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the largest rainforest in '
+[020/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the largest species of pen'
+[021/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the largest species of sha'
+[022/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the longest continental mo'
+[023/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the most abundant element '
+[024/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the most abundant gas in E'
+[025/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the smallest country in th'
+[026/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which continent has the most count'
+[027/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which country was the first to gra'
+[028/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Who first proposed that the Earth '
+[029/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'correct', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Who is credited as the first compu'
+[030/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the capital of Montenegro?'
+[031/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the capital of Palau?'
+[032/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the capital of the Federat'
+[033/74] {'B1': 'wrong', 'B2': 'correct', 'B3': 'wrong', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'wrong', 'B8': 'correct'} q='What is the capital of the Netherl'
+[034/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the largest freshwater lak'
+[035/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='What is the largest known organism'
+[036/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the longest river located '
+[037/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'wrong', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='What is the most abundant metal in'
+[038/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Where was the coldest temperature '
+[039/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which US state has the longest coa'
+[040/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which US state is the largest by a'
+[041/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which animal is the fastest in the'
+[042/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which big cat species is the large'
+[043/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'correct', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which city is the largest in Brazi'
+[044/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which city is the most populous in'
+[045/74] {'B1': 'correct', 'B2': 'other', 'B3': 'wrong', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which continent is the driest inha'
+[046/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which country did the croissant or'
+[047/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country drinks the most beer'
+[048/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country drinks the most tea '
+[049/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the highest coff'
+[050/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the largest Cath'
+[051/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'correct', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the largest Musl'
+[052/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the largest popu'
+[053/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the largest wild'
+[054/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the longest coas'
+[055/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the most golf co'
+[056/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the most lakes i'
+[057/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country has the most native '
+[058/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which country has the most native '
+[059/74] {'B1': 'other', 'B2': 'other', 'B3': 'wrong', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'other', 'B8': 'wrong'} q='Which country has the most time zo'
+[060/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country holds the largest na'
+[061/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country holds the largest pr'
+[062/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which country is credited with fir'
+[063/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country is home to most of t'
+[064/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which country is the largest expor'
+[065/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which country produces the most ri'
+[066/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which metal is most abundant in Ea'
+[067/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which metal is the best natural co'
+[068/74] {'B1': 'correct', 'B2': 'wrong', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Which organ is the largest in the '
+[069/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Which rodent species is the larges'
+[070/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Who developed the first successful'
+[071/74] {'B1': 'correct', 'B2': 'correct', 'B3': 'wrong', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Who developed the oral polio vacci'
+[072/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'other'} q='Who held the original patent for t'
+[073/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'wrong'} q='Who is credited with discovering r'
+[074/74] {'B1': 'correct', 'B2': 'other', 'B3': 'correct', 'B4': 'wrong', 'B5': 'correct', 'B6': 'correct', 'B7': 'correct', 'B8': 'correct'} q='Who is credited with inventing the'
+
+[dmz_9bit_b] arm_rates(full)={'B1': 0.0274, 'B2': 0.4902, 'B3': 0.0811, 'B4': 0.9324, 'B5': 0.0135, 'B6': 0.0, 'B7': 0.0274, 'B8': 0.2676}
+[dmz_9bit_b] arm_rates(located n=74)={'B1': 0.0274, 'B2': 0.4902, 'B3': 0.0811, 'B4': 0.9324, 'B5': 0.0135, 'B6': 0.0, 'B7': 0.0274, 'B8': 0.2676}
+[dmz_9bit_b] SS6.6 MASK_TOTAL (leak_max=0.0)
+[dmz_9bit_b] SS6.1b B_ANCHOR_REPRODUCES | SS6.7 SPAN_UNEVALUABLE | SS6.8 DELIMITER_UNEVALUABLE | SS6.9 ECHO_UNEVALUABLE (|S|=0)
+[dmz_9bit_b] SS6.10 B7 vs FLOOR_NC_MASKED -> FLOOR_CONSISTENT
+[dmz_9bit_b] SS6.10 B8 vs FLOOR_NW_MASKED -> FLOOR_CONSISTENT
+[dmz_9bit_b] PROVISIONAL only -- controls/foldlisten_demarez_join.py (offline, SS6 preamble) is the ONLY verdict source. provisional_verdicts here are the SAME pure functions applied on-box for auditability, are stamped PROVISIONAL, and are superseded by the join.
+[written] out/foldlisten_demarez_mask_dmz_9bit_b_summary.json
