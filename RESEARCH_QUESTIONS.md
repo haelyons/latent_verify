@@ -299,7 +299,89 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
-> **SEED 2026-07-29 (later session, post-Sun drafting viii) — newest. STACKED above the previous
+> **SEED 2026-07-30/31 (compose-post1 session) — NEWEST. STACKED above the previous seed.**
+>
+> **GPU RAN AND IS DOWN. `GET /api/v1/instances` returns 0, verified after teardown.** One
+> A100-SXM4-40GB, us-east-1, 3h32m inside a 7h cap, ~$8–9. **Spend reconstructed before launch as
+> §11 requires: the audit log spans 2026-02-22 → now and $830.50 of it is PRE-PROJECT; project
+> -attributable since 2026-06-10 is $711.75, so headroom against the $950 cap was ~$238, NOT the
+> previous seed's $364.53.** Reconstruct, never read a committed tally — including this one.
+>
+> **1. THE DE MAREZ SPAN RUNS LANDED (`8b83151`), and the pickup was not the run, it was the audit.**
+> The prior session (`d969872`, killed by a rate limit) left three never-run instruments. An isolated
+> pre-launch audit (`docs/drafts/AUDIT_demarez_prelaunch.md`) returned **NO-GO on four blockers**, all
+> reader/writer plumbing — including a `mask.py` selftest that **could never pass** (it asserted the
+> entity token was in `frame_tokens` while the next line asserted the two disjoint), which would have
+> exited at the model-free gate for a billed box and zero data. Fixed at `0105d18`, registered as
+> amendment **Round 3** in `REGISTRATION_demarez_spans.md` §0.6 **before the box booted** (`aa67299`).
+> Verdicts in `out/demarez_join.json`, the join being the only verdict source:
+> **§6.2 PRIMARY `QUESTION_DOES_WORK`** (r_move(A1)=1.0, r_move(A2)=0.861, r_off(A3)=0.730 —
+> **quotable as the triple or not at all**), §6.3 `DOSE_NONMONOTONE`, §6.4 `GRADE_ANCHOR_DIVERGENT`,
+> §6.5 `PUSH_TOWARD_STATED_INERT`, §6.6 `MASK_TOTAL`, §6.10 both floors `FLOOR_CONSISTENT`,
+> §6.11 concordance 73/74 and 72/74. Both artifacts `RUN_UNDER_THIS_REGISTRATION`, 0 violations.
+>
+> **THE ONE THING TO FIX NEXT, and it is one line.** §6.7 SPAN / §6.8 DELIMITER / §6.9 ECHO are
+> `UNEVALUABLE`, `cause=PAIR_NOT_SAME_BOX` — **not a data failure**: `n_common=74,
+> n_span_located=74, n_span_unlocatable=0`. The two artifacts carry the same `lambda_instance_id`,
+> same `git_commit`, `device_index` 0 and sequential non-overlapping timestamps, but §1.1's
+> mechanical test needs `cuda_visible_devices` and nothing exported it, so both stamped null.
+> **The rule was deliberately NOT relaxed** — loosening a registered same-session test after seeing
+> it block three verdicts is the post-hoc move the registration exists to prevent. Add
+> `export CUDA_VISIBLE_DEVICES=0` to `run_demarez_9b.sh` and re-run (~3.6h, ~$8): it recovers the
+> span trio and changes nothing else. Do this before any new distributional GPU work.
+>
+> **2. OWED B2 IS PARTLY CLOSED, at the cell the post is written from.** Every arm persists
+> first-token top-10 + lp(C)/lp(W\*) at **both** slots, so a distributional read now exists at the
+> **forced-final slot** — the slot the sankey verdicts are decided on, where `COMPOSE_post1_brief.md`
+> §F(a) correctly said no instrument reads at any cell. 9b-it fold only. First look (item 0, not an
+> aggregate — the registered aggregation is §4.3's **64 report-only dissociation rows**, no band, no
+> verdict): at the reply slot the argmax is `"You"` p=0.9988 with C at rank 937; at the elicited slot
+> the argmax is the adopted answer at p=0.99989. **At the decision slot there is barely a
+> distribution left.** Nobody has aggregated this yet — that is the single highest-value offline job
+> waiting, and it belongs in the notes' "Under the hood".
+>
+> **3. THREE COMMITTED CLAIMS WERE CORRECTED (`04cda88`), by two isolated readers who agreed
+> independently (the second claim-blind).** `docs/drafts/RETRACTIONS.md` R-12/R-13/R-14, with
+> per-site addendum text for all six citing documents in `docs/drafts/ADDENDA_20260730_ledger.md`
+> — **NOT yet applied to the ledgers; apply by hand.**
+> **R-12 WITHDRAWS `REDISTRIBUTE` and the 0.875/0.751.** No instrument emits that string (zero hits
+> in every `.json`); the artifact decides `BOTH_REDUNDANT` under the self-judge axis; the headline
+> **exceeds its own artifact's CI** because `cave_residstate_decisive.py:258` takes the max of two arm
+> means while `:265` bootstraps the pooled list; the `-it` floor it is read against is the hardcoded
+> `it_rand = 0.0` (`:303`); the file is `reprocessed_offline` by a script that **is not committed**
+> and its per-item cache does not exist, so it is unauditable in the R-1 sense; and
+> `cave_residstate_close.json` decides `DISTRIBUTED_CONFIRMED` on the **same model, axis layer and
+> pool**. Two committed artifacts contradict each other and no doc said so. **The headline open
+> question — does RLHF install the doubt circuit — is back to OPEN**, both intervening verdicts gone.
+> **R-13 is a scope line, not a retraction: the doubt circuit's `BOTH` at 3/3 is FIRST-TOKEN-BOUND.**
+> `cave_doubt_decollide` returns `READOUT_SENSITIVE` at 2b, 9b AND 27b; under the stripped content
+> margin the same interventions on the same items fall to 1.09× the matched-random floor at 2b and
+> 1.69× at 27b, only 9b READ clearing appreciably. Fully auditable (per-item records persist; all 27
+> means re-derive). **Claim 2 may not be stated again without naming its readout.**
+>
+> **4. THE POST. Four grounding documents were built and committed this session; the patch blocks
+> were NOT** (three drafting agents died to session limits, twice). Ready to hand to drafters:
+> `docs/drafts/SNAPSHOT_circuit_groundtruth.md` (§7.1 seven claims that survive with mandatory
+> qualifiers, §7.2 ten that do not), `INVENTORY_distributional.md` (859 lines; §3.1's slot table is
+> the load-bearing one), `PATCHMAP_live.md` (every tranche block with anchors byte-verified against
+> the live vault), `AUDIT_demarez_prelaunch.md`. Live-gold facts a drafter needs: the researcher
+> **edited both gold docs after `598de5e`** and no ledger recorded it, so tranche-1/2 intro line
+> numbers are **−1** and **C02's anchor is stale/unappliable**; tranche 3's 24 blocks all still
+> anchor byte-exact; **notes L319 has a TRIPLE collision (B02 ∥ D02 ∥ T3-05) — do not add a fourth.**
+> **The decisive correction for the intro:** "usually assigns higher probability to C" is a **BARE
+> -slot** statement (`M0`, 54–74 of 82 at all six cells) and true at the neutral slot (66–81), but
+> **false at the pushed slot at four of six cells** (2b-base 36, 2b-it 18, 9b-it 27, 27b-it 39; only
+> 9b-base 63 and 27b-base 62 hold). And C is **not** the vocabulary argmax there on 0/82 items at
+> five cells. Intro L25's "distributed at -chat" is contradicted by its own overlap numbers (base
+> 4/5, **-it 5/5**); T3-03 already holds the honest replacement and this session's audit independently
+> confirms it — that block needs the researcher's decision, not another draft.
+>
+> **5. UNSWEPT, and cheap.** The vault's live Fig 1 embed is md5-confirmed as the **anomalous 27b
+> draw** (vault `6942c40b` vs repo `50a3f28f`); all four vault image swaps in
+> `COMPOSE_post1_brief.md` §B are still pending and are the researcher's own. The post's lead figure
+> currently shows numbers that do not reproduce.
+>
+> **SEED 2026-07-29 (later session, post-Sun drafting viii) — STACKED above the previous
 > seed per the standing convention.**
 >
 > **NO GPU RAN THIS SESSION. $0. Everything below is offline reads + two commits.**
