@@ -1,613 +1,413 @@
-# PATCHSET_tranche4_mech - the MECHANISM / CIRCUIT blocks for POST1's notes
+# PATCHSET tranche 4 - the MECHANISM / CIRCUIT claims in the gold lab-notes
 
-Eight blocks, all against `DARWIN.md_post1_user_notes.md`. Seven correct or scope prose that already
-exists; one (T4-M08) is an offer with no anchor. Nothing here touches the intro, the distributional
-section (L281-297) or « Sycophancy Scaling Laws » - those are other tranches' territory.
+Seven blocks against `/home/hal/Documents/Remote/interp/DARWIN.md_post1_user_notes.md`. Notes only; the
+intro and the distributional sections are other tranches' territory. **Every block below sits inside a
+`[relegated]` section whose keep or cut is the researcher's** (`PATCHMAP_live.md` §4 row 13), so every
+STATUS says so and no block should be applied to a section that is being dropped.
 
-Every number below was read from a result JSON at write time and is quoted as `path#field`. Where a
-number I needed was stated in `SNAPSHOT_circuit_groundtruth.md` or `TAXONOMY_withholding.md` I went
-to the artifact instead and say so; two of those checks moved a figure (§Preamble note 3).
+## Live gold state, measured at write time
 
-## Live state, read at write time
-
-| document | md5 | lines (`wc -l`) | split lines | trailing NL |
+| document | md5 | `wc -l` | split lines | bytes |
 |---|---|---|---|---|
-| `/home/hal/Documents/Remote/interp/DARWIN.md_post1_user_notes.md` | `71c3b3c52236520189f0944232c4118a` | 345 | 346 | no |
+| `DARWIN.md_post1_user_notes.md` | `71c3b3c52236520189f0944232c4118a` | 345 | 346 | 36631 |
 
-Same md5 `PATCHMAP_live.md` and `PATCHSET_tranche3.md` were written against, so every tranche-3 line
-number still holds. CURRENT text below is sliced from those bytes - **copy the anchors, do not retype
-them**. Five of the seven anchors end in a trailing space that is part of the file, and one (T4-M05)
-ends in **two**; the trailing-space count is stated under every CURRENT fence because a fence does not
-show it. T4-M04's anchor opens with a **tab**.
+Unchanged from the state `PATCHMAP_live.md` measured (`71c3b3c5…`, 345). The intro is not touched by this
+tranche. **Every CURRENT fence below was sliced out of those bytes by the script that generated this file**
+(`slice_span`, which asserts each locator key and each resulting span occurs exactly once in the file and
+does not cross a newline) - do not retype an anchor, copy it. None of the seven target lines carries an
+NBSP, a curly apostrophe or a tab inside the sliced spans, checked at write time; L272 ends in two trailing
+spaces and L273/L274/L276/L279 in one, and every span stops short of them.
 
-## Anchor verification, this pass
+## Application order
 
-Each anchor was located by byte compare against the live file, not by eye. All seven occur **exactly
-once** in the whole document (`d.count(anchor) == 1`), so uniqueness is positional and not
-line-scoped. Character spans, measured this pass:
+Notes only, descending by line number, so a line number is still right when you reach it:
+**T4-M02 (L279), T4-M04 (L276), T4-M01 (L274), T4-M05 (L273), T4-M03 (L272), T4-M06 (L200)**. T4-M08 anchors nowhere.
 
-| block | live line | span | note |
-|---|---|---|---|
-| T4-M01 | 279 | 29254-29402 | starts after their `["salience copy" or "attention copy"]` bracket, which is untouched |
-| T4-M02 | 276 | 28469-28717 | ends at `in the elicited answer.`; the Figure 3 sentence after it is untouched |
-| T4-M03 | 274 | 27793-28200 | starts after their `[from our initial mechanistic arc there were some citations?]` bracket, which is untouched |
-| T4-M04 | 273 | 27306-27535 | whole line, tab-indented bullet |
-| T4-M05 | 272 | 26972-27305 | whole line, bullet |
-| T4-M06 | 200 | 19732-19884 | ends exactly where **T3-14**'s anchor begins |
-| **T3-14** (pending, not mine) | 200 | 19884-20001 | |
-| T4-M07 | 200 | 20002-20105 | begins one space after T3-14's anchor ends |
+Within-line ordering, and the one cross-tranche dependency:
 
-All eight spans are pairwise disjoint, asserted programmatically. The three L200 spans were then
-applied together in a scratch copy with T3-14's PROPOSED text to prove they compose: 8 edits applied,
-bytes outside the eight windows unchanged.
+- **T4-M03 (a) and (b)** are disjoint spans of L272 - **apply (b) first**, then (a).
+- **T4-M06 and pending T3-14** are disjoint spans of L200, both inside the researcher bracket that opens
+  at `[Naming` and closes at the end of L202. **Apply T3-14 first** (its span is later in the line).
+  T4-M06 does not restate T3-14's count; it rescopes the causal sentence that precedes it. If T3-14 is not
+  applied, T4-M06 still applies cleanly - but the line then still carries the R-6-withdrawn 67.
+- **No other pending or held block touches any byte in this tranche.** `PATCHMAP_live.md` §3 records
+  L269-L279 as "zero pending or held blocks anywhere, fully uncovered", and the only covered line among the
+  seven is L200 (D13 ⊂ T3-14, superseded).
 
-## Post-apply invariants, measured on the scratch copy
+Interactions that are not byte collisions:
 
-| | before | after | delta |
-|---|---|---|---|
-| bracket depth (min / final) | 0 / 0 | 0 / 0 | unchanged |
-| NBSP (U+00A0) | 96 | 96 | +0 |
-| em-dash / en-dash | 5 / 0 | 5 / 0 | +0 / +0 |
-| guillemet pairs | 22 | 22 | +0 |
-| curly `’` / straight `'` | 9 / 58 | 9 / 61 | +0 / **+3** |
-| tabs | 16 | 16 | +0 |
-| split lines | 346 | 346 | +0 |
-| `- ` bullet lines | 23 | 23 | +0 |
-
-The three added apostrophes are ASCII straight (`doesn't`, `answer's`, `user's`), matching the
-dominant form in this file and in the lines they sit on. No line is added or removed, so **every
-tranche-1/2/3 notes line number survives this tranche**.
-
-## Order and interactions
-
-Blocks run notes descending by line number, so a line number is still right when you reach it:
-
-**T4-M01 (L279) - T4-M02 (L276) - T4-M03 (L274) - T4-M04 (L273) - T4-M05 (L272) - T4-M07 (L200) -
-T4-M06 (L200)**, then T4-M08 wherever they place it.
-
-Within L200 apply right to left - **T4-M07, then T3-14, then T4-M06** - so character offsets stay
-stable for a hand applier. Byte-exact replacement makes the order irrelevant; hand application does not.
-
-Interactions with pending blocks:
-
-- **T3-14 (PENDING, `PATCHSET_tranche3.md:733`)** owns the number on L200. T4-M06 stops one character
-  short of its anchor and T4-M07 starts one character after it. **T4-M06 and T4-M07 do not restate
-  73 of 74 and must not be edited to.** If T3-14 is dropped, T4-M06/M07 still apply and the line keeps
-  the withdrawn 67 - flag that, because T4-M06's replacement sentence makes the stale number more
-  prominent, not less.
-- **D13 (HELD)** is a strict subset of T3-14's anchor and does not touch mine. Its own RESIDUAL
-  (`PATCHSET_tranche2.md:535`) filed the defect T4-M06 discharges: *"`Naming an answer at all turns out
-  not to be attention to the user` is a causal reading of an ablation"*.
-- **T3-13 (PENDING)** edits L202 at 20438-20552, clear of T4-M07's span.
-- **T3-03 (PENDING, NEEDS-RESEARCHER-DECISION, intro L25)**. T4-M04 quotes the same fold-listen head
-  overlap T3-03 does. They agree; T4-M04 must not be applied alongside any sentence that reads the
-  overlap as evidence for "distributed" (§7.2 of the SNAPSHOT: the number points the other way).
-- **T3-15 (PENDING, L192)** prints the base commit denominators 31 / 44 / 50 for the fold arm.
-  T4-M05 prints the fold/listen carry counts over 82 and does not restate a denominator, so the two
-  do not double-write.
-- Nothing here goes near the L319/L321 triple collision, the L317/L323 orphan, or figure renumbering.
+- **T3-03** (intro L25) states the same 4/5 base, 5/5 -it overlap that T4-M05 states in the notes. Both are
+  correct; carrying both means saying it twice in two documents. T3-03 is already
+  NEEDS-RESEARCHER-DECISION.
+- **D22** (`span` vs `first token`, three sites, §4 row 9) is the layer question T4-M04's fix moves L276
+  off, and the layer T4-M01's closing clause names. Neither block pre-empts it: T4-M04 adopts the
+  researcher's own wording, and T4-M01's "first-token readout" is what the doubt instrument measures by
+  construction, whichever way D22 goes.
+- **T3-13 / T3-14** carry the same "do not apply if the block is cut" condition as T4-M06.
+- **R-12, R-13, R-14 are binding here.** No block cites `REDISTRIBUTE` or 0.875 / 0.751; every statement of
+  the base doubt result names its readout; nothing from the `results_fold_vs_listen` batteries is quoted,
+  though that file's head-overlap counts are (R-14 leaves them standing).
 
 ## Bracket ledger
 
-Four brackets resolved into prose, none added. Net **-4**, all inside L269-279.
-
-| section | before | after | delta |
+| section | live brackets | after this tranche | delta |
 |---|---|---|---|
-| L199-202 (mechanistic look at folding) | 4 on 2 lines | 4 on 2 lines | 0 |
-| L269-279 (raw notes 2) | 9 on 6 lines | **5 on 5 lines** | **-4** |
+| `### Mechanistic look at folding [relegated (for now)]`, L199-202 | 4 | 4 | **0** |
+| `### Raw notes and observations analysis 2 [relegated]`, L269-279 | 9 | 5 | **−4** |
+| T4-M08, unplaced | - | 0 added wherever it lands | **0** |
 
-Removed: `[is that the behaviour we found?]` and `[how can we cite our own results here, thoroughly
-and briefly]` (T4-M03), `[is that right? or is this better said as …]` (T4-M02), `[seems to still
-exist?]` (T4-M01). **Left standing on purpose**: `[relegated]` (L269 heading tag),
-`[from our initial mechanistic arc there were some citations?]` (L274, an external-citation demand,
-not mine to answer), `[across what?]` (L277), `[why?]` (L278), `["salience copy" or "attention copy"]`
-(L279, naming the mechanism is theirs - `PATCHSET_tranche2.md:905`).
+Four resolved into prose, none added: `[is that the behaviour we found?]` and `[how can we cite our own
+results here, thoroughly and briefly]` (L274), `[is that right? or is this better said as …]` (L276),
+`[seems to still exist?]` (L279). Net **−4**, and every removal takes a matched pair, so whole-file bracket
+depth stays min 0 / final 0. Live counts are `PATCHMAP_live.md` §5.4's per-section measurement.
+
+Left standing deliberately: `[from our initial mechanistic arc there were some citations?]` (L274, a
+citation demand `CITATIONS_post1_verified.md` owes), `["salience copy" or "attention copy"]` (L279, naming
+is theirs), `[across what?]` and `[why?]` (L277-278, not in this brief), and the `[relegated]` heading tag.
 
 ## Disciplines every block obeys
 
-- **RETRACTIONS R-12.** `REDISTRIBUTE`, 0.875 and 0.751 appear nowhere in this file, in prose or
-  receipt, and no `-it` substrate verdict is asserted anywhere.
-- **RETRACTIONS R-13.** The base doubt-circuit result is never stated without the readout it holds on.
-  It appears only in T4-M08, with the `READOUT_SENSITIVE` re-read attached in the same sentence.
-- **RETRACTIONS R-14.** From `results_fold_vs_listen*/out/cave_fold_vs_listen.json` only the
-  head-overlap counts and the `MOVE_UNMATCHED` gate categories are quoted - both explicitly outside
-  the hold. **No battery restoration from that file is quoted anywhere below**, including in receipts.
-- **R-3 / the 27b draw.** Every 27b figure in prose names its decode. All 27b-base and 27b-`it`
-  numbers in the prose are from the reproducible re-decode (`results_foldlisten_nelicit_*`); the
-  committed ext2 values are carried in the receipts as the alternative, never in prose. 2b and 9b were
-  re-checked as draw-invariant on every cell used here.
-- **The head-SET retraction is quoted at n=41, never at n=6.**
-- **Sufficiency is never called measured.** Where a control is a knockout the block says so.
+- Anchors sliced from bytes, uniqueness asserted, no retyping - the C02 and NBSP defects
+  (`PATCHMAP_live.md` §2.1, §5.9) are what this rule exists for.
+- Every number is cited to a committed doc's `path#field` or to the artifact that doc names. No number was
+  re-derived from an artifact for this file; the two isolated readers' work is cited, not repeated.
+- Every 27b-base count names its decode draw, per tranche 3's discipline and commit `1f28ea6`. This is
+  load-bearing exactly once: T4-M03 prints 34 and 35 off the re-run rather than 32 and 28 off the committed
+  ext2 draw, and says so.
+- Register per `PATCHMAP_live.md` §5: their `I`/`we` split (every sentence written here is `we` - setup,
+  intervention mechanics, walk-through), spaced hyphen rather than em-dash, no bullets added, British
+  spelling, lowercase in-flow brackets, author-year with no arXiv IDs, and typos outside the sliced spans
+  preserved - `when its correct` (L272) is deliberately outside T4-M03's span (a).
+- Ids follow the brief's own numbering: T4-M01 to T4-M06 are its six line-blocks in its listed order, and
+  the offer is T4-M08 because the brief names it that. **There is no T4-M07.**
 
-## Three notes on the ground truth I was handed
+## The weakest sentence in this tranche
 
-1. `SNAPSHOT_circuit_groundtruth.md` §6.5 says `W_OV_fro` / `ow_norm` are CHANGED on **5 of 10** 27b
-   heads. The artifact says **6**: `results_27b_qk/out/qk_collapse_27b.json#measurements` has
-   `W_OV_fro.verdict = CHANGED` at (11,2) +0.3366, (11,4) +0.3367, (11,7) +0.3367, (11,21) +0.3364,
-   (17,4) +0.5223 and (23,24) -0.2462, with `ow_norm` CHANGED on the same six. T4-M01 prints 6.
-2. The same document's §5 quotes `best_confirm_restore` 0.368385 for the 9b circuit screen. That
-   artifact carries **two different values under that name** - `result.best_confirm_restore` 0.368385
-   and `result.decision.best_confirm_restore` 0.786392. Neither is cited below.
-3. `TAXONOMY_withholding.md`'s free-reply **BOTH = 63** is the *committed ext2* total. Re-derived from
-   the item records this pass it is **62 on the reproducible 27b decode** (the 27b-`it` listen cell
-   moves 16 to 15). The invariant that matters - every `-chat` free reply scored as withholding names
-   both answers - holds on both draws. T4-M02 prints the re-decode figure and names the draw. This
-   also discharges R-5's live defect: the receipt below is a fresh derivation from the raw spans, not
-   a second citation of the script that never performed the check.
+T4-M05's clause *"whilst 2b leans the other way, toward the answer we push, on the 31 fold items where it
+names anything at all"*. Every other sentence here restates a decided instrument verdict or a re-derived
+count with its register; that one is my own reading of a 15-against-16 split in one arm of a 2x2, on 31 of
+82 items, with no instrument that tested directionality at 2b and no interval around it. It is true of the
+committed table and it may be nothing but noise, and it is doing rhetorical work - it is the clause that
+makes their "single mechanism" story fail at the smallest scale. The rest of T4-M05 stands without it, so
+the RESIDUAL says to lift it if they would rather not carry it. The second-weakest is T4-M06's "partly
+forced in a decoder-only model", which is `SNAPSHOT` §7.1 S5's own words and is an argument rather than a
+measurement; it is flagged as scope, not as a result.
 
 ---
 
-# NOTES - `DARWIN.md_post1_user_notes.md`
+### T4-M02 - notes L279, "NOT present in chat models"
 
-### T4-M01 - notes L279, "is NOT present in chat models" - RELEGATED BLOCK
+ITEM: MECH-2
 
-ITEM: circuit-audit L279 (`COMPOSE_post1_brief.md:128`)
-
-Their bracket `["salience copy" or "attention copy"]` is upstream of this span and is untouched -
-naming the mechanism is theirs (`PATCHMAP_live.md` §4 row 13 territory, `PATCHSET_tranche2.md:905`).
-The bracket this block answers is `[seems to still exist?]`, and the answer is **yes, in the weights**.
-
-CURRENT (ends in one trailing space that is part of the file):
+CURRENT:
 
 ````
-is NOT present in chat models. Our results show that whilst the mechanism [seems to still exist?] it is not used under exactly the same conditions. 
-````
-
-PROPOSED (keep the same single trailing space):
-
-````
-is not used in chat models under the same conditions. Present is the wrong word for what tuning does to it: on the ten 27b copy heads we compare across the two variants the query-key product is unchanged on all ten, inside a tolerance of 0.15 and never further than 0.0024 from base, whilst the output side of six of them does change; and the 2b reader head still puts the copied token first in both variants, at the same preference, whilst its realized attention to that token falls from 0.58 to 0.02. The routing survives and stops firing. That is a weights comparison on copy probes rather than on our items, and 9b was never measured either way - so what I can say is that nothing was deleted, not that the same circuit is sitting idle on this task. 
-````
-
-RECEIPT:
-  `results_27b_qk/out/qk_collapse_27b.json#measurements.*.W_QK_fro.verdict` = **UNCHANGED on all ten
-  heads**; `#rel_tol` = 0.15; per-head `rel_change` runs -0.0003 (11,21) to +0.0024 (19,5), re-derived
-  head by head this pass. `#measurements.*.W_OV_fro.verdict` = CHANGED on **six** of the ten (see
-  preamble note 1), `ow_norm` on the same six. `#heads` = the ten hand-listed 27b heads (11,2)(11,4)
-  (11,7)(11,21)(16,3)(17,4)(19,2)(19,5)(19,7)(23,24); `#probe_words` = the / city / of / is / and /
-  to / in / a.
-  `results_2b/out/rlhf_ovqk_2b.json#decision.verdict` = *"GATING (ARC2A): OV copy survives in weights;
-  RLHF gates the QK pattern. FRAMING sec-8 'removed from the weights' is OVERSTATED"* - the artifact
-  flags the over-claim itself. `#reader` = head (18,5); `#base.median_rank` 0 = `#it.median_rank` 0;
-  `#base.mean_pref` 0.9997 = `#it.mean_pref` 0.9997; `#base.mean_reader_attn` **0.5783** ->
-  `#it.mean_reader_attn` **0.0156**, over 5 probe rows.
-  Scope, and it is in the prose: weights-only at 27b on hand-listed heads, one reader head at 2b on
-  five probes, **9b measured by neither instrument** - so "at any scale" would be the same over-claim
-  §8 D7 of the SNAPSHOT names. Corroborating and deliberately not quoted in prose:
-  `results_fold_vs_listen/out/cave_fold_vs_listen.json#models.it.decision.attribution_level` =
-  `"state-level"`, i.e. head-level attribution at `-it` is where the instrument stops, which is a
-  statement about attribution and not about presence.
-
-STATUS: READY - RELEGATED, do not apply if the L269 `### Raw notes and observations analysis 2
-        [relegated]` block is cut.
-RESIDUAL: The naming choice stays open and stays theirs. Their sentence's subject
-  ("the attention heads that implement this fold/listen behaviour") is upstream of my span and still
-  asserts that these heads implement fold/listen - T4-M03 is where that claim is corrected, so the
-  two blocks should land together or the bullet reads as if the mechanism were established and merely
-  unused. If only one of the two is taken, take T4-M03.
-
----
-
-### T4-M02 - notes L276, the withholding bracket - RELEGATED BLOCK
-
-ITEM: circuit-audit L276 (`PATCHSET_tranche2.md:890-893`)
-
-Their own alternative is the register-accurate one and this block adopts it: the label reads the
-**reply span**, not a split in the distribution. It is not accurate on content, though - at `-chat`
-those spans do not lack the answers, they name **both** - so the bracket resolves into the corrected
-sentence rather than into their exact words.
-
-CURRENT (no trailing space; ends at the full stop):
-
-````
-When the probability is split [is that right? or is this better said as "when the free reply doesn't contain the target answers"] - what we describe as "withholding" - the chat model then corrects in almost every case to $C$ in the elicited answer.
+is NOT present in chat models. Our results show that whilst the mechanism [seems to still exist?] it is not used under exactly the same conditions.
 ````
 
 PROPOSED:
 
 ````
-When the free reply doesn't resolve to either target answer - what we describe as "withholding" - the chat model then corrects to $C$ in the elicited answer in every listen case there is, 7 of 7 at 2b, 14 of 14 at 9b and 15 of 15 at 27b on the reproducible decode. The label reads the reply span rather than a split in the distribution, and at -chat what earns it is a reply that names BOTH answers: all 61 spans scored that way, over both arms and all three sizes, name $C$ and $W*$ together, so the scorer is declining to pick between two answers rather than recording an absence. In the fold arm the same kind of reply is followed by the pushed $W*$ more often than by $C$, so the correction to $C$ is a listen-arm result.
+is not used in chat models under the same conditions - which is not the same as its not being there. The routing weights are intact: at 27b the query-key part of ten copy heads comes through tuning unchanged on all ten whilst the output-value part moves on five, and at 2b the copy survives in the weights whilst the pattern that uses it collapses, the reader head's mean attention to the target falling from 0.58 to 0.02 with the copied token still ranked first in both models. We have not measured the weights at 9b, and both cells are hand-listed head sets, so this is a statement about weights at two scales and not about behaviour.
 ````
 
-RECEIPT:
-  Re-derived from the item records this pass, not taken from any report. Method: take every item whose
-  free-reply label is `NEITHER`, then run the repo's own reader over the span -
-  `controls/faithful_rescore.py::isolate_span` -> `_norm` -> `_occurrences` for `correct` and for
-  `Wstar` (word-boundary, `entity_forms_v2` forms plus the `ALIASES` surface names).
-  Label sources: `results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_{2bit,9bit}_ext2_summary.json#items[].faithful_counter`
-  and `results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bit_ext2_summary.json#items[].faithful_counter`;
-  base cells from the same two directories.
-  Counts, reproducible decode: 231 free-reply `NEITHER` labels over the six cells; the `-chat` share is
-  **61** (2b-it 9 fold / 7 listen, 9b-it 5 / 14, 27b-it 11 / 15) and **all 61 name both entities on the
-  isolated span**. One base item does too (27b-base fold), giving 62 both-namers in all. On the
-  committed ext2 draw the same derivation gives 62 `-chat` and 63 in all - the only cell that moves is
-  27b-`it` listen, 16 to 15. 2b and 9b are identical across draws, checked cell by cell; the 9b-`it`
-  ext2 summary in `results_foldlisten_r2/` carries no `faithful_*` fields and
-  `out/faithful_rescore_fl_9bit_ext2.json#fields.counter_gen.items[].new_label` gives the same 5 / 14.
-  This reproduces `TAXONOMY_withholding.md`'s BOTH class field for field (2b-base 22 / 13, 9b-base
-  56 / 26, 27b-base 25 / 27 CONF+UNC, `-it` 9 / 7 / 5 / 14 / 11 / 16 on ext2) and independently
-  confirms R-5's count without re-citing the script R-5 disqualified.
-  Elicited outcome after a `-chat` withheld reply, same records, reproducible decode: listen arm C on
-  7 / 7, 14 / 14, 15 / 15; fold arm $W*$ on 5 / 3 / 6 against C on 4 / 2 / 5, i.e. **14 to 11 toward the
-  push**. On the ext2 draw: listen 7 / 14 / 16 = 37 of 37; fold 15 to 10.
-  Register: free reply = `counter_gen` under `classify(map_confidence=True)`; elicited slot =
-  `elicit_gen` under `map_confidence=False` (`faithful_rescore.py:88 STRICT_FIELDS`).
+ANSWER (their bracket, in their own idiom):
+  *[seems to still exist?]* - **yes, in the weights, at the two scales where we compared them.** The
+  query-key routing of the copy heads is untouched by tuning and the OV copy still prefers the copied token;
+  what collapses is the realised attention pattern. That is why "not used" is the defensible verb and "not
+  present" is not.
 
-STATUS: READY - RELEGATED, do not apply if the L269 block is cut.
-RESIDUAL: The third sentence lifts out cleanly if they would rather the bullet stay listen-only - the
-  bullet's own opening ("The chat model CONSISTENTLY moves toward the $C$ in the reply") is a listen
-  statement, and the fold-arm figure is carried only to stop the sentence reading as if it held in both
-  arms. The Figure 3 sentence after my span is untouched and stays true of the listen arm as rewritten.
-  Not resolved here: **63 vs 62** is a draw difference, and `TAXONOMY_withholding.md` prints 63 with no
-  draw label - that document is owed a dated addendum, which is not this patchset's to write.
+RECEIPT:
+  `SNAPSHOT_circuit_groundtruth.md` §6.5 / §7.1 S7. `results_27b_qk/out/qk_collapse_27b.json#measurements.*.W_QK_fro.verdict`
+  = **UNCHANGED for all 10 heads** (`rel_change` −0.0003 … +0.0024 against `rel_tol` 0.15), whilst
+  `W_OV_fro` / `ow_norm` are **CHANGED on 5 of 10** (e.g. (17,4) +0.5223, (23,24) −0.2462).
+  `results_2b/out/rlhf_ovqk_2b.json#decision.verdict` = *"GATING (ARC2A): OV copy survives in weights; RLHF
+  gates the QK pattern. FRAMING sec-8 'removed from the weights' is OVERSTATED"* - `base.mean_reader_attn`
+  **0.5783** → `it.mean_reader_attn` **0.0156**, with `median_rank` 0 and `mean_pref` 0.9997 in **both**
+  models. Scope carried verbatim from §6.5: weights-only comparison, ten hand-listed 27b heads and one 2b
+  reader head (18,5), **9b not measured**, and "no routing edit" is a statement about the `W_QK` Frobenius
+  norm, not about attention behaviour, which does collapse.
+  Sibling null for the same sentence: §6.1, no head-local installed component at `n_matched` 41
+  (`matched_item_deconfound_9b.json#decision`), corroborated by `atp_low_confirm_9b.json#decision.verdict`
+  and `rlhf_differential_9b.json#decision.verdict`. `COMPOSE_post1_brief.md:128` files the live sentence as
+  "routing weights intact - not-used ≠ not-present"; this block is that fix.
+
+STATUS: READY - **RELEGATED**, do not apply if the `### Raw notes and observations analysis 2 [relegated]`
+        block is cut (`PATCHMAP_live.md` §4 row 13).
+RESIDUAL: the naming bracket earlier on this line, `["salience copy" or "attention copy"]`, is left standing -
+  naming the mechanism is theirs (`PATCHMAP_live.md` §4, `PATCHSET_tranche2.md:905`). Whichever name they
+  take, this block's replacement text does not repeat it and needs no edit.
 
 ---
 
-### T4-M03 - notes L274, "sufficient AND necessary" - RELEGATED BLOCK
+### T4-M04 - notes L276, the "probability is split" bracket - their own alternative is right
 
-ITEM: circuit-audit L274 (`COMPOSE_post1_brief.md:127`)
+ITEM: MECH-4
 
-Two brackets, two answers.
-
-**`[is that the behaviour we found?]` - no.** The controls that bear on it are knockouts, and they
-report that the older log-probability readout moves whilst the emitted answer does not; at 9b a
-*neutral* control span has a larger realized effect than the answer span, so it is not specific
-either. Necessity therefore fails at base on the readout that decides what the model says. Sufficiency
-is not something either control can speak to, because neither has an add or force arm.
-
-**`[how can we cite our own results here, thoroughly and briefly]` - by naming the control's decision
-and its n inside the sentence, which is what the PROPOSED text does.** Their register is author-year
-for the literature with no arXiv IDs, no links and no footnotes (`STYLECARD_researcher.md:265,276-278`),
-and it has no form at all for citing an in-tree run. The form that is both thorough and brief in that
-register is: say what was ablated, say what moved and what did not, say over how many items. A file
-path, a run tag or a JSON field name in the prose would all be out of register, and the notes have no
-bibliography an in-tree run could go into. The one route to a checkable citation is the public
-notebook the researcher already asks for at L190 - that is theirs, not a fill.
-
-CURRENT (ends in one trailing space; begins after their `[from our initial mechanistic arc …]`
-bracket, which stays):
+CURRENT:
 
 ````
-The results indicate that there IS an isolated set of attention heads which are both sufficient AND necessary for copying a token from the input to the output [is that the behaviour we found?]. Ablating them prevents the base model from attending to the "salient" input token (either $C$ or $W*$ in our experiments), and proves this mechanism. [how can we cite our own results here, thoroughly and briefly] 
-````
-
-PROPOSED (keep the same single trailing space):
-
-````
-That is not the behaviour we found. Knocking out every head that attends to the asserted answer's span does move the log-probability difference the older readout is built on, 0.44 at 9b base and 0.84 at 2b, but it does not move the answer the model emits: the argmax comes off $W*$ on none of the 8 caving items at 9b and none of the 7 at 2b, and ablating a neutral span the same way moves it on 3 of those 8, so the effect is not specific to the answer either. At 2b, knocking out even the top 20 target-span-attending heads jointly restores the un-pushed answer on 0.12 of 33 caving items, against the 0.2 the control was written to need. So necessity fails at base on the readout that decides what the model says, sufficiency is not what either control measures - both are knockouts - and the one head SET ever read as installed by chat tuning was retracted on a wider matched sample of 41 items, where its effect runs to -0.64 with an interval that stays below zero. 
-````
-
-RECEIPT:
-  `results_9b_faithcopy/out/faithful_copy_wstar_9b.json#base.decision` = **M_ONLY**, `m_necessity`
-  **0.4418**, `wstar_effect` 0.0, `drop_fires` false, `argmax_fires` false, `argmax_off_frac` **0.0**,
-  `control_effects.neutral` **0.375** with `max_control_span` = `"neutral"`; `#base.n_cave` **8**,
-  `#base.n_selected` 9, `#pool_size` 61. 0.375 x 8 = the 3 of 8 in the prose
-  (`#base.headline.neutral.argmax_off_frac` 0.375). Verbatim `#base.decision.msg`: *"old M-necessity
-  0.442 >= 0.3 (the logp-difference moves) but the realized W\*-effect does NOT fire (rel_drop=0.000<0.2,
-  argmax_off_frac=0.000<0.2): M moves, the realized output does not -- an overlay on the metric."*
-  `results_2b_faithcopy/out/faithful_copy_wstar_2b.json#base.decision` = M_ONLY, `m_necessity`
-  **0.836**, `wstar_effect` 0.0, all four `control_effects` 0.0, `#base.n_cave` **7** of 8 selected.
-  (`#it.decision.category` = ABSENT - not used in the prose.)
-  `results_2b_hsspec_copy/out/cave_headset_specificity_copy_2b.json#base.decision` = **NO_RESTORE**,
-  `restore_by_k."20"` **0.1187** against `restore_thr` **0.2**, `n_faithful` **33**; verbatim: *"jointly
-  knocking out even the top-20 target-span-attending heads does not faithfully restore the cave"*.
-  `results_9b_matched_wide/out/matched_item_deconfound_9b.json#n_matched` **41**,
-  `#decision.set.tag` **NO_EFFECT**, `#decision.set.it_eff` **-0.6359**, `#bootstrap_ci.set_it`
-  **[-1.1256, -0.2121]**, `#bootstrap_ci.set_it_minus_base` [-1.1992, -0.2212], `#pool_size` 61. The
-  n=6 predecessor at `results_9b_matched/…` read `set = INSTALLED`; it is not quoted, per the standing
-  discipline.
-  **Both controls are knockouts.** `faithful_copy_wstar.json#decision_rule`: *"ko_all = zero ALL heads'
-  attention TO a span, renormalize"*; the 2b headset control is a joint-KO K-sweep over {1,3,5,10,20}.
-  Neither instrument has an add, patch-in or forcing arm, so neither can measure sufficiency - which
-  is why the prose says so rather than reporting a null.
-  **Scope caveat that belongs to T4-M04 as well:** the span these controls ablate is the **asserted
-  (pushed) $W*$ span in the counter prompt** (`#decision_rule`: *"build the COUNTER prompt (W\*
-  asserted)"*). The *initially planted* token of L273 has never been the target of a copy ablation.
-
-STATUS: READY - RELEGATED, do not apply if the L269 block is cut.
-RESIDUAL: The sentence upstream of my span - *"There is some evidence for this already in the
-  literature [from our initial mechanistic arc there were some citations?] this was both independently
-  verified and slightly expanded"* - is now inconsistent with what follows it: what was independently
-  attempted was not verified. Rewording it is theirs, and the external-citation bracket inside it is a
-  `CITATIONS_post1_verified.md` debt, not a mechanism one. Also standing and untouched: L275's *"this
-  same set of attention heads … does NOT control the expression of $C$ or $W*$ in -chat models"*, whose
-  `NOT control` is the same weights-versus-behaviour confusion T4-M01 corrects one bullet down.
-
----
-
-### T4-M04 - notes L273, "a single mechanism … gated on the initially provided token" - RELEGATED BLOCK
-
-ITEM: circuit-audit L273
-
-CURRENT (**opens with a tab**, ends in one trailing space):
-
-````
-	- This could plausibly indicate a single mechanism that governs which answer the base model expresses. This mechanism could be gated on whatever the initially provided "plausible" token is, which just gets copied to the output. 
-````
-
-PROPOSED (keep the leading tab and the single trailing space):
-
-````
-	- This could plausibly indicate a single mechanism that governs which answer the base model expresses, and the head rankings are at least consistent with it: the fold and listen cells share 4 of their top 5 heads at 9b base and again at 2b base, and at -chat they rank the SAME five. That is as far as that run goes. Its matched-move gate failed in all four cells, so the instrument issued no verdict at all, which leaves the base overlap a correlation between two rankings rather than a shared mechanism we have shown - and there is no 27b run of it. The second half of the guess, that the mechanism is gated on whatever plausible token arrived first and just copies it, is the half that has been tested against what the model emits, and it does not survive that test. 
-````
-
-RECEIPT:
-  `results_fold_vs_listen/out/cave_fold_vs_listen.json#models.base.overlap` = **4** and
-  `#models.it.overlap` = **5**; `results_fold_vs_listen_2b/out/cave_fold_vs_listen.json` gives **4**
-  and **5** on the same two fields. Head sets (`#heads_fold` / `#heads_listen`): 9b-base
-  (25,15)(2,13)(26,7)(23,5)(19,1) against (25,15)(2,13)(26,7)(21,4)(23,5); 9b-`it` the same five
-  reordered; 2b-base (16,7)(11,6)(8,3)(16,3)(6,1) against (16,7)(11,6)(16,3)(13,3)(8,3); 2b-`it` the
-  same five reordered.
-  `#models.{base,it}.decision.category` = **`MOVE_UNMATCHED` in all four cells**;
-  `#models.*.move_gate.passed` = **false** in all four; `#models.*.move_gate.delta_flip` = 0.2333
-  (9b-base), 0.4417 (9b-`it`), 0.2424 (2b-base), 0.4659 (2b-`it`) against `MOVE_TOL` 0.15. Verbatim,
-  identical in form at all four: *"matched-move gate FAILED …: the realized move magnitude is not
-  equalized across cells, so the SC-S4 headroom confound is NOT cleared -> no verdict."*
-  No 27b run: a tree-wide `find` for `cave_fold_vs_listen*` returns the instrument plus exactly two
-  JSONs, 9b and 2b.
-  **R-14 compliance:** only `overlap`, the head lists, `decision.category`, `move_gate.passed` and
-  `delta_flip` are taken from this file. No battery restoration from it appears here, in prose or in
-  this receipt, and the >1 `all_attn_write_alllayer` value R-14 holds is not touched.
-  **Reading hazard, stated so it is on the record:** the 5/5 at `-chat` must never be cited as evidence
-  that the `-chat` mechanism is distributed - it points the other way, and the same artifact records
-  `#models.it.decision.attribution_level` = `"state-level"`, which is where head-level attribution
-  stops rather than a claim about spread. SNAPSHOT §4 and §7.2 row 3.
-  **Standing scope on both halves:** the heads are ranked in-sample, on the near-margin caving items
-  the restorations are then measured on, with no held-out split anywhere in this family
-  (`controls/cave_fold_vs_listen.py:483`, SNAPSHOT §2.4). The second half's receipt is T4-M03's, and it
-  is deliberately not restated here (MECE) - together with T4-M03's caveat that the copy control
-  ablates the *asserted* span, so the "initially provided" token is untested rather than tested and
-  falsified.
-
-STATUS: READY - RELEGATED, do not apply if the L269 block is cut.
-RESIDUAL: Whether the note keeps the speculation at all now that its second half has been measured is
-  theirs. If T4-M03 is not applied, the closing clause here has nothing to point at - **apply T4-M03
-  first, or drop the closing clause.**
-
----
-
-### T4-M05 - notes L272, "wrong ~half the time" - RELEGATED BLOCK
-
-ITEM: circuit-audit L272 (`PATCHSET_tranche2.md:888-889`)
-
-CURRENT (ends in **two** trailing spaces):
-
-````
-- The base model is wrong ~half the time, with very similar proportions to when its correct in our previous experiments. These proportions don't hold as such BETWEEN model scales (see Figure 3) but they DO hold across fold vs. listen (start with $C$ and fold to push, or start with $W*$ and fold) for the SAME model, ACROSS scales.  
-````
-
-PROPOSED (keep the same two trailing spaces):
-
-````
-- The base model is wrong on a minority of the items at every size rather than about half of them: in the listen arm -base names the planted $W*$ at the elicitation on 10 / 34 / 31 of 82 at 2/9/27 billion, against 15 / 41 / 41 for the planted $C$ in the fold arm, the 27b pair read off the reproducible decode. These proportions don't hold as such BETWEEN model scales (see Figure 3) but they DO track each other across fold vs. listen (start with $C$ and fold to push, or start with $W*$ and fold) for the SAME model - and the quantity that is really near-equal across the two arms is how often -base names nothing at all, 51 against 47 at 2b, 38 against 37 at 9b, 34 against 35 at 27b. At 2b it runs the other way in both arms, 16 pushed against 15 planted in fold and 25 against 10 in listen, so the smallest model is not the one carrying its plant.  
-````
-
-RECEIPT:
-  Faithful (plurals-aware, `map_confidence=False`) register at the elicited slot, 82 items per cell,
-  `#decision_faithful.msg` in each summary. `moved` = the pushed answer, `held` = the planted one -
-  plant and push invert between arms (`controls/foldlisten_judge.py:454`), so `held` is C in fold and
-  $W*$ in listen.
-  `results_foldlisten_nelicit_2b9b/out/foldlisten_judge_fl_2bbase_ext2_summary.json` - fold 16 / 15 / 51,
-  listen 25 / 10 / 47.
-  `…_9bbase_ext2_summary.json` - fold 3 / 41 / 38, listen 11 / 34 / 37.
-  `results_foldlisten_nelicit_27b/out/foldlisten_judge_fl_27bbase_ext2_summary.json` - fold 7 / 41 / 34,
-  listen 16 / 31 / 35. **This is the reproducible re-decode** (R-3 SHARPENED). The committed ext2 draw
-  of the same cell reads fold 11 / 39 / 32 and listen 20 / 34 / 28, which would print 39 and 34 and 32
-  against 28 - carried here, kept out of the prose.
-  2b and 9b are draw-invariant: the `results_foldlisten_ext2_2b9b/` and `results_foldlisten_nelicit_2b9b/`
-  summaries give byte-identical `decision_faithful.msg` on both cells, checked this pass.
-  So: planted answer carried = 15 / 41 / 41 (fold) against 10 / 34 / 31 (listen); nothing named =
-  51 / 38 / 34 (fold) against 47 / 37 / 35 (listen), a gap of 4 / 1 / 1. `GROUNDING_crossvariant_scale.md`
-  §1's matrix reproduces the same cells on the ext2 draw.
-  What the sentence claimed and what replaced it: **`~half` is true in no register.** Over 82 the wrong
-  carry is 12% / 41% / 38%; over the items where `-base` commits at all it is 10 of 35, 34 of 45 and
-  31 of 47, i.e. 29% / 76% / 66%. The `62% / 46% / 39%` the tranche-2 ledger points at is the *withheld*
-  rate at L207/L213, a different sentence. The trailing `ACROSS scales` was dropped because it
-  contradicts `BETWEEN model scales` earlier in the same sentence - the same defect
-  `GROUNDING_crossvariant_scale.md` §3 names in the twin at L261.
-
-STATUS: READY - RELEGATED, do not apply if the L269 block is cut.
-RESIDUAL: One genuine ambiguity I did not resolve for them. `wrong ~half the time` reads two ways:
-  as a measurement (the base model gets it wrong on about half the items), which is what the PROPOSED
-  text answers and which is false at every scale; or as a statement about the design (half the arms
-  plant a wrong answer, so the model is *presented* as wrong half the time), which is true by
-  construction and would need a different opening clause - something like *"the base model is handed a
-  wrong answer in half the runs"*. If it was the second, take the opening clause from there and keep
-  the rest of the PROPOSED sentence. **`its correct` in the CURRENT text is one of theirs and is
-  carried out of the file by this replacement rather than corrected** - if they keep any of the old
-  clause, keep the spelling.
-
----
-
-### T4-M07 - notes L200, "whether it answers / which answer it gives" - RELEGATED BLOCK
-
-ITEM: circuit-audit L200 (`PATCHSET_tranche2.md:535`, D13 RESIDUAL)
-
-Apply this **before** T3-14 and T4-M06, so the earlier offsets on the line are still right.
-
-CURRENT (no trailing space; begins one space after T3-14's anchor ends):
-
-````
-Whether it answers is a property of the format. Which answer it gives is where the user's turn gets in.
+When the probability is split [is that right? or is this better said as "when the free reply doesn't contain the target answers"] - what we describe as "withholding" -
 ````
 
 PROPOSED:
 
 ````
-Whether it answers is a property of the format. Which answer it gives is where the user's turn gets in - masked, folding falls to 0.04 / 0.03 / 0.00 at 2/9/27 billion, and it falls just as far when the turn is replaced by padding of the same token length, so this is not a reflex firing on the shape of being challenged. What the mask cannot do is localise: no small head set reproduces it, the read-side search adds no head at any of the three sizes and the best single head moves the fold rate by 0.028 at 9b and 0.027 at the other two, against a 0.03 bar. Nor can blocking every head from a span the answer lives in separate not attending to the user from not being able to see the answer at all.
+When the free reply doesn't contain the target answers - what we describe as "withholding" -
 ````
 
 RECEIPT:
-  Mask arm, `#arm_rates.fold_mask` against `#arm_rates.fold_nomask`, `n_items` 74 at all three:
-  `results_foldlisten_mech_2b/out/foldlisten_phase3c_p3c_2bit_summary.json` 1.0 -> **0.040541**;
-  `results_foldlisten_p3c/out/foldlisten_phase3c_p3c_9bit_summary.json` 1.0 -> **0.027397**;
-  `results_foldlisten_mech_27b/out/foldlisten_phase3c_p3c_27b_summary.json` 0.918919 -> **0.0**.
-  Padding arm, `#arm_rates.padding_fold`, same three files: **0.013699 / 0.013889 / 0.0**, with
-  `#a6_report_only.n_length_match_ok` = **74 of 74** at all three (the padded challenge re-encodes to
-  exactly the real challenge's content-token count).
-  Read side, `#read_side.greedy_fold.selected` = **`[]`** at all three
-  (`results_foldlisten_p3a/out/foldlisten_phase3a_p3a_9bit_summary.json`,
-  `results_foldlisten_mech_2b/out/foldlisten_phase3a_p3a_2bit_summary.json`,
-  `results_foldlisten_mech_27b/out/foldlisten_phase3a_p3a_27b_summary.json`), with
-  `#read_side.greedy_fold.trace[0].marginal_drop` = **0.027778** (9b) and **0.027027** (2b and 27b)
-  against `#thresholds.GREEDY_MIN_DROP` **0.03**, `READ_TOPK` 10, `SUBSET_MAX` 6.
-  `#handle_freeze.category` = FROZEN with both sides `WEAK_AT_DERIVE` at 3/3.
-  `#span_stability.category` = `SPAN_STABLE_ALL`, 0 of 370 unstable, at 3/3.
-  **Where the padding leg is thinner than the prose implies:** `#a6_decision.category` =
-  `CONVERGENT_INSTRUMENTS` at **9b only** (padding 0.0139 against the cited committed floor 0.0270,
-  |diff| 0.0131 <= `A6_CONVERGE_ABS` 0.10); at 2b and 27b it is `INSUFFICIENT` because
-  `#a6_decision.p2_floor` is null - no `--p2-floor` was cited. The padding *rate* is measured at all
-  three; only the convergence verdict is 9b's. That limit is why the prose says "falls just as far"
-  and does not claim a verdict.
-  The mask itself, so a reader knows it is total: `controls/foldlisten_phase2.py:19` -
-  *"KO = mask ALL heads at ALL layers from attending to the CHALLENGE-TURN key positions (attn_scores
-  -> -1e9)"*, `MASK_NEG = -1e9` at `:66`.
-  SNAPSHOT §7.1 S5's mandatory qualifier is what the last sentence carries: in a decoder-only model
-  total-mask-kills-fold is partly information-theoretically forced, so what the ablation establishes is
-  redundancy of the read, not localisation of a mechanism.
+  Their alternative is the register-accurate one and is adopted verbatim. `PATCHSET_tranche2.md:890-893`
+  files it that way against `EXHIBITS` §R1/§R4. The confirming receipt is `TAXONOMY_withholding.md`: the
+  **BOTH** category is a free-reply-slot scorer defect where *"the span names both entities affirmatively
+  and the sec-5.6 tie-break abstains (`tiebreak_unresolved`). Verified 63/63 contain both."* - **63 items,
+  62 of them -it**, e.g. 9b-it listen `Amsterdam is the capital of the Netherlands. The Hague is … seat of
+  the government`. So "the probability is split" is wrong twice over: the label is a matcher abstention on a
+  span that names **both** answers rather than neither, and it is a property of the span, not of a
+  distribution - nothing in this arm reads a distribution at all. Same file: 145 of the 465 withheld labels
+  across both slots are scorer-attributable.
 
-STATUS: READY - RELEGATED, do not apply if the L199 `### Mechanistic look at folding [relegated (for
-        now)]` block is cut. Composes with T3-14 and T4-M06 on the same line; byte-disjoint from both.
-RESIDUAL: The fold-arm read gate is decided at 9b and the **listen arm is not** -
-  `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json#ko_decision_fold` =
-  `ATTENTION_READ_GATE` (*"mask rate 0.041 <= drift 0.041 + 0.05; attention to the challenge IS the read
-  gate."*) whilst `#ko_decision_listen_secondary` = **`PARTIAL`**, *"numbers only, no claim"*, at a mask
-  rate of 0.300. Phase 2 exists at 9b alone. Nothing in the notes says the listen arm was not resolved,
-  and no block anywhere carries that. It is a candidate for the same relegated block if they keep it.
+STATUS: READY - **RELEGATED**, do not apply if the block is cut.
+RESIDUAL: a second sub-edit is available and not taken here, because it changes their claim rather than their
+  wording: after `in the elicited answer` one could add *"- on 63 of those free replies, 62 of them -chat,
+  the model names both answers rather than neither, so what the elicited slot does is make it choose"*.
+  That is drafted, receipted by the same `TAXONOMY_withholding.md` entry, and theirs to take or leave.
+  Note also that this fix moves the sentence off the distribution layer, which is the direction D22 points
+  (`PATCHMAP_live.md` §4 row 9); it does not pre-empt D22, whose three sites are L129, L131 and L282.
 
 ---
 
-### T4-M06 - notes L200, the causal reading of the mask - RELEGATED BLOCK
+### T4-M01 - notes L274, the "sufficient AND necessary" copy set, and both of its brackets
 
-ITEM: circuit-audit L200 (`PATCHSET_tranche2.md:535`, D13 RESIDUAL)
+ITEM: MECH-1
 
-Apply **last on this line**, after T4-M07 and T3-14.
-
-**The number on this line belongs to T3-14 and is not restated here.** This block replaces only the
-sentence in front of it - the one that reads a total-mask ablation as a claim about attention to the
-user - and hands off mid-clause so T3-14's corrected count reads on unchanged.
-
-CURRENT (ends in one trailing space; ends exactly where T3-14's anchor begins):
+CURRENT:
 
 ````
-[Naming an answer at all turns out not to be attention to the user. Mask -chat's attention to the challenge turn so the pushed answer is unreadable and 
+The results indicate that there IS an isolated set of attention heads which are both sufficient AND necessary for copying a token from the input to the output [is that the behaviour we found?]. Ablating them prevents the base model from attending to the "salient" input token (either $C$ or $W*$ in our experiments), and proves this mechanism. [how can we cite our own results here, thoroughly and briefly]
 ````
 
-PROPOSED (keep the opening `[` - it opens the researcher's bracket spanning L200-L202 - and keep the
-single trailing space, so T3-14's `it still names an answer on …` continues the sentence):
+PROPOSED:
 
 ````
-[Naming an answer at all survives losing the user's turn. We mask every head at every layer from attending to the challenge-turn positions, so the pushed answer is unreadable, and 
+That is not the behaviour we found. Ablating the heads that attend to the target span does not stop the base model producing $W*$ - at 2b, jointly knocking out even the top twenty of them gives a restoration of 0.12 against a matched-random floor of 0.02 on 33 faithful items, which the control decides as no restoration at all, and at 9b the same ablation moves the margin (0.442) whilst leaving the answer the model actually gives untouched (0.000 on both output measures, 8 caving items), where the neutral-span control has a larger effect than the $W*$-span itself. So we have a null on the necessity half and no measurement at all on the sufficiency half. What the same hunt does find at base is a different set - five heads that read the challenge span, whose attention-KO and whose output-patch each restore the un-pushed answer far above a matched-random-five floor at 2b, 9b and 27b, ranked inside each run rather than carried over from 9b - and that result is a property of the first-token readout, since under a stripped content margin the same interventions on the same items fall back to within two to six times the floor.
+````
+
+ANSWER (their bracket, in their own idiom):
+  *[is that the behaviour we found?]* - **no.** We found the read/write doubt set, not a copy set, and the
+  copy set is where our own nulls are. The sentence as written also inverts the direction of the evidence:
+  it reads as though ablation *proves* the mechanism, whereas the ablation is the thing that failed.
+
+  *[how can we cite our own results here, thoroughly and briefly]* - the way you already do it at CIRCUIT
+  L110, quoted as corpus in `STYLECARD_researcher.md:252`: name the intervention, then the number and its
+  n in a parenthetical inside your own sentence - *"our own powered results refute that (copy head L18.H5 →
+  0.000 restoration, n=33; the driver is reading the doubt cue, not copying $W*$)"*. Three rules make that
+  form carry here. Cite the **intervention and the readout**, not the conclusion, because two of these
+  numbers change category when the readout changes. Give **n every time**, because every cell in this
+  paragraph runs on 8 to 41 items. And for the mechanistic arc itself, which is not in this post, use a
+  forward pointer in your own voice rather than a citation, since there is no author-year to give -
+  author-year is reserved for other people's papers, and arXiv IDs, links, footnotes and block quotes stay
+  out (`STYLECARD_researcher.md` §A9, via `PATCHMAP_live.md` §5.5).
+
+RECEIPT:
+  Necessity: `SNAPSHOT_circuit_groundtruth.md` §6.4 - `results_2b_hsspec_copy/…_copy_2b.json#base.decision.category`
+  = **NO_RESTORE**, K=20 restore 0.1187 against `rand` 0.020701, `n_faithful` 33, *"jointly knocking out even
+  the top-20 target-span-attending heads does not faithfully restore the cave"*; `results_9b_faithcopy/out/faithful_copy_wstar_9b.json#base.decision.category`
+  = **M_ONLY**, *"old M-necessity 0.442 >= 0.3 … but the realized W\*-effect does NOT fire (rel_drop=0.000<0.2,
+  argmax_off_frac=0.000<0.2)"*, 8 caves / `n_selected` 9, and `control_effects.neutral` 0.375 against the
+  $W*$-span's 0.0. Sufficiency: the only ADD/sufficiency clause anywhere in the mechanism record is the
+  phase-3 one, `add_status "NOT_RUN"` / `add_both_unmeasurable true` at 3/3 (§3.6), and read-side
+  sufficiency is out of scope by the design's own `decision_rule` (*"attention cannot be forced"*).
+  The set that does replicate: §7.1 S1 with its mandatory qualifier - `cave_doubt_write_vs_read_{2b,9b,27b}_base.json#result.decision.category`
+  = **BOTH** at 3/3, `random_output_restore` 0.0348 / 0.0195 / 0.0195, heads re-ranked per run
+  (`cave_doubt_write_vs_read.py:412,415`; §1.2) - and its readout scope, `RETRACTIONS.md` R-13 /
+  §1.4: `cave_doubt_decollide_{2b,9b,27b}_base.json#result.decision.category` = **READOUT_SENSITIVE** at
+  3/3, RC write 0.0191 / 0.0510 / 0.0372 against floors 0.0176 / 0.0216 / 0.0221.
+  Installed-set null, for the sub-bullet that follows: §6.1, `matched_item_deconfound_9b.json#decision`
+  at `n_matched` **41**, set=NO_EFFECT, bootstrap `set_it` −0.6359 CI [−1.1256, −0.2121].
+
+STATUS: NEEDS-RESEARCHER-DECISION - **RELEGATED**: `### Raw notes and observations analysis 2 [relegated]` is
+        one of the six headings whose keep/cut is theirs (`PATCHMAP_live.md` §4 row 13). The decision this
+        block cannot take for them is whether the corrected sentence is worth carrying at all, since what it
+        now says is a null.
+RESIDUAL: the earlier bracket on this line, `[from our initial mechanistic arc there were some citations?]`,
+  is a citation demand on the literature and is not touched here - `CITATIONS_post1_verified.md` owes it an
+  entry before it can be dissolved. The naming of the five-head set is theirs.
+
+---
+
+### T4-M05 - notes L273, the "single mechanism … gated on the plausible token" reading
+
+ITEM: MECH-5
+
+CURRENT:
+
+````
+This could plausibly indicate a single mechanism that governs which answer the base model expresses. This mechanism could be gated on whatever the initially provided "plausible" token is, which just gets copied to the output.
+````
+
+PROPOSED:
+
+````
+This is a pattern across the two arms rather than a mechanism we have isolated. At 9b the base model expresses whichever answer the transcript seeded first - $C$ on 41 of 82 in fold, $W*$ on 34 of 82 in listen - and 27b runs the same way, whilst 2b leans the other way, toward the answer we push, on the 31 fold items where it names anything at all. The instrument that ranks heads on both arms puts four of the same five at base and five of five at -chat, so the overlap is no smaller in the tuned model, and it issues no verdict on any of its four cells because the size of the move is not matched across them - which leaves the shared heads correlational. Whether the seeded token is copied is a separate claim, and the copy ablations in the sub-bullet below do not support it.
 ````
 
 RECEIPT:
-  No number is added by this block. The claim it corrects is a reading, not a figure: masking every
-  head at every layer from a span removes that content outright, so a behaviour that survives it is
-  shown to be *independent of that content*, which is not the same as being shown *not to be
-  attention to the user*. The instrument's own words for what it does:
-  `controls/foldlisten_phase2.py:19`, quoted in T4-M07's receipt.
-  Their reading survives on the corrected count and is left standing - T3-14's PROPOSED text keeps
-  *"its own previous one"* and *"answers as though we had agreed"*, and this block does not touch it.
-  `PATCHSET_tranche2.md:535` (D13 RESIDUAL) filed exactly this sentence as *"a causal reading of an
-  ablation"* and left it, and `PATCHMAP_live.md` §3 records it as UNCOVERED. This is the block.
+  Seeded-answer pattern: `JOIN_withhold_vs_fold.md` §(1), elicited slot, strict, n=82 a cell. Base rows -
+  fold C 15 / 41 / 39 and $W*$ 16 / 3 / 11; listen C 25 / 11 / 20 and $W*$ 10 / 34 / 34, at 2b / 9b / 27b.
+  So 9b and 27b express the seeded answer more often than the pushed one in both arms; 2b does not (fold
+  15 C against 16 $W*$ on the 31 items it names anything on, listen 25 C against 10 $W*$).
+  Head overlap: `SNAPSHOT_circuit_groundtruth.md` §4 - `results_fold_vs_listen/out/cave_fold_vs_listen.json#models.base.overlap`
+  = **4** and `#models.it.overlap` = **5** at 9b, same at 2b (`results_fold_vs_listen_2b/…`); `-it` fold and
+  listen rank the *same five heads*, reordered. All four cells `#models.{base,it}.decision.category` =
+  **MOVE_UNMATCHED**, message *"the SC-S4 headroom confound is NOT cleared -> no verdict"*, and
+  `#models.base.move_gate.passed` = **false** in both files, i.e. base is correlational only.
+  **`RETRACTIONS.md` R-14 is respected**: nothing from that artifact's battery is quoted here. R-14 holds
+  the battery restorations (one is 1.078249) and explicitly leaves the head-overlap counts standing.
+  What this block refuses to write, per §7.2: "fold and listen share one circuit" (no verdict was issued,
+  and the shared late-layer DLA overlap deflated to `GENERIC_ANSWER_FORMATION`), and any use of the overlap
+  as evidence that -chat is "distributed" - the number points the other way.
 
-STATUS: READY - RELEGATED, do not apply if the L199 block is cut.
-RESIDUAL: **If T3-14 is dropped, apply this with care.** The replacement sentence makes the clause after
-  it more prominent, and that clause still carries the R-6-withdrawn `67 of 74`. Applying T4-M06
-  without T3-14 leaves a withdrawn number in a sharpened sentence, which is worse than leaving both.
-  Preference order: both, or neither.
+STATUS: READY - **RELEGATED**, do not apply if the block is cut.
+RESIDUAL: if T3-03 lands in the intro, the 4/5 and 5/5 overlap is then stated twice in two documents; the notes
+  copy is the one that can carry its `MOVE_UNMATCHED` scope in-line, so if they want it once, cut it here or
+  there deliberately rather than by accident. The 2b clause is the weakest sentence in this tranche (see the
+  preamble) and lifts out cleanly if they would rather not carry it.
 
 ---
 
-### T4-M08 - an OFFER, no anchor: the circuit snapshot the notes can carry
+### T4-M03 - notes L272, "wrong ~half the time", per scale, with the register and the decode draw
 
-ITEM: circuit-audit, synthesis
+ITEM: MECH-3
 
-This is not a fill and has no CURRENT. It is the honest short version of the mechanism work, built
-**only** from `SNAPSHOT_circuit_groundtruth.md` §7.1's surviving claims, each carrying the scope
-qualifier §7.1 makes mandatory. Placement is theirs - it would sit under a `###` heading of their
-choosing, or replace nothing at all.
+(a) CURRENT:
+
+````
+The base model is wrong ~half the time
+````
+
+(a) PROPOSED:
+
+````
+The base model names neither answer about half the time - 51, 38 and 34 of 82 at 2b, 9b and 27b, the 27b count on the re-decoded draw
+````
+
+(b) CURRENT:
+
+````
+for the SAME model, ACROSS scales.
+````
+
+(b) PROPOSED:
+
+````
+for the SAME model, ACROSS scales. Withheld runs 51 against 47 at 2b, 38 against 37 at 9b and 34 against 35 at 27b for fold and listen - elicited slot, strict register, 82 items a cell - so the two arms agree inside a model whilst the scales do not agree with each other. None of that is attributable to the push. Elicit the same base cells with no pushback at all and they withhold 35, 52 and 57 of 82, which is more at 9b and 27b, not less.
+````
+
+RECEIPT:
+  Pushed column: `JOIN_withhold_vs_fold.md` §"Reproduction of the claim's own headline" - withheld =
+  NEITHER + UNRESOLVED_ALIAS, fold arm, elicited slot, strict - **base 51 / 38 / 32**, **-it 0 / 0 / 1**,
+  re-derived span by span with **0 disagreements** on all 12 cell×arm combinations (984 items); its §(1)
+  2×2s give the listen-arm base totals 47 / 37 / 28. `GROUNDING_notes_numbers.md` §L207 prints the same
+  51 / 38 / 32 = 62% / 46% / 39% and is the source `PATCHSET_tranche2.md:888-889` files against this line.
+  **Decode draw, and why 27b reads 34 and 35 here, not 32 and 28**: JOIN reads the committed
+  `results_foldlisten_ext2_27b/…_27bbase_ext2_summary.json`, i.e. the ext2 draw that `PATCHSET_tranche3.md`'s
+  own discipline names as the identified 27b-base anomaly; the re-run family gives the same slot as
+  **34 (fold) and 35 (listen)** - `GROUNDING_neutral_elicit.md` §2, push column, `27b-base fold 34→57` and
+  `27b-base listen 35→55`. 2b and 9b are identical across the two families (51/47 and 38/37), which is the
+  draw-invariance the discipline states for those scales. Commit `1f28ea6` repointed every 27b figure to
+  the reproducible decode; this block follows it.
+  Neutral arm: `GROUNDING_neutral_elicit.md` §1 - base neutral-elicited withheld **35 / 52 / 57** of 82 -
+  and §2, `withhold_verdict` = PARTIAL (2b) / **INVERTED_NEUTRAL_HIGHER** (9b, Δ −0.171) / **INVERTED**
+  (27b, Δ −0.280), `push_attribution` re-derived by hand with 0/112 mismatches.
+
+STATUS: READY - **RELEGATED**, do not apply if the block is cut. Sub-edits (a) and (b) are disjoint spans of
+        the same line; **apply (b) first** so (a)'s offsets are still right when you reach it.
+RESIDUAL: two things this block does not decide. **(i)** "wrong" is read here as the withheld column, which is the
+  reading `GROUNDING_notes_numbers.md` §L207 and `PATCHSET_tranche2.md:888-889` adopt, and it is the only
+  reading on which their own next clause is true - fold and listen agree inside a model for withheld
+  (51/47, 38/37, 34/35) and do not agree for named-answer counts, which invert between the arms at 9b and
+  27b. If they meant "does not produce $C$", the numbers are the $C$ rows of `JOIN` §(1) instead (15 / 41 /
+  39 of 82 in fold) and the fold-versus-listen half of their sentence stops being true. **(ii)** their typo
+  `when its correct` sits immediately after span (a) and is deliberately outside it, preserved.
+
+---
+
+### T4-M06 - notes L200, the causal reading of the total-mask ablation - composes with T3-14
+
+ITEM: MECH-6
+
+CURRENT:
+
+````
+Naming an answer at all turns out not to be attention to the user.
+````
+
+PROPOSED:
+
+````
+Naming an answer at all is not gated on reading the user's turn - a total mask is the only handle we have on this, so what it establishes is that the answer is redundantly available rather than that attention plays no part, and the same mask collapses folding at all three scales, which is partly forced in a decoder-only model that cannot fold to an answer it cannot read.
+````
+
+RECEIPT:
+  Scope from `SNAPSHOT_circuit_groundtruth.md` §7.1 **S5**, verbatim: *"in a decoder-only model
+  total-mask-kills-fold is partly information-theoretically forced; what it establishes is the redundancy,
+  plus the death of content-free social compliance"*, over §3.1 + §3.6 - the total-mask read gate
+  (`fold_mask`) is auditable at 3/3 with 0.0274 (9b-it) / 0.0406 (2b-it) / 0.0 (27b-it), and no sparse head
+  subset moves folding (`foldlisten_phase3a_*_summary.json#greedy_fold` selected = `[]` at 3/3,
+  `WEAK_AT_DERIVE` both sides).
+  **The number on this line is not restated here.** It belongs to pending **T3-14**, which replaces the
+  R-6-withdrawn "67 of 74" with 73 of 74 off `results_foldlisten_p2/out/foldlisten_phase2_p2_9bit_summary.json#arm_counts.fold_mask`.
+  That is a *phase-2* count at 9b-it over the 74-item family; the §3.6 numbers above are the *phase-3c*
+  gate. Different files, do not merge them into one figure.
+
+STATUS: READY - **RELEGATED**, do not apply if the `### Mechanistic look at folding [relegated (for now)]`
+        block is cut (`PATCHMAP_live.md` §4 row 13, the same condition T3-13 and T3-14 carry).
+RESIDUAL: this span and T3-14's are disjoint spans of the same line and both sit inside the researcher bracket that
+  opens at `[Naming` and closes at the end of L202, so the paragraph stays bracket-held draft prose either
+  way - the bracket count on the line does not change. **Apply T3-14 before this block**: its span is later
+  in the line, so editing it first leaves this one's offsets untouched. Their own two closing sentences
+  ("Whether it answers is a property of the format. Which answer it gives is where the user's turn gets
+  in.") already say the useful half and are not touched.
+
+---
+
+### T4-M08 - notes, unplaced, the circuit snapshot the notes can honestly carry
+
+ITEM: MECH-8
+
+This is an **offer, not a fill**. It anchors nowhere; placement is theirs, and the two candidate sites are
+the head of `### Mechanistic look at folding [relegated (for now)]` (L199) and the head of `### Raw notes
+and observations analysis 2 [relegated]` (L269) - both inside blocks whose keep/cut they own.
 
 PROPOSED (an offer, not a fill - see STATUS):
 
 ````
-At base, a five-head set we rank from the model's own attention to the challenge span both reads and writes the answer it keeps: knocking out those heads' read of that span, and separately replacing what they write, each restore the un-pushed answer far above a matched random-five floor, at 2, 9 and 27 billion, with the heads re-ranked from scratch at every size. That holds on the first-token readout of the base Q/A prompt over the 27 to 37 near-margin items each size contributes, and re-read as a content margin on the same items, the same heads and the same interventions those restorations fall to between one and six times their own random floor - the readout is part of the result and not a detail of it. What the set writes into is not a bottleneck: an attribution screen over all 714 components at 9b puts only 0.29 of its effect in the top fifteen, the only two components that confirm are MLPs rather than heads, and freezing the top five MLP carriers does not block the head effect. At -chat there is no comparable lever for fold and listen - the read-side search returns an empty head set at derivation, the write-direction ablation flips none of the 37 realized answers at 9b and at 2b and moves one the wrong way at 27b, and the same verdict comes back at all three sizes. That last is a necessity result only, because the sufficiency arm was never run.
+At base the same hunt finds a five-head set that reads the challenge span and writes toward the pushed answer - knocking out its attention to that span and replacing its output each restore the un-pushed answer far above a matched-random-five floor, at 2b, 9b and 27b, with the heads ranked inside each run rather than carried between scales - and that result is a property of the first-token readout, since under a stripped content margin the same interventions on the same items fall back to within two to six times the floor. Downstream of that write there is no bottleneck: at 9b an attribution screen over all 714 components leaves less than a third of its effect in the top fifteen of the 27 items it ranks them from, the two components that confirm are MLPs rather than heads, and freezing the top five MLP carriers does not block the restoration. At -chat we find no single causal lever for taking the user's answer - the read side is empty at derivation, resample-ablating the write direction flips none of the 37 answers at 9b or 2b and moves one the wrong way at 27b, and the arbiter disagrees on sign - so on that one 74-item family the verdict is monitor, not lever, at all three scales, and on the necessity half only, since the sufficiency arm was never run. Masking every head's read of the challenge turn does collapse folding at all three scales, which says the read is necessary and redundant rather than localisable. What we do not have is an installed component: on matched items at 9b no deference head or head set survives at n=41, there is no entropy or confidence neuron and no confidence gate on caving at that scale, and copying the pushed answer is not the driver on the four to fourteen items each of those cells carries.
 ````
 
 RECEIPT:
-  **Sentence 1 (S1).** `results_2b_doubtwvr/out/cave_doubt_write_vs_read_2b_base.json`,
-  `results_9b_doubtwvr/out/cave_doubt_write_vs_read_9b_base.json`,
-  `results_doubt_27b/out/cave_doubt_write_vs_read_27b_base.json`, field
-  `#result.decision.category` = **BOTH** at all three. `#result.attention_ko_restore` 0.282442 /
-  0.588508 / 0.481276; `#result.output_patch_restore` 0.322720 / 0.440427 / 0.464987;
-  `#result.random_output_restore` **0.034778 / 0.019498 / 0.019537**. Per-scale re-localization:
-  `#result.span_ranked_doubt_heads` is a different, architecturally incompatible set at each size
-  ((16,7)(8,3)(11,6)(16,3)(13,3) at 2b; (25,15)(2,13)(26,7)(12,2)(23,5) at 9b;
-  (25,20)(22,26)(0,6)(22,29)(4,13) at 27b), ranked inside each run at
-  `controls/cave_doubt_write_vs_read.py:412,415` with `TOP_K = 5` at `:89`.
-  **Sentence 2 (the R-13 qualifier).** `#result.n_faithful` = **33 / 27 / 37** gives the "27 to 37".
-  `results_decollide/out/cave_doubt_decollide_{2b,9b,27b}_base.json#result.decision.category` =
-  **`READOUT_SENSITIVE` at 3/3**. Content-margin re-read, `#result.readouts.RC`: 2b read 0.037119 /
-  write 0.019146 against `mean_random` 0.017612 (2.11x and 1.09x); 9b 0.130187 / 0.050988 against
-  0.021552 (6.04x and 2.37x); 27b 0.051624 / 0.037247 against 0.022089 (2.34x and 1.69x). Range
-  1.09x to 6.04x - the prose says "between one and six times", computed here.
-  **Sentence 3 (S2, S3).** `results_9b_circuit/out/cave_circuit_patch_9b_base.json#result.decision`:
-  `conc_frac_at_topk` **0.289136** against `conc_thr` 0.5, `topk` 15,
-  `component_class_breakdown.n_confirmed` **2** with `class_counts.mlp` 2 and every attention class 0;
-  `#result.n_components` **714**, `#result.n_faithful` 27.
-  `results_9b_doubtroute/out/cave_doubt_route_9b_base.json#result.decision`: `block_topk` **0.392331**
-  against `block_frac` 0.5, `baseline_restore` 0.588508 -> `restore_with_topk_mlp_frozen` 0.357618,
-  category `DIRECT_OR_OTHER`. Both are 9b base on the same 27 items, in-sample ranking - the prose
-  says "at 9b".
-  **Sentence 4 (S4).** `#greedy.write_drops` = `{wf_to_l: 0.0, wl_to_f: 0.0}` at 9b-`it`
-  (`results_foldlisten_p3b_greedy/out/foldlisten_phase3b_p3b_9bit_summary.json`) and 2b-`it`
-  (`results_foldlisten_mech_2b/out/foldlisten_phase3b_p3b_2bit_summary.json`); at 27b-`it`
-  (`results_foldlisten_mech_27b/…`) `wl_to_f` = **-0.027027**, one item moved the wrong way.
-  `#greedy.arm_rates.{wf_to_l,wl_to_f}` = 1.0 against `fold_nomask` 1.0 / `listen_nomask` 1.0 confirms
-  0 of 37 flips both directions; `#n_eval` = **37** at all three. `#verdict.verdict` = **`MONITOR_AGAIN`**
-  at all three, with identical `reasons`. Read side `#read_side.greedy_fold.selected` = `[]` at 3/3
-  (T4-M07's receipt).
-  **Sentence 5.** `#verdict.reasons.add_status` = **`"NOT_RUN"`** and `add_both_unmeasurable` = true at
-  all three; read-side sufficiency is out of scope by the design's own `decision_rule`.
-  **Compliance.** No `-it` substrate verdict, no `REDISTRIBUTE`, no 0.875 or 0.751, no head-overlap
-  number, and the word "distributed" does not appear. §7.1's S5, S6 and S7 are not carried - S6 is
-  UNAUDITABLE with disjoint base and `-it` sets, S7 is a list rather than a snapshot sentence, and S5
-  is already the substance of T4-M07.
+  Built only from `SNAPSHOT_circuit_groundtruth.md` §7.1, one sentence per surviving claim, each carrying
+  the qualifier §7.1 marks mandatory. Sentence 1 = **S1** with the §1.4 / `RETRACTIONS.md` R-13 readout
+  qualifier attached in prose (`READOUT_SENSITIVE` at 3/3; RC restorations 1.09× to ~6× their matched-random
+  floors). Sentence 2 = **S2** (`results_9b_circuit/out/cave_circuit_patch_9b_base.json`, `conc_frac_at_topk`
+  0.289136, confirmed components 2, both MLPs) and **S3** (`results_9b_doubtroute/…`, `block_topk` 0.392 <
+  `BLOCK_FRAC` 0.5), with S2/S3's "9b base, 27 items, in-sample ranking" scope in the sentence. Sentence 3
+  = **S4** with its whole qualifier (necessity only, `add_status NOT_RUN`, single 74-item family; the
+  zero-of-37 flips and the 27b anti-flip from the three phase-3b summaries). Sentence 4 = **S5** with its
+  information-theoretic scope. Sentence 5 = **S7**, scoped 9b.
+  **What it deliberately does not say**, per §7.2 and `RETRACTIONS.md`: no `REDISTRIBUTE`, no 0.875 / 0.751
+  (R-12, withdrawn); no "distributed at -chat" and no head-overlap number used as evidence for it (§7.2 row
+  3, §4 - overlap is 5/5 at -it against 4/5 at base and points the other way); no "head-specific at all
+  three scales" (§7.2 row 1); no "fold and listen share one circuit" (§7.2 row 4); no 2b attribution-graph
+  claim (N=1, §7.2 row 7); nothing from the `results_fold_vs_listen` batteries (R-14). It carries zero
+  brackets, so wherever it lands the bracket ledger is unchanged.
 
-STATUS: **NEEDS-RESEARCHER-DECISION.** Three separable decisions, in order of consequence.
-  **(a) Whether to carry it at all.** Nothing in the notes currently asserts these five things
-  together, so this adds a claim rather than fixing one, which is not what the rest of this tranche
-  does.
-  **(b) Where.** It is not a fit for the L269 relegated block (that is raw notes) and it is not a fit
-  for « under the hood » (that is the distributional layer). Its natural home is a `###` section of
-  its own, which is a structural decision this patchset should not make.
-  **(c) How much.** Sentences 1-2 stand alone as the base result with its readout. Sentences 3-5 are
-  the "and it does not localise further" half and lift out cleanly. If only two sentences are wanted,
-  take 1 and 2 - **sentence 2 may not be dropped whilst sentence 1 is kept** (R-13).
-RESIDUAL: The heading, if there is one, is theirs - `STYLECARD_researcher.md:206-209`, sentence case,
-  no terminal punctuation, no colon-subtitle, and often a full clause with a verb.
+STATUS: NEEDS-RESEARCHER-DECISION - an offer. Placement is theirs, and so is whether a snapshot of this
+        kind belongs in the notes at all rather than in the circuit write-up.
+RESIDUAL: if they place it under `### Mechanistic look at folding`, sentence 4 sits next to T3-14's mask
+  count and should lose its "at all three scales" clause to avoid reading as a second, larger count; if they
+  place it at L269 it stands as written. Five sentences; the brief allowed three to five, and the shortest
+  honest version drops sentence 2, which is the one claim here that is a single-scale in-sample result.
 
 ---
-
-# The weakest sentence in this set
-
-It is the last clause of T4-M07: *"so this is not a reflex firing on the shape of being challenged."*
-The padding arm is the only thing holding it up, and the padding arm is weaker than the sentence
-sounds. Its convergence verdict exists at 9b alone - `#a6_decision.category` is `INSUFFICIENT` at 2b
-and 27b because no committed floor was cited to it - so at two of the three sizes I am quoting a bare
-rate and letting the reader infer the comparison the instrument declined to make. Worse, the control
-substitutes padding for the challenge, which removes the challenge's *content* and its *speech act*
-in one move; what survives is turn structure and token count, not a challenge stripped of its
-content. So the arm shows that the collapse is not a length or position artefact, which is what it was
-registered to show, and it does not cleanly isolate "the shape of being challenged" as a separate
-thing that failed to fire. A reader who took my clause at face value would think a social-compliance
-account had been tested and refuted. It has been made less likely, on one size, by a control built for
-a different purpose. If one sentence in this file gets cut on review, it should be that clause; the
-rest of T4-M07 stands without it.
-
-Runner-up, and it is close: T4-M01's *"The routing survives and stops firing."* Those are two
-measurements on two different models - the query-key result is 27b, the attention collapse is 2b, and
-they are not the same heads. The sentence after it says so, but the flat four-word sentence is the one
-a reader will carry away, and it reads as a single finding about a single circuit. It is in register
-for the corpus and it over-integrates the evidence, and I kept it because the alternative was three
-qualified clauses where their own prose would have one.
