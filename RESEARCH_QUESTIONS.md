@@ -359,8 +359,29 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > 1.69× at 27b, only 9b READ clearing appreciably. Fully auditable (per-item records persist; all 27
 > means re-derive). **Claim 2 may not be stated again without naming its readout.**
 >
-> **4. THE POST. Four grounding documents were built and committed this session; the patch blocks
-> were NOT** (three drafting agents died to session limits, twice). Ready to hand to drafters:
+> **4. THE POST — TRANCHE 4 LANDED (`cec70b3`, `6ba840f`, `3450ce7`, `19cf9b1`): 27 blocks across
+> three files, start at `docs/drafts/PATCHSET_tranche4_INDEX.md`.** 6 intro (net **−13 words**, the
+> researcher's short-intro brief met by cutting L9's legend restatement), 7 mechanism, 14
+> distributional. Mechanically checked after all three landed: **28/28 anchors byte-exact and unique,
+> ZERO byte overlaps within or across files** (the notes-L319 collision class), no em/en-dashes or
+> NBSPs introduced, and none of `REDISTRIBUTE`/`0.875`/`0.751` in any PROPOSED text. Net −13 brackets,
+> nothing added without a matched removal. **Three findings the drafting turned up, each a defect in
+> committed material:** notes L272's third scale is wrong in BOTH sources (`GROUNDING_notes_numbers.md`
+> §L207 and `JOIN_withhold_vs_fold.md` print 51/38/**32** off the anomalous 27b decode; the
+> reproducible family gives **34**); `INVENTORY_distributional.md` §2.6 prints W\* rank 8 at the
+> counter slot where the artifact and its own EXPECT quote say **7**; and `PATCHSET_tranche2.md:668`
+> has the L129-vs-L176 margin relationship backwards on both halves (same 82 items in the same order,
+> different quantities). **The run paid off in the prose:** at the forced-final slot, 9b-it fold, W\*
+> is the argmax on **70/74** under the counter push and C on **69/74** under the push-toward-stated
+> arm, while the counter slot of those same records reads `"You"` on 74/74 — so at the slot the
+> verdicts are read from, the contest IS between C and W\*, overturning the polarity-word corollary
+> that holds everywhere else. Reproduced from the artifact before it was written down.
+>
+> **4b. Superseded note (kept for the record): earlier in this session three drafting agents died to
+> session limits before writing.** The fix that worked on the retry: ground truth was already
+> committed, so the drafters were told NOT to re-derive it, and to write their file after the FIRST
+> finished block and append. Both changes were necessary — the first round burned its budget
+> re-verifying committed numbers and died at the write step. Reference material for the drafters:
 > `docs/drafts/SNAPSHOT_circuit_groundtruth.md` (§7.1 seven claims that survive with mandatory
 > qualifiers, §7.2 ten that do not), `INVENTORY_distributional.md` (859 lines; §3.1's slot table is
 > the load-bearing one), `PATCHMAP_live.md` (every tranche block with anchors byte-verified against
