@@ -326,8 +326,11 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 > `ECHO_UNEVALUABLE` with `cause=S_EMPTY`** — the registered empty-set branch (R1-5), i.e. the design
 > cannot decide echo on this data, which is a result and not a loss. Every other verdict is identical
 > to draw 1 and the primary triple reproduces to the float. Both draws are kept separable (draw 1 in
-> `out/`, draw 2 in `results_dmz_9bit_r2/out/`); a claim-blind field-level comparison of the two is
-> the last owed piece. **The De Marez registration is now fully discharged: every registered verdict
+> `out/`, draw 2 in `results_dmz_9bit_r2/out/`) and the claim-blind field-level comparison RAN
+> (`caa7116`, `controls/demarez_two_draw_diff.py`, artifacts `out/demarez_two_draw_diff_dmz_9bit_*`):
+> **`BYTE_IDENTICAL` on both pairs — 292,614 fields, zero differences, unchanged at `--float-tol 0.0`**,
+> and confirmed by a second method sharing no code with it (canonical JSON hash minus `provenance`).
+> So unlike 27b-base, the 9b-it cell is **draw-independent** and its numbers need no draw disclosure. **The De Marez registration is now fully discharged: every registered verdict
 > has a value.** The paragraph below is kept because it is the diagnosis, and because the lesson —
 > a launch condition can cost three verdicts on perfect data — is the reusable part.]**
 >
