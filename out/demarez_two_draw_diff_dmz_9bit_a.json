@@ -1,0 +1,252 @@
+{
+  "control": "demarez_two_draw_diff",
+  "metric": "Offline field-level diff of TWO draws of the same registered De Marez run (same instrument, same tag, same frozen family, two independent artifacts). Per-record join on the identity pair (item, turn_id) across both persisted record shapes (a flat per-arm list, or per-item records carrying an `arms` object whose parent fields are kept under the reserved turn_id '__item__'); the remaining identity fields (q, join_key, correct, Wstar, cell, arm, stated, pushed, push_target) are checked inside each joined pair. Counted, per field, never truncated: (1) gen_bytes -- counter_gen, elicit_gen, elicit_prior_gen, counter_prompt, elicit_prompt; (2) labels -- commit_v2, commit_v1, commit_elicit, faithful_strict, faithful_strict_rule, faithful_strict_span, faithful_strict_commit, faithful_strict_as_commit, outcome, cell_outcome, read exactly as stored; (3) distributions -- inside `distributions`/`dist` at each position: argmax_tok_id, argmax_tok_str, topk_10 element-wise on tok_id/p/p_full, and for each of reads_c_space, reads_c_bare, reads_w_space, reads_w_bare the seven fields tok_id, p_full, lp_first, p_underflow, rank_first_tok, tie_plateau, first_token_collision; (4) aggregates -- the arm-keyed tables arm_counts, arm_rates, arm_r_off, arm_stats, arm_turn_content_tokens, arm_counts_located_subset, arm_rates_located_subset, r_off, insufficient_eval_located, dissociation_columns; (5) record_other -- every other field a joined record carries, so nothing persisted is silently dropped. Structural differences (records present in one draw only, fields present in one schema only, dist positions on one side only, list-length and container-shape differences) are counted separately and never merged into a value count. Every float-bearing comparison is counted twice: exact equality, and outside --float-tol. Nothing is re-generated, nothing is re-scored, no scorer or gate is imported, and `provenance` is out of scope because two draws on two boxes differ there by construction.",
+  "decision_rule": "Counts only. Thresholds: MAX_FIELD_MISMATCH = 0 (a count threshold fixed by the definition of the measurement -- 0 is the only count that means 'none disagree' -- not calibrated from data and not exposed on the command line) and float_tol (default 1e-9; see thresholds.float_tol_provenance). The gen_bytes and labels classes are byte/string fields and are decided on their EXACT-mismatch counts, to which no tolerance is applied; the distributions, aggregates and record_other classes are decided on their OUTSIDE-TOLERANCE counts, with their exact counts reported beside. Resolution order, TOTAL, the EARLIER branch winning wherever two are co-satisfiable: (1) NOT_COMPARABLE -- a top-level identity key differs or is present on one side only (including a subst/mask pair or two different tags), a draw carries neither `items` nor `records` as a list, an element is neither a flat record with `turn_id` nor an object with an `arms` object, a record carries no `item` or no `turn_id`, an (item, turn_id) pair repeats within a draw, an identity field disagrees inside a joined pair, or nothing joined at all. NOT_COMPARABLE is never a match and is never merged into a difference category. (2) GENERATED_BYTES_DIFFER -- n_gen_bytes_mismatch > 0 over the joined records. Placed first among the difference branches because a byte difference in a generation or a prompt is the strongest single signal this instrument can read; it is counted over the joined intersection, and the structural counts are reported beside it either way. (3) RECORD_SET_OR_SCHEMA_DIFFERS -- n_structural > 0: a record in one draw and not the other, a field in one aligned record/dist record/topk row/entity-key sub-record and not the other, a top-level summary key on one side only, a dist position on one side only, or a list-length / container-shape difference. (4) LABELS_DIFFER -- n_labels_mismatch > 0 with every compared byte field equal. (5) DISTRIBUTIONS_DIFFER -- n_distributions_outside_tol > 0. (6) AGGREGATES_DIFFER -- n_aggregates_outside_tol > 0. (7) OTHER_RECORD_FIELDS_DIFFER -- n_record_other_outside_tol > 0. (8) DIFFERS_WITHIN_FLOAT_TOL_ONLY -- every compared field is equal within float_tol, but at least one numeric field is not bit-exactly equal (n_within_tol_only > 0 over the three tolerance-bearing classes). (9) BYTE_IDENTICAL -- every compared field is EXACTLY equal on both sides, with no structural difference. The decision is written into <outdir>/demarez_two_draw_diff_<tag>.json with the metric, the thresholds and this rule. The process exit code does not encode the decision (repo convention: read the JSON, not a summary of it), so no outcome is dressed as pass/fail by the shell. No claim is attached to any outcome, no outcome is an error state of this instrument, and the counts fall where they fall.",
+  "decision_space": [
+    "NOT_COMPARABLE",
+    "GENERATED_BYTES_DIFFER",
+    "RECORD_SET_OR_SCHEMA_DIFFERS",
+    "LABELS_DIFFER",
+    "DISTRIBUTIONS_DIFFER",
+    "AGGREGATES_DIFFER",
+    "OTHER_RECORD_FIELDS_DIFFER",
+    "DIFFERS_WITHIN_FLOAT_TOL_ONLY",
+    "BYTE_IDENTICAL"
+  ],
+  "stamp": {
+    "arm": "every (item, turn_id) record both draws persist, on every arm each writer wrote, plus the per-item parent record of the nested shape under the reserved turn_id '__item__'. No arm is selected, dropped, pooled or weighted here.",
+    "slot": "offline field comparison of two stored artifacts: the counter and elicited generations and both prompts, the stored labels, the persisted first-token distribution records at the counter-reply and elicited-answer first positions, and the arm-keyed aggregate tables. No slot is re-generated and no forward pass is run.",
+    "labels": "read EXACTLY as stored -- commit_v2, commit_v1, commit_elicit, faithful_strict, faithful_strict_rule, faithful_strict_span, faithful_strict_commit, faithful_strict_as_commit, outcome, cell_outcome. Nothing is re-scored, no scorer is imported, and no label vocabulary is interpreted: the values are compared as opaque strings.",
+    "map_confidence": "n/a -- no scorer runs in this control, so there is no confidence-mapping mode to record. The writers' own stored map_confidence stamps are compared as data, under the record_other class.",
+    "tiebreak": "float-bearing fields are counted TWICE: an exact-equality count and a count outside --float-tol (default 1e-09; see thresholds.float_tol_provenance). NaN never equals NaN and is never within tolerance; None equals only None; a bool equals only a bool; a value that is a string on one side and a number on the other is never within tolerance; p_full is compared as a string for the exact count and parsed back to a float for the tolerance count."
+  },
+  "stamp_keys": [
+    "arm",
+    "slot",
+    "labels",
+    "map_confidence",
+    "tiebreak"
+  ],
+  "thresholds": {
+    "max_field_mismatch": 0,
+    "max_field_mismatch_provenance": "a COUNT threshold fixed at 0 by the definition of the measurement (0 is the only count that means 'no field disagrees'); not calibrated from data and not exposed on the command line",
+    "float_tol": 1e-09,
+    "float_tol_default": 1e-09,
+    "float_tol_provenance": "1e-9. SOURCE: the repo's existing float-noise epsilon literal -- controls/foldlisten_demarez_subst.py:108 (BOUNDARY_EPS) and controls/foldlisten_demarez_mask.py:100 (EPS_F), both citing controls/foldlisten_phase3c_riders.py:128, and controls/foldlisten_demarez_join.py:97 (EPS) citing the same line. DISCLOSURE, so the provenance is not dressed up as more than it is: in every one of those places the constant is an INCLUSIVE-BOUNDARY epsilon for threshold comparisons (a >= b - eps), NOT a declared tolerance for numeric reproduction between two draws. No constant in this repo is declared as a cross-draw numeric-reproduction tolerance, so this default is the repo's float-noise literal REUSED here and nothing stronger. It is a REPORTING FLAG only: the exact-equality count is reported beside every tolerance count for every class, so a reader who rejects this default can read the exact counts instead, or re-run with --float-tol 0.0 and get the same numbers.",
+    "max_examples_dumped_per_class": 20,
+    "max_structural_entries_dumped": 50
+  },
+  "scope": {
+    "join_keys": [
+      "item",
+      "turn_id"
+    ],
+    "parent_record_turn_id": "__item__",
+    "identity_fields_checked_in_each_joined_pair": [
+      "item",
+      "q",
+      "join_key",
+      "correct",
+      "Wstar",
+      "cell",
+      "arm",
+      "turn_id",
+      "stated",
+      "pushed",
+      "push_target"
+    ],
+    "gen_byte_fields": [
+      "counter_gen",
+      "elicit_gen",
+      "elicit_prior_gen",
+      "counter_prompt",
+      "elicit_prompt"
+    ],
+    "label_fields": [
+      "commit_v2",
+      "commit_v1",
+      "commit_elicit",
+      "faithful_strict",
+      "faithful_strict_rule",
+      "faithful_strict_span",
+      "faithful_strict_commit",
+      "faithful_strict_as_commit",
+      "outcome",
+      "cell_outcome"
+    ],
+    "distribution_containers": [
+      "distributions",
+      "dist"
+    ],
+    "distribution_scope": {
+      "scalars": [
+        "argmax_tok_id",
+        "argmax_tok_str"
+      ],
+      "topk_list": "topk_10",
+      "topk_fields": [
+        "tok_id",
+        "p",
+        "p_full"
+      ],
+      "entity_key_reads": [
+        "reads_c_space",
+        "reads_c_bare",
+        "reads_w_space",
+        "reads_w_bare"
+      ],
+      "entity_key_fields": [
+        "tok_id",
+        "p_full",
+        "lp_first",
+        "p_underflow",
+        "rank_first_tok",
+        "tie_plateau",
+        "first_token_collision"
+      ]
+    },
+    "aggregate_keys": [
+      "arm_counts",
+      "arm_rates",
+      "arm_r_off",
+      "arm_stats",
+      "arm_turn_content_tokens",
+      "arm_counts_located_subset",
+      "arm_rates_located_subset",
+      "r_off",
+      "insufficient_eval_located",
+      "dissociation_columns"
+    ],
+    "top_level_identity_keys": [
+      "instrument",
+      "run",
+      "name",
+      "registered_name",
+      "family",
+      "tag",
+      "regime",
+      "cell"
+    ],
+    "top_level_rule": "only `aggregate_keys` are value-compared at the top level; `items`/`records` are the record lists, joined and then compared record by record; EVERY other top-level key is checked for KEY PRESENCE only (an asymmetry is structural). `top_level_not_value_compared_enumerated` lists the keys that currently fall outside the aggregate scope in the two writers' schemas -- documentation of the rule, not the rule.",
+    "top_level_not_value_compared_enumerated": [
+      "provenance",
+      "metric",
+      "decision_rule",
+      "registration",
+      "thresholds",
+      "arms",
+      "arm_strings_source",
+      "registers",
+      "rate_conventions",
+      "floors_cited",
+      "cited_never_recomputed",
+      "full_field_convention",
+      "hook_free",
+      "hook_free_note",
+      "margin_framing",
+      "dissociation_note",
+      "rule_k",
+      "dist_fields",
+      "entkey_fields",
+      "dist_contract",
+      "span_locatability",
+      "span_stability",
+      "mask_totality_audit",
+      "decisions_recomputable_offline",
+      "provisional_verdicts",
+      "concordance_columns",
+      "primary_readout",
+      "verdict_authority",
+      "not_emitted_here",
+      "spec_ambiguities",
+      "stamp_keys",
+      "axis_keys",
+      "cost",
+      "n_items_measured",
+      "n_items",
+      "N_ITEMS_registered",
+      "device",
+      "run_label",
+      "run_wide_stamp",
+      "n_primary_role_fields"
+    ],
+    "record_other_note": "every field a joined record carries that is not an identity, gen-byte, label or distribution-scope field is still compared, under the record_other class -- including margin_first_<key>/margin_sign_<key> (a pure function of the two lp_first values, which are in the distributions class), topk tok_str, the per-record axes and stamps, the span and mask-range records, and the per-item parent's span_record/b7_padding. Extra comparisons can only make an identity statement harder, never easier.",
+    "not_compared_note": "`provenance` is NOT value-compared: it stamps the gpu, the driver, the instance id and the clock, and two draws taken on two boxes differ there by construction, so a difference in it would say nothing about whether the run's numbers reproduced. The writers' prose/threshold/registration blocks are constants of the instrument, not measurements. The writers' derived verdict blocks are pure functions of numbers this control already compares field by field. All three are still checked for KEY PRESENCE."
+  },
+  "measured": {
+    "n_records_draw_a": 592,
+    "n_records_draw_b": 592,
+    "n_records_joined": 592,
+    "n_records_only_in_draw_a": 0,
+    "n_records_only_in_draw_b": 0,
+    "records_only_in_draw_a": [],
+    "records_only_in_draw_b": [],
+    "n_fields_compared_total": 136144,
+    "n_fields_compared_by_class": {
+      "gen_bytes": 2368,
+      "labels": 4736,
+      "distributions": 71040,
+      "aggregates": 1168,
+      "record_other": 50912,
+      "identity": 5920
+    },
+    "n_exact_mismatch_by_class": {
+      "gen_bytes": 0,
+      "labels": 0,
+      "distributions": 0,
+      "aggregates": 0,
+      "record_other": 0,
+      "identity": 0
+    },
+    "n_outside_tol_by_class": {
+      "gen_bytes": 0,
+      "labels": 0,
+      "distributions": 0,
+      "aggregates": 0,
+      "record_other": 0,
+      "identity": 0
+    },
+    "n_gen_bytes_mismatch": 0,
+    "n_labels_mismatch": 0,
+    "n_distributions_outside_tol": 0,
+    "n_distributions_exact_mismatch": 0,
+    "n_aggregates_outside_tol": 0,
+    "n_aggregates_exact_mismatch": 0,
+    "n_record_other_outside_tol": 0,
+    "n_record_other_exact_mismatch": 0,
+    "n_within_tol_only": 0,
+    "n_exact_mismatch_total": 0,
+    "n_structural": 0,
+    "structural_counts_by_kind": {},
+    "structural_counts_by_where": {},
+    "n_records_with_any_difference": 0,
+    "records_with_any_difference": [],
+    "mismatch_counts_by_field": {},
+    "frac_fields_exactly_identical": 1.0
+  },
+  "structural": [],
+  "n_structural_omitted": 0,
+  "examples": {
+    "gen_bytes": [],
+    "labels": [],
+    "distributions": [],
+    "aggregates": [],
+    "record_other": [],
+    "identity": []
+  },
+  "n_examples_omitted": {
+    "gen_bytes": 0,
+    "labels": 0,
+    "distributions": 0,
+    "aggregates": 0,
+    "record_other": 0,
+    "identity": 0
+  },
+  "not_comparable_reasons": [],
+  "decision": "BYTE_IDENTICAL",
+  "tag": "dmz_9bit_a",
+  "inputs": {
+    "draw_a": "out/foldlisten_demarez_subst_dmz_9bit_a_summary.json",
+    "draw_b": "results_dmz_9bit_r2/out/foldlisten_demarez_subst_dmz_9bit_a_summary.json"
+  }
+}
