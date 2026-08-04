@@ -299,6 +299,87 @@ scope, and model-diffing crosscoders (Anthropic, 2024) are the in-family alterna
 
 > /karpathy-guidelines
 >
+> **SEED 2026-08-05 (forced-final distributional session) — NEWEST. STACKED above the previous seed.**
+>
+> **GPU RAN AND IS DOWN. `GET /api/v1/instances` returns 0, verified after both teardowns.** Two boxes:
+> A `5087d554…` `gpu_1x_a100_sxm4` us-east-1 27.7 min $0.92 (2b/9b, both variants); B `76e8c8c4…`
+> `gpu_1x_h100_sxm5` us-south-2 26.4 min $1.89 (27b both variants). **Reconstructed cost $2.81**, far
+> under the registered $7.4 estimate because both boxes finished well inside their caps.
+> **Spend reconstructed from `GET /api/v1/audit-events` before AND after launch, never read:
+> $730.56 project-attributable since 2026-06-10 over 232.0 GPU-hours, headroom $222.25 → $219.44
+> of the $950 cap.** 455 events, single page, 224/224 launches paired, none open. Reconstruct, never
+> read a committed tally — including this one.
+>
+> **1. THE FORCED-FINAL REGISTRATION IS EXECUTED AND DISCHARGED (`cae94f3`).** `REGISTRATION_forcedfinal_distributional.md`,
+> all six cells `exit=0`, 984 records each (82 items × 2 directions × 2 arms × 3 slots).
+> **PRIMARY `-it` triple at (fold, counter, forced_final): `(LAYERS_CONCORDANT, LAYERS_CONCORDANT,
+> LAYERS_CONCORDANT)` → `ROUND_CONCORDANT`** — quotable as a triple or not at all (§8.2). Base triple
+> identical, stamped `CONTEXT_CONTAMINATED_MEASURED`, never pooled. **All six cells `REPLAY_FAITHFUL`:
+> 0 sign flips, 0 record mismatches, SHA cross-check ok, ctx recompute equal** — nothing downgraded,
+> nothing voided. Verdicts in `out/forcedfinal_join.json`, the only verdict source; read it, not this.
+> **This closes OWED B2** — a distributional read now exists at the forced-final slot, the slot the
+> sankey verdicts are decided on, at all six cells rather than 9b-it fold only.
+>
+> **2. THE PROVENANCE FAILURE CLASS IS HALF-CLOSED, AND THE OTHER HALF BIT.** `cuda_visible_devices`,
+> `lambda_instance_id` and `git_commit` are all stamped at all six cells — the De Marez trio is closed
+> by the runners' hard `export`. But **`provenance.driver` is `null` in all six artifacts**
+> (§0.6 Round 2): `controls/forcedfinal_dist.py:316-323` sources it from torch alone, both paths raise
+> on `torch 2.6.0+cu124`, and there is no `nvidia-smi` fallback despite the docstring claiming
+> transcription. **`driver` is in `PROVENANCE_KEYS` but not `PROVENANCE_LOAD_BEARING`, and
+> `validate_provenance` tests key PRESENCE, not non-nullity** — so a null passes the gate while §12 says
+> an incomplete stamp is not quotable. Value recovered as `570.148.08` on BOTH boxes from each
+> `run_detached.log`, cited that way in the caption's §10(ii). **THE FIX FOR THE NEXT REGISTRATION THAT
+> RUNS THIS INSTRUMENT, and it is the reusable lesson: promote non-nullity — not key presence — to the
+> validator's test for every field §12 makes quotability depend on.** Deliberately NOT repaired in code
+> here: changing the instrument after its values are read would make a re-run stamp differently from the
+> artifacts that name it.
+>
+> **3. D-5 WAS A REAL DEFECT, NOT A FORMALITY (§0.6 Round 1, `9fc06d1`, before launch).** The
+> re-verification **failed**: `DESIGN_neutral_elicit.md:464-468` is the attributable-vs-artifact bounds
+> table, the word "quorum" does not occur in that file at all, and `DESIGN_elicit_context.md:365` — the
+> rule's only home — cites those same lines back. **A citation loop terminating in a table about
+> something else**, and `DESIGN_elicit_context.md:18`'s "the quorum rule is `DESIGN_neutral_elicit.md`'s"
+> is untrue. Re-cited, loop disclosed, rule applied UNCHANGED because §9.6 writes all four `ROUND_*`
+> branches out explicitly. **`QUORUM` rests on no source external to this registration chain** — that is
+> now a known fact about every `ROUND_*` verdict in the tree, not just this one.
+>
+> **4. THE FIGURES: four PNGs in `docs/drafts/figs/`, all in the licensed two-layer form** —
+> `fig_dist_sankey_{fold,listen}_counter_{it,base}.png`. Fold and listen both come from the SAME
+> artifacts (direction is a within-cell record axis, not a cell split), one invocation per direction.
+> Every frozen-`EXPECT` generation-layer assertion passed 12/12. **`fig_dist_sankey_tables.md` is NEW
+> and load-bearing**: §9.4 forbids stating a `LAYERS_*` verdict without its 3×3 collapsed AND 5×4
+> unrolled tables, the panels print the verdict, and `make_fig_dist_sankey.py` writes no sidecar — that
+> file carries them for all twelve drawn axes. **matplotlib is NOT installed on this workstation**; the
+> figures were drawn from a scratchpad venv (`uv venv` + `uv pip install matplotlib`, 3.11.1). Anyone
+> redrawing needs that first — the module-scope import means even `--help` fails without it.
+>
+> **5. TWO THINGS THE RUN CORRECTED IN COMMITTED MATERIAL.** (a) The caption claimed the palette was
+> validated across layers. **It is not** — `_check_palette` gates within-layer only and its own docstring
+> says so; two of nine cross-layer pairs fail the stated floor, recomputed with the script's own
+> Vienot+OKLab helpers: gen `C` `#009E73` vs dist `GREY` `#8a8a92` = **13.7 normal / 6.7 protan / 4.2
+> deutan**, gen `NEITHER` vs dist `GREY` = **12.1** flat. Count labels on every nonzero node are the real
+> mitigation. (b) **§9.2 reads `CTX_CONTAMINATED_ALL` on the primary axis at every cell** (27b-it 1/82) —
+> a stamp not a gate, but §6.3's mandated `ctx_clean` stratified report is therefore **empty exactly
+> where the headline lives**, and §8.2's stated reason for making `-it` primary ("the half whose replay
+> reads a measured-clean context") is about MARKERS only. The marker asymmetry itself reproduces exactly
+> as registered.
+>
+> **6. WHAT `ROUND_CONCORDANT` DOES NOT MEAN, and the next reader will get this wrong.** At `-it` the
+> agreement is informative (80/82 fold items land on the same answer; 97.6% distributional onset at
+> 9b-it forced-final). **At base it is largely agreement about SILENCE** — dist `GREY_NO_ONSET`
+> 50/39/35 of 82 vs gen `NEITHER` 51/38/34 at 2b/9b/27b fold. The layers agree mostly by both declining
+> to name an answer. `LAYERS_CONCORDANT` says two readouts agree, never that either is informative.
+> §4.5 bars widening the frozen `V(A)` now the onset rate has been seen, so that grey stays as measured.
+>
+> **7. STILL OWED, unchanged by this run.** The listen half is `LISTEN_CONTINGENT_ON_H1` — measured and
+> emitted at every cell, **quotation gated until `OWED.md` H1 is decided, and that is the researcher's
+> call, not an automatic reversal**; nothing here restores a withdrawn number. The neutral arm has no
+> figure in any form: `make_fig_dist_sankey.py` refuses it before the gate because
+> `make_figB_sankey.EXPECT` has no committed counts for `faithful_neutral_elicit` — extending that
+> frozen constant is a deliberate act, not a side effect of drawing. Fig 1 of POST1 is still the
+> anomalous 27b draw in the vault (`6942c40b` vs repo `50a3f28f`). `ADDENDA_20260730_ledger.md`
+> R-12/13/14 still not applied to the six citing docs. T3-03 / intro-L25 still NEEDS-RESEARCHER-DECISION.
+>
 > **SEED 2026-07-30/31 (compose-post1 session) — NEWEST. STACKED above the previous seed.**
 >
 > **GPU RAN AND IS DOWN. `GET /api/v1/instances` returns 0, verified after teardown.** One
