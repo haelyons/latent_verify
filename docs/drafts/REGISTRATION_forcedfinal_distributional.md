@@ -101,6 +101,33 @@ read must be entered here, dated, marked `AMENDED` at the point of use, and must
 loosens or tightens, following `REGISTRATION_format_matched_readout.md` §0.1/§0.2. Nothing may be
 rewritten silently.
 
+**Round 1 — 2026-08-04, BEFORE LAUNCH, before any value this document governs has been read.
+Citation correction only. It NEITHER LOOSENS NOR TIGHTENS: no threshold, band, branch or
+denominator changes, and the `QUORUM` rule text stated in §9.6 is unaltered.**
+
+D-5 instructed "Re-verify before launch or re-cite." The re-verification was performed and it
+**failed**: `DESIGN_neutral_elicit.md:464-468` does **not** contain a quorum rule. Those five lines are
+the per-scale attributable-vs-artifact bounds table (`2b-base | 51/82 (.622) | ≤ 34/82 | ≥ 43/82 |
+35–42`, the 9b and 27b rows, the `NO_EFFECT_TO_EXPLAIN` `-it` row) followed by the listen-cell
+sentence. `grep -ic quorum DESIGN_neutral_elicit.md` returns **0** — the word does not occur in that
+file at all. The rule text exists at exactly one place in the tree, `DESIGN_elicit_context.md:365`
+("`quorum | ≥ 2 of the 3 base scales, with a no-contradiction clause`"), and that line cites
+`DESIGN_neutral_elicit.md:464-468` back, so the inherited chain is a **citation loop terminating in a
+table about something else**. `DESIGN_elicit_context.md:18` likewise asserts "the quorum rule is
+`DESIGN_neutral_elicit.md`'s", which is not the case.
+
+**Re-cited, therefore, to its actual and only source: `DESIGN_elicit_context.md:365`**, with the
+loop disclosed rather than repaired upstream. Two consequences are recorded rather than argued away.
+(1) `QUORUM` is now known to be **not a borrowed committed constant** in the sense §8's other rows
+are — it has no pre-existing source outside the registration chain that states it, so its status in
+§8's own audit table changes from "inherited, un-re-verified" to "**inherited from a loop; no
+external source exists**". (2) It is nonetheless applied **unchanged**, because §9.6 writes all four
+`ROUND_*` branches out explicitly and no branch depends on the citation; and because inventing a
+different quorum here — after the bands are set and before the values are read — would be exactly the
+fitted-rule move §8 exists to prevent. `DESIGN_elicit_context.md:365`'s "≥ 2 of the 3 **base** scales"
+is applied per half as §9.6 already states, the base half and the `-it` half each taking the rule over
+its own three scales; §9.6's "never pooled" is unaffected.
+
 ---
 
 ## 1. Scope, fixed before the run
@@ -607,7 +634,7 @@ constant names its source line.
 | `CONCORDANT_MAX` | **0.10**, inclusive | borrowed: `ARTIFACT_MAX_DELTA`, `controls/foldlisten_judge.py:129`, documented at `:125-126` as "the repo's existing 'two arms land at the same place' tolerance"; transported in this band shape by `DESIGN_elicit_context.md` §5.1 |
 | `DISCORDANT_MIN` | **> 0.30**, strict | borrowed: `CHANGE_THR`, `controls/faithful_rescore.py:77`, the repo's own per-item **relabel-rate** boundary on the **same label family**, with the same strict `>`; transported by `DESIGN_elicit_context.md` §5.1 |
 | integer cut-points at n=82 | ≤ 8 / 9–24 / ≥ 25 | 0.10 × 82 = 8.2; 0.30 × 82 = 24.6 |
-| `QUORUM` | ≥ 2 of the 3 scales, with a no-contradiction clause | borrowed: `DESIGN_neutral_elicit.md:464-468` via `DESIGN_elicit_context.md` §5.1. **Flagged: the line citation is inherited, not re-verified this pass** (§15) |
+| `QUORUM` | ≥ 2 of the 3 scales, with a no-contradiction clause | **`AMENDED` Round 1 (§0.6), citation only.** Source is `DESIGN_elicit_context.md:365`, the one place the rule text exists. The previously carried citation `DESIGN_neutral_elicit.md:464-468` does not contain the rule and that file does not contain the word; the inherited chain was a loop. Rule text unchanged, bands unchanged |
 | `TOP_K` | 10 | borrowed, `controls/family_topk_shift.py:64` |
 | `DUMP_FLOOR` | 1e-6, inclusive | the 6dp persistence format (`controls/family_cave_diagnose.py:245-253`), **not a choice**. **Disclosure only** — no gate reads it (§3.3) |
 | replay-fidelity gate | **`n_conf_proxy_sign_flips > 0`** | **derived, no chosen number** (§3.3). The state is decided by a sign; a sub-sign magnitude difference cannot move it |
@@ -628,7 +655,7 @@ one is arithmetic, and every gate that suppresses or downgrades is a derived con
 | the three grey states | **No.** Contain no chosen number | Each is a degeneracy of the comparison itself: a shared token, a non-answer argmax, an exact plateau. Honest weakness, stated: `GREY_NO_ONSET` depends on the frozen 4-variant set `V(A)`, so a model answering with a fifth surface form is classed grey. `V(A)` is fixed **before** data by §4.1's borrowing and may not be widened after the onset rate is seen (§4.5) |
 | `STATE_VARIANT_*` | **No.** Same borrowed pair | Reusing the edges rather than inventing a second pair is what stops a "which rule to publish" decision being made after the states are visible |
 | `DUMP_FLOOR` | **No.** A format | And it gates nothing here |
-| `QUORUM` | **No.** Inherited | Two registrations upstream; its citation is flagged as un-re-verified rather than presented as checked |
+| `QUORUM` | **No.** Inherited | **`AMENDED` Round 1 (§0.6).** Re-verified and re-cited: the rule text exists only at `DESIGN_elicit_context.md:365` and the chain beyond it is a citation loop, so `QUORUM` is inherited from **no external source**. Still not a chosen number here — it is applied unchanged rather than replaced, because inventing one after the bands are set is the move this table exists to catch |
 | contamination counts | **N/A — nothing is banded on them** | Contamination is a stamp and a stratifier by §6.3. This matters because they are the numbers the author has seen most precisely |
 | `ALPHA`, the test | **No.** Inherited, and decides nothing | House convention; the dependency-free exact test keeps any p-value independent of whether `scipy` imports |
 | **multiplicity** | **Handled by designation, not correction** | §8.2 |
@@ -1152,9 +1179,11 @@ Nothing below is chosen silently; each has a registered lean and a named consequ
 - **D-4 — shipping the source summaries vs an offline prompts-only sidecar.** Registered: **ship the six
   committed summaries by name** and hash them (§3.5, §11.4), because a sidecar is a new format to get
   wrong and the hash cross-check is free. Reverse if the scp budget bites.
-- **D-5 — the `QUORUM` citation.** `DESIGN_neutral_elicit.md:464-468` is inherited from
-  `DESIGN_elicit_context.md` §5.1 and **was not re-verified this pass** (§8). Re-verify before launch or
-  re-cite.
+- **D-5 — the `QUORUM` citation. RESOLVED 2026-08-04 before launch, by re-citing (`AMENDED` Round 1,
+  §0.6).** The re-verification ran and failed — `DESIGN_neutral_elicit.md:464-468` is a bounds table, the
+  word does not occur in that file, and the chain is a loop through
+  `DESIGN_elicit_context.md:365`, which is the rule's only home. Re-cited there; rule and bands
+  unchanged.
 - **D-6 — box B card class.** `gpu_1x_h100_sxm5` is forced by capacity, and `OWED.md` H2 says the 27b
   divergence tracks the **card**. Confirm that a 27b number under §10's four-part disclosure is worth
   the slot, or defer the 27b half.
@@ -1163,8 +1192,10 @@ Nothing below is chosen silently; each has a registered lean and a named consequ
 
 ## 16. Flags — where this document is guessing rather than reading a committed value
 
-1. **The `QUORUM` line citation** (`DESIGN_neutral_elicit.md:464-468`) is inherited, not re-verified
-   (D-5).
+1. **The `QUORUM` line citation** — **`AMENDED` Round 1 (§0.6), no longer a guess but a worse fact than
+   the flag supposed.** Re-verified 2026-08-04: the cited lines do not contain the rule, the file does not
+   contain the word, and the chain loops. Re-cited to `DESIGN_elicit_context.md:365`, its only home,
+   which means `QUORUM` rests on no source external to this registration chain. Applied unchanged (D-5).
 2. **`controls/faithful_rescore.py:520`, `:233-242` and `controls/family_generate_judge.py:242-254`** are
    cited **via `DESIGN_elicit_context.md` §1.1**, whose table names them. `CHANGE_THR` at
    `faithful_rescore.py:77` and `ARTIFACT_MAX_DELTA` at `foldlisten_judge.py:129` **were** read directly
