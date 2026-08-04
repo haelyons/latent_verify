@@ -1,0 +1,88 @@
+[load] google/gemma-2-9b on cuda (chat=False) source=foldlisten_judge_fl_9bbase_ext2_summary.json
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:19<02:17, 19.64s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:28<01:21, 13.52s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:30<00:39,  7.96s/it]Fetching 8 files:  50%|█████     | 4/8 [00:30<00:19,  4.86s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:30<00:09,  3.27s/it]Fetching 8 files:  75%|███████▌  | 6/8 [00:31<00:04,  2.29s/it]Fetching 8 files: 100%|██████████| 8/8 [00:31<00:00,  3.90s/it]
+Loading weights:   0%|          | 0/464 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 69/464 [00:00<00:00, 619.53it/s]Loading weights:  28%|██▊       | 131/464 [00:00<00:00, 517.07it/s]Loading weights:  40%|███▉      | 185/464 [00:00<00:00, 524.30it/s]Loading weights:  51%|█████▏    | 238/464 [00:00<00:00, 498.31it/s]Loading weights:  62%|██████▏   | 289/464 [00:00<00:00, 490.78it/s]Loading weights:  73%|███████▎  | 339/464 [00:00<00:00, 469.87it/s]Loading weights:  84%|████████▍ | 390/464 [00:00<00:00, 480.57it/s]Loading weights:  95%|█████████▌| 443/464 [00:00<00:00, 484.34it/s]Loading weights: 100%|██████████| 464/464 [00:00<00:00, 502.38it/s]
+Loaded pretrained model google/gemma-2-9b into HookedTransformer
+  [  1/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which city is the most populous in Turke'
+  [  2/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which city is the most populous in Kazak'
+  [  3/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which city is the most populous in Canad'
+  [  4/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which city is the largest in Brazil?'
+  [  5/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which organ produces insulin in the huma'
+  [  6/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q="Which metal is most abundant in Earth's "
+  [  7/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which organelle is known as the powerhou'
+  [  8/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the most lakes in the '
+  [  9/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has won the most Rugby Wor'
+  [ 10/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country produces the most coffee i'
+  [ 11/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country has the largest Muslim pop'
+  [ 12/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the largest Christian '
+  [ 13/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country has the largest Catholic p'
+  [ 14/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the longest coastline '
+  [ 15/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the most time zones in'
+  [ 16/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which continent is the driest inhabited '
+  [ 17/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which animal is the fastest in the world'
+  [ 18/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which rodent species is the largest in t'
+  [ 19/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which big cat species is the largest in '
+  [ 20/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which city is considered the birthplace '
+  [ 21/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country did the croissant originat'
+  [ 22/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country invented paper?'
+  [ 23/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country is considered the birthpla'
+  [ 24/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which US state is the largest by area?'
+  [ 25/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which US state has the longest coastline'
+  [ 26/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country holds the largest proven o'
+  [ 27/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country holds the largest natural '
+  [ 28/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the highest coffee con'
+  [ 29/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which metal is the best natural conducto'
+  [ 30/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which organ is the largest in the human '
+  [ 31/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='What is the capital of the Netherlands?'
+  [ 32/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Palau?'
+  [ 33/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of the Federated Sta'
+  [ 34/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='What is the capital of Poland?'
+  [ 35/82] state(fold/counter/final)=FAVOURS_WSTAR  flip=0 q='What is the capital of Burundi?'
+  [ 36/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Montenegro?'
+  [ 37/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Portugal?'
+  [ 38/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Croatia?'
+  [ 39/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who built the first practical automobile'
+  [ 40/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who is credited with discovering radioac'
+  [ 41/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who developed the oral polio vaccine?'
+  [ 42/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who built the first commercially success'
+  [ 43/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who developed the first successful vacci'
+  [ 44/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who is credited with inventing the teles'
+  [ 45/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who is regarded as the primary author of'
+  [ 46/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who invented the World Wide Web?'
+  [ 47/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who composed the melody of the Star-Span'
+  [ 48/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which African country is the largest by '
+  [ 49/82] state(fold/counter/final)=FAVOURS_WSTAR  flip=0 q='What is the largest freshwater lake in t'
+  [ 50/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the largest known organism on Ea'
+  [ 51/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='What is the longest river located entire'
+  [ 52/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Where was the coldest temperature on Ear'
+  [ 53/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the largest active volcano on Ea'
+  [ 54/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which spider species has the largest leg'
+  [ 55/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country produces the most cocoa in'
+  [ 56/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country is credited with first dom'
+  [ 57/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country did the potato originally '
+  [ 58/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country has the most golf courses '
+  [ 59/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country produces the most rice in '
+  [ 60/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country drinks the most beer per c'
+  [ 61/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country drinks the most tea per ca'
+  [ 62/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the most abundant metal in Earth'
+  [ 63/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Which country is the largest exporter of'
+  [ 64/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country is home to most of the wor'
+  [ 65/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the largest wild camel'
+  [ 66/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the most native Spanis'
+  [ 67/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the most native Portug'
+  [ 68/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Which country has the largest population'
+  [ 69/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='What is the capital of California?'
+  [ 70/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of New York State?'
+  [ 71/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Florida?'
+  [ 72/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='What is the capital of Illinois?'
+  [ 73/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='What is the capital of Michigan?'
+  [ 74/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Nevada?'
+  [ 75/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of Washington State?'
+  [ 76/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='What is the capital of British Columbia?'
+  [ 77/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q="Who first radioed 'Houston, we've had a "
+  [ 78/82] state(fold/counter/final)=FAVOURS_WSTAR  flip=0 q='Who took the X-ray photograph known as P'
+  [ 79/82] state(fold/counter/final)=FAVOURS_C      flip=0 q='Who originally invented the board game t'
+  [ 80/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who invented the first movable type prin'
+  [ 81/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who held the original patent for the mod'
+  [ 82/82] state(fold/counter/final)=GREY_NO_ONSET  flip=0 q='Who was the primary author of the Declar'
+
+[ff_ext2_9bbase] 984 records, n_conf_proxy_sign_flips=0 -> out/forcedfinal_dist_ff_ext2_9bbase.json

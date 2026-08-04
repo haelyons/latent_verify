@@ -128,6 +128,41 @@ fitted-rule move §8 exists to prevent. `DESIGN_elicit_context.md:365`'s "≥ 2 
 is applied per half as §9.6 already states, the base half and the `-it` half each taking the rule over
 its own three scales; §9.6's "never pooled" is unaffected.
 
+**Round 2 — 2026-08-05, AFTER the run, disclosure of an unmet requirement. It NEITHER LOOSENS NOR
+TIGHTENS: no threshold, band, branch or denominator changes, and §11's requirement is NOT relaxed.**
+
+**`provenance.driver` is `null` in all six artifacts of this run.** Every other §11 field is stamped,
+including the two that cost the De Marez run three verdicts — `cuda_visible_devices` is `"0"` and
+`lambda_instance_id` and `git_commit` are both present at all six cells. Cause, read off the instrument:
+`controls/forcedfinal_dist.py:316-323` sources the driver from torch alone, trying
+`torch.cuda.driver_version()` and then `torch._C._cuda_getDriverVersion()`; on `torch 2.6.0+cu124` both
+raise, the `except` sets `drv = None`, and the field is emitted as `None`. There is **no `nvidia-smi`
+fallback in the instrument**, despite its docstring describing the block as transcribed from
+`controls/family_topk_shift_fmt.py::build_provenance`.
+
+**Why no gate fired.** `driver` is in `PROVENANCE_KEYS` but not in `PROVENANCE_LOAD_BEARING`
+(`:73`, `:76`), and `validate_provenance` (`:291-300`) tests key **presence**, not non-nullity, for
+everything outside the load-bearing pair. So a present-but-null `driver` passes §11.2's gate while §12
+says "a number without a complete stamp **is not quotable**". That gap is the same class of defect as
+the De Marez `cuda_visible_devices` failure, one field over: the runner's hard `export` closes it for
+`cuda_visible_devices` and nothing closes it for `driver`, because `driver` has no env-var backstop.
+
+**The value is not lost, and the requirement is not waived.** Each box's runner printed `nvidia-smi`
+before any model load, so the driver is recorded in the run logs this session committed:
+**`570.148.08`** on box A (`results_ff_2b9b/out/run_detached.log`, card `NVIDIA A100-SXM4-80GB`) and
+**`570.148.08`** on box B (`results_ff_27b/out/run_detached.log`, card `NVIDIA H100 80GB HBM3`). Both
+boxes therefore carry the same driver, which is what §10(ii)'s "card **and** driver" disclosure needs.
+Any number quoted under §10(ii) must cite the run log for the driver and say so — the figure caption
+does. **A driver read from a run log is weaker than one stamped in the artifact**: it is per-box rather
+than per-artifact, which is exactly the granularity §11.1 exists to close, so it is disclosed here
+rather than presented as equivalent.
+
+**Not repaired in code.** Adding an `nvidia-smi` fallback after the values are read would change what a
+re-run stamps relative to what these artifacts stamp, and the instrument that produced both boxes must
+stay the one the artifacts name. The fix belongs to the next registration that runs this instrument,
+along with promoting non-nullity — not key presence — to the validator's test for the fields §12 makes
+quotability depend on.
+
 ---
 
 ## 1. Scope, fixed before the run
@@ -864,6 +899,11 @@ The `-it` round verdict is the **PRIMARY** (§8.2). The base round verdict is **
 ---
 
 ## 11. Provenance requirements
+
+**`AMENDED` Round 2 (§0.6): `driver` came back `null` in all six artifacts of the 2026-08-05 run. The
+requirement below is NOT relaxed — the field is recorded as unmet and the value sourced from each box's
+run log instead. See §0.6 Round 2 before quoting any number that leans on the driver, §10(ii) in
+particular.**
 
 The full stamp of `REGISTRATION_provenance.md` §1 is **required** in every artifact this registration
 produces: `gpu_name`, `gpu_count`, `cuda_runtime`, `driver`, `torch`, `transformers`,
