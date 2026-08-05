@@ -316,9 +316,14 @@ def _ribbon(ax, x0, y0, x1, y1, w, color, alpha=0.45):
     ax.add_patch(PathPatch(MPath(verts, codes), facecolor=color, alpha=alpha, lw=0, zorder=2))
 
 
-def draw_flow(ax, seqs, cats, col, stages):
+def draw_flow(ax, seqs, cats, col, stages, alpha=None):
     """n-stage alluvial for ONE (direction, arm) chain: ribbons colored by DESTINATION, and a
-    direct count label on EVERY nonzero node (mandatory: #E69F00 fails 3:1 on white)."""
+    direct count label on EVERY nonzero node (mandatory: #E69F00 fails 3:1 on white).
+
+    `alpha` is an optional {"node":…, "rib":…} pair; the default reproduces this script's own
+    committed output exactly. make_fig_dist_grid passes make_figB_matrix.ALPHA to restore the
+    readout sankey's opacity-encodes-training channel."""
+    a = alpha or dict(node=1.0, rib=0.45)
     K = len(stages)
     counts = [{c: sum(1 for s in seqs if s[k] == c) for c in cats} for k in range(K)]
     tops, height = zip(*(_offsets(sc, cats) for sc in counts))
@@ -328,7 +333,7 @@ def draw_flow(ax, seqs, cats, col, stages):
             if not n:
                 continue
             ax.add_patch(plt.Rectangle((k - NODE_W, tops[k][c]), 2 * NODE_W, n,
-                                       color=col[c], lw=0, zorder=3))
+                                       facecolor=col[c], alpha=a["node"], lw=0, zorder=3))
             side = 1 if k == K - 1 else -1
             ax.text(k + side * (NODE_W + 0.04), tops[k][c] + n / 2, str(n),
                     ha="left" if side > 0 else "right", va="center", fontsize=7.5,
@@ -343,7 +348,7 @@ def draw_flow(ax, seqs, cats, col, stages):
                     continue
                 y0 = tops[k][cs] + used_s[cs]; used_s[cs] += w
                 y1 = tops[k + 1][cd] + used_d[cd]; used_d[cd] += w
-                _ribbon(ax, k + NODE_W, y0, k + 1 - NODE_W, y1, w, col[cd])
+                _ribbon(ax, k + NODE_W, y0, k + 1 - NODE_W, y1, w, col[cd], a["rib"])
     ax.set_xlim(-0.45, K - 1 + 0.45)
     ax.set_ylim(max(max(height), 82) + GAP, -GAP)
     ax.set_xticks(range(K), stages, fontsize=8)
