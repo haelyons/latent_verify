@@ -158,15 +158,25 @@ def make_grid(join_path, dist_dir, out_png, arm="counter"):
                 ax.tick_params(axis="x", labelsize=7.5)
             flips = fid[cell][1]
             extra = "   [CONF_PROXY_SIGN_UNSTABLE n=%s]" % flips if cell in downgraded else ""
-            ax.set_title("%s — %s%s" % (TITLE[cell], direction, extra), fontsize=9.5, pad=6)
+            ax.set_title("%s — %s%s" % (TITLE[cell], direction, extra), fontsize=9.5, pad=17)
+            # The merge disclosure, in the readout sankey's own idiom: make_figB_sankey prints
+            # "(alias flags->neither: a/b/c)" in each panel title because folding UNRESOLVED_ALIAS
+            # into NEITHER hides a distinction. The grey band folds THREE Rule-S states, so the
+            # same disclosure is owed here, per stage.
+            ax.text(0.5, 1.005, "grey = " + ",  ".join(
+                "%s %s" % (nm, "·".join(str(unrolled[k].get(st, 0)) for k in range(3)))
+                for nm, st in (("no-onset", "GREY_NO_ONSET"), ("tied", "GREY_TIED"),
+                               ("collision", "GREY_COLLISION"))),
+                transform=ax.transAxes, ha="center", va="bottom", fontsize=6.3, color="#777777")
             for k, slot in enumerate(SLOTS):
                 print("[unrolled] %-8s %-6s %-12s %s" % (cell, direction, slot,
                       " ".join("%s=%d" % (s, unrolled[k].get(s, 0)) for s in RULE_S)))
 
-    fig.suptitle("Forced-final DISTRIBUTIONAL grid — Rule S first-token states, counter arm\n"
-                 "all six cells x both directions; stage 1 is the plain question, NOT the plant "
-                 "(section 5)", fontsize=13, y=0.988)
-    fig.tight_layout(rect=(0.085, 0.105, 0.995, 0.955))
+    fig.suptitle("Forced-final DISTRIBUTIONAL grid — Rule S FIRST-TOKEN states, all six cells x both "
+                 "directions\n"
+                 "stages 2-3 are the COUNTER arm; stage 1 is the plain question, shared by both arms "
+                 "and both directions (section 5)", fontsize=12.5, y=0.99)
+    fig.tight_layout(rect=(0.085, 0.118, 0.995, 0.955))
 
     # Row labels AFTER tight_layout, positioned from each row's own axes extent so the stamps sit
     # beside their row instead of colliding with the neighbouring one.
@@ -183,18 +193,19 @@ def make_grid(join_path, dist_dir, out_png, arm="counter"):
 
     handles = [plt.Rectangle((0, 0), 1, 1, color=COL[c]) for c in CATS]
     fig.legend(handles, [NICE[c] for c in CATS], loc="lower center",
-               bbox_to_anchor=(0.5, 0.077), ncol=3, frameon=False, fontsize=10)
-    for y, txt in ((0.055, "states are FIRST-TOKEN Rule-S reads at the canonical key (section 4.2) — "
-                           "never 'the probability of C'; GREY = collision / no-onset / tied.  Stage 2 is "
-                           "82/82 grey at every\ncell: the reply to the challenge does not begin with an "
-                           "answer token (modal first token: \"You\" 82/82 at every -it cell, a polarity "
-                           "word at base)."),
-                   (0.028, "ribbons are within (cell, direction, arm) only (section 2, 5.2, 9.5).  The "
-                           "base and -it rows are SEPARATE MEASUREMENTS SHOWN TOGETHER, not a contrast: "
-                           "section 6.5 forbids a\nbase-vs-it contrast at this slot and none is computed "
-                           "here.  No section 9.4 verdict is printed — section 9.3: no band and no verdict "
-                           "attaches to a state count."),
-                   (0.007, "verdicts: out/forcedfinal_join.json (the only verdict source).  Mandated 3x3 "
+               bbox_to_anchor=(0.5, 0.092), ncol=3, frameon=False, fontsize=10)
+    for y, txt in ((0.050, "states are FIRST-TOKEN Rule-S reads at the canonical key (section 4.2) — never "
+                           "'the probability of C'.\nSTAGE 1's base/-it difference is a FORMAT effect, not a "
+                           "knowledge difference: base reads `Q: … A:` so its next token IS the answer, while "
+                           "-it opens in prose\n(modal first token \"The\", 78/62/60 of 82) and so scores "
+                           "GREY_NO_ONSET.  Stage 2 is 82/82 grey everywhere: the reply to the challenge "
+                           "never begins with an answer token."),
+                   (0.024, "the NEUTRAL arm is not drawn — counter arm only, so the grid is not exhaustive "
+                           "over arms; stage 1 is nonetheless common to both.  Ribbons are within (cell, "
+                           "direction, arm) only (section 2, 5.2, 9.5).\nBase and -it rows are SEPARATE "
+                           "MEASUREMENTS SHOWN TOGETHER, not a contrast: section 6.5 forbids one at this slot "
+                           "and none is computed.  No section 9.4 verdict is printed (section 9.3)."),
+                   (0.005, "verdicts: out/forcedfinal_join.json (the only verdict source).  Mandated 3x3 "
                            "and 5x4 tables: docs/drafts/figs/fig_dist_sankey_tables.md.  27b panels "
                            "quotable only with section 10's four-part disclosure.")):
         fig.text(0.5, y, txt, ha="center", va="bottom", fontsize=7.5, color="#555555", linespacing=1.5)
